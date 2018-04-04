@@ -1,0 +1,22 @@
+# Team Report: Week 1 #
+
+
+## Progress ##
+Our progress this week was primarily focused on organizing the logistics of the
+project. We discussed the scope of the work to determine what aspects we want
+to focus on, and which we think would be doable in our timeframe. Additionally,
+we reviewed the written report of the original Pipe Jam game to get an
+understanding of how verifications games work and how this specific game is
+structured.
+
+We were not able to access any code for the Pipe Jam game, and also had
+difficulty accessing playable versions of the game due to expired web pages and
+because of Flash players being decomissioned in modern brower versions.
+
+
+## Goals ##
+- Acquire existing codebase
+- Set up project development environment
+- Re-assess project scope and timeframe projection using our new understanding
+  of the codebase
+

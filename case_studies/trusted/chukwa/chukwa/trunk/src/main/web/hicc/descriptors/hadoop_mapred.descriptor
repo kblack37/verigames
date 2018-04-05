@@ -1,0 +1,45 @@
+{
+"id":"hadoop_mapred",
+"title":"Hadoop Map/Reduce Metrics",
+"version":"0.1",
+"categories":"Hadoop,Map/Reduce",
+"url":"iframe/jsp/chart.jsp",
+"description":"Display map/reduce metrics from Hadoop",
+"screendump":"\/images\/server_load.gif",
+"refresh":"15",
+"parameters":[
+{"name":"title","type":"string","value":"","edit":"1","label":"Title"},
+{"name":"period","type":"custom","control":"period_control","value":"","label":"Period"},
+{"name":"data","type":"select_multiple","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:mapsRunning/session/cluster","label":"Metric","options":[
+{"label":"Map Tasks Running","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:mapsRunning/session/cluster"},
+{"label":"Map Task Slots","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:mapTaskSlots/session/cluster"},
+{"label":"Reduce Tasks Running","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:reduceRunning/session/cluster"},
+{"label":"Reduce Task Slots","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:reduceTaskSlots/session/cluster"},
+{"label":"Occupied Map Task Slots","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:occupiedMapTaskSlots/session/cluster"},
+{"label":"Occupied Reduce Task Slots","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:occupiedReduceTaskSlots/session/cluster"},
+{"label":"Tasks Completed","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:tasksCompleted/session/cluster"},
+{"label":"Tasks Failed Ping","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:tasksFailedPing/session/cluster"},
+{"label":"Tasks Failed Timeout","value":"/hicc/v1/metrics/series/ClusterSummary/mapreduce:tasksFailedTimeout/session/cluster"}
+]},
+{"name":"width","type":"select","value":"300","label":"Width","options":[
+{"label":"300","value":"300"},
+{"label":"400","value":"400"},
+{"label":"500","value":"500"},
+{"label":"600","value":"600"},
+{"label":"800","value":"800"},
+{"label":"1000","value":"1000"},
+{"label":"1200","value":"1200"}
+]},
+{"name":"height","type":"select","value":"200","label":"Height","options":[
+{"label":"200","value":"200"},
+{"label":"400","value":"400"},
+{"label":"600","value":"600"},
+{"label":"800","value":"800"},
+{"label":"1000","value":"1000"}
+]},
+{"name":"legend","type":"radio","value":"on","label":"Show Legends","options":[
+{"label":"On","value":"on"},
+{"label":"Off","value":"off"}
+]}
+]
+}

@@ -1,0 +1,14 @@
+NonNegative checker: provides annotations for ints:
+
+UnknownSign
+    /|\
+     |
+     |
+NonNegative
+
+Properties:
+  - All normal subtyping properties
+  - Array indices must be NonNegative
+  - NonNegative + NonNegative = NonNegative
+  - NonNegative * NonNegative = NonNegative
+  - NonNegative / NonNegative = NonNegative (div by zero is a separate problem)

@@ -1,0 +1,6 @@
+parse took 1102 milliseconds
+
+aka 0.02204 ms per line or 0.24253927617652457 ms per kilobyte of log data
+
+output records had total length of 8443594
+

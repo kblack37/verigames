@@ -1,0 +1,10 @@
+Starting DataNode 0 with dfs.data.dir: /homes/gws/sdietzel/chukwa/chukwa/trunk/target/test/classes/target/test-data/68f7a5ba-0f3a-4dba-a1b1-72c6f5ad2da3/dfs/data/data1,/homes/gws/sdietzel/chukwa/chukwa/trunk/target/test/classes/target/test-data/68f7a5ba-0f3a-4dba-a1b1-72c6f5ad2da3/dfs/data/data2
+
+Starting DataNode 1 with dfs.data.dir: /homes/gws/sdietzel/chukwa/chukwa/trunk/target/test/classes/target/test-data/68f7a5ba-0f3a-4dba-a1b1-72c6f5ad2da3/dfs/data/data3,/homes/gws/sdietzel/chukwa/chukwa/trunk/target/test/classes/target/test-data/68f7a5ba-0f3a-4dba-a1b1-72c6f5ad2da3/dfs/data/data4
+
+Shutting down the Mini HDFS Cluster
+
+Shutting down DataNode 1
+
+Shutting down DataNode 0
+

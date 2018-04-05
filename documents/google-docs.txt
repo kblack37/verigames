@@ -1,0 +1,7 @@
+This is a list of documents that appear in Google docs
+
+Verigame functionality checklist (flash functionality)
+https://docs.google.com/document/d/1HrqPFBrsXNE_SXuUQ3eKY8BAMK_GKNYaHvNz16IWf4M/edit?hl=en_US
+
+Verigames glossary
+https://spreadsheets.google.com/a/cs.washington.edu/spreadsheet/ccc?key=0ArXYSAwVtSPudGRPa1ZQNnFnUGtOR0dKUUVQZ25qREE&hl=en_US

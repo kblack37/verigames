@@ -1,0 +1,45 @@
+{
+    "scoring": {
+        "variables": {
+            "type:0": 0, 
+            "type:1": 0
+        }, 
+        "constraints": 100
+    }, 
+    "default": "type:1", 
+    "qid": 2, 
+    "variables": {
+        "var:4": {
+            "default": "type:0", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 1
+            }
+        }, 
+        "var:0": {
+            "default": "type:0", 
+            "constant": "true"
+        }, 
+        "var:1": {
+            "default": "type:1", 
+            "constant": "true"
+        }, 
+        "var:2": {
+            "default": "type:0", 
+            "score": {
+                "type:0": 1, 
+                "type:1": 0
+            }
+        }, 
+        "var:3": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 1, 
+                "type:1": 0
+            }
+        }
+    }, 
+    "version": "1", 
+    "id": "LockedWidget", 
+    "constraints": []
+}

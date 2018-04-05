@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE world SYSTEM "world.dtd">
+<world>
+ <level name="Placeholder">
+  <linked-edges>
+   <edge-set>
+    <edgeref id="e1"/>
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set>
+    <edgeref id="e3"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="Placeholder">
+    <node kind="INCOMING" id="n0">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+     </output>
+     <layout>
+      <x>0.00000</x>
+      <y>0.00000</y>
+     </layout>
+    </node>
+    <node kind="OUTGOING" id="n1">
+     <input>
+      <port num="0" edge="e2"/>
+     </input>
+     <output/>
+     <layout>
+      <x>0.44444</x>
+      <y>7.68000</y>
+     </layout>
+    </node>
+    <node kind="START_LARGE_BALL" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e3"/>
+     </output>
+     <layout>
+      <x>0.88889</x>
+      <y>1.14898</y>
+     </layout>
+    </node>
+    <node kind="MERGE" id="n3">
+     <input>
+      <port num="0" edge="e1"/>
+      <port num="1" edge="e3"/>
+     </input>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.44444</x>
+      <y>4.41449</y>
+     </layout>
+    </node>
+    <edge description="chute1" variableID="-1" pinch="false" width="narrow" editable="true" id="e1" buzzsaw="false">
+     <from>
+      <noderef id="n0" port="0"/>
+     </from>
+     <to>
+      <noderef id="n3" port="0"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>0.50000</x>
+       <y>0.00000</y>
+      </point>
+      <point>
+       <x>0.50000</x>
+       <y>2.50416</y>
+      </point>
+      <point>
+       <x>0.94444</x>
+       <y>5.47276</y>
+      </point>
+      <point>
+       <x>0.94444</x>
+       <y>5.47276</y>
+      </point>
+     </edge-layout>
+    </edge>
+    <edge description="chute1" variableID="-1" pinch="true" width="narrow" editable="true" id="e2" buzzsaw="false">
+     <from>
+      <noderef id="n3" port="0"/>
+     </from>
+     <to>
+      <noderef id="n1" port="0"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>0.94444</x>
+       <y>5.53323</y>
+      </point>
+      <point>
+       <x>0.94444</x>
+       <y>5.53323</y>
+      </point>
+      <point>
+       <x>0.94444</x>
+       <y>6.72574</y>
+      </point>
+      <point>
+       <x>0.94444</x>
+       <y>7.68000</y>
+      </point>
+     </edge-layout>
+    </edge>
+    <edge description="chute3" variableID="-1" pinch="false" width="narrow" editable="true" id="e3" buzzsaw="false">
+     <from>
+      <noderef id="n2" port="0"/>
+     </from>
+     <to>
+      <noderef id="n3" port="1"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>1.38889</x>
+       <y>2.26772</y>
+      </point>
+      <point>
+       <x>1.38889</x>
+       <y>2.26772</y>
+      </point>
+      <point>
+       <x>0.94444</x>
+       <y>5.47276</y>
+      </point>
+      <point>
+       <x>0.94444</x>
+       <y>5.47276</y>
+      </point>
+     </edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+</world>

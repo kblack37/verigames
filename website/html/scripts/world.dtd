@@ -1,0 +1,108 @@
+<!ELEMENT world (level*)>
+ <!ATTLIST world version (1) #REQUIRED>
+ <!ELEMENT level (linked-edges,boards)>
+  <!ATTLIST level name CDATA #REQUIRED>
+  <!ELEMENT linked-edges (edge-set*)>
+   <!ELEMENT edge-set (stamp*,edgeref*)>
+    <!ATTLIST edge-set id ID #REQUIRED>
+    <!-- refers to a possible edge-set with whose color this edge-set can be stamped with -->
+    <!ELEMENT stamp EMPTY>
+     <!-- stamp ID must refer to an edge-set ID -->
+     <!ATTLIST stamp id IDREF #REQUIRED>
+     <!ATTLIST stamp active (true|false) #REQUIRED>
+    <!ELEMENT edgeref EMPTY>
+     <!ATTLIST edgeref id IDREF #REQUIRED>
+  <!ELEMENT boards (board*)>
+   <!ELEMENT board (node*,edge*)>
+    <!ATTLIST board name ID #REQUIRED>
+    <!ELEMENT node (input,output,layout?)>
+     <!ATTLIST node kind (INCOMING|OUTGOING|SPLIT|GET|BALL_SIZE_TEST|MERGE|START_SMALL_BALL|START_LARGE_BALL|START_NO_BALL|START_PIPE_DEPENDENT_BALL|END|SUBBOARD|CONNECT) #REQUIRED>
+     <!ATTLIST node id ID #REQUIRED>
+     <!ATTLIST node name IDREF #IMPLIED>
+     <!ELEMENT input (port*)>
+     <!ELEMENT output (port*)>
+      <!ELEMENT port EMPTY>
+       <!ATTLIST port num CDATA #REQUIRED>
+       <!ATTLIST port edge IDREF #REQUIRED>
+     <!ELEMENT layout (x,y)>
+      <!ELEMENT x (#PCDATA)>
+      <!ELEMENT y (#PCDATA)>
+    <!ELEMENT edge (from,to,edge-layout?)>
+     <!ATTLIST edge description CDATA #REQUIRED>
+     <!ATTLIST edge variableID CDATA #REQUIRED>
+     <!ATTLIST edge pinch (true|false) #REQUIRED>
+     <!ATTLIST edge width (wide|narrow) #REQUIRED>
+     <!ATTLIST edge editable (true|false) #REQUIRED>
+     <!ATTLIST edge buzzsaw (true|false) #REQUIRED>
+     <!ATTLIST edge id ID #REQUIRED>
+     <!ELEMENT from (noderef)>
+     <!ELEMENT to (noderef)>
+      <!ELEMENT noderef EMPTY>
+       <!ATTLIST noderef id IDREF #REQUIRED>
+       <!ATTLIST noderef port CDATA #REQUIRED>
+     <!ELEMENT edge-layout (point,(point,point,point)*)>
+      <!ELEMENT point (x,y)>
+
+<!--
+
+Node layout information:
+
+   X and Y coordinates are integers starting at 0. (0,0) is the top left
+   corner.
+
+   Width:
+
+      - MERGE, SPLIT, and NULL_TEST nodes have a width of 2. That is, a node to
+      the right of a MERGE at (0,0) must be at (2,0) or to the right.
+
+      - SUBNETWORK nodes have width = max(#incoming edges, #outgoing edges)
+
+      - END nodes have a width of 1
+
+   Height:
+
+      - MERGE, SPLIT, START_XXX_BALL, and SUBNETWORK nodes have a height of 2.
+      That is, a node below a SPLIT at (0,0) must be at (0,2) or below.
+
+      - INCOMING nodes have a height of 1.
+
+      - Nodes connected by an edge with pinch=true must have an extra y
+      coordinate between them.
+
+      - END nodes have a height of 1
+
+================================================================================
+
+Edge layout information:
+
+   Edge layout is given in the form of a list of b-spline control points. The
+   number of control points, x, will always be such that (x = 1 (mod 3)).
+   Equivalently, (x mod 3) = 1, or x = 1 + 3n, where n is any nonnegative
+   integer.
+   
+================================================================================
+
+Requirements not enforced by the DTD:
+
+   - All edges are contained in exactly one edge-set
+
+   - All nodes that have kind SUBNETWORK must have a name attribute (and the
+     name attribute is meaningless for other kinds of node)
+
+   - variableID must be an integer
+
+================================================================================
+
+Misc:
+
+   - NULL_TEST node:
+
+      - Represents the branching that occurs when the variable represented by
+      the input edge is tested against null.
+
+      - Upon encountering this node, a small ball will roll to the output edge
+      at port 0, and a large ball will roll to the output edge at port 1.
+
+      - The output edge at port 0 must be narrow, and the output edge at port 1
+      must be wide.
+-->

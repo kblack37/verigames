@@ -1,0 +1,3 @@
+To build, you will need Adobe Crossbridge installed, and the
+environment variable FLASCC set to to Crossbridge's sdk folder.  Then
+run build.sh.

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+		<meta http-equiv="Cache-control" content="public"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>      
+		<link rel="icon" type="image/png" href="/theme-3/i/favicon.png"/>
+		<link href="/theme-3/css/base.css" type="text/css" rel="stylesheet" media="screen"/>
+		<link href="/theme-3/css/modules.css" type="text/css" rel="stylesheet" media="screen"/>
+		<link href="/theme-3/css/minisite3/modules.css" type="text/css" rel="stylesheet" media="screen"/>
+
+		<script src="/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+		<script src="/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+		<script src="/chat/js/jquery.tinymce.js" type="text/javascript"></script>
+
+		
+		<title>Flow Jam Robots</title>
+      
+        <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+             the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+             the percentage of the height of its parent container, which has to be set explicitly.  Fix for
+             Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show 
+             if JavaScript disabled.
+        -->
+        <style type="text/css" media="screen"> 
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow:auto; text-align:center; 
+                   background-color: #ffffff; }   
+            #flashContent { display:none; visibility:hidden;}
+        </style>
+        
+ 		
+        <script type="text/javascript">
+			$(document).ready(function()
+			{
+			//$(".welcome").hide();
+			//$(".panel").hide();
+			//$(".social-links").hide();
+			});
+			var encodedCookieResult = null;
+			var loadingData = null;
+			var getEncodedCookieCalled = false;
+			var userID = null;
+
+			function handleLoading()
+			{
+				$.ajax({
+				  url: '/game/interop.php?function=getFileListRobot',
+				  mimeType: 'text/plain; charset=x-user-defined',
+				  dataType: 'text',
+				  success: function(data) {
+					$('#fileList').html(data);
+				  }
+				});
+
+				getEncodedCookie();
+
+			}
+			
+			function getEncodedCookie()
+			{
+				getEncodedCookieCalled = true;
+				 $.ajax({
+				  url: '/encodeCookies',
+				  mimeType: 'text/plain; charset=x-user-defined',
+				  dataType: 'text',
+				  success: function(data) {
+							encodedCookieResult = data;
+							verifySession();
+					}
+				});
+			}
+			
+			function verifySession()
+			{
+				$.ajax({
+					url: '/verifySession?cookies=' + encodedCookieResult,
+					success: function(data) {
+						var obj = JSON.parse(data);
+
+						if(obj != null && obj.userId != null) {
+							userID = obj.userId;
+							getUserInfo(obj.userId);
+						}
+						
+					},
+					dataType: 'text'
+				});
+
+			}
+
+			
+			
+			function getUserInfo(userId)
+			{
+				$.ajax({
+					url: '//api.flowjam.verigames.com/api/users/' + userId,
+					success: function(data) {
+						var obj = JSON.parse(data);
+						if(obj != null) {
+							if(obj.firstName && obj.lastName)
+								$('#userLink').html(obj.firstName + ' ' + obj.lastName);
+							else
+								$('#userLink').html(obj.username);
+							$('#userLink').attr("href", "http://www.verigames.com/userPublicProfile/" + obj.username);
+						}
+						$('#notUploadingFiles').attr("style","display:none;color: #86898F;width: 300px");
+						$('#uploadingFiles').attr("style","color: #86898F;width: 300px");
+						$('#uploadIt').attr("style","color: #86898F;width: 100px");
+
+
+					},
+					dataType: 'text'
+				});
+			}
+			
+			function getEncodedCookieResult()
+			{
+				return encodedCookieResult;
+			}
+			
+			function getCookie(key)
+			{
+				var cookieValue = null;
+				if (key)
+				{
+					var cookieSearch = key + "=";
+					
+					if (document.cookie)
+					{
+						var cookieArray = document.cookie.split(";");
+						for (var i = 0; i < cookieArray.length; i++)
+						{
+							var cookieString = cookieArray[i];
+							
+							// skip past leading spaces
+							while (cookieString.charAt(0) == ' ')
+							{
+								cookieString = cookieString.substr(1);
+							}
+							
+							// extract the actual value
+							if (cookieString.indexOf(cookieSearch) == 0)
+							{
+								cookieValue = cookieString.substr(cookieSearch.length);
+							}
+						}
+					}
+				}
+				return cookieValue;
+			}
+
+			//Pad given value to the left with "0"
+			function AddZero(num) {
+ 			   return (num >= 0 && num < 10) ? "0" + num : num + "";
+			}	
+		
+			function onSubmit()
+			{
+				var filename = document.getElementById("file").value;
+				var now = new Date();
+				var strDateTime = [[AddZero(now.getDate()), AddZero(now.getMonth() + 1), now.getFullYear()].join("/"), [AddZero(now.getHours()), AddZero(now.getMinutes())].join(":")].join("-");
+
+				var data = { "playerID" : userID, "uploaded_date" : strDateTime, "uploaded_file" : filename};
+				var str = JSON.stringify(data);
+				document.getElementById("postFiles").action = "/game/interop.php?function=saveRobotFilePOST&data_id=\'" + str + "\'";
+			}
+        </script>
+    </head>
+    <body onLoad="handleLoading();">
+<input id="themeId" type="hidden" value="3"/>
+		<div class="l-header clearfix">
+			<div class="content">
+				<div class="panel float-right">
+					<ul class="logged-in float-left">
+						<li class="welcome"><form id="logoutForm" action="/logout" method="POST" class="hide"></form><span>Welcome&nbsp;</span><a href="http://www.verigames.com/userPublicProfile/" id="userLink"></a>&nbsp;(&nbsp;<a href="javascript:logout();" class="logout">Logout</a>&nbsp;)</li>
+					</ul>
+				</div>
+	<div class="siteSwitch float-left"><a href="/play" class="site-logo-current site-logo-current--pipejam">FlowJam</a><a href="javascript:;" class="down-arrow"><i class="js-show-site-list"></i></a><ul class="site-list reset"><li><a href="http://verigames.com" class="site-logo-veri">VERIGAMES</a></li><li><a href="http://circuitbot.verigames.com" class="site-logo-circuitboat">CIRCUITBOAT</a></li><li><a href="http://ghostmap.verigames.com" class="site-logo-ghostmap">GHOST MAP</a></li><li><a href="http://stormbound.verigames.com" class="site-logo-stormbound">StormBound</a></li><li><a href="http://xylem.verigames.com" class="site-logo-XYLEM">Xylem</a></li></ul></div>
+	</div></div>
+	<div class="navigationHeaderWrapper"/>	
+		<div id="midWrapper" style="width: 1024px; margin:0 auto;">
+			<div id="overlay_centering" style="position:relative; z-index:9999;">
+				<div id="social_overlay" style="position: absolute; left:973px; width: 47px;">
+					&nbsp;
+				</div>
+			</div>
+	 		</div>
+
+		<div class="sitemap-list sitemap-list--main reset"><ul><li>&nbsp;</li><li><strong style="float:left;">Levels</strong></li></ul>
+		<table style="text-align: left"><tr><td><div id="fileList" style="color: #86898F">loading...</div></td></tr>
+		<tr><td>&nbsp;</td></tr></table>
+		<ul><li><strong style="float:left">Upload</strong></li>
+		<li><div id="notUploadingFiles" style="color: #86898F;width: 300px">You need to be logged in to upload files.</div>
+		<span id="uploadingFiles" style="display:none;padding-top: 1px;padding-bottom: 1px;color: #86898F;width: 300px">
+		<form method="post" enctype="multipart/form-data" id="postFiles">
+			<label for="file">Filename:</label>
+			<input type="file" name="file" id="file"><br>
+			<input type="submit" name="submit" value="Submit" onClick="onSubmit()">
+		</form>
+		</li></ul></div>
+
+		<div style="clear:both; height:669px;">&nbsp;</div>
+		<div class="l-footer"><div class="content content--footer-top"><div class="footer-top clearfix"><div class="sitemap-list sitemap-list--main reset"><div><strong>Main</strong><ul><li><a href="/">Home</a></li><li><a href="/play">Play Game</a></li><li><a href="/static/news">News</a></li><li><a href="/blogs">Blog</a></li><li><a href="/forums">Forum</a></li></ul></div><span class="icon">&nbsp;</span></div><div class="sitemap-list sitemap-list--game reset"><div><strong>GAMES</strong><ul><li><a href="http://circuitbot.verigames.com">CircuitBot</a></li><li><a href="http://flowjam.verigames.com">Flow Jam</a></li><li><a href="http://ghostmap.verigames.com">Ghost Map</a></li><li><a href="http://stormbound.verigames.com">StormBound</a></li><li><a href="http://xylem.verigames.com">Xylem</a></li></ul></div><span class="icon">&nbsp;</span></div><div class="sitemap-list sitemap-list--help reset"><div><strong>HELP</strong><ul><li><a href="/help">Help Center</a></li><li><a href="/help/faq">FAQ</a></li><li><a href="/contactUs">Contact Us</a></li></ul></div><span class="icon">&nbsp;</span></div><div class="sitemap-list sitemap-list--links reset"><div><strong>Policies</strong><ul><li><a href="/termsOfUse">Terms of Use</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div><span class="icon">&nbsp;&nbsp;</span></div><div class="sitemap-list sitemap-list--follow reset"><div><strong>Follow US</strong><ul class="social-links"><li><a href="https://www.facebook.com/PlayVerigames" target="_blank" class="social-links_fb"><span>PlayVeriGames</span></a></li><li><a href="https://twitter.com/verigames" target="_blank" class="social-links_tw"><span>@verigames</span></a></li><li><a href="https://plus.google.com/u/0/b/106688222842892825793/106688222842892825793/posts" target="_blank" class="social-links_gg"><span>+1 VeriGames</span></a></li><li><a href="http://www.youtube.com/user/Verigames" target="_blank" class="social-links_youtube"><span>Verigames</span></a></li></ul></div><span class="icon">&nbsp;</span></div></div></div><div class="content content--footer-bottom"><div class="footer-bottom clearfix"><a href="http://www.darpa.mil"><span class="logo-beta-footer"><img src="/theme-3/i/darpa_logo.png" alt="" width="102" height="62" class="float-left logo-footer first-logo-footer"></span></a><a href="http://www.topcoder.mil"><span class="logo-beta-footer"><img src="/theme-3/i/tc-logo.png" alt="" width="180" height="40" class="float-left logo-footer"></span></a><a href="http://verigames.com"><span class="logo-beta-footer"><img src="/theme-3/i/logo-verigames-footer.png" alt="" class="float-left logo-footer"><span></span></span></a><div class="footer-bottom-left"><p> 
+Copyright 2013 TopCoder, Inc. &nbsp;&nbsp;&nbsp;</p></div></div></div></div>
+
+		   </body>
+		   
+ </html>

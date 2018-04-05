@@ -1,0 +1,7 @@
+import nonnegative.quals.*;
+
+package java.util;
+
+interface List<E> {
+    public E get(@NonNegative int index);
+}

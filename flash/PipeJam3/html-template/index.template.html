@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="X-UA-Compatible" content="IE=9"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="-1"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>It's a Paradox</title><script type="text/javascript" src="swfobject.js"></script>
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+    <!-- 
+    Smart developers always View Source. 
+    
+    This application was built using Adobe Flex, an open source framework
+    for building rich Internet applications that get delivered via the
+    Flash Player or to desktops via Adobe AIR. 
+    
+    Learn more about Flex at http://flex.org 
+    // -->
+    <head>
+        <title></title>
+        <meta name="google" value="notranslate" />         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+             the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+             the percentage of the height of its parent container, which has to be set explicitly.  Fix for
+             Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show 
+             if JavaScript disabled.
+        -->
+        <style type="text/css" media="screen"> 
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow:auto; text-align:center; 
+                   background-color: #ffffff; }   
+            object:focus { outline:none; }
+            #flashContent { display:none; }
+        </style>
+        
+        <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+        <!-- BEGIN Browser History required section -->
+        <link rel="stylesheet" type="text/css" href="history/history.css" />
+        <script type="text/javascript" src="history/history.js"></script>
+        <!-- END Browser History required section -->  
+            
+        <script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript">
+        
+			var encodedCookieResult = null;
+			var getEncodedCookieCalled = false;
+			
+			function initialize()
+			{
+
+			}
+			
+			function getEncodedCookie()
+			{
+				getEncodedCookieCalled = true;
+				 $.ajax({
+				  url: '/encodeCookies',
+				  success: function(data) {
+				//alert(data);
+				            encodedCookieResult = data;
+				    },
+				  dataType: 'text'
+				});
+			}
+	
+	        function getEncodedCookieResult()
+			{
+				return encodedCookieResult;
+			}
+			
+			function getCookie(key)
+			{
+				var cookieValue = null;
+				if (key)
+				{
+					var cookieSearch = key + "=";
+					
+					if (document.cookie)
+					{
+						var cookieArray = document.cookie.split(";");
+						for (var i = 0; i < cookieArray.length; i++)
+						{
+							var cookieString = cookieArray[i];
+							
+							// skip past leading spaces
+							while (cookieString.charAt(0) == ' ')
+							{
+								cookieString = cookieString.substr(1);
+							}
+							
+							// extract the actual value
+							if (cookieString.indexOf(cookieSearch) == 0)
+							{
+								cookieValue = cookieString.substr(cookieSearch.length);
+							}
+						}
+					}
+				}
+				return cookieValue;
+			}
+				
+			function setCookie(key, val)
+			{
+				if (key)
+				{
+					var date = new Date();
+					
+					if (val != null)
+					{
+						// expires in one year
+						date.setTime(date.getTime() + (365*24*60*60*1000));
+						document.cookie = key + "=" + val + "; expires=" + date.toGMTString();
+					}
+					else
+					{
+						// expires yesterday
+						date.setTime(date.getTime() - (24*60*60*1000));
+						document.cookie = key + "=; expires=" + date.toGMTString();
+					}
+				}
+			}
+	
+			function getCookies()
+			{
+				return document.cookie;
+			}
+	
+			function deleteCookie(cookie)
+			{
+				alert('delete cookie' + cookie);
+			}
+			
+			function addHighScores(objStr)
+			{
+				var linkObjs = JSON.parse(objStr);
+				var elem = document.getElementById("high_scores");
+				if(elem)
+				{
+					var htmlString = "";
+					for (var i = 0; i < linkObjs.length; i++)
+					{
+						var obj = linkObjs[i];
+						if(obj['score'] != "")
+							htmlString += "<li>" + obj['name'] + "  <input type='button' style='color:red' id='" + obj['name'] + "' onclick='loadAssignmentFile(\"" + obj['assignmentsID'] + "\")' value='" + obj['score'] + "'/></li>";
+						else
+							htmlString += "<li>" + obj['name'] + "</li>";
+							
+					}
+					elem.innerHTML = htmlString;
+					
+					for (var i = 0; i < linkObjs.length; i++)
+					{
+						var obj = linkObjs[i];
+						var elem = document.getElementById(obj['name']);
+			//			elem.onclick = loadAssignmentFile(obj['assignmentsID']);
+					}
+				}
+			}
+			
+			function addScoreImprovementTotals(objStr)
+			{
+				var elem = document.getElementById("score_improvements");
+				if(elem)
+					elem.innerHTML = infoStr;
+			}
+			
+			function loadAssignmentFile(assignmentFileID) 
+			{ 
+				getSWF("PipeJam3").loadAssignmentFile(assignmentFileID); 
+			} 
+			
+			function getSWF(movieName) 
+			{ 
+			    if (navigator.appName.indexOf("Microsoft") != -1) 
+			    { 
+			        return window[movieName]; 
+			    } 
+			    else 
+			    { 
+			        return document[movieName]; 
+			    } 
+			} 
+	
+	        // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+	        var swfVersionStr = "11.1.0";
+	        // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+	        var xiSwfUrlStr = "playerProductInstall.swf";
+	        var flashvars = {};
+	      //   flashvars.sid = getCookie("express.sid");
+	        var params = {};
+	        params.quality = "high";
+	        params.bgcolor = "#ffffff";
+	        params.allowscriptaccess = "sameDomain";
+	        params.allowfullscreen = "true";
+	        params.wmode="direct";
+	        var attributes = {};
+	        attributes.id = "PipeJam3";
+	        attributes.name = "PipeJam3";
+	        attributes.align = "middle";
+	        swfobject.embedSWF(
+	            "PipeJam3.swf", "flashContent", 
+	            "960", "640", 
+	            swfVersionStr, xiSwfUrlStr, 
+	            flashvars, params, attributes);
+	        // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+	        swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        </script>
+    </head>
+    <body onload="initialize()">
+        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
+             JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+             when JavaScript is disabled.
+        -->
+        <div style="float:left">
+        <div id="flashContent">
+            <p>
+                To view this page ensure that Adobe Flash Player version 
+                11.1.0 or greater is installed. 
+            </p>
+            <script type="text/javascript"> 
+                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 
+                                + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
+            </script> 
+        </div>
+        </div>
+        <div style="width="680px">
+        <h3>High Scores</h3>
+        <h5>click on a score to load it</h5>
+        <ol id="high_scores" style="overflow:hidden; overflow-y:scroll;height:300px; width:200px;align:left">
+        <li style="align:left">your name here</li>
+         <li style="align:left">or here</li>
+          <li style="align:left">or maybe here</li>
+           </ol>
+         <h3>Score Improvements</h3>
+        <ol id="score_improvements"  style="overflow:hidden; overflow-y:scroll;height:300px; width:200px;">
+        <li style="align:left">definitely here</li>
+         <li style="align:left">or maybe here</li>
+           </ol>
+         </div>
+        <noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="960" height="640" id="PipeJam3">
+                <param name="movie" value="PipeJam3.swf" />
+                <param name="quality" value="high" />
+                <param name="bgcolor" value="#ffffff" />
+                <param name="allowScriptAccess" value="sameDomain" />
+                <param name="allowFullScreen" value="true" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="PipeJam3.swf" width="960" height="640">
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#ffffff" />
+                    <param name="allowScriptAccess" value="sameDomain" />
+                    <param name="allowFullScreen" value="true" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                    <p> 
+                        Either scripts and active content are not permitted to run or Adobe Flash Player version
+                        11.1.0 or greater is not installed.
+                    </p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </noscript>     
+   </body>
+</html>

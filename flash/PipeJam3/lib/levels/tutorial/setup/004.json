@@ -1,0 +1,48 @@
+
+{
+  "id": "004",
+  "display_name": "Solve.it",
+  "qid": 2104,
+  "version": "2",
+  "default": "type:1",
+  "scoring": {
+    "variables": {"type:0": 0, "type:1": 0},
+    "constraints": 1
+  },
+  "variables":{},
+  "constraints":[
+    "c:1 <= var:1",
+    "c:1 <= var:2",
+    "var:2 <= c:2",
+    "c:2 <= var:3",
+    "var:3 <= c:3",
+    "var:3 <= c:4",
+    "c:2 <= var:4",
+    "c:5 <= var:4",
+    "c:5 <= var:5",
+    "var:5 <= c:6",
+    "var:5 <= c:7",
+    "c:8 <= var:4",
+    "c:8 <= var:6",
+    "var:6 <= c:9",
+    "var:6 <= c:10",
+    "c:8 <= var:7",
+    "var:7 <= c:11",
+    "c:11 <= var:8",
+    "var:8 <= c:12",
+    "var:8 <= c:13",
+    "var:7 <= c:14",
+    "c:14 <= var:9",
+    "var:9 <= c:15",
+    "c:15 <= var:10",
+    "c:16 <= var:10",
+    "c:16 <= var:11",
+    "c:17 <= var:11",
+    "c:17 <= var:9",
+    "c:14 <= var:12",
+    "var:12 <= c:18",
+    "c:18 <= var:13",
+    "var:13 <= c:19",
+    "var:13 <= c:20"
+    ]
+}

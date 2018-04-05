@@ -1,0 +1,133 @@
+example_metadata:
+
+Content-Type: application/json
+
+{
+"id" : ["512bb69cf452eee3585bb268"],
+"metadata" : {
+	"priority" : 1,
+	"comment" : "comment",
+	"tags" : [
+		{	"name" : "tag_one",
+			"value" : true },
+		{	"name" : "tag_three",
+			"value" : true }
+	],
+	"labels" : [
+		{	"name" : "label_one",
+			"value" : true },
+		{	"name" : "label_two",
+			"value" : true }
+	],
+	"properties" : [
+		{	"name" : "property_one",
+			"value" : 15 },
+		{	"name" : "property_two",
+			"value" : -100.1 }
+	],
+    "parameters" : [
+		{	"name" : "param_one",
+			"value" : 1 },
+		{	"name" : "param_two",
+			"value" : 2.222 },
+		{	"name" : "param_three",
+			"value" : -3.0 }
+	],
+	"parentId" : "510b270f6c4a3dc00c00008f",
+	"predecessorId" : "510b270f6c4a3dc00c000090"
+	}
+}
+
+
+{
+"ids" : ["5130302c28a1dbed35f2a1df",
+         "513035e728a12c4193b852da"],
+"metadata" : {
+	"priority" : 1,
+	"comment" : "comment",
+	"tags" : [
+		{	"name" : "tag_one",
+			"value" : true },
+		{	"name" : "tag_three",
+			"value" : true }
+	],
+	"labels" : [
+		{	"name" : "label_one",
+			"value" : true },
+		{	"name" : "label_two",
+			"value" : true }
+	],
+	"properties" : [
+		{	"name" : "property_one",
+			"value" : 15 },
+		{	"name" : "property_two",
+			"value" : -100.1 }
+	],
+    "parameters" : [
+		{	"name" : "param_one",
+			"value" : 1 },
+		{	"name" : "param_two",
+			"value" : 2.222 },
+		{	"name" : "param_three",
+			"value" : -3.0 }
+	],
+	"parentId" : "510b270f6c4a3dc00c00008f",
+	"predecessorId" : "510b270f6c4a3dc00c000090"
+	}
+}
+
+Constraint metadata:
+
+{
+	"parameter" : [
+		{"name" : "param_one",
+		 "isRequired" : true,
+		 "from" : 0.0,
+		 "to" : 100.0
+		},
+		{"name" : "param_two",
+		 "isRequired" : false,
+		 "from" : 1.0,
+		 "to" : 2.0
+		}
+	],
+	"property" : [
+		{"name" : "property_one",
+		 "isRequired" : true,
+		 "from" : 0.0,
+		 "to" : 100.0
+		}
+	],
+	"tag" : [
+		{"name" : "tag_one",
+		 "isRequired" : true
+		}
+	],
+	"label" : [
+		{"name" : "label_one",
+		 "isRequired" : false
+		},
+		{"name" : "label_two",
+		 "isRequired" : false
+		}
+	],
+	"priority" : {
+		"name" : "priority",
+		"isRequired" : true,
+		"from" : 0.0,
+		"to" : 100.0
+	},
+	"parentId" : [
+		{"name" : "50c5f8284a47e6b00e000052",
+		 "isRequired" : false
+		},
+		{"name" : "511ea9bbc3b26f496249e749",
+		 "isRequired" : false
+		}
+	],
+	"predecessorId" : [
+		{"name" : "000000000000000000000000",
+		 "isRequired" : true
+		}
+	]
+}

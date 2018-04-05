@@ -1,0 +1,95 @@
+#content {
+    width: 800px;
+    border-color:#313131;
+    border-style:solid;
+    border-width: 6px;
+    margin-top: 30px;
+    background-color:white;
+    padding:10px;
+    color: rgb(79,79,79);
+}
+
+body { 
+    font-family: Helvetica;
+    margin:0px;
+    padding:0px;
+    background-image:url("../resources/PipeJamBackground.jpg");
+    background-repeat:all;
+}
+
+html,body {
+    height:100%;
+}
+
+#footer, #button_bar {
+    border-top:solid;
+    color:white;
+    margin-right:0px;
+    background-color: #313131;
+}
+
+#footer {
+    width:100%;
+    height:20px;
+    border-color:white;
+    padding-top:5px;
+    border-width:2px;
+    font-size:8pt;
+    margin-top:15px;
+    position:relative;
+    text-align:center;
+}
+
+#clear_footer {
+    height:20px;
+    clear:both;
+}
+
+#button_bar {   
+    margin-left:0px;
+    margin-top:0px;
+    height: 36px;
+    border-bottom:solid;
+    border-width: 1px;
+    border-color:#cacaca;
+}
+
+#container {
+    position:relative;
+    min-height:100%;
+    margin-bottom:-20px;
+}
+
+#button_group, #logo_holder, #content {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#button_group {
+    width:800px;
+}
+
+.buttons {
+    float:left;
+    margin-bottom:0px;
+    margin-top:0px;
+    width:200px;
+    text-align:center;
+    padding-top:10px;
+    height:26px;
+   	cursor:pointer;
+}
+
+#masthead {
+	margin-left:0px;
+    margin-right:0px;
+    margin-top:0px;
+    background-image:url("../resources/masthead_background.jpg");
+    background-repeat:repeat-x;
+	width:100%;
+	height: 118px;
+}
+
+#logo_holder {
+    width:830px;
+}

@@ -1,0 +1,4764 @@
+<?xml version="1.0"?>
+<!DOCTYPE world SYSTEM "world.dtd">
+<world>
+<level name="Chute">
+ <linked-edges>
+  <edge-set>
+   <edgeref id="e115"/>
+   <edgeref id="e117"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e142"/>
+   <edgeref id="e143"/>
+   <edgeref id="e141"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e158"/>
+   <edgeref id="e157"/>
+   <edgeref id="e159"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e200"/>
+   <edgeref id="e201"/>
+   <edgeref id="e202"/>
+   <edgeref id="e114"/>
+   <edgeref id="e197"/>
+   <edgeref id="e173"/>
+   <edgeref id="e176"/>
+   <edgeref id="e175"/>
+   <edgeref id="e174"/>
+   <edgeref id="e169"/>
+   <edgeref id="e162"/>
+   <edgeref id="e153"/>
+   <edgeref id="e146"/>
+   <edgeref id="e135"/>
+   <edgeref id="e134"/>
+   <edgeref id="e136"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e203"/>
+   <edgeref id="e204"/>
+   <edgeref id="e205"/>
+   <edgeref id="e130"/>
+   <edgeref id="e190"/>
+   <edgeref id="e191"/>
+   <edgeref id="e178"/>
+   <edgeref id="e177"/>
+   <edgeref id="e170"/>
+   <edgeref id="e163"/>
+   <edgeref id="e154"/>
+   <edgeref id="e147"/>
+   <edgeref id="e137"/>
+   <edgeref id="e129"/>
+   <edgeref id="e128"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e206"/>
+   <edgeref id="e207"/>
+   <edgeref id="e208"/>
+   <edgeref id="e132"/>
+   <edgeref id="e193"/>
+   <edgeref id="e194"/>
+   <edgeref id="e179"/>
+   <edgeref id="e180"/>
+   <edgeref id="e171"/>
+   <edgeref id="e164"/>
+   <edgeref id="e155"/>
+   <edgeref id="e148"/>
+   <edgeref id="e138"/>
+   <edgeref id="e123"/>
+   <edgeref id="e133"/>
+   <edgeref id="e124"/>
+   <edgeref id="e122"/>
+   <edgeref id="e121"/>
+   <edgeref id="e125"/>
+   <edgeref id="e131"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e209"/>
+   <edgeref id="e210"/>
+   <edgeref id="e211"/>
+   <edgeref id="e126"/>
+   <edgeref id="e198"/>
+   <edgeref id="e183"/>
+   <edgeref id="e184"/>
+   <edgeref id="e182"/>
+   <edgeref id="e181"/>
+   <edgeref id="e172"/>
+   <edgeref id="e165"/>
+   <edgeref id="e152"/>
+   <edgeref id="e150"/>
+   <edgeref id="e151"/>
+   <edgeref id="e145"/>
+   <edgeref id="e144"/>
+   <edgeref id="e139"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e212"/>
+   <edgeref id="e213"/>
+   <edgeref id="e214"/>
+   <edgeref id="e127"/>
+   <edgeref id="e199"/>
+   <edgeref id="e166"/>
+   <edgeref id="e167"/>
+   <edgeref id="e168"/>
+   <edgeref id="e160"/>
+   <edgeref id="e161"/>
+   <edgeref id="e156"/>
+   <edgeref id="e149"/>
+   <edgeref id="e140"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e216"/>
+   <edgeref id="e217"/>
+   <edgeref id="e218"/>
+   <edgeref id="e219"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e224"/>
+   <edgeref id="e225"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e226"/>
+   <edgeref id="e227"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e229"/>
+   <edgeref id="e230"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e116"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e118"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e119"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e120"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e185"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e186"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e188"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e187"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e189"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e192"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e195"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e196"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e215"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e220"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e221"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e222"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e223"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e228"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e231"/>
+  </edge-set>
+ </linked-edges>
+ <boards>
+  <board name="Chute.constructor">
+   <node kind="INCOMING" id="n66">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e114"/>
+     <port num="1" edge="e115"/>
+     <port num="2" edge="e121"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n67">
+    <input>
+     <port num="0" edge="e114"/>
+     <port num="1" edge="e130"/>
+     <port num="2" edge="e132"/>
+     <port num="3" edge="e126"/>
+     <port num="4" edge="e127"/>
+     <port num="5" edge="e125"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n68">
+    <input>
+     <port num="0" edge="e115"/>
+    </input>
+    <output>
+     <port num="0" edge="e118"/>
+     <port num="1" edge="e116"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n69">
+    <input>
+     <port num="0" edge="e120"/>
+     <port num="1" edge="e116"/>
+    </input>
+    <output>
+     <port num="0" edge="e117"/>
+    </output>
+   </node>
+   <node kind="END" id="n70">
+    <input>
+     <port num="0" edge="e117"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n71">
+    <input>
+     <port num="0" edge="e118"/>
+    </input>
+    <output>
+     <port num="0" edge="e120"/>
+     <port num="1" edge="e119"/>
+    </output>
+   </node>
+   <node kind="END" id="n72">
+    <input>
+     <port num="0" edge="e119"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n73">
+    <input>
+     <port num="0" edge="e121"/>
+    </input>
+    <output>
+     <port num="0" edge="e122"/>
+     <port num="1" edge="e123"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n74">
+    <input>
+     <port num="0" edge="e122"/>
+     <port num="1" edge="e124"/>
+    </input>
+    <output>
+     <port num="0" edge="e125"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n75">
+    <input>
+     <port num="0" edge="e123"/>
+    </input>
+    <output>
+     <port num="0" edge="e133"/>
+     <port num="1" edge="e124"/>
+    </output>
+   </node>
+   <node kind="START_BLACK_BALL" id="n76">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e126"/>
+    </output>
+   </node>
+   <node kind="START_BLACK_BALL" id="n77">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e127"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n78">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e128"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n79">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e129"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n80">
+    <input>
+     <port num="0" edge="e128"/>
+     <port num="1" edge="e129"/>
+    </input>
+    <output>
+     <port num="0" edge="e130"/>
+    </output>
+   </node>
+   <node kind="START_NO_BALL" id="n81">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e131"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n82">
+    <input>
+     <port num="0" edge="e131"/>
+     <port num="1" edge="e133"/>
+    </input>
+    <output>
+     <port num="0" edge="e132"/>
+    </output>
+   </node>
+   <edge var="name" pinch="false" width="wide" id="e114">
+    <from>
+     <noderef id="n66" port="0"/>
+    </from>
+    <to>
+     <noderef id="n67" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="false" width="wide" id="e115">
+    <from>
+     <noderef id="n66" port="1"/>
+    </from>
+    <to>
+     <noderef id="n68" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="false" width="wide" id="e116">
+    <from>
+     <noderef id="n68" port="1"/>
+    </from>
+    <to>
+     <noderef id="n69" port="1"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="false" width="wide" id="e117">
+    <from>
+     <noderef id="n69" port="0"/>
+    </from>
+    <to>
+     <noderef id="n70" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="false" width="narrow" id="e118">
+    <from>
+     <noderef id="n68" port="0"/>
+    </from>
+    <to>
+     <noderef id="n71" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="true" width="narrow" id="e119">
+    <from>
+     <noderef id="n71" port="1"/>
+    </from>
+    <to>
+     <noderef id="n72" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="false" width="narrow" id="e120">
+    <from>
+     <noderef id="n71" port="0"/>
+    </from>
+    <to>
+     <noderef id="n69" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux.elts" pinch="false" width="wide" id="e121">
+    <from>
+     <noderef id="n66" port="2"/>
+    </from>
+    <to>
+     <noderef id="n73" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux.elts" pinch="false" width="wide" id="e122">
+    <from>
+     <noderef id="n73" port="0"/>
+    </from>
+    <to>
+     <noderef id="n74" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux.elts" pinch="false" width="wide" id="e123">
+    <from>
+     <noderef id="n73" port="1"/>
+    </from>
+    <to>
+     <noderef id="n75" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux.elts" pinch="false" width="wide" id="e124">
+    <from>
+     <noderef id="n75" port="1"/>
+    </from>
+    <to>
+     <noderef id="n74" port="1"/>
+    </to>
+   </edge>
+   <edge var="aux.elts" pinch="false" width="wide" id="e125">
+    <from>
+     <noderef id="n74" port="0"/>
+    </from>
+    <to>
+     <noderef id="n67" port="5"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e126">
+    <from>
+     <noderef id="n76" port="0"/>
+    </from>
+    <to>
+     <noderef id="n67" port="3"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e127">
+    <from>
+     <noderef id="n77" port="0"/>
+    </from>
+    <to>
+     <noderef id="n67" port="4"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e128">
+    <from>
+     <noderef id="n78" port="0"/>
+    </from>
+    <to>
+     <noderef id="n80" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e129">
+    <from>
+     <noderef id="n79" port="0"/>
+    </from>
+    <to>
+     <noderef id="n80" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e130">
+    <from>
+     <noderef id="n80" port="0"/>
+    </from>
+    <to>
+     <noderef id="n67" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e131">
+    <from>
+     <noderef id="n81" port="0"/>
+    </from>
+    <to>
+     <noderef id="n82" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e132">
+    <from>
+     <noderef id="n82" port="0"/>
+    </from>
+    <to>
+     <noderef id="n67" port="2"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e133">
+    <from>
+     <noderef id="n75" port="0"/>
+    </from>
+    <to>
+     <noderef id="n82" port="1"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.getName">
+   <node kind="INCOMING" id="n83">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e134"/>
+     <port num="1" edge="e137"/>
+     <port num="2" edge="e138"/>
+     <port num="3" edge="e139"/>
+     <port num="4" edge="e140"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n84">
+    <input>
+     <port num="0" edge="e136"/>
+     <port num="1" edge="e137"/>
+     <port num="2" edge="e138"/>
+     <port num="3" edge="e139"/>
+     <port num="4" edge="e140"/>
+     <port num="5" edge="e135"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n85">
+    <input>
+     <port num="0" edge="e134"/>
+    </input>
+    <output>
+     <port num="0" edge="e136"/>
+     <port num="1" edge="e135"/>
+    </output>
+   </node>
+   <edge var="name" pinch="false" width="wide" id="e134">
+    <from>
+     <noderef id="n83" port="0"/>
+    </from>
+    <to>
+     <noderef id="n85" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e136">
+    <from>
+     <noderef id="n85" port="0"/>
+    </from>
+    <to>
+     <noderef id="n84" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e135">
+    <from>
+     <noderef id="n85" port="1"/>
+    </from>
+    <to>
+     <noderef id="n84" port="5"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e137">
+    <from>
+     <noderef id="n83" port="1"/>
+    </from>
+    <to>
+     <noderef id="n84" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e138">
+    <from>
+     <noderef id="n83" port="2"/>
+    </from>
+    <to>
+     <noderef id="n84" port="2"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e139">
+    <from>
+     <noderef id="n83" port="3"/>
+    </from>
+    <to>
+     <noderef id="n84" port="3"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e140">
+    <from>
+     <noderef id="n83" port="4"/>
+    </from>
+    <to>
+     <noderef id="n84" port="4"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.setStart">
+   <node kind="INCOMING" id="n86">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e146"/>
+     <port num="1" edge="e147"/>
+     <port num="2" edge="e148"/>
+     <port num="3" edge="e144"/>
+     <port num="4" edge="e149"/>
+     <port num="5" edge="e141"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n87">
+    <input>
+     <port num="0" edge="e146"/>
+     <port num="1" edge="e147"/>
+     <port num="2" edge="e148"/>
+     <port num="3" edge="e145"/>
+     <port num="4" edge="e149"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n88">
+    <input>
+     <port num="0" edge="e141"/>
+    </input>
+    <output>
+     <port num="0" edge="e143"/>
+     <port num="1" edge="e142"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n89">
+    <input>
+     <port num="0" edge="e144"/>
+     <port num="1" edge="e143"/>
+    </input>
+    <output>
+     <port num="0" edge="e145"/>
+    </output>
+   </node>
+   <node kind="END" id="n90">
+    <input>
+     <port num="0" edge="e142"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="start" pinch="false" width="wide" id="e144">
+    <from>
+     <noderef id="n86" port="3"/>
+    </from>
+    <to>
+     <noderef id="n89" port="0"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e145">
+    <from>
+     <noderef id="n89" port="0"/>
+    </from>
+    <to>
+     <noderef id="n87" port="3"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e141">
+    <from>
+     <noderef id="n86" port="5"/>
+    </from>
+    <to>
+     <noderef id="n88" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e143">
+    <from>
+     <noderef id="n88" port="0"/>
+    </from>
+    <to>
+     <noderef id="n89" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e142">
+    <from>
+     <noderef id="n88" port="1"/>
+    </from>
+    <to>
+     <noderef id="n90" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e146">
+    <from>
+     <noderef id="n86" port="0"/>
+    </from>
+    <to>
+     <noderef id="n87" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e147">
+    <from>
+     <noderef id="n86" port="1"/>
+    </from>
+    <to>
+     <noderef id="n87" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e148">
+    <from>
+     <noderef id="n86" port="2"/>
+    </from>
+    <to>
+     <noderef id="n87" port="2"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e149">
+    <from>
+     <noderef id="n86" port="4"/>
+    </from>
+    <to>
+     <noderef id="n87" port="4"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.getStart">
+   <node kind="INCOMING" id="n91">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e153"/>
+     <port num="1" edge="e154"/>
+     <port num="2" edge="e155"/>
+     <port num="3" edge="e150"/>
+     <port num="4" edge="e156"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n92">
+    <input>
+     <port num="0" edge="e153"/>
+     <port num="1" edge="e154"/>
+     <port num="2" edge="e155"/>
+     <port num="3" edge="e151"/>
+     <port num="4" edge="e156"/>
+     <port num="5" edge="e152"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n93">
+    <input>
+     <port num="0" edge="e150"/>
+    </input>
+    <output>
+     <port num="0" edge="e151"/>
+     <port num="1" edge="e152"/>
+    </output>
+   </node>
+   <edge var="start" pinch="false" width="wide" id="e150">
+    <from>
+     <noderef id="n91" port="3"/>
+    </from>
+    <to>
+     <noderef id="n93" port="0"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e151">
+    <from>
+     <noderef id="n93" port="0"/>
+    </from>
+    <to>
+     <noderef id="n92" port="3"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e152">
+    <from>
+     <noderef id="n93" port="1"/>
+    </from>
+    <to>
+     <noderef id="n92" port="5"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e153">
+    <from>
+     <noderef id="n91" port="0"/>
+    </from>
+    <to>
+     <noderef id="n92" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e154">
+    <from>
+     <noderef id="n91" port="1"/>
+    </from>
+    <to>
+     <noderef id="n92" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e155">
+    <from>
+     <noderef id="n91" port="2"/>
+    </from>
+    <to>
+     <noderef id="n92" port="2"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e156">
+    <from>
+     <noderef id="n91" port="4"/>
+    </from>
+    <to>
+     <noderef id="n92" port="4"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.setEnd">
+   <node kind="INCOMING" id="n94">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e162"/>
+     <port num="1" edge="e163"/>
+     <port num="2" edge="e164"/>
+     <port num="3" edge="e165"/>
+     <port num="4" edge="e160"/>
+     <port num="5" edge="e157"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n95">
+    <input>
+     <port num="0" edge="e162"/>
+     <port num="1" edge="e163"/>
+     <port num="2" edge="e164"/>
+     <port num="3" edge="e165"/>
+     <port num="4" edge="e161"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n96">
+    <input>
+     <port num="0" edge="e157"/>
+    </input>
+    <output>
+     <port num="0" edge="e159"/>
+     <port num="1" edge="e158"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n97">
+    <input>
+     <port num="0" edge="e160"/>
+     <port num="1" edge="e159"/>
+    </input>
+    <output>
+     <port num="0" edge="e161"/>
+    </output>
+   </node>
+   <node kind="END" id="n98">
+    <input>
+     <port num="0" edge="e158"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="end" pinch="false" width="wide" id="e160">
+    <from>
+     <noderef id="n94" port="4"/>
+    </from>
+    <to>
+     <noderef id="n97" port="0"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e161">
+    <from>
+     <noderef id="n97" port="0"/>
+    </from>
+    <to>
+     <noderef id="n95" port="4"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e157">
+    <from>
+     <noderef id="n94" port="5"/>
+    </from>
+    <to>
+     <noderef id="n96" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e159">
+    <from>
+     <noderef id="n96" port="0"/>
+    </from>
+    <to>
+     <noderef id="n97" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e158">
+    <from>
+     <noderef id="n96" port="1"/>
+    </from>
+    <to>
+     <noderef id="n98" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e162">
+    <from>
+     <noderef id="n94" port="0"/>
+    </from>
+    <to>
+     <noderef id="n95" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e163">
+    <from>
+     <noderef id="n94" port="1"/>
+    </from>
+    <to>
+     <noderef id="n95" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e164">
+    <from>
+     <noderef id="n94" port="2"/>
+    </from>
+    <to>
+     <noderef id="n95" port="2"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e165">
+    <from>
+     <noderef id="n94" port="3"/>
+    </from>
+    <to>
+     <noderef id="n95" port="3"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.getEnd">
+   <node kind="INCOMING" id="n99">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e169"/>
+     <port num="1" edge="e170"/>
+     <port num="2" edge="e171"/>
+     <port num="3" edge="e172"/>
+     <port num="4" edge="e166"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n100">
+    <input>
+     <port num="0" edge="e169"/>
+     <port num="1" edge="e170"/>
+     <port num="2" edge="e171"/>
+     <port num="3" edge="e172"/>
+     <port num="4" edge="e167"/>
+     <port num="5" edge="e168"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n101">
+    <input>
+     <port num="0" edge="e166"/>
+    </input>
+    <output>
+     <port num="0" edge="e167"/>
+     <port num="1" edge="e168"/>
+    </output>
+   </node>
+   <edge var="end" pinch="false" width="wide" id="e166">
+    <from>
+     <noderef id="n99" port="4"/>
+    </from>
+    <to>
+     <noderef id="n101" port="0"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e167">
+    <from>
+     <noderef id="n101" port="0"/>
+    </from>
+    <to>
+     <noderef id="n100" port="4"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e168">
+    <from>
+     <noderef id="n101" port="1"/>
+    </from>
+    <to>
+     <noderef id="n100" port="5"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e169">
+    <from>
+     <noderef id="n99" port="0"/>
+    </from>
+    <to>
+     <noderef id="n100" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e170">
+    <from>
+     <noderef id="n99" port="1"/>
+    </from>
+    <to>
+     <noderef id="n100" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e171">
+    <from>
+     <noderef id="n99" port="2"/>
+    </from>
+    <to>
+     <noderef id="n100" port="2"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e172">
+    <from>
+     <noderef id="n99" port="3"/>
+    </from>
+    <to>
+     <noderef id="n100" port="3"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.copy">
+   <node kind="INCOMING" id="n102">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e173"/>
+     <port num="1" edge="e177"/>
+     <port num="2" edge="e179"/>
+     <port num="3" edge="e181"/>
+     <port num="4" edge="e183"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n103">
+    <input>
+     <port num="0" edge="e175"/>
+     <port num="1" edge="e178"/>
+     <port num="2" edge="e180"/>
+     <port num="3" edge="e182"/>
+     <port num="4" edge="e184"/>
+     <port num="5" edge="e189"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Chute.copy" id="n104">
+    <input>
+     <port num="0" edge="e173"/>
+     <port num="1" edge="e177"/>
+     <port num="2" edge="e179"/>
+     <port num="3" edge="e181"/>
+     <port num="4" edge="e183"/>
+    </input>
+    <output>
+     <port num="0" edge="e174"/>
+     <port num="1" edge="e178"/>
+     <port num="2" edge="e180"/>
+     <port num="3" edge="e182"/>
+     <port num="4" edge="e184"/>
+     <port num="5" edge="e188"/>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Chute.constructor" id="n105">
+    <input>
+     <port num="0" edge="e176"/>
+     <port num="1" edge="e185"/>
+     <port num="2" edge="e187"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n106">
+    <input>
+     <port num="0" edge="e174"/>
+    </input>
+    <output>
+     <port num="0" edge="e175"/>
+     <port num="1" edge="e176"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n107">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e185"/>
+    </output>
+   </node>
+   <node kind="START_NO_BALL" id="n108">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e186"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n109">
+    <input>
+     <port num="0" edge="e188"/>
+     <port num="1" edge="e186"/>
+    </input>
+    <output>
+     <port num="0" edge="e187"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n110">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e189"/>
+    </output>
+   </node>
+   <edge var="name" pinch="false" width="wide" id="e173">
+    <from>
+     <noderef id="n102" port="0"/>
+    </from>
+    <to>
+     <noderef id="n104" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e174">
+    <from>
+     <noderef id="n104" port="0"/>
+    </from>
+    <to>
+     <noderef id="n106" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e175">
+    <from>
+     <noderef id="n106" port="0"/>
+    </from>
+    <to>
+     <noderef id="n103" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e176">
+    <from>
+     <noderef id="n106" port="1"/>
+    </from>
+    <to>
+     <noderef id="n105" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e177">
+    <from>
+     <noderef id="n102" port="1"/>
+    </from>
+    <to>
+     <noderef id="n104" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e178">
+    <from>
+     <noderef id="n104" port="1"/>
+    </from>
+    <to>
+     <noderef id="n103" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="true" width="wide" id="e179">
+    <from>
+     <noderef id="n102" port="2"/>
+    </from>
+    <to>
+     <noderef id="n104" port="2"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e180">
+    <from>
+     <noderef id="n104" port="2"/>
+    </from>
+    <to>
+     <noderef id="n103" port="2"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e181">
+    <from>
+     <noderef id="n102" port="3"/>
+    </from>
+    <to>
+     <noderef id="n104" port="3"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e182">
+    <from>
+     <noderef id="n104" port="3"/>
+    </from>
+    <to>
+     <noderef id="n103" port="3"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e183">
+    <from>
+     <noderef id="n102" port="4"/>
+    </from>
+    <to>
+     <noderef id="n104" port="4"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e184">
+    <from>
+     <noderef id="n104" port="4"/>
+    </from>
+    <to>
+     <noderef id="n103" port="4"/>
+    </to>
+   </edge>
+   <edge var="copyAuxChutes" pinch="false" width="wide" id="e185">
+    <from>
+     <noderef id="n107" port="0"/>
+    </from>
+    <to>
+     <noderef id="n105" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e186">
+    <from>
+     <noderef id="n108" port="0"/>
+    </from>
+    <to>
+     <noderef id="n109" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e188">
+    <from>
+     <noderef id="n104" port="5"/>
+    </from>
+    <to>
+     <noderef id="n109" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e187">
+    <from>
+     <noderef id="n109" port="0"/>
+    </from>
+    <to>
+     <noderef id="n105" port="2"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e189">
+    <from>
+     <noderef id="n110" port="0"/>
+    </from>
+    <to>
+     <noderef id="n103" port="5"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.getAuxiliaryChutes">
+   <node kind="INCOMING" id="n111">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e197"/>
+     <port num="1" edge="e190"/>
+     <port num="2" edge="e193"/>
+     <port num="3" edge="e198"/>
+     <port num="4" edge="e199"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n112">
+    <input>
+     <port num="0" edge="e197"/>
+     <port num="1" edge="e191"/>
+     <port num="2" edge="e194"/>
+     <port num="3" edge="e198"/>
+     <port num="4" edge="e199"/>
+     <port num="5" edge="e196"/>
+     <port num="6" edge="e195"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n113">
+    <input>
+     <port num="0" edge="e190"/>
+    </input>
+    <output>
+     <port num="0" edge="e191"/>
+     <port num="1" edge="e192"/>
+    </output>
+   </node>
+   <node kind="END" id="n114">
+    <input>
+     <port num="0" edge="e192"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n115">
+    <input>
+     <port num="0" edge="e193"/>
+    </input>
+    <output>
+     <port num="0" edge="e194"/>
+     <port num="1" edge="e195"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n116">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e196"/>
+    </output>
+   </node>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e190">
+    <from>
+     <noderef id="n111" port="1"/>
+    </from>
+    <to>
+     <noderef id="n113" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e191">
+    <from>
+     <noderef id="n113" port="0"/>
+    </from>
+    <to>
+     <noderef id="n112" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="true" width="wide" id="e192">
+    <from>
+     <noderef id="n113" port="1"/>
+    </from>
+    <to>
+     <noderef id="n114" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e193">
+    <from>
+     <noderef id="n111" port="2"/>
+    </from>
+    <to>
+     <noderef id="n115" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e194">
+    <from>
+     <noderef id="n115" port="0"/>
+    </from>
+    <to>
+     <noderef id="n112" port="2"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e195">
+    <from>
+     <noderef id="n115" port="1"/>
+    </from>
+    <to>
+     <noderef id="n112" port="6"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e196">
+    <from>
+     <noderef id="n116" port="0"/>
+    </from>
+    <to>
+     <noderef id="n112" port="5"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e197">
+    <from>
+     <noderef id="n111" port="0"/>
+    </from>
+    <to>
+     <noderef id="n112" port="0"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e198">
+    <from>
+     <noderef id="n111" port="3"/>
+    </from>
+    <to>
+     <noderef id="n112" port="3"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e199">
+    <from>
+     <noderef id="n111" port="4"/>
+    </from>
+    <to>
+     <noderef id="n112" port="4"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Chute.traverseAuxChutes">
+   <node kind="INCOMING" id="n117">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e200"/>
+     <port num="1" edge="e203"/>
+     <port num="2" edge="e206"/>
+     <port num="3" edge="e209"/>
+     <port num="4" edge="e212"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n118">
+    <input>
+     <port num="0" edge="e202"/>
+     <port num="1" edge="e205"/>
+     <port num="2" edge="e208"/>
+     <port num="3" edge="e211"/>
+     <port num="4" edge="e214"/>
+     <port num="5" edge="e223"/>
+     <port num="6" edge="e220"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Chute.getAuxiliaryChutes" id="n119">
+    <input>
+     <port num="0" edge="e200"/>
+     <port num="1" edge="e203"/>
+     <port num="2" edge="e206"/>
+     <port num="3" edge="e209"/>
+     <port num="4" edge="e212"/>
+    </input>
+    <output>
+     <port num="0" edge="e201"/>
+     <port num="1" edge="e204"/>
+     <port num="2" edge="e207"/>
+     <port num="3" edge="e210"/>
+     <port num="4" edge="e213"/>
+     <port num="5" edge="e221"/>
+     <port num="6" edge="e224"/>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Chute.traverseAuxChutes" id="n120">
+    <input>
+     <port num="0" edge="e201"/>
+     <port num="1" edge="e204"/>
+     <port num="2" edge="e207"/>
+     <port num="3" edge="e210"/>
+     <port num="4" edge="e213"/>
+    </input>
+    <output>
+     <port num="0" edge="e202"/>
+     <port num="1" edge="e205"/>
+     <port num="2" edge="e208"/>
+     <port num="3" edge="e211"/>
+     <port num="4" edge="e214"/>
+     <port num="5" edge="e222"/>
+     <port num="6" edge="e229"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n121">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e215"/>
+    </output>
+   </node>
+   <node kind="END" id="n122">
+    <input>
+     <port num="0" edge="e215"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="MERGE" id="n123">
+    <input>
+     <port num="0" edge="e228"/>
+     <port num="1" edge="e216"/>
+    </input>
+    <output>
+     <port num="0" edge="e217"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n124">
+    <input>
+     <port num="0" edge="e231"/>
+     <port num="1" edge="e217"/>
+    </input>
+    <output>
+     <port num="0" edge="e218"/>
+    </output>
+   </node>
+   <node kind="START_NO_BALL" id="n125">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e216"/>
+    </output>
+   </node>
+   <node kind="END" id="n126">
+    <input>
+     <port num="0" edge="e219"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n127">
+    <input>
+     <port num="0" edge="e218"/>
+    </input>
+    <output>
+     <port num="0" edge="e219"/>
+     <port num="1" edge="e220"/>
+    </output>
+   </node>
+   <node kind="END" id="n128">
+    <input>
+     <port num="0" edge="e221"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="END" id="n129">
+    <input>
+     <port num="0" edge="e222"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n130">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e223"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n131">
+    <input>
+     <port num="0" edge="e224"/>
+    </input>
+    <output>
+     <port num="0" edge="e225"/>
+     <port num="1" edge="e226"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n132">
+    <input>
+     <port num="0" edge="e226"/>
+    </input>
+    <output>
+     <port num="0" edge="e227"/>
+     <port num="1" edge="e228"/>
+    </output>
+   </node>
+   <node kind="END" id="n133">
+    <input>
+     <port num="0" edge="e225"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="END" id="n134">
+    <input>
+     <port num="0" edge="e227"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n135">
+    <input>
+     <port num="0" edge="e229"/>
+    </input>
+    <output>
+     <port num="0" edge="e230"/>
+     <port num="1" edge="e231"/>
+    </output>
+   </node>
+   <node kind="END" id="n136">
+    <input>
+     <port num="0" edge="e230"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="name" pinch="false" width="wide" id="e200">
+    <from>
+     <noderef id="n117" port="0"/>
+    </from>
+    <to>
+     <noderef id="n119" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e201">
+    <from>
+     <noderef id="n119" port="0"/>
+    </from>
+    <to>
+     <noderef id="n120" port="0"/>
+    </to>
+   </edge>
+   <edge var="name" pinch="false" width="wide" id="e202">
+    <from>
+     <noderef id="n120" port="0"/>
+    </from>
+    <to>
+     <noderef id="n118" port="0"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e203">
+    <from>
+     <noderef id="n117" port="1"/>
+    </from>
+    <to>
+     <noderef id="n119" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e204">
+    <from>
+     <noderef id="n119" port="1"/>
+    </from>
+    <to>
+     <noderef id="n120" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes" pinch="false" width="wide" id="e205">
+    <from>
+     <noderef id="n120" port="1"/>
+    </from>
+    <to>
+     <noderef id="n118" port="1"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e206">
+    <from>
+     <noderef id="n117" port="2"/>
+    </from>
+    <to>
+     <noderef id="n119" port="2"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e207">
+    <from>
+     <noderef id="n119" port="2"/>
+    </from>
+    <to>
+     <noderef id="n120" port="2"/>
+    </to>
+   </edge>
+   <edge var="auxiliaryChutes.elts" pinch="false" width="wide" id="e208">
+    <from>
+     <noderef id="n120" port="2"/>
+    </from>
+    <to>
+     <noderef id="n118" port="2"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e209">
+    <from>
+     <noderef id="n117" port="3"/>
+    </from>
+    <to>
+     <noderef id="n119" port="3"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e210">
+    <from>
+     <noderef id="n119" port="3"/>
+    </from>
+    <to>
+     <noderef id="n120" port="3"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e211">
+    <from>
+     <noderef id="n120" port="3"/>
+    </from>
+    <to>
+     <noderef id="n118" port="3"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e212">
+    <from>
+     <noderef id="n117" port="4"/>
+    </from>
+    <to>
+     <noderef id="n119" port="4"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e213">
+    <from>
+     <noderef id="n119" port="4"/>
+    </from>
+    <to>
+     <noderef id="n120" port="4"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e214">
+    <from>
+     <noderef id="n120" port="4"/>
+    </from>
+    <to>
+     <noderef id="n118" port="4"/>
+    </to>
+   </edge>
+   <edge var="allAuxChuteTraversals" pinch="false" width="wide" id="e215">
+    <from>
+     <noderef id="n121" port="0"/>
+    </from>
+    <to>
+     <noderef id="n122" port="0"/>
+    </to>
+   </edge>
+   <edge var="allAuxChuteTraversals.elts" pinch="false" width="wide" id="e216">
+    <from>
+     <noderef id="n125" port="0"/>
+    </from>
+    <to>
+     <noderef id="n123" port="1"/>
+    </to>
+   </edge>
+   <edge var="allAuxChuteTraversals.elts" pinch="false" width="wide" id="e217">
+    <from>
+     <noderef id="n123" port="0"/>
+    </from>
+    <to>
+     <noderef id="n124" port="1"/>
+    </to>
+   </edge>
+   <edge var="allAuxChuteTraversals.elts" pinch="false" width="wide" id="e218">
+    <from>
+     <noderef id="n124" port="0"/>
+    </from>
+    <to>
+     <noderef id="n127" port="0"/>
+    </to>
+   </edge>
+   <edge var="allAuxChuteTraversals.elts" pinch="false" width="wide" id="e219">
+    <from>
+     <noderef id="n127" port="0"/>
+    </from>
+    <to>
+     <noderef id="n126" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e220">
+    <from>
+     <noderef id="n127" port="1"/>
+    </from>
+    <to>
+     <noderef id="n118" port="6"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e221">
+    <from>
+     <noderef id="n119" port="5"/>
+    </from>
+    <to>
+     <noderef id="n128" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="true" width="wide" id="e222">
+    <from>
+     <noderef id="n120" port="5"/>
+    </from>
+    <to>
+     <noderef id="n129" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e223">
+    <from>
+     <noderef id="n130" port="0"/>
+    </from>
+    <to>
+     <noderef id="n118" port="5"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e224">
+    <from>
+     <noderef id="n119" port="6"/>
+    </from>
+    <to>
+     <noderef id="n131" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e225">
+    <from>
+     <noderef id="n131" port="0"/>
+    </from>
+    <to>
+     <noderef id="n133" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="false" width="wide" id="e226">
+    <from>
+     <noderef id="n131" port="1"/>
+    </from>
+    <to>
+     <noderef id="n132" port="0"/>
+    </to>
+   </edge>
+   <edge var="aux" pinch="true" width="wide" id="e227">
+    <from>
+     <noderef id="n132" port="0"/>
+    </from>
+    <to>
+     <noderef id="n134" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e228">
+    <from>
+     <noderef id="n132" port="1"/>
+    </from>
+    <to>
+     <noderef id="n123" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e229">
+    <from>
+     <noderef id="n120" port="6"/>
+    </from>
+    <to>
+     <noderef id="n135" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e230">
+    <from>
+     <noderef id="n135" port="0"/>
+    </from>
+    <to>
+     <noderef id="n136" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e231">
+    <from>
+     <noderef id="n135" port="1"/>
+    </from>
+    <to>
+     <noderef id="n124" port="0"/>
+    </to>
+   </edge>
+  </board>
+ </boards>
+</level>
+<level name="Intersection">
+ <linked-edges>
+  <edge-set>
+   <edgeref id="e237"/>
+   <edgeref id="e238"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e270"/>
+   <edgeref id="e271"/>
+   <edgeref id="e243"/>
+   <edgeref id="e269"/>
+   <edgeref id="e256"/>
+   <edgeref id="e257"/>
+   <edgeref id="e258"/>
+   <edgeref id="e252"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e242"/>
+   <edgeref id="e275"/>
+   <edgeref id="e268"/>
+   <edgeref id="e253"/>
+   <edgeref id="e254"/>
+   <edgeref id="e251"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e276"/>
+   <edgeref id="e240"/>
+   <edgeref id="e267"/>
+   <edgeref id="e260"/>
+   <edgeref id="e244"/>
+   <edgeref id="e245"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e241"/>
+   <edgeref id="e277"/>
+   <edgeref id="e262"/>
+   <edgeref id="e263"/>
+   <edgeref id="e261"/>
+   <edgeref id="e247"/>
+   <edgeref id="e248"/>
+   <edgeref id="e249"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e232"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e233"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e234"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e235"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e236"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e239"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e246"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e250"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e255"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e259"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e264"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e265"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e266"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e272"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e273"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e274"/>
+  </edge-set>
+ </linked-edges>
+ <boards>
+  <board name="Intersection.factory">
+   <node kind="INCOMING" id="n137">
+    <input>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n138">
+    <input>
+     <port num="0" edge="e234"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n139">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e232"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n140">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e233"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n141">
+    <input>
+     <port num="0" edge="e232"/>
+     <port num="1" edge="e233"/>
+    </input>
+    <output>
+     <port num="0" edge="e234"/>
+    </output>
+   </node>
+   <edge var="null" pinch="false" width="wide" id="e232">
+    <from>
+     <noderef id="n139" port="0"/>
+    </from>
+    <to>
+     <noderef id="n141" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e233">
+    <from>
+     <noderef id="n140" port="0"/>
+    </from>
+    <to>
+     <noderef id="n141" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e234">
+    <from>
+     <noderef id="n141" port="0"/>
+    </from>
+    <to>
+     <noderef id="n138" port="0"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Intersection.subnetworkFactory">
+   <node kind="INCOMING" id="n142">
+    <input>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n143">
+    <input>
+     <port num="0" edge="e235"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n144">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e235"/>
+    </output>
+   </node>
+   <edge var="null" pinch="false" width="wide" id="e235">
+    <from>
+     <noderef id="n144" port="0"/>
+    </from>
+    <to>
+     <noderef id="n143" port="0"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Intersection.padToLength">
+   <node kind="INCOMING" id="n145">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e236"/>
+     <port num="1" edge="e237"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n146">
+    <input>
+     <port num="0" edge="e238"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="END" id="n147">
+    <input>
+     <port num="0" edge="e236"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="MERGE" id="n148">
+    <input>
+     <port num="0" edge="e237"/>
+     <port num="1" edge="e239"/>
+    </input>
+    <output>
+     <port num="0" edge="e238"/>
+    </output>
+   </node>
+   <node kind="START_BLACK_BALL" id="n149">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e239"/>
+    </output>
+   </node>
+   <edge var="list" pinch="true" width="wide" id="e236">
+    <from>
+     <noderef id="n145" port="0"/>
+    </from>
+    <to>
+     <noderef id="n147" port="0"/>
+    </to>
+   </edge>
+   <edge var="list.elts" pinch="false" width="wide" id="e237">
+    <from>
+     <noderef id="n145" port="1"/>
+    </from>
+    <to>
+     <noderef id="n148" port="0"/>
+    </to>
+   </edge>
+   <edge var="list.elts" pinch="false" width="wide" id="e238">
+    <from>
+     <noderef id="n148" port="0"/>
+    </from>
+    <to>
+     <noderef id="n146" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e239">
+    <from>
+     <noderef id="n149" port="0"/>
+    </from>
+    <to>
+     <noderef id="n148" port="1"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Intersection.constructor">
+   <node kind="INCOMING" id="n150">
+    <input>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n151">
+    <input>
+     <port num="0" edge="e240"/>
+     <port num="1" edge="e241"/>
+     <port num="2" edge="e242"/>
+     <port num="3" edge="e243"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n152">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e240"/>
+    </output>
+   </node>
+   <node kind="START_NO_BALL" id="n153">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e241"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n154">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e242"/>
+    </output>
+   </node>
+   <node kind="START_NO_BALL" id="n155">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e243"/>
+    </output>
+   </node>
+   <edge var="inputChutes" pinch="false" width="wide" id="e240">
+    <from>
+     <noderef id="n152" port="0"/>
+    </from>
+    <to>
+     <noderef id="n151" port="0"/>
+    </to>
+   </edge>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e241">
+    <from>
+     <noderef id="n153" port="0"/>
+    </from>
+    <to>
+     <noderef id="n151" port="1"/>
+    </to>
+   </edge>
+   <edge var="outputChutes" pinch="false" width="wide" id="e242">
+    <from>
+     <noderef id="n154" port="0"/>
+    </from>
+    <to>
+     <noderef id="n151" port="2"/>
+    </to>
+   </edge>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e243">
+    <from>
+     <noderef id="n155" port="0"/>
+    </from>
+    <to>
+     <noderef id="n151" port="3"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Intersection.setInputChute">
+   <node kind="INCOMING" id="n156">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e244"/>
+     <port num="1" edge="e247"/>
+     <port num="2" edge="e251"/>
+     <port num="3" edge="e252"/>
+     <port num="4" edge="e250"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n157">
+    <input>
+     <port num="0" edge="e245"/>
+     <port num="1" edge="e249"/>
+     <port num="2" edge="e251"/>
+     <port num="3" edge="e252"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Intersection.padToLength" id="n158">
+    <input>
+     <port num="0" edge="e246"/>
+     <port num="1" edge="e247"/>
+    </input>
+    <output>
+     <port num="0" edge="e248"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n159">
+    <input>
+     <port num="0" edge="e244"/>
+    </input>
+    <output>
+     <port num="0" edge="e245"/>
+     <port num="1" edge="e246"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n160">
+    <input>
+     <port num="0" edge="e248"/>
+     <port num="1" edge="e250"/>
+    </input>
+    <output>
+     <port num="0" edge="e249"/>
+    </output>
+   </node>
+   <edge var="inputChutes" pinch="false" width="wide" id="e244">
+    <from>
+     <noderef id="n156" port="0"/>
+    </from>
+    <to>
+     <noderef id="n159" port="0"/>
+    </to>
+   </edge>
+   <edge var="inputChutes" pinch="true" width="wide" id="e245">
+    <from>
+     <noderef id="n159" port="0"/>
+    </from>
+    <to>
+     <noderef id="n157" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e246">
+    <from>
+     <noderef id="n159" port="1"/>
+    </from>
+    <to>
+     <noderef id="n158" port="0"/>
+    </to>
+   </edge>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e247">
+    <from>
+     <noderef id="n156" port="1"/>
+    </from>
+    <to>
+     <noderef id="n158" port="1"/>
+    </to>
+   </edge>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e248">
+    <from>
+     <noderef id="n158" port="0"/>
+    </from>
+    <to>
+     <noderef id="n160" port="0"/>
+    </to>
+   </edge>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e249">
+    <from>
+     <noderef id="n160" port="0"/>
+    </from>
+    <to>
+     <noderef id="n157" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e250">
+    <from>
+     <noderef id="n156" port="4"/>
+    </from>
+    <to>
+     <noderef id="n160" port="1"/>
+    </to>
+   </edge>
+   <edge var="outputChutes" pinch="false" width="wide" id="e251">
+    <from>
+     <noderef id="n156" port="2"/>
+    </from>
+    <to>
+     <noderef id="n157" port="2"/>
+    </to>
+   </edge>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e252">
+    <from>
+     <noderef id="n156" port="3"/>
+    </from>
+    <to>
+     <noderef id="n157" port="3"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Intersection.setOutputChute">
+   <node kind="INCOMING" id="n161">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e260"/>
+     <port num="1" edge="e261"/>
+     <port num="2" edge="e253"/>
+     <port num="3" edge="e256"/>
+     <port num="4" edge="e259"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n162">
+    <input>
+     <port num="0" edge="e260"/>
+     <port num="1" edge="e261"/>
+     <port num="2" edge="e254"/>
+     <port num="3" edge="e258"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Intersection.padToLength" id="n163">
+    <input>
+     <port num="0" edge="e255"/>
+     <port num="1" edge="e256"/>
+    </input>
+    <output>
+     <port num="0" edge="e257"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n164">
+    <input>
+     <port num="0" edge="e253"/>
+    </input>
+    <output>
+     <port num="0" edge="e254"/>
+     <port num="1" edge="e255"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n165">
+    <input>
+     <port num="0" edge="e257"/>
+     <port num="1" edge="e259"/>
+    </input>
+    <output>
+     <port num="0" edge="e258"/>
+    </output>
+   </node>
+   <edge var="outputChutes" pinch="false" width="wide" id="e253">
+    <from>
+     <noderef id="n161" port="2"/>
+    </from>
+    <to>
+     <noderef id="n164" port="0"/>
+    </to>
+   </edge>
+   <edge var="outputChutes" pinch="true" width="wide" id="e254">
+    <from>
+     <noderef id="n164" port="0"/>
+    </from>
+    <to>
+     <noderef id="n162" port="2"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e255">
+    <from>
+     <noderef id="n164" port="1"/>
+    </from>
+    <to>
+     <noderef id="n163" port="0"/>
+    </to>
+   </edge>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e256">
+    <from>
+     <noderef id="n161" port="3"/>
+    </from>
+    <to>
+     <noderef id="n163" port="1"/>
+    </to>
+   </edge>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e257">
+    <from>
+     <noderef id="n163" port="0"/>
+    </from>
+    <to>
+     <noderef id="n165" port="0"/>
+    </to>
+   </edge>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e258">
+    <from>
+     <noderef id="n165" port="0"/>
+    </from>
+    <to>
+     <noderef id="n162" port="3"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e259">
+    <from>
+     <noderef id="n161" port="4"/>
+    </from>
+    <to>
+     <noderef id="n165" port="1"/>
+    </to>
+   </edge>
+   <edge var="inputChutes" pinch="false" width="wide" id="e260">
+    <from>
+     <noderef id="n161" port="0"/>
+    </from>
+    <to>
+     <noderef id="n162" port="0"/>
+    </to>
+   </edge>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e261">
+    <from>
+     <noderef id="n161" port="1"/>
+    </from>
+    <to>
+     <noderef id="n162" port="1"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Intersection.getInputChute">
+   <node kind="INCOMING" id="n166">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e267"/>
+     <port num="1" edge="e262"/>
+     <port num="2" edge="e268"/>
+     <port num="3" edge="e269"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n167">
+    <input>
+     <port num="0" edge="e267"/>
+     <port num="1" edge="e263"/>
+     <port num="2" edge="e268"/>
+     <port num="3" edge="e269"/>
+     <port num="4" edge="e266"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n168">
+    <input>
+     <port num="0" edge="e262"/>
+    </input>
+    <output>
+     <port num="0" edge="e263"/>
+     <port num="1" edge="e264"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n169">
+    <input>
+     <port num="0" edge="e264"/>
+     <port num="1" edge="e265"/>
+    </input>
+    <output>
+     <port num="0" edge="e266"/>
+    </output>
+   </node>
+   <node kind="START_BLACK_BALL" id="n170">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e265"/>
+    </output>
+   </node>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e262">
+    <from>
+     <noderef id="n166" port="1"/>
+    </from>
+    <to>
+     <noderef id="n168" port="0"/>
+    </to>
+   </edge>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e263">
+    <from>
+     <noderef id="n168" port="0"/>
+    </from>
+    <to>
+     <noderef id="n167" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e264">
+    <from>
+     <noderef id="n168" port="1"/>
+    </from>
+    <to>
+     <noderef id="n169" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e265">
+    <from>
+     <noderef id="n170" port="0"/>
+    </from>
+    <to>
+     <noderef id="n169" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e266">
+    <from>
+     <noderef id="n169" port="0"/>
+    </from>
+    <to>
+     <noderef id="n167" port="4"/>
+    </to>
+   </edge>
+   <edge var="inputChutes" pinch="false" width="wide" id="e267">
+    <from>
+     <noderef id="n166" port="0"/>
+    </from>
+    <to>
+     <noderef id="n167" port="0"/>
+    </to>
+   </edge>
+   <edge var="outputChutes" pinch="false" width="wide" id="e268">
+    <from>
+     <noderef id="n166" port="2"/>
+    </from>
+    <to>
+     <noderef id="n167" port="2"/>
+    </to>
+   </edge>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e269">
+    <from>
+     <noderef id="n166" port="3"/>
+    </from>
+    <to>
+     <noderef id="n167" port="3"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Intersection.getOutputChute">
+   <node kind="INCOMING" id="n171">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e276"/>
+     <port num="1" edge="e277"/>
+     <port num="2" edge="e275"/>
+     <port num="3" edge="e270"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n172">
+    <input>
+     <port num="0" edge="e276"/>
+     <port num="1" edge="e277"/>
+     <port num="2" edge="e275"/>
+     <port num="3" edge="e271"/>
+     <port num="4" edge="e274"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n173">
+    <input>
+     <port num="0" edge="e270"/>
+    </input>
+    <output>
+     <port num="0" edge="e271"/>
+     <port num="1" edge="e272"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n174">
+    <input>
+     <port num="0" edge="e272"/>
+     <port num="1" edge="e273"/>
+    </input>
+    <output>
+     <port num="0" edge="e274"/>
+    </output>
+   </node>
+   <node kind="START_BLACK_BALL" id="n175">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e273"/>
+    </output>
+   </node>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e270">
+    <from>
+     <noderef id="n171" port="3"/>
+    </from>
+    <to>
+     <noderef id="n173" port="0"/>
+    </to>
+   </edge>
+   <edge var="outputChutes.elts" pinch="false" width="wide" id="e271">
+    <from>
+     <noderef id="n173" port="0"/>
+    </from>
+    <to>
+     <noderef id="n172" port="3"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e272">
+    <from>
+     <noderef id="n173" port="1"/>
+    </from>
+    <to>
+     <noderef id="n174" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e273">
+    <from>
+     <noderef id="n175" port="0"/>
+    </from>
+    <to>
+     <noderef id="n174" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e274">
+    <from>
+     <noderef id="n174" port="0"/>
+    </from>
+    <to>
+     <noderef id="n172" port="4"/>
+    </to>
+   </edge>
+   <edge var="outputChutes" pinch="false" width="wide" id="e275">
+    <from>
+     <noderef id="n171" port="2"/>
+    </from>
+    <to>
+     <noderef id="n172" port="2"/>
+    </to>
+   </edge>
+   <edge var="inputChutes" pinch="false" width="wide" id="e276">
+    <from>
+     <noderef id="n171" port="0"/>
+    </from>
+    <to>
+     <noderef id="n172" port="0"/>
+    </to>
+   </edge>
+   <edge var="inputChutes.elts" pinch="false" width="wide" id="e277">
+    <from>
+     <noderef id="n171" port="1"/>
+    </from>
+    <to>
+     <noderef id="n172" port="1"/>
+    </to>
+   </edge>
+  </board>
+ </boards>
+</level>
+<level name="Board">
+ <linked-edges>
+  <edge-set>
+   <edgeref id="e413"/>
+   <edgeref id="e278"/>
+   <edgeref id="e406"/>
+   <edgeref id="e401"/>
+   <edgeref id="e390"/>
+   <edgeref id="e391"/>
+   <edgeref id="e386"/>
+   <edgeref id="e375"/>
+   <edgeref id="e362"/>
+   <edgeref id="e356"/>
+   <edgeref id="e311"/>
+   <edgeref id="e284"/>
+   <edgeref id="e285"/>
+   <edgeref id="e286"/>
+   <edgeref id="e312"/>
+   <edgeref id="e313"/>
+   <edgeref id="e314"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e279"/>
+   <edgeref id="e414"/>
+   <edgeref id="e411"/>
+   <edgeref id="e398"/>
+   <edgeref id="e399"/>
+   <edgeref id="e393"/>
+   <edgeref id="e387"/>
+   <edgeref id="e376"/>
+   <edgeref id="e367"/>
+   <edgeref id="e361"/>
+   <edgeref id="e315"/>
+   <edgeref id="e287"/>
+   <edgeref id="e288"/>
+   <edgeref id="e289"/>
+   <edgeref id="e316"/>
+   <edgeref id="e317"/>
+   <edgeref id="e318"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e415"/>
+   <edgeref id="e280"/>
+   <edgeref id="e408"/>
+   <edgeref id="e402"/>
+   <edgeref id="e394"/>
+   <edgeref id="e388"/>
+   <edgeref id="e368"/>
+   <edgeref id="e369"/>
+   <edgeref id="e364"/>
+   <edgeref id="e358"/>
+   <edgeref id="e319"/>
+   <edgeref id="e290"/>
+   <edgeref id="e291"/>
+   <edgeref id="e320"/>
+   <edgeref id="e321"/>
+   <edgeref id="e322"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e416"/>
+   <edgeref id="e282"/>
+   <edgeref id="e407"/>
+   <edgeref id="e404"/>
+   <edgeref id="e396"/>
+   <edgeref id="e379"/>
+   <edgeref id="e380"/>
+   <edgeref id="e377"/>
+   <edgeref id="e363"/>
+   <edgeref id="e357"/>
+   <edgeref id="e347"/>
+   <edgeref id="e327"/>
+   <edgeref id="e295"/>
+   <edgeref id="e296"/>
+   <edgeref id="e328"/>
+   <edgeref id="e329"/>
+   <edgeref id="e330"/>
+   <edgeref id="e348"/>
+   <edgeref id="e349"/>
+   <edgeref id="e350"/>
+   <edgeref id="e351"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e417"/>
+   <edgeref id="e418"/>
+   <edgeref id="e281"/>
+   <edgeref id="e410"/>
+   <edgeref id="e403"/>
+   <edgeref id="e395"/>
+   <edgeref id="e389"/>
+   <edgeref id="e371"/>
+   <edgeref id="e372"/>
+   <edgeref id="e366"/>
+   <edgeref id="e360"/>
+   <edgeref id="e323"/>
+   <edgeref id="e292"/>
+   <edgeref id="e293"/>
+   <edgeref id="e294"/>
+   <edgeref id="e324"/>
+   <edgeref id="e325"/>
+   <edgeref id="e326"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e420"/>
+   <edgeref id="e421"/>
+   <edgeref id="e283"/>
+   <edgeref id="e409"/>
+   <edgeref id="e405"/>
+   <edgeref id="e397"/>
+   <edgeref id="e382"/>
+   <edgeref id="e383"/>
+   <edgeref id="e378"/>
+   <edgeref id="e365"/>
+   <edgeref id="e359"/>
+   <edgeref id="e297"/>
+   <edgeref id="e298"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e299"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e300"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e301"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e302"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e303"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e304"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e305"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e306"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e307"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e308"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e309"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e310"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e331"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e332"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e333"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e334"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e335"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e336"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e337"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e338"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e339"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e340"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e341"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e342"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e343"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e344"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e345"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e352"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e353"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e354"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e355"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e370"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e373"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e374"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e381"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e384"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e385"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e392"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e400"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e412"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e419"/>
+  </edge-set>
+  <edge-set>
+   <edgeref id="e422"/>
+  </edge-set>
+ </linked-edges>
+ <boards>
+  <board name="Board.constructor">
+   <node kind="INCOMING" id="n176">
+    <input>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n177">
+    <input>
+     <port num="0" edge="e278"/>
+     <port num="1" edge="e279"/>
+     <port num="2" edge="e280"/>
+     <port num="3" edge="e281"/>
+     <port num="4" edge="e282"/>
+     <port num="5" edge="e283"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="START_BLACK_BALL" id="n178">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e278"/>
+    </output>
+   </node>
+   <node kind="START_BLACK_BALL" id="n179">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e279"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n180">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e280"/>
+    </output>
+   </node>
+   <node kind="START_NO_BALL" id="n181">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e281"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n182">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e282"/>
+    </output>
+   </node>
+   <node kind="START_NO_BALL" id="n183">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e283"/>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e278">
+    <from>
+     <noderef id="n178" port="0"/>
+    </from>
+    <to>
+     <noderef id="n177" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e279">
+    <from>
+     <noderef id="n179" port="0"/>
+    </from>
+    <to>
+     <noderef id="n177" port="1"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e280">
+    <from>
+     <noderef id="n180" port="0"/>
+    </from>
+    <to>
+     <noderef id="n177" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e281">
+    <from>
+     <noderef id="n181" port="0"/>
+    </from>
+    <to>
+     <noderef id="n177" port="3"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e282">
+    <from>
+     <noderef id="n182" port="0"/>
+    </from>
+    <to>
+     <noderef id="n177" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e283">
+    <from>
+     <noderef id="n183" port="0"/>
+    </from>
+    <to>
+     <noderef id="n177" port="5"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.addNode">
+   <node kind="INCOMING" id="n184">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e284"/>
+     <port num="1" edge="e287"/>
+     <port num="2" edge="e290"/>
+     <port num="3" edge="e292"/>
+     <port num="4" edge="e295"/>
+     <port num="5" edge="e297"/>
+     <port num="6" edge="e299"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n185">
+    <input>
+     <port num="0" edge="e286"/>
+     <port num="1" edge="e289"/>
+     <port num="2" edge="e291"/>
+     <port num="3" edge="e294"/>
+     <port num="4" edge="e296"/>
+     <port num="5" edge="e298"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="MERGE" id="n186">
+    <input>
+     <port num="0" edge="e285"/>
+     <port num="1" edge="e308"/>
+    </input>
+    <output>
+     <port num="0" edge="e286"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n187">
+    <input>
+     <port num="0" edge="e288"/>
+     <port num="1" edge="e309"/>
+    </input>
+    <output>
+     <port num="0" edge="e289"/>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Board.contains" id="n188">
+    <input>
+     <port num="0" edge="e284"/>
+     <port num="1" edge="e287"/>
+     <port num="2" edge="e290"/>
+     <port num="3" edge="e292"/>
+     <port num="4" edge="e295"/>
+     <port num="5" edge="e297"/>
+     <port num="6" edge="e307"/>
+    </input>
+    <output>
+     <port num="0" edge="e285"/>
+     <port num="1" edge="e288"/>
+     <port num="2" edge="e291"/>
+     <port num="3" edge="e293"/>
+     <port num="4" edge="e296"/>
+     <port num="5" edge="e298"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n189">
+    <input>
+     <port num="0" edge="e293"/>
+     <port num="1" edge="e310"/>
+    </input>
+    <output>
+     <port num="0" edge="e294"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n190">
+    <input>
+     <port num="0" edge="e299"/>
+    </input>
+    <output>
+     <port num="0" edge="e307"/>
+     <port num="1" edge="e300"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n191">
+    <input>
+     <port num="0" edge="e300"/>
+    </input>
+    <output>
+     <port num="0" edge="e301"/>
+     <port num="1" edge="e303"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n192">
+    <input>
+     <port num="0" edge="e301"/>
+    </input>
+    <output>
+     <port num="0" edge="e308"/>
+     <port num="1" edge="e302"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n193">
+    <input>
+     <port num="0" edge="e303"/>
+    </input>
+    <output>
+     <port num="0" edge="e309"/>
+     <port num="1" edge="e304"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n194">
+    <input>
+     <port num="0" edge="e302"/>
+     <port num="1" edge="e304"/>
+    </input>
+    <output>
+     <port num="0" edge="e305"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n195">
+    <input>
+     <port num="0" edge="e305"/>
+    </input>
+    <output>
+     <port num="0" edge="e310"/>
+     <port num="1" edge="e306"/>
+    </output>
+   </node>
+   <node kind="END" id="n196">
+    <input>
+     <port num="0" edge="e306"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e284">
+    <from>
+     <noderef id="n184" port="0"/>
+    </from>
+    <to>
+     <noderef id="n188" port="0"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e285">
+    <from>
+     <noderef id="n188" port="0"/>
+    </from>
+    <to>
+     <noderef id="n186" port="0"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e286">
+    <from>
+     <noderef id="n186" port="0"/>
+    </from>
+    <to>
+     <noderef id="n185" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e287">
+    <from>
+     <noderef id="n184" port="1"/>
+    </from>
+    <to>
+     <noderef id="n188" port="1"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e288">
+    <from>
+     <noderef id="n188" port="1"/>
+    </from>
+    <to>
+     <noderef id="n187" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e289">
+    <from>
+     <noderef id="n187" port="0"/>
+    </from>
+    <to>
+     <noderef id="n185" port="1"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e290">
+    <from>
+     <noderef id="n184" port="2"/>
+    </from>
+    <to>
+     <noderef id="n188" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e291">
+    <from>
+     <noderef id="n188" port="2"/>
+    </from>
+    <to>
+     <noderef id="n185" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e292">
+    <from>
+     <noderef id="n184" port="3"/>
+    </from>
+    <to>
+     <noderef id="n188" port="3"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e293">
+    <from>
+     <noderef id="n188" port="3"/>
+    </from>
+    <to>
+     <noderef id="n189" port="0"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e294">
+    <from>
+     <noderef id="n189" port="0"/>
+    </from>
+    <to>
+     <noderef id="n185" port="3"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e295">
+    <from>
+     <noderef id="n184" port="4"/>
+    </from>
+    <to>
+     <noderef id="n188" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e296">
+    <from>
+     <noderef id="n188" port="4"/>
+    </from>
+    <to>
+     <noderef id="n185" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e297">
+    <from>
+     <noderef id="n184" port="5"/>
+    </from>
+    <to>
+     <noderef id="n188" port="5"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e298">
+    <from>
+     <noderef id="n188" port="5"/>
+    </from>
+    <to>
+     <noderef id="n185" port="5"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="true" width="wide" id="e299">
+    <from>
+     <noderef id="n184" port="6"/>
+    </from>
+    <to>
+     <noderef id="n190" port="0"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="true" width="wide" id="e300">
+    <from>
+     <noderef id="n190" port="1"/>
+    </from>
+    <to>
+     <noderef id="n191" port="0"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="false" width="wide" id="e301">
+    <from>
+     <noderef id="n191" port="0"/>
+    </from>
+    <to>
+     <noderef id="n192" port="0"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="false" width="wide" id="e302">
+    <from>
+     <noderef id="n192" port="1"/>
+    </from>
+    <to>
+     <noderef id="n194" port="0"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="true" width="wide" id="e303">
+    <from>
+     <noderef id="n191" port="1"/>
+    </from>
+    <to>
+     <noderef id="n193" port="0"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="false" width="wide" id="e304">
+    <from>
+     <noderef id="n193" port="1"/>
+    </from>
+    <to>
+     <noderef id="n194" port="1"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="false" width="wide" id="e305">
+    <from>
+     <noderef id="n194" port="0"/>
+    </from>
+    <to>
+     <noderef id="n195" port="0"/>
+    </to>
+   </edge>
+   <edge var="node" pinch="false" width="wide" id="e306">
+    <from>
+     <noderef id="n195" port="1"/>
+    </from>
+    <to>
+     <noderef id="n196" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e307">
+    <from>
+     <noderef id="n190" port="0"/>
+    </from>
+    <to>
+     <noderef id="n188" port="6"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e308">
+    <from>
+     <noderef id="n192" port="0"/>
+    </from>
+    <to>
+     <noderef id="n186" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e309">
+    <from>
+     <noderef id="n193" port="0"/>
+    </from>
+    <to>
+     <noderef id="n187" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e310">
+    <from>
+     <noderef id="n195" port="0"/>
+    </from>
+    <to>
+     <noderef id="n189" port="1"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.addEdge">
+   <node kind="INCOMING" id="n197">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e311"/>
+     <port num="1" edge="e315"/>
+     <port num="2" edge="e319"/>
+     <port num="3" edge="e323"/>
+     <port num="4" edge="e327"/>
+     <port num="5" edge="e331"/>
+     <port num="6" edge="e336"/>
+     <port num="7" edge="e341"/>
+     <port num="8" edge="e347"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n198">
+    <input>
+     <port num="0" edge="e314"/>
+     <port num="1" edge="e318"/>
+     <port num="2" edge="e322"/>
+     <port num="3" edge="e326"/>
+     <port num="4" edge="e330"/>
+     <port num="5" edge="e335"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Board.contains" id="n199">
+    <input>
+     <port num="0" edge="e311"/>
+     <port num="1" edge="e315"/>
+     <port num="2" edge="e319"/>
+     <port num="3" edge="e323"/>
+     <port num="4" edge="e327"/>
+     <port num="5" edge="e331"/>
+     <port num="6" edge="e339"/>
+    </input>
+    <output>
+     <port num="0" edge="e312"/>
+     <port num="1" edge="e316"/>
+     <port num="2" edge="e320"/>
+     <port num="3" edge="e324"/>
+     <port num="4" edge="e328"/>
+     <port num="5" edge="e332"/>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Board.contains" id="n200">
+    <input>
+     <port num="0" edge="e312"/>
+     <port num="1" edge="e316"/>
+     <port num="2" edge="e320"/>
+     <port num="3" edge="e324"/>
+     <port num="4" edge="e328"/>
+     <port num="5" edge="e332"/>
+     <port num="6" edge="e344"/>
+    </input>
+    <output>
+     <port num="0" edge="e313"/>
+     <port num="1" edge="e317"/>
+     <port num="2" edge="e321"/>
+     <port num="3" edge="e325"/>
+     <port num="4" edge="e329"/>
+     <port num="5" edge="e333"/>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Board.contains" id="n201">
+    <input>
+     <port num="0" edge="e313"/>
+     <port num="1" edge="e317"/>
+     <port num="2" edge="e321"/>
+     <port num="3" edge="e325"/>
+     <port num="4" edge="e329"/>
+     <port num="5" edge="e333"/>
+     <port num="6" edge="e352"/>
+    </input>
+    <output>
+     <port num="0" edge="e314"/>
+     <port num="1" edge="e318"/>
+     <port num="2" edge="e322"/>
+     <port num="3" edge="e326"/>
+     <port num="4" edge="e330"/>
+     <port num="5" edge="e334"/>
+    </output>
+   </node>
+   <node kind="MERGE" id="n202">
+    <input>
+     <port num="0" edge="e334"/>
+     <port num="1" edge="e353"/>
+    </input>
+    <output>
+     <port num="0" edge="e335"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n203">
+    <input>
+     <port num="0" edge="e336"/>
+    </input>
+    <output>
+     <port num="0" edge="e339"/>
+     <port num="1" edge="e337"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n204">
+    <input>
+     <port num="0" edge="e337"/>
+    </input>
+    <output>
+     <port num="0" edge="e338"/>
+     <port num="1" edge="e340"/>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Chute.setStart" id="n205">
+    <input>
+     <port num="0" edge="e340"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="END" id="n206">
+    <input>
+     <port num="0" edge="e338"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n207">
+    <input>
+     <port num="0" edge="e341"/>
+    </input>
+    <output>
+     <port num="0" edge="e344"/>
+     <port num="1" edge="e342"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n208">
+    <input>
+     <port num="0" edge="e342"/>
+    </input>
+    <output>
+     <port num="0" edge="e343"/>
+     <port num="1" edge="e345"/>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Chute.setEnd" id="n209">
+    <input>
+     <port num="0" edge="e345"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="END" id="n210">
+    <input>
+     <port num="0" edge="e343"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n211">
+    <input>
+     <port num="0" edge="e347"/>
+    </input>
+    <output>
+     <port num="0" edge="e352"/>
+     <port num="1" edge="e348"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n212">
+    <input>
+     <port num="0" edge="e348"/>
+    </input>
+    <output>
+     <port num="0" edge="e353"/>
+     <port num="1" edge="e349"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n213">
+    <input>
+     <port num="0" edge="e349"/>
+    </input>
+    <output>
+     <port num="0" edge="e354"/>
+     <port num="1" edge="e350"/>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n214">
+    <input>
+     <port num="0" edge="e350"/>
+    </input>
+    <output>
+     <port num="0" edge="e355"/>
+     <port num="1" edge="e351"/>
+    </output>
+   </node>
+   <node kind="END" id="n215">
+    <input>
+     <port num="0" edge="e351"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Intersection.setOutputChute" id="n216">
+    <input>
+     <port num="0" edge="e354"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SUBNETWORK" name="Intersection.setInputChute" id="n217">
+    <input>
+     <port num="0" edge="e355"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e311">
+    <from>
+     <noderef id="n197" port="0"/>
+    </from>
+    <to>
+     <noderef id="n199" port="0"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e312">
+    <from>
+     <noderef id="n199" port="0"/>
+    </from>
+    <to>
+     <noderef id="n200" port="0"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e313">
+    <from>
+     <noderef id="n200" port="0"/>
+    </from>
+    <to>
+     <noderef id="n201" port="0"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e314">
+    <from>
+     <noderef id="n201" port="0"/>
+    </from>
+    <to>
+     <noderef id="n198" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e315">
+    <from>
+     <noderef id="n197" port="1"/>
+    </from>
+    <to>
+     <noderef id="n199" port="1"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e316">
+    <from>
+     <noderef id="n199" port="1"/>
+    </from>
+    <to>
+     <noderef id="n200" port="1"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e317">
+    <from>
+     <noderef id="n200" port="1"/>
+    </from>
+    <to>
+     <noderef id="n201" port="1"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e318">
+    <from>
+     <noderef id="n201" port="1"/>
+    </from>
+    <to>
+     <noderef id="n198" port="1"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e319">
+    <from>
+     <noderef id="n197" port="2"/>
+    </from>
+    <to>
+     <noderef id="n199" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e320">
+    <from>
+     <noderef id="n199" port="2"/>
+    </from>
+    <to>
+     <noderef id="n200" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e321">
+    <from>
+     <noderef id="n200" port="2"/>
+    </from>
+    <to>
+     <noderef id="n201" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e322">
+    <from>
+     <noderef id="n201" port="2"/>
+    </from>
+    <to>
+     <noderef id="n198" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e323">
+    <from>
+     <noderef id="n197" port="3"/>
+    </from>
+    <to>
+     <noderef id="n199" port="3"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e324">
+    <from>
+     <noderef id="n199" port="3"/>
+    </from>
+    <to>
+     <noderef id="n200" port="3"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e325">
+    <from>
+     <noderef id="n200" port="3"/>
+    </from>
+    <to>
+     <noderef id="n201" port="3"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e326">
+    <from>
+     <noderef id="n201" port="3"/>
+    </from>
+    <to>
+     <noderef id="n198" port="3"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e327">
+    <from>
+     <noderef id="n197" port="4"/>
+    </from>
+    <to>
+     <noderef id="n199" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e328">
+    <from>
+     <noderef id="n199" port="4"/>
+    </from>
+    <to>
+     <noderef id="n200" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e329">
+    <from>
+     <noderef id="n200" port="4"/>
+    </from>
+    <to>
+     <noderef id="n201" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="true" width="wide" id="e330">
+    <from>
+     <noderef id="n201" port="4"/>
+    </from>
+    <to>
+     <noderef id="n198" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e331">
+    <from>
+     <noderef id="n197" port="5"/>
+    </from>
+    <to>
+     <noderef id="n199" port="5"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e332">
+    <from>
+     <noderef id="n199" port="5"/>
+    </from>
+    <to>
+     <noderef id="n200" port="5"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e333">
+    <from>
+     <noderef id="n200" port="5"/>
+    </from>
+    <to>
+     <noderef id="n201" port="5"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e334">
+    <from>
+     <noderef id="n201" port="5"/>
+    </from>
+    <to>
+     <noderef id="n202" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e335">
+    <from>
+     <noderef id="n202" port="0"/>
+    </from>
+    <to>
+     <noderef id="n198" port="5"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e336">
+    <from>
+     <noderef id="n197" port="6"/>
+    </from>
+    <to>
+     <noderef id="n203" port="0"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="true" width="wide" id="e337">
+    <from>
+     <noderef id="n203" port="1"/>
+    </from>
+    <to>
+     <noderef id="n204" port="0"/>
+    </to>
+   </edge>
+   <edge var="start" pinch="false" width="wide" id="e338">
+    <from>
+     <noderef id="n204" port="0"/>
+    </from>
+    <to>
+     <noderef id="n206" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e339">
+    <from>
+     <noderef id="n203" port="0"/>
+    </from>
+    <to>
+     <noderef id="n199" port="6"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e340">
+    <from>
+     <noderef id="n204" port="1"/>
+    </from>
+    <to>
+     <noderef id="n205" port="0"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e341">
+    <from>
+     <noderef id="n197" port="7"/>
+    </from>
+    <to>
+     <noderef id="n207" port="0"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="true" width="wide" id="e342">
+    <from>
+     <noderef id="n207" port="1"/>
+    </from>
+    <to>
+     <noderef id="n208" port="0"/>
+    </to>
+   </edge>
+   <edge var="end" pinch="false" width="wide" id="e343">
+    <from>
+     <noderef id="n208" port="0"/>
+    </from>
+    <to>
+     <noderef id="n210" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e344">
+    <from>
+     <noderef id="n207" port="0"/>
+    </from>
+    <to>
+     <noderef id="n200" port="6"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e345">
+    <from>
+     <noderef id="n208" port="1"/>
+    </from>
+    <to>
+     <noderef id="n209" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="true" width="wide" id="e347">
+    <from>
+     <noderef id="n197" port="8"/>
+    </from>
+    <to>
+     <noderef id="n211" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="true" width="wide" id="e348">
+    <from>
+     <noderef id="n211" port="1"/>
+    </from>
+    <to>
+     <noderef id="n212" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e349">
+    <from>
+     <noderef id="n212" port="1"/>
+    </from>
+    <to>
+     <noderef id="n213" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e350">
+    <from>
+     <noderef id="n213" port="1"/>
+    </from>
+    <to>
+     <noderef id="n214" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="true" width="wide" id="e351">
+    <from>
+     <noderef id="n214" port="1"/>
+    </from>
+    <to>
+     <noderef id="n215" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e352">
+    <from>
+     <noderef id="n211" port="0"/>
+    </from>
+    <to>
+     <noderef id="n201" port="6"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e353">
+    <from>
+     <noderef id="n212" port="0"/>
+    </from>
+    <to>
+     <noderef id="n202" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e354">
+    <from>
+     <noderef id="n213" port="0"/>
+    </from>
+    <to>
+     <noderef id="n216" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e355">
+    <from>
+     <noderef id="n214" port="0"/>
+    </from>
+    <to>
+     <noderef id="n217" port="0"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.nodesSize">
+   <node kind="INCOMING" id="n218">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e356"/>
+     <port num="1" edge="e361"/>
+     <port num="2" edge="e358"/>
+     <port num="3" edge="e360"/>
+     <port num="4" edge="e357"/>
+     <port num="5" edge="e359"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n219">
+    <input>
+     <port num="0" edge="e356"/>
+     <port num="1" edge="e361"/>
+     <port num="2" edge="e358"/>
+     <port num="3" edge="e360"/>
+     <port num="4" edge="e357"/>
+     <port num="5" edge="e359"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e356">
+    <from>
+     <noderef id="n218" port="0"/>
+    </from>
+    <to>
+     <noderef id="n219" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e357">
+    <from>
+     <noderef id="n218" port="4"/>
+    </from>
+    <to>
+     <noderef id="n219" port="4"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="true" width="wide" id="e358">
+    <from>
+     <noderef id="n218" port="2"/>
+    </from>
+    <to>
+     <noderef id="n219" port="2"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e359">
+    <from>
+     <noderef id="n218" port="5"/>
+    </from>
+    <to>
+     <noderef id="n219" port="5"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e360">
+    <from>
+     <noderef id="n218" port="3"/>
+    </from>
+    <to>
+     <noderef id="n219" port="3"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e361">
+    <from>
+     <noderef id="n218" port="1"/>
+    </from>
+    <to>
+     <noderef id="n219" port="1"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.edgesSize">
+   <node kind="INCOMING" id="n220">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e362"/>
+     <port num="1" edge="e367"/>
+     <port num="2" edge="e364"/>
+     <port num="3" edge="e366"/>
+     <port num="4" edge="e363"/>
+     <port num="5" edge="e365"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n221">
+    <input>
+     <port num="0" edge="e362"/>
+     <port num="1" edge="e367"/>
+     <port num="2" edge="e364"/>
+     <port num="3" edge="e366"/>
+     <port num="4" edge="e363"/>
+     <port num="5" edge="e365"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e362">
+    <from>
+     <noderef id="n220" port="0"/>
+    </from>
+    <to>
+     <noderef id="n221" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="true" width="wide" id="e363">
+    <from>
+     <noderef id="n220" port="4"/>
+    </from>
+    <to>
+     <noderef id="n221" port="4"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e364">
+    <from>
+     <noderef id="n220" port="2"/>
+    </from>
+    <to>
+     <noderef id="n221" port="2"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e365">
+    <from>
+     <noderef id="n220" port="5"/>
+    </from>
+    <to>
+     <noderef id="n221" port="5"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e366">
+    <from>
+     <noderef id="n220" port="3"/>
+    </from>
+    <to>
+     <noderef id="n221" port="3"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e367">
+    <from>
+     <noderef id="n220" port="1"/>
+    </from>
+    <to>
+     <noderef id="n221" port="1"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.getNodes">
+   <node kind="INCOMING" id="n222">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e375"/>
+     <port num="1" edge="e376"/>
+     <port num="2" edge="e368"/>
+     <port num="3" edge="e371"/>
+     <port num="4" edge="e377"/>
+     <port num="5" edge="e378"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n223">
+    <input>
+     <port num="0" edge="e375"/>
+     <port num="1" edge="e376"/>
+     <port num="2" edge="e369"/>
+     <port num="3" edge="e372"/>
+     <port num="4" edge="e377"/>
+     <port num="5" edge="e378"/>
+     <port num="6" edge="e374"/>
+     <port num="7" edge="e373"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n224">
+    <input>
+     <port num="0" edge="e368"/>
+    </input>
+    <output>
+     <port num="0" edge="e369"/>
+     <port num="1" edge="e370"/>
+    </output>
+   </node>
+   <node kind="END" id="n225">
+    <input>
+     <port num="0" edge="e370"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n226">
+    <input>
+     <port num="0" edge="e371"/>
+    </input>
+    <output>
+     <port num="0" edge="e372"/>
+     <port num="1" edge="e373"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n227">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e374"/>
+    </output>
+   </node>
+   <edge var="nodes" pinch="false" width="wide" id="e368">
+    <from>
+     <noderef id="n222" port="2"/>
+    </from>
+    <to>
+     <noderef id="n224" port="0"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e369">
+    <from>
+     <noderef id="n224" port="0"/>
+    </from>
+    <to>
+     <noderef id="n223" port="2"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="true" width="wide" id="e370">
+    <from>
+     <noderef id="n224" port="1"/>
+    </from>
+    <to>
+     <noderef id="n225" port="0"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e371">
+    <from>
+     <noderef id="n222" port="3"/>
+    </from>
+    <to>
+     <noderef id="n226" port="0"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e372">
+    <from>
+     <noderef id="n226" port="0"/>
+    </from>
+    <to>
+     <noderef id="n223" port="3"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e373">
+    <from>
+     <noderef id="n226" port="1"/>
+    </from>
+    <to>
+     <noderef id="n223" port="7"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e374">
+    <from>
+     <noderef id="n227" port="0"/>
+    </from>
+    <to>
+     <noderef id="n223" port="6"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e375">
+    <from>
+     <noderef id="n222" port="0"/>
+    </from>
+    <to>
+     <noderef id="n223" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e376">
+    <from>
+     <noderef id="n222" port="1"/>
+    </from>
+    <to>
+     <noderef id="n223" port="1"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e377">
+    <from>
+     <noderef id="n222" port="4"/>
+    </from>
+    <to>
+     <noderef id="n223" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e378">
+    <from>
+     <noderef id="n222" port="5"/>
+    </from>
+    <to>
+     <noderef id="n223" port="5"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.getEdges">
+   <node kind="INCOMING" id="n228">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e386"/>
+     <port num="1" edge="e387"/>
+     <port num="2" edge="e388"/>
+     <port num="3" edge="e389"/>
+     <port num="4" edge="e379"/>
+     <port num="5" edge="e382"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n229">
+    <input>
+     <port num="0" edge="e386"/>
+     <port num="1" edge="e387"/>
+     <port num="2" edge="e388"/>
+     <port num="3" edge="e389"/>
+     <port num="4" edge="e380"/>
+     <port num="5" edge="e383"/>
+     <port num="6" edge="e385"/>
+     <port num="7" edge="e384"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n230">
+    <input>
+     <port num="0" edge="e379"/>
+    </input>
+    <output>
+     <port num="0" edge="e380"/>
+     <port num="1" edge="e381"/>
+    </output>
+   </node>
+   <node kind="END" id="n231">
+    <input>
+     <port num="0" edge="e381"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n232">
+    <input>
+     <port num="0" edge="e382"/>
+    </input>
+    <output>
+     <port num="0" edge="e383"/>
+     <port num="1" edge="e384"/>
+    </output>
+   </node>
+   <node kind="START_WHITE_BALL" id="n233">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e385"/>
+    </output>
+   </node>
+   <edge var="edges" pinch="false" width="wide" id="e379">
+    <from>
+     <noderef id="n228" port="4"/>
+    </from>
+    <to>
+     <noderef id="n230" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e380">
+    <from>
+     <noderef id="n230" port="0"/>
+    </from>
+    <to>
+     <noderef id="n229" port="4"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="true" width="wide" id="e381">
+    <from>
+     <noderef id="n230" port="1"/>
+    </from>
+    <to>
+     <noderef id="n231" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e382">
+    <from>
+     <noderef id="n228" port="5"/>
+    </from>
+    <to>
+     <noderef id="n232" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e383">
+    <from>
+     <noderef id="n232" port="0"/>
+    </from>
+    <to>
+     <noderef id="n229" port="5"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e384">
+    <from>
+     <noderef id="n232" port="1"/>
+    </from>
+    <to>
+     <noderef id="n229" port="7"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e385">
+    <from>
+     <noderef id="n233" port="0"/>
+    </from>
+    <to>
+     <noderef id="n229" port="6"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e386">
+    <from>
+     <noderef id="n228" port="0"/>
+    </from>
+    <to>
+     <noderef id="n229" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e387">
+    <from>
+     <noderef id="n228" port="1"/>
+    </from>
+    <to>
+     <noderef id="n229" port="1"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e388">
+    <from>
+     <noderef id="n228" port="2"/>
+    </from>
+    <to>
+     <noderef id="n229" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e389">
+    <from>
+     <noderef id="n228" port="3"/>
+    </from>
+    <to>
+     <noderef id="n229" port="3"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.getIncomingNode">
+   <node kind="INCOMING" id="n234">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e390"/>
+     <port num="1" edge="e393"/>
+     <port num="2" edge="e394"/>
+     <port num="3" edge="e395"/>
+     <port num="4" edge="e396"/>
+     <port num="5" edge="e397"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n235">
+    <input>
+     <port num="0" edge="e391"/>
+     <port num="1" edge="e393"/>
+     <port num="2" edge="e394"/>
+     <port num="3" edge="e395"/>
+     <port num="4" edge="e396"/>
+     <port num="5" edge="e397"/>
+     <port num="6" edge="e392"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n236">
+    <input>
+     <port num="0" edge="e390"/>
+    </input>
+    <output>
+     <port num="0" edge="e391"/>
+     <port num="1" edge="e392"/>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e390">
+    <from>
+     <noderef id="n234" port="0"/>
+    </from>
+    <to>
+     <noderef id="n236" port="0"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e391">
+    <from>
+     <noderef id="n236" port="0"/>
+    </from>
+    <to>
+     <noderef id="n235" port="0"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e392">
+    <from>
+     <noderef id="n236" port="1"/>
+    </from>
+    <to>
+     <noderef id="n235" port="6"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e393">
+    <from>
+     <noderef id="n234" port="1"/>
+    </from>
+    <to>
+     <noderef id="n235" port="1"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e394">
+    <from>
+     <noderef id="n234" port="2"/>
+    </from>
+    <to>
+     <noderef id="n235" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e395">
+    <from>
+     <noderef id="n234" port="3"/>
+    </from>
+    <to>
+     <noderef id="n235" port="3"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e396">
+    <from>
+     <noderef id="n234" port="4"/>
+    </from>
+    <to>
+     <noderef id="n235" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e397">
+    <from>
+     <noderef id="n234" port="5"/>
+    </from>
+    <to>
+     <noderef id="n235" port="5"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.getOutgoingNode">
+   <node kind="INCOMING" id="n237">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e401"/>
+     <port num="1" edge="e398"/>
+     <port num="2" edge="e402"/>
+     <port num="3" edge="e403"/>
+     <port num="4" edge="e404"/>
+     <port num="5" edge="e405"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n238">
+    <input>
+     <port num="0" edge="e401"/>
+     <port num="1" edge="e399"/>
+     <port num="2" edge="e402"/>
+     <port num="3" edge="e403"/>
+     <port num="4" edge="e404"/>
+     <port num="5" edge="e405"/>
+     <port num="6" edge="e400"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n239">
+    <input>
+     <port num="0" edge="e398"/>
+    </input>
+    <output>
+     <port num="0" edge="e399"/>
+     <port num="1" edge="e400"/>
+    </output>
+   </node>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e398">
+    <from>
+     <noderef id="n237" port="1"/>
+    </from>
+    <to>
+     <noderef id="n239" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e399">
+    <from>
+     <noderef id="n239" port="0"/>
+    </from>
+    <to>
+     <noderef id="n238" port="1"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="false" width="wide" id="e400">
+    <from>
+     <noderef id="n239" port="1"/>
+    </from>
+    <to>
+     <noderef id="n238" port="6"/>
+    </to>
+   </edge>
+   <edge var="incomingNode" pinch="false" width="wide" id="e401">
+    <from>
+     <noderef id="n237" port="0"/>
+    </from>
+    <to>
+     <noderef id="n238" port="0"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="false" width="wide" id="e402">
+    <from>
+     <noderef id="n237" port="2"/>
+    </from>
+    <to>
+     <noderef id="n238" port="2"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e403">
+    <from>
+     <noderef id="n237" port="3"/>
+    </from>
+    <to>
+     <noderef id="n238" port="3"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="false" width="wide" id="e404">
+    <from>
+     <noderef id="n237" port="4"/>
+    </from>
+    <to>
+     <noderef id="n238" port="4"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e405">
+    <from>
+     <noderef id="n237" port="5"/>
+    </from>
+    <to>
+     <noderef id="n238" port="5"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.contains">
+   <node kind="INCOMING" id="n240">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e406"/>
+     <port num="1" edge="e411"/>
+     <port num="2" edge="e408"/>
+     <port num="3" edge="e410"/>
+     <port num="4" edge="e407"/>
+     <port num="5" edge="e409"/>
+     <port num="6" edge="e412"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n241">
+    <input>
+     <port num="0" edge="e406"/>
+     <port num="1" edge="e411"/>
+     <port num="2" edge="e408"/>
+     <port num="3" edge="e410"/>
+     <port num="4" edge="e407"/>
+     <port num="5" edge="e409"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="END" id="n242">
+    <input>
+     <port num="0" edge="e412"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e406">
+    <from>
+     <noderef id="n240" port="0"/>
+    </from>
+    <to>
+     <noderef id="n241" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="true" width="wide" id="e407">
+    <from>
+     <noderef id="n240" port="4"/>
+    </from>
+    <to>
+     <noderef id="n241" port="4"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="true" width="wide" id="e408">
+    <from>
+     <noderef id="n240" port="2"/>
+    </from>
+    <to>
+     <noderef id="n241" port="2"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e409">
+    <from>
+     <noderef id="n240" port="5"/>
+    </from>
+    <to>
+     <noderef id="n241" port="5"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e410">
+    <from>
+     <noderef id="n240" port="3"/>
+    </from>
+    <to>
+     <noderef id="n241" port="3"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e411">
+    <from>
+     <noderef id="n240" port="1"/>
+    </from>
+    <to>
+     <noderef id="n241" port="1"/>
+    </to>
+   </edge>
+   <edge var="elt" pinch="false" width="wide" id="e412">
+    <from>
+     <noderef id="n240" port="6"/>
+    </from>
+    <to>
+     <noderef id="n242" port="0"/>
+    </to>
+   </edge>
+  </board>
+  <board name="Board.deactivate">
+   <node kind="INCOMING" id="n243">
+    <input>
+    </input>
+    <output>
+     <port num="0" edge="e413"/>
+     <port num="1" edge="e414"/>
+     <port num="2" edge="e415"/>
+     <port num="3" edge="e417"/>
+     <port num="4" edge="e416"/>
+     <port num="5" edge="e420"/>
+    </output>
+   </node>
+   <node kind="OUTGOING" id="n244">
+    <input>
+     <port num="0" edge="e413"/>
+     <port num="1" edge="e414"/>
+     <port num="2" edge="e415"/>
+     <port num="3" edge="e418"/>
+     <port num="4" edge="e416"/>
+     <port num="5" edge="e421"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n245">
+    <input>
+     <port num="0" edge="e417"/>
+    </input>
+    <output>
+     <port num="0" edge="e418"/>
+     <port num="1" edge="e419"/>
+    </output>
+   </node>
+   <node kind="END" id="n246">
+    <input>
+     <port num="0" edge="e419"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <node kind="SPLIT" id="n247">
+    <input>
+     <port num="0" edge="e420"/>
+    </input>
+    <output>
+     <port num="0" edge="e421"/>
+     <port num="1" edge="e422"/>
+    </output>
+   </node>
+   <node kind="END" id="n248">
+    <input>
+     <port num="0" edge="e422"/>
+    </input>
+    <output>
+    </output>
+   </node>
+   <edge var="incomingNode" pinch="false" width="wide" id="e413">
+    <from>
+     <noderef id="n243" port="0"/>
+    </from>
+    <to>
+     <noderef id="n244" port="0"/>
+    </to>
+   </edge>
+   <edge var="outgoingNode" pinch="false" width="wide" id="e414">
+    <from>
+     <noderef id="n243" port="1"/>
+    </from>
+    <to>
+     <noderef id="n244" port="1"/>
+    </to>
+   </edge>
+   <edge var="nodes" pinch="true" width="wide" id="e415">
+    <from>
+     <noderef id="n243" port="2"/>
+    </from>
+    <to>
+     <noderef id="n244" port="2"/>
+    </to>
+   </edge>
+   <edge var="edges" pinch="true" width="wide" id="e416">
+    <from>
+     <noderef id="n243" port="4"/>
+    </from>
+    <to>
+     <noderef id="n244" port="4"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e417">
+    <from>
+     <noderef id="n243" port="3"/>
+    </from>
+    <to>
+     <noderef id="n245" port="0"/>
+    </to>
+   </edge>
+   <edge var="nodes.elts" pinch="false" width="wide" id="e418">
+    <from>
+     <noderef id="n245" port="0"/>
+    </from>
+    <to>
+     <noderef id="n244" port="3"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="true" width="wide" id="e419">
+    <from>
+     <noderef id="n245" port="1"/>
+    </from>
+    <to>
+     <noderef id="n246" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e420">
+    <from>
+     <noderef id="n243" port="5"/>
+    </from>
+    <to>
+     <noderef id="n247" port="0"/>
+    </to>
+   </edge>
+   <edge var="edges.elts" pinch="false" width="wide" id="e421">
+    <from>
+     <noderef id="n247" port="0"/>
+    </from>
+    <to>
+     <noderef id="n244" port="5"/>
+    </to>
+   </edge>
+   <edge var="null" pinch="true" width="wide" id="e422">
+    <from>
+     <noderef id="n247" port="1"/>
+    </from>
+    <to>
+     <noderef id="n248" port="0"/>
+    </to>
+   </edge>
+  </board>
+ </boards>
+</level>
+</world>

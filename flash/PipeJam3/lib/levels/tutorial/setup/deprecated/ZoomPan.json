@@ -1,0 +1,25 @@
+{
+    "scoring": {
+        "variables": {
+            "type:0": 0, 
+            "type:1": 0
+        }, 
+        "constraints": 100
+    }, 
+    "default": "type:1", 
+    "qid": 7, 
+    "variables": {
+        "var:0": {
+            "default": "type:1"
+        }, 
+        "var:1": {
+            "default": "type:0"
+        }
+    }, 
+    "version": "1", 
+    "id": "ZoomPan", 
+    "constraints": [
+        "var:0 <= type:0", 
+        "type:1 <= var:1"
+    ]
+}

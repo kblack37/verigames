@@ -1,0 +1,8 @@
+The directories branches, dist, site and tags were removed since they were large
+and not required for the build.
+
+To run the Trusted Checker run "mvn clean package" from verigames/case_studies/trusted/chukwa/chukwa/trunk.
+Running "mvn clean package" at least once will download all of the dependencies needed.
+After that, for the standard javac error output you can run "./check-trusted.sh"
+from verigames/case_studies/trusted/chukwa. Please read the comments in check-trusted.sh for
+important details of the script.

@@ -1,0 +1,53 @@
+import random.quals.*;
+
+
+package java.util;
+
+class Random {
+	public @MaybeRandom boolean nextBoolean();
+	public @MaybeRandom float nextFloat();
+	public @MaybeRandom double nextDouble();
+	public @MaybeRandom double nextGaussian();
+	public @MaybeRandom long nextLong();
+	public @MaybeRandom int nextInt();
+}
+
+
+package java.security;
+
+class SecureRandom {
+	public @Random boolean nextBoolean();
+	public @Random float nextFloat();
+	public @Random double nextDouble();
+	public @Random double nextGaussian();
+	public @Random long nextLong();
+	public @Random int nextInt();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

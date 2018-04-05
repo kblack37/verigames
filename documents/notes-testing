@@ -1,0 +1,137 @@
+This document describes some of the testing that we do for the PL side of
+Verification Games.
+The document should be updated with implementation details.  For example,
+what is the exact command that one runs in order to perform each test step?
+
+==========================================================================
+
+Running test suite:
+
+First make sure that you can run verigames.py by following the steps in java/README.
+
+Next run java/tests/inferenceTests.py with different modes.
+java/tests/inferenceTests.py --mode <typecheck | roundtrip | xml-roundtrip>
+
+These modes test typechecking; constraint generation and insertion;
+and board generation, sovling, and insertion.
+
+==========================================================================
+
+
+Checker Inference tests:
+
+Test the Checker Inference type-checkers:
+ * Ensure that the Checker Inference, when run in type-checking mode,
+   passes the Checker Framework test suite for the Subtyping Checker; see
+   file checkers/tests/subtyping/README
+    * Create two new inference checkers:  one with qualifiers @Encrypted and
+      @Unqualified, and one with qualifiers @SuperQual and @SubQual.
+
+      [I used the existing @Encrypted / @Plaintext inference typesystem. For this I copied the useful subtype tests
+      and changed the imports to the @Encrypted typesystem.
+
+      Since I didn't see any files annotated with @SuperQual/@SubQual, I did not create a Super/Sub typesystem. I can if
+      you think there is value.]
+
+    * Perhaps use only .java test files that type-check perfectly, because
+      in the case of incorrect annotations, the inference type-checkers
+      might give different errors than the regular Subtyping Checker.
+
+      [After manually running typecheck on the files in /subtyping/ I removed any comparison that would 
+      have issued an error, since we don't handle the // :: error annotations]
+
+    * Perhaps create more .java test files that type-check perfectly, by
+      fixing errors in ones that are currently expected to fail.  This will
+      expand the scope of our testing.
+
+      [Current test suite includes:
+        all-systems/*
+        subtypes/ThisType.java
+        subtypes/Simple.java [Some intentional failures removed so test can pass without failures]
+        subtypes/InvariantArray.java
+        Basic.java [This was the verigames equivalent (but not a copy of) of Simple.java]
+        Generation/examples/ [Verigames equivalent (but not a copy of) of all-systems]
+
+   [Execution:
+    $ verigames/java/test/inferenceTests.py --mode typecheck]
+
+
+Test the Checker Inference type inference, via constraints:
+ * Re-use the test suites (with no type-checking errors) from the "Test the
+   Checker Inference type-checkers" task above -- but, remove nearly all
+   annotations from the Java files.  Leave in only those that are like
+   library annotations, such as on the return type of encrypt() and the
+   parameter type of sendOverTheInternet().
+ * For each test:
+    * create constraints
+    * solve them via David's in-memory solver
+    * output a .jaif file, or output an XML file that can be converted to a
+      .jaif file
+    * insert annotations in source code
+       * This might differ from the initial annotated version, if two
+         different typings of the program are possible.  So, we might not
+     have any assertions about the output here.  Or, we might manually
+     determine a good annotation result and assert that the files match.
+    * ensure that the result type-checks
+
+   [Execution:
+    $ verigames/java/test/inferenceTests.py --mode roundtrip]
+
+Test the Checker Inference type inference, via XML:
+ * Similar to the "Test the Checker Inference type inference, via
+   constraints" task above, but outputting an XML file and solving it via
+   the XML file solver rather than doing in-memory solving.
+ * For each test:
+    * create constraints
+    * output an XML file
+    * solve the XML file via an external XML solver
+    * convert the XML file to a .jaif file
+    * insert annotations in source code
+    * ensure that the result type-checks
+
+   [Execution:
+    # This will generate XML and solve it. Any buzzsaw is a failure.
+    $ verigames/java/test/inferenceTests.py --mode xmlsolve
+
+    # This will generate XML and solve it. Any buzzsaw is a failure.
+    # It then will then update the .jaif file, insert into source and then typecheck
+    $ verigames/java/test/inferenceTests.py --mode xml-roundtrip
+   ]
+
+===========================================================================
+
+Subject programs (e.g., Hadoop) tests:
+
+[Start with a subproject of Hadoop and get all of the following steps
+working.
+Then, gradually increase the size of the subproject, again getting every
+step working before increasing the size again.]
+
+Round-trip Hadoop trivially:
+ * start with unannotated libraries
+ * produce XML files
+    * Ensure that the game can lay out and play the XML file
+ * insert into source code
+ * ensure that the result type-checks
+    * It should type-check trivially since there are no library annotations
+
+Round-trip Hadoop trivially, with XML solving:
+ * start with unannotated libraries
+ * produce XML files
+ * use the external XML solver
+ * insert into source code
+ * ensure that the result type-checks
+[Will the XML solver scale to all of Hadoop?  We'll need to make it do so.]
+
+Choose a specific type system for Hadoop
+ * write stub files to annotate library methods [Nat]
+
+Round-trip Hadoop for a type system:
+ * start without annotated libraries, then re-do with annotated libraries
+ * produce XML files
+    * Ensure that the game can lay out and play the XML file
+ * use the external XML solver
+ * insert into source code
+ * ensure that the result type-checks
+
+===========================================================================

@@ -1,0 +1,27 @@
+.DS_Store
+.project
+.actionScriptProperties
+DynamicTextureAtlasGenerator.as3proj
+.obj
+# Lines starting with '#' are considered comments.
+# Ignore any file named foo.txt.
+## foo.txt
+# Ignore (generated) html files,
+## *.html
+# except foo.html which is maintained by hand.
+## !foo.html
+# Ignore objects and archives.
+## *.[oa]
+obj/DynamicTextureAtlasGeneratorConfig.xml
+
+obj/DynamicTextureAtlasGeneratorConfig.old
+
+sample/lib/sample_for_atlas.swf
+
+sample/lib/sample_for_atlas.swf
+
+sample/obj/DynTextureAtlasSampleConfig.xml
+
+sample/lib/boy_texture.fla
+
+sample/lib/boy_texture.swf

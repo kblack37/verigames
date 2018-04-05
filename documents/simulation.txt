@@ -1,0 +1,58 @@
+Simulating a board should show the actual sizes of balls rolling through
+the pipes.  In particular, simulation may show a small ball rolling through
+a large pipe.  This is also known as flow-sensitivity.
+
+This email gives an algorithm for determining the actual ball size that
+should be displayed by the animation.
+
+
+Subject: Re: [Verigames] Function dependency loops
+From: Michael Ernst <mernst@cs.washington.edu>
+To: timothy.pavlik@gmail.com
+Cc: verigames@cs.washington.edu
+Date: Tue, 26 Jul 2011 13:29:50 -0700 (PDT)
+
+Tim-
+
+> Nat has pointed out an issue with the board simulation in the game. For boards
+> that call themselves or other board dependency loops like boardA that calls
+> boardB that calls boardA I have no way of simulating this because the calls
+> never terminate. I'm not sure how to deal with these cases...
+
+You are essentially looking for the Least Fixed Point of the board
+simulation.
+
+You will need to pre-compute the result with a pre-pass, then reflect that
+when you simulate the output to the player.
+
+In your context, I believe you can do the following:
+
+ * Let there be a new type of ball, a "ghost ball" that is neither small
+   nor wide.  A ghost ball can roll down any chute.  If a ghost ball ever
+   merges with another ball, the ghost ball disappears, leaving just the
+   other ball.
+
+ * For each board, have a "default" result -- one ball for each of the
+   board's outputs -- that is initially all ghost balls.
+
+ * When simulating a board and making a recursive call (to any routine that
+   you are already in the process of executing), use the default result as
+   the output of the recursive call.  Continue execution until you have
+   completed simulating the top-level routine.  Examine the board's result.
+
+    * If the board result is the same as the default result, then there is
+      an infinite loop.  This should not happen for realistic programs, I
+      think.  But, in this case I think you can choose whatever width you
+      want for the output ball.
+
+    * If the board result has no ghost ball, you are done and you have a
+      result that you can use for recursive calls in the user-visible
+      simulation.
+
+    * If the board result contains any ghost ball, then set the default
+      result to the actual board result (this changes at least one ghost
+      ball in the default result into a real ball, so you are making
+      progress).  Then, start over from the beginning simulating the
+      top-level board, using the new default result.
+
+		    -Mike

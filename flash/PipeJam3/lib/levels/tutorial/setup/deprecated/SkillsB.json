@@ -1,0 +1,155 @@
+{
+    "scoring": {
+        "variables": {
+            "type:0": 0, 
+            "type:1": 0
+        }, 
+        "constraints": 100
+    }, 
+    "default": "type:1", 
+    "qid": 12, 
+    "variables": {
+        "var:16": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 30
+            }
+        }, 
+        "var:17": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 40
+            }
+        }, 
+        "var:14": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 50
+            }
+        }, 
+        "var:15": {
+            "default": "type:0"
+        }, 
+        "var:12": {
+            "default": "type:0"
+        }, 
+        "var:13": {
+            "default": "type:0"
+        }, 
+        "var:10": {
+            "default": "type:1"
+        }, 
+        "var:11": {
+            "default": "type:0"
+        }, 
+        "var:18": {
+            "default": "type:0"
+        }, 
+        "var:19": {
+            "default": "type:1"
+        }, 
+        "var:4": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 40, 
+                "type:1": 0
+            }
+        }, 
+        "var:5": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 30, 
+                "type:1": 0
+            }
+        }, 
+        "var:6": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 50
+            }
+        }, 
+        "var:7": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 30, 
+                "type:1": 0
+            }
+        }, 
+        "var:0": {
+            "default": "type:0"
+        }, 
+        "var:1": {
+            "default": "type:0"
+        }, 
+        "var:2": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 30
+            }
+        }, 
+        "var:3": {
+            "default": "type:1"
+        }, 
+        "var:8": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 40, 
+                "type:1": 0
+            }
+        }, 
+        "var:9": {
+            "default": "type:0"
+        }, 
+        "var:21": {
+            "default": "type:0"
+        }, 
+        "var:20": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 40
+            }
+        }
+    }, 
+    "version": "1", 
+    "id": "SkillsB", 
+    "constraints": [
+        "type:1 <= var:0", 
+        "var:0 <= var:4", 
+        "type:1 <= var:1", 
+        "var:1 <= var:3", 
+        "var:2 <= var:3", 
+        "var:3 <= type:0", 
+        "var:3 <= var:4", 
+        "var:4 <= type:0", 
+        "var:6 <= var:5", 
+        "var:5 <= var:4", 
+        "var:6 <= var:7", 
+        "type:1 <= var:7", 
+        "var:7 <= var:8", 
+        "var:8 <= var:9", 
+        "var:8 <= var:11", 
+        "var:8 <= var:17", 
+        "type:1 <= var:10", 
+        "var:10 <= var:11", 
+        "var:10 <= var:13", 
+        "var:11 <= var:12", 
+        "var:12 <= var:16", 
+        "var:18 <= var:13", 
+        "var:13 <= var:14", 
+        "var:14 <= type:0", 
+        "var:14 <= var:15", 
+        "var:15 <= var:16", 
+        "var:16 <= var:18", 
+        "var:17 <= type:0", 
+        "var:17 <= var:19", 
+        "type:1 <= var:19", 
+        "var:19 <= var:20", 
+        "var:20 <= var:21"
+    ]
+}

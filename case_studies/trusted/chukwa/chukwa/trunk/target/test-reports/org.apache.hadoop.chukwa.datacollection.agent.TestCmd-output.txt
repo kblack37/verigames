@@ -1,0 +1,46 @@
+console connector started
+
+adaptorId [adaptor_8dfbbae35820ab1b48015dcd76ac0755]
+
+type [chukwaTestAdaptorType]
+
+params [0 my param1 param2 /var/log/messages]
+
+startOffset [114027]
+
+console connector started
+
+adaptorId [adaptor_b8cd3b9634a16e81f36e5c78b7fa084d]
+
+type [chukwaTestAdaptorType]
+
+params []
+
+startOffset [114027]
+
+console connector started
+
+adaptorId [adaptor_426b72f776a1ffbeecdfae92e13b7b36]
+
+type [chukwaTestAdaptorType]
+
+params [0]
+
+startOffset [114027]
+
+adaptorId [adaptor_adaptor1]
+
+type [chukwaTestAdaptorType]
+
+params []
+
+startOffset [0]
+
+adaptorId [adaptor_adaptor2]
+
+type [chukwaTestAdaptorType]
+
+params []
+
+startOffset [0]
+

@@ -1,0 +1,2 @@
+data rate was 150 kb /second
+

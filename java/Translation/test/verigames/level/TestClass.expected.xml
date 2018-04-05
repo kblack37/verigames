@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE level SYSTEM "level.dtd">
+<level>
+  <linked-edges>
+    <set>
+      <value id="1"/>
+      <value id="3"/>
+      <value id="5"/>
+    </set>
+  </linked-edges>
+  <boards-map>
+    <board name="constructor">
+      <node kind="INCOMING" id="0">
+        <input/>
+        <output/>
+      </node>
+      <node kind="START_BLACK_BALL" id="2">
+        <input/>
+        <output>
+          <port num="0" edge="1"/>
+        </output>
+      </node>
+      <node kind="OUTGOING" id="4">
+        <input>
+          <port num="0" edge="1"/>
+        </input>
+        <output/>
+      </node>
+      <edge var="s" pinch="false" width="wide" id="1">
+        <from>
+          <noderef id="2" port="0"/>
+        </from>
+        <to>
+          <noderef id="4" port="0"/>
+        </to>
+      </edge>
+    </board>
+    <board name="method">
+      <node kind="INCOMING" id="6">
+        <input/>
+        <output>
+          <port num="0" edge="3"/>
+        </output>
+      </node>
+      <node kind="RESTART_WHITE_BALL" id="8">
+        <input>
+          <port num="0" edge="3"/>
+        </input>
+        <output>
+          <port num="0" edge="5"/>
+        </output>
+      </node>
+      <node kind="OUTGOING" id="10">
+        <input>
+          <port num="0" edge="5"/>
+        </input>
+        <output/>
+      </node>
+      <edge var="s" pinch="false" width="wide" id="3">
+        <from>
+          <noderef id="6" port="0"/>
+        </from>
+        <to>
+          <noderef id="8" port="0"/>
+        </to>
+      </edge>
+      <edge var="s" pinch="false" width="wide" id="5">
+        <from>
+          <noderef id="8" port="0"/>
+        </from>
+        <to>
+          <noderef id="10" port="0"/>
+        </to>
+      </edge>
+    </board>
+  </boards-map>
+</level>

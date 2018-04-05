@@ -1,0 +1,40 @@
+
+                     ------------------------------------
+                       Verigames XML Visualization Tool
+                     ------------------------------------
+
+This tool lets you visualize world XML files. It outputs a bunch of SVG images
+(one per level) to a folder of your choice.
+
+
+Building
+-------------
+
+Follow the setup instructions in the "USING_GRADLE" file one level up. Then, in
+this folder:
+
+    gradle jar
+
+This will generate the file build/libs/visualizer.jar which the start script
+uses to run the tool (see "Running" below).
+
+
+Running
+-------------
+
+Get help:
+
+    ./visualizer.sh --help
+
+Sample usage:
+
+    ./visualizer.sh --out myfolder <../Translation/veritest/layout/GETLayoutTest.expected.xml
+
+This produces a bunch of awesome output images in "myfolder".
+
+
+Hacking
+-------------
+
+All the source is written in Java, and it all lives in src/main/java (which is
+the default expected source path for Gradle's Java plugin).

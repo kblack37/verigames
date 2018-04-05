@@ -1,0 +1,219 @@
+#upload{
+    margin-left:10px;
+    margin-right:10px;
+    margin-bottom:10px;
+    max-width:100%;
+    position:relative;
+}
+
+#upload_options{
+	padding:10px;
+	width: 740px;
+	border-style:solid;
+	border-color:#313131;
+	border-width:2px;
+	height:30px;
+	background-color:#efefef;
+}
+
+#selected_checker{
+	margin-top:5px
+}
+
+#masthead{
+	margin-left:0px;
+    margin-right:0px;
+    margin-top:0px;
+    background-image:url("../resources/masthead_background.jpg");
+    background-repeat:repeat-x;
+	width:100%;
+	height: 118px;
+}
+
+#logo_holder{
+    width:830px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.buttons{
+    float:left;
+    margin-left:100px;
+    margin-bottom:30px;
+    height:100%;
+    padding-top:10px;
+   	cursor:pointer;
+}
+
+#type_checker{
+	margin:5px;
+	
+}
+
+#theme{
+    margin-left:20px;
+}
+
+#options{
+	margin-left:30px;
+	float:left;
+	width:500px;
+	margin-top:5px;
+}
+
+#typechecker{
+	height:20px;
+	padding:5px;
+	text-align:center;
+	width:130px;
+	border-style:solid;
+	border-color:#313131;
+	background-color:#555555;
+	color: white;
+	border-width:1px;
+	float:left;
+	margin-right:0px;
+	border-radius:4px 0px 0px 4px;
+	margin-left:30px;
+}
+
+#select_typechecker{
+	height:29px;
+	border-radius: 0px 4px 4px 0px;
+	border-style:solid;
+	border-width:1px;
+	border-left: none;
+	width:10px;
+	border-color:#313131;
+	margin-left:0px;
+	float:left;
+	margin-right:15px;
+}
+
+.type_option_class{
+	display:none;
+	height:20px;
+	background:white;
+	border-style:solid;
+	border-width:1px;
+	width: 140px;
+	border-color:#313131;
+	text-align:center;
+	padding:5px;
+}
+
+#queue{
+	clear: both;
+	width: 400px;
+	overflow:auto;
+	margin:10px;
+	margin-left:0px;
+	margin-bottom:30px;
+}
+#button_group{
+    width:800px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#button_bar{   
+    margin-left:0px;
+    margin-right:0px;
+    margin-top:0px;
+    height: 36px;
+    border-top:solid;
+    color:white;
+    border-bottom:solid;
+    border-width: 1px;
+    border-color:#cacaca;
+    background-color:#313131;
+}
+
+#container{
+    position:relative;
+    min-height:100%;
+    margin-bottom:-20px;
+}
+
+#clear_footer{
+    height:20px;
+    clear:both;
+}
+
+#footer{
+    width:100%;
+    height:20px;
+    margin-right:0px;
+    padding-top:5px;
+    border-top:solid;
+    border-color:white;
+    border-width:2px;
+    background-color: #313131;
+    font-size:8pt;
+    color:white;
+    margin-top:15px;
+    position:relative;
+    text-align:center;
+}
+
+html,body{
+    height:100%;
+}
+
+
+body{
+    font-family: Helvetica;
+    margin:0px;
+    padding:0px;
+    background-image:url("../resources/PipeJamBackground.jpg");
+    background-repeat:all;
+}
+
+.common_style{
+	text-decoration:none;
+	color:blue;
+}
+
+#welcome{
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-right:10px;
+    margin-bottom:20px;
+    max-width:100%;
+}
+
+#content{
+    width: 800px;
+    border-color:#313131;
+    border-style:solid;
+    border-width: 6px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 30px;
+    background-color:white;
+    padding:10px;
+    color: rgb(79,79,79);
+}
+
+#spinner{
+	width:50px;
+	height:20px;
+	float:left;
+}
+
+h3{
+    font-weight:normal;
+}
+
+#uploadIt{
+    cursor:pointer;
+}
+
+#samples{
+    margin-bottom:10px;
+}
+#message{
+	width:240px;
+	float:left;
+	color:#373737;
+}

@@ -1,0 +1,25 @@
+
+apply plugin: 'java'
+
+jar {
+    manifest.attributes(
+        'Main-Class': 'verigames.optimizer.Main'
+    )
+}
+
+dependencies {
+
+    // local deps: our own stuff
+    compile project(':Translation')
+
+    // remote deps: pulled in from maven central
+    compile 'commons-cli:commons-cli:1.2'
+
+    // TestNG for testing
+    testCompile 'org.testng:testng:5.10:jdk15'
+
+}
+
+test {
+    useTestNG()
+}

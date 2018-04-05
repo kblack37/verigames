@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<project name="Translation" default="build" basedir=".">
+  <property name="src" location="src"/>
+  <property name="test" location="test"/>
+  <property name="bin" location="bin"/>
+  <property name="lib" location="lib"/>
+  <property name="dist" location="../dist"/>
+  <property name="doc" location="doc"/>
+  <property name="xom" location="${lib}/xom-1.2.10.jar"/>
+  <property environment="env"/>
+
+  <property name="checkers.jar" location="${env.CHECKERS}/binary/checkers.jar"/>
+
+  <presetdef name="jsr308.javac">
+    <javac fork="yes" executable="${env.CHECKERS}/binary/javac">
+      <!-- JSR308 related compiler arguments -->
+      <compilerarg value="-version"/>
+      <compilerarg value="-implicit:class"/>
+      <compilerarg line="-Awarns -Xmaxwarns 10000"/>
+      <compilerarg value="-XDTA:spacesincomments"/>
+      <!-- import nullness annotations -->
+      <compilerarg value="-J-Djsr308_imports=checkers.nullness.quals.*"/>
+      <!-- ^ included so that Eclipse's formatter, which inserts spaces in annotation comments, can still be used -->
+      <classpath>
+        <pathelement location="${checkers.jar}"/>
+      </classpath>
+    </javac>
+  </presetdef>
+
+  <target name="build">
+    <mkdir dir="${bin}"/>
+    <jsr308.javac classpath="${dist}/checker-framework-inference.jar;${lib}/junit-4.8.2.jar;${xom}" destdir="${bin}" includeAntRuntime="false" debug="true">
+      <compilerarg value="-Xlint"/>
+      <src>
+        <pathelement path="${src}"/>
+      </src>
+    </jsr308.javac>
+  </target>
+
+  <target name="buildall">
+    <mkdir dir="${bin}"/>
+    <jsr308.javac classpath="${dist}/checker-framework-inference.jar;${lib}/junit-4.8.2.jar;${xom}" destdir="${bin}" includeAntRuntime="false" debug="true">
+      <compilerarg value="-Xlint"/>
+      <compilerarg value="-J-Djsr308_imports=checkers.interning.quals.*:checkers.nullness.quals.*:checkers.regex.quals.*:checkers.signature.quals.*"/>
+      <src>
+        <pathelement path="${src}"/>
+        <pathelement path="${test}"/>
+      </src>
+    </jsr308.javac>
+  </target>
+
+  <!-- check-nullness target checks nullness on every file in the src folder, except the sampleLevels package -->
+  <target name="check-nullness" description="Check for nullness errors" depends="clean">
+    <mkdir dir="${bin}"/>
+    <!-- use jsr308.javac instead of javac -->
+    <jsr308.javac classpath="${dist}/checker-framework-inference.jar;${lib}/junit-4.8.2.jar;${xom}" srcdir="${src}" destdir="${bin}" excludes="**/sampleLevels/**,**/BuildingTools.java" includeAntRuntime="false">
+      <compilerarg line="-processor checkers.nullness.NullnessChecker"/>
+      <compilerarg value="-Astubs=checker-stubs"/>
+      <!-- optional, to not check library bodies: <compilerarg value="-AskipClasses=^(java\.awt\.|javax\.swing\.)"/> -->
+    </jsr308.javac>
+  </target>
+
+  <target name="clean">
+    <delete dir="${bin}"/>
+  </target>
+
+  <!-- junit tests -->
+  <path id="test.classpath">
+      <fileset dir="${lib}">
+          <include name="**/*.jar"/>
+      </fileset>
+      <fileset dir="${dist}">
+          <include name="**/*.jar"/>
+      </fileset>
+  </path>
+
+  <target name="test" depends="clean, buildall, test.graph, test.level, test.layout, test.utilities">
+    <fail message="TEST FAILED" if="test.failure"/>
+  </target>
+
+  <target name="test.level">
+    <copy file="test/verigames/level/hadoop-distcp.xml" todir="${bin}/verigames/level"/>
+    <junit failureProperty="test.failure" fork="yes" dir="${bin}/verigames/level">
+      <test name="verigames.level.SpecificationTests"/>
+      <test name="verigames.level.ImplementationTests"/>
+      <formatter type="plain" usefile="false"/>
+      <classpath refid="test.classpath"/>
+      <classpath>
+        <pathelement path="${bin}"/>
+      </classpath>
+    </junit>
+  </target>
+
+  <target name="test.layout">
+    <copy file="${test}/verigames/layout/GETLayoutTest.expected.xml" todir="${bin}/verigames/layout"/>
+    <junit failureProperty="test.failure" fork="yes" dir="${bin}/verigames/layout">
+      <test name="verigames.layout.SpecificationTests"/>
+      <test name="verigames.layout.ImplementationTests"/>
+      <formatter type="plain" usefile="false"/>
+      <classpath refid="test.classpath"/>
+      <classpath>
+        <pathelement path="${bin}"/>
+      </classpath>
+    </junit>
+  </target>
+
+  <target name="test.graph">
+    <junit failureProperty="test.failure" fork="yes" dir="${bin}/verigames/graph">
+      <test name="verigames.graph.SpecificationTests"/>
+      <test name="verigames.graph.ImplementationTests"/>
+      <formatter type="plain" usefile="false"/>
+      <classpath refid="test.classpath"/>
+      <classpath>
+        <pathelement path="${bin}"/>
+      </classpath>
+    </junit>
+  </target>
+
+  <target name="test.utilities">
+    <junit failureProperty="test.failure" fork="yes" dir="${bin}/verigames/utilities">
+      <test name="verigames.utilities.SpecificationTests"/>
+      <test name="verigames.utilities.ImplementationTests"/>
+      <formatter type="plain" usefile="false"/>
+      <classpath refid="test.classpath"/>
+      <classpath>
+        <pathelement path="${bin}"/>
+      </classpath>
+    </junit>
+  </target>
+
+  <property name="docPackages" value="verigames.graph,verigames.layout,verigames.level,verigames.translation,verigames.utilities"/>
+
+  <target name="javadoc">
+    <javadoc access="public"
+             author="true"
+             classpath="${lib}/junit-4.8.2.jar:${checkers.jar}"
+             destdir="${doc}"
+             nodeprecated="false"
+             nodeprecatedlist="false"
+             noindex="false"
+             nonavbar="false"
+             notree="false"
+             packagenames="${docPackages}"
+             source="1.6"
+             sourcepath="${src}"
+             splitindex="true"
+             use="true"
+             version="true"/>
+  </target>
+
+  <target name="javadoc.protected">
+    <javadoc access="protected"
+             author="true"
+             classpath="${lib}/junit-4.8.2.jar:${checkers.jar}"
+             destdir="${doc}"
+             nodeprecated="false"
+             nodeprecatedlist="false"
+             noindex="false"
+             nonavbar="false"
+             notree="false"
+             packagenames="${docPackages}"
+             source="1.6"
+             sourcepath="${src}"
+             splitindex="true"
+             use="true"
+             version="true"/>
+  </target>
+
+  <target name="javadoc.package">
+    <javadoc access="package"
+             author="true"
+             classpath="${lib}/junit-4.8.2.jar:${checkers.jar}"
+             destdir="${doc}"
+             nodeprecated="false"
+             nodeprecatedlist="false"
+             noindex="false"
+             nonavbar="false"
+             notree="false"
+             packagenames="${docPackages}"
+             source="1.6"
+             sourcepath="${src}"
+             splitindex="true"
+             use="true"
+             version="true"/>
+  </target>
+
+  <target name="javadoc.private">
+    <javadoc access="private"
+             author="true"
+             classpath="${lib}/junit-4.8.2.jar:${checkers.jar}"
+             destdir="${doc}"
+             nodeprecated="false"
+             nodeprecatedlist="false"
+             noindex="false"
+             nonavbar="false"
+             notree="false"
+             packagenames="${docPackages}"
+             source="1.6"
+             sourcepath="${src}"
+             splitindex="true"
+             use="true"
+             version="true"/>
+  </target>
+</project>

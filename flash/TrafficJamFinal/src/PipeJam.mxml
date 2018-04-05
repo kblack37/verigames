@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	addedToStage="init()" 
+	layout="absolute"
+	>
+	
+	<mx:Script>
+		<![CDATA[
+			/*
+			* #############################################################################################################################
+			* # This is main MXML application used to compile the game.
+			* #
+			* # By default, worlds are loaded from the web according to the HOST_URL path specified, loading each world XML file specified
+			* # in the world_xml_files_to_be_played Array in order (first world will be played first, etc).
+			* #
+			* # To load the worlds locally:
+			* # 1) Compile the .swf file using this MXML application with USE_LOCAL set to true.
+			* # 2) To run the .swf that you create you must make sure that the local file is allowed to access local files
+			* #	using the Adobe Flash Player Global Security Settings panel (click "Always allow" then "Add Location..." 
+			* #	and add the location of the .swf)
+			* # 3) Make sure all of the world XML files listed in world_xml_files_to_be_played are in the same local path as the .swf just 
+			* #	created and allowed.
+			* #############################################################################################################################
+			*/
+			
+			import Events.PipeChangeEvent;
+			
+			import GameScenes.TrafficJamSceneController;
+			
+			import State.GenericState;
+			
+			import UserInterface.Components.RectangularObject;
+			
+			import Utilities.DebugTimer;
+			import Utilities.Geometry;
+			import Utilities.LevelLayout;
+			
+			import VisualWorld.Theme;
+			import VisualWorld.VerigameSystem;
+			
+			import deng.fzip.FZip;
+			import deng.fzip.FZipFile;
+			
+			import flash.display.Sprite;
+			import flash.display.StageAlign;
+			import flash.display.StageScaleMode;
+			import flash.events.DataEvent;
+			import flash.events.Event;
+			import flash.geom.Point;
+			import flash.net.URLLoader;
+			import flash.net.URLRequest;
+			
+			import mx.core.UIComponent;
+			
+			public static const USE_LOCAL:Boolean = true;
+			public static const HOST_URL:String = "verigames-dev.cs.washington.edu/demo/dev/";
+			
+			//public var world_xml_files_to_be_played:Array = new Array("get-test.xml");//"intro.xml", "exception.xml", "World_2.xml");//"world-7-new-names-nocrash.xml");// "intro-laid-out-new-names-crash.xml", "world-7-new-names-nocrash.xml");
+			//public var world_zip_files_to_be_played:Array = new Array();//"demo-small.zip");//"sample.zip");//
+			public var world_xml_files_to_be_played:Array = new Array("..\\SampleWorlds\\DemoWorld.xml");//"C:\\Users\\craigc\\Documents\\Game Files\\xmlFiles\\World (2).xml");//"C:\\Users\\craigc\\Documents\\verigame\\SimpleWorld.xml");//"intro.xml", "exception.xml", "World_2.xml");//"world-7-new-names-nocrash.xml");// "intro-laid-out-new-names-crash.xml", "world-7-new-names-nocrash.xml");
+			public var tutorial_xml_files_to_be_played:Array = new Array("..\\tutorial.xml");
+			public var world_zip_files_to_be_played:Array = new Array();//"sample.zip");//"C:\\Users\\craigc\\Documents\\Game Files\\xmlFiles\\demo1.zip"
+			
+			public var system:VerigameSystem;
+			public var loader:URLLoader;
+			private var fz:FZip;
+			
+			protected var m_worldIndex:uint = 0;
+			
+			public function init():void {	
+				//set up the main controller
+				VerigameSystem.DEBUG_MODE = false;
+				Theme.CURRENT_THEME = Theme.TRAFFIC_THEME;
+				VerigameSystem.SUPPRESS_TRACE_STATEMENTS = true;
+				DebugTimer.DEBUG_TIMER_ON = false;
+				DebugTimer.beginTiming("Loading XML/Zip file into memory");
+				
+				PipeJamController.mainController = new PipeJamController();
+				
+				//assume we are loading the standard game file
+				loadGameFile();
+			}
+			
+			public function loadGameFile(fileName:String = null, nextWorld:Boolean = false):void
+			{
+				var fileToUseArray:Array = null;
+				var callbackFunction:Function;
+				
+				if(nextWorld)
+					m_worldIndex++;
+				
+				var worldIndexToUse:uint = m_worldIndex;
+				
+				if(fileName == TrafficJamSceneController.TUTORIAL_ID)
+				{
+					fileToUseArray = tutorial_xml_files_to_be_played;
+					callbackFunction = onTutorialXMLLoaded;
+					worldIndexToUse = 0;
+				}
+				
+				if(fileToUseArray == null)
+				{
+					fileToUseArray = world_xml_files_to_be_played;
+					callbackFunction = onXMLLoaded;
+				}
+				
+				if (fileToUseArray.length > worldIndexToUse) {
+					loader = new URLLoader();
+					
+					//set the loaders listener function that gets the event when the xml is loaded  
+					loader.addEventListener(Event.COMPLETE, callbackFunction);
+					
+					
+					//load the xml file from it's location
+					if (USE_LOCAL) {
+						loader.load(new URLRequest(fileToUseArray[worldIndexToUse]));
+						//loader1.load(new URLRequest("intro-laid-out-new-names-crash.xml"));
+					} else {
+						// ?version=Math.rand() is used to avoid using a cached copy (force the latest version to be loaded)
+						loader.load(new URLRequest(HOST_URL + fileToUseArray[worldIndexToUse] + "?version=" + Math.round(1000000*Math.random())));
+						//loader1.load(new URLRequest("http://games.cs.washington.edu/verigame/intro-laid-out-new-names-crash.xml?version=" + Math.round(1000000*Math.random())));
+					}
+				} else if (world_zip_files_to_be_played.length > 0) {
+					//load the zip file from it's location
+					fz = new FZip();
+					fz.addEventListener(Event.COMPLETE, onZipLoaded);
+					if (USE_LOCAL) {
+						VerigameSystem.printDebug("Loading [ " + world_zip_files_to_be_played[0] + " ]...");
+						fz.load(new URLRequest(world_zip_files_to_be_played[0]));
+					} else {
+						VerigameSystem.printDebug("Loading [ " + HOST_URL + world_zip_files_to_be_played[0] + " ]...");
+						fz.load(new URLRequest(HOST_URL + world_zip_files_to_be_played[0] + "?version=" + Math.round(1000000*Math.random())));
+					}
+				}
+			}
+			
+			public function onXMLLoaded(e:Event):void {
+				loader.removeEventListener(Event.COMPLETE, onXMLLoaded);
+				var worldXML:XML = new XML(e.target.data);  
+				GenericState.display = this;			
+				PipeJamController.mainController.setNextWorld(worldXML, TrafficJamSceneController.GAME_ID);
+				finish();
+			}
+			
+			public function onTutorialXMLLoaded(e:Event):void {
+				loader.removeEventListener(Event.COMPLETE, onTutorialXMLLoaded);
+				var worldXML:XML = new XML(e.target.data);  
+				GenericState.display = this;
+				PipeJamController.mainController.setNextWorld(worldXML, TrafficJamSceneController.TUTORIAL_ID);
+			}
+			
+			private function onZipLoaded(e:Event):void {
+				DebugTimer.reportTime("Loading XML/Zip file into memory");
+				fz.removeEventListener(Event.COMPLETE, onZipLoaded);
+				DebugTimer.beginTiming("Unzipping file");
+				var fzip_files:Vector.<FZipFile> = new Vector.<FZipFile>();
+				for (var f:int = 0; f < fz.getFileCount(); f++) {
+					fzip_files.push(fz.getFileAt(f));
+				}
+				DebugTimer.reportTime("Unzipping file");
+				DebugTimer.beginTiming("Convert data to XML");
+				var worldXML:XML = XML(fzip_files[0].content);
+				DebugTimer.reportTime("Convert data to XML");
+				DebugTimer.beginTiming("Convert XML to game");
+				PipeJamController.mainController.setNextWorld(worldXML,TrafficJamSceneController.GAME_ID);
+				DebugTimer.reportTime("Convert XML to game");
+				finish();
+			}
+			
+			public function finish():void {
+				stage.align = StageAlign.TOP_LEFT;
+				//stage.scaleMode = StageScaleMode.NO_SCALE;
+				stage.addEventListener(Event.RESIZE, updateSize);
+				stage.dispatchEvent(new Event(Event.RESIZE));
+			}
+			
+			public function updateSize(e:Event):void {
+				PipeJamController.mainController.updateSize(width, height);
+			}
+			
+		]]>			
+	</mx:Script>	
+	
+	
+</mx:Application>

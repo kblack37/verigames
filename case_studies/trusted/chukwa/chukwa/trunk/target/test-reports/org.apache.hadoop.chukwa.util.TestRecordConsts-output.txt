@@ -1,0 +1,5 @@
+string is foo^D
+bar^D
+baz
+.
+

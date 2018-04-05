@@ -1,0 +1,21 @@
+
+{
+  "id": "matching",
+  "display_name": "matching",
+  "qid": 999,
+  "version": "2",
+  "default": "type:0",
+  "scoring": {
+    "variables": {"type:0": 0, "type:1": 0},
+    "constraints": 1
+  },
+  "variables":{},
+  "constraints":[
+    "var:1 <= c:1",
+    "c:2 <= var:2",
+    "var:3 <= c:3",
+    "c:4 <= var:4",
+    "c:4 <= var:5",
+    "var:6 <= c:4"
+    ]
+}

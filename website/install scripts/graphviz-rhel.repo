@@ -1,0 +1,41 @@
+[graphviz-stable]
+name=Graphviz - RHEL $releasever - $basearch
+baseurl=http://www.graphviz.org/pub/graphviz/stable/redhat/el$releasever/$basearch/os/
+enabled=1
+gpgcheck=0
+skip_if_unavailable=1
+
+[graphviz-stable-source]
+name=Graphviz - RHEL $releasever - Source
+baseurl=http://www.graphviz.org/pub/graphviz/stable/SRPMS/
+enabled=0
+gpgcheck=0
+skip_if_unavailable=1
+
+[graphviz-stable-debuginfo] 
+name=Graphviz - RHEL - Debug 
+baseurl=http://www.graphviz.org/pub/graphviz/stable/redhat/el$releasever/$basearch/debug/
+enabled=0 
+gpgcheck=0 
+skip_if_unavailable=1
+
+[graphviz-snapshot]
+name=Graphviz - RHEL $releasever - $basearch
+baseurl=http://www.graphviz.org/pub/graphviz/development/redhat/el$releasever/$basearch/os/
+enabled=0
+gpgcheck=0
+skip_if_unavailable=1
+
+[graphviz-snapshot-source]
+name=Graphviz - RHEL $releasever - Source
+baseurl=http://www.graphviz.org/pub/graphviz/development/SRPMS/
+enabled=0
+gpgcheck=0
+skip_if_unavailable=1
+
+[graphviz-snapshot-debuginfo] 
+name=Graphviz - RHEL - Debug 
+baseurl=http://www.graphviz.org/pub/graphviz/development/redhat/el$releasever/$basearch/debug/
+enabled=0 
+gpgcheck=0 
+skip_if_unavailable=1

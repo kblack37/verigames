@@ -1,0 +1,18 @@
+adaptor_e926e082c79c868da87108e2a81395f4: org.apache.hadoop.chukwa.datacollection.adaptor.filetailer.CharFileTailingAdaptorUTF8 raw 0 /tmp/dir3/atemp1994294612966876216file 0
+
+adaptor_6a231f016b7f340debf1877527d6c73e: org.apache.hadoop.chukwa.datacollection.adaptor.filetailer.CharFileTailingAdaptorUTF8 raw 0 /tmp/dir3/new5648693781569728634file 0
+
+adaptor_dir3: org.apache.hadoop.chukwa.datacollection.adaptor.DirTailingAdaptor raw /tmp/dir3 *file filetailer.CharFileTailingAdaptorUTF8 1353098837989
+
+adaptor_emptydir2: org.apache.hadoop.chukwa.datacollection.adaptor.DirTailingAdaptor raw /tmp/emptyDir2 *file filetailer.CharFileTailingAdaptorUTF8 1353098837989
+
+DirTailingAdaptor looks OK before restart
+
+adaptor_emptydir: org.apache.hadoop.chukwa.datacollection.adaptor.DirTailingAdaptor raw /tmp/emptyDir filetailer.CharFileTailingAdaptorUTF8 1353098850262
+
+adaptor_22d4a4d45087724b17bb7d01e106a494: org.apache.hadoop.chukwa.datacollection.adaptor.filetailer.CharFileTailingAdaptorUTF8 raw 0 /tmp/dir2/atemp8030345087268638142file 0
+
+adaptor_dir2: org.apache.hadoop.chukwa.datacollection.adaptor.DirTailingAdaptor raw /tmp/dir2 *file filetailer.CharFileTailingAdaptorUTF8 1353098850266
+
+adaptor_1d6ca3d55dfc6502d162579aac1195c8: org.apache.hadoop.chukwa.datacollection.adaptor.filetailer.CharFileTailingAdaptorUTF8 raw 0 /tmp/dir2/new950551938389864735file 0
+

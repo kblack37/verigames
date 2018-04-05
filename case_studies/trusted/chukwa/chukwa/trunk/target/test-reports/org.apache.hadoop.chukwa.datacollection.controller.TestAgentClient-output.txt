@@ -1,0 +1,6 @@
+Adding adaptor with filename: testFile
+
+Successfully added adaptor, id is:adaptor_81d0758d2b51e8741b9e46eb08735a2b
+
+in tearDown()
+

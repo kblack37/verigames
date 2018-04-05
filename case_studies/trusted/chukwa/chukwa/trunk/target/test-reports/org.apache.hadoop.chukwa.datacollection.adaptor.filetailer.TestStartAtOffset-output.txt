@@ -1,0 +1,241 @@
+getting a chunk...
+
+got chunk
+
+record 0 was: 1 abcdefghijklmnopqrstuvwxyz
+
+
+record 1 was: 2 abcdefghijklmnopqrstuvwxyz
+
+
+record 2 was: 3 abcdefghijklmnopqrstuvwxyz
+
+
+record 3 was: 4 abcdefghijklmnopqrstuvwxyz
+
+
+record 4 was: 5 abcdefghijklmnopqrstuvwxyz
+
+
+record 5 was: 6 abcdefghijklmnopqrstuvwxyz
+
+
+record 6 was: 7 abcdefghijklmnopqrstuvwxyz
+
+
+record 7 was: 8 abcdefghijklmnopqrstuvwxyz
+
+
+record 8 was: 9 abcdefghijklmnopqrstuvwxyz
+
+
+record 9 was: 10 abcdefghijklmnopqrstuvwxyz
+
+
+record 10 was: 11 abcdefghijklmnopqrstuvwxyz
+
+
+record 11 was: 12 abcdefghijklmnopqrstuvwxyz
+
+
+record 12 was: 13 abcdefghijklmnopqrstuvwxyz
+
+
+record 13 was: 14 abcdefghijklmnopqrstuvwxyz
+
+
+record 14 was: 15 abcdefghijklmnopqrstuvwxyz
+
+
+record 15 was: 16 abcdefghijklmnopqrstuvwxyz
+
+
+record 16 was: 17 abcdefghijklmnopqrstuvwxyz
+
+
+record 17 was: 18 abcdefghijklmnopqrstuvwxyz
+
+
+record 18 was: 19 abcdefghijklmnopqrstuvwxyz
+
+
+record 19 was: 20 abcdefghijklmnopqrstuvwxyz
+
+
+record 20 was: 21 abcdefghijklmnopqrstuvwxyz
+
+
+record 21 was: 22 abcdefghijklmnopqrstuvwxyz
+
+
+record 22 was: 23 abcdefghijklmnopqrstuvwxyz
+
+
+record 23 was: 24 abcdefghijklmnopqrstuvwxyz
+
+
+record 24 was: 25 abcdefghijklmnopqrstuvwxyz
+
+
+record 25 was: 26 abcdefghijklmnopqrstuvwxyz
+
+
+record 26 was: 27 abcdefghijklmnopqrstuvwxyz
+
+
+record 27 was: 28 abcdefghijklmnopqrstuvwxyz
+
+
+record 28 was: 29 abcdefghijklmnopqrstuvwxyz
+
+
+record 29 was: 30 abcdefghijklmnopqrstuvwxyz
+
+
+record 30 was: 31 abcdefghijklmnopqrstuvwxyz
+
+
+record 31 was: 32 abcdefghijklmnopqrstuvwxyz
+
+
+record 32 was: 33 abcdefghijklmnopqrstuvwxyz
+
+
+record 33 was: 34 abcdefghijklmnopqrstuvwxyz
+
+
+record 34 was: 35 abcdefghijklmnopqrstuvwxyz
+
+
+record 35 was: 36 abcdefghijklmnopqrstuvwxyz
+
+
+record 36 was: 37 abcdefghijklmnopqrstuvwxyz
+
+
+record 37 was: 38 abcdefghijklmnopqrstuvwxyz
+
+
+record 38 was: 39 abcdefghijklmnopqrstuvwxyz
+
+
+record 39 was: 40 abcdefghijklmnopqrstuvwxyz
+
+
+record 40 was: 41 abcdefghijklmnopqrstuvwxyz
+
+
+record 41 was: 42 abcdefghijklmnopqrstuvwxyz
+
+
+record 42 was: 43 abcdefghijklmnopqrstuvwxyz
+
+
+record 43 was: 44 abcdefghijklmnopqrstuvwxyz
+
+
+record 44 was: 45 abcdefghijklmnopqrstuvwxyz
+
+
+record 45 was: 46 abcdefghijklmnopqrstuvwxyz
+
+
+record 46 was: 47 abcdefghijklmnopqrstuvwxyz
+
+
+record 47 was: 48 abcdefghijklmnopqrstuvwxyz
+
+
+record 48 was: 49 abcdefghijklmnopqrstuvwxyz
+
+
+record 49 was: 50 abcdefghijklmnopqrstuvwxyz
+
+
+record 50 was: 51 abcdefghijklmnopqrstuvwxyz
+
+
+record 51 was: 52 abcdefghijklmnopqrstuvwxyz
+
+
+record 52 was: 53 abcdefghijklmnopqrstuvwxyz
+
+
+record 53 was: 54 abcdefghijklmnopqrstuvwxyz
+
+
+record 54 was: 55 abcdefghijklmnopqrstuvwxyz
+
+
+record 55 was: 56 abcdefghijklmnopqrstuvwxyz
+
+
+record 56 was: 57 abcdefghijklmnopqrstuvwxyz
+
+
+record 57 was: 58 abcdefghijklmnopqrstuvwxyz
+
+
+record 58 was: 59 abcdefghijklmnopqrstuvwxyz
+
+
+record 59 was: 60 abcdefghijklmnopqrstuvwxyz
+
+
+record 60 was: 61 abcdefghijklmnopqrstuvwxyz
+
+
+record 61 was: 62 abcdefghijklmnopqrstuvwxyz
+
+
+record 62 was: 63 abcdefghijklmnopqrstuvwxyz
+
+
+record 63 was: 64 abcdefghijklmnopqrstuvwxyz
+
+
+record 64 was: 65 abcdefghijklmnopqrstuvwxyz
+
+
+record 65 was: 66 abcdefghijklmnopqrstuvwxyz
+
+
+record 66 was: 67 abcdefghijklmnopqrstuvwxyz
+
+
+record 67 was: 68 abcdefghijklmnopqrstuvwxyz
+
+
+record 68 was: 69 abcdefghijklmnopqrstuvwxyz
+
+
+record 69 was: 70 abcdefghijklmnopqrstuvwxyz
+
+
+record 70 was: 71 abcdefghijklmnopqrstuvwxyz
+
+
+record 71 was: 72 abcdefghijklmnopqrstuvwxyz
+
+
+record 72 was: 73 abcdefghijklmnopqrstuvwxyz
+
+
+record 73 was: 74 abcdefghijklmnopqrstuvwxyz
+
+
+record 74 was: 75 abcdefghijklmnopqrstuvwxyz
+
+
+record 75 was: 76 abcdefghijklmnopqrstuvwxyz
+
+
+record 76 was: 77 abcdefghijklmnopqrstuvwxyz
+
+
+record 77 was: 78 abcdefghijklmnopqrstuvwxyz
+
+
+record 78 was: 79 abcdefghijklmnopqrstuvwxyz
+
+

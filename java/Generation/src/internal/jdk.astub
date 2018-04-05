@@ -1,0 +1,26 @@
+import internal.quals.*;
+
+package java.io;
+
+class PrintStream {
+	public void print(@Public boolean b); 
+	public void print(@Public char c);
+	public void print(@Public int i);
+	public void print(@Public long l);
+	public void print(@Public float f);
+	public void print(@Public double d);
+	public void print(@Public char[] s);
+	public void print(@Public String s);
+	public void print(@Public Object obj);
+	public void println(@Public boolean x);
+	public void println(@Public char x);
+	public void println(@Public int x);
+	public void println(@Public long x);
+	public void println(@Public float x);
+	public void println(@Public double x);
+	public void println(@Public char[] x);
+	public void println(@Public String x);
+	public void println(@Public Object x);
+	public PrintStream printf(String format, @Public Object... args);
+	public PrintStream printf(Locale l, String format, @Public Object... args);
+}

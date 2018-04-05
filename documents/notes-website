@@ -1,0 +1,37 @@
+Web support for uploading and downloading code.
+
+In particular, I would like to have a website where a user can:
+ * upload a Java program.
+ * have a game automatically created (This step is missing so far!  But,
+   you should be able to create everything so that this can be plugged in.)
+ * play the game
+ * download, and/or view at the website, annotated code
+
+I think this will be useful in a few different ways.  
+
+ * Being able to test and visualize our system end-to-end will help us with
+   experimentation.  This project could also be the foundation of an
+   automated test suite, which we are in significant need of.
+
+ * This will be a great advertising tool, or a way to get people interested
+   in our project.  Enabling people to upload their own code and see and
+   play the resulting game will be a big draw, I think -- it will increase
+   the coolness factor of the project and help people to believe that it is
+   real.
+
+There's a bit more to this project than meets the eye.  The straightforward
+part requires building a website with forms for uploading, and calling the
+game creation code and directing visitors to play the game, and displaying
+the code in an attractive way after the game is played.
+
+Even uploading is non-trivial.  We don't want to worry about the security
+problems of running an arbitrary Ant file that the user provided, but we'll
+want source code for outputting annotations into.
+(In addition to uploading, the form would also have a few pre-canned
+programs that users could try with the click of a button.)
+
+The project also requires extending the XML game file format, so that there
+is a mapping between game elements and program elements (variables, type
+parameters, etc.), and then interpreting a solved game into a .jaif file
+that can be used to annotate the code.
+

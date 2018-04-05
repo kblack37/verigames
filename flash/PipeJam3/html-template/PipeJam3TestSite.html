@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="google" value="notranslate" />         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="icon" type="image/png" href="/theme-3/i/favicon.png"><link href="/theme-3/css/base.css" type="text/css" rel="stylesheet" media="screen"><link href="/chat/css/theme3/chat.css" type="text/css" rel="stylesheet" media="screen"><link href="/theme-3/css/modules.css" type="text/css" rel="stylesheet" media="screen"><link href="/theme-3/css/layout.css" type="text/css" rel="stylesheet" media="screen"><link href="/theme-3/css/minisite3/modules.css" type="text/css" rel="stylesheet" media="screen"><link href="/theme-3/css/minisite3/layout.css" type="text/css" rel="stylesheet" media="screen"><!--[if IE 7]><link href="/theme-3/css/screen-ie7.css" type="text/css" rel="stylesheet" media="screen"/><link href="/theme-3/css/minisite3/screen-ie7.css" type="text/css" rel="stylesheet" media="screen"/><link href="/chat/css/theme3/screen-ie7.css" type="text/css" rel="stylesheet" media="screen"/><script src="/js/json2.js" type="text/javascript"></script><![endif]--><script src="/js/jquery-1.8.0.min.js" type="text/javascript"></script><style type="text/css"></style><script src="/js/jquery.dateFormat-1.0.js" type="text/javascript"></script><script src="/js/jquery.jcarousel.min.js" type="text/javascript"></script><script src="/js/jquery.jqtransform.js" type="text/javascript"></script><script src="/js/jquery-ui-1.9.2.js" type="text/javascript"></script><script src="/js/jquery.fileUploader.js" type="text/javascript"></script><script src="/js/ckeditor/ckeditor.js" type="text/javascript"></script><style>.cke{visibility:hidden;}</style><script src="/js/jquery.form.js" type="text/javascript"></script><script src="/js/jquery.cookie.js" type="text/javascript"></script><script src="/js/async.js" type="text/javascript"></script><script src="/js/scripts.js" type="text/javascript"></script><script src="/js/socket.io/socket.io.js" type="text/javascript"></script><script src="/js/notification.js" type="text/javascript"></script><script src="/js/cv.js" type="text/javascript"></script><script src="/theme-3/js/scripts.js" type="text/javascript"></script><script src="/theme-3/js/minisite3/scripts.js" type="text/javascript"></script><script src="/chat/js/chatclient.js" type="text/javascript"></script><script src="/chat/js/chatclientexception.js" type="text/javascript"></script><script src="/chat/js/jquery.tinymce.js" type="text/javascript"></script><script src="/chat/js/scripts.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="/game/history/history.css"><script type="text/javascript" src="/game/history/history.js"></script><script type="text/javascript" src="/game/swfobject.js"></script>
+
+		
+		<title>Flow Jam</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="socialtabs.css" />
+	<script src="socialtabs.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+	<script src="/js/jquery.dateFormat-1.0.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+	<script src="/js/jquery.jcarousel.min.js" type="text/javascript"></script>
+	<script src="/js/jquery.jqtransform.js" type="text/javascript"></script>
+	<script src="/js/jquery.fileUploader.js" type="text/javascript"></script>
+	<script src="/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+	<script src="/js/jquery.form.js" type="text/javascript"></script>
+	<script src="/js/async.js" type="text/javascript"></script>
+	<script src="/js/socket.io/socket.io.js" type="text/javascript"></script>
+	<script src="/js/cv.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="swfobject.js"></script>
+        
+        <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+             the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+             the percentage of the height of its parent container, which has to be set explicitly.  Fix for
+             Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show 
+             if JavaScript disabled.
+        -->
+        <style type="text/css" media="screen"> 
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow:auto; text-align:center; 
+                   background-color: #ffffff; }   
+            #flashContent { display:none; visibility:hidden;}
+        </style>
+        
+        <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+        <!-- BEGIN Browser History required section -->
+        <link rel="stylesheet" type="text/css" href="history/history.css" />
+        <script type="text/javascript" src="history/history.js"></script>
+        <!-- END Browser History required section -->  
+            
+        <script type="text/javascript">
+			$(document).ready(function()
+			{
+			$(".welcome").hide();
+			//$(".panel").hide();
+			//$(".social-links").hide();
+			});
+			var encodedCookieResult = null;
+			var getEncodedCookieCalled = false;
+			
+			
+			
+			function getEncodedCookie()
+			{
+				getEncodedCookieCalled = true;
+				 $.ajax({
+				  url: '/encodeCookies',
+				  mimeType: 'text/plain; charset=x-user-defined',
+				  dataType: 'text',
+				  success: function(data) {
+							encodedCookieResult = data;
+							verifySession();
+					}
+				});
+			}
+			
+			function verifySession()
+			{
+				$.ajax({
+					url: '/verifySession?cookies=' + encodedCookieResult,
+					success: function(data) {
+						var obj = JSON.parse(data);
+						if(obj != null && obj.userId != null) {
+							getUserInfo(obj.userId);
+						}
+						
+						window.setTimeout(loadSocialTabs, 2000);
+					},
+					dataType: 'text'
+				});
+			}
+
+			
+			
+			function getUserInfo(userId)
+			{
+				
+					
+				/* not sure that we'll need this after all
+				$.ajax({
+					url: 'http://api.flowjam.verigames.com/api/users/' + userId,
+					mimeType: 'application/json',
+					crossDomain: true,
+					success: function(data) {
+						alert('woo');
+					},
+					error: function(response, status, error) {
+						alert('boo');
+						
+					},
+					dataType: 'json'
+				});
+				*/
+			}
+			
+			function getEncodedCookieResult()
+			{
+				return encodedCookieResult;
+			}
+			
+			function getCookie(key)
+			{
+				var cookieValue = null;
+				if (key)
+				{
+					var cookieSearch = key + "=";
+					
+					if (document.cookie)
+					{
+						var cookieArray = document.cookie.split(";");
+						for (var i = 0; i < cookieArray.length; i++)
+						{
+							var cookieString = cookieArray[i];
+							
+							// skip past leading spaces
+							while (cookieString.charAt(0) == ' ')
+							{
+								cookieString = cookieString.substr(1);
+							}
+							
+							// extract the actual value
+							if (cookieString.indexOf(cookieSearch) == 0)
+							{
+								cookieValue = cookieString.substr(cookieSearch.length);
+							}
+						}
+					}
+				}
+				return cookieValue;
+			}
+				
+			function setCookie(key, val)
+			{
+				if (key)
+				{
+					var date = new Date();
+					
+					if (val != null)
+					{
+						// expires in one year
+						date.setTime(date.getTime() + (365*24*60*60*1000));
+						document.cookie = key + "=" + val + "; expires=" + date.toGMTString();
+					}
+					else
+					
+					{
+						// expires yesterday
+						date.setTime(date.getTime() - (24*60*60*1000));
+						document.cookie = key + "=; expires=" + date.toGMTString();
+					}
+				}
+			}
+
+			function getCookies()
+			{
+				return document.cookie;
+			}
+
+			function deleteCookie(cookie)
+			{
+				alert('delete cookie' + cookie);
+			}
+			
+			function launchCurrentLevel()
+			{
+				alert('now the game launches level ' + document.getElementById("levelDetail").value);
+			}
+			
+			function loadLevel(levelNum)
+			{
+			
+				var content;
+				switch(levelNum)
+				{
+					case "1":
+						content = "<div style='float: left'>Group Name</div><div style='float: right'>Best</div>" + 
+									  "<ul style='list-style-type: none;'>" +
+									  "<li style='clear:both'><div style='float: left'>Group A</div><div style='float: right'>68</div></li>" +
+									  "<li style='clear:both'><div style='float: left'>Group B</div><div style='float: right'>68</div></li>" +
+									  "<li style='clear:both'><div style='float: left'>Group C</div><div style='float: right'>55</div></li></ul>";
+						document.getElementById("leaderContent").innerHTML = content;
+						break;			
+					case "2":
+						content = "<div style='float: left'>Group Name</div><div style='float: right'>Best</div>" + 
+									  "<ul style='list-style-type: none;'>" +
+									  "<li style='clear:both'><div style='float: left'>Group B</div><div style='float: right'>112</div></li>" +
+									  "<li style='clear:both'><div style='float: left'>Group A</div><div style='float: right'>108</div></li>" +
+									  "<li style='clear:both'><div style='float: left'>Group C</div><div style='float: right'>98</div></li></ul>";
+						document.getElementById("leaderContent").innerHTML = content;
+						break;
+					case "3":
+						content = "<div style='float: left'>Group Name</div><div style='float: right'>Best</div>" + 
+									  "<ul style='list-style-type: none;'>" +
+									  "<li style='clear:both'><div style='float: left'>Group A</div><div style='float: right'>135</div></li>" +
+									  "<li style='clear:both'><div style='float: left'>Group C</div><div style='float: right'>100</div></li>" +
+									  "<li style='clear:both'><div style='float: left'>Group B</div><div style='float: right'>78</div></li></ul>";
+						document.getElementById("leaderContent").innerHTML = content;
+						break;
+				}
+			}
+			
+
+			// For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+			var swfVersionStr = "11.1.0";
+			// To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+			var xiSwfUrlStr = "playerProductInstall.swf";
+			var flashvars = {};
+			 flashvars.sid = getCookie("express.sid");
+			var params = {};
+			params.quality = "high";
+			params.allowscriptaccess = "sameDomain";
+			params.allowfullscreen = "false";
+			params.wmode="direct";
+			params.devicefront = "false";
+			params.style="z-index:0;";
+			var attributes = {};
+			attributes.id = "PipeJam3";
+			attributes.name = "PipeJam3";
+			attributes.display="none";
+
+			swfobject.embedSWF(
+				"PreloaderPipeJam3.swf", "flashContent", 
+				"960", "640", 
+				swfVersionStr, xiSwfUrlStr, 
+				flashvars, params, attributes);
+			// JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+
+        </script>
+    </head>
+    <body onLoad="getEncodedCookie();">
+	<div class="l-header clearfix"><div class="content"><div class="panel float-right"><ul class="logged-in float-left"><li class="friends"><a href="javascript:;" class="icon">Friends</a><span class="count js-friends-request-count is-hidden" style="display: none;">0</span><div class="header-popup"><div class="header-popup__head"><div class="arrow"></div><div class="right"><div class="middle"><strong>FRIEND REQUESTS</strong></div></div></div><div class="header-popup__content"><div class="right"><div class="middle js-friends-requests"></div></div></div><div class="header-popup__foot"><div class="right"><div class="middle"><a href="undefined/social/friends/jbarone">View All</a></div></div></div></div></li><li class="messages"><a href="javascript:;" class="icon js-messages-notifications-ico">Messages</a><span class="count js-messages-notifications-counter" style="display: none;"> </span><div class="header-popup js-messages-popup"><div class="header-popup__head"><div class="arrow"></div><div class="right"><div class="middle"><strong>MESSAGES</strong></div></div></div><div class="header-popup__content"><div class="right"><div class="middle js-messages-notifications"></div></div></div><div class="header-popup__foot"><div class="right"><div class="middle"><a href="undefined/social/messages">View All</a></div></div></div></div></li><li class="notifications"><a href="javascript:;" class="icon js-data-notifications-icon">Notifications</a><span class="js-data-notifications-counter count" style="display: none;">0</span><div class="header-popup js-data-notification-popup"><div class="header-popup__head"><div class="arrow"></div><div class="right"><div class="middle"><strong>NOTIFICATIONS</strong></div></div></div><div class="header-popup__content"><div class="right"><div class="middle js-data-notifications"></div></div></div><div class="header-popup__foot"><div class="right"><div class="middle"><a href="javascript:;">View All</a></div></div></div></div></li><li class="welcome"><form id="logoutForm" action="/logout" method="POST" class="hide"></form><span>Welcome&nbsp;</span><a href="undefined/userPublicProfile/jbarone" class="js-username-handle">jbarone</a>&nbsp;(&nbsp;<a href="javascript:logout();" class="logout">Logout</a>&nbsp;)</li></ul></div><div class="siteSwitch float-left"><a href="/play" class="site-logo-current site-logo-current--pipejam">FlowJam</a><a href="javascript:;" class="down-arrow"><i class="js-show-site-list"></i></a><ul class="site-list reset"><li><a href="http://verigames.com" class="site-logo-veri">VERIGAMES</a></li><li><a href="http://circuitbot.verigames.com" class="site-logo-circuitboat">CIRCUITBOAT</a></li><li><a href="http://ghostmap.verigames.com" class="site-logo-ghostmap">GHOST MAP</a></li><li><a href="http://stormbound.verigames.com" class="site-logo-stormbound">StormBound</a></li><li><a href="http://xylem.verigames.com" class="site-logo-XYLEM">Xylem</a></li></ul></div><div class="reset"><ul class="social-links float-left"><li><a href="javascript:;" class="social-links_fb">facebook</a></li><li><a href="javascript:;" class="social-links_tw">twitter</a></li><li><a href="javascript:;" class="social-links_plus">+</a></li></ul></div></div></div>
+	<div class="navigationHeaderWrapper"><div class="l-navigationHeader l-navigationHeader--logged-in clearfix reset"><ul><li><a href="/home" class="home">Home</a></li><li><a href="/play" class="games">Play</a></li><li><a href="/static/news" class="news">News</a></li><li class="hide"><a href="/achievement/leaderboard" class="achievements">Achievements</a></li><li class="hide"><a href="/contest/list" class="contests">Contests</a></li><li class="hide"><a href="/tournament/list" class="tournaments">Tournaments</a></li><li><a href="/blogs" class="blog">Blog</a></li><li><a href="/forums" class="forum">Forum</a></li><li class="is-last help"><a href="javascript:;" class="navi-icon">Help<span class="arrow"></span></a><ul><li class="is-first"><a href="http://faq.verigames.com" class="miniFaq">Faq</a></li><li><a href="http://verigames.com/contactUs" class="miniSupport">Support</a></li></ul></li><li class="is-last aboutUs"><a href="http://verigames.com/aboutUs" class="navi-icon">About Us</a></li></ul></div></div>
+        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
+             JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+             when JavaScript is disabled.
+        -->
+	
+		<div id="midWrapper" style="width: 1024px; margin:0 auto;">
+			<div id="overlay_centering" style="position:relative; z-index:9999;">
+				<div id="social_overlay" style="position: absolute; left:669px; width: 351px;">
+					&nbsp;
+				</div>
+			</div>
+	 
+			<div id="flash_centering" style="position:relative;">
+				<div id="flashWrapper" style="position:absolute; left:13px; width:960px; height:640px;">
+					<a href="#" onClick="javascript:unpause();"><img id="pauseImg" src='assets/fj_pause.png' alt='Game Paused' style='display:none'/></a>
+					<div id="flashContent" style="position:relative; z-index:1;">
+						<p>
+							To view this page ensure that Adobe Flash Player version 
+							11.1.0 or greater is installed. 
+						</p>
+						<script type="text/javascript"> 
+							var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+							document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 
+											+ pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
+						</script> 
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		
+        <noscript>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="960" height="640" id="PipeJam3" style="display:none; z-index:0;">
+                <param name="movie" value="PipeJam3.swf" />
+                <param name="quality" value="high" />
+                <param name="bgcolor" value="#ffffff" />
+                <param name="allowScriptAccess" value="sameDomain" />
+                <param name="allowFullScreen" value="true" />
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="PipeJam3.swf" width="960" height="640" style="display:none; z-index:0;">
+                    <param name="quality" value="high" />
+                    <param name="bgcolor" value="#ffffff" />
+                    <param name="allowScriptAccess" value="sameDomain" />
+                    <param name="allowFullScreen" value="true" />
+                <!--<![endif]-->
+                <!--[if gte IE 6]>-->
+                    <p> 
+                        Either scripts and active content are not permitted to run or Adobe Flash Player version
+                        11.1.0 or greater is not installed.
+                    </p>
+                <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflashplayer">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+                    </a>
+                <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </noscript>   
+		<div style="clear:both; height:669px;">&nbsp;</div>
+		<div class="l-footer"><div class="content content--footer-top"><div class="footer-top clearfix"><div class="sitemap-list sitemap-list--main reset"><div><strong>Main</strong><ul><li><a href="/">Home</a></li><li><a href="/play">Play Game</a></li><li><a href="/static/news">News</a></li><li><a href="/blogs">Blog</a></li><li><a href="/forums">Forum</a></li></ul></div><span class="icon">&nbsp;</span></div><div class="sitemap-list sitemap-list--game reset"><div><strong>GAMES</strong><ul><li><a href="http://circuitbot.verigames.com">CircuitBot</a></li><li><a href="http://flowjam.verigames.com">Flow Jam</a></li><li><a href="http://ghostmap.verigames.com">Ghost Map</a></li><li><a href="http://stormbound.verigames.com">StormBound</a></li><li><a href="http://xylem.verigames.com">Xylem</a></li></ul></div><span class="icon">&nbsp;</span></div><div class="sitemap-list sitemap-list--help reset"><div><strong>HELP</strong><ul><li><a href="/help">Help Center</a></li><li><a href="/help/faq">FAQ</a></li><li><a href="/contactUs">Contact Us</a></li></ul></div><span class="icon">&nbsp;</span></div><div class="sitemap-list sitemap-list--links reset"><div><strong>Policies</strong><ul><li><a href="/termsOfUse">Terms of Use</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div><span class="icon">&nbsp;&nbsp;</span></div><div class="sitemap-list sitemap-list--follow reset"><div><strong>Follow US</strong><ul class="social-links"><li><a href="https://www.facebook.com/PlayVerigames" target="_blank" class="social-links_fb"><span>PlayVeriGames</span></a></li><li><a href="https://twitter.com/verigames" target="_blank" class="social-links_tw"><span>@verigames</span></a></li><li><a href="https://plus.google.com/u/0/b/106688222842892825793/106688222842892825793/posts" target="_blank" class="social-links_gg"><span>+1 VeriGames</span></a></li><li><a href="http://www.youtube.com/user/Verigames" target="_blank" class="social-links_youtube"><span>Verigames</span></a></li></ul></div><span class="icon">&nbsp;</span></div></div></div><div class="content content--footer-bottom"><div class="footer-bottom clearfix"><a href="http://www.darpa.mil"><span class="logo-beta-footer"><img src="/theme-3/i/darpa_logo.png" alt="" width="102" height="62" class="float-left logo-footer first-logo-footer"></span></a><a href="http://www.topcoder.mil"><span class="logo-beta-footer"><img src="/theme-3/i/tc-logo.png" alt="" width="180" height="40" class="float-left logo-footer"></span></a><a href="http://verigames.com"><span class="logo-beta-footer"><img src="/theme-3/i/logo-verigames-footer.png" alt="" class="float-left logo-footer"><span></span></span></a><div class="footer-bottom-left"><p> 
+Copyright 2013 TopCoder, Inc. &nbsp;&nbsp;&nbsp;</p></div></div></div></div>
+<div class="alpha"></div><div class="alpha"></div><div class="popup popup__alert"><div class="popup__title popup__title-left popup__title--alt"><div class="popup__title-right"><div class="popup__title-mid"><strong>ALERT</strong><a href="javascript:;" class="close-btn">X</a></div></div></div><div class="popup__content popup__content-left"><div class="popup__content-right"><div class="popup__content-mid"><h4 class="popup__content-mid-tips">Error occurs!</h4><div class="popup__button-area"><a href="javascript:;" class="button js-ok">OK</a></div></div></div></div><div class="popup__footer popup__footer-left"><div class="popup__footer-right"><div class="popup__footer-mid"></div></div></div></div><div class="popup popup__alert_ex"><div class="popup__title popup__title-left popup__title--alt"><div class="popup__title-right"><div class="popup__title-mid"><strong>ALERT</strong><a href="javascript:;" class="close-btn">X</a></div></div></div><div class="popup__content popup__content-left"><div class="popup__content-right"><div class="popup__content-mid"><h4 class="popup__content-mid-tips">Error occurs!</h4><div class="popup__button-area"><div class="confirm-btn-holder float-left clearfix"><a href="javascript:;" class="button js-yes close-btn">YES</a></div><div class="confirm-btn-holder float-right clearfix"><a href="javascript:;" class="button js-no close-btn">NO</a></div></div></div></div></div><div class="popup__footer popup__footer-left"><div class="popup__footer-right"><div class="popup__footer-mid"></div></div></div></div><div class="popup popup--forum-error"><div class="popup__title popup__title-left"><div class="popup__title-right"><div class="popup__title-mid"><strong>ERROR NOTIFICATION</strong><a href="javascript:;" class="close-btn">X</a></div></div></div><!--<End>.popup__title</End>--><div class="popup__content popup__content-left"><div class="popup__content-right"><div class="popup__content-mid"><div class="error-content"><p>Error messages going here, lorem ipsum dolor sit amet :</p><ul><li>Lorem Ipsum Dolor</li><li>Sit amet adispicus totem</li></ul><div class="error-confirm-btn-holder clearfix"><a class="button float-right close-btn">OK</a></div></div><!--<End>.error-content</End>--></div></div></div><!--<End>.popup__content</End>--><div class="popup__footer popup__footer-left"><div class="popup__footer-right"><div class="popup__footer-mid"></div></div></div><!--<End>.popup forum error</End>--></div><div class="popup popup--uploading-forum-attachment"><div class="popup__title popup__title-left"><div class="popup__title-right"><div class="popup__title-mid"><strong>UPLOADING ATTACHMENTS</strong><a href="javascript:;" class="close-btn">X</a></div></div></div><!--<End>.popup__title</End>--><div class="popup__content popup__content-left"><div class="popup__content-right"><div class="popup__content-mid"><div class="upload-process"><p class="clearfix"><span class="float-left">Please wait a moment</span><span class="uploading__progress-number float-right"><span></span>%</span></p><div class="uploading__progress-bar"><div class="uploading__progress"></div></div></div><!--<End>.upload-process</End>--></div></div></div><!--<End>.popup__content</End>--><div class="popup__footer popup__footer-left"><div class="popup__footer-right"><div class="popup__footer-mid"></div></div></div></div><div class="popup popup__confirm-friend"><div class="popup__title popup__title-left popup__title--alt"><div class="popup__title-right"><div class="popup__title-mid"><strong>CONFIRM FRIEND</strong><a href="javascript:;" class="close-btn">X</a></div></div></div><div class="popup__content popup__content-left"><div class="popup__content-right"><div class="popup__content-mid"><h4 class="popup__content-mid-tips">Are you sure to confirm this friend?</h4><div class="popup__button-area"><a href="javascript:;" class="button js-yes confirmConfirmFriend">yes</a><a href="javascript:;" class="button js-no">no</a></div></div></div></div><div class="popup__footer popup__footer-left"><div class="popup__footer-right"><div class="popup__footer-mid"></div></div></div></div><div class="popup popup__remove-friend"><div class="popup__title popup__title-left popup__title--alt"><div class="popup__title-right"><div class="popup__title-mid"><strong>REMOVE FRIEND</strong><a href="javascript:;" class="close-btn">X</a></div></div></div><div class="popup__content popup__content-left"><div class="popup__content-right"><div class="popup__content-mid"><h4 class="popup__content-mid-tips">Are you sure to remove this friend?</h4><div class="popup__button-area"><a href="javascript:;" class="button js-yes confirmRemoveFriend">yes</a><a href="javascript:;" class="button js-no">no</a></div></div></div></div><div class="popup__footer popup__footer-left"><div class="popup__footer-right"><div class="popup__footer-mid"></div></div></div></div><div class="popup popup--login"><div class="popup__title popup__title-left"><div class="popup__title-right"><div class="popup__title-mid"><strong>LOGIN</strong><a href="javascript:;" class="close-btn">X</a></div></div></div><div class="popup__content popup__content-left"><div class="popup__content-right"><div class="popup__content-mid"><form id="loginPopup" action="/login/signIn" method="POST" class="login"><input type="hidden" value="" name="redirect" class="redirectURLPopup"/><p class="is-register-error clearfix is-hidden"><label class="float-left">ERROR:</label><span class="is-required is-hidden">- You must enter a username and a password!</span></p><div id="loginPopupError" class="validateError"></div><table cellpadding="0" cellspacing="0"><tbody><tr><td><label for="username1">Username or Email</label></td><td><input id="username1" type="text" name="username" class="text"/></td></tr><tr class="pwd"><td><label for="password1">Password</label></td><td><input id="password1" type="password" name="password" class="text"/></td></tr><tr class="remember"><td></td><td class="js-jqtransform"><a href="http://www.verigames.com/login/startRecoverPassword" class="login__forgot float-right">FORGOT PASSWORD?</a><input type="checkbox" name="rememberMe"/><label class="cb-label">Remember me</label></td></tr><tr><td></td><td><a href="/login/facebook" class="social plus">plus</a><a href="/login/twitter" class="social tw">twitter</a><a href="/login/google" class="social fb">facebook</a><a href="javascript:login(true);" class="button js-login-button">LOGIN</a>or Login using</td></tr></tbody></table><div class="login__register">Need an Account?<a href="http://www.verigames.com/login/signUp">REGISTER</a></div></form></div></div></div><div class="popup__footer popup__footer-left"><div class="popup__footer-right"><div class="popup__footer-mid"></div></div></div></div>
+   </body>
+</html>

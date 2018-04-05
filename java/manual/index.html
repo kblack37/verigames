@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Verigames - Developers Manual</title>
+
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="css/main.css" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="http://types.cs.washington.edu/jsr308/favicon-jsr308.png" />
+
+</head>
+
+<body>
+
+<div class="top_liner"> </div>
+<div class="navbar navbar-inverse navbar-fixed-top" style="border-bottom: 1px solid #66d;">
+    <div class="navbar-inner">
+        <div class="contained">
+            <ul class="nav">
+                <li class="heading">Verigames Developers Manual</h4></li>
+                <!--<li><a href="http://types.cs.washington.edu/checker-framework/">Main Site</a></li>
+                <li><a href="http://types.cs.washington.edu/checker-framework/current/checkers-manual.html">Manual</a></li>
+                <li><a href="https://groups.google.com/forum/?fromgroups#!forum/checker-framework-discuss">Discussion List</a></li>
+                <li><a href="http://code.google.com/p/checker-framework/issues/list">Issue Tracker</a></li>
+                <li><a href="http://code.google.com/p/checker-framework/source/checkout">Source Code</a></li>
+                <li class="active"><a href="#">Eclipse Plugin</a></li> -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="page-header short" style="border-bottom: 1px solid #EEE; border-top: none;">
+    <h1>Verigames: <small>Developer Documents</small></h1>
+</div>
+
+<section id="tableOfContents">
+    <div class="page-header short" style="border-top: none;">
+        <h2>Table of Contents</h2>
+    </div>
+
+    <ul class="nav nav-list">
+        <li><a href="#tableOfContents">Table of Contents</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <!--<li"><a href="#introduction">Control Flow Overview</a></li>
+        <li><a href="#introduction">Game Worlds and Program Structure</a></li>
+        <li><a href="#introduction">Classes</a></li>-->
+        <li><a href="#subboardsAndMethods">Subboards and Methods</a></li>
+           <ul class="nav nav-list">
+               <li><a href="#routingStrategies">Routing Strategies</a></li>
+           </ul>
+        <li><a href="#specialIntersections">Special Intersections</a>
+            <ul class="nav nav-list">
+                <li><a href="#ifNodeTest">If Node Test</a></li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section id="introduction">
+    <div class="page-header short" style="border-top: none;">
+        <h2>Introduction</h2>
+    </div>
+
+    <div class="section-content">
+        <p>This document is intended to record and explain the behavior of the Verigames project as a whole as well
+        record design decisions/requirements.   When important discussions are held (either via email, in person, or
+        other means) the results of these discussions should be recorded in a section here.  These sections should
+        be added or amended as need be.
+        <p>
+        <div class="alert alert-error">
+            <p>
+            Comments in code (at least in the PL-Side of things) should refer to the
+            relevant sections in this document that explain what the code is implementing.  If that section does not
+            exist then it should be created. At some point we should generate the appropriate Verigames Javadoc
+            in order to link from Manual sections to code as well. <br/>
+            <br/>
+            <strong>Note:</strong> At the time of this writing there are many missing sections.  Please add them in
+            when you can.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="subboardsAndMethods">
+    <div class="page-header short" style="border-top: none;">
+        <h2>Subboards and Methods</h2>
+    </div>
+
+    <section id="routingStrategies">
+        <div class="page-header short" style="border-top: none;">
+            <h3>Routing Strategies</h3>
+        </div>
+
+        <div class="section-content">
+            <p>
+                Early on we discussed two possible ways to handle input parameters to subboard calls, outlined below.
+                We had settled on the &#34;Route Through&#34; method but I don’t think we realized that there needs to be some
+                change to the game-side behavior to correctly implement this method. <br/>
+                <br/>
+                <strong>Open Question:</strong> At the time of this writing there seemed to be a disagreement between
+                the PL-Side and Game Side as to what method we should use.  The PL-Side favors &#34;Route Through&#34; and
+                the Game-Side favors &#34;Route Around&#34;.
+            </p>
+        </div>
+        <div class="section-content bordered">
+            <h4>Methods</h4>
+            <p class="alert alert-info"><strong>Note:</strong> In both methods below, the declaration board for a method
+                will look the same AND the ball-size of each pipe connected to the board&#39;s input will be dependent on
+                its pipe&#39;s size.
+            </p>
+            <table class="three-column labeled table table-bordered">
+                <tr>
+                    <th style="width: 100px;">Method:</th>
+                    <td style="width: 400px; font-weight:bold;">A. Route Around</td>
+                    <td style="width: 400px; font-weight:bold;">B. Route Through</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>
+                        In this method, all input parameters are split and passed to the appropriate inputs but NOT
+                        routed out of the board.  The original pipe is then routed around the board and used for
+                        subsequent intersections.
+                    </td>
+                    <td>
+                        In this method, all input parameters are routed through the input board and the pipes emerging
+                        from the subboard are used for subsequent intersections. Furthermore, in the case of polymorphic
+                        methods, a ball flowing into the subboard might determine the size of balls flowing out
+                        (see Polymorphic Methods section ). <!-- TODO ADD LINK -->
+                    </td>
+                </tr>
+                <tr>
+                    <th>Advantages:</th>
+                    <td>
+                        We DON&#39;T have to worry about the ball-size behavior when routing a pipe through the board
+                        (since no pipe passes entirely through the board).
+                    </td>
+                    <td>
+                        It is more obvious that the subboard may apply some constraint to the pipe, as the pipe being
+                        used passed right through the subboard.  The behavior required by this method also
+                        provides us Polymorphism for free.
+                    </td>
+                </tr>
+                <tr>
+                    <th>Disadvantages:</th>
+                    <td>
+                        The subboard call might impose pinch-points or fixed widths on the input pipe.  While these will
+                        be propagated to the original pipe through linking, it might not be obvious to the player
+                        that it was the subboard that caused the pipe to be narrowed.
+                    </td>
+                    <td>
+                        Balls must &#34;flow through&#34; all pipes except the return types (i.e. we need to detect
+                        the appropriate ball-size for the output of a method call based on any inputs that
+                        flow to that output).  Furthermore, in cases where we detect a ball-size to be polymorphic,
+                        the output size of the ball must be the same as the input size.  This means that the ball-size
+                        of the pipes in the actual declaration board of a method might be different than those that
+                        actually flow through a subboard intersection that represents a call to that method.  This is
+                        not the current game-side behavior (at least in Classic).
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="alert alert-error">
+            <p>
+               <strong>Note:</strong>  Method B (Route Through)  is how the PL Side currently has implemented subboards but this does not
+               work with the game side classic implementation.  As a result, some boards are unsolvable without
+               buzz-saws at the moment.  Method A (Split/Route Around) would work with the existing game-side
+               implementation.
+            </p>
+        </div>
+        <div class="section-content bordered">
+            <h4>Examples</h4>
+            <p>
+                For the given method implementation, a call to that method is diagrammed below for both the
+                &#34;Split/Route Around&#34; and &#34;Route Through&#34; methods.
+            </p>
+            <label>Method Implementation:</label>
+            <pre>String method( String one, String two ) {
+  return two;
+}</pre>
+        <img style="width: 100%; border-left:auto; border-right:auto;"
+             alt="A picture of both routing methods.  Method A on the right and Method B on the left"
+             src="images/methods_and_subboards/routingStrategies.png"/>
+        <p>
+            In method A, since there are no outputs that correspond with the left most pipes (receiver, one, two) there is
+            no need to coordinate the output ball size with the input pipe.  However, on the right side (method B) there
+            is.  Note that the width of the ports on the method call might be different (larger if there is no conflict)
+            then the actual inputs for a given call to the method.
+        </p>
+        </div>
+    </section>
+
+</section>
+
+<section id="specialIntersections">
+    <div class="page-header short" style="border-top: none;">
+        <h2>Special Intersections</h2>
+    </div>
+
+    <section id="ifNodeTest">
+        <div class="page-header short" style="border-top: none;">
+            <h3>If Node Test</h3>
+        </div>
+
+    </section>
+
+
+</body>
+</html>
+
+<!--  LocalWords:  Plugin plugin VM SDK plugins quals classpath 
+ -->
+<!--  LocalWords:  NullnessChecker plugin's hg
+ -->

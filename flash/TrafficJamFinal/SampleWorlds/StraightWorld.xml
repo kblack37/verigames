@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE world SYSTEM "world.dtd">
+<world version="1">
+	<level name="Simple">
+		<linked-edges>
+			<edge-set id="Simple0">
+				<stamp id="Simple1" active="true" />
+				<stamp id="Simple2" active="true" />
+				<edgeref id="e0" />
+			</edge-set>
+			<edge-set id="Simple1">
+				<stamp id="Simple0" active="true" />
+				<stamp id="Simple2" active="true" />
+				<edgeref id="e1" />
+			</edge-set>
+			<edge-set id="Simple2">
+				<stamp id="Simple0" active="true" />
+				<stamp id="Simple2" active="true" />
+				<edgeref id="e2" />
+			</edge-set>
+		</linked-edges>
+		<boards>
+			<board name="SimpleMain">
+				<node kind="START_PIPE_DEPENDENT_BALL" id="n1">
+					<input />
+					<output>
+						<port num="0" edge="e0" />
+					</output>
+					<layout>
+						<x>4</x>
+						<y>1</y>
+					</layout>
+				</node>
+
+				<node kind="CONNECT" id="n2">
+					<input>
+						<port num="0" edge="e0" />
+						</input>
+					<output>
+						<port num="0" edge="e1" />
+					</output>
+					<layout>
+						<x>4</x>
+						<y>5</y>
+					</layout>
+				</node>
+				<node kind="END" id="n3">
+					<input>
+						<port num="0" edge="e1" />
+					</input>
+					<output />
+					<layout>
+						<x>4</x>
+						<y>7</y>
+					</layout>
+				</node>
+				<edge description="foo" variableID="1" pinch="false" width="wide"
+					editable="true" id="e0" buzzsaw="false">
+					<from>
+						<noderef id="n1" port="0" />
+					</from>
+					<to>
+						<noderef id="n2" port="0" />
+					</to>
+					<edge-layout>
+						<point>
+							<x>4</x>
+							<y>1</y>
+						</point>
+						<point>
+							<x>4</x>
+							<y>5</y>
+						</point>
+					</edge-layout>
+				</edge>
+				<edge description="this" variableID="-1" pinch="false" width="narrow"
+					editable="true" id="e1" buzzsaw="false">
+					<from>
+						<noderef id="n2" port="0" />
+					</from>
+					<to>
+						<noderef id="n3" port="0" />
+					</to>
+					<edge-layout>
+						<point>
+							<x>4</x>
+							<y>5</y>
+						</point>
+						<point>
+							<x>4</x>
+							<y>7</y>
+						</point>
+					</edge-layout>
+				</edge>
+			</board>
+		</boards>
+	</level>
+</world>

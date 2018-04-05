@@ -1,0 +1,18 @@
+/*
+* PSUEDO CODE IDEA:
+for each (var cn:Node in step_one_current_nodes) {
+	node_continuing = true;
+	for each (oe:Edge in cn.outgoing_edges) {
+		if ( anyUpwardTraversal of (oe.next) contains any (step_one_current_nodes != this) ) {
+			node_continuing = false
+		} else {
+			oe.next.y = step_one_current_y + 1;
+			step_one_current_nodes.push(oe.next)
+		}
+	}
+	if (!node_continuing) {
+		remove cn from step_one_current_nodes
+	}
+}
+* 
+*/ 

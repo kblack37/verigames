@@ -1,0 +1,74 @@
+Make port API use strings instead of numbers.
+
+--------------------------------------------------------------------------------
+
+Clean up and document all the code
+
+--------------------------------------------------------------------------------
+
+Implement a check that ensures that the number of ports used on a subboard
+matches the number of ports on its corresponding board.
+
+--------------------------------------------------------------------------------
+
+Make a sample level that includes maps and KeyFor
+
+--------------------------------------------------------------------------------
+
+Make a sample level that has mutual recursion
+
+--------------------------------------------------------------------------------
+
+Clean up buildfile
+
+--------------------------------------------------------------------------------
+
+Update documentation to indicate that Intersections can only be in a single
+board.
+
+--------------------------------------------------------------------------------
+
+Write better error messages across the board.
+
+--------------------------------------------------------------------------------
+
+Add Map KeyFor data to Pipe Jam
+  - Add list of in-scope maps to every chute (a list of possible maps that the
+    chute can be listed as a key for)
+  - Turn XML result data into useful KeyFor annotations
+
+--------------------------------------------------------------------------------
+
+Change Intersection layout API to be more consistent with Chute's?
+
+--------------------------------------------------------------------------------
+
+Improve error handling in layout package -- make sure that internal errors are
+sent to the client in a useful way
+
+--------------------------------------------------------------------------------
+
+Add a check that no edges are going up -- involves calculating the path of a
+B-spline and/or pulling in a third party library
+
+--------------------------------------------------------------------------------
+
+Test NullTest setOutput for failure
+
+--------------------------------------------------------------------------------
+
+Write more tests for the layout package
+
+--------------------------------------------------------------------------------
+
+Update existing tests that used to need reflection, but don't anymore now that
+they are in the same package as their test targets.
+
+--------------------------------------------------------------------------------
+
+Make certain edges straighter
+   - Select the edges that form a path from a particular input port to a
+     particular output port (fuzzy, write a heuristic to figure out which ones
+     to straighten)
+   - Set the weight of those edges to be higher (Graphviz will lay them out
+     straighter)

@@ -1,0 +1,179 @@
+2012-11-16 12:46:18,198 INFO org.apache.hadoop.chukwa.ps= 0: USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1  38448  5816 ?        Ss   Oct15   0:03 /bin/systemd --log-level info --log-target syslog-or-kmsg --system --dump-core --show-status=1 --sysv-console=1 --deserialize 19
+root         2  0.0  0.0      0     0 ?        S    Oct15   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    Oct15   0:21 [ksoftirqd/0]
+root         6  0.0  0.0      0     0 ?        S    Oct15   0:00 [migration/0]
+root         7  0.0  0.0      0     0 ?        S    Oct15   0:00 [migration/1]
+root         9  0.0  0.0      0     0 ?        S    Oct15   0:04 [ksoftirqd/1]
+root        11  0.0  0.0      0     0 ?        S    Oct15   0:00 [migration/2]
+root        13  0.0  0.0      0     0 ?        S    Oct15   0:05 [ksoftirqd/2]
+root        14  0.0  0.0      0     0 ?        S    Oct15   0:00 [migration/3]
+root        16  0.0  0.0      0     0 ?        S    Oct15   0:03 [ksoftirqd/3]
+root        17  0.0  0.0      0     0 ?        S<   Oct15   0:00 [cpuset]
+root        18  0.0  0.0      0     0 ?        S<   Oct15   0:00 [khelper]
+root        22  0.0  0.0      0     0 ?        S<   Oct15   0:00 [netns]
+root       117  0.0  0.0      0     0 ?        S    Oct15   0:01 [sync_supers]
+root       119  0.0  0.0      0     0 ?        S    Oct15   0:00 [bdi-default]
+root       121  0.0  0.0      0     0 ?        S<   Oct15   0:00 [kblockd]
+root       123  0.0  0.0      0     0 ?        S<   Oct15   0:00 [kacpid]
+root       124  0.0  0.0      0     0 ?        S<   Oct15   0:00 [kacpi_notify]
+root       125  0.0  0.0      0     0 ?        S<   Oct15   0:00 [kacpi_hotplug]
+root       248  0.0  0.0      0     0 ?        S    Oct15   0:00 [khubd]
+root       358  0.0  0.0      0     0 ?        S<   Oct15   0:00 [rpciod]
+root       401  0.0  0.0      0     0 ?        S    Oct15   0:03 [kswapd0]
+root       402  0.0  0.0      0     0 ?        SN   Oct15   0:00 [ksmd]
+root       468  0.0  0.0      0     0 ?        S    Oct15   0:00 [fsnotify_mark]
+root       471  0.0  0.0      0     0 ?        S<   Oct15   0:00 [aio]
+root       483  0.0  0.0      0     0 ?        S<   Oct15   0:00 [nfsiod]
+root       487  0.0  0.0      0     0 ?        S<   Oct15   0:00 [crypto]
+sdietzel  1010  0.0  0.0 116428  2068 pts/5    Ss+  09:17   0:00 bash
+root      1078  0.0  0.0      0     0 ?        S<   Oct15   0:00 [kpsmoused]
+sdietzel  1198  0.0  0.0 113016   900 ?        S    09:19   0:00 eclipse
+sdietzel  1214  2.1 14.6 4520192 584180 ?      Sl   09:19   4:22 /homes/gws/sdietzel/jsr308/jdk1.7.0_10/bin/java -Xms128m -Xmx512m -Dorg.eclipse.equinox.p2.reconciler.dropins.directory=/usr/share/eclipse/dropins -Dorg.eclipse.swt.browser.UseWebKitGTK=true -XX:CompileCommand=exclude,org/eclipse/core/internal/dtree/DataTreeNode,forwardDeltaWith -XX:CompileCommand=exclude,org/eclipse/jdt/internal/compiler/lookup/ParameterizedMethodBinding,<init> -XX:CompileCommand=exclude,org/eclipse/cdt/internal/core/dom/parser/cpp/semantics/CPPTemplates,instantiateTemplate -XX:CompileCommand=exclude,org/eclipse/cdt/internal/core/pdom/dom/cpp/PDOMCPPLinkage,addBinding -XX:CompileCommand=exclude,org/python/pydev/editor/codecompletion/revisited/PythonPathHelper,isValidSourceFile -XX:CompileCommand=exclude,org/python/pydev/ui/filetypes/FileTypesPreferencesPage,getDottedValidSourceFiles -XX:MaxPermSize=256m -jar /usr/lib64/eclipse//plugins/org.eclipse.equinox.launcher_1.1.1.R36x_v20101122_1400.jar -os linux -ws gtk -arch x86_64 -showsplash -launcher /usr/lib64/eclipse/eclipse -name Eclipse --launcher.library /usr/lib64/eclipse//plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.2.R36x_v20101019_1345/eclipse_1312.so -startup /usr/lib64/eclipse//plugins/org.eclipse.equinox.launcher_1.1.1.R36x_v20101122_1400.jar -exitdata 9670003 -vm /homes/gws/sdietzel/jsr308/jdk1.7.0_10/bin/java -vmargs -Xms128m -Xmx512m -Dorg.eclipse.equinox.p2.reconciler.dropins.directory=/usr/share/eclipse/dropins -Dorg.eclipse.swt.browser.UseWebKitGTK=true -XX:CompileCommand=exclude,org/eclipse/core/internal/dtree/DataTreeNode,forwardDeltaWith -XX:CompileCommand=exclude,org/eclipse/jdt/internal/compiler/lookup/ParameterizedMethodBinding,<init> -XX:CompileCommand=exclude,org/eclipse/cdt/internal/core/dom/parser/cpp/semantics/CPPTemplates,instantiateTemplate -XX:CompileCommand=exclude,org/eclipse/cdt/internal/core/pdom/dom/cpp/PDOMCPPLinkage,addBinding -XX:CompileCommand=exclude,org/python/pydev/editor/codecompletion/revisited/PythonPathHelper,isValidSourceFile -XX:CompileCommand=exclude,org/python/pydev/ui/filetypes/FileTypesPreferencesPage,getDottedValidSourceFiles -XX:MaxPermSize=256m -jar /usr/lib64/eclipse//plugins/org.eclipse.equinox.launcher_1.1.1.R36x_v20101122_1400.jar
+sdietzel  1359  0.0  0.0 145496  1960 ?        S    09:19   0:00 /usr/libexec/gvfsd-metadata
+root      1436  0.0  0.0      0     0 ?        S<   Oct15   0:00 [ata_sff]
+root      1820  0.0  0.0      0     0 ?        S    Oct15   0:00 [scsi_eh_0]
+root      1823  0.0  0.0      0     0 ?        S    Oct15   0:19 [scsi_eh_1]
+root      1826  0.0  0.0      0     0 ?        S    Oct15   0:00 [scsi_eh_2]
+root      1829  0.0  0.0      0     0 ?        S    Oct15   0:00 [scsi_eh_3]
+root      1832  0.0  0.0      0     0 ?        S    Oct15   0:00 [scsi_eh_4]
+root      1836  0.0  0.0      0     0 ?        S    Oct15   0:00 [scsi_eh_5]
+root      1847  0.0  0.0      0     0 ?        S    Oct15   0:00 [kworker/u:5]
+sdietzel  1980  0.2  1.7 1325164 69036 pts/5   Sl   09:28   0:29 gedit /homes/gws/sdietzel/verigames_diff.diff
+root      2228  0.0  0.0      0     0 ?        S    Oct15   0:00 [jbd2/sda2-8]
+root      2229  0.0  0.0      0     0 ?        S<   Oct15   0:00 [ext4-dio-unwrit]
+root      2311  0.0  0.0      0     0 ?        S    Oct15   0:00 [kauditd]
+root      2330  0.0  0.0  21000   772 ?        Ss   Oct15   0:00 /lib/systemd/systemd-logger
+root      2334  0.0  0.0  18372  2396 ?        S<s  Oct15   0:00 /sbin/udevd
+root      3254  0.0  0.0      0     0 ?        S    09:44   0:00 [kworker/2:2]
+root      3458  0.0  0.0      0     0 ?        S<   Oct15   0:00 [hd-audio0]
+root      3469  0.0  0.0      0     0 ?        S<   Oct15   0:00 [hd-audio1]
+root      3501  0.0  0.0      0     0 ?        S    09:46   0:00 [kworker/2:3]
+root      3564  0.0  0.0      0     0 ?        S    Oct15   0:01 [jbd2/sda7-8]
+root      3565  0.0  0.0      0     0 ?        S<   Oct15   0:00 [ext4-dio-unwrit]
+root      3575  0.0  0.0      0     0 ?        S    Oct15   0:00 [kjournald]
+root      3587  0.0  0.0      0     0 ?        S    Oct15   0:00 [jbd2/sda5-8]
+root      3588  0.0  0.0      0     0 ?        S<   Oct15   0:00 [ext4-dio-unwrit]
+root      3596  0.0  0.0      0     0 ?        S    Oct15   0:02 [jbd2/sda6-8]
+root      3597  0.0  0.0      0     0 ?        S<   Oct15   0:00 [ext4-dio-unwrit]
+root      3626  0.0  0.0  16816   652 ?        Ss   Oct15   0:00 /usr/sbin/atd -f
+root      3628  0.0  0.0   6812   184 ?        Ss   Oct15   0:12 /usr/sbin/gpm -m /dev/input/mice -t exps2
+root      3641  0.0  0.0  11404   196 ?        Ss   Oct15   0:00 /usr/bin/system-setup-keyboard
+root      3644  0.0  0.0  13656   412 ?        Ss   Oct15   3:27 /usr/sbin/irqbalance
+dbus      3656  0.0  0.1  24760  4368 ?        Ss   Oct15   0:15 /bin/dbus-daemon --system --address=systemd: --nofork --systemd-activation
+root      3718  0.0  0.0 242992  1876 ?        Ssl  Oct15   0:00 /sbin/rsyslogd -n -c 5
+root      3872  0.0  0.0 118220   928 ?        Ss   Oct15   0:04 /usr/sbin/crond -n
+root      3886  0.0  0.0  19024   748 ?        Ss   Oct15   0:00 rpcbind
+root      3906  0.0  0.0  22156   788 ?        Ss   Oct15   0:00 xinetd -stayalive -pidfile /var/run/xinetd.pid
+rpcuser   3939  0.0  0.0  23196   752 ?        Ss   Oct15   0:00 rpc.statd
+root      3993  0.0  0.0  27588   876 ?        Ss   Oct15   0:01 rpc.idmapd
+root      3995  0.0  0.0  61180   596 ?        Ss   Oct15   0:00 /usr/sbin/sshd
+root      4000  0.0  0.0 1434588 3532 ?        Ssl  Oct15  28:46 automount --pid-file /var/run/autofs.pid
+root      4024  0.0  0.0   4136   260 ?        Ss   Oct15   0:00 /usr/local/bin/sshthrottle
+mailmsp   4077  0.0  0.0  62088  1780 ?        Ss   Oct15   0:00 sendmail: Queue runner@00:30:00 for /var/spool/clientmqueue
+root      4094  0.0  0.0 137736  2116 ?        Ssl  Oct15   0:00 /usr/sbin/gdm-binary -nodaemon
+ntp       4123  0.0  0.0  26304  2148 ?        Ss   Oct15   0:53 /usr/sbin/ntpd -n -u ntp:ntp -g
+root      4134  0.0  0.0   4152   576 tty2     Ss+  Oct15   0:00 /sbin/agetty tty2 38400
+root      4137  0.0  0.0   4152   580 tty3     Ss+  Oct15   0:00 /sbin/agetty tty3 38400
+root      4141  0.0  0.0   4152   580 tty5     Ss+  Oct15   0:00 /sbin/agetty tty5 38400
+root      4145  0.0  0.0   4152   576 tty4     Ss+  Oct15   0:00 /sbin/agetty tty4 38400
+root      4150  0.0  0.0   4152   580 tty6     Ss+  Oct15   0:00 /sbin/agetty tty6 38400
+root      4157  0.0  0.0 2156800 3540 ?        Ssl  Oct15   0:00 /usr/sbin/console-kit-daemon --no-daemon
+root      4224  0.0  0.0 195220  3800 ?        Sl   Oct15   0:02 /usr/libexec/polkit-1/polkitd
+rtkit     4264  0.0  0.0 164436  1176 ?        SNsl Oct15   0:04 /usr/libexec/rtkit-daemon
+root      4290  0.0  0.1 143680  4000 ?        Sl   Oct15   0:00 /usr/libexec/upowerd
+root      4326  0.0  0.1 224720  4376 ?        Ssl  Oct15   0:23 /usr/libexec/accounts-daemon
+root      4895  0.0  0.0 129684  3696 ?        Sl   Oct15   2:01 /usr/libexec/udisks-daemon
+root      4897  0.0  0.0  45152   488 ?        S    Oct15   1:21 udisks-daemon: polling /dev/sdb /dev/sr0
+sdietzel  6743  0.0  0.6 941460 24188 ?        Sl   10:20   0:06 nautilus
+sdietzel  6749  0.0  0.0 158972  2988 ?        S    10:20   0:00 /usr/libexec/gvfsd-trash --spawner :1.9 /org/gtk/gvfs/exec_spaw/0
+root      7451  0.0  0.0 155972  2504 ?        Sl   Oct25   0:00 /usr/libexec/gdm-simple-slave --display-id /org/gnome/DisplayManager/Display2
+root      7455  0.0  1.9 199668 76140 tty8     Ss+  Oct25   0:13 /usr/bin/Xorg :1 -br -verbose -auth /var/run/gdm/auth-for-gdm-qreVog/database -nolisten tcp
+gdm       7480  0.0  0.0  21908  1036 ?        Ss   Oct25   0:00 /bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+gdm       7481  0.0  0.1 434120  7836 ?        Ssl  Oct25   0:00 /usr/bin/gnome-session --session gdm --autostart=/usr/share/gdm/autostart/LoginWindow/
+gdm       7487  0.0  0.0 146960  2472 ?        S    Oct25   0:01 /usr/libexec/gconfd-2
+gdm       7490  0.0  0.6 862968 26980 ?        Sl   Oct25   0:09 /usr/libexec/gnome-settings-daemon
+gdm       7497  0.0  0.0 147960  1664 ?        S    Oct25   0:00 /usr/libexec/gvfsd
+gdm       7502  0.0  0.0 195164  2136 ?        Sl   Oct25   0:00 /usr/libexec/at-spi-bus-launcher
+gdm       7505  0.0  0.1 510416  4544 ?        S<sl Oct25   0:00 /usr/bin/pulseaudio --start --log-target=syslog
+gdm       7509  0.0  0.0  21616  1436 ?        S    Oct25   0:00 /bin/dbus-daemon --config-file=/etc/at-spi2/accessibility.conf --nofork --print-address 3
+gdm       7512  0.0  0.0 133328  3440 ?        Sl   Oct25   0:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+gdm       7517  0.0  0.2 574256  9704 ?        Sl   Oct25   0:04 metacity
+gdm       7521  0.0  0.3 499456 14264 ?        Sl   Oct25   0:22 /usr/libexec/gdm-simple-greeter
+gdm       7523  0.0  0.1 314072  5936 ?        Sl   Oct25   0:00 /usr/libexec/polkit-gnome-authentication-agent-1
+gdm       7533  0.0  0.0 179380  2208 ?        Sl   Oct25   0:00 /usr/libexec/dconf-service
+root      7616  0.0  0.1 204996  7820 ?        S    Oct25   0:00 pam: gdm-password
+root     11006  0.0  0.0      0     0 ?        S    11:05   0:00 [kworker/1:3]
+nmote    11139  0.0  0.0 116420  2072 pts/0    Ss+  Nov08   0:00 /bin/bash
+root     11502  0.0  0.0      0     0 ?        S    11:12   0:00 [kworker/3:2]
+root     11652  0.0  0.0      0     0 ?        S    11:14   0:00 [kworker/1:2]
+root     12489  0.0  0.0      0     0 ?        S    11:22   0:00 [kworker/3:0]
+nmote    15151  0.0  0.0 116424  2036 pts/1    Ss   Nov09   0:00 /bin/bash
+nmote    15954  0.0  0.0 116424  2044 pts/2    Ss   Nov09   0:00 /bin/bash
+root     16077  0.0  0.0 155972  2984 ?        Sl   Nov15   0:00 /usr/libexec/gdm-simple-slave --display-id /org/gnome/DisplayManager/Display1
+root     16079  0.7  6.3 365816 253056 tty7    Ss+  Nov15   7:24 /usr/bin/Xorg :0 -br -verbose -auth /var/run/gdm/auth-for-gdm-0oNLDv/database -nolisten tcp
+root     16147  0.0  0.2 217164  8836 ?        Sl   Nov15   0:00 pam: gdm-password
+root     17017  0.0  0.0      0     0 ?        S    Oct26   0:00 [scsi_eh_8]
+root     17018  0.0  0.0      0     0 ?        S    Oct26   2:54 [usb-storage]
+nmote    18725  0.0  0.0 116424  2024 pts/3    Ss   Nov08   0:00 /bin/bash
+root     19649  0.0  0.0      0     0 ?        S    12:37   0:00 [kworker/0:2]
+root     19693  0.0  0.0      0     0 ?        S    12:37   0:00 [kworker/1:1]
+sdietzel 19897  8.9  6.4 2752556 257848 pts/4  Sl+  12:40   0:32 /homes/gws/sdietzel/jsr308/jdk1.7.0_10/bin/java -classpath /homes/gws/sdietzel/installed/apache-maven-3.0.4/boot/plexus-classworlds-2.4.jar -Dclassworlds.conf=/homes/gws/sdietzel/installed/apache-maven-3.0.4/bin/m2.conf -Dmaven.home=/homes/gws/sdietzel/installed/apache-maven-3.0.4 org.codehaus.plexus.classworlds.launcher.Launcher clean package
+root     20101  0.0  0.0      0     0 ?        S    12:40   0:00 [kworker/0:3]
+root     21088  0.0  0.0      0     0 ?        S    12:45   0:00 [kworker/3:1]
+root     21152  0.0  0.0      0     0 ?        S    12:45   0:00 [kworker/0:0]
+root     21153  0.0  0.0      0     0 ?        S    12:45   0:00 [kworker/3:3]
+root     21159  0.0  0.0      0     0 ?        S    12:45   0:00 [kworker/1:0]
+root     21166  0.0  0.0      0     0 ?        S    12:45   0:00 [kworker/2:0]
+sdietzel 21191  0.0  0.0 114052  1104 pts/4    S+   12:46   0:00 /bin/sh -c cd /homes/gws/sdietzel/chukwa/chukwa/trunk/target/test/classes && /homes/gws/sdietzel/jsr308/jdk1.7.0_10/jre/bin/java -Xmx1024m -jar /homes/gws/sdietzel/chukwa/chukwa/trunk/target/surefire/surefirebooter5004392119988902161.jar /homes/gws/sdietzel/chukwa/chukwa/trunk/target/surefire/surefire1285947924679770521tmp /homes/gws/sdietzel/chukwa/chukwa/trunk/target/surefire/surefire7979671508693248473tmp
+sdietzel 21194  132  1.6 2866040 63852 pts/4   Sl+  12:46   0:01 /homes/gws/sdietzel/jsr308/jdk1.7.0_10/jre/bin/java -Xmx1024m -jar /homes/gws/sdietzel/chukwa/chukwa/trunk/target/surefire/surefirebooter5004392119988902161.jar /homes/gws/sdietzel/chukwa/chukwa/trunk/target/surefire/surefire1285947924679770521tmp /homes/gws/sdietzel/chukwa/chukwa/trunk/target/surefire/surefire7979671508693248473tmp
+sdietzel 21214  0.0  0.0 113396  1116 pts/4    R+   12:46   0:00 ps aux
+nmote    24751  0.0  0.0 155008  3656 pts/3    S+   Nov15   0:00 vim Board.java
+nmote    25042  0.0  0.0 154872  3544 pts/1    S+   Nov15   0:00 vim World.xml
+root     25504  0.0  0.0      0     0 ?        S    Nov07   0:00 [kworker/u:0]
+root     27736  0.0  0.0      0     0 ?        S    07:47   0:00 [flush-8:0]
+root     28012  0.0  0.0      0     0 ?        S    Oct20   0:00 [nfsv4.0-svc]
+nmote    28097  0.0  0.1 155224  4236 pts/2    S+   Nov15   0:02 vim GameSolver.scala
+root     30325  0.0  0.0      0     0 ?        S    Nov07  10:40 [flush-0:42]
+sdietzel 31250  0.0  0.0 225392  3632 ?        Sl   08:48   0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+sdietzel 31260  0.0  0.2 425240  8688 ?        Ssl  08:48   0:00 gnome-session
+sdietzel 31269  0.0  0.0  22224   512 ?        S    08:48   0:00 dbus-launch --sh-syntax --exit-with-session
+sdietzel 31270  0.0  0.0  22936  1744 ?        Ss   08:48   0:00 /bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+sdietzel 31308  0.0  0.0 179380  2256 ?        Sl   08:48   0:00 /usr/libexec/dconf-service
+sdietzel 31315  0.0  0.0 146948  3568 ?        S    08:48   0:00 /usr/libexec/gconfd-2
+sdietzel 31317  0.0  0.7 881024 30532 ?        Sl   08:48   0:01 /usr/libexec/gnome-settings-daemon
+sdietzel 31332  0.0  0.1 533304  5308 ?        S<sl 08:48   0:00 /usr/bin/pulseaudio --start
+sdietzel 31334  0.0  0.0 150060  2132 ?        S    08:48   0:00 /usr/libexec/gvfsd
+sdietzel 31340  0.0  0.0 161388  3388 ?        S    08:48   0:00 /usr/libexec/gvfs-gdu-volume-monitor
+sdietzel 31342  0.0  0.0 163428  2068 ?        S    08:48   0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+sdietzel 31344  0.0  0.0 236576  1984 ?        Sl   08:48   0:00 /usr/libexec/gvfs-afc-volume-monitor
+sdietzel 31371  0.0  0.0 183772  2924 ?        Sl   08:48   0:00 /usr/libexec/pulse/gconf-helper
+sdietzel 31382  1.4  4.9 1495628 195772 ?      Sl   08:48   3:21 /usr/bin/gnome-shell
+sdietzel 31388  0.0  0.2 493076 11392 ?        Sl   08:48   0:00 gnome-screensaver
+sdietzel 31394  0.0  0.1 330928  4500 ?        Sl   08:48   0:00 /usr/libexec/gnome-shell-calendar-server
+sdietzel 31400  0.0  0.0  55952  2628 ?        S    08:48   0:00 /usr/libexec/mission-control-5
+sdietzel 31446  5.2 14.7 1610260 587048 ?      Sl   08:48  12:24 /usr/lib64/firefox/firefox
+sdietzel 31471  0.0  0.0 186940  2024 ?        Sl   08:48   0:00 /usr/libexec/at-spi-bus-launcher
+sdietzel 31505  0.1  1.4 584384 56196 ?        Sl   08:48   0:24 /usr/lib64/xulrunner/plugin-container /usr/lib64/flash-plugin/libflashplayer.so -greomni /usr/lib64/xulrunner/omni.ja -appomni /usr/lib64/firefox/omni.ja 31446 true plugin
+sdietzel 31611  0.0  0.3 573336 15536 ?        Sl   08:50   0:06 gnome-terminal
+sdietzel 31617  0.0  0.0   8296   696 ?        S    08:50   0:00 gnome-pty-helper
+sdietzel 31618  0.0  0.0 116428  2028 pts/4    Ss   08:50   0:00 bash
+root     32272  0.0  0.0  18368  1888 ?        S<   Oct31   0:00 /sbin/udevd
+root     32275  0.0  0.0  18368  1748 ?        S<   Oct31   0:00 /sbin/udevd
+nmote    32640  0.0  0.0 126280  3012 ?        Ss   Nov07   0:08 SCREEN
+
+
+console connector started
+
+-------------------
+
+Console out connector got event at offset 66
+
+data type was Listing
+
+2012-11-16 12:46:19,381 INFO org.apache.hadoop.chukwa.Listing= 0: 
+
+-------------------
+
+stopped ok
+

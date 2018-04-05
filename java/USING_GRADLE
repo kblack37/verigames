@@ -1,0 +1,56 @@
+To use Gradle: At the moment you MUST have the checker-framework built from
+source as described in:
+http://types.cs.washington.edu/checker-framework/current/checkers-manual.html#build-source
+You must have the JSR308 and CHECKERS environment variables set as described in
+the manual.
+
+Download from: http://www.gradle.org/ Note:  I have a version with read/execute
+permissions available at: /homes/gws/jburke/gradle/current The executable is
+merely a script that runs a java jar so you should only have to download,
+unzip, and add the bin directory to your path.
+
+You must also check out and build checker-framework-inference source:
+cd $JSR308
+hg clone https://code.google.com/p/checker-framework-inference/
+cd checker-framework-inference
+gradle dist
+
+Please read the comments at the top of the build scripts for more information
+on running them but a quick description appears below.  Gradle works much like
+Ant with "Tasks" replacing "Targets" and Groovy replacing xml (plus a lot of
+nice features like dependency resolution). Note:  The exact behavior of these
+scripts will likely be tweaked in the future.  They currently do not support
+tests.
+
+NOTE:  You can always see the documentation of all tasks for a gradle project
+by executing: gradle -q tasks
+
+In the Checker Framework Inference directory, the command gradle compileJava will  
+compile BOTH the scala and java files in the src directory.
+
+gradle jar - Creates a jar of ONLY checker-framework-inference code
+
+gradle dist - If you have the standard JSR308 layout (i.e. a jsr308 dir with
+jsr308-langotols, annotation-file-utilities, checker-framework, and
+checker-framework-inference source projects in it) and all of the projects are built,
+then this will compile verigames and move all relevant jars (including scala jars)
+into the dist directory.
+
+gradle clean - removes all built files including jars
+
+Verigames: There are 4 files related to gradle in verigames.  java/build.gradle
+is the parent project that allows both java/Generation and java/Translation to
+be built via gradle.
+
+gradle compileJava - Compiles both scala and java files in the Generation and
+Translation
+
+gradle jar - Create a "fat jar" there is no "allJar" because Generation and
+Translation can be used to create their own standalone jars individuall.  This
+requires that you have already called the allJar task in
+Checker-Framework-Inference although this requirement is likely to be relaxed
+in the future.
+
+gradle clean - removes built files including jars
+
+to run verigames and inference - See the README and use dist/scripts/python.py

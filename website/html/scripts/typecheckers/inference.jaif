@@ -1,0 +1,26 @@
+package nninf.quals:
+annotation @Nullable:
+package nninf.quals:
+annotation @NonNull:
+
+package:
+class Storage:
+method set(Ljava/lang/Object;)V:
+parameter 0:
+type: @checkers.inference.quals.VarAnnot(3)
+
+package:
+class Storage:
+method get()Ljava/lang/Object;:
+return: @checkers.inference.quals.VarAnnot(1)
+
+package:
+class Storage:
+method get()Ljava/lang/Object;:
+local res:
+type: @checkers.inference.quals.VarAnnot(2)
+
+package:
+class Storage:
+field data:
+type: @checkers.inference.quals.VarAnnot(0)

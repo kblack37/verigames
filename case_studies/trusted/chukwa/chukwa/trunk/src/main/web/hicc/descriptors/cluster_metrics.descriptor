@@ -1,0 +1,58 @@
+{
+"id":"cluster_metrics",
+"title":"Cluster Metrics",
+"version":"0.1",
+"categories":"System Metrics,Cluster",
+"url":"iframe/jsp/chart.jsp",
+"description":"Display cluster related stats",
+"screendump":"\/images\/server_load.gif",
+"refresh":"15",
+"parameters":[
+{"name":"title","type":"string","value":"","edit":"1","label":"Title"},
+{"name":"table","type":"string","value":"system_metrics","edit":"0"},
+{"name":"group","type":"string","value":"host","edit":"0"},
+{"name":"group_items","type":"string","value":"cluster","edit":"0"},
+{"name":"period","type":"custom","control":"period_control","value":"","label":"Period"},
+{"name":"data","type":"select_multiple","value":"/hicc/v1/metrics/series/ClusterSummary/cpu:Combined/session/cluster","label":"Metric","options":[
+{"label":"CPU Utilizaion","value":"/hicc/v1/metrics/series/ClusterSummary/cpu:Combined/session/cluster"},
+{"label":"CPU Idle","value":"/hicc/v1/metrics/series/ClusterSummary/cpu:Idle/session/cluster"},
+{"label":"CPU Utilization By System","value":"/hicc/v1/metrics/series/ClusterSummary/cpu:Sys/session/cluster"},
+{"label":"CPU Utilization By User","value":"/hicc/v1/metrics/series/ClusterSummary/cpu:User/session/cluster"},
+{"label":"Disk Read Bytes","value":"/hicc/v1/metrics/series/ClusterSummary/disk:ReadBytes/session/cluster"},
+{"label":"Disk Read Operations","value":"/hicc/v1/metrics/series/ClusterSummary/disk:Reads/session/cluster"},
+{"label":"Disk Write Bytes","value":"/hicc/v1/metrics/series/ClusterSummary/disk:WriteBytes/session/cluster"},
+{"label":"Disk Write Operations","value":"/hicc/v1/metrics/series/ClusterSummary/disk:Writes/session/cluster"},
+{"label":"Memory Free Percentage","value":"/hicc/v1/metrics/series/ClusterSummary/memory:FreePercent/session/cluster"},
+{"label":"Memory Used Percentage","value":"/hicc/v1/metrics/series/ClusterSummary/memory:UsedPercent/session/cluster"},
+{"label":"Network Receive Bytes","value":"/hicc/v1/metrics/series/ClusterSummary/network:RxBytes/session/cluster"},
+{"label":"Network Receive Dropped","value":"/hicc/v1/metrics/series/ClusterSummary/network:RxDropped/session/cluster"},
+{"label":"Network Receive Errors","value":"/hicc/v1/metrics/series/ClusterSummary/network:RxErrors/session/cluster"},
+{"label":"Network Receive Packets","value":"/hicc/v1/metrics/series/ClusterSummary/network:RxPackets/session/cluster"},
+{"label":"Network Transfer Bytes","value":"/hicc/v1/metrics/series/ClusterSummary/network:TxBytes/session/cluster"},
+{"label":"Network Transfer Collisions","value":"/hicc/v1/metrics/series/ClusterSummary/network:TxCollisions/session/cluster"},
+{"label":"Network Transfer Errors","value":"/hicc/v1/metrics/series/ClusterSummary/network:TxErrors/session/cluster"},
+{"label":"Network Transfer Packets","value":"/hicc/v1/metrics/series/ClusterSummary/network:TxPackets/session/cluster"},
+{"label":"Load Average","value":"/hicc/v1/metrics/series/ClusterSummary/system:LoadAverage/session/cluster"},
+]},
+{"name":"width","type":"select","value":"300","label":"Width","options":[
+{"label":"300","value":"300"},
+{"label":"400","value":"400"},
+{"label":"500","value":"500"},
+{"label":"600","value":"600"},
+{"label":"800","value":"800"},
+{"label":"1000","value":"1000"},
+{"label":"1200","value":"1200"}
+]},
+{"name":"height","type":"select","value":"200","label":"Height","options":[
+{"label":"200","value":"200"},
+{"label":"400","value":"400"},
+{"label":"600","value":"600"},
+{"label":"800","value":"800"},
+{"label":"1000","value":"1000"}
+]},
+{"name":"legend","type":"radio","value":"on","label":"Show Legends","options":[
+{"label":"On","value":"on"},
+{"label":"Off","value":"off"}
+]}
+]
+}

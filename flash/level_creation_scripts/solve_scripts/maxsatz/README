@@ -1,0 +1,17 @@
+CONTENTS
+
+	*.c files
+
+	I've modified these some to take different command-line args, specifically to take a string on the command-line, and to specify an output file for results, both optional. You can still
+	call it using maxsatz.exe foo.wcnf. If you are getting seg faults, you might need to raise the limit on the number of vars (tab_variable_size) or clauses (tab_clause_size).
+
+	Or specifically:
+
+	maxsatz.exe [-s] input_instance [-i dirpath]
+		-s: treat input instance is string, else as a file.
+		-i: output intermediate results to specified directory, else don't output results.
+		
+
+To compile: run make, or by using:
+	gcc maxsatz.c -o maxsatz.exe
+	

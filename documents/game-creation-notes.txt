@@ -1,0 +1,474 @@
+This document contains notes on how we use type systems to map programs to game
+worlds.
+
+--------------------------------------------------------------------------------
+
+Table of Contents
+
+1. Overview
+2. Code-to-game Conversion: Conceptual level
+3. Code-to-game Conversion: Implementation
+4. Future Work
+5. Glossary
+
+--------------------------------------------------------------------------------
+
+1. Overview
+
+This section will be largely redundant if you have read our FTFJP 2012 paper.
+
+We map type systems consisting of only two types onto a puzzle game made up of
+pipes and balls. An overview of the mapping follows:
+
+A pipe corresponds to a single type in a variable declaration (though with flow
+sensitivity a single variable declaration can correspond to multiple pipes). A
+wide pipe represents the more permissive of the two annotations (such as
+Nullable in the nullness type system), and a narrow pipe represents the more
+restrictive (such as NonNull).
+
+Balls roll through pipes from top to bottom. A large ball gets stuck if it flows
+from a large pipe into a narrow pipe. The player's goal is to prevent balls from
+getting stuck by changing the width of the pipes. Often, the size of the balls
+that are dropped into pipes change to match the width of a pipe. The game is
+nontrivial because some balls stay large even if the pipe below them changes
+width (resulting in a problem point), and some pipes cannot be made wide.
+
+The width of the pipes when the game is solved correspond to the annotations
+inserted back into the code.
+
+Pipes can interact through merges (two pipes combine to become one) and splits
+(one pipe splits into two).
+
+Just as statements in a Java program are grouped into different methods and
+classes, pipes are grouped into boards and levels. Each board is a single
+rectangle consisting of a network of pipes, and representing a single method.
+
+A level represents a class. It is a collection of boards, each of which
+represent a method. The player can see thumbnails of the different boards and
+can switch between them.
+
+A world represents an entire program (or, alternatively, an interesting subset
+of a program). It consists of a collection of levels that a user is able to move
+through as she completes them.
+
+If a player cannot complete a level, he has the option to place a buzz saw. A
+buzz saw is placed on a pipe, and it transforms all large balls that flow
+through it into small balls. This allows a player to remove trouble spots.
+However, because this is not a real solution, players are discouraged from using
+more buzz saws than necessary by penalizing them with lower scores.
+
+The effect of the buzz saw mechanic is that a player can identify situations in
+which a solution is impossible (or difficult) and that information can be
+reported back to the maintainers of the code on which the game is based.
+
+--------------------------------------------------------------------------------
+
+2. Code-to-game Conversion: Conceptual level
+
+This section will summarize, conceptually, how Java code is translated into a
+game world. The next section will describe the technical details of how this is
+accomplished.
+
+a. Pipes and Balls
+
+Pipes appear in boards, and can typically be made wide or narrow by the player.
+In some cases, the pipes are locked as either wide or narrow.
+
+Pipes can be linked, meaning that they are necessarily of the same width. When
+two pipes are linked, changing the width of one causes the width of the other to
+change, as well.
+
+Pipes can interact with each other through several basic mechanics. The simplest
+ones are splits and merges (more will be introduced in later sections). When
+there is a split, a single pipe above is connected to two pipes below. When a
+ball passes through, it is cloned, and sent through both output pipes.
+Similarly, a merge connects two pipes above to one below. The game takes the
+larger of the two input balls and uses that as the output of the intersection.
+
+
+Any place where a type annotation can be written is translated into a pipe (TODO
+is this strictly correct? Are there places where type annotations can be written
+that we do not generate pipes for?).
+
+Note that because a pipe is generated for every place that a type annotation can
+be written, a variable declaration can result in more than one pipe being
+generated, if it includes type parameters. For example, (in most type systems)
+the declaration "String foo;" would result in the generation of a single pipe,
+whereas the statement "Map<String, Integer> bar;" would cause three pipes to be
+generated (though as of April 2013, this does not work).
+
+TODO: paragraph on balls -- I (Nat) honestly don't understand what, exactly,
+balls mean. They seem to be some strange hybrid of types and values, and (even
+after years on the project) I have yet to put my finger on exactly what they
+are. Are they just a visualizing aid or are they something more?
+
+Basic interactions between variables in a program are translated as splits and
+merges.
+
+One example where a merge would occur is when a conditional assignment occurs in
+the code. Because the value after the assignment could be either the original
+value (if the condition is false), or the new value (if the condition is true),
+the pipes merge and the output pipe.
+
+A split would occur when a variable is used. For example, if it is assigned to
+another variable, its pipe would split, because it would then be representing
+two variables, and each must have its own pipe.
+
+Splits and merges happen in other cases, but these are the simplest (other uses
+will be described in section 3).
+
+Based on the above, we can translate a few simple statements into a game part
+for the nullness type system:
+
+(this is not a full game, just as the statements below are not a full program)
+
+String foo = "hello";
+String bar = null;
+String bar = foo;
+
+-----------------------
+|                     |
+|   (foo)  (bar)      |
+|                     |
+|     o      O        |
+|    | |    | |       |
+|    |  \   |_|       |
+|    | \ \            |
+|    | |\ \           |
+|    | | \ \          |
+|    | |  \ \         |
+|    | |   \ \        |
+|    | |    | |       |
+|    |_|    |_|       |
+|                     |
+-----------------------
+
+Because foo is assigned a nonnull literal at its declaration, it starts with a
+small ball. Because bar is assigned a null literal at its declaration, it starts
+with a large ball. Because bar is assigned to, its previous pipe segment comes
+to an end (because its old value is no longer used). foo's pipe splits -- the
+left side continues on as before, but the right side becomes the pipe segment
+representing foo. Once the variables go out of scope, their pipes are ended.
+
+b. Boards and Subboards
+
+A board is a single rectangle made up of interconnected pipes. Boards commonly
+have pipes attached to the top and/or bottom (called input or output pipes), but
+not always. A board is solved when there are no conflicts remaining on it, where
+a conflict is a place where a ball would get stuck.
+
+A subboard is where a board is referenced within another board. A subboard must
+have the same number of inputs and outputs as the board that it references. The
+game represents a subboard as a thumbnail of the board that it references.
+
+
+Each method in a program is transformed into a board. Each method call is
+transformed into a subboard referring to the called method's board. Pipe(s) for
+a method's arguments, including the receiver, are attached as input pipes. All
+of the input pipes are also attached as output pipes. The pipe(s) for the return
+value are additionally attached as output pipes.
+
+The reason that all of the input pipes are also output pipes is that a method
+could impose constraints on the pipe width, and we have decided that it should
+be immediately obvious when a ball gets stuck in a subboard. So, instead of
+splitting a variable's pipes, continuing them on one side, and connecting them
+to the subboard, we simply connect them to the subboard and continue them at the
+bottom, as though they simply passed through the subboard. (Note: actually,
+currently the receiver is piped through and the rest of the arguments are split
+and one side is connected to the top of the subboard.)
+
+Additionally, this mechanic may help us when we introduce flow sensitivity (See
+Section 4, Future Work) by allowing the width of a pipe to be different above
+and below a subboard.
+
+c. Pinch points and pipe width constraints
+
+Sometimes pipes are locked as narrow or wide, and sometimes they contain pinch
+points through which large balls cannot flow (TODO: why can't we just lock the
+pipe as narrow instead of using a pinch point?)
+
+Pinch points or locked pipes are used when the pipe width needs to be
+constrained in a certain place because of the semantics of the program. For
+example, in the nullness type system, when a variable is dereferenced it must be
+nonnull. This means that we need a way to require balls flowing through a pipe
+to be small in certain locations.
+
+Our initial strategy was to place a pinch point in a variable's pipe whenever
+values in it are required to be of the more restrictive of the two types in the
+type system. However, in Autumn of 2012 (?), we agreed that we should remove the
+pinch point mechanic in favor of a simpler one, at least for the nullness type
+system (TODO: is it appropriate to adopt this in other type systems as well?):
+
+In Java, whenever a variable is dereferenced, it is either for a field access or
+a method call. Because we choose to represent field accesses as method calls
+(see (d) Fields), we need only consider method calls. Whenever a method is
+called, the receiver is essentially one of its arguments, except that it must be
+nonnull, and this constraint is strictly enforced by the language runtime. We
+represent this with a subboard that has a narrow input pipe for the receiver.
+This causes a conflict to arise if the receiver's pipe is wide, since a wide
+pipe is prohibited from flowing into a narrow one, as it may contain a large
+ball.
+
+Currently, both the trusted and nullness games use pinchpoints. This should be
+changed in the nullness type system.
+
+It may be possible to encode constraints for all relevant type systems without
+using pinch points. If this is the case, it would be a good idea to remove pinch
+points altogether for the sake of consistency. More discussion about this is
+needed.
+
+d. Fields
+
+The problem of representing fields to players provides an interesting usability
+challenge. In many ways, a field is like any other variable -- it has a type
+that must be represented in the game, and it needs to be able to interact
+normally with other variables. Thus, the most apparent solution is to simply
+represent it as a pipe, just like any other variable.
+
+If we represent fields as pipes, several requirements follow:
+
+First, changing the pipe width in one location must also cause it to change in
+another location. This is because a field cannot have different types in
+different places (though Flow Sensitivity (4a) will allow us to bend this rule
+in certain circumstances). In other words, a pipe representing a field must be
+linked to every other occurrence of the field. This requirement holds even
+across different boards, so when a player changes its width in one board, it is
+also changed in another board. This mechanic may confusing to players.
+
+Second, the pipes must begin and end somewhere. As we established above, pipes
+for local variables begin when they are declared, and end when they go out of
+scope. However, fields are inherently more global in scope -- they persist
+beyond the scope of a method call. So it makes little sense for them to mimic
+local variables and have their pipes start and end within each method. That
+leaves us with only one other option: for field pipes to be both an input to and
+output of a board. This is an appealing mechanic because it allows us to
+simply represent the persistence of fields.
+
+class Baz
+{
+  private String foo;
+
+  public void method()
+  {
+    String bar = "hello world";
+    System.out.println(foo.equals(bar));
+  }
+}
+
+ (this)  (foo)
+----------------------------
+|  ||     | |              |
+|  ||     | |   (bar)      |
+|  ||     | |              |
+|  ||     | |     o        |
+|  ||     | |    | |       |
+|  ||     \ /    | |       |
+|  ||   --------------     |
+|  ||   | String.    |     |
+|  ||   | equals()   |     |
+|  ||   --------------     |
+|  ||     | |    | |       |
+|  ||     | |    |_|       |
+|  ||     | |              |
+----------------------------
+
+A sample class, and the board for "method" in the nullness type system with the
+proposed field mechanic. Note the narrowing of the receiver pipe as it enters
+the subboard for String.equals(), encoding the nonnull constraint for the
+receiver of a method call.
+
+Unfortunately, this representation has some major drawbacks. We claim in (b)
+that the input pipes are made up of the receiver pipes and the argument pipes.
+This representation contradicts that claim by adding additional input and output
+pipes for every field in a class. This would not be a major problem except that
+methods are sometimes called from outside a class. In this case, the subboard
+would have inputs and outputs for the field, but what would the caller board
+connect to these ports? It would not make sense for the caller board to have
+pipes representing the callee's fields, especially if they were private. This
+would break the fundamental purpose of abstractions, and it would make the game
+incredibly difficult to scale.
+
+Instead, what we elected to do was to generate accessor boards for every field
+in a class, and have every field access appear to be a normal method call to a
+simple accessor method, represented as a subboard. Under this system, the
+example above would look like this:
+
+  (this)
+-----------------------------
+|   ||                      |
+|   ||                      |
+|  ------------             |
+|  | Baz.     |             |
+|  | getFoo() |  (bar)      |
+|  ------------             |
+|   ||     | |     o        |
+|   ||     | |    | |       |
+|   ||     \ /    | |       |
+|   ||   --------------     |
+|   ||   | String.    |     |
+|   ||   | equals()   |     |
+|   ||   --------------     |
+|   ||     | |    | |       |
+|   ||     |_|    |_|       |
+|   ||                      |
+-----------------------------
+
+The player can visit the Bax.getFoo() board, just as she can visit any ordinary
+board, and by changing the width of the return pipe in that board, she changes
+the field's type. This is reflected everywhere the field is accessed, and we
+believe that because the accessor subboards are explicitly labeled, it will be
+more obvious to the player when a change in one board affects another board.
+
+This also satisfies the property that only the pipes for the receiver and the
+arguments should be included as inputs to a board, and it make calls to other
+classes much cleaner.
+
+(TODO: find out what the current implementation actually does.)
+
+e. Unsolvable games (Buzz saws)
+
+Buzz saws are a special tool a player can use when the game cannot be otherwise
+solved (or the player does not know how to solve it otherwise). The player
+places the buzz saw over a pipe, and any balls that fall through it are converted
+to small balls. This can be used to eliminate conflicts, where a large ball
+would get stuck at a pinch point or at the top of a small pipe. The buzz saw
+comes with a large point penalty to discourage excessive use.
+
+
+Ideally, a game will conclude when the player provides a solution to it. This
+translates directly to a proof of correctness for the source program, as it
+provides annotations that will cause a type checker to succeed. For example, if
+a user solves a game based on the nullness type system, the solution will
+translate back to nullness annotations for the source program. The nullness
+checker will succeed when typechecking this annotated source, proving that the
+program cannot throw a NullPointerException at runtime.
+
+Often, however, the player is unable to solve the game. The player indicates
+this by placing a buzz saw on a pipe.
+
+Games that are impossible to solve are caused by one of two things:
+
+The first is the case where the conflict(s) that they discover correspond to
+defects in the code that could lead to a failure at runtime. For the nullness
+type system, this means that a NullPointerException could be thrown at runtime.
+Catching defects such as these is the purpose of a type system.
+
+The second is the case where the conflict(s) that they discover do not
+correspond to defects that could lead to a runtime failure. Rather, the
+conflicts arise simply because the type system is not sufficiently expressive to
+typecheck the program. Fundamentally, all type systems must reject some correct
+programs, so this case will inevitably arise. Of the three possible game
+outcomes, this is the least useful.
+
+f. Practicality and Applications (TODO should this be broken out into its own
+section?)
+
+As stated above, there are three possible conclusions to a game:
+
+(1) The player provides a complete solution.
+
+(2) The player cannot solve the game, and this corresponds to a defect.
+
+(3) The player cannot solve the game, but this is only due to the type system's
+lack of expressiveness, and the code is, in reality, correct.
+
+Practically speaking, we do not believe that the game will be particularly
+useful in cases (1) and (3). In the case where a solution can be found, we
+believe that users will have no advantage over existing type inference
+algorithms. In the third case, despite the fact that the type system cannot
+prove a program correct, no real defect is present, so no real benefit is gained
+from the analysis.
+
+(2) is the interesting case. Existing type inference algorithms do not provide
+particularly useful output when a solution cannot be found, so it can be
+difficult to determine exactly where the problem lies.
+
+By placing buzz saws strategically, we expect that humans will be able to
+provide some useful information about the location of bugs. When a player places
+a buzz saw, she must place it judiciously in order to maximize her score.
+Because the location of the buzz saw corresponds to a specific location in code,
+the maintainers of the software can analyze that particular part and determine
+whether a real defect exists.
+
+(TODO do we have evidence to support this hypothesis?)
+
+--------------------------------------------------------------------------------
+
+3. Code-to-game Conversion: Implementation
+
+problems with aliased arguments
+
+back to annotations from solved game?
+
+--------------------------------------------------------------------------------
+
+4. Future Work
+
+a. Flow Sensitivity
+
+We plan to introduce flow sensitivity at some point in the future. In the
+checker framework, flow sensitivity is the feature that allows types to be
+refined after certain statements. Consider the following trivial example:
+
+@Nullable String s = methodThatMayReturnNull();
+if (s == null)
+  System.out.println(s.hashCode());
+else
+  System.out.println(s.equals("foo"));
+
+The nullness type system recognizes that the first dereference is not safe, but
+that the second is, because the if statement tests the nullness of s.
+
+We would like the game to also reflect this additional information. However, we
+currently only allow variables to have a single unchanging type, represented by
+linked pipes. Flow sensitivity would allow a single variable to have its pipes
+in some locations unlinked from others. This would allow the game and the player
+to be aware of the more precise type recognized by the nullness type system, as
+in the above example.
+
+b. KeyFor
+
+The nullness type system provides a related but orthogonal type system for
+keeping track of variables which are known to be keys for a Map. Because Map.get
+returns null if the given key does not exist, every result of a Map.get would
+have to be nullable without this mechanism.
+
+If a call to Map.get is made where the argument has the type @KeyFor(mapName),
+and the map's value type is NonNull, then the result of the method call is
+NonNull.
+
+We would like to incorporate this mechanism into the game. Currently, the game
+side has an implementation, and the XML game format allows for it, but the
+GameSolver cannot generate games that use it.
+
+Flow sensitivity is required to properly implement this mechanism because many
+variables are not keys for a map when they are initialized. Instead, they are
+initialized and later added to the map, at which point a flow sensitive analysis
+could refine their types. (TODO is this correct?)
+
+c. Game optimizer
+
+d. New game style
+
+--------------------------------------------------------------------------------
+
+5. Glossary
+
+Chute
+  See pipe segment.
+
+Edge
+  Sometimes used to refer to a chute or pipe segment in the context of their
+  graph representations.
+
+Intersection
+  A place where pipe segments interact. Examples include merges, splits, and
+  subboards.
+
+Pinch point
+  A brief narrowing in a pipe through which a large ball cannot roll. Used to
+  represent constraints in some type systems.
+
+Pipe segment
+  A single part of a pipe that runs uninterrupted from one intersection to
+  another.

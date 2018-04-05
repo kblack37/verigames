@@ -1,0 +1,143 @@
+{"levels":[
+{"id": "IntroWidget",
+"qid": 0,
+"target_score": 50,
+"assignments":{
+"var:0":{},
+"var:1":{}}
+}
+,
+{"id": "WidgetPractice",
+"qid": 1,
+"target_score": 140,
+"assignments":{
+"var:0":{},
+"var:1":{},
+"var:2":{},
+"var:3":{}}
+}
+,
+{"id": "LockedWidget",
+"qid": 2,
+"target_score": 70,
+"assignments":{
+"var:4":{},
+"var:0":{},
+"var:1":{},
+"var:2":{},
+"var:3":{}}
+}
+,
+{"id": "Links",
+"qid": 3,
+"target_score": 380,
+"assignments":{
+"var:0":{},
+"var:1":{},
+"var:2":{}}
+}
+,
+{"id": "Jams",
+"qid": 4,
+"target_score": 100,
+"assignments":{
+"var:0":{}}
+}
+,
+{"id": "Widen",
+"qid": 5,
+"target_score": 400,
+"assignments":{
+"var:0":{},
+"var:1":{},
+"var:2":{},
+"var:3":{}}
+}
+,
+{"id": "Optimize",
+"qid": 6,
+"target_score": 620,
+"assignments":{
+"var:0":{},
+"var:1":{},
+"var:2":{},
+"var:3":{}}
+}
+,
+{"id": "ZoomPan",
+"qid": 7,
+"target_score": 200,
+"assignments":{
+"var:0":{},
+"var:1":{}}
+}
+,
+{"id": "Layout",
+"qid": 8,
+"target_score": 50,
+"assignments":{
+"var:0":{},
+"var:1":{},
+"var:2":{},
+"var:3":{},
+"var:4":{}}
+}
+,
+{"id": "GroupSelect",
+"qid": 9,
+"assignments":{
+"var:0":{},
+"var:1":{},
+"var:2":{}}
+}
+,
+{"id": "CreateJoint",
+"qid": 10,
+"assignments":{
+"var:0":{}}
+}
+,
+{"id": "SkillsA",
+"qid": 11,
+"target_score": 1300,
+"assignments":{
+"var:4":{},
+"var:5":{},
+"var:6":{},
+"var:7":{},
+"var:0":{},
+"var:1":{},
+"var:2":{},
+"var:3":{},
+"var:8":{},
+"var:9":{}}
+}
+,
+{"id": "SkillsB",
+"qid": 12,
+"target_score": 3060,
+"assignments":{
+"var:16":{},
+"var:17":{},
+"var:14":{},
+"var:15":{},
+"var:12":{},
+"var:13":{},
+"var:10":{},
+"var:11":{},
+"var:18":{},
+"var:19":{},
+"var:4":{},
+"var:5":{},
+"var:6":{},
+"var:7":{},
+"var:0":{},
+"var:1":{},
+"var:2":{},
+"var:3":{},
+"var:8":{},
+"var:9":{},
+"var:21":{},
+"var:20":{}}
+}
+]}

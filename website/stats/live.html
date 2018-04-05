@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Paradox Statistics</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" type="text/css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+  <!--<link rel="stylesheet" href="bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css" type="text/css">-->
+  <link rel="stylesheet" href="bootstrap-datepicker/css/datepicker.css" type="text/css">
+  <!-- JavaScript -->
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>-->
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <!--<script src="bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js" type="text/javascript" charset="utf-8"></script>-->
+  <script src="bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+  <script src="date/date.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+	console.log("1");
+	google.load("visualization", "1", {packages:["corechart"]});
+	var localGoogle = google;
+	$(document).ready(function(){
+		console.log("onready");
+		localGoogle.setOnLoadCallback(onLoadGoogleAPI);
+	});
+	  
+	var PAGELOADS = [];
+	var PLAY_DATA = [];
+	var PAGELOADS_TS = 1432771200;//<--- 5/27/2015 5PM PDT // 1386180000 <--- 12/4/2013:;
+	
+	function onLoadGoogleAPI() {
+		console.log("goog loaded");
+		
+	    $.ajax({
+	    	type: "POST",
+	    	dataType: "json",
+	    	url:"get_pageloads_since.py",
+	    	data: {"unix_ts": PAGELOADS_TS},
+	    	success:onLoadedPageloads
+	    });
+
+	    $.ajax({
+	    	type: "POST",
+	    	dataType: "json",
+	    	url:"get_playdata_since.py",
+	    	data: {"unix_ts": PAGELOADS_TS, "db": "prd"},
+	    	success:onLoadedPlaydata
+	    });
+	}
+	
+	function onLoadedPageloads(data) {
+		PAGELOADS = data;
+		filterPageloads();
+		drawPageloads();
+	}
+
+	function onLoadedPlaydata(data) {
+		PLAY_DATA = data;
+		filterData();
+		drawPlaydata();
+	}
+	
+	var sessionsPerHourData = [];
+	var sessionDict = {};
+	var includeHosts = ["paradox.verigames.com"];
+	var n_pageloads = 0;
+	function filterPageloads() {
+		progressPct = 0;
+		progressTask = "Filtering pageloads...";
+		startDate = Date.parse(PAGELOADS_TS * 1000);
+		sessionDict = {};
+		n_pageloads = 0;
+		for (var line = 0; line < PAGELOADS.length; line++) {
+			row = PAGELOADS[line];
+			host = row["referrer_host"];
+			if (!host) continue;
+			uid = row["uid"];
+			var isLoggedIn = uid ? (uid.indexOf("cgs_vg_") == 0) : false;
+			
+			var approvedHost = false;
+			for (var h = 0; h < includeHosts.length; h++) {
+				if (host == includeHosts[h]) {
+					approvedHost = true;
+					break;
+				}
+			}
+			if (!approvedHost) continue; // only use approved hosts
+			
+			// Sessions/hr processing
+			sessionstarttime = parseInt(row["log_ts"]);
+			plid = row["log_pl_id"];
+			if (sessionstarttime) {
+				var sessionstartdate = new Date(sessionstarttime * 1000.0);
+				sessionstartdate.setMinutes(0);
+				sessionstartdate.setSeconds(0);
+				sessionstartdate.setMilliseconds(0);
+				var sessionHourKey = sessionstartdate.getTime().toString();
+				if (!sessionDict.hasOwnProperty(sessionHourKey)) sessionDict[sessionHourKey] = 0;
+				sessionDict[sessionHourKey]++;
+				n_pageloads++;
+				//info = "PLID:" + plid + " uid:" + uid + " @ " + sessionstartdate.toLocaleDateString() + " " + sessionstartdate.toLocaleTimeString();
+			}
+			if (line % 50 == 0) {
+				progressPct = line / PAGELOADS.length;
+				progressTask = "Filtering data...";
+			}
+		}
+		
+		var unpaddedData = [];
+		for (var timeKey in sessionDict) {
+			var thisDate = new Date(parseInt(timeKey));
+			var thisLabel = thisDate.toLocaleDateString() + " " + thisDate.toLocaleTimeString();
+			unpaddedData.push([thisLabel, thisDate, sessionDict[timeKey]]);
+		}
+		unpaddedData.sort(dateKeySort);
+		// Now pad/format so that every hour is shown (add zeroes for missing hours)
+		var paddedData = [];
+		for (var i = 0; i < unpaddedData.length - 2; i++) {
+			paddedData.push([unpaddedData[i][0], unpaddedData[i][2]]);
+			var currTime = unpaddedData[i][1].getTime();
+			var nextTime = unpaddedData[i+1][1].getTime();
+			while (nextTime > currTime + 3600000/*1hr in ms*/) {
+				currTime += 3600000;
+				var currDate = new Date(currTime);
+				var currLabel = currDate.toLocaleDateString() + " " + currDate.toLocaleTimeString();
+				paddedData.push([currLabel, 0]);
+			}
+		}
+		// push the 2nd to last entry @ i-2
+		if (unpaddedData.length > i) paddedData.push([unpaddedData[i][0], unpaddedData[i][2]]); 
+		// push the last entry @ i-1
+		if (unpaddedData.length > i+1) paddedData.push([unpaddedData[i+1][0], unpaddedData[i+1][2]]); 
+		sessionsPerHourData = paddedData;
+		progressPct = 1;
+		progressTask = "Data loading complete";
+	}
+
+
+	var levelsPlayedPerHourDict = {};
+	var playersPerHourDict = {};
+	var uniqueUidDict = {};
+	var n_uids = 0;
+	var levelsPlayedPerHourData = [];
+	var playersPerHourData = [];
+	function filterData() {
+		startDate = Date.parse(PAGELOADS_TS * 1000);
+		n_uids = 0;
+		levelsPlayedPerHourDict = {};
+		playersPerHourDict = {};
+		uniqueUidDict = {};
+		for (var line = 0; line < PLAY_DATA.length; line++) {
+			row = PLAY_DATA[line];
+			uid = row["uid"];
+			if (!uniqueUidDict.hasOwnProperty(uid)) n_uids++;
+			uniqueUidDict[uid] = true;
+
+			var isLoggedIn = uid ? (uid.indexOf("cgs_vg_") == 0) : false;
+			
+			starttime = parseInt(row["MIN(q.log_q_ts)"]);
+			if (starttime) {
+				var startdate = new Date(starttime * 1000.0);
+				startdate.setMinutes(0);
+				startdate.setSeconds(0);
+				startdate.setMilliseconds(0);
+				var startHourKey = startdate.getTime().toString();
+				if (!levelsPlayedPerHourDict.hasOwnProperty(startHourKey)) levelsPlayedPerHourDict[startHourKey] = 0;
+				levelsPlayedPerHourDict[startHourKey]++;
+				if (!playersPerHourDict.hasOwnProperty(startHourKey)) playersPerHourDict[startHourKey] = {"n": 0, "uids": {}};
+				if (!playersPerHourDict[startHourKey]["uids"].hasOwnProperty(uid)) playersPerHourDict[startHourKey]["n"] ++;
+				playersPerHourDict[startHourKey]["uids"][uid] = true;
+			}
+		}
+		
+		var unpaddedLevelData = [];
+		var unpaddedUserData = [];
+		for (var timeKey in levelsPlayedPerHourDict) {
+			var thisDate = new Date(parseInt(timeKey));
+			var thisLabel = thisDate.toLocaleDateString() + " " + thisDate.toLocaleTimeString();
+			unpaddedLevelData.push([thisLabel, thisDate, levelsPlayedPerHourDict[timeKey]]);
+			unpaddedUserData.push([thisLabel, thisDate, playersPerHourDict[timeKey]["n"]]);
+		}
+		unpaddedLevelData.sort(dateKeySort);
+		unpaddedUserData.sort(dateKeySort);
+		// Now pad/format so that every hour is shown (add zeroes for missing hours)
+		levelsPlayedPerHourData = [];
+		playersPerHourData = [];
+		for (var i = 0; i < unpaddedLevelData.length - 2; i++) {
+			levelsPlayedPerHourData.push([unpaddedLevelData[i][0], unpaddedLevelData[i][2]]);
+			playersPerHourData.push([unpaddedUserData[i][0], unpaddedUserData[i][2]]);
+			var currTime = unpaddedLevelData[i][1].getTime();
+			var nextTime = unpaddedLevelData[i+1][1].getTime();
+			while (nextTime > currTime + 3600000/*1hr in ms*/) {
+				currTime += 3600000;
+				var currDate = new Date(currTime);
+				var currLabel = currDate.toLocaleDateString() + " " + currDate.toLocaleTimeString();
+				levelsPlayedPerHourData.push([currLabel, 0]);
+				playersPerHourData.push([currLabel, 0]);
+			}
+		}
+		// push the 2nd to last entry @ i-2
+		if (unpaddedLevelData.length > i) levelsPlayedPerHourData.push([unpaddedLevelData[i][0], unpaddedLevelData[i][2]]); 
+		if (unpaddedUserData.length > i) playersPerHourData.push([unpaddedUserData[i][0], unpaddedUserData[i][2]]);
+		// push the last entry @ i-1
+		if (unpaddedLevelData.length > i+1) levelsPlayedPerHourData.push([unpaddedLevelData[i+1][0], unpaddedLevelData[i+1][2]]); 
+		if (unpaddedUserData.length > i+1) playersPerHourData.push([unpaddedUserData[i+1][0], unpaddedUserData[i+1][2]]);
+		console.log("filterData() complete");
+	}
+	
+	function dateKeySort(a, b) {
+		var da = a[1];
+		var db = b[1];
+		if (da < db) return -1;
+		if (db < da) return 1;
+		return 0;
+	}
+	
+	function drawPageloads() {
+		console.log("Drawing Sessions histogram...");
+		var sDate = new Date(PAGELOADS_TS * 1000);
+		var options = {
+          title: n_pageloads + ' sessions since ' + sDate,
+          legend: { position: 'none' },
+          hAxis: { format: 'ha MMM d, y' },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('livesessions_chart_div'));
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Session Start');
+        data.addColumn('number', 'Sessions');
+		data.addRows(sessionsPerHourData);
+        chart.draw(data, options);
+	}
+
+	function drawPlaydata() {
+		console.log("Drawing levels/users histograms...");
+		var sDate = new Date(PAGELOADS_TS * 1000);
+		var options = {
+          title: PLAY_DATA.length + ' unique levels plays since ' + sDate + ' (developer data removed)',
+          legend: { position: 'none' },
+          hAxis: { format: 'ha MMM d, y' },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('livelevelsplayed_chart_div'));
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Start Time');
+        data.addColumn('number', 'Unique Level Plays');
+		data.addRows(levelsPlayedPerHourData);
+        chart.draw(data, options);
+
+        var options = {
+          title: n_uids + ' unique players since ' + sDate + ' (developer data removed)',
+          legend: { position: 'none' },
+          hAxis: { format: 'ha MMM d, y' },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('liveplayers_chart_div'));
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Start Time');
+        data.addColumn('number', 'Unique Players');
+		data.addRows(playersPerHourData);
+        chart.draw(data, options);
+	}
+	
+</script>
+
+
+</head>
+
+<body>
+  <div class="panel panel-default" style="padding:10px">
+  	<div class="panel-heading">paradox.verigames.com Statistics</div>
+  	<div class="panel panel-primary" style="margin:10px">
+      <div class="panel-heading">Pageloads:</div>
+      <div class="panel-body">
+          <div id="livesessions_chart_div" style="width: 1200px; height: 500px;"></div>
+      </div>
+    </div>
+    <div class="panel panel-primary" style="margin:10px">
+      <div class="panel-heading">Players:</div>
+      <div class="panel-body">
+          <div id="liveplayers_chart_div" style="width: 1200px; height: 500px;"></div>
+      </div>
+    </div>
+    <div class="panel panel-primary" style="margin:10px">
+      <div class="panel-heading">Level Plays:</div>
+      <div class="panel-body">
+          <div id="livelevelsplayed_chart_div" style="width: 1200px; height: 500px;"></div>
+      </div>
+    </div>
+</body>
+
+
+</html>

@@ -1,0 +1,42 @@
+
+
+===checkpoints enabled, dir does not exist:
+
+
+
+===checkpoints enabled, dir exists but is empty:
+
+
+
+===checkpoints enabled, dir exists with zero-length file:
+
+adaptorId [adaptor_30cefea80c7f62f8a9f2fd3aece53ee6]
+
+type [testdata]
+
+params []
+
+startOffset [0]
+
+
+
+===checkpoints enabled, dir exists with valid checkpoint
+
+adaptorId [adaptor_30cefea80c7f62f8a9f2fd3aece53ee6]
+
+type [testdata]
+
+params [0]
+
+startOffset [0]
+
+---------------------done with first run, now stopping
+
+console connector started
+
+---------------------restarting
+
+console connector started
+
+---------------------done
+

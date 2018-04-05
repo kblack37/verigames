@@ -1,0 +1,9 @@
+{
+    "qid": 0, 
+    "target_score": 2, 
+    "id": "IntroWidget", 
+    "assignments": {
+        "var:0": {}, 
+        "var:1": {}
+    }
+}

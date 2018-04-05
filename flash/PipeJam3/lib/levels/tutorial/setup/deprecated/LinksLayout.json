@@ -1,0 +1,38 @@
+{
+    "qid": 3, 
+    "layout": {
+        "vars": {
+            "type_0__var_2": {
+                "y": "0", 
+                "x": "28"
+            }, 
+            "type_1__var_1": {
+                "y": "12", 
+                "x": "16"
+            }, 
+            "type_1__var_0": {
+                "y": "16", 
+                "x": "0"
+            }, 
+            "var_2": {
+                "y": "16", 
+                "x": "32"
+            }, 
+            "var_1": {
+                "y": "4", 
+                "x": "16"
+            }, 
+            "var_0": {
+                "y": "0", 
+                "x": "4"
+            }
+        }, 
+        "constraints": [
+            "var_0 -> type_1__var_0",
+            "var_1 -> type_1__var_1",
+            "type_0__var_2 -> var_2"
+        ]
+    }, 
+    "id": "Links", 
+    "tutorial": "links"
+}

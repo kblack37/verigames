@@ -1,0 +1,25 @@
+
+{
+  "id": "002",
+  "display_name": "Close Your Eyes",
+  "qid": 2102,
+  "version": "2",
+  "default": "type:1",
+  "scoring": {
+    "variables": {"type:0": 0, "type:1": 0},
+    "constraints": 1
+  },
+  "variables":{},
+  "constraints":[
+    "var:1 <= c:1",
+    "var:1 <= c:2",
+    "var:1 <= c:3",
+    "var:1 <= c:4",
+    "var:1 <= c:5",
+    "var:2 <= c:5",
+    "var:2 <= c:6",
+    "var:2 <= c:7",
+    "var:2 <= c:8",
+    "var:2 <= c:9"
+    ]
+}

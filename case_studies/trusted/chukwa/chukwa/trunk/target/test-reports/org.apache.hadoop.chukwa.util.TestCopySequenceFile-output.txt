@@ -1,0 +1,4 @@
+key class name is org.apache.hadoop.chukwa.ChukwaArchiveKey
+
+value class name is org.apache.hadoop.chukwa.ChunkImpl
+

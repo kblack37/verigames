@@ -1,0 +1,52 @@
+Projects and their uses:
+
+DifficultyRater
+
+Collects metadata from levels.
+
+Usage:
+
+java -jar DifficultyRater levelDirectory outputdir typecheckerscriptname
+
+Outcome:
+Creates new layout files with non-editable chains hidden
+Creates a conflicts.txt file that contains a list of chains and conflicts in those chains. (Not real useful)
+Creates a difficultyratings.xml file that contains a list of levels and possible difficulty measures. (num visible nodes, num conflicts, etc.)
+
+MongoAndRaClient
+
+The do everything project. Mostly I run these in Eclipse with different run configurations. It does:
+
+1) Queries the Mongo DB. See the source of MongoTestBed.java for the ever changing list of pre-built functions/stored code. You will need to edit this file every time to get the results you want.
+
+	Main Class: MongoTestBed
+	No arguments.
+	
+2) Queries the RA. See the source of RATestBed.java for it's own set of ever changing things. You will need to edit this file every time to get the results you want.
+
+	Main Class: RATestBed.java
+	No arguments.
+	
+3) Given those two capabilities, you might theorize that it could actually push levels to the game, and you'd be right. This is the configuration that I build.
+
+	Main Class: GameLevelInserter
+	Arguments:
+		directory of levels to push
+		path to difficultyratings.xml
+
+This class generates a RA level ID (probably should just rename them, using the current name as the RA ID), sticks all three associated xml files into the DB, creates a level object in the DB, and sets the priority. (The default is 5, it would be great to get this from the difficultyratings.xml file, or something. Also, you can flip a switch to activate them.)
+
+
+NodeCounter
+
+Um, counts nodes. Pretty primitive.
+
+
+ProxyServer
+
+The ProxyServer for the game. Receives requests, spins a ProxyThread to handle. See code for more detail.
+
+	Main Class: ProxyServer
+	No arguments.
+	
+The TestClient.java file is a possible way to ping the server with lots of requests. I don't actually currently use it, though.

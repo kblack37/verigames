@@ -1,0 +1,58 @@
+Error in RetryListOfCollectors() opening file/homes/gws/sdietzel/chukwa/chukwa/trunk/target/test/conf/afilethatdoesntexist, double check that you haveset the CHUKWA_CONF_DIR environment variable. Also, ensure file exists and is in classpath
+
+Exception in thread "Thread-26" 
+java.lang.NullPointerException
+
+
+	at org.apache.hadoop.chukwa.datacollection.sender.AsyncAckSender$CommitPollThread.mergePendingTable(AsyncAckSender.java:155)
+
+
+	at org.apache.hadoop.chukwa.datacollection.sender.AsyncAckSender$CommitPollThread.run(AsyncAckSender.java:139)
+
+
+ dupchunk of length 74888 at 1673824
+
+ dupchunk of length 74888 at 1673824
+
+ dupchunk of length 74888 at 1673824
+
+3 consecutive duplicative chunks ending at 1748712
+
+ dupchunk of length 59048 at 1748712
+
+ dupchunk of length 59048 at 1748712
+
+2 consecutive duplicative chunks ending at 1807760
+
+ dupchunk of length 86588 at 1807760
+
+1 consecutive duplicative chunks ending at 1894348
+
+ dupchunk of length 58508 at 1894348
+
+1 consecutive duplicative chunks ending at 1952856
+
+ dupchunk of length 79748 at 1952856
+
+1 consecutive duplicative chunks ending at 2032604
+
+ dupchunk of length 66788 at 2032604
+
+1 consecutive duplicative chunks ending at 2099392
+
+ dupchunk of length 61028 at 2099392
+
+1 consecutive duplicative chunks ending at 2160420
+
+ dupchunk of length 77228 at 2160420
+
+1 consecutive duplicative chunks ending at 2237648
+
+ dupchunk of length 89468 at 2237648
+
+1 consecutive duplicative chunks ending at 2327116
+
+ dupchunk of length 72188 at 2327116
+
+1 consecutive duplicative chunks ending at 2399304
+

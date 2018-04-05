@@ -1,0 +1,4 @@
+have 1 running adaptors
+
+done
+

@@ -1,0 +1,9 @@
+{
+    "qid": 7, 
+    "target_score": 200, 
+    "id": "ZoomPan", 
+    "assignments": {
+        "var:0": {}, 
+        "var:1": {}
+    }
+}

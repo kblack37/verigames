@@ -1,0 +1,144 @@
+#feedback { 
+    font-size: 1.4em; 
+}
+
+
+#selectable .ui-selecting {
+    background: #FECA40; 
+}
+#selectable .ui-selected {
+    background: #F39814; 
+    color: white;
+}
+
+#selectable { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+}
+#selectable li { 
+    margin: 3px; 
+    padding: 0.2em; 
+    font-size: 1.4em; 
+    height: 18px; 
+}
+
+#clear_footer {
+    height:20px;
+    clear:both;
+}
+
+
+#footer{
+    width:100%;
+    height:20px;
+    margin-right:0px;
+    padding-top:5px;
+    border-top:solid;
+    border-color:white;
+    border-width:2px;
+    background-color: #313131;
+    font-size:8pt;
+    color:white;
+    margin-top:15px;
+    position:relative;
+    text-align:center;
+}
+
+#header {
+    margin:0px;
+    height:50px;
+    background-color:#e5e5e5;
+    border-bottom:solid;
+    border-width:1px;
+    border-color:black;
+}
+
+#results {
+    margin-left:auto;
+    margin-right:30px;
+    margin-top:20px;
+    width:150px;
+    margin-bottom:100px;
+    padding:5px;
+    float:left;
+    font-size:12px;
+}
+#code {
+    margin:0px;
+    overflow:auto;
+    height:90%;
+    color:#3f3f3f;
+}
+
+#top {
+    height:10%;
+}
+
+#download { 
+    width:80px;
+}
+
+#download_button {
+    margin:5px;
+    height: 40px;
+    float:left;
+}
+
+#file_name {
+    padding-top:17px;
+    color:#363636;
+    font-family:helvetica;
+    font-weight:bold;
+    margin-left:100px;
+}
+
+#code_view {
+    height:550px;
+    width:550px;
+    margin-right:15px;
+    margin-top:15px;
+    float:right;
+    border-style:solid;
+    border-width:2px;
+    border-color:black;
+    margin-bottom:0px;
+}
+
+#content {
+	width:800px;
+	min-height:650px;
+	padding-top:20px;
+	padding-left:20px;
+	margin-left:auto;
+	margin-right:auto;
+    margin-top: 30px;
+    background-color:white;
+    padding:20px;
+    color: rgb(79,79,79);
+    border-color:#313131;
+    border-style:solid;
+    border-width: 6px;
+}
+
+#line_num {
+    height:120%;
+    width:30px;
+    float:left;
+    clear:both;
+    background-color:#a1a1a1;
+}
+
+textarea {
+
+    width:600px;
+    height:100%;
+    padding:10px;
+    resize:none;
+    border:none;
+    tab-size:4;
+}
+
+#files {
+    width:20%;
+}

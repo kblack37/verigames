@@ -1,0 +1,45 @@
+#tabs{
+	position: relative;
+	width: 47px;
+	height: 400px;
+	float:right;
+	overflow: hidden;
+}
+
+#tab-content {
+	position: relative;
+	width: 304px;
+	height: 394px;
+	overflow: hidden;
+	display: block;
+	padding-top: 10px;
+}
+
+#leaderButton {
+	width:47px;
+	height: 185px;
+}
+
+#groupButton {
+	width:47px;
+	height: 185px;
+}
+
+div.popout {
+	position: relative;
+	height: 390px;
+	width: 300px;
+	display: none;
+	z-index: 100;
+	background-image:url('assets/socialPanelBG.png');
+	font: 16px "Ubuntu Titling_Bold",courier;
+	color: white;
+	border: 2px solid white;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+div.popout a {
+	font: 16px "Ubuntu Titling_Bold",courier;
+	color: white;
+}

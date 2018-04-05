@@ -1,0 +1,532 @@
+ Steph Dietzel
+ Rough Sketch of Translation Algorithm Pseudocode - Version 2
+ June 2011
+
+   this               argument(s)
+    _   _   _             _     _
+   | | | | | |           | |   | |
+--------------------------------------
+|  | | | | | |           | |   | |   |
+|  | | | | | |           | |   | |   |
+|  | | | | | |           | |   | |   |
+|  | | | | | |           |_|   |_|   |
+|  | | | | | |                       |
+|  | | | | | |  internal effects     |
+|  | | | | | |                       |
+|  | | | | | |                       |
+|  | | | | | |                       |
+|  | | | | | |                       |
+|  | | | | | |               _       |
+|  | | | | | |              | |      |
+--------------------------------------
+   |_| |_| |_|              |_| 
+
+      this             return value(s) 
+
+-------
+
+Steph says: My general idea for building up the board for each
+method/all-other-equivalent-terms is to keep a helper map that
+connects a variable to its currently furthest edge in the board. it's kind
+of like when you draw, you start at the top and incrementally work your way
+down both the code and the picture. When you process some code that is some
+sort of event (merge, restart, split, etc) you create a node for it, attach
+the variable's current edge to the new node and create a new current edge
+stemming from there.
+
+When writing the pseudocode, I realized that all the maps will need to be
+accessible from each of the visit methods, and will be different for any
+subboards built up as an intermediary step. I've emailed Nat about this for
+when he returns from vacation. One possibility is to store more data in the
+board data structure (this code uses that idea for a variable's current
+edge). Another idea is to pass a tuple of the board and its maps to the
+visit method instead of just a board. Also, this is still just a skeleton,
+and I'm sure during implementation many more details will need to be
+determined.
+
+These maps fall into that category:
+
+//keeps track of the furthest edge in the board associated with each
+//variable. Like a horizontal snapshot, sort of.
+map var_to_current_edge
+
+//keeps track of which edges are associated with which variables (and
+//should later change width together) while board is building,
+map var_to_set_edges
+
+Nat says: I've decided to encapsulate the above data into wrappers for the board and level structures. I'm calling them BoardBuilders and LevelBuilders, respectively. They store the information needed during construction, as well as abstracting away from creation of individual chute and intersection objects, towards operations that make more sense in terms of code translation.
+
+I also decided that each Chute object would be a tree. Its children are its auxiliary chutes. This is just for convenience, and the other chutes will still be explicitly represented in the Board structure.
+
+VISITOR PATTERN SKETCH
+    // For the visitor pattern, each method will need access to the
+    // current board, as well as the  
+    // maps that keep track of the current edges for that board
+    
+    function createLevelMain(Class c) { //
+        //an initial board that has all of the fields of this
+        Board gInitial = new Board
+        initialize gInitial's var_to_set_edges
+        for each field f
+            set chutes = generateChutes(f, false, gInitial.var_to_set_edges.keyset)
+            for each chute in chutes
+                add (chute, empty set) to gInitial's var_to_set_edges map
+        Map<Name, Board> boards
+        for each constructor
+            Board g = copy of gInitial //copy the initial board so that g has global fields
+            for each non-primitive constructor parameter p
+                //the keyset will have all variables processed so far,
+                //which generateChutes needs so that the type argument for
+                //list<T> l1 and list<T> l2 can be represented by the same
+                //chute
+                set chutes = generateChutes(p, false, g.var_to_set_edges.keyset)
+                for each chute in chutes
+                    add (chute, empty set) to g's var_to_set_edges map
+            g = visitConstructor(ConstructorTree, g)
+            boards.put(uniqueConstructorName, g)
+        for each method
+            Board g = copy of gInitial //copy the initial board so that g has global fields
+            for each non-primitive method parameter p
+                set chutes = generateChutes(p, false)
+                for each chute in chutes
+                    add (chute, empty set) to g's var_to_set_edges map
+            g = visit(getMethodBody, g)
+            boards.put(uniqueMethodName, g)
+        
+        map contiguous_chutes = build_map_contiguous_chutes(boards)
+
+        outputXMLFile(boards, contiguous_chutes)    
+    }
+    
+    //this function should take the boards of a completely processed level
+    //and return a map in which each edge in the level is a key and maps to
+    //a set of edges that should all change widths when the key edge's width
+    // is changed.
+    function build_map_contiguous_chutes(Map<Name, Board> boards) returns map<Edge, Edge>
+        map<Var, Set<Edge>> consolidate
+        //each board contains a map<var,edges> and we need to bring them
+        //together into one map from vars to sets of edges that goes over
+        //then entire level, so we can change widths of connected chutes in
+        //multiple boards
+        for each board in boards.values {
+            map gEdges = board.var_to_set_edges
+            for each var in gEdges.keys
+                if consolidate containsKey(var)
+                    consolidate.put(var, (union consolidate.get(var) with gEdges.get(var)))
+                else
+                    consolidate.put(var, gEdges.get(var)
+        }//now consolidate has all the information for the level
+        map<Edge, Edge> contiguous_edges
+        //now, turn that overall info into something that can be directly
+        //dumped into the XML
+        for each var in consolidate.keys{
+            for each edge e in consolidate.get(var)
+                contiguous_edges.put(e, consolidate.get(var))
+        }
+        return contiguous_edges
+        
+
+    //<T> void foo (T, list<T>, list<T>)
+    //this function returns a set of chutes. NOTE ASSUMPTION: I'm going to
+    //assume Nat's data structure will be able to store info about whether
+    //a variable/chute was originally a type argument or not.
+    //Chutes/variables are equivalent terms, and different than edges which
+    //are only pieces of chutes...
+    function generateChutes(var, boolean processingTypeArguments, set<Chute> currentVariables) returns set(chutes)
+        set<Chute> chutes
+        if var is simple (has no type arguments e.g. Date, String, Point...)
+            create a chute c for nullness of var
+            c.typeArgument = processingTypeArguments
+            if(!(processingTypeArgument && currentVariables.contains(c)))
+                //if this is a type argument, and there is aready a chute
+                //for it, don't repeat add
+                chutes.add(c)
+        else var is complex (i.e. Vector, Set<String>, List<Set<Date>>, Map<K, V>) //type arguments
+            create a chute c for nullness of var
+            c.typeArgument = processingTypeArguments
+            if(!(processingTypeArgument && currentVariables.contains(c)))
+                //if this is a type argument, and there is aready a chute
+                //for it, don't repeat add
+                chutes.add(c)    
+            for each type argument A of var (i.e. Object, String, Set<Date>, (K, V))
+                chutes = chutes union generate chutes(P, true, currentVariables union chutes) 
+        return chutes
+                
+    //I couldn't actually find what tree is used for constructors, but
+    //hopefully it does exist under a weird name
+    visitConstructor(ConstructorTree, Board g) { 
+        g = visit(getConstructorBody, g)
+        
+        //g still has half-edges floating around in its var_to_current_edge
+        //map.  we need to attach all of these edges to an OUTGOING node in
+        //order to finish the board
+        if(g does not contain an OUTGOING node) {
+          //perhaps the OUTGOING (sink) node should always be added here, and 
+          //visitReturn should be changed... that might be better...
+          //especially since constructors dont ever call return...
+            create OUTGOING node out
+            for each var in g
+                attach g.var.current to out
+        }
+        return g
+    }
+
+// Add special case for static method -- we don't want to include instance
+// fields in static methods 
+    visitMethod(MethodTree, Board g){
+        g = visit(getMethodBody, g)
+        
+        
+        //if a method did not return a value
+        //g still has half-edges floating around in its var_to_current_edge map
+        //we need to attach all of these edges to an OUTGOING node in order
+        //to finish the board
+        if(g does not contain an OUTGOING node) {
+            //perhaps the OUTGOING (sink) node should always be added here, and                                                  
+            //visitReturn should be changed... that might be better...
+            create OUTGOING node out
+            for each var in g
+                attach g.var.current to out
+        }
+        return g
+    }
+
+    visitBlock(BlockTree, Board g) {
+        for each statement in block
+            g = visit(statement, g)
+        return g
+    }
+    
+    //loops are not relevant to types
+    visitForLoop (ForLoopTree, Board g) { return visit( loop statement, g ) }
+    
+    //add special case for null-test in these loops. treat like if test and
+    //gotos?  but how would a goto work?? its so discontinuous, but the
+    //chutes build on the idea of connected flow... ??
+    visitDoWhileLoop (DoWhileLoopTree, Board g) { 
+        g = visit( loop statement, g ) 
+        if test is (var == null) {
+            //special case - should be factored out by visitExpression eventually
+            g.var.current.width = narrow
+            g.var.current.changeable = false
+            //I think at some point we decided that certain edges would not
+            //be controlable by the user...  in cases where they were
+            //definitely null or not. I'm still not sure if that makes this
+            //correct or not. We may need the wide chute to end before the
+            //narrow chute starts...  Would simply restarting a chute be
+            //enough for the goto mechanism??
+        } 
+        return g
+    }
+    
+    visitWhileLoop (WhileLoopTree, Board g) { //Has the same issues as above...
+        g = visit( loop statement, g ) 
+        if test is (var == null) { //special case - should be factored out by visitExpression eventually
+            g.var.current.width = narrow
+            g.var.current.changeable = false
+            //I think at some point we decided that certain edges would not
+            //be controlable by the user...  in cases where they were
+            //definitely null or not. I'm still not sure if that makes this
+            //correct or not. We may need the wide chute to end before the
+            //narrow chute starts...  Would simply restarting a chute be
+            //enough for the goto mechanism??
+        } 
+        return g
+    }
+    
+    //for( variable: expression ) { statement } //create chutes for declarations
+    visitEnhancedForLoop (EnhancedForLoopTree, Board g) {
+        //for (x : y)
+        var x = new chute(EnhancedForLoopTree.getVariable)
+        var y = visit(EnhancedForLooptree.getExpression, g).variable //I'm still unsure of how this will work.
+        
+        //split off an edge for var x from the chute for y and add it to g's maps
+        create SPLIT node s
+        attach g.y.current to s
+        create a new edge e for y starting at s
+        update g.y.current to e
+        add e to g.y.var_to_set_edges
+        create a new edge e2 for x starting at s
+        add (x, e2) to g.var_to_current_edge_map
+        add (x, set(e2)) to g.var_to_set_edges
+            
+        g = visit( loop statement, g ) }
+        
+        //x only exists within the scope of the loop, so merge it back with
+        //y and remove it from the current edge map
+        create MERGE node m
+        attach g.y.current to m
+        attach g.x.current to m
+        
+        creat a new edge e3 for y starting at m
+        update g.y.current to e3
+        add e3 o g.y.var_to_set_edges
+        
+        remove x from g.var_to_current_edge map
+        
+        return g        
+    }
+    
+    visitIf (IfTree, Board g) {
+        check for special case test (var == null) if so, {
+            g1 = new Board with same field chutes as g, var == null (wide initial edge width, (not controllable by user?))
+            g2 = new Board with same field chutes as g, var != null (narrow initial edge width, (not controllable by user?))
+            split_type = NULL_TEST            
+        } else { //generic if
+            //no special case, process each branch
+            g1 = new Board with same field chutes as g (empty)
+            g2 = new Board with same field chutes as g (empty)
+            split_type = SPLIT
+        }
+        //it makes sense to build up a subboard and then hook it up to the
+        //overall board once each branch has been fully explored.
+        g1 = visit(ThenStatement, g1)
+        if(ElseStatement != null) {
+            g2 = visit(ElseStatement, g2)
+        }
+        for each var in g {
+            // var not affected by if statement
+            if(g1.var.current.n1.type == INCOMING && g2.var.current.n1.type == INCOMING && g1.var.current.pinch == g2.var.current.pinch) { 
+                g.var.current.pinch = g1.var.current.pinch
+                //we only have to update whether or not its dereferenced
+            } else {
+                //insert the chutes for g1.var and g2.var
+                attach var.current to a split_type node n
+                in g1.INCOMING, find the edge representing var and hook it up to n
+                in g2.INCOMING, find the edge representing var and hook it up to n
+                create a merge node m
+                attach g1.var.current to m's input ports
+                attach g1.var.current to m's input ports
+                create a new edge e for var starting at m
+                update g.var.current = e
+                add e to g.var.var_to_set_edges //the set that keeps track of contiguous edges associated with variable var
+            }
+        }
+        return g
+    }
+    
+    visitMethodInvocation (MethodInvocationTree, Board g){
+        if the method is a call to map.get(key){//special case
+            create a GET node gn
+            var m = map being accessed
+            var k = key being used
+            //split off the variables for map and key in order to connect them to the GET node
+            create a SPLIT node mSplit
+            create a SPLIT node kSplit
+            attach g.m.current to mSplit
+            attach g.k.current to kSplit
+            
+            //create new current edges for the part of the split not connected to the GET node
+            create a new edge em starting at mSplit, for var m
+            create a new edge ek starting at kSplit, for var k
+            update g.m.current to em
+            add em to g.m.var_to_set_edges map //the set that keeps track of contiguous edges associated with variable m
+            update g.k.current to ek
+            add ek to g.k.var_to_set_edges map //the set that keeps track of contiguous edges associated with variable k
+            
+            //create new edges for the part of the split that is connected to the GET node
+            create a new edge e1 between mSplit and gn, for var m
+            add e1 to g.m.var_to_set_edges map //the set that keeps track of contiguous edges associated with variable m
+            create a new edge e2 between kSplit and gn, for var k
+            add ek to g.k.var_to_set_edges map //the set that keeps track of contiguous edges associated with variable k
+            
+            //add a chute for the return value of get to the board
+            create a new var value
+            create a new edge ev starting at gn, for var value (wide width)
+            add (value, ev) to board's var_to_current_edge map
+            add (value, set(ev)) to board's var_to_set_edges map //the set that keeps track of contiguous edges associated with value
+            
+        } else if the method is part of this class { //create a SUBNETWORK
+            create a SUBNETWORK node(unique method name)
+            for each var in g {
+                connect var.current to sub
+                create new edge e for var starting at sub
+                add e to g.var.var_to_set_edges map
+                update var.current = e
+            }
+        } else { //insert the library call network
+            //I'm not sure how the library network thing will
+            //work. eventually it might be cached in a database?  this
+            //particular conversion algorithm was definitely ignored a
+            //little bit more than it should have been
+        }
+        return g
+    }
+    
+    visitMemberSelect (MemberSelectTree, Board g){ //expression . identifier -> identifier.identifier
+        var v = expression
+        if(expression is an identifier) {// point.x
+            g.v.current.pinch = true
+        } else {
+            //process expression. visit expression should handle it. whole
+            //method abstracted.
+        }
+        return g
+    }
+    
+    visitSwitch (SwitchTree, Board){ //multi-way split
+        //essentially the same as an if statement, except generalized to an
+        //n-way split instead of a 2-way split or, alternatively, the
+        //switch statement can be broken down into
+        //if-elseif-...-elseif-else statements and then processed using the
+        //if statement routine. This choice will probably depend on what is
+        //easier to actually code, what is easier to implement in the flash
+        //game, and what looks best on the screen.
+    }
+    
+    visitAssignment (AssignmentTree, Board g){
+        if(getVariable is not a primitive){
+            if(getExpression is a NewClassTree){ //call to new
+                if g contains getVariable {
+                    create new RESTART_WHITE_BALL node n
+                    attach g.var.current to n
+                    create a new edge e starting at n, for var
+                    add e to g.var.var_to_set_edges map
+                    update g.var.current to e
+                    if(var has type parameters){
+                        for each type parameter
+                            var = type parameter
+                            create new RESTART_NO_BALL node n
+                            attach g.var.current to n
+                            create a new edge e starting at n, for var
+                            add e to g.var.var_to_set_edges map
+                            update g.var.current to e
+                    }
+                } else {
+                    create new START_WHITE_BALL node n
+                    create a new edge e starting at n, for var
+                    add (var, e) to board's var_to_current_edge map
+                    add (var, set(e) to g.var_to_set_edges map
+                    if(var has type parameters){
+                        for each type parameter
+                            var = type parameter
+                            create new START_NO_BALL node n
+                            attach g.var.current to n
+                            create a new edge e starting at n, for var
+                            add (var, set(e) to g.var_to_set_edges map
+                            update g.var.current to e
+                    }
+                }
+            } else if(getExpression is null literal){
+                if g constains getVariable {
+                    create new RESTART_BLACK_BALL node n
+                    attach g.var.current to n
+                    create a new edge e starting at n, for var
+                    add e to g.var.var_to_set_edges map
+                    update g.var.current to e
+                    if(var has type parameters){
+                        for each type parameter
+                            var = type parameter
+                            create new RESTART_NO_BALL node n
+                            attach g.var.current to n
+                            create a new edge e starting at n, for var
+                            add e to g.var.var_to_set_edges map
+                            update g.var.current to e
+                    }
+                } else {
+                    create new START_BLACK_BALL node n
+                    create a new edge e starting at n, for var
+                    add (var, e) to board's var_to_current_edge map
+                    add (var, set(e) to g.var_to_set_edges map
+                    if(var has type parameters){
+                        for each type parameter
+                            var = type parameter
+                            create new START_NO_BALL node n
+                            attach g.var.current to n
+                            create a new edge e starting at n, for var
+                            add (var, set(e) to g.var_to_set_edges map
+                            update g.var.current to e
+                    }
+                }
+            } else { //regular assignment x = y
+                x = getVariable
+                y = getExpression
+                
+                // split the chute for y                
+                create new SPLIT node s
+                attach g.y.current to s
+                create new edge e starting at s, for var y
+                add e to g.y.var_to_set_edges map
+                update g.y.current to e
+                
+                create new edge e2 starting at s, for var y
+                add e2 to g.y.var_to_set_edges map
+                //merge with the chute for x
+                create new MERGE node m
+                attach g.x.current to m
+                create new edge e3 starting at m, for var x
+                add e3 to g.x.var_to_set_edges map
+                attach e2 to m
+                update g.x.current to e3
+                
+                //merge the type parameters too??
+            }
+        }
+        return g
+    }
+    
+    visitReturn(ReturnTree, Board g){
+        if(return value not a primitive){
+            create OUTGOING node out
+            //split off the variable chute into a new variable called returnValue. 
+            if(getExpression is a variable){
+                var r = getExpression
+                create SPLIT node s
+                attach g.r.current to s
+                create new edge e1 starting at s, for var 
+                add e1 to g.var.var_to_set_edges map                
+                create new var returnValue
+                create new edge e2 starting at s, for var returnValue 
+                add (returnValue, set(e2)) to g.var_to_set_edges map
+                update g.r.current to e1
+                add (returnValue, e2) to board's var_to_current_edge map
+            } else if getExpession is the null literal {
+                create a new START_BLACK_BALL node s
+                create new var returnValue
+                create new edge e starting at s, for var returnValue
+                add (returnValue, e) to board's var_to_current_edge map
+            }
+            for each var in the board
+                attach g.var.current to out
+        }
+        return g            
+    }
+    
+    //TODO special cases for null literal, new class tree, etc.
+    visitExpression(ExpressionTree, Board g) {
+
+        // TODO needs to consider short circuit evaluation:
+        // the expression set == null || set.isEmpty()
+        // only dereferences set if it is not null, even though there is
+        // no explicit if statement
+
+        //I'm not sure how this should work...  I think for an expression
+        //like (((variable.identifier).identifier).identifier) is really
+        //nested member select trees, so shouldn't each of them get
+        //visited. Maybe in visitMemberSelect we can just call
+        //visit(Expression) and through dispatch it will work...?  Maybe
+        //not, because at each level we'll learn the identifier, but not
+        //necessarily the variable. And we need the variable but not
+        //necessarily the specific identifier...
+        
+        //What I'm unsure about is how visitExpression, which returns a
+        //Board, can tell us "yes, this was exactly a (var == null)
+        //test..."  especially if depending on the context (while loop
+        //vs. if statement vs. switch) the board for a null-test might look
+        //different.  Is the answer to standardize this? i.e. break
+        //everything down into if statements? (that brings up the idea of
+        //how to represent gotos in chutes, and so far my best idea for
+        //that is chutes that loop back up on themselves, but that probably
+        //won't work if we are saying that balls fall down the chutes
+        //because of gravity...
+        
+        //calls to ... ?
+            
+        visitIdentifier
+        visitNewClassTree
+    }
+    
+    visitIdentifier
+    visitNewClassTree
+
+

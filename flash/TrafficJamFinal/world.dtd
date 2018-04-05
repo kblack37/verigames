@@ -1,0 +1,29 @@
+<!ELEMENT world (level*)>
+ <!ELEMENT level (linked-edges,boards)>
+  <!ELEMENT linked-edges (edge-set*)>
+   <!ELEMENT edge-set (edgeref*)>
+    <!ELEMENT edgeref EMPTY>
+     <!ATTLIST edgeref id IDREF #REQUIRED>
+  <!ELEMENT boards (board*)>
+   <!ELEMENT board (node*,edge*)>
+    <!ATTLIST board name ID #REQUIRED>
+    <!ELEMENT node (input,output)>
+     <!ATTLIST node kind (INCOMING|OUTGOING|SPLIT|NULL_TEST|MERGE|START_WHITE_BALL|START_BLACK_BALL|START_NO_BALL|END|SUBNETWORK|CONNECT) #REQUIRED>
+     <!ATTLIST node id ID #REQUIRED>
+     <!ATTLIST node name IDREF #IMPLIED>
+     <!ELEMENT input (port*)>
+     <!ELEMENT output (port*)>
+      <!ELEMENT port EMPTY>
+       <!ATTLIST port num CDATA #REQUIRED>
+       <!ATTLIST port edge IDREF #REQUIRED>
+    <!ELEMENT edge (from,to)>
+     <!ATTLIST edge var CDATA #IMPLIED>
+     <!ATTLIST edge pinch (true|false) #REQUIRED>
+     <!ATTLIST edge width (wide|narrow) #REQUIRED>
+     <!ATTLIST edge id ID #REQUIRED>
+     <!ELEMENT from (noderef)>
+     <!ELEMENT to (noderef)>
+      <!ELEMENT noderef EMPTY>
+       <!ATTLIST noderef id IDREF #REQUIRED>
+       <!ATTLIST noderef port CDATA #REQUIRED>
+     

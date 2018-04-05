@@ -1,0 +1,16 @@
+read line: 0 the rain
+
+read line: 1 in spain
+
+read line: 2 falls mainly
+
+read line: 3 in the plain
+
+read line: 4 the rain
+
+read line: 5 in spain
+
+read line: 6 falls mainly
+
+read line: 7 in the plain
+

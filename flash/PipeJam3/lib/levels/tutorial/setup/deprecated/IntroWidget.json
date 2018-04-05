@@ -1,0 +1,30 @@
+{
+    "scoring": {
+        "variables": {
+            "type:0": 0, 
+            "type:1": 0
+        }, 
+        "constraints": 100
+    }, 
+    "default": "type:1", 
+    "qid": 0, 
+    "variables": {
+        "var:0": {
+            "default": "type:0", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 1
+            }
+        }, 
+        "var:1": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 1, 
+                "type:1": 0
+            }
+        }
+    }, 
+    "version": "1", 
+    "id": "IntroWidget", 
+    "constraints": []
+}

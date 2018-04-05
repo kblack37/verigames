@@ -1,0 +1,102 @@
+6/9/2012
+Nathaniel Mote (nmote@cs.washington.edu)
+
+This document provides some information about the implementation of this package
+that should be useful to somebody trying to figure out what goes where.
+
+The overview, and the general picture of the package should be obvious from the
+Javadoc documentation, including that in package-info.java. Further, each of the
+classes represent something tangible in the Pipe Jam game. Because of this,
+anybody familiar with the game should be able to already have a pretty good idea
+of what most things are for. This is intended more to cover the current quirks
+of the implementation that are harder to understand.
+
+The first thing you'll notice is a number of deprecated methods. I'll attempt to
+explain why they are deprecated, why they haven't yet been removed, and what
+they're being replaced with.
+
+In Board:
+  - addChuteName, etc.:
+      At one point, I thought that any given chute could have more than one
+      name, and any given name could have more than one chute.  Because of this,
+      it made sense to keep everything centrally, in Board, rather than having a
+      list of names in each Chute. However, it turns out that Chutes can only
+      have one name (or description, as it is now called).
+
+      Now, just use the Chute's description field.
+
+      This is still here because the sample levels use them. It wouldn't be a
+      lot of trouble to remove them from the sample levels, it just has yet to
+      be done.
+
+In graph package (clearly not actually part of the level package, but a lot of
+level's core functionality comes from graph):
+  - int ports:
+      Port identifiers for things like subboards used to be integers. Werner
+      requested that these be changed to Strings, so I made this change. This
+      offers greater flexibility.
+
+      These are still here both because they're used in the sample levels (it
+      would be easy to transition, though -- just put quotes around the numbers
+      for the most part), and because Werner has not yet indicated that he has
+      eliminated uses of the int ports from his code.
+
+  - getOuputs and getInputs:
+      These should be replaced with getOutputIDs and getInputIDs. getOutputs and
+      getInputs did not offer needed flexibility in the ordering of String
+      identifiers, and they exposed the TreeMap representation. This was a bit
+      of a hack, and returning a List is better.
+
+      These could probably be removed almost immediately, as most things have
+      transitioned away from them. However, it just hasn't been done yet.
+
+
+--------------------------
+Current development
+--------------------------
+
+I'm currently in the middle of offering full support for map get.
+
+This involves communicating to the game (through XML) which pipes can be stamped
+with the colors of which other pipes. There's an API in place for clients of
+this package to communicate this information, and the XML interface is also
+defined, but I haven't yet bridged the gap. There is currently only dummy
+information getting written to XML.
+
+Several things need to be done for this to work:
+
+  - Some method should be made in Level that will provide the stamping
+    information to a client. The method for the client to put this information
+    in a Level already exists, but there is no way to get that information back.
+    I'm not sure what the best way to provide this information is, so I haven't
+    written it yet.
+
+  - The XML Parser and Printer need to be updated to use the stamping
+    information. This is a little bit tricky, because the parser needs to give
+    each linked chute set a unique XML identifier. Right now, this is mocked out
+    as the name of the level with a counter appended to it. So, the linked chute
+    sets are named "World0" then "World1" etc. Prepending the name of the level
+    ensures that there are no collisions with IDs between levels.
+
+    The obvious thing to do is to simply replace the counter with the variableID
+    of the linked chute set in question. Unfortunately, since we still need to
+    support the sample levels, and they haven't been migrated over yet from the
+    old chute linking API (see above), all of the variableIDs are -1, so this
+    means every linked chute set in a given Level would have the same XML
+    identifier. This is what we'll do long term, but in the mean time, we need a
+    solution, and I haven't thought of one yet.
+
+    Once XML identifiers for linked chute sets are worked out, this problem will
+    be pretty easy to solve.
+
+  - This one's pretty small, but the verigames.layout package needs to be
+    updated to treat GET nodes as rectangular nodes. I believe that if they are
+    treated exactly the same as SUBBOARDs, it will work, but testing should be
+    done to verify this. There are a few places in the layout package where
+    SUBBOARDs are treated differently because they are rectangular and not just
+    discrete points. If GET nodes are added to whatever conditionals include the
+    test for SUBBOARDs, it should work properly.
+
+    Eventually, there should be a central property that categorizes the
+    different types of nodes, so the layout code doesn't have to distinguish
+    them by name.

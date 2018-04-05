@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/jsr308-langtools"/>
+	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/verigames-translation"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/dataflow"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/asmx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/checker-framework-inference"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/annotation-file-utilities"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/framework"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/javacutil"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

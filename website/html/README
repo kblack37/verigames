@@ -1,0 +1,181 @@
+Purpose:
+
+This code base will upload java files, compile them, create game xml files, and then upload them to the
+game database.
+
+--------------------------------
+Site Location:
+
+The Pipe Jam website is:
+http://verigames-dev.cs.washington.edu/
+
+This content is found in directory
+/www/htdocs/demo/upload/
+on verigames-dev.cs.washington.edu
+
+For now, there are global permissions to read, write and execute this directory. You need
+the uploads and scripts directory to have write permissions, and all scripts to have execute permissions.
+
+To upload an XML file directly into the "classic" game:
+https://verigames-dev.cs.washington.edu/admin/demo/
+
+--------------------------------
+
+Site Structure:
+
+The directory contains the following top-level files:
+
+index.php:  This is the home page and currently provides the user with a way to upload their files.  
+
+removeAll.php: A script to remove all the contents of the upload folder. See Misc. below.
+
+and a few other top-level files worth keeping, maybe.
+
+There are also seven main folders in the root directory:
+
+scripts: Holds all the main Javascript and PHP scripts used by the site. 
+
+styles: Holds all the .css stylesheets for the site.  The name of the css stylesheet should correspond
+directly with the page they define the style for. 
+
+uploads:  This folder stores any files uploaded by a user of the site.  The folder will contain 
+sub-folder with unique guid's.  In each folder all of the files the user uploaded, any of the
+output produced by the parsers, and the game files will be located. Any error text will also be
+located in this folder. 
+
+JQueryUI: This is a folder that stores the JQuery framework.  JQuery is a downloadable Javascript
+framework that can be downloaded from www.jquery.com
+
+java: Stores all the java code required for the site.  
+
+resources: Stores all the media files for the site design. (background images, button images,
+logos, etc.)
+
+uploadify: This is a JavaScript plugin that allows for Ajax file uploads.  It is required for the 
+'pretty' interface use on the PipeJam homepage. The folder contains several JavaScript files as well
+as the .swf file used for the "Select Files" button on the homepage.  I have modified a few files 
+in this folder to suit our needs but the majority remains unchanged. 
+--------------------------------
+
+Site File
+
+Below are some important files not mentioned above.  The majority of the functionality is contained
+in the php files and JavaScript files in the scripts folder.  There are four main files that do the
+vast majority of the heavy lifting:
+
+index.php: The homepage.  
+
+scripts/main.js: This is the corresponding JavaScript file for the homepage.  It contains an 'onLoad' function
+that is called when the page is loaded, and which starts the process, by calling the controller.php file.
+
+scripts/controller.php: The main controller interface for JavaScript->php communication, plus all php functions.
+PHP is required for those things that JavaScript can't do, such as disk access and exec calls.
+
+scripts/upload.js, compile.js, and createXML.js - JavaScripts that handle the related parts of the pipeline.
+
+results.js:  This is the JavaScript file responsible for displaying the files on the results page.  It 
+sends an Ajax request to annotate.php as well as utilities.php (to print the contents of a file).  It 
+also uses CodeMirror to display the code highlighting and line numbering in the code results window.  It
+also connects the button behavior on the results page. (Download button and file selection buttons). 
+
+annotate.php: This file is responsible for parsing the data received from the game and calling the script
+to annotate the actual .java files.  It will create the updatedXML.xml file after the game is created by
+calling JAIFParser located in the verigames.jar file.  It will also retrieve the annotated .java files
+and print them to the results page. 
+
+utilities.php: This is a file that contains many smaller php functions that don't fit nicely into any of
+the others.  There are currently functions to obtain a new guid that will be used for a new users folder,
+a function to print the contents of a specified file, and function to dynamically produce an error page when
+passed a text file.
+
+There are many other smaller files that I don't list here. However, these are the most important and if
+there is a problem. It is likely that one of these are responsible. 
+
+
+---------------------------------
+Updating:
+
+The most common file that will likely need to be updated on a regular basis is verigames.jar.  
+This file is located in the java file in the root directory.
+
+
+--------------------------------
+Misc.
+
+removeAll.php:
+There is a script file entitle removeAll.php in the root directory of the site.  If you browse to this 
+page in a browser it will remove all the folder in the uploads folder.  This is used as a quick way to 
+clean out the uploads folder during testing.  This will remove ALL folders in the uploads directory. Make
+sure that if you use this script that you really want to clear the contents.  This will obviously be 
+removed before the site goes live, but it is nice to have in the meantime.
+
+
+--------------------------------
+!!Unverified other misc. information left here
+
+Website Setup Instructions For Linux:
+
+
+Step 1: Download Dependencies:
+
+Required Dependencies:
+
+- GraphViz - must be installed (Not needed in the long run, but right now PipeJam Classic layout info is still generated using it.)
+- JDK 7
+- Scala
+
+Ubuntu instructions for installing dependencies:
+
+Install the "Ubuntu Restricted Extras" package, which includes Flash, Java,
+and other fun stuff.  (You can obtain in via the "Ubuntu Software Center".)
+
+To install the remaining dependencies, enter the following into a terminal window:
+
+sudo apt-get install php5 apache2 libapache2-mod-php5 graphviz
+sudo /etc/init.d/apache2 restart
+
+
+Step 2:
+
+Download a recent copy of the website.  This can be accomplished by selecting a backup from the following site:
+
+	http://verigames-dev.cs.washington.edu/demo/publish.php
+
+Click any of the listed backups to download a .zip file with the entire contents of the site. Once downloaded extract 
+the contents to /var/www (Ubuntu). 
+
+Step 3:
+
+Download the appropriate JDK 7 binaries for your computer framework.
+
+Install Scala.
+The easiest way is:
+  sudo apt-get install scala
+Alternately, download Scala binaries from http://www.scala-lang.org/downloads
+
+Once downloaded, both Java and Scala binaries need to be placed in the parent directory of the website.  In Ubuntu
+the JDK 7 framework and the Scala framework should be placed in the /var folder or in the parent folder
+of where you placed the web files.  
+
+Edit website/scripts/globals.php to adjust the path for JDK 7.
+Edit the shell scripts in website/scripts/typecheckers/ to update the Scala path.
+
+
+Permissions:
+
+The uploads folder needs full write permissions, as does the scripts folder. The scripts folder will eventually
+need only read and execute but that will require I change a few things.  All the other folders should have read
+and execute. 
+
+
+Step 4:
+
+You should now be able to use the site.  Open a browser and enter localhost into the address bar and press Enter. 
+You should now see the PipeJam homepage. 
+
+
+Please let me know if any of this is unclear or didn't work for you so I can update as appropriate. 
+bdwalker@cs.washington.edu
+
+
+  

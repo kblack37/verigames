@@ -1,0 +1,33 @@
+{
+    "scoring": {
+        "variables": {
+            "type:0": 0, 
+            "type:1": 0
+        }, 
+        "constraints": 100
+    }, 
+    "default": "type:1", 
+    "qid": 5, 
+    "variables": {
+        "var:0": {
+            "default": "type:0"
+        }, 
+        "var:1": {
+            "default": "type:1"
+        }, 
+        "var:2": {
+            "default": "type:0"
+        }, 
+        "var:3": {
+            "default": "type:0"
+        }
+    }, 
+    "version": "1", 
+    "id": "Widen", 
+    "constraints": [
+        "type:1 <= var:0", 
+        "var:1 <= var:2", 
+        "type:1 <= var:3", 
+        "var:3 <= type:1"
+    ]
+}

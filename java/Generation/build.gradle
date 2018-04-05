@@ -1,0 +1,163 @@
+
+def classDirs = files(new File(project(':Translation').projectDir, 'bin/classes/main'),
+                      new File(project(':Translation').projectDir, 'lib/xom-1.2.10.jar'))
+
+dependencies {
+
+    // local deps: our own stuff
+    compile project(':Translation')
+
+    // we also need the xom jar in the translation folder
+    compile files(new File(project(':Translation').projectDir, 'lib/xom-1.2.10.jar'))
+
+}
+
+//This script inherits many settings from java/build.gradle
+sourceSets {
+    main {
+        scala {
+            srcDir 'src'
+        }
+
+        java {
+            srcDir 'src'
+        }
+
+        output.classesDir "bin"
+    }
+}
+
+buildDir = 'bin'
+
+tasks.compileJava {
+    options.forkOptions.jvmArgs += '-J-Djsr308_imports=checkers.interning.quals.*:checkers.regex.quals.*:checkers.signature.quals.*:checkers.compilermsgs.quals.*'
+}
+
+// IMPORTANT: If "libs" is packaged in the JAR file you end up with an infinitely
+// recursive jar task that will fill up your hard drive (eventually)
+tasks.jar {
+    exclude("dependency-cache", "libs", "tmp")
+}
+
+//Properties used by the infer task (see the description in infer)
+def infCheckerKey = 'infChecker'
+def infArgsKey    = 'infArgs'
+def debugInfKey   = 'debugInf'
+def useDistKey    = 'useDist'
+
+class CheckerDef {
+	//how the checker is specified on the command line
+    public final String command;
+
+    //fully qualified checker class name
+    public final String checker;
+
+    //fully qualified visitor class name
+    public final String visitor;
+
+    //fully qualified solver class name
+    public final String solver;
+
+    public final String transfer;
+
+    public final String analysis;
+
+    CheckerDef(command, checker, visitor, solver, transfer="checkers.inference.InferenceTransfer") {
+        this.command = command;
+        this.checker = checker;
+        this.visitor = visitor;
+        this.solver  = solver;
+        this.transfer = transfer;
+    }
+}
+
+//Current checkers that are supported
+//A map from checkerDef.command : checkerDef
+def checkerMap = [
+    new CheckerDef('nullness', 'nninf.NninfChecker',     'nninf.NninfVisitor',     'nninf.NninfGameSolver', 'nninf.NninfTransfer'),
+    new CheckerDef('nullnessTest', 'nninf.NninfChecker',     'nninf.NninfVisitor',     'test.TestGameSolver', 'nninf.NninfTransfer'),
+    new CheckerDef('trusted',  'trusted.TrustedChecker', 'trusted.TrustedVisitor', 'trusted.TrustedGameSolver'),
+    new CheckerDef('trustedTest',  'trusted.TrustedChecker', 'trusted.TrustedVisitor', 'test.TestGameSolver'),
+    new CheckerDef('random',  'random.RandomChecker', 'trusted.TrustedVisitor', 'trusted.TrustedGameSolver'),
+    new CheckerDef('encrypted',  'encrypted.EncryptedChecker', 'trusted.TrustedVisitor', 'trusted.TrustedGameSolver'),
+    new CheckerDef('filetype',  'filetype.SafeFileTypeChecker', 'trusted.TrustedVisitor', 'trusted.TrustedGameSolver'),
+    new CheckerDef('hardcoded',  'hardcoded.HardCodedChecker', 'hardcoded.HardCodedVisitor', 'trusted.TrustedGameSolver'),
+    new CheckerDef('ostrusted',  'ostrusted.OsTrustedChecker', 'trusted.TrustedVisitor', 'trusted.TrustedGameSolver'),
+    new CheckerDef('salt',  'salt.HashWithSaltChecker', 'trusted.TrustedVisitor', 'trusted.TrustedGameSolver'),
+    new CheckerDef('lock',  'lock.LockInfChecker', 'lock.LockInfVisitor', 'lock.LockInfGameSolver'),
+].collectEntries{[it.command, it]}
+
+tasks.create(name:'infer', type : JavaExec ) {
+  	description = 'Runs an inference checker over the specified Java files.  Use as follows:\n'            +
+  				  "\tgradle infer -P $infCheckerKey=<checkerToUse> -P $infArgsKey=\"<srcFiles>\"\n"        +
+  				  "\t$infCheckerKey  - Choose one of [" + checkerMap.keySet().join(", ") + ']\n'           +
+  				  "\t$infArgsKey     - Space separated source files to infer over.  If you specify"        +
+  				                       'more than one file they must be surrounded by quotes(")\n'         +
+  				  "\t$debugInfKey    - An optional parameter, setting it to \"true\" will cause the "      +
+  				  					  'checker to be run with remote debugging enabled.  Default=false. true or false.'
+                  "\t$useDistKey     - Setting useDist to true causes the infer task to run using prebuilt jars in the " +
+                                      "build/dist directory rather than the class files in the classes directory."
+
+	def rootProps     = getRootProject().getProperties()
+	def checkerDef    = checkerMap.get( rootProps.get(infCheckerKey) ) ?: checkerMap['nullness'];
+	def inferenceArgs = rootProps.get( infArgsKey )
+	def debug         = false
+	if(rootProps.containsKey( debugInfKey ) && rootProps.get( debugInfKey ).equals("true")) {
+		debug = true
+	}
+
+    def useDist       = false
+    if(rootProps.containsKey( useDistKey ) && rootProps.get( useDistKey ).equals("true")) {
+        useDist = true
+    }
+
+    main      = 'checkers.inference.TTIRun'
+    args      += '--checker'
+    args      += checkerDef.checker
+    args      += '--visitor'
+    args      += checkerDef.visitor
+    args      += '--solver'
+    args      += checkerDef.solver
+    args      += '--transfer'
+    args      += checkerDef.transfer
+    args      += inferenceArgs
+
+    ext.bcp = files("../dist/javac.jar", "../dist/$jreJarName")
+    ext.bcp += sourceSets.main.runtimeClasspath
+    if(useDist) {
+        bcp -= classDirs
+        bcp -= files('bin', 'bin/resources/main')
+        bcp += fileTree('../dist') {
+            include '**/*.jar'
+            exclude 'javac.jar'
+            exclude 'jdk*.jar'
+        }
+    }
+
+    if (debug) {
+        println "Runtime class path contains:\n" + bcp
+    }
+
+    jvmArgs += ['-ea', '-server', '-Xmx1024m', '-Xms512m', '-Xss1m', "-Xbootclasspath/p:" + bcp.getAsPath(), '-Dscala.usejavacp=true']
+
+    if( debug ) {
+        jvmArgs += ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005']
+    }
+}
+
+tasks.infer.doFirst {
+	def rootProps = getRootProject().getProperties()
+
+    if ( !rootProps.containsKey( infCheckerKey )) {
+        throw new IllegalArgumentException("You must specify an inference checker to use e.g.:\n\t -P infChecker=<checker to use>");
+    }
+
+    if ( !checkerMap.containsKey( rootProps.get( infCheckerKey ) )) {
+        throw new IllegalArgumentException("You must specify a valid inference checker to use.  Checker specified=" + rootProps.get("infChecker") +
+        								   "valid checkers=[ " + checkerMap.keySet().join(", ") + " ]")
+    }
+
+    if ( !rootProps.containsKey( infArgsKey ) ) {
+        throw new IllegalArgumentException("You must specify file arguments to infer over via:\n\t -P infArgs=<File(s) To Infer Over>");
+    }
+}

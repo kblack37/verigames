@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="world">
+  <level id="IntroWidget" qid="1" targetScore="400">
+    <box id="IntroWidget2" width="narrow" editable="true"/>
+    <box id="IntroWidget3" width="wide" editable="true"/>
+  </level>
+  <level id="WidgetPractice" qid="2" targetScore="700">
+    <box id="WidgetPractice4" width="narrow" editable="true"/>
+    <box id="WidgetPractice3" width="wide" editable="true"/>
+    <box id="WidgetPractice2" width="wide" editable="true"/>
+    <box id="WidgetPractice1" width="wide" editable="true"/>
+  </level>
+  <level id="LockedWidget" qid="3" targetScore="700">
+    <box id="LockedWidget5" width="wide" editable="false"/>
+    <box id="LockedWidget4" width="wide" editable="true"/>
+    <box id="LockedWidget3" width="narrow" editable="true"/>
+    <box id="LockedWidget2" width="narrow" editable="false"/>
+    <box id="LockedWidget1" width="wide" editable="true"/>
+  </level>
+  <level id="Links" qid="4" targetScore="700">
+    <box id="SatisfyBoxes10" width="wide" editable="false"/>
+    <box id="SatisfyBoxes40" width="wide" editable="false"/>
+    <box id="SatisfyBoxes30" width="wide" editable="false"/>
+    <box id="SatisfyBoxes20" width="wide" editable="true"/>
+    <box id="SatisfyBoxes3" width="wide" editable="true"/>
+    <box id="SatisfyBoxes2" width="narrow" editable="false"/>
+    <box id="SatisfyBoxes1" width="narrow" editable="true"/>
+  </level>
+  <level id="Passages" qid="5" targetScore="425">
+    <box id="Passages2" width="narrow" editable="true"/>
+    <box id="Passages3" width="narrow" editable="true"/>
+    <box id="Passages4" width="wide" editable="true"/>
+    <box id="Passages5" width="wide" editable="false"/>
+  </level>
+  <level id="Jams" qid="6" targetScore="150">
+    <box id="Clashes1" width="wide" editable="true"/>
+    <box id="Clashes2" width="narrow" editable="false"/>
+  </level>
+  <level id="Widen" qid="7" targetScore="600">
+    <box id="WidenBoxes30" width="narrow" editable="true"/>
+    <box id="WidenBoxes20" width="wide" editable="true"/>
+    <box id="WidenBoxes10" width="narrow" editable="true"/>
+    <box id="WidenBoxes3" width="wide" editable="false"/>
+    <box id="WidenBoxes2" width="narrow" editable="true"/>
+    <box id="WidenBoxes1" width="wide" editable="false"/>
+    <box id="WidenBoxes4" width="wide" editable="false"/>
+  </level>
+  <level id="LockedPassage" qid="8" targetScore="600">
+    <box id="NarrowBoxes30" width="wide" editable="true"/>
+    <box id="NarrowBoxes20" width="narrow" editable="true"/>
+    <box id="NarrowBoxes10" width="narrow" editable="true"/>
+    <box id="NarrowBoxes1" width="wide" editable="false"/>
+    <box id="NarrowBoxes2" width="wide" editable="true"/>
+    <box id="NarrowBoxes3" width="wide" editable="false"/>
+    <box id="NarrowBoxes4" width="wide" editable="true"/>
+  </level>
+  <level id="Optimize" qid="9" targetScore="1000">
+    <box id="Optimize4" width="narrow" editable="true"/>
+    <box id="Optimize2" width="narrow" editable="true"/>
+    <box id="Optimize3" width="narrow" editable="true"/>
+    <box id="Optimize1" width="narrow" editable="true"/>
+  </level>
+  <level id="Splits" qid="10" targetScore="475">
+    <box id="Splits6" width="narrow" editable="false"/>
+    <box id="Splits4" width="narrow" editable="true"/>
+    <box id="Splits5" width="wide" editable="false"/>
+    <box id="Splits2" width="narrow" editable="false"/>
+    <box id="Splits3" width="wide" editable="false"/>
+    <box id="Splits1" width="wide" editable="true"/>
+  </level>
+  <level id="Merges" qid="11" targetScore="225">
+    <box id="Merges2" width="wide" editable="true"/>
+    <box id="Merges3" width="narrow" editable="false"/>
+    <box id="Merges1" width="wide" editable="true"/>
+  </level>
+  <level id="SplitMerge" qid="17" targetScore="725">
+    <box id="SplitMergePractice6" width="narrow" editable="false"/>
+    <box id="SplitMergePractice7" width="narrow" editable="false"/>
+    <box id="SplitMergePractice4" width="wide" editable="true"/>
+    <box id="SplitMergePractice5" width="wide" editable="true"/>
+    <box id="SplitMergePractice2" width="narrow" editable="true"/>
+    <box id="SplitMergePractice3" width="narrow" editable="true"/>
+    <box id="SplitMergePractice1" width="narrow" editable="true"/>
+  </level>
+  <level id="ZoomPan" qid="13" targetScore="300">
+    <box id="ZoomPan2" width="wide" editable="true"/>
+    <box id="ZoomPan3" width="narrow" editable="false"/>
+    <box id="ZoomPan1" width="wide" editable="true"/>
+  </level>
+  <level id="Layout" qid="12" targetScore="425">
+    <box id="Layout1" width="narrow" editable="true"/>
+    <box id="Layout3" width="narrow" editable="false"/>
+    <box id="Layout2" width="narrow" editable="false"/>
+    <box id="Layout5" width="wide" editable="false"/>
+    <box id="Layout4" width="wide" editable="true"/>
+  </level>
+  <level id="GroupSelect" qid="18">
+    <box id="es18" width="wide" editable="true"/>
+    <box id="es11" width="wide" editable="false"/>
+    <box id="es17" width="wide" editable="true"/>
+    <box id="es16" width="wide" editable="false"/>
+    <box id="es15" width="wide" editable="false"/>
+    <box id="es14" width="wide" editable="true"/>
+  </level>
+  <level id="CreateJoint" qid="19">
+    <box id="es2" width="wide" editable="false"/>
+    <box id="es1" width="wide" editable="true"/>
+  </level>
+  <level id="SkillsA" qid="14" targetScore="2300">
+    <box id="es7" width="narrow" editable="true"/>
+    <box id="es6" width="wide" editable="true"/>
+    <box id="es5" width="wide" editable="false"/>
+    <box id="es4" width="wide" editable="true"/>
+    <box id="es3" width="wide" editable="false"/>
+    <box id="es2" width="wide" editable="true"/>
+    <box id="es9" width="wide" editable="true"/>
+    <box id="es8" width="narrow" editable="true"/>
+    <box id="es18" width="narrow" editable="false"/>
+    <box id="es13" width="wide" editable="true"/>
+    <box id="es12" width="wide" editable="true"/>
+    <box id="es11" width="wide" editable="false"/>
+    <box id="es10" width="wide" editable="true"/>
+    <box id="es17" width="narrow" editable="true"/>
+  </level>
+  <level id="SkillsB" qid="15" targetScore="6900">
+    <box id="es26" width="narrow" editable="true"/>
+    <box id="es24" width="narrow" editable="true"/>
+    <box id="es25" width="wide" editable="true"/>
+    <box id="es22" width="narrow" editable="true"/>
+    <box id="es23" width="narrow" editable="true"/>
+    <box id="es20" width="narrow" editable="true"/>
+    <box id="es21" width="wide" editable="false"/>
+    <box id="es28" width="narrow" editable="true"/>
+    <box id="es29" width="wide" editable="false"/>
+    <box id="es45" width="narrow" editable="false"/>
+    <box id="es40" width="narrow" editable="true"/>
+    <box id="es41" width="narrow" editable="true"/>
+    <box id="es42" width="narrow" editable="true"/>
+    <box id="es43" width="wide" editable="true"/>
+    <box id="es48" width="narrow" editable="false"/>
+    <box id="es31" width="narrow" editable="true"/>
+    <box id="es33" width="narrow" editable="false"/>
+    <box id="es35" width="narrow" editable="true"/>
+    <box id="es34" width="narrow" editable="false"/>
+    <box id="es37" width="wide" editable="true"/>
+    <box id="es36" width="wide" editable="true"/>
+    <box id="es39" width="narrow" editable="true"/>
+    <box id="es38" width="wide" editable="true"/>
+    <box id="es19" width="narrow" editable="false"/>
+    <box id="es52" width="narrow" editable="true"/>
+    <box id="es13" width="narrow" editable="true"/>
+    <box id="es12" width="narrow" editable="false"/>
+    <box id="es11" width="narrow" editable="false"/>
+    <box id="es10" width="narrow" editable="true"/>
+    <box id="es16" width="wide" editable="true"/>
+    <box id="es15" width="wide" editable="false"/>
+    <box id="es14" width="wide" editable="false"/>
+    <box id="es7" width="narrow" editable="true"/>
+    <box id="es6" width="wide" editable="false"/>
+    <box id="es5" width="wide" editable="false"/>
+    <box id="es4" width="wide" editable="false"/>
+    <box id="es3" width="wide" editable="false"/>
+    <box id="es1" width="wide" editable="true"/>
+    <box id="es8" width="narrow" editable="true"/>
+  </level>
+</graph>

@@ -1,0 +1,18 @@
+
+apply plugin: 'java'
+
+jar {
+    manifest.attributes(
+        'Main-Class': 'verigames.visualizer.Main'
+    )
+}
+
+dependencies {
+
+    // local deps: our own stuff
+    compile project(':Translation')
+
+    // remote deps: pulled in from maven central
+    compile 'commons-cli:commons-cli:1.2'
+
+}

@@ -1,0 +1,227 @@
+
+                     -----------------------------------
+                           Verigames XML Optimizer
+                     -----------------------------------
+
+Building
+-------------
+
+Follow the setup instructions in the "USING_GRADLE" file one level up. Then, in
+this folder:
+
+    gradle jar
+
+This will generate the file build/libs/optimizer.jar which the start script
+uses to run the project (below).
+
+
+Running Tests
+-------------
+
+It's as easy as
+
+    gradle test
+
+Gradle will either report success (hopefully) or tell you where it put the
+failure report.
+
+
+Running
+-------------
+
+Get help:
+
+    ./optimizer.sh --help
+
+Sample usage:
+
+    ./optimizer.sh <../Translation/veritest/layout/GETLayoutTest.expected.xml
+
+
+Transferring Solutions
+-------------
+
+Optimizing a world is fun and useful, but you also need to be able to transfer
+a solution on an optimized world back to the unoptimized one. This can be
+accomplished using the transfer-solution tool.
+
+The optimizer outputs an additional side-file called a "mapping" that is used
+to transfer solutions. The transfer-solutions tool uses this mapping to do its
+work.
+
+Get help:
+
+    ./transfer-solution.sh --help
+
+Sample usage:
+
+    ./optimizer.sh --in my-file.xml --out opt.xml --mapping map.txt
+    ... solve opt.xml ...
+    ./transfer-solution.sh --from opt.xml --to my-file.xml --mapping map.txt --out my-file-solved.xml
+
+
+Mapping Format
+-------------
+
+TODO: document this once it stabilizes
+
+For now the only documentation are the load and export methods in
+ReverseMappingIO.java in the source code.
+
+
+Issues, Gotchas, and Limitations
+-------------
+
+Pinched chutes are converted into narrow immutable chutes.
+
+Layout is not preserved. If you optimize a graph, you will need to lay it out
+again somehow.
+
+Edge IDs, node IDs, and descriptions are not preserved. The mapping can be used
+to reconstruct this information. (Don't worry though! the new IDs will all be
+perfectly valid in the new world.) Also note: variable IDs ARE preserved.
+
+The optimizer assumes that the world you give it is unsolved, so it makes no
+attempt to preserve any existing solution. In particular:
+    - The widths of editable chutes are not preserved.
+    - Buzzsaws are not preserved.
+
+The optimizer does not perform inter-board optimizations. This means that the
+number of levels and the number of boards in the output will always be the same
+as the input world.
+
+
+Terminology
+-------------
+
+Some concepts you should know in order to work on the optimizer.
+
+Node/Intersection:
+    I use these words interchangeably.
+
+Edge/Chute:
+    I use these words interchangeably.
+
+Mutable/Editable:
+    Used to describe chutes. (The opposite is "immutable" or "not editable.")
+    A mutable chute is one for which a player or solver can manipulate the
+    width.
+
+Linked:
+    Two linked chutes must always share the same width. So if a player changes
+    the width of one, the width of the other changes accordingly. NOTE:
+    immutable edges are NEVER linked to any others.
+
+Edge set:
+    All the edges in the world which are linked together. Every edge in the
+    world belongs to exactly one edge set. An edge set is "degenerate" if it
+    only contains one edge.
+
+Conflict-free:
+    A chute is conflict-free if it can never, in any sane solution, create a
+    conflict. (This is extremely useful to know because conflict-free edges can
+    generally be optimized out.)
+
+    As a rough under-approximation, an edge is conflict-free if:
+        1. it is not the start of a pipe-dependent ball and either
+            a. it is immutable & wide or
+            b. it is the ONLY member of its edge set
+
+    The above definition does not necessarily capture all conflict-free edges,
+    but any edge which meets those criteria is definitely conflict-free.
+
+    See verigames.optimizer.Util for a definition of this method.
+
+
+Implementation Details
+-------------
+
+All the source is written in Java, and it all lives in src/main/java (which is
+the default expected source path for Gradle's Java plugin).
+
+This section details how optimization works. Each "pass" described below
+performs a simple operation, and the optimizer itself iterates until it
+reaches a fixed-point (no more optimizations can be performed). The general
+contract of each pass is that the resulting graph must not be larger in size
+than the input.
+
+ConnectorCompression
+
+    |   e1                      |
+    |                           |
+    O   n (CONNECT)    -->      | e3
+    |                           |
+    |   e2                      |
+
+    Attempts to "compress" connector nodes into a single edge. The rules are
+    roughly as follows:
+
+    1. If e1 or e2 is immutable narrow, then e3 is immutable narrow.
+    2. If e1 and e2 are linked, then e3 is the same as e1
+    3a. If e1 is conflict-free, then e3 is e2
+    3b. If e2 is conflict-free, then e3 is e1
+
+    Otherwise no optimization is performed.
+
+ImmutableComponentElimination
+
+    [ IMMUTABLE COMPONENT ] --> [ ]
+
+    Removes components where all the edges in the graph are immutable. This
+    makes the boards much easier for players to work with.
+
+MergeElimination
+
+    Does two optimizations related to merge nodes:
+
+             D (SMALL_BALL_DROP)
+    e1  \   /  e2                  |  e1
+         \ /                       |
+          O (MERGE)       -->      O (CONNECT)
+          |                        |
+          |  e3                    |  e3
+
+    TYPE 1.
+    Since only small balls can enter e2, it can never create a conflict.
+
+
+    e1  \   /  e2               |  e1       |  e2
+         \ /                    |           |
+          O (MERGE)       -->   |           |
+          |                     |           |
+          |  e3                 |           |
+          E (END)               F (END)     G (END)
+
+    TYPE 2.
+    This can only be performed when e3 is conflict-free. It results in one
+    fewer edges and can allow for greater optimization of e1 and e2 by
+    subsequent passes.
+
+SplitElimination
+
+        |  e1                 |  e1
+        |                     |
+        O (SPLIT)       -->   O (CONNECT)
+    e2 / \                    |
+      /   \  e3               |  e2
+           E (END)
+
+    This can only be performed when either:
+        1. e3 is conflict-free OR
+        2. e3 is linked with e1
+
+ChuteEndElimination
+
+    This pass is larger than a peephole optimization. Starting from the END
+    nodes, it collects a set of conflict-free edges and removes them, patching
+    up the broken edges with new END nodes. This can help remove a lot of
+    easy-to-solve geometry at the bottom of boards.
+
+BallDropElimination
+
+    This pass is larger than a peephole optimization. It removes excess
+    geometry when only small balls can flow there.
+
+    It starts from all the small ball drops and empty ball drops and collects a
+    set of nodes that large balls cannot flow to. It then removes these and
+    patches up the broken edges with small ball drops.

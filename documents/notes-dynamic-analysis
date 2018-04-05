@@ -1,0 +1,96 @@
+Here are some ideas that are related to dynamic analysis.
+
+===========================================================================
+
+Scoring
+
+Ordinarily, a buzzsaw costs a large amount.
+A buzzsaw that no wide ball reaches costs only a small amount.
+A buzzsaw that few wide balls reach costs a medium amount.
+
+===========================================================================
+
+Visualize test executions.
+
+Currently, you can run balls through Pipe Jam (or cars through Traffic Jam)
+in a type-theoretic way.  For example, when a ball enters a split point
+that results from an "if" in the code, a ball exits along both exit paths.
+In reality, execution follows only one of the two paths.
+
+The idea is to visualize a specific dynamic execution (say, of a particular
+test case).  The ball would flow down just one of the paths of an "if".
+[By the way, note that the game has multiple types of split nodes:
+ * Those where the ball goes down both sides, to reach two uses.
+ * Those where the ball goes down just one side, that result from an if in
+   the program (not necessarily an if that tests a type-theoretic property).]
+
+The dynamic execution might illustrate that the static estimates were too
+strong:  some type system warnings might not correspond to any problem that
+ever occurred at run time.  That doesn't mean it *can't* occur, but
+nonetheless might be suggestive to players.
+
+Overall, our hope is that players will use their human insight and
+intuition to see patterns and place the conflicts/buzzsaws in the best
+locations.  Giving more pattern-matching opportunities, and more
+fine-grained information rather than just the type-theoretic approximation,
+might help the players do a better job.
+
+Here are three parts to the system:
+ * Observe an execution of the Java program to create a trace or "script"
+   that the visualization can replay.  [This could be done using ASM, for
+   example.]
+ * Define the file format for recording a Java program execution, which can
+   be replayed in the game.  What density of information is necessary?
+   Should every traversal of a ball down any pipe segment be recorded?  Or
+   more/less than that?  Note that ball sizes can change at merges/splits,
+   even ones that are not "if-test nodes" specifically designed to separate
+   small from large balls.
+ * Game side:  consume a trace/script and replay/visualize it.
+
+Here are just a few interesting challenges.
+
+Our games represent type flow rather than dataflow.  It's (somewhat)
+obvious how to visualize dataflow; how is type flow different?
+
+How do you visualize multiple executions?
+ * Cluster similar executions together, based on calling context and/or
+   values?  Then the player still views multiple executions (one after the
+   other), but only one of a given type.  What is the right type of clustering?
+ * Show multiple different (or somewhat different) executions simultaneously
+   (overlapping/stacked balls/cars?), or one after the other?  If one after
+   the other, in what order?  How does the player control which ones are seen?
+You don't want to force someone to watch 100 iterations of a loop nor 100
+executions of a method (stemming from different method calls), but they may
+occur in different contexts or have different effects.
+
+How do we visualize an execution in our new Grid World representation?  It
+has no moving balls/cars.  The benefit is that it is more compact so that
+you can fit more on-screen.  The downside is that it's not immediately
+obvious how to visualize an execution.
+
+How do we represent calls?  Probably ignore them:  don't change context to
+dive into a method call.  What about recursive calls?
+
+How does the player navigate around the trace, to choose the parts of
+interest or to step into a call?
+
+===========================================================================
+
+A testing game
+
+Goal:  create a test case that demonstrates that a given set of type
+annotations are incorrect.
+
+Suppose that a player has finished a game but a conflict remains.  (Or,
+suppose that a programmer has annotated a program but there is a
+type-checking error.)  Is this conflict a true positive or a false
+positive?  If we could create a test case that causes a problem there (or
+anywhere else in the program), then we would know it is a true positive --
+a genuine problem.
+
+In the game, a player could try to create input balls that would cause
+problems at particular conflicts.  That could force other players to revise
+their "solutions" to previous levels, without requiring intervention from a
+person with training in formal verification as is currently the case.
+
+===========================================================================

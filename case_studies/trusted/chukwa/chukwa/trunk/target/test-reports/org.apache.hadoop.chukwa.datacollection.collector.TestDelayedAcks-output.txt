@@ -1,0 +1,19 @@
+wrote data to /tmp/testDA
+
+wrote 276 bytes
+
+result was 20121116124838552_hummingbirdcswashingtonedu_7e70d10313b0afafa9f8000.done 276
+
+
+Error in RetryListOfCollectors() opening file/homes/gws/sdietzel/chukwa/chukwa/trunk/target/test/conf/afilethatdoesntexist, double check that you haveset the CHUKWA_CONF_DIR environment variable. Also, ensure file exists and is in classpath
+
+data rate was 179 kb /second
+
+5398620 bytes committed
+
+5398620 bytes output
+
+difference is 0
+
+collector wrote 5398620
+

@@ -1,0 +1,6 @@
+package java.lang.ref;
+
+import checkers.nullness.quals.*;
+
+class WeakReference<T extends @Nullable Object> extends Reference<T> {
+}

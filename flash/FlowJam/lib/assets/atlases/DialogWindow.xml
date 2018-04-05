@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TextureAtlas imagePath="DialogWindow.png">
+	<SubTexture name="DialogWindow" x="0" y="0" width="192" height="192" />
+	<SubTexture name="DialogWindowTopLeft" x="0" y="0" width="64" height="64" />
+	<SubTexture name="DialogWindowTop" x="64" y="0" width="64" height="64" />
+	<SubTexture name="DialogWindowTopRight" x="128" y="0" width="64" height="64" />
+	<SubTexture name="DialogWindowLeft" x="0" y="64" width="64" height="64" />
+	<SubTexture name="DialogWindowCenter" x="64" y="64" width="64" height="64" />
+	<SubTexture name="DialogWindowRight" x="128" y="64" width="64" height="64" />
+	<SubTexture name="DialogWindowBottomLeft" x="0" y="128" width="64" height="64" />
+	<SubTexture name="DialogWindowBottom" x="64" y="128" width="64" height="64" />
+	<SubTexture name="DialogWindowBottomRight" x="128" y="128" width="64" height="64" />
+
+
+</TextureAtlas>

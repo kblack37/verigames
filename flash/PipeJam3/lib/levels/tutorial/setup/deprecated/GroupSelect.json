@@ -1,0 +1,41 @@
+{
+    "scoring": {
+        "variables": {
+            "type:0": 0, 
+            "type:1": 0
+        }, 
+        "constraints": 100
+    }, 
+    "default": "type:1", 
+    "qid": 9, 
+    "variables": {
+        "var:0": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 0
+            }
+        }, 
+        "var:1": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 0
+            }
+        }, 
+        "var:2": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 0
+            }
+        }
+    }, 
+    "version": "1", 
+    "id": "GroupSelect", 
+    "constraints": [
+        "var:0 <= type:1", 
+        "var:1 <= type:1", 
+        "var:2 <= type:1"
+    ]
+}

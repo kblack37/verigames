@@ -1,0 +1,18 @@
+pipeline established; now pushing a chunk
+
+connecting to localhost
+
+command send
+
+sent nonmatching chunk
+
+sent matching chunk
+
+reading...
+
+hummingbird.cs.washington.edu:name:c/1
+
+
+got 1/41 bytes: hostNameFoo dataTypeFoo streamName 4
+text
+

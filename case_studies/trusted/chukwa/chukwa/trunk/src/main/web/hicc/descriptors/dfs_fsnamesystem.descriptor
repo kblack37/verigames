@@ -1,0 +1,46 @@
+{
+"id":"dfs_fsnamesystem",
+"title":"HDFS Metrics",
+"version":"0.1",
+"categories":"Hadoop,HDFS",
+"url":"iframe/jsp/chart.jsp",
+"description":"Display HDFS related stats",
+"screendump":"\/images\/server_load.gif",
+"refresh":"15",
+"parameters":[
+{"name":"title","type":"string","value":"","edit":"1","label":"Title"},
+{"name":"table","type":"string","value":"Hadoop","edit":"0"},
+{"name":"group","type":"string","value":"host","edit":"0"},
+{"name":"group_items","type":"string","value":"hosts","edit":"0"},
+{"name":"period","type":"custom","control":"period_control","value":"","label":"Period"},
+{"name":"data","type":"select_multiple","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:CapacityRemainingGB/session/cluster","label":"Metric","options":[
+{"label":"Block Capacity","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:BlockCapacity/session/cluster"},
+{"label":"Blocks Total","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:BlocksTotal/session/cluster"},
+{"label":"Capacity Remaining In GB","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:CapacityRemainingGB/session/cluster"}, 
+{"label":"Capacity Total In GB","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:CapacityTotalGB/session/cluster"},
+{"label":"Capacity Used In GB","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:CapacityUsedGB/session/cluster"},
+{"label":"Corrupted Blocks","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:CorruptBlocks/session/cluster"},
+{"label":"Missing Blocks","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:MissingBlocks/session/cluster"},
+{"label":"Under Replicated Blocks","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:UnderReplicatedBlocks/session/cluster"}
+{"label":"Files Total","value":"/hicc/v1/metrics/series/ClusterSummary/hdfs:FilesTotal/session/cluster"}
+]},
+{"name":"width","type":"select","value":"300","label":"Width","options":[
+{"label":"300","value":"300"},
+{"label":"400","value":"400"},
+{"label":"500","value":"500"},
+{"label":"600","value":"600"},
+{"label":"800","value":"800"},
+{"label":"1200","value":"1200"}
+]},
+{"name":"height","type":"select","value":"200","label":"Height","options":[
+{"label":"200","value":"200"},
+{"label":"400","value":"400"},
+{"label":"600","value":"600"},
+{"label":"1000","value":"1000"}
+]},
+{"name":"legend","type":"radio","value":"on","label":"Show Legends","options":[
+{"label":"On","value":"on"},
+{"label":"Off","value":"off"}
+]}
+]
+}

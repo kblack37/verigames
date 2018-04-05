@@ -1,0 +1,53 @@
+Notes on representing and inferring polymorphism
+
+
+A polymorphic qualifier (@Poly) expresses context-sensitivity:  a routine can have different effects depending on the call site.  The classic example is the identity function:
+  id(x) { return x; }
+
+If it is called on an expression of nullable type, its return value has nullable value, but if it is called on an expression of non-null type, then its return value is known to be non-null.  A type system can express this via polymorphism:  the type of id is "forall T .  T -> T".  That is, for any type you can think of, id can take that type and return it.
+
+This is represented in Java source code by @Poly annotations:
+  @PolyNull Object id(@PolyNull Object x) { return x }
+(For more details, see the Checker Framework manual: file:///homes/gws/mernst/research/types/checker-framework/checkers/manual/manual.html#qualifier-polymorphism)
+
+The game does not explicitly represent polymorphic types.  The player sees only two ball/pipe sizes:  small and large (or narrow and wide).  It would be possible to have three different ball/pipe sizes, with @Poly in between top and bottom, but that requires extra mechanism.
+
+Here is a simpler way, "linked pipes", that represents method polymorphism without any changes to gameplay.
+
+
+XML:
+
+The XML needs to be able to represent any annotation already written on the source code and any any annotation that is desired to be inserted into source code.
+
+The source code annotations indicate, for the method return type, which input parameters it has exactly the same type as.  (There can be multiple annotations on a return type, but let's ignore that for the time being.)
+
+Each board output port (method result, or value that may be modified by the method) has a set of "input-to-output flows".  The "input-to-output flows" is the set of input ports that might flow to it without any change in type.  (More specifically, the set of input ports such that the output might have exactly the same type as the input.)  If anything besides an input port can flow to the output port, then the "input-to-output flows" set is a special top value.
+
+
+
+Gameplay:
+
+No changes to gameplay are required.
+
+Simulation might become faster because instead of fully simulating a subboard, it may be possible to use precomputed "input-to-output flows" information to compute output ball widths.
+
+
+Inference:
+
+Here are two ways to infer the "input-to-output flows".
+
+ * Dynamic inference in the game:
+
+   Adjust the simulation code so that each ball that flows through a method body carries an "input-to-me flow" with the same semantics as the "input-to-output flows".  When two balls merge, union their "input-to-output flows".  When a ball reaches the output port, set the output port's "input-to-output flows" from the ball's "input-to-me flow".
+
+   This information would be stored in the XML file.
+
+   If an output port with a non-empty, non-top "input-to-output flow" set is wide, then the corresponding return type (and the types corresponding to all the input ports) are set to @Poly types.
+
+   Note that this approach recognizes polymorphism that results from a method returning exactly an argument value, or polymorphism that results from calling a method that is already annotated polymorphically.  There are other use cases, but these are a good start.
+
+ * Static inference on the PL side:
+
+   Use an algorithm analogous to the above to compute a conservative static approximation to the "input-to-output flows" for each return type.  (Though static, it might be just as precise as what the game would compute.  Are there situations when it would be more precise?)
+
+   This information could be stored in the XML file when it is given to the game.

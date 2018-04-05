@@ -1,0 +1,1 @@
+Make sure this directory (and the ../scripts directory) has write permissions, and all scripts have execute permissions

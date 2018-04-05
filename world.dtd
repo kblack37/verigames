@@ -1,0 +1,146 @@
+<!ELEMENT world (linked-varIDs,level*)>
+ <!ATTLIST world version (3) #REQUIRED>
+ <!ELEMENT linked-varIDs (varID-set*)>
+  <!ELEMENT varID-set (stamp*,varID*)>
+   <!ATTLIST varID-set id ID #REQUIRED>
+   <!-- refers to a possible varID-set with whose color this edge-set can be
+        stamped with -->
+   <!ELEMENT stamp EMPTY>
+    <!-- stamp ID must refer to a varID-set ID -->
+    <!ATTLIST stamp id IDREF #REQUIRED>
+    <!ATTLIST stamp active (true|false) #REQUIRED>
+   <!ELEMENT varID EMPTY>
+    <!ATTLIST varID id CDATA #REQUIRED>
+ <!ELEMENT level (boards)>
+  <!ATTLIST level name CDATA #REQUIRED>
+  <!ELEMENT boards (board-stub*,board*)>
+   <!ELEMENT board-stub (stub-input,stub-output)>
+    <!ATTLIST board-stub name ID #REQUIRED>
+    <!ELEMENT stub-input (stub-connection*)>
+    <!ELEMENT stub-output (stub-connection*)>
+     <!ELEMENT stub-connection EMPTY>
+      <!ATTLIST stub-connection num CDATA #REQUIRED>
+      <!ATTLIST stub-connection width (wide|narrow) #REQUIRED>
+   <!ELEMENT board (node*,edge*)>
+    <!ATTLIST board name ID #REQUIRED>
+    <!ELEMENT node (input,output,layout?)>
+     <!ATTLIST node kind (INCOMING|OUTGOING|SPLIT|GET|BALL_SIZE_TEST|MERGE|START_SMALL_BALL|START_LARGE_BALL|START_NO_BALL|START_PIPE_DEPENDENT_BALL|END|SUBBOARD|CONNECT) #REQUIRED>
+     <!ATTLIST node id ID #REQUIRED>
+     <!-- the name attribute is required for SUBBOARDs, and meaningless for
+          others -->
+     <!ATTLIST node name IDREF #IMPLIED>
+     <!ELEMENT input (port*)>
+     <!ELEMENT output (port*)>
+      <!ELEMENT port EMPTY>
+       <!-- num can be an arbitrary string, and should probably be changed to
+            reflect this -->
+       <!ATTLIST port num CDATA #REQUIRED>
+       <!ATTLIST port edge IDREF #REQUIRED>
+     <!ELEMENT layout (x,y)>
+      <!ELEMENT x (#PCDATA)>
+      <!ELEMENT y (#PCDATA)>
+    <!ELEMENT edge (from,to,edge-layout?)>
+     <!ATTLIST edge description CDATA #REQUIRED>
+     <!ATTLIST edge variableID CDATA #REQUIRED>
+     <!ATTLIST edge pinch (true|false) #REQUIRED>
+     <!ATTLIST edge width (wide|narrow) #REQUIRED>
+     <!ATTLIST edge editable (true|false) #REQUIRED>
+     <!ATTLIST edge buzzsaw (true|false) #REQUIRED>
+     <!ATTLIST edge id ID #REQUIRED>
+     <!ELEMENT from (noderef)>
+     <!ELEMENT to (noderef)>
+      <!ELEMENT noderef EMPTY>
+       <!ATTLIST noderef id IDREF #REQUIRED>
+       <!ATTLIST noderef port CDATA #REQUIRED>
+     <!ELEMENT edge-layout (point,(point,point,point)*)>
+      <!ELEMENT point (x,y)>
+
+<!--
+TODO:
+
+- make edge description optional
+- move stub boards to world
+
+================================================================================
+
+Requirements not enforced by the DTD:
+
+  - All boards must be well-formed:
+    - There must be an incoming and an outgoing node
+    - Each node must have the correct number of connections for its type (see
+    Intersection class for details)
+    - No node or edge may be connected to a node or edge in another board
+    - No board may contain a cycle
+    - A SUBBOARD type node must have the same number of inputs and outputs as its
+    referent
+    - All nodes that have kind SUBBOARD must have a name attribute (and the name
+    attribute is meaningless for other kinds of node)
+
+  - Linked chutes:
+    - variableIDs that are negative indicate chutes that should not be linked with
+    anything -- as such, no negative variableID should be included in a varID-set.
+    - All linked chutes (chutes with the same positive variable ID, or linked
+    variableIDs) must have the same width and must all be either editable or
+    non-editable
+    - Every variableID listed in the varID sets must be the variableID of at least
+    one edge
+
+  - variableID must be an integer
+
+  - Layout coordinates (x and y) must be reals
+
+================================================================================
+
+Node layout information:
+
+  X and Y coordinates are reals starting at 0. (0,0) is the top left corner.
+
+  Width:
+
+    - MERGE, SPLIT, and NULL_TEST nodes have a width of 2. That is, a node to
+    the right of a MERGE at (0,0) must be at (2,0) or to the right.
+
+    - SUBBOARD nodes have width = max(#incoming edges, #outgoing edges)
+
+    - END nodes have a width of 1
+
+  Height:
+
+    - MERGE, SPLIT, START_XXX_BALL, and SUBNETWORK nodes have a height of 2.
+    That is, a node below a SPLIT at (0,0) must be at (0,2) or below.
+
+    - INCOMING nodes have a height of 1.
+
+    - Nodes connected by an edge with pinch=true must have an extra y
+    coordinate between them.
+
+    - END nodes have a height of 1
+
+================================================================================
+
+Edge layout information:
+
+  Edge layout is given in the form of a list of b-spline control points. The
+  number of control points, x, will always be such that (x = 1 (mod 3)).
+  Equivalently, (x mod 3) = 1, or x = 1 + 3n, where n is any nonnegative
+  integer.
+
+================================================================================
+
+Misc:
+
+  - BALL_SIZE_TEST node:
+
+    - Represents the branching that occurs when the variable represented by
+    the input edge is tested against null (or whatever the "large ball" of a
+    given type system represents).
+
+    - Upon encountering this node, a small ball will roll to the output edge
+    at port "small", which must be the first port, and a large ball will roll
+    to the output edge at port "large".
+
+    - The output edge at port "small" must be narrow, and the output edge at
+    port "large" must be wide.
+
+================================================================================
+-->

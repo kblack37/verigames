@@ -1,0 +1,7 @@
+<project name="prebuild" default="run" basedir=".">
+  <target name="run">
+    <exec dir="." executable="python">
+      <arg line="script/prebuild.py" />
+    </exec>
+  </target>
+</project>

@@ -1,0 +1,168 @@
+{"levels":[
+
+{
+  "id": "001",
+  "qid": 2101,
+  "target_score": 9,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "002",
+  "qid": 2102,
+  "target_score": 9,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "01",
+  "qid": 2001,
+  "target_score": 5,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "004",
+  "qid": 2104,
+  "target_score": 20,
+  "assignments":{
+    "var:4": {"type_value": "type:0"},
+    "var:6": {"type_value": "type:0"},
+    "var:7": {"type_value": "type:0"},
+    "var:10": {"type_value": "type:0"},
+    "var:11": {"type_value": "type:0"}
+  }
+}
+,
+
+{
+  "id": "02",
+  "qid": 2002,
+  "target_score": 6,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000031_00011222",
+  "target_score": 52,
+  "qid": 2003,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000029_00012696",
+  "qid": 2004,
+  "target_score": 53,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000103_00012792",
+  "qid": 2005,
+  "target_score": 162,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000105_00002010",
+  "qid": 2006,
+  "target_score": 170,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000165_00012806",
+  "qid": 2007,
+  "target_score": 277,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000174_00001016",
+  "qid": 2008,
+  "target_score": 310,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000199_00000594",
+  "qid": 2009,
+  "target_score": 319,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000217_00000608",
+  "qid": 2010,
+  "target_score": 390,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000217_00001972",
+  "qid": 2011,
+  "target_score": 348,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000225_00011148",
+  "qid": 2012,
+  "target_score": 368,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000359_00000609",
+  "qid": 2014,
+  "target_score":  570,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000664_00000030",
+  "qid": 2016,
+  "target_score":  1145,
+  "assignments":{
+  }
+}
+,
+
+{
+  "id": "p_000806_00000602",
+  "qid": 2017,
+  "target_score": 1714,
+  "assignments":{
+  }
+}
+]}

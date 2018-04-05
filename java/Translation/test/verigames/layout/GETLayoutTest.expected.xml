@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE world SYSTEM "http://types.cs.washington.edu/verigames/world.dtd">
+<world version="3">
+ <linked-varIDs/>
+ <level name="GetTestLevel">
+  <boards>
+   <board name="GetTestBoard">
+    <node kind="INCOMING" id="n0">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+      <port num="1" edge="e2"/>
+      <port num="2" edge="e3"/>
+      <port num="3" edge="e4"/>
+     </output>
+     <layout>
+      <x>0.0000000000</x>
+      <y>0.0000000000</y>
+     </layout>
+    </node>
+    <node kind="OUTGOING" id="n1">
+     <input>
+      <port num="0" edge="e5"/>
+     </input>
+     <output/>
+     <layout>
+      <x>0.0000000000</x>
+      <y>7.68000</y>
+     </layout>
+    </node>
+    <node kind="GET" id="n2">
+     <input>
+      <port num="0" edge="e1"/>
+      <port num="1" edge="e2"/>
+      <port num="2" edge="e3"/>
+      <port num="3" edge="e4"/>
+     </input>
+     <output>
+      <port num="0" edge="e5"/>
+     </output>
+     <layout>
+      <x>0.0000000000</x>
+      <y>1.95623</y>
+     </layout>
+    </node>
+    <edge description="chute1" variableID="-1" pinch="false" width="narrow" editable="true" id="e1" buzzsaw="false">
+     <from>
+      <noderef id="n0" port="0"/>
+     </from>
+     <to>
+      <noderef id="n2" port="0"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>0.50000</x>
+       <y>0.0000000000</y>
+      </point>
+      <point>
+       <x>0.50000</x>
+       <y>0.95069</y>
+      </point>
+      <point>
+       <x>0.50000</x>
+       <y>1.27219</y>
+      </point>
+      <point>
+       <x>0.50000</x>
+       <y>1.95623</y>
+      </point>
+     </edge-layout>
+    </edge>
+    <edge description="chute2" variableID="-1" pinch="false" width="narrow" editable="true" id="e2" buzzsaw="false">
+     <from>
+      <noderef id="n0" port="1"/>
+     </from>
+     <to>
+      <noderef id="n2" port="1"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>1.50000</x>
+       <y>0.0000000000</y>
+      </point>
+      <point>
+       <x>1.50000</x>
+       <y>0.95069</y>
+      </point>
+      <point>
+       <x>1.50000</x>
+       <y>1.27219</y>
+      </point>
+      <point>
+       <x>1.50000</x>
+       <y>1.95623</y>
+      </point>
+     </edge-layout>
+    </edge>
+    <edge description="chute3" variableID="-1" pinch="false" width="narrow" editable="true" id="e3" buzzsaw="false">
+     <from>
+      <noderef id="n0" port="2"/>
+     </from>
+     <to>
+      <noderef id="n2" port="2"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>2.50000</x>
+       <y>0.0000000000</y>
+      </point>
+      <point>
+       <x>2.50000</x>
+       <y>0.95069</y>
+      </point>
+      <point>
+       <x>2.50000</x>
+       <y>1.27219</y>
+      </point>
+      <point>
+       <x>2.50000</x>
+       <y>1.95623</y>
+      </point>
+     </edge-layout>
+    </edge>
+    <edge description="chute4" variableID="-1" pinch="false" width="narrow" editable="true" id="e4" buzzsaw="false">
+     <from>
+      <noderef id="n0" port="3"/>
+     </from>
+     <to>
+      <noderef id="n2" port="3"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>3.50000</x>
+       <y>0.0000000000</y>
+      </point>
+      <point>
+       <x>3.50000</x>
+       <y>0.95069</y>
+      </point>
+      <point>
+       <x>3.50000</x>
+       <y>1.27219</y>
+      </point>
+      <point>
+       <x>3.50000</x>
+       <y>1.95623</y>
+      </point>
+     </edge-layout>
+    </edge>
+    <edge description="chute5" variableID="-1" pinch="false" width="narrow" editable="true" id="e5" buzzsaw="false">
+     <from>
+      <noderef id="n2" port="0"/>
+     </from>
+     <to>
+      <noderef id="n1" port="0"/>
+     </to>
+     <edge-layout>
+      <point>
+       <x>0.50000</x>
+       <y>3.41623</y>
+      </point>
+      <point>
+       <x>0.50000</x>
+       <y>5.38365</y>
+      </point>
+      <point>
+       <x>0.50000</x>
+       <y>6.11787</y>
+      </point>
+      <point>
+       <x>0.50000</x>
+       <y>7.68000</y>
+      </point>
+     </edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+</world>

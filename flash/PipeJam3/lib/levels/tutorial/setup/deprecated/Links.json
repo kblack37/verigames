@@ -1,0 +1,53 @@
+{
+    "scoring": {
+        "variables": {
+            "type:0": 0, 
+            "type:1": 0
+        }, 
+        "constraints": 100
+    }, 
+    "default": "type:1", 
+    "qid": 3, 
+    "variables": {
+        "var:0": {
+            "default": "type:0", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 1
+            }
+        }, 
+        "var:1": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 0, 
+                "type:1": 1
+            }
+        }, 
+        "var:2": {
+            "default": "type:1", 
+            "score": {
+                "type:0": 1, 
+                "type:1": 0
+            }
+        }
+    }, 
+    "version": "1", 
+    "id": "Links", 
+    "constraints": [
+        {
+            "rhs": "type:1", 
+            "lhs": "var:0", 
+            "constraint": "subtype"
+        }, 
+        {
+            "rhs": "type:1", 
+            "lhs": "var:1", 
+            "constraint": "subtype"
+        }, 
+        {
+            "rhs": "var:2", 
+            "lhs": "type:0", 
+            "constraint": "subtype"
+        }
+    ]
+}

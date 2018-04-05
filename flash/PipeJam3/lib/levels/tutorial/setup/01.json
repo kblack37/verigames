@@ -1,0 +1,21 @@
+
+{
+  "id": "01",
+  "display_name": "Welcome",
+  "qid": 2001,
+  "version": "2",
+  "default": "type:1",
+  "scoring": {
+    "variables": {"type:0": 0, "type:1": 0},
+    "constraints": 1
+  },
+  "variables":{},
+  "constraints":[
+    "var:98019 <= c:74407",
+    "var:98019 <= c:172462",
+    "var:98011 <= c:172547",
+    "var:98011 <= c:74452",
+    "c:177772 <= var:97922",
+    "c:172547 <= var:97922",
+    "c:172462 <= var:97922"]
+}

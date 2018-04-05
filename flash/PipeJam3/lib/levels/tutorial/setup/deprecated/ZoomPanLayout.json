@@ -1,0 +1,29 @@
+{
+    "qid": 7, 
+    "layout": {
+        "vars": {
+            "type_1__var_1": {
+                "y": "40", 
+                "x": "60"
+            }, 
+            "var_1": {
+                "y": "120", 
+                "x": "20"
+            }, 
+            "type_0__var_0": {
+                "y": "49.7", 
+                "x": "40.6"
+            }, 
+            "var_0": {
+                "y": "-2.7", 
+                "x": "-1.9"
+            }
+        }, 
+        "constraints": [
+            "type_1__var_1 -> var_1",
+            "var_0 -> type_0__var_0"
+        ]
+    }, 
+    "id": "ZoomPan", 
+    "tutorial": "zoompan"
+}

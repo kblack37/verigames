@@ -1,0 +1,2 @@
+Error initializing ChukwaClient with list of currently registered adaptors, clearing our local list of adaptors
+

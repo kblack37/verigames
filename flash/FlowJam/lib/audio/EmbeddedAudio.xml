@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<audio swfName="" usePanning="true">
+
+	<!-- SOUND FX -->
+
+	<type name="HighBelt" volume="1.0" previewMuffle="false">
+		<sound name="HighBelt" />
+	</type>
+	
+	<type name="LowBelt" volume="1.0" previewMuffle="false">
+		<sound name="LowBelt" />
+	</type>
+	
+	<type name="MenuButton" volume="0.6" previewMuffle="false">
+		<sound name="MenuButton" />
+	</type>
+	
+	<!-- MUSIC -->
+
+	<type name="MusicNodensFieldSong" volume="1.0" previewMuffle="false">
+		<sound name="MusicNodensFieldSong" />
+	</type>
+	
+</audio>

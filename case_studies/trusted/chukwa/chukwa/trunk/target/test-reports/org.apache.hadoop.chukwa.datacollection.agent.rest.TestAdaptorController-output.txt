@@ -1,0 +1,316 @@
+Nov 16, 2012 12:51:43 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:43 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:43 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:43 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:44 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+adaptorId [adaptor_f1264da7f56c36c8d0ca339056e28bd7]
+
+type [SomeDataType]
+
+params [1000]
+
+startOffset [5555]
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:45 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:46 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:47 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.chukwa.datacollection.agent.rest
+
+Nov 16, 2012 12:51:48 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.chukwa.datacollection.agent.rest.AdaptorController
+
+Nov 16, 2012 12:51:49 PM com.sun.jersey.api.core.ScanningResourceConfig init
+INFO: No provider classes found.
+
+Nov 16, 2012 12:51:49 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.4 09/11/2010 10:30 PM'
+
+adaptorId [adaptor_436af4af21678a692427bab9a6b89c66]
+
+type [SomeDataType]
+
+params []
+
+startOffset [0]
+

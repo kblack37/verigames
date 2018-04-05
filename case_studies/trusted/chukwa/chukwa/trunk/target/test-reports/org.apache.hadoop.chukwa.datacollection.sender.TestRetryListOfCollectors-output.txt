@@ -1,0 +1,20 @@
+host1
+
+host3
+
+host4
+
+host2
+
+host: http://host2:5050/
+
+host: http://host4:5050/
+
+host: http://host5:5052/
+
+host: http://host6:5052/
+
+host: http://host1:5052/
+
+host: http://host3:5052/
+

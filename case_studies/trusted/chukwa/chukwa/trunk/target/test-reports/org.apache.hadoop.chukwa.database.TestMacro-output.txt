@@ -1,0 +1,10 @@
+select from system_metrics_2041_week;
+
+select from system_metrics_476_month;
+
+select from system_metrics_156_quarter;
+
+select from system_metrics_39_year;
+
+select from system_metrics_3_decade;
+

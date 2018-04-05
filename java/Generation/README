@@ -1,0 +1,78 @@
+Game generation library
+=======================
+
+This directory contains the code that describes a type system and how
+that type system is converted into a game.
+
+1. Describing a type system
+
+We describe type systems once, and use that description to either
+check a program for correctness or to infer qualifiers for it.
+
+Directory src/nninf contains the type system description for the
+non-null system.
+It also consists of the qualifiers in directory src/nninf/quals.
+
+The main class is NninfChecker, which implements the new
+InferenceTypeChecker interface, but is otherwise like before.
+
+NninfAnnotatedTypeFactory is the type factory, which is only used in
+type checking mode. This class is basically not used in the nullness
+system.
+
+The description of the type system is in class NninfVisitor.
+This class implements the InferenceVisitor, which provides a set of
+methods that abstract over checking and inferring types.
+For example, instead of checking for a concrete qualifier, the type
+rules are expressed as calls like this:
+
+        mainIsNot(type, nninfchecker.NULLABLE, errMsg, tree);
+
+which enforces, in type checking mode, that type is not nullable, and
+in type inference mode, that the solution found for type is not nullable.
+
+All these classes are written in Java.
+
+
+2. Converting a type system into a game
+
+Class NninfGameSolver converts the constraints from a type system into
+a Pipe Jam game.
+This class is written in Scala, but you should be able to equally use
+Java instead.
+
+This class extends an abstract base class GameSolver, that provides
+the basic structure of a game solver.
+Once we have a clearer idea what the commonality between different
+type systems is, we can move more pieces here.
+Look through the NninfGameSolver to see how a board is created and
+lets see what should be moved higher.
+
+
+3. Usage
+
+It is currently probably easiest to simply put the
+/homes/abstract/bdwalker/www/java/verigames.jar
+jar file on your classpath.
+This jar contains the whole JSR 308 compiler, the Checker Framework,
+the Inference Framework, etc.
+You do not need to use Scala to use this, so if you prefer, stick with
+Java.
+
+For type checking mode, invoke the XXXChecker class as usual.
+For type inference mode, see file
+
+website/scripts/verigames.sh
+
+One basically provides the type system description and solver as
+command-line parameters to a tool.
+
+
+4. Writing your own checker
+
+As a first step, provide the description of the type system, that is,
+decide what qualifiers to use, what the type rules are, and what
+defaults should be used.
+
+Then, think how these constraints are converted into a game and
+implement a subclass of GameSolver.

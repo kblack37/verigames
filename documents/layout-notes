@@ -1,0 +1,37 @@
+These notes are relevant to Pipe Jam and Traffic Jam (but not to Flow Jam).
+
+--------------------------------------------------------------------------------
+
+Graphviz has several layout tools. One of them (the one I believe to be best
+suited to our needs) -- "dot" -- draws hierarchical graphs, with parent nodes
+strictly above child nodes. 
+
+The row of nodes in which a nodes lies is its "rank."
+This is roughly how rank works:
+The top row of nodes is rank 0 -- these nodes have no parents.
+Rank 1 consists only of children of rank 0
+Rank 2 consists only of children of ranks 0 and 1
+etc.
+
+--------------------------------------------------------------------------------
+
+The Flash game uses coordinates in a different format than Graphviz:
+
+The game uses decimal coordinates with a scale such that most nodes have
+roughly single-digit dimensions.
+
+Graphviz uses both inches and points. Points are typographical points, and
+there are 72 in an inch.
+
+I'm scaling the Graphviz graph so that 1 game unit = 1 inch.
+
+So, in summary:
+
+1 game unit = 1 inch = 72 points.
+
+Graphviz expresses position in points. The bottom left is the origin, with X
+and Y values increasing to the right and up, respectively. The position of a
+node refers to its center.
+
+The game expresses position in game units. The top left is the origin, with X
+and Y values increasing to the right and down, respectively.

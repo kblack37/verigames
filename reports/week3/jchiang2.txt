@@ -1,0 +1,21 @@
+# Individual Report (Jake Chiang): Week 3 #
+
+
+## Progress ##
+This week was devoted to establishing a development environment for working on
+the project. I downloaded the core existing codebase (which was now cloned to
+the team repository) and installed Haxe to begin assisting in fixing errors and
+cleaning up the auto-generated ActionScript to Haxe port. I also began reading
+through the games' codebases and Haxe documentation to learn the language.
+
+I also looked into setting up Flash so that I could play the existing
+ActionScript version of the games, but ran into difficulties since it is
+uninstalled from my system and isn't supported in many ways for my current OS
+version.
+
+
+## Goals ##
+- Set up VM to run Flash, or find supported version
+- Playtest PipeJam/FlowJam
+- Resolve compiler errors for Haxe port of the *Jam games.
+

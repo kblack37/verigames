@@ -18,7 +18,7 @@ class ToolTippableSprite extends Sprite
     public function new()
     {
         super();
-        if (getToolTipEvent())
+        if (getToolTipEvent() != null)
         {
             addEventListener(TouchEvent.TOUCH, onTouch);
         }
@@ -26,7 +26,7 @@ class ToolTippableSprite extends Sprite
     
     private function onTouch(event : TouchEvent) : Void
     {
-        if (event.getTouches(this, TouchPhase.HOVER).length)
+        if (event.getTouches(this, TouchPhase.HOVER).length<0)
         {
             var touch : Touch = event.getTouches(this, TouchPhase.HOVER)[0];
             m_hoverPointGlobal = new Point(touch.globalX, touch.globalY);

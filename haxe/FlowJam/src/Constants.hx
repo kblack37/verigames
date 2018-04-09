@@ -4,8 +4,8 @@ class Constants
     public static inline var GameWidth : Int = 480;
     public static inline var GameHeight : Int = 320;
     
-    public static var CenterX : Int = GameWidth / 2;
-    public static var CenterY : Int = GameHeight / 2;
+    public static var CenterX : Int = Std.int(GameWidth / 2);
+    public static var CenterY : Int = Std.int(GameHeight / 2);
     
     /** [Game Sizes] = GAME_SCALE * [XML Layout Sizes] */
     public static inline var GAME_SCALE : Float = 10.0;

@@ -9,7 +9,7 @@ import assets.AssetInterface;
 import assets.AssetsFont;
 import constraints.Constraint;
 import constraints.ConstraintVar;
-import display.BasicButton;
+import display.SimpleButton;
 import display.MapHideButton;
 import display.MapShowButton;
 import events.MiniMapEvent;
@@ -61,8 +61,8 @@ class MiniMap extends BaseComponent
     private var errorLayer : Sprite;
     private var viewRectLayer : Sprite;
     private var m_clickPane : Quad;  // clickable area  
-    private var m_showButton : BasicButton;
-    private var m_hideButton : BasicButton;
+    private var m_showButton : SimpleButton;
+    private var m_hideButton : SimpleButton;
     private var m_hidden : Bool = true;
     private var m_hiding : Bool = false;  // true if animating up to hide  
     private var m_showing : Bool = false;  // true if animating down to show  

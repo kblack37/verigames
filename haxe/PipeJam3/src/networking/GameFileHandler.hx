@@ -10,8 +10,8 @@ import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
 import flash.utils.Timer;
 import server.MTurkAPI;
-import deng.fzip.FZip;
-import deng.fzip.FZipFile;
+//import deng.fzip.FZip;
+//import deng.fzip.FZipFile;
 import events.NavigationEvent;
 import scenes.Scene;
 import scenes.game.PipeJamGameScene;
@@ -257,8 +257,8 @@ class GameFileHandler
             return levelInfoVector[currentIndex];
         }
         else if (PipeJam3.RELEASE_BUILD == false)
-        
-        //this is for local debugguing, non-release build{
+        {
+        //this is for local debugguing, non-release build
             
             currentIndex = XMath.randomInt(0, levelInfoVector.length - 1);
             return levelInfoVector[currentIndex];
@@ -307,8 +307,8 @@ class GameFileHandler
             m_id = as3hx.Compat.parseInt(PipeJamGame.levelInfo.id);
         }
         if (m_id < 1000)
-        
-        // in the tutorial if a low level id{
+        {
+        // in the tutorial if a low level id
             
             {
                 PipeJamGameScene.inTutorial = true;
@@ -316,8 +316,8 @@ class GameFileHandler
             }
         }
         if (PipeJamGameScene.DEBUG_PLAY_WORLD_ZIP && !PipeJam3.RELEASE_BUILD)
-        
-        //load the zip file from it's location{
+        {
+        //load the zip file from it's location
             
             loadType = USE_URL;
             gameFileHandler = new GameFileHandler(worldFileLoadedCallback);
@@ -345,8 +345,8 @@ class GameFileHandler
             
             
             if (PipeJamGame.levelInfo && PipeJamGame.levelInfo.assignmentsID != null && !PipeJamGameScene.inTutorial)
-            
-            //load from MongoDB{
+            {
+            //load from MongoDB
                 
                 {
                     loadType = USE_DATABASE;
@@ -374,8 +374,8 @@ class GameFileHandler
             else if (fileName != null && fileName.length > 0)
             {
                 if (fileName.indexOf("cnf") == -1)
-                
-                //check for which form we are loading, try loading one, and if it works, continue...{
+                {
+                //check for which form we are loading, try loading one, and if it works, continue...
                     
                     loadFile(worldFileLoadedCallback, loadType, fileName + ".zip");
                     loadFile(layoutFileLoadedCallback, loadType, fileName + "Layout.zip");
@@ -533,7 +533,7 @@ class GameFileHandler
         if (message.length > 0)
         {
             var obj : Dynamic = haxe.Json.parse(message);
-            for (entry/* AS3HX WARNING could not determine type for var: entry exp: EIdent(obj) type: Dynamic */ in obj)
+            for (entry in obj)
             {
                 vec.push(entry);
             }
@@ -557,9 +557,9 @@ class GameFileHandler
         {
             var message : String = Std.string(e.target.data);
             var obj : Dynamic = haxe.Json.parse(message);
-            for (entry/* AS3HX WARNING could not determine type for var: entry exp: EIdent(obj) type: Dynamic */ in obj)
-            
-            //swiitching to using actual Mongo objects makes the id field appear different. Fix that...{
+            for (entry in obj)
+            {
+            //swiitching to using actual Mongo objects makes the id field appear different. Fix that...
                 
                 if (!entry.exists("id"))
                 {
@@ -697,8 +697,8 @@ class GameFileHandler
                     solutionInfo.playerID = PlayerValidation.playerID;
                     solutionInfo.username = PlayerValidation.userNames[PlayerValidation.playerID];
                 }
-                Reflect.deleteField(solutionInfo, "id")  //need to remove this or else successive saves won't work  ;
-                Reflect.deleteField(solutionInfo, "_id")  //need to remove this or else successive saves won't work  ;
+                Reflect.deleteField(solutionInfo, "id");  //need to remove this or else successive saves won't work
+                Reflect.deleteField(solutionInfo, "_id");  //need to remove this or else successive saves won't work
                 PipeJamGame.levelInfo.revision = solutionInfo.revision;
                 //current time in seconds
                 var currentDate : Date = Date.now();
@@ -710,8 +710,8 @@ class GameFileHandler
                 data_id = haxe.Json.stringify(solutionInfo);
                 solutionInfo.highScores = savedHighScoreArray;
                 if (data.length > 75000)
-                
-                //just a guess as to what doesn't pass well between php and python on the server. 130K doesn't work{
+                {
+                //just a guess as to what doesn't pass well between php and python on the server. 130K doesn't work
                     
                     url = NetworkConnection.productionInterop + "?function=submitLevelPOST2&file=" + Std.string(Math.round(Math.random() * 10000)) + "&data_id='" + data_id + "'";
                 }
@@ -737,7 +737,7 @@ class GameFileHandler
                 var playerID : String = PlayerValidation.playerID;
                 //report to website scoreDifference + starting count
                 var total : Int = as3hx.Compat.parseInt(scoreDifference);
-                for (person/* AS3HX WARNING could not determine type for var: person exp: EField(EField(EIdent(PipeJamGame),levelInfo),highScores) type: null */ in PipeJamGame.levelInfo.highScores)
+                for (person in PipeJamGame.levelInfo.highScores)
                 {
                     if (person[1] == PlayerValidation.playerID)
                     {

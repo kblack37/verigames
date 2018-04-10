@@ -18,7 +18,7 @@ import utils.XSprite;
 
 @:meta(Event(name="hoverOver",type="starling.events.Event"))
 
-class BasicButton extends ToolTippableSprite
+class SimpleButton extends ToolTippableSprite
 {
     public var enabled(get, set) : Bool;
     public var data(get, set) : Dynamic;

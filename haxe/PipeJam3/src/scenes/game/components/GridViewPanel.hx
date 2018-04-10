@@ -10,7 +10,7 @@ import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.system.System;
-import flash.ui.ContextMenu;
+//import flash.ui.ContextMenu;
 import flash.ui.Keyboard;
 import flash.utils.ByteArray;
 import flash.utils.Dictionary;
@@ -30,7 +30,7 @@ import events.PropertyModeChangeEvent;
 import events.SelectionEvent;
 import events.TutorialEvent;
 import events.UndoEvent;
-import feathers.display.TiledImage;
+//import feathers.display.TiledImage;
 import hints.HintController;
 import networking.TutorialController;
 import particle.FanfareParticleSystem;
@@ -461,8 +461,8 @@ class GridViewPanel extends BaseComponent
         }
         
         if (endingMoveMode)
-        
-        //force gc after dragging{
+        {
+        //force gc after dragging
             
             {
                 System.gc();
@@ -688,8 +688,8 @@ class GridViewPanel extends BaseComponent
         checkPaintBrushVisibility();
         
         if (buttonHit == true)
-        
-        //next level button bleeds its hit into the system, so need to exit{
+        {
+        //next level button bleeds its hit into the system, so need to exit
             
             buttonHit = false;
             return;
@@ -737,12 +737,12 @@ class GridViewPanel extends BaseComponent
             if (!event.shiftKey)
             {
                 if (m_currentLevel != null && m_currentLevel.getAutoSolveAllowed())
-                
-                // Only allow painting/selecting if autosolve is enabled{
+                {
+                // Only allow painting/selecting if autosolve is enabled
                     
                     if (m_currentMode == MODE_HOVER && isBegan)
-                    
-                    //if (currentMode == MODE_MOVING) endMoveMode();{
+                    {
+                    //if (currentMode == MODE_MOVING) endMoveMode();
                         
                         setMode(MODE_SELECTING);
                         m_startingTouchPoint = touches[0].getPreviousLocation(this);
@@ -758,8 +758,8 @@ class GridViewPanel extends BaseComponent
             else if (getPanZoomAllowed())
             {
                 if (m_currentMode == MODE_HOVER && isBegan)
-                
-                // Don't allow user to go straight from painting to moving with shift, if{
+                {
+                // Don't allow user to go straight from painting to moving with shift, if
                     
                     //if(currentMode != MODE_MOVING)
                     beginMoveMode();
@@ -790,8 +790,8 @@ class GridViewPanel extends BaseComponent
         {
             var location : Point;
             if (touch != null)
-            
-            //currentMode = HOVER_MODE;{
+            {
+            //currentMode = HOVER_MODE;
                 
                 location = touch.getLocation(this.stage);
             }
@@ -967,8 +967,8 @@ class GridViewPanel extends BaseComponent
             m_gridContainer.addChild(gridImage);
         }
         if (!isGridUp())
-        
-        // if not showing grid, show now and start the timer{
+        {
+        // if not showing grid, show now and start the timer
             
             {
                 var viewSpace : Rectangle = getViewInContentSpace();
@@ -1582,8 +1582,8 @@ class GridViewPanel extends BaseComponent
             m_fanfareLayer.addChild(m_fanfareTextContainer);
             
             if (PipeJamGameScene.inTutorial)
-            
-            // For tutorial, move text and button off to the side{
+            {
+            // For tutorial, move text and button off to the side
                 
                 var origX : Float = m_fanfareTextContainer.x;
                 var origY : Float = m_fanfareTextContainer.y;

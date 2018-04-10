@@ -3,7 +3,7 @@ package dialogs;
 import haxe.Constraints.Function;
 import assets.AssetInterface;
 import assets.AssetsFont;
-import display.BasicButton;
+import display.SimpleButton;
 import display.NineSliceButton;
 import flash.geom.Rectangle;
 import scenes.BaseComponent;
@@ -41,13 +41,13 @@ class SimpleAlertDialog extends BaseDialog
         {
             var fbLogoTexture : Texture = AssetInterface.getTexture("Game", "FacebookLogoWhiteClass");
             var fbLogoImage : Image = new Image(fbLogoTexture);
-            var fbButton : BasicButton = new BasicButton(fbLogoImage, fbLogoImage, fbLogoImage);
+            var fbButton : SimpleButton = new SimpleButton(fbLogoImage, fbLogoImage, fbLogoImage);
             fbButton.width = fbButton.height = _height / 4.0;
             fbButton.useHandCursor = true;
             fbButton.addEventListener(Event.TRIGGERED, onClickFacebookShareButton);
             var twitterLogoTexture : Texture = AssetInterface.getTexture("Game", "TwitterLogoWhiteClass");
             var twitterLogoImage : Image = new Image(twitterLogoTexture);
-            var twitterButton : BasicButton = new BasicButton(twitterLogoImage, twitterLogoImage, twitterLogoImage);
+            var twitterButton : SimpleButton = new SimpleButton(twitterLogoImage, twitterLogoImage, twitterLogoImage);
             twitterButton.width = twitterButton.height = _height / 3.0;
             var X_PAD : Float = (_width - fbButton.width - twitterButton.width) / 3.0;
             fbButton.x = background.x + X_PAD;

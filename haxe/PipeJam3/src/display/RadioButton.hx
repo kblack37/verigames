@@ -7,7 +7,7 @@ import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 
-class RadioButton extends BasicButton
+class RadioButton extends SimpleButton
 {
     private var mIsDown : Bool = false;
     
@@ -53,8 +53,8 @@ class RadioButton extends BasicButton
             }
         }
         else if (touch.phase == TouchPhase.BEGAN)
-        
-        //if down, leave down, else flip{
+        {
+        //if down, leave down, else flip
             
             if (!mIsDown)
             {

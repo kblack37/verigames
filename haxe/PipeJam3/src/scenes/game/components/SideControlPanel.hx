@@ -9,7 +9,7 @@ import starling.display.DisplayObject;
 import utils.XMath;
 import assets.AssetInterface;
 import assets.AssetsFont;
-import display.BasicButton;
+import display.SimpleButton;
 import display.FullScreenButton;
 import display.NineSliceButton;
 import display.NineSliceToggleButton;
@@ -53,9 +53,9 @@ class SideControlPanel extends BaseComponent
     private var scoreImageCenter : Point;
     
     /** Navigation buttons */
-    private var m_zoomInButton : BasicButton;
-    private var m_zoomOutButton : BasicButton;
-    private var m_fullScreenButton : BasicButton;
+    private var m_zoomInButton : SimpleButton;
+    private var m_zoomOutButton : SimpleButton;
+    private var m_fullScreenButton : SimpleButton;
     
     private var m_solver1Brush : NineSliceToggleButton;
     private var m_solver2Brush : NineSliceToggleButton;

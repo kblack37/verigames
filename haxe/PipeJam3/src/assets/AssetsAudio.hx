@@ -27,9 +27,9 @@ private static var MenuButtonClass : Class<Dynamic>;
 private static var MusicNodensFieldSongClass : Class<Dynamic>;
     public static inline var MUSIC_FIELD_SONG : String = "MusicNodensFieldSong";
     
-    public static function getEmbeddedAudioXML() : FastXML
+    public static function getEmbeddedAudioXML() : Xml
     {
-        return FastXML.parse(Type.createInstance(XMLEmbeddedAudio, []));
+        return Xml.parse(Type.createInstance(XMLEmbeddedAudio, []));
     }
     
     public static function getSoundResource(soundName : String) : Sound

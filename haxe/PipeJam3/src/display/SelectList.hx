@@ -46,7 +46,7 @@ class SelectList extends BaseComponent
     
     private var buttonPane : BaseComponent;
     private var buttonPaneArray : Array<Dynamic>;
-    public var currentSelection : BasicButton;
+    public var currentSelection : SimpleButton;
     
     public function new(_width : Float, _height : Float)
     {
@@ -368,14 +368,14 @@ class SelectList extends BaseComponent
                 label = objArray[ii].display_name;
             }
             var labelSz : Int = 12;
-            var newButton : BasicButton;
+            var newButton : SimpleButton;
             
             if (objArray[ii].unlocked)
             {
                 var upstate : DisplayObject = makeDocState(label, labelSz, "DocumentIcon", "DocumentBackground", "DeleteButton", deleteCallback);
                 var downstate : DisplayObject = makeDocState(label, labelSz, "DocumentIconClick", "DocumentBackgroundClick", "DeleteButtonClick", deleteCallback);
                 var overstate : DisplayObject = makeDocState(label, labelSz, "DocumentIconMouseover", "DocumentBackgroundMouseover", "DeleteButtonMouseover", deleteCallback);
-                newButton = new BasicButton(upstate, overstate, downstate);
+                newButton = new SimpleButton(upstate, overstate, downstate);
                 newButton.data = objArray[ii];
                 
                 if (objArray[ii].checked)
@@ -389,7 +389,7 @@ class SelectList extends BaseComponent
             else
             {
                 var lockstate : DisplayObject = makeDocState(label, labelSz, "DocumentIconLocked", "DocumentBackgroundLocked");
-                newButton = new BasicButton(lockstate, lockstate, lockstate);
+                newButton = new SimpleButton(lockstate, lockstate, lockstate);
                 newButton.enabled = false;
             }
             
@@ -404,7 +404,7 @@ class SelectList extends BaseComponent
         currentSelection = buttonPaneArray[0];
         if (currentSelection != null)
         {
-            currentSelection.setStatePosition(BasicButton.DOWN_STATE);
+            currentSelection.setStatePosition(SimpleButton.DOWN_STATE);
         }
         
         if (buttonPane.height < initialHeight)
@@ -421,10 +421,10 @@ class SelectList extends BaseComponent
     {
         if (currentSelection != event.target)
         {
-            currentSelection.setStatePosition(BasicButton.UP_STATE);
+            currentSelection.setStatePosition(SimpleButton.UP_STATE);
         }
-        currentSelection = try cast(event.target, BasicButton) catch(e:Dynamic) null;
-        currentSelection.setStatePosition(BasicButton.DOWN_STATE);
+        currentSelection = try cast(event.target, SimpleButton) catch(e:Dynamic) null;
+        currentSelection.setStatePosition(SimpleButton.DOWN_STATE);
         dispatchEventWith(Event.TRIGGERED);
     }
 }

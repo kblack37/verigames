@@ -67,8 +67,8 @@ class NodeSkin extends Sprite implements INodeProps
             nextSkin = availableGameNodeSkins.pop();
         }
         else if (false)
-        
-        // attempt limiting the number of skins{
+        {
+        // attempt limiting the number of skins
             
             {
                 var attempts : Int = 0;

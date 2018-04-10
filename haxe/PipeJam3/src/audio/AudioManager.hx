@@ -2,36 +2,36 @@ package audio;
 
 import haxe.Constraints.Function;
 import assets.AssetsAudio;
-import cgs.audio.Audio;
+//import cgs.audio.Audio;
 import flash.events.Event;
 import flash.net.URLLoader;
 import flash.net.URLRequest;
 import flash.utils.ByteArray;
-import display.BasicButton;
+import display.SimpleButton;
 import starling.events.Event;
 
 class AudioManager
 {
-    public var musicButton(get, never) : BasicButton;
-    public var sfxButton(get, never) : BasicButton;
-    public var allAudioButton(get, never) : BasicButton;
+    public var musicButton(get, never) : SimpleButton;
+    public var sfxButton(get, never) : SimpleButton;
+    public var allAudioButton(get, never) : SimpleButton;
 
     /** The cgs common audio class instance for playing all audio */
-    private var m_audioDriver : Audio = new Audio();
+    //private var m_audioDriver : Audio = new Audio();
     
     /** Audio is loading. */
     private var m_audioLoaded : Bool = false;
     
     /** Button for user to turn music on/off */
-    private var m_musicButton : BasicButton;
+    private var m_musicButton : SimpleButton;
     private var m_musicCallback : Function;
     
     /** Button for user to turn sound fx on/off */
-    private var m_sfxButton : BasicButton;
+    private var m_sfxButton : SimpleButton;
     private var m_sfxCallback : Function;
     
     /** Button for user to turn all sounds off (sfx + musix) */
-    private var m_audioButton : BasicButton;
+    private var m_audioButton : SimpleButton;
     private var m_audioCallback : Function;
     private var m_currentMusic : String = "";
     
@@ -65,21 +65,21 @@ class AudioManager
         return m_audioLoaded;
     }
     
-    public function audioDriver() : Audio
-    {
-        return m_audioDriver;
-    }
+    //public function audioDriver() : Audio
+    //{
+        //return m_audioDriver;
+    //}
     
     public function reset() : Void
     {
         playMusic("");
-        m_audioDriver.reset();
+        //m_audioDriver.reset();
     }
     
     public function playMusic(music : String) : Void
     {
         m_currentMusic = music;
-        m_audioDriver.playMusic(m_currentMusic);
+        //m_audioDriver.playMusic(m_currentMusic);
     }
     
     private function loadAudioFromEmbedded() : Void
@@ -88,16 +88,16 @@ class AudioManager
         loadFromXML(audioXML);
     }
     
-    private function loadFromXML(xml : FastXML) : Void
+    private function loadFromXML(xml : Xml) : Void
     {
-        var xmlVec : Array<FastXML> = new Array<FastXML>();
-        xmlVec.push(new FastXML(xml));
-        m_audioDriver.init(xmlVec, new AudioResource());
-        m_audioDriver.globalVolume = ((PipeJam3.ASSET_SUFFIX == "Turk")) ? 0 : 0.3;
+        var xmlVec : Array<Xml> = new Array<Xml>();
+        xmlVec.push(xml);
+        //m_audioDriver.init(xmlVec, new AudioResource());
+        //m_audioDriver.globalVolume = ((PipeJam3.ASSET_SUFFIX == "Turk")) ? 0 : 0.3;
         m_audioLoaded = true;
     }
     
-    public function setMusicButton(musicButton : BasicButton, musicCallback : Function) : Void
+    public function setMusicButton(musicButton : SimpleButton, musicCallback : Function) : Void
     {
         m_musicButton = musicButton;
         m_musicButton.addEventListener(starling.events.Event.TRIGGERED, onMusicClick);
@@ -106,7 +106,7 @@ class AudioManager
         updateMusicState();
     }
     
-    private function get_musicButton() : BasicButton
+    private function get_musicButton() : SimpleButton
     {
         return m_musicButton;
     }
@@ -126,7 +126,7 @@ class AudioManager
         }
     }
     
-    public function setSfxButton(sfxButton : BasicButton, sfxCallback : Function) : Void
+    public function setSfxButton(sfxButton : SimpleButton, sfxCallback : Function) : Void
     {
         m_sfxButton = sfxButton;
         m_sfxButton.addEventListener(starling.events.Event.TRIGGERED, onSfxClick);
@@ -135,7 +135,7 @@ class AudioManager
         updateSfxState();
     }
     
-    private function get_sfxButton() : BasicButton
+    private function get_sfxButton() : SimpleButton
     {
         return m_sfxButton;
     }
@@ -155,7 +155,7 @@ class AudioManager
         }
     }
     
-    public function setAllAudioButton(audioButton : BasicButton, audioCallback : Function) : Void
+    public function setAllAudioButton(audioButton : SimpleButton, audioCallback : Function) : Void
     {
         m_audioButton = audioButton;
         m_audioButton.addEventListener(starling.events.Event.TRIGGERED, onAllAudioClick);
@@ -164,7 +164,7 @@ class AudioManager
         updateAllAudioState();
     }
     
-    private function get_allAudioButton() : BasicButton
+    private function get_allAudioButton() : SimpleButton
     {
         return m_audioButton;
     }

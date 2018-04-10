@@ -1,17 +1,15 @@
 package utils;
 
-import flash.utils.Dictionary;
-
 class PropDictionary
 {
     public static inline var PROP_NARROW : String = "NARROW";
     public static inline var PROP_KEYFOR_PREFIX : String = "KEYFOR_";
     
-    private var m_props : Dictionary;
+    private var m_props : Dynamic;
     
     public function new()
     {
-        m_props = new Dictionary();
+        m_props = { };
     }
     
     public function setProp(prop : String, val : Bool) : Void
@@ -22,8 +20,7 @@ class PropDictionary
         }
         else
         {
-            This is an intentional compilation error. See the README for handling the delete keyword
-            delete m_props[prop];
+			m_props.remove(prop);
         }
     }
     
@@ -43,8 +40,7 @@ class PropDictionary
         }
         else if (Reflect.field(m_props, prop) != null)
         {
-            This is an intentional compilation error. See the README for handling the delete keyword
-            delete m_props[prop];
+			m_props.remove(prop);
             return true;
         }
         else

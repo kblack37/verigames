@@ -131,8 +131,8 @@ class NineSliceButton extends ToolTippableSprite
             mIsDown = false;
         }
         else if (touch.phase == TouchPhase.MOVED && mIsDown)
-        
-        // reset button when user dragged too far away after pushing{
+        {
+        // reset button when user dragged too far away after pushing
             
             var buttonRect : Rectangle = getBounds(stage);
             if (touch.globalX < buttonRect.x - MAX_DRAG_DIST ||

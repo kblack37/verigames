@@ -20,7 +20,7 @@ class FanfareParticleSystem extends Sprite
     private static var FanfareParticle : Class<Dynamic>;
     
     private static var fanfareInited : Bool = false;
-    private static var fanfareXML : FastXML;
+    private static var fanfareXML : Xml;
     private static var fanfareTexture : Texture;
     private var mParticleSystem : PDParticleSystem;
     
@@ -30,7 +30,7 @@ class FanfareParticleSystem extends Sprite
         
         if (!fanfareInited)
         {
-            fanfareXML = FastXML.parse(Type.createInstance(FanfareConfig, []));
+            fanfareXML = Xml.parse(Type.createInstance(FanfareConfig, []));
             fanfareTexture = Texture.fromBitmap(Type.createInstance(FanfareParticle, []));
         }
         

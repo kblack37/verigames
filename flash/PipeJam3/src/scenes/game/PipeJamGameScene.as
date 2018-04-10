@@ -22,12 +22,11 @@ package scenes.game
 		
 		//takes a partial path to the files, using the base file name. -.json, -Layout.json and -Constraints.json will be assumed
 		//we could obviously change it back, but this is the standard use case
-		static public var demoArray:Array = new Array(
-		"../SampleWorlds/p_000108_v246839"//p_000267_00011256" //L1_V4"//p_002186_00001014"
-			
-		);
+		static public var demoArray:Array = new Array("../SampleWorlds/p_000108_v246839");
+		//p_000267_00011256" //L1_V4"//p_002186_00001014");
 		
-		static public const DEBUG_PLAY_WORLD_ZIP:String = "";// "../lib/levels/bonus/bonus.zip";
+		static public const DEBUG_PLAY_WORLD_ZIP:String = "";
+		// "../lib/levels/bonus/bonus.zip"
 				
 		static public var inTutorial:Boolean = false;
 		static public var inDemo:Boolean = false;
@@ -47,7 +46,7 @@ package scenes.game
 		/** Start button image */
 		protected var start_button:Button;
 		private var active_world:World;
-		private var m_worldGraphDict:Dictionary
+		private var m_worldGraphDict:Dictionary;
 		
 		public static var startLoadTime:Number;
 		

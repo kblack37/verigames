@@ -3,7 +3,7 @@ package display;
 import starling.display.DisplayObject;
 import starling.display.Sprite;
 
-class ImageStateButton extends BasicButton
+class ImageStateButton extends SimpleButton
 {
     private var m_stateCount : Int;
     private var m_ups : Array<DisplayObject>;

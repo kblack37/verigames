@@ -1,0 +1,5 @@
+No prior week
+
+This week I have gotten my development environment up and running and started to familiarize myself with haxe and started working on the port of flowjam into haxe.
+
+My plans for the following week are to continue to learn haxe and work on the ports. I want to have the ports moslty completed by the end of next week.

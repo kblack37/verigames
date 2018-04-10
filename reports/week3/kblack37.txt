@@ -1,0 +1,15 @@
+No previous week goals
+
+This week I cloned the existing PipeJam/FlowJam code from the
+given repository and ran it through the as3hx tool to do most
+of the work of updating the code, besides the jobs of fixing
+the inevitable errors of that program and then finding replacements
+for dependences that haven't been updated to work with Haxe. I then
+set up the github repository with this initial code and posted up a
+guide on how to install Haxe and its corresponding environment.
+
+In the next week, I plan to work in the code base to fix errors and,
+since I've done exactly this kind of work before, help my team members
+whenever they're stuck on an issue. We'll also make note to where 
+external dependencies are now missing and need to be replaced. The goal
+is to, within 2 weeks, have game at least running.

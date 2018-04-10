@@ -22,8 +22,7 @@ class PropDictionary
         }
         else
         {
-            This is an intentional compilation error. See the README for handling the delete keyword
-            delete m_props[prop];
+             m_props[prop]=null;
         }
     }
     
@@ -43,8 +42,7 @@ class PropDictionary
         }
         else if (Reflect.field(m_props, prop) != null)
         {
-            This is an intentional compilation error. See the README for handling the delete keyword
-            delete m_props[prop];
+            m_props[prop]=null;
             return true;
         }
         else

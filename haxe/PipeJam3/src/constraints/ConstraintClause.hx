@@ -20,8 +20,8 @@ class ConstraintClause extends ConstraintSide
         {
             thisConstr = lhsConstraints[i];
             if (Std.is(thisConstr.rhs, ConstraintVar))
-            
-            // If rhs, true if wide{
+            {
+            // If rhs, true if wide
                 
                 if (thisConstr.id == varIdChanged && !newPropValue)
                 {
@@ -41,8 +41,8 @@ class ConstraintClause extends ConstraintSide
         {
             thisConstr = rhsConstraints[i];
             if (Std.is(thisConstr.lhs, ConstraintVar))
-            
-            // If lhs, true if narrow{
+            {
+            // If lhs, true if narrow
                 
                 if (thisConstr.id == varIdChanged && newPropValue)
                 {

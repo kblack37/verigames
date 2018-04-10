@@ -1,4 +1,3 @@
-import com.spikything.utils.MouseWheelTrap;
 import server.MTurkAPI;
 import flash.display.Sprite;
 import flash.display.StageAlign;
@@ -9,7 +8,7 @@ import flash.geom.Rectangle;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import assets.AssetsFont;
-import cgs.server.logging.data.QuestData;
+//import cgs.server.logging.data.QuestData;
 import dialogs.SimpleAlertDialog;
 import events.MenuEvent;
 import events.NavigationEvent;

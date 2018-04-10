@@ -76,10 +76,9 @@ class NetworkConnection
         }
         else
         {
-            if (request != null && request.indexOf("&") != -1)
-            
-            //IE caches all requests, so things don't update properly without this{
-                
+            if (request != null && request.indexOf("&") != -1) 
+			{
+				//IE caches all requests, so things don't update properly without this
                 rand = "&rand=" + Std.string(Math.round(Math.random() * 1000));
             }
             

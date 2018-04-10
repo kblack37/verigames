@@ -105,7 +105,7 @@ class ConstraintGraph extends EventDispatcher
             varChanged.setProp(propChanged, newPropValue);
             var newBonus : Int = varChanged.scoringConfig.getScoringValue(varChanged.getValue().verboseStrVal);
             var newConstraintPoints : Int = 0;
-            for (constraint/* AS3HX WARNING could not determine type for var: constraint exp: EIdent(currentConstraints) type: Dictionary */ in currentConstraints)
+            for (constraint in currentConstraints)
             {
                 if (constraint.lhs.id.indexOf("c") != -1)
                 {
@@ -141,8 +141,8 @@ class ConstraintGraph extends EventDispatcher
             //				}
             var scoredConstraints : Dictionary = new Dictionary();
             for (constraintId in Reflect.fields(constraintsDict))
-            
-            // TODO: we are recalculating each clause for every edge, need only traverse clauses once{
+            {
+            // TODO: we are recalculating each clause for every edge, need only traverse clauses once
                 
                 //old style - scoring per constraint
                 //new style - scoring per satisfied clause (might be multiple unsatisfied constraints per clause, but one satisfied one is enough)
@@ -159,8 +159,8 @@ class ConstraintGraph extends EventDispatcher
                         clauseID = thisConstr.rhs.id;
                     }
                     if (constraint.isClauseSatisfied(null, false))
-                    
-                    //get clauseID{
+                    {
+                    //get clauseID
                         
                         if (Reflect.field(newSatisfiedConstraints, clauseID) == null)
                         {
@@ -173,8 +173,7 @@ class ConstraintGraph extends EventDispatcher
                             {
                                 Reflect.setField(newSatisfiedConstraints, clauseID, thisConstr);
                                 Reflect.setField(m_SatisfiedConstraints, clauseID, thisConstr);
-                                This is an intentional compilation error. See the README for handling the delete keyword
-                                delete m_UnsatisfiedConstraints[clauseID];
+								m_UnsatisfiedConstraints.remove(clauseID);
                             }
                         }
                     }
@@ -182,8 +181,7 @@ class ConstraintGraph extends EventDispatcher
                     {
                         Reflect.setField(newUnsatisfiedConstraints, clauseID, thisConstr);
                         Reflect.setField(m_UnsatisfiedConstraints, clauseID, thisConstr);
-                        This is an intentional compilation error. See the README for handling the delete keyword
-                        delete m_SatisfiedConstraints[clauseID];
+						m_SatisfiedConstraints.remove[clauseID];
                     }
                 }
             }
@@ -193,8 +191,7 @@ class ConstraintGraph extends EventDispatcher
         {
             if (unsatisfiedConstraintDict.exists(clauseID))
             {
-                This is an intentional compilation error. See the README for handling the delete keyword
-                delete unsatisfiedConstraintDict[clauseID];
+				unsatisfiedConstraintDict.remove(clauseID);
                 m_conflictCount--;
             }
         }
@@ -264,7 +261,6 @@ class ConstraintGraph extends EventDispatcher
         }
         var newVar : ConstraintVar = new ConstraintVar(formattedId, typeVal, defaultVal, mergedVarScoring);
         Reflect.setField(variableDict, formattedId, newVar);
-        ;
     }
     
     public function buildNextCompleteGroup() : Void
@@ -283,7 +279,7 @@ class ConstraintGraph extends EventDispatcher
                 groupIdParts[0] = "c";
             }
             var formattedGroupId : String = groupIdParts[0] + "_" + groupIdParts[1];
-            var groupedIds : Array<Dynamic> = try cast(Reflect.field(groupsArr[nextGroupToBuild], groupId), Array</*AS3HX WARNING no type*/>) catch(e:Dynamic) null;
+            var groupedIds : Array<Dynamic> = try cast(Reflect.field(groupsArr[nextGroupToBuild], groupId), Array<Dynamic>) catch(e:Dynamic) null;
             for (groupedId in groupedIds)
             {
                 var groupedIdParts : Array<Dynamic> = groupedId.split(":");
@@ -310,8 +306,8 @@ class ConstraintGraph extends EventDispatcher
         var newConstraint : Constraint;
         
         if (Type.getClassName(constraintsToBuildArr[0]) == "String")
-        
-        // process as String, i.e. "var:1 <= c:2"{
+        {
+        // process as String, i.e. "var:1 <= c:2"
             
             var constrString : String = Std.string(constraintsToBuildArr.shift());
             newConstraint = parseConstraintString(constrString, this, graphDefaultVal, graphScoringConfig);
@@ -349,8 +345,8 @@ class ConstraintGraph extends EventDispatcher
                             if (newConstraint.lhs.id != "" &&
                                 newConstraint.lhs.id != leftGroupId &&
                                 newConstraint.lhs.rank == 0)
-                            
-                            // If grouped for the first time this round, rank = group depth{
+                            {
+                            // If grouped for the first time this round, rank = group depth
                                 
                                 newConstraint.lhs.rank = newConstraint.lhs.groups.length;
                             }
@@ -362,8 +358,8 @@ class ConstraintGraph extends EventDispatcher
                             if (newConstraint.rhs.id != "" &&
                                 newConstraint.rhs.id != rightGroupId &&
                                 newConstraint.rhs.rank == 0)
-                            
-                            // If grouped for the first time this round, rank = group depth{
+                            {
+                            // If grouped for the first time this round, rank = group depth
                                 
                                 newConstraint.rhs.rank = newConstraint.rhs.groups.length;
                             }
@@ -421,8 +417,8 @@ class ConstraintGraph extends EventDispatcher
                 var scoringObj : Dynamic = Reflect.field(levelObj, SCORING);
                 var constraintScore : Int = (scoringObj != null) ? Reflect.field(scoringObj, Std.string(ConstraintScoringConfig.CONSTRAINT_VALUE_KEY)) : 100;
                 var variableScoreObj : Dynamic = (scoringObj != null) ? Reflect.field(scoringObj, VARIABLES) : {
-                    type:0 : 0,
-                    type:1 : 1
+                    type0 : 0,
+                    type1 : 1
                 };
                 var type0Score : Int = Reflect.field(variableScoreObj, Std.string(ConstraintScoringConfig.TYPE_0_VALUE_KEY));
                 var type1Score : Int = Reflect.field(variableScoreObj, Std.string(ConstraintScoringConfig.TYPE_1_VALUE_KEY));
@@ -436,7 +432,7 @@ class ConstraintGraph extends EventDispatcher
                 // Build constraints, add any uninitialized variables to graph.variableDict, and process groups
                 //the process eats the array, so create a copy
                 graph1.constraintsToBuildArr = new Array<Dynamic>();
-                for (constraintStr/* AS3HX WARNING could not determine type for var: constraintStr exp: EArray(EIdent(levelObj),EIdent(CONSTRAINTS)) type: Dynamic */ in Reflect.field(levelObj, CONSTRAINTS))
+                for (constraintStr in Reflect.field(levelObj, CONSTRAINTS))
                 {
                     graph1.constraintsToBuildArr.push(constraintStr);
                 }

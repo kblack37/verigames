@@ -490,8 +490,8 @@ class World extends BaseComponent
         if (active_level != null && active_level.selectedNodes)
         {
             if (event.data == GridViewPanel.SOLVER1_BRUSH || event.data == GridViewPanel.SOLVER2_BRUSH)
-            
-            // Only allow autosolve if conflicts are selected, give user feedback if not{
+            {
+            // Only allow autosolve if conflicts are selected, give user feedback if not
                 
                 var continueWithAutosolve : Bool = HintController.getInstance().checkAutosolveSelection(active_level);
                 if (Level.debugSolver)
@@ -550,8 +550,8 @@ class World extends BaseComponent
         if (active_level.m_inSolver)
         {
             if (waitIconDisplayed == false)
-            
-            //busyAnimationMovieClip = new MovieClip(waitAnimationImages, 4);{
+            {
+            //busyAnimationMovieClip = new MovieClip(waitAnimationImages, 4);
                 
                 //addChild(busyAnimationMovieClip);
                 //Starling.juggler.add(this.busyAnimationMovieClip);
@@ -609,8 +609,8 @@ class World extends BaseComponent
     {
         
         if (PipeJam3.RELEASE_BUILD)
-        
-        //don't annoy tim by having this update every 10 seconds{
+        {
+			//don't annoy tim by having this update every 10 seconds
             
             {
                 //start at 1 second to get quick initial info update into panel, then switch to 10 seconds afterwards
@@ -669,8 +669,8 @@ class World extends BaseComponent
     {
         
         if (active_level != null)
-        
-        //update and collect all xml, and then bundle, zip, and upload{
+        {
+        //update and collect all xml, and then bundle, zip, and upload
             
             var outputObj : Dynamic = updateAssignments();
             active_level.updateLevelObj();
@@ -868,8 +868,8 @@ class World extends BaseComponent
         var oldScore : Int = active_level.prevScore;
         var newScore : Int = active_level.currentScore;
         if (evt != null)
-        
-        // TODO: Fanfare for non-tutorial levels? We may want to encourage the players to keep optimizing{
+        {
+        // TODO: Fanfare for non-tutorial levels? We may want to encourage the players to keep optimizing
             
             if (newScore >= active_level.getTargetScore())
             {
@@ -936,8 +936,8 @@ class World extends BaseComponent
             }
         }
         if (!PipeJamGameScene.inTutorial && evt != null)
-        
-        //beat the target score?{
+        {
+        //beat the target score?
             
             if (newScore > active_level.getTargetScore())
             {
@@ -964,8 +964,8 @@ class World extends BaseComponent
         {
             var tutorialController : TutorialController = TutorialController.getTutorialController();
             if (active_level != null)
-            
-            // If using in-menu "Next Level" debug button, mark the current level as complete in order to move on. Don't mark as completed{
+            {
+            // If using in-menu "Next Level" debug button, mark the current level as complete in order to move on. Don't mark as completed
                 
                 tutorialController.addCompletedTutorial(active_level.m_tutorialTag, false);
             }
@@ -974,8 +974,8 @@ class World extends BaseComponent
             var tutorialsDone : Bool = tutorialController.isTutorialDone();
             //if there are no more unplayed levels, check next if we are in levelselect screen choice
             if (tutorialsDone == true && tutorialController.fromLevelSelectList)
-            
-            //and if so, set to false, unless at the end of the tutorials{
+            {
+            //and if so, set to false, unless at the end of the tutorials
                 
                 var currentLevelId : Int = tutorialController.getNextUnplayedTutorial();
                 if (currentLevelId != 0)
@@ -1082,8 +1082,8 @@ class World extends BaseComponent
             if (lastEvent != null && (lastEvent.eventsToUndo.length > 0))
             {
                 if (lastEvent.eventsToUndo[0].type == evt.eventsToUndo[0].type)
-                
-                // Add these to end of lastEvent's list of events to undo{
+                {
+                // Add these to end of lastEvent's list of events to undo
                     
                     lastEvent.eventsToUndo = lastEvent.eventsToUndo.concat(evt.eventsToUndo);
                 }
@@ -1106,8 +1106,8 @@ class World extends BaseComponent
         {
             lastEvent = undoStack.pop();
             if (lastEvent != null)
-            
-            // Add these to end of lastEvent's list of events to undo{
+            {
+            // Add these to end of lastEvent's list of events to undo
                 
                 lastEvent.eventsToUndo = lastEvent.eventsToUndo.concat(evt.eventsToUndo);
             }
@@ -1150,8 +1150,8 @@ class World extends BaseComponent
                     {case 90:  //'z'  
                         {
                             if ((undoStack.length > 0) && !PipeJam3.RELEASE_BUILD)
-                            
-                            //high risk item, don't allow undo/redo until well tested{
+                            {
+                            //high risk item, don't allow undo/redo until well tested
                                 
                                 {
                                     var undoDataEvent : UndoEvent = undoStack.pop();
@@ -1166,8 +1166,8 @@ class World extends BaseComponent
                     {case 89:  //'y'  
                         {
                             if ((redoStack.length > 0) && !PipeJam3.RELEASE_BUILD)
-                            
-                            //high risk item, don't allow undo/redo until well tested{
+                            {
+                            //high risk item, don't allow undo/redo until well tested
                                 
                                 {
                                     var redoDataEvent : UndoEvent = redoStack.pop();
@@ -1178,8 +1178,8 @@ class World extends BaseComponent
                         }
                     }  //'l' for copy layout  
                     if (this.active_level != null)
-                    
-                    // && !PipeJam3.RELEASE_BUILD){
+                    {
+                    // && !PipeJam3.RELEASE_BUILD)
                         
                         {
                             System.setClipboard(haxe.Json.stringify(active_level.m_levelLayoutObjWrapper));
@@ -1187,8 +1187,8 @@ class World extends BaseComponent
                     }
                 case 66:  //'b' for load Best scoring config  
                 if (this.active_level != null)
-                
-                // && !PipeJam3.RELEASE_BUILD){
+                {
+                // && !PipeJam3.RELEASE_BUILD)
                     
                     {
                         active_level.loadBestScoringConfiguration();
@@ -1394,8 +1394,8 @@ class World extends BaseComponent
     private function onTouchSplashScreen(evt : TouchEvent) : Void
     {
         if (evt.getTouches(this, TouchPhase.BEGAN).length && m_splashLayer != null)
-        
-        // Touch screen pressed, remove it{
+        {
+        // Touch screen pressed, remove it
             
             m_splashLayer.removeChildren(0, -1, true);
             m_splashLayer.removeFromParent();
@@ -1481,20 +1481,20 @@ class World extends BaseComponent
             var onTop : Bool = evt.point.y < 80;
             var onLeft : Bool = evt.point.x < 80;
             if (onTop && onLeft)
-            
-            // If in top left corner, move to bottom right{
+            {
+            // If in top left corner, move to bottom right
                 
                 pointFrom = Constants.BOTTOM_RIGHT;
             }
             else if (onLeft)
-            
-            // If on left, move to top right{
+            {
+            // If on left, move to top right
                 
                 pointFrom = Constants.TOP_RIGHT;
             }
             else if (onTop)
-            
-            // If on top, move to bottom left{
+            {
+            // If on top, move to bottom left
                 
                 pointFrom = Constants.BOTTOM_LEFT;
             }

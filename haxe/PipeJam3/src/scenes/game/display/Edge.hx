@@ -88,20 +88,20 @@ class Edge
         var centerDx : Float = 0;
         var centerDy : Float = 0;
         if (dX <= 0 && dY < 0)
-        
-        // Q4{
+        {
+        // Q4
             
             // theta = theta
             centerDx = -0.5 * LINE_THICKNESS * Math.sin(theta);
             centerDy = -0.5 * LINE_THICKNESS * Math.cos(theta);
         }
         else if (dX > 0 && dY <= 0)
-        
-        // Q3{
+        {
+        // Q3
             
             if (dY == 0)
-            
-            // -180{
+            {
+            // -180
                 
                 theta = -Math.PI;
             }
@@ -113,8 +113,8 @@ class Edge
             centerDy = 0.5 * LINE_THICKNESS * Math.cos(theta);
         }
         else if (dX >= 0 && dY > 0)
-        
-        // Q2{
+        {
+        // Q2
             
             theta = -Math.PI - theta;
             centerDx = 0.5 * LINE_THICKNESS * Math.sin(theta);

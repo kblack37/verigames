@@ -1,7 +1,7 @@
 package assets;
 
 import flash.errors.ArgumentError;
-import com.emibap.textureAtlas.DynamicAtlas;
+//import com.emibap.textureAtlas.DynamicAtlas;
 import flash.display.BitmapData;
 import flash.geom.Point;
 import flash.geom.Rectangle;
@@ -38,9 +38,9 @@ class AssetInterface
     private static var sPipeJamSpriteSheetAtlas : TextureAtlas;
     private static var sDialogWindowAtlas : TextureAtlas;
     private static var sPipeJamLevelSelectAtlas : TextureAtlas;
-    private static var sTextureAtlases : Dictionary = new Dictionary();
-    private static var sTextures : Dictionary = new Dictionary();
-    private static var sSounds : Dictionary = new Dictionary();
+    private static var sTextureAtlases : Map<String, TextureAtlas> = new Map<String, TextureAtlas>();
+    private static var sTextures : Map<String, Texture> = new Map<String, Texture>();
+    private static var sSounds : Map<String, Sound> = new Map<String, Sound>();
     private static var sTextureAtlas : TextureAtlas;
     private static var sBitmapFontsLoaded : Bool;
     
@@ -182,9 +182,9 @@ class AssetInterface
             }
             else
             {
-                var classInfo : FastXML = flash.utils.describeType(data);
+                var classInfo : String = Type.getClassName(data);
                 // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
+                trace("Class " + classInfo);
             }
         }
         
@@ -221,9 +221,9 @@ class AssetInterface
             }
             else
             {
-                var classInfo : FastXML = flash.utils.describeType(data);
+                var classInfo : String = Type.getClassName(data);
                 // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
+                trace("Class " + classInfo);
             }
         }
         
@@ -259,9 +259,9 @@ class AssetInterface
             }
             else
             {
-                var classInfo : FastXML = flash.utils.describeType(data);
+                var classInfo : String = Type.getClassName(data);
                 // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
+                trace("Class " + classInfo);
             }
         }
         
@@ -286,13 +286,13 @@ class AssetInterface
         return getTextureAtlasUsingDict(sTextureAtlases, file, texClassName, xmlClassName);
     }
     
-    private static function getTextureAtlasUsingDict(dict : Dictionary, file : String, texClassName : String, xmlClassName : String) : TextureAtlas
+    private static function getTextureAtlasUsingDict(dict : Map<String, TextureAtlas>, file : String, texClassName : String, xmlClassName : String) : TextureAtlas
     {
         if (dict[file + texClassName] == null)
         {
             var data : Dynamic = create(file, texClassName);
             var texture : Texture = Texture.fromBitmap(try cast(data, Bitmap) catch(e:Dynamic) null, false);
-            var xml : FastXML = FastXML.parse(create(file, xmlClassName));
+            var xml : Xml = Xml.parse(create(file, xmlClassName));
             dict[file + texClassName] = new TextureAtlas(texture, xml);
         }
         return dict[file + texClassName];
@@ -337,17 +337,17 @@ class AssetInterface
     public static function loadBitmapFont(filename : String, fontName : String, xmlFile : String) : Void
     {
         var texture : Texture = getTexture(filename, fontName);
-        var xml : FastXML = FastXML.parse(create(filename, xmlFile));
+        var xml : Xml = Xml.parse(create(filename, xmlFile));
         TextField.registerBitmapFont(new BitmapFont(texture, xml));
         sBitmapFontsLoaded = true;
     }
     
-    public static function getMovieClipAsTextureAtlas(filename : String, movieClipName : String) : TextureAtlas
-    {
-        var clip : Dynamic = create(filename, movieClipName);
-        var atlas : TextureAtlas = DynamicAtlas.fromMovieClipContainer(try cast(clip, MovieClip) catch(e:Dynamic) null);
-        return atlas;
-    }
+    //public static function getMovieClipAsTextureAtlas(filename : String, movieClipName : String) : TextureAtlas
+    //{
+        //var clip : Dynamic = create(filename, movieClipName);
+        //var atlas : TextureAtlas = DynamicAtlas.fromMovieClipContainer(try cast(clip, MovieClip) catch(e:Dynamic) null);
+        //return atlas;
+    //}
     
     public static function prepareSounds() : Void
     {
@@ -358,8 +358,8 @@ class AssetInterface
         var textureClassNameString : String = (sContentScaleFactor == 1) ? file + "AssetEmbeds_1x" : file + "AssetEmbeds_2x";
         var qualifiedName : String = "assets." + textureClassNameString;
         var textureClass : Class<Dynamic> = Type.getClass(Type.resolveClass(qualifiedName));
-        var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name), Dynamic) catch(e:Dynamic) null;
-        return new TextureClassObject();
+        var textureClassObject : Dynamic = Reflect.field(textureClass, name);
+        return Type.createInstance(textureClassObject, []);
     }
     
     private static function get_contentScaleFactor() : Float
@@ -372,12 +372,8 @@ class AssetInterface
         {
             texture.dispose();
         }
-        sTextures = new Dictionary();
+        sTextures = new Map<String, Texture>();
         sContentScaleFactor = (value < 1.5) ? 1 : 2;
         return value;
-    }
-
-    public function new()
-    {
     }
 }

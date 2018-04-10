@@ -124,8 +124,8 @@ class PlayerValidation
     public function getPlayerInfo() : Void
     {
         if (accessToken == null)
-        
-        //can't look anyone up without this. This method will be called at least once after obtaining token.{
+        {
+			// can't look anyone up without this. This method will be called at least once after obtaining token.
             
             return;
         }

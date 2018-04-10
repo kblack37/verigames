@@ -104,8 +104,8 @@ class HintController extends Sprite
             }
             
             if (smallGroupAttempts + 1 == 3)
-            
-            // After three consecutive small attempts, assume the user is not click+dragging properly and prompt them to do so{
+            {
+            // After three consecutive small attempts, assume the user is not click+dragging properly and prompt them to do so
                 
                 popHint("Try holding the left mouse button and\ndragging to select many variables at once.", level);
                 m_playerStatus.setSmallGroupAttempts(level, 0);

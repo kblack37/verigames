@@ -32,8 +32,7 @@ class ConstraintScoringConfig
     {
         if (scoringDict.exists(key))
         {
-            This is an intentional compilation error. See the README for handling the delete keyword
-            delete scoringDict[key];
+			scoringDict.remove(key);
         }
     }
     

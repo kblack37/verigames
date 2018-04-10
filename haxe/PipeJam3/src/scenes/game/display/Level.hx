@@ -21,7 +21,7 @@ import constraints.ConstraintValue;
 import constraints.ConstraintVar;
 import constraints.events.ErrorEvent;
 import constraints.events.VarChangeEvent;
-import deng.fzip.FZip;
+//import deng.fzip.FZip;
 import dialogs.RankProgressDialog;
 import dialogs.RankProgressDialogInfo;
 import events.MenuEvent;
@@ -294,8 +294,8 @@ class Level extends BaseComponent
         {
             var details : Dynamic = {};
             if (wideIds.length < narrowIds.length)
-            
-            // log whichever is less burdensome{
+            {
+            // log whichever is less burdensome
                 
                 {
                     Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_WIDE_VAR_IDS), wideIds);
@@ -366,7 +366,7 @@ class Level extends BaseComponent
     private function countDictItems(dict : Dictionary) : Int
     {
         var count : Int = 0;
-        for (i/* AS3HX WARNING could not determine type for var: i exp: EIdent(dict) type: Dictionary */ in dict)
+        for (i in dict)
         {
             count++;
         }
@@ -431,15 +431,11 @@ class Level extends BaseComponent
                     var node : Node = try cast(Reflect.field(nodeLayoutObjs, nodeId), Node) catch(e:Dynamic) null;
                     count++;
                     if (node != null)
-                    
-                    //if (!m_nodeOnScreenDict.hasOwnProperty(nodeId)){
+                    {
+                    //if (!m_nodeOnScreenDict.hasOwnProperty(nodeId))
                         
                         m_nodesToDraw[node.id] = node;
-                        if (candidatesToRemove.exists(nodeId))
-                        {
-                            This is an intentional compilation error. See the README for handling the delete keyword
-                            delete candidatesToRemove[null];
-                        }
+						candidatesToRemove.remove(nodeId);
                     }
                 }
             }
@@ -526,8 +522,8 @@ class Level extends BaseComponent
             }
             if (m_nodeOnScreenDict.exists(nodeToRemove.id))
             {
-                This is an intentional compilation error. See the README for handling the delete keyword
-                delete m_nodeOnScreenDict[null];numNodesOnScreen--;
+				m_nodeOnScreenDict.remove(nodeToRemove.id);
+				numNodesOnScreen--;
             }
             nodesProcessed++;
             if (nodesProcessed > ITEMS_PER_FRAME && m_tutorialTag == null)
@@ -635,8 +631,8 @@ class Level extends BaseComponent
         }
         
         if (nodesProcessed <= ITEMS_PER_FRAME)
-        
-        // enqueue animations only once all other nodes have been drawn/removed{
+        {
+        // enqueue animations only once all other nodes have been drawn/removed
             
             {
                 var tween : Tween;
@@ -789,7 +785,7 @@ class Level extends BaseComponent
         
         // Process layout nodes (vars)
         var gridChild : GridChild;
-        var boundsArr : Array<Dynamic> = try cast(Reflect.field(Reflect.field(m_levelLayoutObj, "layout"), "bounds"), Array</*AS3HX WARNING no type*/>) catch(e:Dynamic) null;
+        var boundsArr : Array<Dynamic> = try cast(Reflect.field(Reflect.field(m_levelLayoutObj, "layout"), "bounds"), Array<Dynamic>) catch(e:Dynamic) null;
         if (boundsArr != null)
         {
             minX = boundsArr[0] * Constants.GAME_SCALE;
@@ -812,7 +808,7 @@ class Level extends BaseComponent
         }
         
         //check on brush specifications
-        var brushArr : Array<Dynamic> = try cast(Reflect.field(Reflect.field(m_levelLayoutObj, "layout"), "brushes"), Array</*AS3HX WARNING no type*/>) catch(e:Dynamic) null;
+        var brushArr : Array<Dynamic> = try cast(Reflect.field(Reflect.field(m_levelLayoutObj, "layout"), "brushes"), Array<Dynamic>) catch(e:Dynamic) null;
         brushesToActivate = 0xffffff;
         if (brushArr != null)
         {
@@ -1171,15 +1167,15 @@ class Level extends BaseComponent
     public function selectSurroundingNodes(node : Node, nextToVisitArray : Array<Dynamic>, previouslyCheckedNodes : Dictionary) : Void
     {
         if (!node.isSelected)
-        
-        //trace("select direct " + node.id);{
+        {
+        //trace("select direct " + node.id);
             
             node.select();
             selectedNodes.push(node);
             m_nodesToDraw[node.id] = node;
         }
         
-        for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(node),connectedEdgeIds) type: null */ in node.connectedEdgeIds)
+        for (gameEdgeId in node.connectedEdgeIds)
         {
             var edge : Edge = edgeLayoutObjs[gameEdgeId];
             var toNode : Node = edge.toNode;
@@ -1204,8 +1200,8 @@ class Level extends BaseComponent
     private function onErrorAdded(evt : ErrorEvent) : Void
     {
         for (errorEdgeId in Reflect.fields(evt.constraintChangeDict))
-        
-        // new conflicts{
+        {
+        // new conflicts
             
             {
                 var clauseConstraint : ConstraintEdge = try cast(evt.constraintChangeDict[errorEdgeId], ConstraintEdge) catch(e:Dynamic) null;
@@ -1237,8 +1233,8 @@ class Level extends BaseComponent
     private function onErrorRemoved(evt : ErrorEvent) : Void
     {
         for (errorEdgeId in Reflect.fields(evt.constraintChangeDict))
-        
-        // solved clauses{
+        {
+        // solved clauses
             
             {
                 var clauseConstraint : ConstraintEdge = try cast(evt.constraintChangeDict[errorEdgeId], ConstraintEdge) catch(e:Dynamic) null;
@@ -1594,10 +1590,10 @@ class Level extends BaseComponent
         }
         //if caps lock is down, start repeated solving using 'random' selection
         if (runContinualSolver)
-        
-        //loop through all nodes, finding ones with conflicts{
+        {
+        //loop through all nodes, finding ones with conflicts
             
-            for (node/* AS3HX WARNING could not determine type for var: node exp: EIdent(nodeLayoutObjs) type: Dictionary */ in nodeLayoutObjs)
+            for (node in nodeLayoutObjs)
             {
                 if (Std.is(node, ClauseNode))
                 {
@@ -1713,8 +1709,8 @@ class Level extends BaseComponent
         }
         
         if (constraintArray.length > 0)
-        
-        //generate initvars array{
+        {
+        //generate initvars array
             
             for (ii in 1...counter)
             {
@@ -1779,7 +1775,7 @@ class Level extends BaseComponent
             selectedNodesDict[node.id] = node;
             
             // remember all the clauses connected to this node
-            for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(node),connectedEdgeIds) type: null */ in node.connectedEdgeIds)
+            for (gameEdgeId in node.connectedEdgeIds)
             {
                 edge = Reflect.field(edgeLayoutObjs, gameEdgeId);
                 toNode = edge.toNode;
@@ -1789,20 +1785,20 @@ class Level extends BaseComponent
         }
         
         // now go through all those clauses
-        for (node/* AS3HX WARNING could not determine type for var: node exp: EIdent(connectedClausesDict) type: Dictionary */ in connectedClausesDict)
-        
-        // check if this clause is satisfied by some variable that is not being optimized{
+        for (node in connectedClausesDict)
+        {
+        // check if this clause is satisfied by some variable that is not being optimized
             
             var clauseConstSat : Bool = false;
-            for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(node),connectedEdgeIds) type: null */ in node.connectedEdgeIds)
+            for (gameEdgeId in node.connectedEdgeIds)
             {
                 edge = Reflect.field(edgeLayoutObjs, gameEdgeId);
                 fromNode = edge.fromNode;
                 
                 // is this variable a constant?
                 if (selectedNodesDict[fromNode.id] == null)
-                
-                // does it satisfy the clause?{
+                {
+                // does it satisfy the clause?
                     
                     var wantValue : Bool = (gameEdgeId.indexOf("c") == 0);
                     var hasValue : Bool = (!nodeLayoutObjs[edge.fromNode.id].isNarrow);
@@ -1826,15 +1822,15 @@ class Level extends BaseComponent
             selectedConstraintValue += as3hx.Compat.parseInt(CONFLICT_CONSTRAINT_VALUE);
             
             // find all variables connected to the constraint, and add them to the array
-            for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(node),connectedEdgeIds) type: null */ in node.connectedEdgeIds)
+            for (gameEdgeId in node.connectedEdgeIds)
             {
                 edge = Reflect.field(edgeLayoutObjs, gameEdgeId);
                 fromNode = edge.fromNode;
                 
                 // is this variable a constant?
                 if (selectedNodesDict[fromNode.id] == null)
-                
-                // then skip{
+                {
+                // then skip
                     
                     continue;
                 }
@@ -1938,7 +1934,7 @@ class Level extends BaseComponent
         {
             var attachedSelected : Bool = false;
             
-            for (edgeID/* AS3HX WARNING could not determine type for var: edgeID exp: EField(EIdent(selectedVar),connectedEdgeIds) type: null */ in selectedVar.connectedEdgeIds)
+            for (edgeID in selectedVar.connectedEdgeIds)
             {
                 var edgeToCheck : Edge = edgeLayoutObjs[edgeID];
                 var toNodeToCheck : Node = edgeToCheck.toNode;
@@ -1951,7 +1947,7 @@ class Level extends BaseComponent
             
             if (attachedSelected == false)
             {
-                for (unattachedEdgeID/* AS3HX WARNING could not determine type for var: unattachedEdgeID exp: EField(EIdent(selectedVar),connectedEdgeIds) type: null */ in selectedVar.connectedEdgeIds)
+                for (unattachedEdgeID in selectedVar.connectedEdgeIds)
                 {
                     var unattachedEdge : Edge = edgeLayoutObjs[unattachedEdgeID];
                     var toClause : ClauseNode = try cast(unattachedEdge.toNode, ClauseNode) catch(e:Dynamic) null;
@@ -1966,7 +1962,7 @@ class Level extends BaseComponent
                     var clauseArray : Array<Dynamic> = new Array<Dynamic>();
                     clauseArray.push(CONFLICT_CONSTRAINT_VALUE);
                     selectedConstraintValue += as3hx.Compat.parseInt(CONFLICT_CONSTRAINT_VALUE);
-                    for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(toClause),connectedEdgeIds) type: null */ in toClause.connectedEdgeIds)
+                    for (gameEdgeId in toClause.connectedEdgeIds)
                     {
                         var constraintEdge : Edge = edgeLayoutObjs[gameEdgeId];
                         var fromNode : Node = constraintEdge.fromNode;
@@ -1997,8 +1993,8 @@ class Level extends BaseComponent
                         }
                         
                         if (fromNode != selectedVar)
-                        
-                        //create a separate clause here for this one node, based on it's current size{
+                        {
+                        //create a separate clause here for this one node, based on it's current size
                             
                             var nodeClauseArray : Array<Dynamic> = new Array<Dynamic>();
                             nodeClauseArray.push(CONFLICT_CONSTRAINT_VALUE);
@@ -2027,11 +2023,11 @@ class Level extends BaseComponent
         
         //add the nodes connected to those constraints as fixed values,
         //so the score doesn't go down.
-        for (directNode/* AS3HX WARNING could not determine type for var: directNode exp: EIdent(directNodeDict) type: Dictionary */ in directNodeDict)
+        for (directNode in directNodeDict)
         {
-            for (conEdgeID/* AS3HX WARNING could not determine type for var: conEdgeID exp: EField(EIdent(directNode),connectedEdgeIds) type: null */ in directNode.connectedEdgeIds)
-            
-            //have we already dealt with this edge?{
+            for (conEdgeID in directNode.connectedEdgeIds)
+            {
+            //have we already dealt with this edge?
                 
                 if (storedDirectEdgesDict[conEdgeID] != null)
                 {
@@ -2044,15 +2040,15 @@ class Level extends BaseComponent
                 var nextLayerClause : ClauseNode = try cast(conEdge.toNode, ClauseNode) catch(e:Dynamic) null;
                 
                 if (nextLayerClause.hasError())
-                
-                //ignore if I don't care if the value changes{
+                {
+                //ignore if I don't care if the value changes
                     
                     continue;
                 }
                 
                 if (newSelectedClauses[nextLayerClause.id] == null)
-                
-                //add to redraw if needed{
+                {
+                //add to redraw if needed
                     
                     selectedNodes.push(nextLayerClause);
                     newSelectedClauses[nextLayerClause.id] = nextLayerClause;
@@ -2067,9 +2063,9 @@ class Level extends BaseComponent
                     var clauseArray : Array<Dynamic> = new Array<Dynamic>();
                     clauseArray.push(CONFLICT_CONSTRAINT_VALUE * 2);  //multiply just so this is slightly higher value  
                     selectedConstraintValue += as3hx.Compat.parseInt(CONFLICT_CONSTRAINT_VALUE * 2);
-                    for (edgeID/* AS3HX WARNING could not determine type for var: edgeID exp: EField(EIdent(nextLayerClause),connectedEdgeIds) type: null */ in nextLayerClause.connectedEdgeIds)
-                    
-                    //create constraint for clause connected to edge node{
+                    for (edgeID in nextLayerClause.connectedEdgeIds)
+                    {
+                    //create constraint for clause connected to edge node
                         
                         var cEdge : Edge = edgeLayoutObjs[edgeID];
                         var connectedNode : Node = cEdge.fromNode;
@@ -2088,8 +2084,8 @@ class Level extends BaseComponent
                         }
                         
                         if (edgeID.indexOf("c") == 0)
-                        
-                        //if(connectedNode.isNarrow){
+                        {
+                        //if(connectedNode.isNarrow)
                             
                             clauseArray.push(nextLevelConstraintID);
                         }
@@ -2144,9 +2140,8 @@ class Level extends BaseComponent
     {
         trace("update", unsat_weight);
         if (m_inSolver == false || unsat_weight > m_unsat_weight)
-        
-        //got marked done early{
-            
+        {
+        //got marked done early
             return;
         }
         m_unsat_weight = unsat_weight;
@@ -2353,8 +2348,8 @@ class Level extends BaseComponent
                     if (diffXSq + diffYSq <= RAD_SQUARED && !node.isSelected)
                     {
                         if (false)
-                        
-                        // use this branch for actively unselecting when max is reached{
+                        {
+                        // use this branch for actively unselecting when max is reached
                             
                             while (selectedNodes.length >= MAX_SEL)
                             {
@@ -2371,8 +2366,8 @@ class Level extends BaseComponent
                         if (PipeJam3.SELECTION_STYLE == PipeJam3.SELECTION_STYLE_CLASSIC || !node.isClause)
                         {
                             if (!node.isSelected)
-                            
-                            //trace("select direct " + node.id);{
+                            {
+                            //trace("select direct " + node.id);
                                 
                                 node.select();
                                 selectedNodes.push(node);
@@ -2389,8 +2384,8 @@ class Level extends BaseComponent
                                 var edge : Edge = this.edgeLayoutObjs[edgeID];
                                 var connectedNode : Node = edge.fromNode;
                                 if (!connectedNode.isSelected && Lambda.has(m_nodeOnScreenDict, connectedNode.id))
-                                
-                                //trace("select connect " + connectedNode.id);{
+                                {
+                                //trace("select connect " + connectedNode.id);
                                     
                                     connectedNode.select();
                                     selectedNodes.push(connectedNode);
@@ -2421,8 +2416,8 @@ class Level extends BaseComponent
     public function unselectLast() : Void
     {
         if (debugSolver && selectedNodes.length == 0)
-        
-        //reset flashing on previously solved nodes{
+        {
+        //reset flashing on previously solved nodes
             
             if (solverSelected != null)
             {
@@ -2447,11 +2442,10 @@ class Level extends BaseComponent
     
     private static function popNode(d : Dictionary) : Node
     {
-        for (id in Reflect.fields(d))
+        for (id in d.values())
         {
-            var node : Node = try cast(Reflect.field(d, id), Node) catch(e:Dynamic) null;
-            This is an intentional compilation error. See the README for handling the delete keyword
-            delete d[id];
+            var node : Node = d[id];
+			d.remove(id);
             return node;
         }
         return null;
@@ -2481,8 +2475,8 @@ class GroupGrid
     
     @:allow(scenes.game.display)
     private function new(m_boundingBox : Rectangle, levelScale : Float, nodeDict : Dynamic, layoutDict : Dynamic, nodeSize : Int)
-    
-    // Note: this assumes a uniform distribution of nodes, which is not a good estimate, but it will do for now{
+    {
+    // Note: this assumes a uniform distribution of nodes, which is not a good estimate, but it will do for now
         
         var gridsTotal : Int = Math.ceil(nodeSize / NODE_PER_GRID_ESTIMATE);
         // use right, bottom instead of width, height to ignore (presumably) negligible x or y value that would need to be subtracted from each node.x,y

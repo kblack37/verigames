@@ -8,17 +8,15 @@
 
 
 ## Progress ##
-This week our progress was devoted to moving the existing codebase into an
-environment where we could expand and build on it. Team members installed
-development environments for Haxe work, and have began acclimating to the new
-language and codebase. We also began work on converting the PipeJam and
-FlowJam games from ActionScript to Haxe, first by using as3tohaxe as an
-automated first pass, and then by manually resolving any remaining compiler
-errors. 
-
-Difficulties in the port so far have come primarily from ActionScript
-architecture/features that couldn't be directly translated to Haxe and also
-dependencies that the Flash version relied on.
+- Codebase acquired
+- Installed and set up Haxe development environments
+- Began converting PipeJam and FlowJam from ActionScript to Haxe
+    - First using AS3ToHaxe as an automated first pass
+    - Second by manually resolving remaining compiler errors
+- Difficulties:
+    - Resolving problems caused by ActionScript architecture/features that
+      couldn't be directly translated to Haxe
+    - Resolving dependencies that the Flash versions relied on
 
 
 ## Goals ##

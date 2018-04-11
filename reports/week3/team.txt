@@ -8,7 +8,11 @@
 
 
 ## Progress ##
-
+- Codebase aquired
+- Groups has haxe development environment installed
+- Work has begun on converting PipeJam and FlowJam from actionScript to Haxe
 
 
 ## Goals ##
+- Finish resolving compilier errors with FlowJam and PipeJam
+- Begin work on adding external assets back into the codebase

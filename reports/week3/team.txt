@@ -8,9 +8,17 @@
 
 
 ## Progress ##
-- Codebase aquired
-- Groups has haxe development environment installed
-- Work has begun on converting PipeJam and FlowJam from actionScript to Haxe
+This week our progress was devoted to moving the existing codebase into an
+environment where we could expand and build on it. Team members installed
+development environments for Haxe work, and have began acclimating to the new
+language and codebase. We also began work on converting the PipeJam and
+FlowJam games from ActionScript to Haxe, first by using as3tohaxe as an
+automated first pass, and then by manually resolving any remaining compiler
+errors. 
+
+Difficulties in the port so far have come primarily from ActionScript
+architecture/features that couldn't be directly translated to Haxe and also
+dependencies that the Flash version relied on.
 
 
 ## Goals ##

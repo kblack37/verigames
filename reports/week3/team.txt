@@ -1,1 +1,14 @@
+# Team Report: Week 3 #
 
+## Last Week's Goals ##
+- Acquire existing codebase
+- Set up project development environment
+- Re-assess project scope and timeframe projection using our new understanding
+  of the codebase
+
+
+## Progress ##
+
+
+
+## Goals ##

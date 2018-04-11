@@ -1,0 +1,89 @@
+Planetopia:
+
+TERMS OF SERVICE AND CONSENT
+
+By registering an account and signing in to play this and other UW Center for Game Science games you acknowledge that:
+
+a) We are recording logs of player decisions and player scores.
+	As you play this game, you are participating in a research study, and it is keeping a record of your decisions and pathways through the game so that the game’s creators, researchers at the University of Washington*, can improve the game for future players, as well as see whether our games improve your abilities with in-game tasks over time. Your mouse clicks and key presses are being recorded. This is used to help us determine where players get stuck, so we can identify if it is a problem with the game design or with learning goals.  We also use this information to personalize the game experience to each player.  Your play log will be added to a massive dataset that shows us trends in player behavior. This data will be kept for 7 years. This logging is similar to the standard practice in the game industry aimed at improving player’s experience.
+
+b) For some games, we are also asking for basic demographic information: Age, Gender, and Education Level.
+
+c) The username you create can also be used in public forums, and your posts there are naturally publically available.
+	We may study the public forum posts to understand how players who interact with each other also engage with our games.
+
+d) Possible risks involve feelings of invasion of privacy and breach of confidentiality.
+	Since we are collecting data based on your playing and asking you agree to these terms and conditions first, you may feel we are invading your privacy.
+
+e) Possible benefits include learning concepts or skills through the game.
+
+f) The data will be shared with our collaborators at UT Austin, the Department of Defense, and DARPA 
+	who are working with us on this project.
+
+g) This data may be published or shared with the academic community
+	for the purposes of presenting research findings and furthering the advancement of improving games and learning through games.  The log data will be in the aggregate and collected form, (not per individual) without the possibility for anyone to determine any personably identifiable information or even personably identifiable game play information. Forum data will be coded and analyzed and will not be linked to your forum profiles.
+
+h) Game administrators reserve the right to disable game accounts at any time.
+
+i) We may contact a small number of you to solicit additional information on your experience with a game, which you are free to decline.
+	This will be done through a message sent to the email address you use to register a username. We will not know what your email address is, since the email service will be automated through a computer system. You will never receive spam from us nor will we share your email address with anyone. While your data could be linked to your email address, we will be storing your email address separately in a password-protected database only accessible by a database administrator. Researchers who have access to your data will not be given access to your email address, but it is technically feasible to link the two together if one did have access to both.
+
+If at any time you do not want to participate in our research, simply stop playing and delete your account.
+
+If you have any questions or concerns about the research or game, please feel free to contact us at cgs-feedback@cs.washington.edu or at (206) 616-2660. If you have questions about your rights as a research participant, you may contact a member of UW’s Human Subjects Division at (206) 543-0098 Please note that emails are considered insecure and privacy is not guaranteed.
+
+By checking Agree below, you agree that you have read the above terms and give your consent to conduct research on your game playing. If you are under 18, you agree that a parent or guardian has read the above terms and gives their consent for research.
+
+Don’t create a username that includes identifiable information about you—e.g., birthdate, nickname, etc.
+
+This study is part of a research project entitled A Game Based Learning and Problem Solving Framework Using Large-Scale Data Mining with researchers: Zoran Popovic, Seth Cooper, Erik Andersen, Yun-En Liu – Computer Science & Engineering, University of Washington; John Bransford, Philip Bell, Nancy Vye, Andrew Shouse, Mark Chen, Theresa Horstman, Rachel Phillips – College of Education, University of Washington; Jeffrey Lin, Bjorn Huber-Wallander – Psychology, University of Washington
+
+
+------------
+
+Refraction:
+
+TERMS OF SERVICE AND CONSENT
+
+By installing this game and other UW Center for Game Science games you acknowledge that:
+
+a) We are recording logs of player decisions. As you play this game, you are participating in a researchstudy, and it is keeping a record of your decisions and pathways through the game so that the game’screators, researchers at the University of Washington*, can improve the game for future players. Your mouseclicks and key presses are being recorded. This is used to help us determine where players get stuck, so wecan identify if it is a problem with the game design or with learning goals. We also use this information topersonalize the game experience to each player. Your play log will be added to a massive dataset that showsus trends in player behavior. This data will be kept for 7 years. This logging is no different than the standardpractice in the game industry aimed at improving player’s experience.
+
+b) We are also keeping track of your network of friends who also play these games. We do this to see ifplayers leverage their social network while playing. We are removing your and your friends’ names from thedata before analyzing it and it will be impossible to link the data to you or your friends.
+
+c) The data will be shared with our collaborators at UT Austin, DARPA, and ONR who are workingwith us on this project.
+
+d) This data may be published or shared with the academic community for the purposes of presentingresearch findings and furthering the advancement of improving games and learning through games.
+
+e) Game administrators reserve the right to disable game accounts at any time.
+
+If at any time you do not want to participate in our research, simply stop playing.
+
+Please contact us if you do not want any of your previously recorded data to be used in our research or if you haveany questions or concerns. We can be reached at cgs-feedback@cs.washington.edu or at (206) 616-2660. If youhave questions about your rights as a research participant, you may contact a member of UW’s Human SubjectsDivision at (206) 543-0098. Please note that emails are considered insecure and privacy is not guaranteed.
+
+*This study is part of a research project entitled A Game Based Learning and Problem Solving Framework withresearchers: Zoran Popovic, Seth Cooper, Erik Anderson, Yun-En Liu – Computer Science & Engineering,University of Washington; John Bransford, Philip Bell, Nancy Vye, Andrew Shouse, Mark Chen, TheresaHorstman, Rachel Phillips – College of Education, University of Washington; Jeffrey Lin, Bjorn Huber-Wallander –Psychology, University of Washington
+
+
+------------
+
+Refraction (Under 13):
+
+TERMS OF SERVICE AND CONSENT
+
+Hi! Please get your parent or guardian to read this, too!
+
+By playing this game, you agree that:a) The game can record how you play. We* look at this to learn how to make the game better for other kids.
+
+b) The game is telling us if you have friends who play, too. That way we can see if having friends helps you out with the game. We think it probably does help, but we are not sure.
+
+c) We are sharing how you play with other people on our team.**
+
+d) We are sharing what we learn with others from all over the world! That is how science is done. We have to share so others can learn, too.
+
+e) If you are not playing fair, we can stop you, so be nice.
+
+If you do not want us to see how you are doing, just stop playing. Also have your parent or guardian contact us.By checking Agree, you agree that a parent or guardian has read this and is letting you play.Parent/Guardian: We can be reached at cgs-feedback@cs.washington.edu or at (206) 616-2660.If you have questions about your rights as a research participant, you may contact a member of UW’s Human Subjects Division at (206) 543-0098.Please note that emails are considered insecure and privacy is not guaranteed.
+
+*This study is part of a research project entitled A Game Based Learning and Problem Solving Framework withresearchers: Zoran Popovic, Seth Cooper, Erik Anderson, Yun-En Liu – Computer Science & Engineering,University of Washington; John Bransford, Philip Bell, Nancy Vye, Andrew Shouse, Mark Chen, TheresaHorstman, Rachel Phillips – College of Education, University of Washington; Jeffrey Lin, Bjorn Huber-Wallander –Psychology, University of Washington
+
+**UT Austin, DARPA, and ONR

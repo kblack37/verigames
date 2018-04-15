@@ -30,7 +30,7 @@ class AssetInterface
     // Texture cache
     
     public static var sContentScaleFactor : Int = 1;
-    private static var sTextureAtlases : Dictionary<String,Texture> = new Dictionary();
+    private static var sTextureAtlases : Dictionary<String,TextureAtlas> = new Dictionary();
     private static var sTextures : Dictionary<String,Texture> = new Dictionary();
     private static var sSounds : Dictionary<String,Sound> = new Dictionary();
     private static var sTextureAtlas : TextureAtlas;
@@ -153,9 +153,9 @@ class AssetInterface
             }
             else
             {
-                var classInfo : FastXML = flash.utils.describeType(data);
+                //var classInfo : FastXML = flash.utils.describeType(data); TODO: get data into xml format
                 // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
+                //trace("Class " + Std.string(classInfo.att.name));
             }
         }
         
@@ -192,9 +192,10 @@ class AssetInterface
             }
             else
             {
-                var classInfo : FastXML = flash.utils.describeType(data);
+                //var classInfo : FastXML = flash.utils.describeType(data);
                 // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
+                //trace("Class " + Std.string(classInfo.att.name)); TODO make xml classinfo
+				
             }
         }
         
@@ -230,9 +231,10 @@ class AssetInterface
             }
             else
             {
-                var classInfo : FastXML = flash.utils.describeType(data);
+                //var classInfo : FastXML = flash.utils.describeType(data);
                 // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
+                //trace("Class " + Std.string(classInfo.att.name));TODO: make classinfo xml
+				
             }
         }
         
@@ -257,14 +259,14 @@ class AssetInterface
         return getTextureAtlasUsingDict(sTextureAtlases, file, texClassName, xmlClassName);
     }
     
-    private static function getTextureAtlasUsingDict(dict : Dictionary<String,Texture>, file : String, texClassName : String, xmlClassName : String) : TextureAtlas
+    private static function getTextureAtlasUsingDict(dict : Dictionary<String,TextureAtlas>, file : String, texClassName : String, xmlClassName : String) : TextureAtlas
     {
-        if (dict[file + texClassName] == null)
+        if (dict.get(file + texClassName) == null)
         {
             var data : Dynamic = create(file, texClassName);
             var texture : Texture = Texture.fromBitmap(try cast(data, Bitmap) catch(e:Dynamic) null, false);
-            var xml : FastXML = FastXML.parse(create(file, xmlClassName));
-            dict[file + texClassName] = new TextureAtlas(texture, xml);
+            var xml = Xml.parse(create(file, xmlClassName));
+            dict.set(file + texClassName,new TextureAtlas(texture, xml));
         }
         return dict[file + texClassName];
     }
@@ -272,7 +274,7 @@ class AssetInterface
     public static function loadBitmapFont(filename : String, fontName : String, xmlFile : String) : Void
     {
         var texture : Texture = getTexture(filename, fontName);
-        var xml : FastXML = FastXML.parse(create(filename, xmlFile));
+        var xml = Xml.parse(create(filename, xmlFile));
         TextField.registerBitmapFont(new BitmapFont(texture, xml));
         sBitmapFontsLoaded = true;
     }

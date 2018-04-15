@@ -30,9 +30,9 @@ class AssetInterface
     // Texture cache
     
     public static var sContentScaleFactor : Int = 1;
-    private static var sTextureAtlases : Dictionary = new Dictionary();
-    private static var sTextures : Dictionary = new Dictionary();
-    private static var sSounds : Dictionary = new Dictionary();
+    private static var sTextureAtlases : Dictionary<String,Texture> = new Dictionary();
+    private static var sTextures : Dictionary<String,Texture> = new Dictionary();
+    private static var sSounds : Dictionary<String,Sound> = new Dictionary();
     private static var sTextureAtlas : TextureAtlas;
     private static var sBitmapFontsLoaded : Bool;
     
@@ -257,7 +257,7 @@ class AssetInterface
         return getTextureAtlasUsingDict(sTextureAtlases, file, texClassName, xmlClassName);
     }
     
-    private static function getTextureAtlasUsingDict(dict : Dictionary, file : String, texClassName : String, xmlClassName : String) : TextureAtlas
+    private static function getTextureAtlasUsingDict(dict : Dictionary<String,Texture>, file : String, texClassName : String, xmlClassName : String) : TextureAtlas
     {
         if (dict[file + texClassName] == null)
         {
@@ -304,9 +304,9 @@ class AssetInterface
     }
     private static function set_contentScaleFactor(value : Float) : Float
     {
-        for (texture/* AS3HX WARNING could not determine type for var: texture exp: EIdent(sTextures) type: Dictionary */ in sTextures)
+        for (key/* AS3HX WARNING could not determine type for var: texture exp: EIdent(sTextures) type: Dictionary */ in sTextures)
         {
-            texture.dispose();
+            sTextures.remove(key);
         }
         sTextures = new Dictionary();
         sContentScaleFactor = (value < 1.5) ? 1 : 2;

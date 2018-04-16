@@ -1,0 +1,11 @@
+My plans for the following week are to continue to learn haxe and work on the ports. I want to have the ports moslty completed by the end of next week.
+
+
+This week I spent 10 hours on the homework and 3 hours on the presentation and was only able to look at the project for a few hours off and on. As a result the port of FlowJam is behind
+my original hopes for the project
+
+The plan for the coming week is to meet with my team and really flesh our what work needs to be done on the project, this will help me with my goals of learning more of the Haxe api
+and working more on the port which is again the main goal for next week.
+
+
+

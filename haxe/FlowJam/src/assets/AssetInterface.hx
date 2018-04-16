@@ -297,7 +297,7 @@ class AssetInterface
         var qualifiedName : String = "assets." + textureClassNameString;
         var textureClass : Class<Dynamic> = Type.getClass(Type.resolveClass(qualifiedName));
         var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name), Dynamic) catch(e:Dynamic) null;
-        return new TextureClassObject();
+        return textureClassObject;
     }
     
     private static function get_contentScaleFactor() : Float

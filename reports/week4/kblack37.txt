@@ -1,0 +1,21 @@
+## Previous week's goals ##
+In the next week, I plan to work in the code base to fix errors and,
+since I've done exactly this kind of work before, help my team members
+whenever they're stuck on an issue. We'll also make note to where 
+external dependencies are now missing and need to be replaced. The goal
+is to, within 2 weeks, have game at least running.
+
+## What I've done this week ##
+I've worked a little bit in the repository fixing up some compiler errors.
+I also contacted someone I knew at the Center for Game Science and received
+the Haxe version of their common library that some classes have a dependency
+on for audio and likely, in the future, logging and internationalization. I set
+up the Trello board for the project and have continued assisting others get
+started in the codebase and helping out where needed.
+
+## Next week's goals ##
+I definitely want to get more involved in the codebase than I have been. I would
+like to see it up and running in some state or another within the next week, but
+I have doubts as to the feasibility of that plan. We'll chat some more of what
+the final architecture should look like now that everyone has had a little bit
+of experience in the codebase.

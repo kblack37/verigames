@@ -1,0 +1,21 @@
+# Individual Report (Jake Chiang): Week 4 #
+
+
+## Previous Goals ##
+- Set up VM to run Flash, or find supported version
+- Playtest PipeJam/FlowJam
+- Resolve compiler errors for Haxe port of the *Jam games.
+
+
+## Progress ##
+- Set up environment to develop with Haxe
+    - Had some difficulty since the primary Haxe IDE is Windows only
+- Examined structure of the project to determine how it is put together
+- Reviewed fixes made by team members in order to familiarize myself with the
+  type of work involved with the task
+
+
+## Goals ##
+- Learn more of Haxe, particularly regarding how its projects are structured
+- Solve compiler errors for the new codebase
+

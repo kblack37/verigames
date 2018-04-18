@@ -1,10 +1,16 @@
 # Team Report: Week 4 #
 
 ## Last Week's Goal **
--
--
--
+- Finish resolving compiler errors with FlowJam and PipeJam
+- Begin work on adding external assets back into the codebase
 
 ## Progress ##
+- Reducing compiler errors
+    - Updated XML parsing
+    - Fixed dictionary typing
+    - Updated dependencies for basic UI elements
+- Formulated end goal architecture (Entity-component-system design)
 
 ## Goals ##
+- More concentrated effort on finishing the ports
+    - Resolving final missing dependencies

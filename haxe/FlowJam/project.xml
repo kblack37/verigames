@@ -16,6 +16,7 @@
 	<source path="src" />
 	<haxelib name="openfl" />
 	<haxelib name="starling" />
+	<haxelib name="as3hx" />
 	
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />

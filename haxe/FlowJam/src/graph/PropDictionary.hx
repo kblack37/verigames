@@ -7,7 +7,7 @@ class PropDictionary
     public static inline var PROP_NARROW : String = "NARROW";
     public static inline var PROP_KEYFOR_PREFIX : String = "KEYFOR_";
     
-    private var m_props : Dictionary;
+    private var m_props : Dictionary<String,Bool>;
     
     public function new()
     {

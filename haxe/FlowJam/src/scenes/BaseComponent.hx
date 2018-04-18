@@ -6,7 +6,7 @@ import flash.display3D.Context3D;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.utils.Dictionary;
-import starling.core.RenderSupport;
+import starling.rendering.Painter;
 import starling.core.Starling;
 import starling.display.DisplayObject;
 import starling.display.Image;
@@ -67,27 +67,29 @@ class BaseComponent extends ToolTippableSprite
         }
     }
     
-    override public function render(support : RenderSupport, alpha : Float) : Void
+    override public function render(painter : Painter) : Void
     {
         if (mClipRect == null)
         {
-            super.render(support, alpha);
+            super.render(painter);
         }
         else
         {
-            var context : Context3D = Starling.context;
+            var context : Context3D = Starling.current.context;
             if (context == null)
             {
                 throw new MissingContextError();
             }
+            //finish quadbatch is from starling.rendersupport which is depreicated need to find what its doing and what painter should do
+            //painter.finishQuadBatch();
+			//same with scissoreRect
+            //painter.scissorRectangle = mClipRect;TODO does this work?
+            painter.configureBackBuffer(mClipRect, 1.0, 0, false);
+            super.render(painter);
             
-            support.finishQuadBatch();
-            support.scissorRectangle = mClipRect;
-            
-            super.render(support, alpha);
-            
-            support.finishQuadBatch();
-            support.scissorRectangle = null;
+            //painter.finishQuadBatch(); Deprecated code
+			//might need to set the backbuffer rect to null, but not sure
+            //painter.scissorRectangle = null;
         }
     }
     

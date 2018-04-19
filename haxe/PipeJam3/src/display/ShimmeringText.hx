@@ -47,10 +47,10 @@ class ShimmeringText extends Sprite
     
     public function shimmer(shimmerDelaySec : Float, shimmerTimeSec : Float, repeat : Bool = false) : Void
     {
-        Starling.juggler.removeTweens(m_shimmerImage);
+        Starling.current.juggler.removeTweens(m_shimmerImage);
         var textBounds : Rectangle = (try cast(m_textField, TextFieldHack) catch(e:Dynamic) null).textBounds;
         m_shimmerImage.x = textBounds.left - 0.1 * textBounds.width - m_shimmerImage.width;
-        Starling.juggler.tween(m_shimmerImage, shimmerTimeSec, {
+        Starling.current.juggler.tween(m_shimmerImage, shimmerTimeSec, {
                     x : (textBounds.right + 0.1 * textBounds.width),
                     delay : shimmerDelaySec,
                     onComplete : function() : Void
@@ -75,8 +75,8 @@ class ShimmeringText extends Sprite
     
     public function fadeOut(fadeDelaySec : Float, fadeTimeSec : Float) : Void
     {
-        Starling.juggler.removeTweens(this);
-        Starling.juggler.tween(this, fadeTimeSec, {
+        Starling.current.juggler.removeTweens(this);
+        Starling.current.juggler.tween(this, fadeTimeSec, {
                     delay : fadeDelaySec,
                     alpha : 0,
                     transition : Transitions.EASE_IN

@@ -41,7 +41,7 @@ class TextPopup extends Sprite
         }
         text.scaleX = text.scaleY = 1 / totalScale;
         
-        Starling.juggler.tween(text, 1.5, {
+        Starling.current.juggler.tween(text, 1.5, {
                     y : pos.y - 20,
                     alpha : 0.2,
                     onComplete : function() : Void

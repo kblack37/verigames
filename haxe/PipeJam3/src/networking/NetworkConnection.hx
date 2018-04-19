@@ -162,7 +162,7 @@ class NetworkConnection
     {
         try
         {
-            trace("in complete " + e.target.data);
+            trace("in complete " + Reflect.field(e.target, "data"));
             if (m_callback != null)
             {
                 m_callback(EVENT_COMPLETE, e);
@@ -211,7 +211,7 @@ class NetworkConnection
         
         if (braceCount == 0)
         {
-            return as3hx.Compat.parseInt(currentIndex - 1);
+            return currentIndex - 1;
         }
         else
         {

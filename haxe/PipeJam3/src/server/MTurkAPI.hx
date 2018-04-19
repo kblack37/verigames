@@ -44,7 +44,7 @@ class MTurkAPI
                     ExternalInterface.call("console.log", "interop.php onTaskBegin bad response");
                 }
             }
-            m_encryptedMessage = Std.string(e.target.data);
+            m_encryptedMessage = Std.string(Reflect.field(e.target, "data"));
             if (ExternalInterface.available)
             {
                 ExternalInterface.call("console.log", "interop.php onTaskBegin msg:" + m_encryptedMessage + " result:" + result);
@@ -71,7 +71,7 @@ class MTurkAPI
                 }
                 callback(null);
             }
-            var code : String = Std.string(e.target.data);
+            var code : String = Std.string(Reflect.field(e.target, "data"));
             if (ExternalInterface.available)
             {
                 ExternalInterface.call("console.log", "interop.php mTurkTaskComplete code:" + code + " result:" + result);

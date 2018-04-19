@@ -1,11 +1,11 @@
 package server;
 
 import haxe.Constraints.Function;
-import cgs.server.logging.CGSServer;
-import cgs.server.logging.actions.ClientAction;
+import haxe.Json;
+//import cgs.server.logging.CGSServer;
+//import cgs.server.logging.actions.ClientAction;
 import cgs.server.logging.data.QuestData;
 import cgs.server.logging.data.QuestStartEndData;
-import com.adobe.serialization.json.JSON;
 import scenes.game.display.ReplayWorld;
 import system.VerigameServerConstants;
 
@@ -23,7 +23,7 @@ class ReplayController
     {
         if (m_instance == null)
         {
-            m_instance = new ReplayController(new SingletonLock());
+            m_instance = new ReplayController();
         }
         return m_instance;
     }
@@ -49,8 +49,8 @@ class ReplayController
             attemptPreviewAction(questData.actions, 0, world, 1);
         }
         else if ((m_currentActionIndex == m_nextActionIndex) && (m_lastDir == 1))
-        
-        // Perform previewed action{
+        {
+        // Perform previewed action
             
             attemptPerformAction(questData.actions, m_currentActionIndex, world, 1);
         }
@@ -83,8 +83,8 @@ class ReplayController
             return;
         }
         if ((m_currentActionIndex == m_nextActionIndex) && (m_lastDir == -1))
-        
-        // Perform previewed action{
+        {
+        // Perform previewed action
             
             attemptPerformAction(questData.actions, m_currentActionIndex, world, -1);
         }
@@ -107,13 +107,13 @@ class ReplayController
         {
             return;
         }
-        if (!(Std.is(actions[attemptIndex], ClientAction)))
-        {
-            return;
-        }
-        var action : ClientAction = try cast(actions[attemptIndex], ClientAction) catch(e:Dynamic) null;
+        //if (!(Std.is(actions[attemptIndex], ClientAction)))
+        //{
+            //return;
+        //}
+        //var action : ClientAction = try cast(actions[attemptIndex], ClientAction) catch(e:Dynamic) null;
         // perform the action now
-        world.performAction(action, dir == -1);
+        //world.performAction(action, dir == -1);
         m_currentActionIndex = attemptIndex;
         m_nextActionIndex = as3hx.Compat.parseInt(m_currentActionIndex + dir);
         m_lastDir = dir;
@@ -142,7 +142,7 @@ class ReplayController
         m_lastDir = dir;
     }
     
-    public function new(lock : SingletonLock)
+    private function new()
     {
         m_currentActionIndex = m_nextActionIndex = -1;
     }
@@ -151,11 +151,11 @@ class ReplayController
 		 * Load quest data from server, callback should have signature:
 		 * function onQuestDataLoaded(questData:QuestData, errMessage:String = null):void {}
 		 */
-    public function loadQuestData(dqid : String, cgsServer : CGSServer, callback : Function) : Void
-    {
-        cgsServer.requestQuestData(dqid, onLoadQuestData);
-        m_questDataLoadedCallback = callback;
-    }
+    //public function loadQuestData(dqid : String, cgsServer : CGSServer, callback : Function) : Void
+    //{
+        //cgsServer.requestQuestData(dqid, onLoadQuestData);
+        //m_questDataLoadedCallback = callback;
+    //}
     
     private function onLoadQuestData(_questData : QuestData, failed : Bool) : Void
     {
@@ -210,10 +210,10 @@ class ReplayController
     
     private static function getQuestStart(questString : String) : QuestStartEndData
     {
-        var questObj : Array<Dynamic> = com.adobe.serialization.json.JSON.decode(questString);
+        var questObj : Dynamic = Json.parse(questString);
         
         var questStart : QuestStartEndData = new QuestStartEndData();
-        questStart.parseJsonData(questObj[0]);
+        questStart.parseJsonData(questObj);
         return questStart;
     }
     
@@ -238,7 +238,7 @@ class ReplayController
         var actionsObj : Dynamic = com.adobe.serialization.json.JSON.decode(actionsString);
         
         var actionsDetail : Array<Dynamic> = new Array<Dynamic>();
-        for (actionObj/* AS3HX WARNING could not determine type for var: actionObj exp: EIdent(actionsObj) type: Dynamic */ in actionsObj)
+        for (actionObj in actionsObj)
         {
             var clientAction : ClientAction = new ClientAction();
             clientAction.parseJsonData(actionObj);
@@ -287,13 +287,3 @@ class ReplayController
         return true;
     }
 }
-
-
-class SingletonLock
-{
-
-    @:allow(server)
-    private function new()
-    {
-    }
-}  // to prevent outside construction of singleton  

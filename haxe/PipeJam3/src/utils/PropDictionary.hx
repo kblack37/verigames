@@ -72,7 +72,7 @@ class PropDictionary
         var prop : String;
         for (prop in Reflect.fields(m_props))
         {
-            if (other.m_props[prop] == null)
+            if (Reflect.field(other.m_props, prop) == null)
             {
                 return false;
             }

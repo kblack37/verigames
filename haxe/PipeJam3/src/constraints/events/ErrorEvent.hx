@@ -8,9 +8,9 @@ class ErrorEvent extends Event
     public static inline var ERROR_ADDED : String = "error_added";
     public static inline var ERROR_REMOVED : String = "error_removed";
     
-    public var constraintChangeDict : Dictionary;
+    public var constraintChangeDict : Dynamic;
     
-    public function new(type : String, _constraintChangeDict : Dictionary)
+    public function new(type : String, _constraintChangeDict : Dynamic)
     {
         super(type);
         constraintChangeDict = _constraintChangeDict;

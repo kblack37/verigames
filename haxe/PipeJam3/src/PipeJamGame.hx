@@ -8,8 +8,8 @@ import flash.utils.Timer;
 import server.MTurkAPI;
 import assets.AssetsAudio;
 import audio.AudioManager;
-import buildInfo.BuildInfo;
-import cgs.cache.Cache;
+//import buildInfo.BuildInfo;
+//import cgs.cache.Cache;
 import display.GameObjectBatch;
 import display.NineSliceBatch;
 import display.SoundButton;
@@ -69,7 +69,7 @@ class PipeJamGame extends Game
         
         AudioManager.getInstance().reset();
         //AudioManager.getInstance().audioDriver().musicOn = !Boolean(Cache.getSave(Constants.CACHE_MUTE_MUSIC));
-        AudioManager.getInstance().audioDriver().sfxOn = AudioManager.getInstance().audioDriver().musicOn = !cast(Cache.getSave(Constants.CACHE_MUTE_SFX), Bool);
+        //AudioManager.getInstance().audioDriver().sfxOn = AudioManager.getInstance().audioDriver().musicOn = !cast(Cache.getSave(Constants.CACHE_MUTE_SFX), Bool);
         
         
         m_sfxButton = new SoundButton();
@@ -173,8 +173,8 @@ class PipeJamGame extends Game
             }
         }
         else if (PipeJam3.ASSET_SUFFIX == "Turk")
-        
-        // Use test token{
+        {
+        // Use test token
             
             MTurkAPI.getInstance().workerToken = "4G9OGQuO9X";
             m_fileName = "p_001011_00054778";
@@ -185,8 +185,8 @@ class PipeJamGame extends Game
         if (m_fileName != null || m_levelID != null || PlayerValidation.AuthorizationAttempted)
         {
             if (PipeJamGame.levelInfo)
-            
-            //local file{
+            {
+            //local file
                 
                 showScene("PipeJamGame");
             }
@@ -251,8 +251,8 @@ class PipeJamGame extends Game
         PipeJamGameScene.inTutorial = false;
         levelInfo = GameFileHandler.getRandomLevelObject();
         if (PipeJamGame.levelInfo == null)
-        
-        //assume level file is slow loading, and cycle back around after a while.{
+        {
+        //assume level file is slow loading, and cycle back around after a while.
             
             //maybe only happens when debugging locally...
             var timer : Timer = new Timer(250, 1);
@@ -313,19 +313,19 @@ class PipeJamGame extends Game
     
     private function onKeyDown(event : KeyboardEvent) : Void
     {
-        if (event.ctrlKey && event.altKey && event.shiftKey && event.keyCode == Keyboard.V)
-        {
-            var buildId : String = BuildInfo.DATE + "-" + BuildInfo.VERSION;
-            trace(buildId);
-            System.setClipboard(buildId);
-        }
+        //if (event.ctrlKey && event.altKey && event.shiftKey && event.keyCode == Keyboard.V)
+        //{
+            //var buildId : String = BuildInfo.DATE + "-" + BuildInfo.VERSION;
+            //trace(buildId);
+            //System.setClipboard(buildId);
+        //}
     }
     
     private function updateSfxState(sfxOn : Bool) : Void
     {
         m_sfxButton.sfxOn = sfxOn;
-        var result : Bool = Cache.setSave(Constants.CACHE_MUTE_SFX, !sfxOn);
-        trace("Cache updateSfxState: " + result);
+        //var result : Bool = Cache.setSave(Constants.CACHE_MUTE_SFX, !sfxOn);
+        //trace("Cache updateSfxState: " + result);
     }
     
     /**
@@ -353,8 +353,8 @@ class PipeJamGame extends Game
         {
             trace(_msg);
             if (ExternalInterface.available)
-            
-            //var reply:String = ExternalInterface.call("navTo", URLBASE + "browsing/card.php?id=" + quiz_card_asked + "&topic=" + TOPIC_NUM);{
+            {
+            //var reply:String = ExternalInterface.call("navTo", URLBASE + "browsing/card.php?id=" + quiz_card_asked + "&topic=" + TOPIC_NUM);
                 
                 var reply : String = ExternalInterface.call("printDebug", _msg);
             }

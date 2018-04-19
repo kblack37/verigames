@@ -43,7 +43,7 @@ class FanfareParticleSystem extends Sprite
         mParticleSystem.emitterY = 0;
         mParticleSystem.start();
         addChild(mParticleSystem);
-        Starling.juggler.add(mParticleSystem);
+        Starling.current.juggler.add(mParticleSystem);
     }
     
     private function get_particleX() : Float
@@ -76,7 +76,7 @@ class FanfareParticleSystem extends Sprite
     override public function dispose() : Void
     {
         mParticleSystem.removeFromParent(true);
-        Starling.juggler.remove(mParticleSystem);
+        Starling.current.juggler.remove(mParticleSystem);
         super.dispose();
     }
 }

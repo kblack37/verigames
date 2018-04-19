@@ -2,11 +2,11 @@ package system;
 
 import flash.errors.Error;
 import haxe.Constraints.Function;
-import maxsat.MaxSatManager;
+//import maxsat.MaxSatManager;
 
 class MaxSatSolver
 {
-    private static var m_mgr : MaxSatManager = new MaxSatManager();
+    //private static var m_mgr : MaxSatManager = new MaxSatManager();
     private static var unsat_best : Int = -1;
     
     public static var SOLVER_STARTED : String = "solver_started";
@@ -51,19 +51,19 @@ class MaxSatSolver
     
     public static function run_solver(algorithm : Int, clause_arrays : Array<Dynamic>, initvars_Array : Array<Dynamic>, updatecallback : Function, donecallback : Function) : Void
     {
-        try
-        {
-            m_mgr.start(algorithm, clause_arrays, initvars_Array, updatecallback, donecallback);
-        }
-        catch (e : Error)
-        {
-            trace(e.message);
-        }
+        //try
+        //{
+            //m_mgr.start(algorithm, clause_arrays, initvars_Array, updatecallback, donecallback);
+        //}
+        //catch (e : Error)
+        //{
+            //trace(e.message);
+        //}
     }
     
     public static function stop_solver() : Void
     {
-        m_mgr.stop();
+        //m_mgr.stop();
     }
     
     private static function update_callback(vars : Array<Dynamic>, unsat_weight : Int) : Int
@@ -84,9 +84,5 @@ class MaxSatSolver
         }
         
         trace("Expect: " + unsat_best);
-    }
-
-    public function new()
-    {
     }
 }

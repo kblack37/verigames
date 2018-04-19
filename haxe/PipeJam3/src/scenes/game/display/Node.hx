@@ -55,7 +55,7 @@ class Node extends GridChild
         }
         for (gameEdgeID in connectedEdgeIds)
         {
-            var edgeObj : Dynamic = World.m_world.active_level.edgeLayoutObjs[gameEdgeID];
+            var edgeObj : Dynamic = Reflect.field(World.m_world.active_level.edgeLayoutObjs, gameEdgeID);
             if (edgeObj != null)
             {
                 edgeObj.isDirty = true;
@@ -124,7 +124,7 @@ class Node extends GridChild
     override public function updateSelectionAssignment(_isWide : Bool, levelGraph : ConstraintGraph) : Void
     {
         super.updateSelectionAssignment(_isWide, levelGraph);
-        var constraintVar : ConstraintVar = levelGraph.variableDict[id];
+        var constraintVar : ConstraintVar = Reflect.field(levelGraph.variableDict, id);
         if (constraintVar.getProps().hasProp(PropDictionary.PROP_NARROW) == _isWide)
         {
             constraintVar.setProp(PropDictionary.PROP_NARROW, !_isWide);

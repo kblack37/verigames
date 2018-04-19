@@ -59,14 +59,14 @@ class ErrorParticleSystem extends Sprite
         mParticleSystem.start();
         
         addChild(mParticleSystem);
-        Starling.juggler.add(mParticleSystem);
+        Starling.current.juggler.add(mParticleSystem);
     }
     
     private function onRemovedFromStage(evt : Event) : Void
     {
         mParticleSystem.stop();
         mParticleSystem.removeFromParent();
-        Starling.juggler.remove(mParticleSystem);
+        Starling.current.juggler.remove(mParticleSystem);
     }
 }
 

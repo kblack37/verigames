@@ -43,7 +43,7 @@ import scenes.game.display.TutorialManagerTextInfo;
 import scenes.game.display.World;
 import starling.animation.DelayedCall;
 import starling.animation.Transitions;
-import starling.core.RenderSupport;
+import starling.rendering.Painter;
 import starling.core.Starling;
 import starling.display.DisplayObject;
 import starling.display.Image;
@@ -82,7 +82,7 @@ class GridViewPanel extends BaseComponent
     private var m_tutorialText : TutorialText;
     private var m_persistentToolTips : Array<ToolTipText> = new Array<ToolTipText>();
     private var m_continueButtonForced : Bool = false;  //true to force the continue button to display, ignoring score  
-    private var m_errorTextBubbles : Dictionary = new Dictionary();
+    private var m_errorTextBubbles : Dynamic = {};
     private var m_nodeLayoutQueue : Array<Dynamic> = new Array<Dynamic>();
     private var m_edgeLayoutQueue : Array<Dynamic> = new Array<Dynamic>();
     
@@ -147,7 +147,7 @@ class GridViewPanel extends BaseComponent
     private static var MIN_ERROR_TEXT_DISPLAY_SCALE : Float = 15.0 / Constants.GAME_SCALE;
     private static var m_gridTexture : Texture;
     private var contentChanged : Bool = true;
-    private var m_gridTileImg : TiledImage;
+    //private var m_gridTileImg : TiledImage;
     private var m_gridContainer : Sprite;
     private var m_zoomPanTimer : Timer;
     private static inline var ZOOM_PAN_TIME_SEC : Float = 0.6;
@@ -935,17 +935,17 @@ class GridViewPanel extends BaseComponent
             return;
         }
         var viewSpace : Rectangle = getViewInContentSpace(m_gridContainer);
-        if (m_gridTileImg.x > viewSpace.x ||
-            m_gridTileImg.x + m_gridTileImg.width < viewSpace.right ||
-            m_gridTileImg.y > viewSpace.y ||
-            m_gridTileImg.y + m_gridTileImg.height < viewSpace.bottom)
-        {
-            m_gridTileImg.x = viewSpace.x - 2 * viewSpace.width;
-            m_gridTileImg.y = viewSpace.y - 2 * viewSpace.height;
-            m_gridTileImg.width = 5 * viewSpace.width;
-            m_gridTileImg.height = 5 * viewSpace.height;
-            m_gridTileImg.textureScale = 1.0 / m_gridContainer.scaleX;
-        }
+        //if (m_gridTileImg.x > viewSpace.x ||
+            //m_gridTileImg.x + m_gridTileImg.width < viewSpace.right ||
+            //m_gridTileImg.y > viewSpace.y ||
+            //m_gridTileImg.y + m_gridTileImg.height < viewSpace.bottom)
+        //{
+            //m_gridTileImg.x = viewSpace.x - 2 * viewSpace.width;
+            //m_gridTileImg.y = viewSpace.y - 2 * viewSpace.height;
+            //m_gridTileImg.width = 5 * viewSpace.width;
+            //m_gridTileImg.height = 5 * viewSpace.height;
+            //m_gridTileImg.textureScale = 1.0 / m_gridContainer.scaleX;
+        //}
     }
     
     
@@ -955,14 +955,14 @@ class GridViewPanel extends BaseComponent
         {
             m_gridTexture = AssetInterface.getTexture("Game", "GridClass");
         }
-        if (m_gridTileImg == null)
-        {
-            m_gridTileImg = new TiledImage(m_gridTexture);
-        }
+        //if (m_gridTileImg == null)
+        //{
+            //m_gridTileImg = new TiledImage(m_gridTexture);
+        //}
         if (m_gridContainer == null)
         {
             m_gridContainer = new Sprite();
-            m_gridContainer.addChild(m_gridTileImg);
+            //m_gridContainer.addChild(m_gridTileImg);
             createGridImage();
             m_gridContainer.addChild(gridImage);
         }
@@ -972,11 +972,11 @@ class GridViewPanel extends BaseComponent
             
             {
                 var viewSpace : Rectangle = getViewInContentSpace();
-                m_gridTileImg.x = viewSpace.x - 2 * viewSpace.width;
-                m_gridTileImg.y = viewSpace.y - 2 * viewSpace.height;
-                m_gridTileImg.width = 5 * viewSpace.width;
-                m_gridTileImg.height = 5 * viewSpace.height;
-                m_gridTileImg.textureScale = 1.0 / content.scaleX;
+                //m_gridTileImg.x = viewSpace.x - 2 * viewSpace.width;
+                //m_gridTileImg.y = viewSpace.y - 2 * viewSpace.height;
+                //m_gridTileImg.width = 5 * viewSpace.width;
+                //m_gridTileImg.height = 5 * viewSpace.height;
+                //m_gridTileImg.textureScale = 1.0 / content.scaleX;
                 m_gridContainer.scaleX = content.scaleX;
                 m_gridContainer.scaleY = content.scaleY;
                 m_gridContainer.x = content.x;
@@ -1015,17 +1015,17 @@ class GridViewPanel extends BaseComponent
         m_nameText.visible = false;
         m_paintBrushLayer.visible = false;
         m_tutorialTextLayer.visible = false;
-        var stage : Stage = Starling.current.stage;
-        var rs : RenderSupport = new RenderSupport();
-        rs.clear();
+        var painter : Painter = Starling.painter;
+		painter.pushState();
         
         var cornerPt : Point = content.globalToLocal(new Point());
         
-        rs.setOrthographicProjection(0, 0, clipRect.width * 2, clipRect.height * 2);
+		painter.state.setProjectionMatrix(0, 0, clipRect.width * 2, clipRect.height * 2);
         // .91 is an experential constant that works, but I don't know why...
-        rs.scaleMatrix(.91, 1);
-        render(rs, 1.0);
-        rs.finishQuadBatch();
+        painter.state.modelViewMatrix = MatrixUtil.prependScale(painter.state.modelViewMatrix, 0.91, 1.0);
+        render(painter, 1.0);
+        painter.finishFrame();
+		
         var outBmp : BitmapData = new BitmapData(clipRect.width, clipRect.height, true);
         Starling.context.drawToBitmapData(outBmp);
         var bitmap : Bitmap = new Bitmap(outBmp);
@@ -1040,6 +1040,8 @@ class GridViewPanel extends BaseComponent
         m_nameText.visible = true;
         m_paintBrushLayer.visible = true;
         m_tutorialTextLayer.visible = true;
+		
+		painter.popState();
     }
     
     private function hideZoomPanGridAndApplyChanges(evt : TimerEvent) : Void
@@ -1589,14 +1591,14 @@ class GridViewPanel extends BaseComponent
                 var origY : Float = m_fanfareTextContainer.y;
                 for (i in 0...m_fanfare.length)
                 {
-                    Starling.juggler.tween(m_fanfare[i], LEVEL_COMPLETE_TEXT_MOVE_SEC, {
+                    Starling.current.juggler.tween(m_fanfare[i], LEVEL_COMPLETE_TEXT_MOVE_SEC, {
                                 delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
                                 particleX : (continueButton.x - origX),
                                 particleY : (continueButton.y - continueButton.height - origY),
                                 transition : Transitions.EASE_OUT
                             });
                 }
-                Starling.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_MOVE_SEC, {
+                Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_MOVE_SEC, {
                             delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
                             x : continueButton.x,
                             y : continueButton.y - continueButton.height,
@@ -1607,13 +1609,13 @@ class GridViewPanel extends BaseComponent
             else
             {
                 
-                Starling.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_FADE_SEC, {
+                Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_FADE_SEC, {
                             delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
                             alpha : 0,
                             transition : Transitions.EASE_IN
                         });
             }
-            m_stopFanfareDelayedCall = Starling.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
+            m_stopFanfareDelayedCall = Starling.current.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
         }  // end if showing fanfare  
         
         if (PipeJamGameScene.inTutorial)
@@ -1642,7 +1644,7 @@ class GridViewPanel extends BaseComponent
     {
         if (m_stopFanfareDelayedCall != null)
         {
-            Starling.juggler.remove(m_stopFanfareDelayedCall);
+            Starling.current.juggler.remove(m_stopFanfareDelayedCall);
         }
         for (i in 0...m_fanfare.length)
         {
@@ -1655,7 +1657,7 @@ class GridViewPanel extends BaseComponent
         }
         if (m_fanfareTextContainer != null)
         {
-            Starling.juggler.removeTweens(m_fanfareTextContainer);
+            Starling.current.juggler.removeTweens(m_fanfareTextContainer);
             m_fanfareTextContainer.removeFromParent();
         }
     }

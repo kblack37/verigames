@@ -10,7 +10,7 @@ class ParseConstraintGraphState extends LoadingState
     public static var WORLD_PARSED : String = "World Parsed";
     
     private var worldObj : Dynamic;
-    private var worldGraphsDict : Dictionary;
+    private var worldGraphsDict : Dynamic;
     
     public function new(_worldObj : Dynamic)
     {
@@ -20,7 +20,7 @@ class ParseConstraintGraphState extends LoadingState
     
     override public function stateLoad() : Void
     {
-        worldGraphsDict = new Dictionary();
+        worldGraphsDict = {};
         var levelsArr : Array<Dynamic> = Reflect.field(worldObj, "levels");
         if (levelsArr != null)
         {

@@ -9,8 +9,8 @@ import scenes.game.display.World;
 
 class Achievements
 {
-    public static var ADD_ACHIEVEMENT : Int = 0;
-    public static var GET_ACHIEVEMENTS : Int = 1;
+    public static var add_achievement : Int = 0;
+    public static var get_achievements : Int = 1;
     
     public static var CHECK_SCORE : String = "check_score";
     
@@ -59,23 +59,24 @@ class Achievements
     public var m_id : String;
     public var m_message : String;
     
-    private static var currentAchievementList : Dictionary = new Dictionary();
+    private static var currentAchievementList : Dynamic = {};
     
     public static function getAchievementsEarnedForPlayer() : Void
     {
         var newAchievement : Achievements = new Achievements();
-        newAchievement.sendMessage(GET_ACHIEVEMENTS, getAchievements);
+        newAchievement.sendMessage(get_achievements, getAchievements);
     }
     
     private static function getAchievements(result : Int, e : Event) : Void
     {
         if (result != NetworkConnection.EVENT_ERROR)
         {
-            var achievementObject : Dynamic = haxe.Json.parse(e.target.data);
-            currentAchievementList = new Dictionary();
-            for (achievement/* AS3HX WARNING could not determine type for var: achievement exp: EField(EIdent(achievementObject),playerAchievements) type: null */ in achievementObject.playerAchievements)
+            var achievementObject : Dynamic = haxe.Json.parse(Reflect.field(e.target, "data"));
+			var playerAchievements : Array<Dynamic> = achievementObject.playerAchievements;
+            currentAchievementList = {};
+            for (achievement in playerAchievements)
             {
-                currentAchievementList[achievement.achievementId] = achievement;
+                Reflect.setField(currentAchievementList, achievement.achievementId, achievement);
             }
         }
     }
@@ -111,7 +112,7 @@ class Achievements
     
     public function post() : Void
     {
-        sendMessage(ADD_ACHIEVEMENT, postMessage);
+        sendMessage(add_achievement, postMessage);
     }
     
     private function postMessage(result : Int, e : Event) : Void
@@ -132,15 +133,15 @@ class Achievements
         
         switch (type)
         {
-            case GET_ACHIEVEMENTS:
+            case get_achievements:
                 url = NetworkConnection.productionInterop + "?function=passURL2&data_id='/api/achievements/search/player?playerId=" + PlayerValidation.playerID + "'&data2='" + PlayerValidation.accessToken + "'";
-            case ADD_ACHIEVEMENT:
+            case add_achievement:
                 url = NetworkConnection.productionInterop + "?function=jsonPOST&data_id='/api/achievement/assign'&data2='" + PlayerValidation.accessToken + "'";
                 var dataObj : Dynamic = {};
                 dataObj.playerId = PlayerValidation.playerID;
                 dataObj.gameId = PipeJam3.GAME_ID;
                 dataObj.achievementId = m_id;
-                dataObj.earnedOn = (Date.now()).time;
+                dataObj.earnedOn = DateTools.format(Date.now(), "%F");
                 
                 data = haxe.Json.stringify(dataObj);
                 

@@ -2,7 +2,7 @@ package scenes.game;
 
 import flash.errors.Error;
 import flash.utils.Dictionary;
-import deng.fzip.FZipFile;
+//import deng.fzip.FZipFile;
 import networking.GameFileHandler;
 import scenes.Scene;
 import scenes.game.display.ReplayWorld;
@@ -42,7 +42,7 @@ class PipeJamGameScene extends Scene
     /** Start button image */
     private var start_button : Button;
     private var active_world : World;
-    private var m_worldGraphDict : Dictionary;
+    private var m_worldGraphDict : Dynamic;
     
     public static var startLoadTime : Float;
     
@@ -67,16 +67,16 @@ class PipeJamGameScene extends Scene
     
     private function onLayoutLoaded(_layoutObj : Dynamic) : Void
     {
-        if (Std.is(_layoutObj, FZipFile))
-        {
-            m_layoutObj = Std.string((try cast(_layoutObj, FZipFile) catch(e:Dynamic) null).content);
-        }
-        else
-        {
-            m_layoutObj = _layoutObj;
-        }
-        m_layoutLoaded = true;
-        checkTasksComplete();
+        //if (Std.is(_layoutObj, FZipFile))
+        //{
+            //m_layoutObj = Std.string((try cast(_layoutObj, FZipFile) catch(e:Dynamic) null).content);
+        //}
+        //else
+        //{
+            //m_layoutObj = _layoutObj;
+        //}
+        //m_layoutLoaded = true;
+        //checkTasksComplete();
     }
     
     private function onConstraintsLoaded(_assignmentsObj : Dynamic) : Void
@@ -102,12 +102,12 @@ class PipeJamGameScene extends Scene
             m_worldObj = obj;
         }
         
-        if (Std.is(obj, FZipFile))
-        {
-            m_assignmentsLoaded = true;
-            m_currentFileName = (try cast(obj, FZipFile) catch(e:Dynamic) null).filename;
-            m_worldObj = Std.string((try cast(obj, FZipFile) catch(e:Dynamic) null).content);
-        }
+        //if (Std.is(obj, FZipFile))
+        //{
+            //m_assignmentsLoaded = true;
+            //m_currentFileName = (try cast(obj, FZipFile) catch(e:Dynamic) null).filename;
+            //m_worldObj = Std.string((try cast(obj, FZipFile) catch(e:Dynamic) null).content);
+        //}
         m_worldLoaded = true;
         checkTasksComplete();
     }
@@ -182,7 +182,7 @@ class PipeJamGameScene extends Scene
     
     public function worldComplete(event : starling.events.Event) : Void
     {
-        m_worldGraphDict = try cast(event.data, Dictionary) catch(e:Dynamic) null;
+        m_worldGraphDict = event.data;
         m_worldLoaded = true;
         this.removeEventListener(ParseConstraintGraphState.WORLD_PARSED, worldComplete);
         onWorldParsed();

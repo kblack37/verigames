@@ -1,5 +1,6 @@
 package scenes;
 
+import flash.Vector;
 import haxe.Constraints.Function;
 import flash.display3D.Context3D;
 import flash.geom.Point;
@@ -9,7 +10,7 @@ import display.NineSliceToggleButton;
 import display.RadioButton;
 import display.ToolTippableSprite;
 import scenes.game.components.GridViewPanel;
-import starling.core.RenderSupport;
+import starling.rendering.Painter;
 import starling.core.Starling;
 import starling.display.DisplayObject;
 import starling.display.DisplayObjectContainer;
@@ -28,8 +29,8 @@ class BaseComponent extends ToolTippableSprite
     private var mClipRect : Rectangle;
     
     //initalized in Game
-    private static var loadingAnimationImages : Array<Texture> = null;
-    private static var waitAnimationImages : Array<Texture> = null;
+    private static var loadingAnimationImages : Vector<Texture> = null;
+    private static var waitAnimationImages : Vector<Texture> = null;
     
     private var busyAnimationMovieClip : MovieClip;
     
@@ -67,48 +68,49 @@ class BaseComponent extends ToolTippableSprite
         }
     }
     
-    override public function render(support : RenderSupport, alpha : Float) : Void
+    override public function render(painter : Painter) : Void
     {
         if (mClipRect == null)
         {
-            super.render(support, alpha);
+            super.render(painter);
         }
         else
         {
-            var context : Context3D = Starling.context;
+            var context : Context3D = Starling.current.context;
             if (context == null)
             {
                 throw new MissingContextError();
             }
             
-            support.finishQuadBatch();
-            support.scissorRectangle = mClipRect;
+			painter.finishFrame();
+			painter.pushState();
+			painter.state.clipRect = mClipRect;
             
-            super.render(support, alpha);
+            super.render(painter);
             
-            support.finishQuadBatch();
-            support.scissorRectangle = null;
+            painter.finishFrame();
+			painter.popState();
         }
     }
     
-    override public function hitTest(localPoint : Point, forTouch : Bool = false) : DisplayObject
+    override public function hitTest(localPoint : Point) : DisplayObject
     // without a clip rect, the sprite should behave just like before
     {
         
         if (mClipRect == null)
         {
-            return super.hitTest(localPoint, forTouch);
+            return super.hitTest(localPoint);
         }
         
         // on a touch test, invisible or untouchable objects cause the test to fail
-        if (forTouch && (!visible || !touchable))
+        if (!visible || !touchable)
         {
             return null;
         }
         
         if (mClipRect.containsPoint(localToGlobal(localPoint)))
         {
-            return super.hitTest(localPoint, forTouch);
+            return super.hitTest(localPoint);
         }
         else
         {
@@ -168,7 +170,7 @@ class BaseComponent extends ToolTippableSprite
             busyAnimationMovieClip.y = (animationParent.height - busyAnimationMovieClip.height) / 2;
             animationParent.addChild(busyAnimationMovieClip);
         }
-        Starling.juggler.add(this.busyAnimationMovieClip);
+        Starling.current.juggler.add(this.busyAnimationMovieClip);
         
         return busyAnimationMovieClip;
     }
@@ -178,7 +180,7 @@ class BaseComponent extends ToolTippableSprite
         if (busyAnimationMovieClip != null)
         {
             removeChild(busyAnimationMovieClip);
-            Starling.juggler.remove(this.busyAnimationMovieClip);
+            Starling.current.juggler.remove(this.busyAnimationMovieClip);
             
             busyAnimationMovieClip.dispose();
             busyAnimationMovieClip = null;

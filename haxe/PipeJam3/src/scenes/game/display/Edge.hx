@@ -28,7 +28,7 @@ class Edge
     
     public function updateEdge() : Void
     {
-        if (skin != null && skin.parent)
+        if (skin != null && skin.parent != null)
         {
             drawSkin();
             isDirty = false;
@@ -43,8 +43,10 @@ class Edge
             var fromGroup : String = fromNode.graphConstraintSide.getGroupAt(currentGroupDepth);
             var toGroup : String = toNode.graphConstraintSide.getGroupAt(currentGroupDepth);
             
-            var fromGroupNode : Node = ((fromGroup == "")) ? fromNode : try cast(World.m_world.active_level.nodeLayoutObjs[fromGroup], Node) catch(e:Dynamic) null;
-            var toGroupNode : Node = ((toGroup == "")) ? toNode : try cast(World.m_world.active_level.nodeLayoutObjs[toGroup], Node) catch(e:Dynamic) null;
+            var fromGroupNode : Node = fromGroup == "" ? 
+				fromNode : try cast(Reflect.field(World.m_world.active_level.nodeLayoutObjs, fromGroup), Node) catch(e:Dynamic) null;
+            var toGroupNode : Node = toGroup == "" ?
+				toNode : try cast(Reflect.field(World.m_world.active_level.nodeLayoutObjs, toGroup), Node) catch(e:Dynamic) null;
             
             if (fromGroupNode == toGroupNode)
             {

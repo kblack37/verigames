@@ -7,10 +7,10 @@ class ParseConstraintGraphTask extends Task
 {
     
     private var levelObj : Dynamic;
-    private var worldGraphDict : Dictionary;
+    private var worldGraphDict : Dynamic;
     public var levelGraph : ConstraintGraph;
     
-    public function new(_levelObj : Dynamic, _worldGraphDict : Dictionary, _dependentTaskIds : Array<String> = null)
+    public function new(_levelObj : Dynamic, _worldGraphDict : Dynamic, _dependentTaskIds : Array<String> = null)
     {
         levelObj = _levelObj;
         
@@ -25,7 +25,7 @@ class ParseConstraintGraphTask extends Task
         if (levelGraph == null)
         {
             levelGraph = ConstraintGraph.initFromJSON(levelObj);
-            worldGraphDict[id] = levelGraph;
+            Reflect.setField(worldGraphDict, id, levelGraph);
         }
         else
         {

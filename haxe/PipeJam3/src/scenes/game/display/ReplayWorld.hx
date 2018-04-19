@@ -6,7 +6,7 @@ import flash.utils.Dictionary;
 import starling.events.Event;
 import starling.events.KeyboardEvent;
 import audio.AudioManager;
-import cgs.server.logging.actions.ClientAction;
+//import cgs.server.logging.actions.ClientAction;
 import server.ReplayController;
 import system.VerigameServerConstants;
 import utils.XString;
@@ -45,8 +45,8 @@ class ReplayWorld extends World
         }
     }
     
-    public function performAction(action : ClientAction, isUndo : Bool = false) : Void
-    {  /* TODO logging: refactor
+    //public function performAction(action : ClientAction, isUndo : Bool = false) : Void
+    /*{   TODO logging: refactor
 			if (!action.detailObject) return;
 			if (!active_level) return;
 			var varId:String, propChanged:String, newPropValue:Boolean;
@@ -72,10 +72,10 @@ class ReplayWorld extends World
 			}
 			*/  
         
-    }
+    //}
     
-    public function previewAction(action : ClientAction, isUndo : Bool = false) : Void
-    {  /*		if (!action.detailObject) return;
+    //public function previewAction(action : ClientAction, isUndo : Bool = false) : Void
+    /*{  		if (!action.detailObject) return;
 			if (!active_level) return;
 			if (!edgeSetGraphViewPanel) return;
 			var edgeSetId:String, propChanged:String, newPropValue:Boolean;
@@ -100,5 +100,5 @@ class ReplayWorld extends World
 				PipeJam3.showReplayText("Replay action preview failed, edgeSetId: " + edgeSetId + " propChanged: " + propChanged);
 			}*/  
         
-    }
+    //}
 }

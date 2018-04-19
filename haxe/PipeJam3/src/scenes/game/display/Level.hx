@@ -1,17 +1,5 @@
 package scenes.game.display;
 
-import flash.errors.Error;
-import haxe.Constraints.Function;
-import flash.events.Event;
-import flash.events.TimerEvent;
-import flash.geom.Point;
-import flash.geom.Rectangle;
-import flash.system.System;
-import flash.ui.Keyboard;
-import flash.utils.ByteArray;
-import flash.utils.Dictionary;
-import flash.utils.Timer;
-import assets.AssetInterface;
 import constraints.Constraint;
 import constraints.ConstraintClause;
 import constraints.ConstraintEdge;
@@ -21,43 +9,42 @@ import constraints.ConstraintValue;
 import constraints.ConstraintVar;
 import constraints.events.ErrorEvent;
 import constraints.events.VarChangeEvent;
-//import deng.fzip.FZip;
-import dialogs.RankProgressDialog;
-import dialogs.RankProgressDialogInfo;
 import events.MenuEvent;
 import events.MiniMapEvent;
 import events.PropertyModeChangeEvent;
 import events.SelectionEvent;
 import events.WidgetChangeEvent;
-import networking.GameFileHandler;
+import flash.errors.Error;
+import flash.events.Event;
+import flash.events.TimerEvent;
+import flash.geom.Point;
+import flash.geom.Rectangle;
+import flash.system.System;
+import flash.utils.ByteArray;
+import flash.utils.Dictionary;
+import flash.utils.Timer;
+import haxe.Constraints.Function;
 import networking.PlayerValidation;
 import scenes.BaseComponent;
 import scenes.game.PipeJamGameScene;
 import scenes.game.components.GridViewPanel;
 import scenes.game.components.MiniMap;
-import scenes.game.components.TutorialText;
 import scenes.game.display.Node;
 import starling.animation.Transitions;
 import starling.animation.Tween;
 import starling.core.Starling;
-import starling.display.BlendMode;
 import starling.display.DisplayObject;
 import starling.display.Image;
-import starling.display.Quad;
 import starling.display.Sprite;
 import starling.events.EnterFrameEvent;
 import starling.events.Event;
-import starling.events.Touch;
 import starling.events.TouchEvent;
-import starling.events.TouchPhase;
-import starling.textures.Texture;
 import system.MaxSatSolver;
 import system.VerigameServerConstants;
-import utils.Base64Encoder;
 import utils.PropDictionary;
-import utils.XMath;
 import utils.XObject;
 import utils.XString;
+//import deng.fzip.FZip;
 
 
 
@@ -86,7 +73,7 @@ class Level extends BaseComponent
     
     public var selectedNodes : Array<Node> = new Array<Node>();
     /** used by solver to keep track of which nodes map to which constraint values, and visa versa */
-    private var nodeIDToConstraintsTwoWayMap : Dictionary;
+    private var nodeIDToConstraintsTwoWayMap : Map<Int, Node>;
     
     //the level node and decendents
     private var m_levelLayoutObj : Dynamic;
@@ -104,8 +91,8 @@ class Level extends BaseComponent
     public var m_targetScore : Int;
     
     public var m_numNodes : Int = 0;
-    public var nodeLayoutObjs : Dictionary = new Dictionary();
-    public var edgeLayoutObjs : Dictionary = new Dictionary();
+    public var nodeLayoutObjs : Dynamic = {};
+    public var edgeLayoutObjs : Dynamic = {};
     
     private var m_hidingErrorText : Bool = false;
     
@@ -133,12 +120,12 @@ class Level extends BaseComponent
     private var m_conflictAnimationLayer : Sprite;
     private var m_conflictsLayer : Sprite;
     private var m_offscreenEdgesLayer : Sprite;
-    private var m_nodesToRemove : Dictionary = new Dictionary();
-    private var m_nodesToDraw : Dictionary = new Dictionary();
-    private var m_solvingNodesToAnimate : Dictionary = new Dictionary();
-    private var m_solvedConflictsToAnimate : Dictionary = new Dictionary();
+    private var m_nodesToRemove : Map<String, Node> = new Map<String, Node>();
+    private var m_nodesToDraw : Map<String, Node> = new Map<String, Node>();
+    private var m_solvingNodesToAnimate : Map<String, Node> = new Map<String, Node>();
+    private var m_solvedConflictsToAnimate : Map<String, Node> = new Map<String, Node>();
     private var m_createdConflictsToAnimate : Array<ClauseNode> = new Array<ClauseNode>();
-    private var m_nodeOnScreenDict : Dictionary = new Dictionary();
+    private var m_nodeOnScreenDict : Map<String, Node> = new Map<String, Node>();
     private var m_groupGrids : Array<GroupGrid>;
     private static inline var ITEMS_PER_FRAME : Int = 300;  // limit on nodes/edges to remove/add per frame  
     
@@ -363,7 +350,7 @@ class Level extends BaseComponent
         draw();
     }
     
-    private function countDictItems(dict : Dictionary) : Int
+    private function countDictItems(dict : Map<Dynamic, Dynamic>) : Int
     {
         var count : Int = 0;
         for (i in dict)
@@ -398,9 +385,10 @@ class Level extends BaseComponent
         }
         
         var candidatesToRemove : Dictionary = new Dictionary();
-        for (nodeOnScreenId in Reflect.fields(m_nodeOnScreenDict))
+        for (nodeOnScreenId in m_nodeOnScreenDict.keys())
         {
-            Reflect.setField(candidatesToRemove, nodeOnScreenId, true);numNodesOnScreen--;
+            Reflect.setField(candidatesToRemove, nodeOnScreenId, true);
+			numNodesOnScreen--;
         }
         
         groupGrid = m_groupGrids[newGroupDepth];
@@ -504,7 +492,7 @@ class Level extends BaseComponent
         
         var nodeToRemove : Node;
         //remove node now, edges later
-        for (nodeToRemove/* AS3HX WARNING could not determine type for var: nodeToRemove exp: EIdent(m_nodesToRemove) type: Dictionary */ in m_nodesToRemove)
+        for (nodeToRemove in m_nodesToRemove)
         {
             if (nodeToRemove.skin != null)
             {
@@ -542,9 +530,9 @@ class Level extends BaseComponent
                 continue;
             }
             // This breaks initial drawing
-            //	if (!nodeToDraw.isClause)
+            if (!nodeToDraw.isClause)
             {
-                for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(nodeToDraw),connectedEdgeIds) type: null */ in nodeToDraw.connectedEdgeIds)
+                for (gameEdgeId in nodeToDraw.connectedEdgeIds)
                 {
                     edge = Reflect.field(edgeLayoutObjs, gameEdgeId);
                     if (!alreadyOnScreen)
@@ -574,7 +562,7 @@ class Level extends BaseComponent
                 nodeToDraw.skin.removeFromParent();
             }
             nodeToDraw.createSkin();
-            for (gameEdgeID/* AS3HX WARNING could not determine type for var: gameEdgeID exp: EField(EIdent(nodeToDraw),connectedEdgeIds) type: null */ in nodeToDraw.connectedEdgeIds)
+            for (gameEdgeID in nodeToDraw.connectedEdgeIds)
             {
                 var edgeObj : Edge = edgeLayoutObjs[gameEdgeID];
                 if (edgeObj != null)
@@ -589,7 +577,7 @@ class Level extends BaseComponent
                 numNodesOnScreen++;
                 if (parent)
                 {
-                    nodeToDraw.skin.scale(0.5 / parent.scaleX);
+                    nodeToDraw.skin.customScale(0.5 / parent.scaleX);
                 }
                 if (nodeToDraw.skin.parent != desiredLayer)
                 {
@@ -604,7 +592,7 @@ class Level extends BaseComponent
                     }
                     if (parent)
                     {
-                        nodeToDraw.backgroundSkin.scale(0.5 / parent.scaleX);
+                        nodeToDraw.backgroundSkin.customScale(0.5 / parent.scaleX);
                     }
                     touchedConflictLayer = true;
                 }
@@ -621,7 +609,7 @@ class Level extends BaseComponent
         var nodeToRemove1 : Node = popNode(m_nodesToRemove);
         while (nodeToRemove1 != null)
         {
-            for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(nodeToRemove1),connectedEdgeIds) type: null */ in nodeToRemove1.connectedEdgeIds)
+            for (gameEdgeId in nodeToRemove1.connectedEdgeIds)
             {
                 edge = Reflect.field(edgeLayoutObjs, gameEdgeId);
                 adjustEdgeContainer(edge);
@@ -650,7 +638,7 @@ class Level extends BaseComponent
                         tween.delay = (n * 0.025) % 0.25;
                         tween.repeatCount = 0;
                         tween.reverse = true;
-                        Starling.juggler.add(tween);
+                        Starling.current.juggler.add(tween);
                     }
                     n++;  // do all at once, don't increment nodesProcessed  
                     solvingNodeToAnimate = try cast(popNode(m_solvingNodesToAnimate), VariableNode) catch(e:Dynamic) null;
@@ -669,7 +657,7 @@ class Level extends BaseComponent
                     animateSkin.draw();
                     animateSkin.x = solvedClauseToAnimate.centerPoint.x;
                     animateSkin.y = solvedClauseToAnimate.centerPoint.y;
-                    animateSkin.scale(0.5 / parent.scaleX);
+                    animateSkin.customScale(0.5 / parent.scaleX);
                     m_conflictAnimationLayer.addChild(animateSkin);
                     tween = new Tween(animateSkin, 0.4, Transitions.EASE_IN_BACK);
                     tween.scaleTo(0);
@@ -679,7 +667,7 @@ class Level extends BaseComponent
                     solvedClauseToAnimate.backgroundSkin = null;
                     tween.onComplete = conflictRemovedTweenComplete;
                     tween.onCompleteArgs = new Array<Dynamic>(solvedClauseToAnimate, animateSkin);
-                    Starling.juggler.add(tween);
+                    Starling.current.juggler.add(tween);
                     n++;  // do all at once, don't increment nodesProcessed just stagger delay times  
                     solvedClauseToAnimate = try cast(popNode(m_solvedConflictsToAnimate), ClauseNode) catch(e:Dynamic) null;
                 }
@@ -1164,7 +1152,7 @@ class Level extends BaseComponent
         selectionChangedComponents.push(component);
     }
     
-    public function selectSurroundingNodes(node : Node, nextToVisitArray : Array<Dynamic>, previouslyCheckedNodes : Dictionary) : Void
+    public function selectSurroundingNodes(node : Node, nextToVisitArray : Array<Dynamic>, previouslyCheckedNodes : Map<String, Node>) : Void
     {
         if (!node.isSelected)
         {
@@ -1273,7 +1261,7 @@ class Level extends BaseComponent
         return XString.stringToBool(value);
     }
     
-    public function getNodes() : Dictionary
+    public function getNodes() : Map<String, Node>
     {
         return nodeLayoutObjs;
     }
@@ -1546,7 +1534,7 @@ class Level extends BaseComponent
     
     public function solverLoopTimerCallback(evt : TimerEvent) : Void
     {
-        for (node/* AS3HX WARNING could not determine type for var: node exp: EIdent(nodeLayoutObjs) type: Dictionary */ in nodeLayoutObjs)
+        for (node in nodeLayoutObjs)
         {
             node.unused = true;
         }
@@ -1629,9 +1617,9 @@ class Level extends BaseComponent
     private var constraintArray : Array<Dynamic>;
     private var initvarsArray : Array<Dynamic>;
     private var newSelectedVars : Array<Node>;
-    private var newSelectedClauses : Dictionary;
-    private var storedDirectEdgesDict : Dictionary;
-    private var directNodeDict : Dictionary;
+    private var newSelectedClauses : Map<String, Node>;
+    private var storedDirectEdgesDict : Map<String, Edge>;
+    private var directNodeDict : Map<String, Node>;
     private var counter : Int;
     private var m_solverType : Int;
     private var selectedConstraintValue : Int;
@@ -1663,7 +1651,7 @@ class Level extends BaseComponent
         m_unsat_weight = as3hx.Compat.INT_MAX;
         
         newSelectedVars = new Array<Node>();
-        newSelectedClauses = new Dictionary();
+        newSelectedClauses = new Map<String, Node>();
         m_inSolver = true;
         
         if (PipeJam3.logging)
@@ -1882,7 +1870,7 @@ class Level extends BaseComponent
                 clauseArray.push(CONFLICT_CONSTRAINT_VALUE);
                 selectedConstraintValue += as3hx.Compat.parseInt(CONFLICT_CONSTRAINT_VALUE);
                 //find all variables connected to the constraint, and add them to the array
-                for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(node),connectedEdgeIds) type: null */ in node.connectedEdgeIds)
+                for (gameEdgeId in node.connectedEdgeIds)
                 {
                     var edge : Edge = edgeLayoutObjs[gameEdgeId];
                     var fromNode : Node = edge.fromNode;
@@ -2280,7 +2268,7 @@ class Level extends BaseComponent
             node.animating = false;
             if (node.skin)
             {
-                Starling.juggler.removeTweens(node.skin);
+                Starling.current.juggler.removeTweens(node.skin);
                 m_nodesToDraw[node.id] = node;
             }
         }
@@ -2379,7 +2367,7 @@ class Level extends BaseComponent
                         //select attached nodes?
                         if (Std.is(node, ClauseNode))
                         {
-                            for (edgeID/* AS3HX WARNING could not determine type for var: edgeID exp: EField(EIdent(node),connectedEdgeIds) type: null */ in node.connectedEdgeIds)
+                            for (edgeID in node.connectedEdgeIds)
                             {
                                 var edge : Edge = this.edgeLayoutObjs[edgeID];
                                 var connectedNode : Node = edge.fromNode;
@@ -2440,13 +2428,11 @@ class Level extends BaseComponent
         return 0x0;
     }
     
-    private static function popNode(d : Dictionary) : Node
+    private static function popNode(d : Map<String, Node>) : Node
     {
-        for (id in d.values())
+        for (id in d.keys())
         {
-            var node : Node = d[id];
-			d.remove(id);
-            return node;
+			return d.remove(id);
         }
         return null;
     }
@@ -2459,77 +2445,5 @@ class Level extends BaseComponent
         m_lastVarValues = m_previousVarValues;
         m_previousVarValues = temp;
         updateNodes(true);
-    }
-}
-
-
-
-
-
-class GroupGrid
-{
-    private static inline var NODE_PER_GRID_ESTIMATE : Int = 300;
-    
-    public var grid : Dictionary = new Dictionary();
-    public var gridDimensions : Point = new Point();  // in pixels  
-    
-    @:allow(scenes.game.display)
-    private function new(m_boundingBox : Rectangle, levelScale : Float, nodeDict : Dynamic, layoutDict : Dynamic, nodeSize : Int)
-    {
-    // Note: this assumes a uniform distribution of nodes, which is not a good estimate, but it will do for now
-        
-        var gridsTotal : Int = Math.ceil(nodeSize / NODE_PER_GRID_ESTIMATE);
-        // use right, bottom instead of width, height to ignore (presumably) negligible x or y value that would need to be subtracted from each node.x,y
-        var totalDim : Float = 2048;  //Math.max(1, m_boundingBox.right + m_boundingBox.bottom);  
-        var gridsWide : Int = Math.ceil(gridsTotal * m_boundingBox.right / totalDim);
-        var gridsHigh : Int = Math.ceil(gridsTotal * m_boundingBox.bottom / totalDim);
-        gridDimensions = new Point(m_boundingBox.right / gridsWide, m_boundingBox.bottom / gridsHigh);
-        
-        // Put all node ids in the grid
-        var nodeKey : String;
-        for (nodeKey in Reflect.fields(nodeDict))
-        {
-            nodeKey = StringTools.replace(nodeKey, "clause:", "c_").replace(":", "_");
-            if (!layoutDict.exists(nodeKey))
-            {
-                trace("Warning! Node id from group dict not found: ", nodeKey);
-                continue;
-            }
-            var nodeX : Float = as3hx.Compat.parseFloat(Reflect.field(Reflect.field(layoutDict, nodeKey), "x")) * Constants.GAME_SCALE * levelScale;
-            var nodeY : Float = as3hx.Compat.parseFloat(Reflect.field(Reflect.field(layoutDict, nodeKey), "y")) * Constants.GAME_SCALE * levelScale;
-            var gridKey : String = _getGridKey(nodeX, nodeY, gridDimensions);
-            if (!grid.exists(gridKey))
-            {
-                Reflect.setField(grid, gridKey, new Dictionary());
-            }
-            Reflect.setField(grid, gridKey, true)[nodeKey];
-        }
-    }
-    
-    public static function getGridX(_x : Float, gridDimensions : Point) : Int
-    {
-        return Math.max(0, Math.floor(_x / gridDimensions.x));
-    }
-    
-    public static function getGridY(_y : Float, gridDimensions : Point) : Int
-    {
-        return Math.max(0, Math.floor(_y / gridDimensions.y));
-    }
-    
-    public static function getGridXRight(_x : Float, gridDimensions : Point) : Int
-    {
-        return Math.max(0, Math.ceil(_x / gridDimensions.x));
-    }
-    
-    public static function getGridYBottom(_y : Float, gridDimensions : Point) : Int
-    {
-        return Math.max(0, Math.ceil(_y / gridDimensions.y));
-    }
-    
-    private static function _getGridKey(_x : Float, _y : Float, gridDimensions : Point) : String
-    {
-        var GRID_X : Int = getGridX(_x, gridDimensions);
-        var GRID_Y : Int = getGridX(_y, gridDimensions);
-        return Std.string(GRID_X + "_" + GRID_Y);
     }
 }

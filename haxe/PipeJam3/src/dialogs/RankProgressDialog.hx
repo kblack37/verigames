@@ -48,7 +48,7 @@ class RankProgressDialog extends TutorialText
         
         this.addChild(progressContainer);
         
-        if (info.button1String)
+        if (info.button1String != null)
         {
             var button1 : NineSliceButton = ButtonFactory.getInstance().createButton(info.button1String, 25, 15, 8, 8);
             button1.addEventListener(starling.events.Event.TRIGGERED, onNextButtonTriggered);
@@ -76,7 +76,7 @@ class RankProgressDialog extends TutorialText
     private function onAddedToStage(event : starling.events.Event) : Void
     {
         removeEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
-        Starling.juggler.tween(this, 2, {
+        Starling.current.juggler.tween(this, 2, {
                     delay : dialogInfo.fadeTimeSeconds,
                     alpha : 0,
                     transition : Transitions.EASE_IN

@@ -117,10 +117,10 @@ class Game extends BaseComponent
             m_fadeCallback();
         }
         m_fadeCallback = callback;
-        Starling.juggler.removeTweens(m_blackFadeScreen);
+        Starling.current.juggler.removeTweens(m_blackFadeScreen);
         m_blackFadeScreen.alpha = 0;
         addChild(m_blackFadeScreen);
-        Starling.juggler.tween(m_blackFadeScreen, FADE_TIME, {
+        Starling.current.juggler.tween(m_blackFadeScreen, FADE_TIME, {
                     alpha : 1,
                     onComplete : function() : Void
                     {
@@ -138,7 +138,7 @@ class Game extends BaseComponent
     {
         m_blackFadeScreen.alpha = 1;
         addChild(m_blackFadeScreen);
-        Starling.juggler.tween(m_blackFadeScreen, FADE_TIME, {
+        Starling.current.juggler.tween(m_blackFadeScreen, FADE_TIME, {
                     alpha : 0,
                     onComplete : function() : Void
                     {

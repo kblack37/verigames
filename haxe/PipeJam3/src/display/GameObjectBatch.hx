@@ -32,8 +32,8 @@ class GameObjectBatch
         var qB : QuadBatch = quadBatchList[listSize - 1];
         //			trace("-", qB.objectIndex, qB.mVertexData.numVertices);
         if (qB.mVertexData.numVertices > 32767)
-        
-        //stop way short, just in case I'm adding alot to it...{
+        {
+        //stop way short, just in case I'm adding alot to it...
             
             {
                 qB = new QuadBatch();

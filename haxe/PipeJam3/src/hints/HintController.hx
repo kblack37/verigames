@@ -26,12 +26,12 @@ class HintController extends Sprite
     {
         if (m_instance == null)
         {
-            m_instance = new HintController(new SingletonLock());
+            m_instance = new HintController();
         }
         return m_instance;
     }
     
-    public function new(lock : SingletonLock)
+    private function new()
     {
         super();
     }
@@ -45,7 +45,7 @@ class HintController extends Sprite
     {
         var performSmallSelectionCheck : Bool = ((level.tutorialManager != null)) ? level.tutorialManager.getPerformSmallAutosolveGroupCheck() : true;
         var atLeastOneConflictFound : Bool = false;
-        for (selectedNode/* AS3HX WARNING could not determine type for var: selectedNode exp: EField(EIdent(level),selectedNodes) type: null */ in level.selectedNodes)
+        for (selectedNode in level.selectedNodes)
         {
             if (Std.is(selectedNode, ClauseNode))
             {
@@ -58,7 +58,7 @@ class HintController extends Sprite
             }
             else
             {
-                for (gameEdgeId/* AS3HX WARNING could not determine type for var: gameEdgeId exp: EField(EIdent(selectedNode),connectedEdgeIds) type: null */ in selectedNode.connectedEdgeIds)
+                for (gameEdgeId in selectedNode.connectedEdgeIds)
                 {
                     var edge : Edge = try cast(level.edgeLayoutObjs[gameEdgeId], Edge) catch(e:Dynamic) null;
                     if (edge != null)
@@ -136,12 +136,12 @@ class HintController extends Sprite
         }
         if (m_hintBubble != null)
         {
-            Starling.juggler.removeTweens(m_hintBubble);
+            Starling.current.juggler.removeTweens(m_hintBubble);
         }
         removeHint();  // any existing hints  
         m_hintBubble = new TextBubble("Hint: " + text, 10, ((PipeJam3.ASSET_SUFFIX == "Turk")) ? Constants.NARROW_GRAY : Constants.NARROW_BLUE, null, level, Constants.HINT_LOC, null, null, false);
         fadeInHint();
-        Starling.juggler.delayCall(fadeOutHint, secToShow + FADE_SEC);
+        Starling.current.juggler.delayCall(fadeOutHint, secToShow + FADE_SEC);
     }
     
     public function fadeInHint() : Void
@@ -150,7 +150,7 @@ class HintController extends Sprite
         {
             m_hintBubble.alpha = 0;
             hintLayer.addChild(m_hintBubble);
-            Starling.juggler.tween(m_hintBubble, FADE_SEC, {
+            Starling.current.juggler.tween(m_hintBubble, FADE_SEC, {
                         alpha : 1.0
                     });
         }
@@ -160,7 +160,7 @@ class HintController extends Sprite
     {
         if (m_hintBubble != null)
         {
-            Starling.juggler.tween(m_hintBubble, FADE_SEC, {
+            Starling.current.juggler.tween(m_hintBubble, FADE_SEC, {
                         alpha : 0,
                         onComplete : removeHint
                     });
@@ -189,7 +189,8 @@ class SingletonLock
 
 class PlayerHintStatus
 {
-    private var m_levelStatusDict : Dictionary = new Dictionary();
+    private var m_levelStatusDict : Dynamic = {};
+	
     @:allow(hints)
     private function new()
     {
@@ -209,7 +210,7 @@ class PlayerHintStatus
     
     private function getLevelStatus(levelName : String) : LevelHintStatus
     {
-        if (!m_levelStatusDict.exists(levelName))
+        if (!Reflect.hasField(m_levelStatusDict, levelName))
         {
             Reflect.setField(m_levelStatusDict, levelName, new LevelHintStatus());
         }

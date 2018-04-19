@@ -15,12 +15,16 @@ class MiniMapEvent extends Event
     public var contentScale : Float;
     public var level : Level;
     
-    public function new(_type : String, _contentX : Float = Math.NaN, _contentY : Float = Math.NaN, _contentScale : Float = Math.NaN, _level : Level = null)
+    public function new(_type : String,
+		_contentX : Float = -1,
+		_contentY : Float = -1,
+		_contentScale : Float = -1,
+		_level : Level = null)
     {
         super(_type, true);
-        contentX = _contentX;
-        contentY = _contentY;
-        contentScale = _contentScale;
+        contentX = _contentX < 0 ? Math.NaN : _contentX;
+        contentY = _contentY < 0 ? Math.NaN : _contentY;
+        contentScale = _contentScale < 0 ? Math.NaN : _contentScale;
         level = _level;
     }
 }

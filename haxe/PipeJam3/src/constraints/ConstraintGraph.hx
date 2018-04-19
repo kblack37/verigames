@@ -28,22 +28,22 @@ class ConstraintGraph extends EventDispatcher
     
     private static var NULL_SCORING : ConstraintScoringConfig = new ConstraintScoringConfig();
     
-    public var variableDict : Dictionary = new Dictionary();
+    public var variableDict : Dynamic = {};
     public var nVars : Int = 0;
-    public var constraintsDict : Dictionary = new Dictionary();
+    public var constraintsDict : Dynamic = {};
     public var nConstraints : Int = 0;
-    public var clauseDict : Dictionary = new Dictionary();
+    public var clauseDict : Dynamic = {};
     public var nClauses : Int = 0;
     public var groupsArr : Array<Dynamic> = new Array<Dynamic>();
     public var groupSizes : Array<Int> = new Array<Int>();
-    public var unsatisfiedConstraintDict : Dictionary = new Dictionary();
+    public var unsatisfiedConstraintDict : Dynamic = {};
     public var m_conflictCount : Int;
     public var graphScoringConfig : ConstraintScoringConfig = new ConstraintScoringConfig();
     
-    private var m_UnsatisfiedConstraints : Dictionary = new Dictionary();
-    private var m_SatisfiedConstraints : Dictionary = new Dictionary();
+    private var m_UnsatisfiedConstraints : Dynamic = {};
+    private var m_SatisfiedConstraints : Dynamic = {};
     
-    public var startingScore : Int = Math.NaN;
+    public var startingScore : Float = Math.NaN;
     public var currentScore : Int = 0;
     public var prevScore : Int = 0;
     public var oldScore : Int = 0;
@@ -64,9 +64,9 @@ class ConstraintGraph extends EventDispatcher
         var constraintId : String;
         var lhsConstraint : Constraint;
         var rhsConstraint : Constraint;
-        var newUnsatisfiedConstraints : Dictionary = new Dictionary();
-        var currentConstraints : Dictionary = new Dictionary();
-        var newSatisfiedConstraints : Dictionary = new Dictionary();
+        var newUnsatisfiedConstraints : Dynamic = {};
+        var currentConstraints : Dynamic = {};
+        var newSatisfiedConstraints : Dynamic = {};
         if (varIdChanged != null && propChanged != null)
         {
             var varChanged : ConstraintVar = try cast(Reflect.field(variableDict, varIdChanged), ConstraintVar) catch(e:Dynamic) null;
@@ -78,10 +78,10 @@ class ConstraintGraph extends EventDispatcher
             for (i in 0...varChanged.lhsConstraints.length)
             {
                 lhsConstraint = varChanged.lhsConstraints[i];
-                if (Std.is(lhsConstraint, ConstraintEdge) && currentConstraints[lhsConstraint.id] == null)
+                if (Std.is(lhsConstraint, ConstraintEdge) && Reflect.field(currentConstraints, lhsConstraint.id) == null)
                 {
                     constraint = try cast(lhsConstraint, ConstraintEdge) catch(e:Dynamic) null;
-                    currentConstraints[constraint.id] = lhsConstraint;
+                    Reflect.setField(currentConstraints, constraint.id, lhsConstraint);
                     if (constraint.isClauseSatisfied(varIdChanged, !newPropValue))
                     {
                         prevConstraintPoints += lhsConstraint.scoring.getScoringValue(ConstraintScoringConfig.CONSTRAINT_VALUE_KEY);
@@ -91,10 +91,10 @@ class ConstraintGraph extends EventDispatcher
             for (i in 0...varChanged.rhsConstraints.length)
             {
                 rhsConstraint = varChanged.rhsConstraints[i];
-                if (Std.is(rhsConstraint, ConstraintEdge) && currentConstraints[rhsConstraint.id] == null)
+                if (Std.is(rhsConstraint, ConstraintEdge) && Reflect.field(currentConstraints, rhsConstraint.id) == null)
                 {
                     constraint = try cast(rhsConstraint, ConstraintEdge) catch(e:Dynamic) null;
-                    currentConstraints[rhsConstraint.id] = rhsConstraint;
+                    Reflect.setField(currentConstraints, rhsConstraint.id, rhsConstraint);
                     if (constraint.isClauseSatisfied(varIdChanged, !newPropValue))
                     {
                         prevConstraintPoints += rhsConstraint.scoring.getScoringValue(ConstraintScoringConfig.CONSTRAINT_VALUE_KEY);
@@ -105,8 +105,9 @@ class ConstraintGraph extends EventDispatcher
             varChanged.setProp(propChanged, newPropValue);
             var newBonus : Int = varChanged.scoringConfig.getScoringValue(varChanged.getValue().verboseStrVal);
             var newConstraintPoints : Int = 0;
-            for (constraint in currentConstraints)
+            for (constraintId in Reflect.fields(currentConstraints))
             {
+				var constraint : Constraint = try cast (Reflect.field(currentConstraints, constraintId), Constraint) catch (e : Dynamic) null;
                 if (constraint.lhs.id.indexOf("c") != -1)
                 {
                     clauseID = constraint.lhs.id;
@@ -127,7 +128,7 @@ class ConstraintGraph extends EventDispatcher
             }
             // Offset score by change in bonus and new constraints satisfied/not
             //				trace("newBonus ", newBonus, " prevBonus ", prevBonus, " newConstraintPoints ", newConstraintPoints, " prevConstraintPoints ", prevConstraintPoints);
-            currentScore += as3hx.Compat.parseInt(newConstraintPoints - prevConstraintPoints);
+            currentScore += newConstraintPoints - prevConstraintPoints;
         }
         else
         {
@@ -139,7 +140,7 @@ class ConstraintGraph extends EventDispatcher
             //						currentScore += thisVar.scoringConfig.getScoringValue(thisVar.getValue().verboseStrVal);
             //					}
             //				}
-            var scoredConstraints : Dictionary = new Dictionary();
+            var scoredConstraints : Dynamic = {};
             for (constraintId in Reflect.fields(constraintsDict))
             {
             // TODO: we are recalculating each clause for every edge, need only traverse clauses once
@@ -173,7 +174,7 @@ class ConstraintGraph extends EventDispatcher
                             {
                                 Reflect.setField(newSatisfiedConstraints, clauseID, thisConstr);
                                 Reflect.setField(m_SatisfiedConstraints, clauseID, thisConstr);
-								m_UnsatisfiedConstraints.remove(clauseID);
+								Reflect.deleteField(m_UnsatisfiedConstraints, clauseID);
                             }
                         }
                     }
@@ -181,7 +182,7 @@ class ConstraintGraph extends EventDispatcher
                     {
                         Reflect.setField(newUnsatisfiedConstraints, clauseID, thisConstr);
                         Reflect.setField(m_UnsatisfiedConstraints, clauseID, thisConstr);
-						m_SatisfiedConstraints.remove[clauseID];
+						Reflect.deleteField(m_SatisfiedConstraints, clauseID);
                     }
                 }
             }
@@ -189,15 +190,15 @@ class ConstraintGraph extends EventDispatcher
         
         for (clauseID in Reflect.fields(newSatisfiedConstraints))
         {
-            if (unsatisfiedConstraintDict.exists(clauseID))
+            if (Reflect.hasField(unsatisfiedConstraintDict, clauseID))
             {
-				unsatisfiedConstraintDict.remove(clauseID);
+				Reflect.deleteField(unsatisfiedConstraintDict, clauseID);
                 m_conflictCount--;
             }
         }
         for (clauseID in Reflect.fields(newUnsatisfiedConstraints))
         {
-            if (!unsatisfiedConstraintDict.exists(clauseID))
+            if (!Reflect.hasField(unsatisfiedConstraintDict, clauseID))
             {
                 Reflect.setField(unsatisfiedConstraintDict, clauseID, Reflect.field(newUnsatisfiedConstraints, clauseID));
                 m_conflictCount++;
@@ -269,7 +270,7 @@ class ConstraintGraph extends EventDispatcher
         {
             return;
         }
-        currentGroupDict = new Dictionary();
+        currentGroupDict = {};
         var groupSize : Int = 0;
         for (groupId in Reflect.fields(groupsArr[nextGroupToBuild]))
         {
@@ -319,10 +320,10 @@ class ConstraintGraph extends EventDispatcher
         if (Std.is(newConstraint, ConstraintEdge))
         {
             nConstraints++;
-            constraintsDict[newConstraint.id] = newConstraint;
+            Reflect.setField(constraintsDict, newConstraint.id, newConstraint);
             maxPossibleScore++;
             // Attach any groups
-            if (groupsArr != null && totalGroups)
+            if (groupsArr != null && totalGroups > 0)
             {
                 var fillLeft : Bool = (newConstraint.lhs.groups == null);
                 var fillRight : Bool = (newConstraint.rhs.groups == null);
@@ -340,7 +341,8 @@ class ConstraintGraph extends EventDispatcher
                     {
                         if (fillLeft)
                         {
-                            var leftGroupId : String = (groupsArrComplete[g1].exists(newConstraint.lhs.id)) ? groupsArrComplete[g1][newConstraint.lhs.id] : "";
+                            var leftGroupId : String = Reflect.hasField(groupsArrComplete[g1], newConstraint.lhs.id) ?
+								Reflect.field(groupsArrComplete[g1], newConstraint.lhs.id) : "";
                             newConstraint.lhs.groups.push(leftGroupId);
                             if (newConstraint.lhs.id != "" &&
                                 newConstraint.lhs.id != leftGroupId &&
@@ -353,7 +355,8 @@ class ConstraintGraph extends EventDispatcher
                         }
                         if (fillRight)
                         {
-                            var rightGroupId : String = (groupsArrComplete[g1].exists(newConstraint.rhs.id)) ? groupsArrComplete[g1][newConstraint.rhs.id] : "";
+                            var rightGroupId : String = Reflect.hasField(groupsArrComplete[g1], newConstraint.rhs.id) ?
+								Reflect.field(groupsArrComplete[g1], newConstraint.rhs.id) : "";
                             newConstraint.rhs.groups.push(rightGroupId);
                             if (newConstraint.rhs.id != "" &&
                                 newConstraint.rhs.id != rightGroupId &&
@@ -380,7 +383,7 @@ class ConstraintGraph extends EventDispatcher
     public var nextGroupToBuild : Int = -1;
     public var totalGroups : Int;
     public var groupsArrComplete : Array<Dynamic>;
-    public var currentGroupDict : Dictionary;
+    public var currentGroupDict : Dynamic;
     public var graphDefaultVal : ConstraintValue = GAME_DEFAULT_VAR_VALUE;
     
     public static function initFromJSON(levelObj : Dynamic) : ConstraintGraph
@@ -393,7 +396,7 @@ class ConstraintGraph extends EventDispatcher
         graph1.version = Reflect.field(levelObj, VERSION);
         var defaultValue : String = Reflect.field(levelObj, DEFAULT_VAR);
         graph1.maxPossibleScore = 0;
-        graph1.qid = as3hx.Compat.parseInt(Reflect.field(levelObj, QID));
+        graph1.qid = Std.parseInt(Reflect.field(levelObj, QID));
         var _sw0_ = (graph1.version);        
 
         switch (_sw0_)
@@ -432,12 +435,13 @@ class ConstraintGraph extends EventDispatcher
                 // Build constraints, add any uninitialized variables to graph.variableDict, and process groups
                 //the process eats the array, so create a copy
                 graph1.constraintsToBuildArr = new Array<Dynamic>();
-                for (constraintStr in Reflect.field(levelObj, CONSTRAINTS))
+				var levelConstraints : Array<Dynamic> = Reflect.field(levelObj, CONSTRAINTS);
+                for (constraintStr in levelConstraints)
                 {
                     graph1.constraintsToBuildArr.push(constraintStr);
                 }
                 graph1.groupsArr = (levelObj.exists(GROUPS)) ? Reflect.field(levelObj, GROUPS) : new Array<Dynamic>();
-                graph1.totalGroups = (graph1.groupsArr) ? graph1.groupsArr.length : 0;
+                graph1.totalGroups = graph1.groupsArr != null ? graph1.groupsArr.length : 0;
                 /**
 					 * "groups": [
 					 * 			{"var:1":["var:2"], "var:5":["var:7"],...},    <-- stage 1 of grouping
@@ -448,17 +452,13 @@ class ConstraintGraph extends EventDispatcher
                 
                 graph1.groupSizes = new Array<Int>();
                 graph1.nextGroupToBuild = -1;
-                if (graph1.groupsArr)
+                if (graph1.groupsArr != null)
                 {
                     graph1.groupsArrComplete = new Array<Dynamic>();
                     graph1.nextGroupToBuild = 0;
                 }
                 
                 graph1.nVars = graph1.nClauses = graph1.nConstraints = 0;
-                // C
-                
-                break;
-                throw new Error("ConstraintGraph.initFromJSON:: Unknown version encountered: " + graph1.version);
             default:
                 throw new Error("ConstraintGraph.initFromJSON:: Unknown version encountered: " + graph1.version);
         }
@@ -509,8 +509,8 @@ class ConstraintGraph extends EventDispatcher
     
     private static function parseConstraintString(_str : String, _graph : ConstraintGraph, _defaultVal : ConstraintValue, _defaultScoring : ConstraintScoringConfig) : Constraint
     {
-        var pattern : as3hx.Compat.Regex = new as3hx.Compat.Regex('(var|c):(.*) (<|=)= (var|c):(.*)', "i");
-        var result : Dynamic = pattern.exec(_str);
+        var pattern : EReg = new EReg('(var|c):(.*) (<|=)= (var|c):(.*)', "ig");
+        var result : Array<String> = pattern.split(_str);
         if (result == null)
         {
             throw new Error("Invalid constraint string found: " + _str);
@@ -564,26 +564,26 @@ class ConstraintGraph extends EventDispatcher
         {
             if (_graph.variableDict.exists(fullId))
             {
-                constrSide = try cast(_graph.variableDict[fullId], ConstraintVar) catch(e:Dynamic) null;
+                constrSide = try cast(Reflect.field(_graph.variableDict, fullId), ConstraintVar) catch(e:Dynamic) null;
             }
             else
             {
                 constrSide = new ConstraintVar(fullId, _defaultVal, _defaultVal, _defaultScoring);
-                _graph.variableDict[fullId] = constrSide;
+                Reflect.setField(_graph.variableDict, fullId, constrSide);
                 _graph.nVars++;
             }
         }
         else if (_type == C)
         {
             fullId = _type + "_" + _type_num;
-            if (_graph.clauseDict.exists(fullId))
+            if (Reflect.hasField(_graph.clauseDict, fullId))
             {
-                constrSide = try cast(_graph.clauseDict[fullId], ConstraintClause) catch(e:Dynamic) null;
+                constrSide = try cast(Reflect.field(_graph.clauseDict, fullId), ConstraintClause) catch(e:Dynamic) null;
             }
             else
             {
                 constrSide = new ConstraintClause(fullId, _defaultScoring);
-                _graph.clauseDict[fullId] = constrSide;
+                Reflect.setField(_graph.clauseDict, fullId, constrSide);
                 _graph.nClauses++;
             }
         }

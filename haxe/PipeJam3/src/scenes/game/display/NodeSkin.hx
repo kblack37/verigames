@@ -20,7 +20,7 @@ import starling.textures.TextureAtlas;
 class NodeSkin extends Sprite implements INodeProps
 {
     private static var availableGameNodeSkins : Array<NodeSkin>;
-    private static var activeGameNodeSkins : Dictionary;
+    private static var activeGameNodeSkins : Map<Int, NodeSkin>;
     
     private static var mAtlas : TextureAtlas;
     private static var DarkBlueCircle : Texture;
@@ -50,7 +50,7 @@ class NodeSkin extends Sprite implements INodeProps
     {
         
         availableGameNodeSkins = new Array<NodeSkin>();
-        activeGameNodeSkins = new Dictionary();
+        activeGameNodeSkins = new Map<Int, NodeSkin>();
         
         for (numSkin in 0...numSkins)
         {
@@ -72,7 +72,7 @@ class NodeSkin extends Sprite implements INodeProps
             
             {
                 var attempts : Int = 0;
-                while (!activeGameNodeSkins[nextId])
+                while (activeGameNodeSkins[nextId] == null)
                 {
                     if (nextId > numSkins)
                     {
@@ -145,7 +145,7 @@ class NodeSkin extends Sprite implements INodeProps
         }
     }
     
-    public static function countKeys(myDictionary : Dictionary) : Int
+    public static function countKeys(myDictionary : Dynamic) : Int
     {
         var n : Int = 0;
         for (key in Reflect.fields(myDictionary))
@@ -180,7 +180,7 @@ class NodeSkin extends Sprite implements INodeProps
             return;
         }
         isDirty = false;
-        Starling.juggler.removeTweens(this);
+        Starling.current.juggler.removeTweens(this);
         
         if (textureImage != null)
         {
@@ -268,7 +268,7 @@ class NodeSkin extends Sprite implements INodeProps
     
     override public function dispose() : Void
     {
-        Starling.juggler.removeTweens(this);
+        Starling.current.juggler.removeTweens(this);
         if (textureImage != null)
         {
             textureImage.removeFromParent(true);
@@ -285,8 +285,7 @@ class NodeSkin extends Sprite implements INodeProps
     public function disableSkin() : Void
     {
         availableGameNodeSkins.push(this);
-        This is an intentional compilation error. See the README for handling the delete keyword
-        delete activeGameNodeSkins[id];
+		activeGameNodeSkins.remove(id);
     }
     
     override public function removeChild(_child : DisplayObject, dispose : Bool = false) : DisplayObject
@@ -310,7 +309,7 @@ class NodeSkin extends Sprite implements INodeProps
         isDirty = true;
     }
     
-    public function scale(newScale : Float) : Void
+    public function customScale(newScale : Float) : Void
     {
         var currentWidth : Float;
         var newWidth : Float;

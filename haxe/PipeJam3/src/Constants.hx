@@ -1,11 +1,11 @@
 
 class Constants
 {
-    public static inline var GameWidth : Int = 480;
-    public static inline var GameHeight : Int = 320;
+    public static inline var GameWidth : Float = 480;
+    public static inline var GameHeight : Float = 320;
     
-    public static var CenterX : Int = GameWidth / 2;
-    public static var CenterY : Int = GameHeight / 2;
+    public static var CenterX : Float = GameWidth / 2;
+    public static var CenterY : Float = GameHeight / 2;
     
     public static inline var RightPanelWidth : Int = 100;
     
@@ -51,8 +51,4 @@ class Constants
     
     public static inline var START_BUSY_ANIMATION : String = "startBusyAnimation";
     public static inline var STOP_BUSY_ANIMATION : String = "stopBusyAnimation";
-
-    public function new()
-    {
-    }
 }

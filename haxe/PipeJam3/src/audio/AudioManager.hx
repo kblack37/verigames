@@ -1,8 +1,9 @@
 package audio;
 
+import haxe.xml.Fast;
 import haxe.Constraints.Function;
 import assets.AssetsAudio;
-//import cgs.audio.Audio;
+import cgs.audio.Audio;
 import flash.events.Event;
 import flash.net.URLLoader;
 import flash.net.URLRequest;
@@ -17,7 +18,7 @@ class AudioManager
     public var allAudioButton(get, never) : SimpleButton;
 
     /** The cgs common audio class instance for playing all audio */
-    //private var m_audioDriver : Audio = new Audio();
+    private var m_audioDriver : Audio = new Audio();
     
     /** Audio is loading. */
     private var m_audioLoaded : Bool = false;
@@ -65,35 +66,35 @@ class AudioManager
         return m_audioLoaded;
     }
     
-    //public function audioDriver() : Audio
-    //{
-        //return m_audioDriver;
-    //}
+    public function audioDriver() : Audio
+    {
+        return m_audioDriver;
+    }
     
     public function reset() : Void
     {
         playMusic("");
-        //m_audioDriver.reset();
+        m_audioDriver.reset();
     }
     
     public function playMusic(music : String) : Void
     {
         m_currentMusic = music;
-        //m_audioDriver.playMusic(m_currentMusic);
+        m_audioDriver.playMusic(m_currentMusic);
     }
     
     private function loadAudioFromEmbedded() : Void
     {
-        var audioXML : FastXML = AssetsAudio.getEmbeddedAudioXML();
+        var audioXML : Xml = AssetsAudio.getEmbeddedAudioXML();
         loadFromXML(audioXML);
     }
     
     private function loadFromXML(xml : Xml) : Void
     {
-        var xmlVec : Array<Xml> = new Array<Xml>();
-        xmlVec.push(xml);
-        //m_audioDriver.init(xmlVec, new AudioResource());
-        //m_audioDriver.globalVolume = ((PipeJam3.ASSET_SUFFIX == "Turk")) ? 0 : 0.3;
+        var xmlVec : Array<Fast> = new Array<Fast>();
+        xmlVec.push(new Fast(xml));
+        m_audioDriver.init(xmlVec, new AudioResource());
+        m_audioDriver.globalVolume = ((PipeJam3.ASSET_SUFFIX == "Turk")) ? 0 : 0.3;
         m_audioLoaded = true;
     }
     

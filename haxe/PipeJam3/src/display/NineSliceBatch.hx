@@ -102,7 +102,7 @@ class NineSliceBatch extends Sprite
         updateHeight();
     }
     
-    private function set_color(col : Int) : Int
+    public function set_color(col : Int) : Int
     {
         if (mTopLeft != null)
         {

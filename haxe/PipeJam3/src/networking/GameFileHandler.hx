@@ -10,15 +10,11 @@ import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
 import flash.utils.Timer;
 import server.MTurkAPI;
-//import deng.fzip.FZip;
-//import deng.fzip.FZipFile;
 import events.NavigationEvent;
 import scenes.Scene;
 import scenes.game.PipeJamGameScene;
 import scenes.game.display.World;
 import starling.events.Event;
-import utils.Base64Decoder;
-import utils.Base64Encoder;
 import utils.XMath;
 
 /** How to use:
@@ -29,11 +25,11 @@ import utils.XMath;
 	 */
 class GameFileHandler
 {
-    public static var GET_ALL_LEVEL_METADATA : Int = 2;
-    public static var SAVE_LEVEL : Int = 3;
+    public static var get_all_level_metadata : Int = 2;
+    public static var save_level : Int = 3;
     public static var GET_LEVEL : Int = 4;
-    public static var REPORT_LEADERBOARD_SCORE : Int = 5;
-    public static var GET_HIGH_SCORES_FOR_LEVEL : Int = 6;
+    public static var report_leaderboard_score : Int = 5;
+    public static var get_high_scores_for_level : Int = 6;
     
     public static var USE_LOCAL : Int = 1;
     public static var USE_DATABASE : Int = 2;
@@ -60,7 +56,6 @@ class GameFileHandler
     
     
     private var m_callback : Function;
-    private var fzip : FZip;
     
     private var m_saveType : String;
     private var m_fileType : Int;
@@ -140,7 +135,7 @@ class GameFileHandler
     public static function getHighScoresForLevel(callback : Function, levelID : String) : Void
     {
         var fileHandler : GameFileHandler = new GameFileHandler(callback);
-        fileHandler.sendMessage(GET_HIGH_SCORES_FOR_LEVEL, fileHandler.defaultJSONCallback, null, levelID);
+        fileHandler.sendMessage(get_high_scores_for_level, fileHandler.defaultJSONCallback, null, levelID);
     }
     
     
@@ -174,7 +169,7 @@ class GameFileHandler
         return null;
     }
     
-    public static var levelPlayedDict : Dictionary;
+    public static var levelPlayedDict : Dynamic;
     public static function getRandomLevelObject() : Dynamic
     {
         var currentIndex : Int;
@@ -188,7 +183,7 @@ class GameFileHandler
             }
             if (levelPlayedDict == null)
             {
-                levelPlayedDict = new Dictionary();
+                levelPlayedDict = {};
                 for (i in 0...levelPlayedArray.length)
                 {
                     Reflect.setField(levelPlayedDict, Std.string(levelPlayedArray[i]), 1);
@@ -199,13 +194,13 @@ class GameFileHandler
             var bottomRange : Int;
             if (levelPlayedArray.length >= range2PlayerActivityMarker)
             {
-                bottomRange = as3hx.Compat.parseInt(level2TopRangeLevelIndex + 1);
-                topRange = as3hx.Compat.parseInt(levelInfoVector.length - 1);
+                bottomRange = level2TopRangeLevelIndex + 1;
+                topRange = levelInfoVector.length - 1;
                 PlayerValidation.currentActivityLevel = 3;
             }
             else if (levelPlayedArray.length >= range1PlayerActivityMarker)
             {
-                bottomRange = as3hx.Compat.parseInt(level1TopRangeLevelIndex + 1);
+                bottomRange = level1TopRangeLevelIndex + 1;
                 topRange = level2TopRangeLevelIndex;
                 PlayerValidation.currentActivityLevel = 2;
             }
@@ -274,7 +269,7 @@ class GameFileHandler
     {
         levelInfoVector = null;
         var fileHandler : GameFileHandler = new GameFileHandler(callback);
-        fileHandler.sendMessage(GET_ALL_LEVEL_METADATA, fileHandler.setLevelMetadataFromCurrent);
+        fileHandler.sendMessage(get_all_level_metadata, fileHandler.setLevelMetadataFromCurrent);
     }
     
     public static function submitLevel(_levelFilesString : String, saveType : String, fileType : Int = 1) : Void
@@ -290,7 +285,7 @@ class GameFileHandler
     public static function reportScore() : Void
     {
         var fileHandler : GameFileHandler = new GameFileHandler();
-        fileHandler.sendMessage(REPORT_LEADERBOARD_SCORE, null);
+        fileHandler.sendMessage(report_leaderboard_score, null);
     }
     
     public static function loadGameFiles(worldFileLoadedCallback : Function, layoutFileLoadedCallback : Function, assignmentsFileLoadedCallback : Function) : Void
@@ -395,7 +390,7 @@ class GameFileHandler
     public static function loadFile(callback : Function, loadType : Int, url : String) : Void
     {
         var fileLoader : GameFileHandler = new GameFileHandler(callback);
-        fileLoader.loadFile(loadType, url);
+        fileLoader.instanceLoadFile(loadType, url);
     }
     
     /************************ End of static functions *********************************/
@@ -407,7 +402,7 @@ class GameFileHandler
     
     
     //load files from disk or database
-    public function loadFile(loadType : Int, fileName : String, callback : Function = null) : Void
+    public function instanceLoadFile(loadType : Int, fileName : String, callback : Function = null) : Void
     {
         fzip = new FZip();
         fzip.addEventListener(flash.events.Event.COMPLETE, zipLoaded);
@@ -450,7 +445,7 @@ class GameFileHandler
         zipLoaded(null, z);
     }
     
-    private function zipLoaded(e : flash.events.Event = null, z : FZip = null) : Void
+    private function zipLoaded(e : flash.events.Event = null) : Void
     {
         if (z == null)
         {
@@ -528,12 +523,12 @@ class GameFileHandler
     //decode results and pass on
     public function defaultJSONCallback(result : Int, e : flash.events.Event) : Void
     {
-        var message : String = Std.string(e.target.data);
+        var message : String = Std.string(Reflect.field(e.target, "data"));
         var vec : Array<Dynamic> = new Array<Dynamic>();
         if (message.length > 0)
         {
             var obj : Dynamic = haxe.Json.parse(message);
-            for (entry in obj)
+            for (entry in Reflect.fields(obj))
             {
                 vec.push(entry);
             }
@@ -645,7 +640,7 @@ class GameFileHandler
     {
         if (PipeJam3.RELEASE_BUILD)
         {
-            sendMessage(SAVE_LEVEL, onLevelSaved, saveType, m_levelFilesString);
+            sendMessage(save_level, onLevelSaved, saveType, m_levelFilesString);
         }
     }
     
@@ -674,18 +669,18 @@ class GameFileHandler
         
         switch (type)
         {
-            case GET_HIGH_SCORES_FOR_LEVEL:
+            case get_high_scores_for_level:
                 url = NetworkConnection.productionInterop + "?function=getHighScoresForLevel2&data_id=" + data;
-            case GET_ALL_LEVEL_METADATA:
+            case get_all_level_metadata:
                 url = NetworkConnection.productionInterop + "?function=getActiveLevels2&data_id=foo";
-            case SAVE_LEVEL:
+            case save_level:
                 var solutionInfo : Dynamic = PipeJamGame.levelInfo;
                 solutionInfo.current_score = Std.string(World.m_world.active_level.currentScore);
                 solutionInfo.target_score = Std.string(World.m_world.active_level.currentScore);
                 solutionInfo.max_score = Std.string(World.m_world.active_level.maxScore);
                 solutionInfo.prev_score = Std.string(World.m_world.active_level.oldScore);
                 solutionInfo.max_score = Std.string(World.m_world.active_level.maxScore);
-                solutionInfo.revision = Std.string(as3hx.Compat.parseInt(PipeJamGame.levelInfo.revision) + 1);
+                solutionInfo.revision = Std.string(Std.parseInt(PipeJamGame.levelInfo.revision) + 1);
                 if (PipeJam3.ASSET_SUFFIX == "Turk")
                 {
                     solutionInfo.turkToken = MTurkAPI.getInstance().workerToken;
@@ -702,8 +697,8 @@ class GameFileHandler
                 PipeJamGame.levelInfo.revision = solutionInfo.revision;
                 //current time in seconds
                 var currentDate : Date = Date.now();
-                var dateUTC : Float = currentDate.getTime() + currentDate.getTimezoneOffset();
-                solutionInfo.submitted_date = as3hx.Compat.parseInt(dateUTC / 1000);
+                var dateUTC : Float = currentDate.getTime();
+                solutionInfo.submitted_date = Std.int(dateUTC / 1000);
                 //save, delete, stringify, and then restore highscore vector (not really needed, and they might contain an id property)
                 var savedHighScoreArray : Array<Dynamic> = solutionInfo.highScores;
                 Reflect.deleteField(solutionInfo, "highScores");
@@ -719,7 +714,7 @@ class GameFileHandler
                 {
                     url = NetworkConnection.productionInterop + "?function=submitLevelPOST2&data_id='" + data_id + "'";
                 }
-            case REPORT_LEADERBOARD_SCORE:
+            case report_leaderboard_score:
                 if (PlayerValidation.playerID == "")
                 {
                     return;
@@ -736,12 +731,13 @@ class GameFileHandler
                 
                 var playerID : String = PlayerValidation.playerID;
                 //report to website scoreDifference + starting count
-                var total : Int = as3hx.Compat.parseInt(scoreDifference);
-                for (person in PipeJamGame.levelInfo.highScores)
+                var total : Int = Std.int(scoreDifference);
+				var highScores : Array<Dynamic> = PipeJamGame.levelInfo.highScores;
+                for (person in highScores)
                 {
                     if (person[1] == PlayerValidation.playerID)
                     {
-                        total = as3hx.Compat.parseInt(total + person[3]);
+                        total = Std.int(total + person[3]);
                         break;
                     }
                 }

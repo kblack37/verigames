@@ -554,7 +554,7 @@ class World extends BaseComponent
             //busyAnimationMovieClip = new MovieClip(waitAnimationImages, 4);
                 
                 //addChild(busyAnimationMovieClip);
-                //Starling.juggler.add(this.busyAnimationMovieClip);
+                //Starling.current.juggler.add(this.busyAnimationMovieClip);
                 waitIconDisplayed = true;
             }
             if (active_level != null)
@@ -582,7 +582,7 @@ class World extends BaseComponent
         if (busyAnimationMovieClip)
         {
             removeChild(busyAnimationMovieClip);
-            Starling.juggler.remove(this.busyAnimationMovieClip);
+            Starling.current.juggler.remove(this.busyAnimationMovieClip);
             
             busyAnimationMovieClip.dispose();
             busyAnimationMovieClip = null;
@@ -839,7 +839,7 @@ class World extends BaseComponent
         {
             active_level.targetScoreReached = false;
             nativeText.text = "This task was expected to take at least 2 minutes.\n\nThis page will update automatically in 30 seconds to retry the confirmation code.";
-            Starling.juggler.delayCall(onWidgetChange, 30, new WidgetChangeEvent(WidgetChangeEvent.LEVEL_WIDGET_CHANGED, null, null, false, active_level, null));
+            Starling.current.juggler.delayCall(onWidgetChange, 30, new WidgetChangeEvent(WidgetChangeEvent.LEVEL_WIDGET_CHANGED, null, null, false, active_level, null));
         }
         else
         {
@@ -898,7 +898,7 @@ class World extends BaseComponent
                             continueDelay = active_level.tutorialManager.continueButtonDelay();
                             showFanfare = active_level.tutorialManager.showFanfare();
                         }
-                        Starling.juggler.delayCall(edgeSetGraphViewPanel.displayContinueButton, continueDelay, true, showFanfare);
+                        Starling.current.juggler.delayCall(edgeSetGraphViewPanel.displayContinueButton, continueDelay, true, showFanfare);
                     }
                 }
             }

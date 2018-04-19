@@ -96,10 +96,6 @@ class HTTPCookies
         }
         return ExternalInterface.call("getEncodedCookieResult");
     }
-
-    public function new()
-    {
-    }
 }
 
 

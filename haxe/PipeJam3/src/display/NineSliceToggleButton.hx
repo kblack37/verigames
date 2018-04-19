@@ -2,6 +2,7 @@ package display;
 
 import assets.AssetInterface;
 import assets.AssetsFont;
+import flash.Vector;
 import starling.animation.DelayedCall;
 import starling.core.Starling;
 import starling.textures.TextureAtlas;
@@ -28,8 +29,8 @@ class NineSliceToggleButton extends NineSliceButton
     private var text : String;
     private var secondaryText : String;
     
-    private var m_emphasizeOn : DelayedCall;
-    private var m_emphasizeOff : DelayedCall;
+    private var m_emphasizeOnId : Int;
+    private var m_emphasizeOffId : Int;
     
     public function new(_text : String, _width : Float, _height : Float, _cX : Float, _cY : Float, _toolTipText : String, _atlas : TextureAtlas, _atlasXMLButtonTexturePrefix : String, _fontName : String, _fontColor : Int, _atlasXMLButtonOverTexturePrefix : String = "", _atlasXMLButtonClickTexturePrefix : String = "", _fontColorOver : Int = 0xFFFFFF, _fontColorClick : Int = 0xFFFFFF)
     {
@@ -42,7 +43,7 @@ class NineSliceToggleButton extends NineSliceButton
     private var touchState : String;
     override private function onTouch(event : TouchEvent) : Void
     {
-        if (event.getTouches(this, TouchPhase.HOVER).length)
+        if (event.getTouches(this, TouchPhase.HOVER).length > 0)
         {
             var touch : Touch = event.getTouches(this, TouchPhase.HOVER)[0];
             showToolTipDisplay(touch);
@@ -52,16 +53,16 @@ class NineSliceToggleButton extends NineSliceButton
             hideToolTipDisplay();
         }
         
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         if (touches.length == 0)
         {
             return;
         }
-        else if (event.getTouches(this, TouchPhase.BEGAN).length)
+        else if (event.getTouches(this, TouchPhase.BEGAN).length > 0)
         {
             touchState = TouchPhase.BEGAN;
         }
-        else if (event.getTouches(this, TouchPhase.HOVER).length)
+        else if (event.getTouches(this, TouchPhase.HOVER).length > 0)
         {
             if (!mIsDown)
             {
@@ -72,7 +73,7 @@ class NineSliceToggleButton extends NineSliceButton
                 touchState = TouchPhase.HOVER;
             }
         }
-        else if (event.getTouches(this, TouchPhase.ENDED).length)
+        else if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             if (touchState == TouchPhase.HOVER)
             {
@@ -186,13 +187,13 @@ class NineSliceToggleButton extends NineSliceButton
     private function emphasizeOnDelayOff() : Void
     {
         showButton(m_buttonClickSkin);
-        m_emphasizeOff = Starling.juggler.delayCall(emphasizeOffDelayOn, 0.5);
+        m_emphasizeOffId = Starling.current.juggler.delayCall(emphasizeOffDelayOn, 0.5);
     }
     
     private function emphasizeOffDelayOn() : Void
     {
         showButton(m_buttonSkin);
-        m_emphasizeOn = Starling.juggler.delayCall(emphasizeOnDelayOff, 0.5);
+        m_emphasizeOnId = Starling.current.juggler.delayCall(emphasizeOnDelayOff, 0.5);
     }
     
     public function emphasize() : Void
@@ -203,13 +204,13 @@ class NineSliceToggleButton extends NineSliceButton
     
     public function deemphasize() : Void
     {
-        if (m_emphasizeOn != null)
+        if (m_emphasizeOnId != null)
         {
-            Starling.juggler.remove(m_emphasizeOn);
+            Starling.current.juggler.removeByID(m_emphasizeOnId);
         }
-        if (m_emphasizeOff != null)
+        if (m_emphasizeOffId != null)
         {
-            Starling.juggler.remove(m_emphasizeOff);
+            Starling.current.juggler.removeByID(m_emphasizeOffId);
         }
     }
 }

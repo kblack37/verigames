@@ -54,7 +54,7 @@ class MiniMap extends BaseComponent
     
     private static inline var MIN_ICON_SIZE : Float = 4;
     
-    private var nodeErrorDict : Dictionary = new Dictionary();
+    private var nodeErrorDict : Dynamic = {};
     private var currentLevel : Level;
     private var backgroundImage : Image;
     private var gameNodeLayer : Sprite;
@@ -153,10 +153,10 @@ class MiniMap extends BaseComponent
             m_hideButton.removeFromParent();
         }
         // Stop showing animation (if any) and animate this up to hide
-        Starling.juggler.removeTweens(this);
+        Starling.current.juggler.removeTweens(this);
         m_showing = false;
         m_hiding = true;
-        Starling.juggler.tween(this, HIDE_SHOW_TIME_SEC, {
+        Starling.current.juggler.tween(this, HIDE_SHOW_TIME_SEC, {
                     y : HIDDEN_Y,
                     transition : Transitions.EASE_OUT,
                     onComplete : onHideComplete
@@ -191,11 +191,11 @@ class MiniMap extends BaseComponent
             m_showButton.removeFromParent();
         }
         // Stop hiding animation (if any) and animate this down to show
-        Starling.juggler.removeTweens(this);
+        Starling.current.juggler.removeTweens(this);
         m_hiding = false;
         m_showing = true;
         
-        //		Starling.juggler.tween(this, HIDE_SHOW_TIME_SEC, { y:SHOWN_Y, transition: Transitions.EASE_OUT, onComplete:onShowComplete } );
+        //		Starling.current.juggler.tween(this, HIDE_SHOW_TIME_SEC, { y:SHOWN_Y, transition: Transitions.EASE_OUT, onComplete:onShowComplete } );
         onShowComplete();
     }
     
@@ -310,8 +310,8 @@ class MiniMap extends BaseComponent
             maxNumConflicts = 0;
             nodeErrorDict = new Dictionary();
             for (errorId in Reflect.fields(currentLevel.levelGraph.unsatisfiedConstraintDict))
-            
-            //	var constraint:Constraint = currentLevel.levelGraph.constraintsDict[errorId];{
+            {
+            //	var constraint:Constraint = currentLevel.levelGraph.constraintsDict[errorId];
                 
                 //	if (currentLevel.edgeLayoutObjs.hasOwnProperty(constraint.id)) {
                 //		var edgeLayout:Object = currentLevel.edgeLayoutObjs[constraint.id];
@@ -467,8 +467,7 @@ class MiniMap extends BaseComponent
     {
         var edgeId : String = Reflect.field(edgeLayout, "id");
         var toNode : String = Reflect.field(edgeLayout, "to_var_id");
-        This is an intentional compilation error. See the README for handling the delete keyword
-        delete nodeErrorDict[toNode];
+		Reflect.deleteField(nodeErrorDict, toNode);
     }
     
     public function addWidget(node : ClauseNode, flatten : Bool = true) : Void

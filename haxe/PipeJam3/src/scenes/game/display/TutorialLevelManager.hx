@@ -137,8 +137,8 @@ class TutorialLevelManager extends EventDispatcher
                     num++;
                 }
                 if (num == 0)
-                
-                // End of level, display summary{
+                {
+                // End of level, display summary
                     
                     tip = new TutorialManagerTextInfo(
                             "Great work! The target score for this level was reached by\n" +

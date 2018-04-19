@@ -14,12 +14,12 @@ class ButtonFactory
     {
         if (m_instance == null)
         {
-            m_instance = new ButtonFactory(new SingletonLock());
+            m_instance = new ButtonFactory();
         }
         return m_instance;
     }
     
-    public function new(lock : SingletonLock)
+    private function new()
     {
     }
     
@@ -62,13 +62,3 @@ class ButtonFactory
         "Button" + imageName + "Over", "Button" + imageName + "Click");
     }
 }
-
-
-class SingletonLock
-{
-
-    @:allow()
-    private function new()
-    {
-    }
-}  // to prevent outside construction of singleton  

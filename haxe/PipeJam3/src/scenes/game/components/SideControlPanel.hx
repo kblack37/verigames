@@ -192,7 +192,7 @@ class SideControlPanel extends BaseComponent
         m_widenBrush = try cast(createPaintBrushButton(GridViewPanel.WIDEN_BRUSH, changeCurrentBrush, "Make Wide"), NineSliceToggleButton) catch(e:Dynamic) null;
         m_narrowBrush = try cast(createPaintBrushButton(GridViewPanel.NARROW_BRUSH, changeCurrentBrush, "Make Narrow"), NineSliceToggleButton) catch(e:Dynamic) null;
         
-        m_widenBrush.y = 00;
+        m_widenBrush.y = 0;
         m_narrowBrush.y = 30;
         m_solver1Brush.y = 60;
         
@@ -234,7 +234,7 @@ class SideControlPanel extends BaseComponent
         {
             if (!PipeJamGameScene.inTutorial)
             {
-                Starling.juggler.delayCall(showTurkFinishButton, 5 * 60);
+                Starling.current.juggler.delayCall(showTurkFinishButton, 5 * 60);
             }
         }
         else
@@ -408,8 +408,8 @@ class SideControlPanel extends BaseComponent
             ExternalInterface.call("console.log", "adjbuttonBottomRight:" + buttonBottomRight);
         }
         if (event.stageX >= buttonTopLeft.x && event.stageX <= buttonBottomRight.x && event.stageY >= buttonTopLeft.y && event.stageY <= buttonBottomRight.y)
-        
-        //need to mark that we are doing this, so we don't lose the selection{
+        {
+        //need to mark that we are doing this, so we don't lose the selection
             
             World.changingFullScreenState = true;
             

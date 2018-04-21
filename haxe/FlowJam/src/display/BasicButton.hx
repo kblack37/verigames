@@ -27,7 +27,10 @@ class BasicButton extends ToolTippableSprite
     private static var DEBUG_STATE : Bool = false;
     
     public static inline var HOVER_OVER : String = "hoverOver";
-    
+	
+	//TODO i made this a variable beacuse hit test only takes one arg
+    public var forTouch : Bool = false;
+	
     public static inline var UP_STATE : String = "upState";
     public static inline var OVER_STATE : String = "overState";
     public static inline var DOWN_STATE : String = "downState";
@@ -124,9 +127,9 @@ class BasicButton extends ToolTippableSprite
         return m_data;
     }
     
-    override public function hitTest(localPoint : Point, forTouch : Bool = false) : DisplayObject
+    override public function hitTest(localPoint : Point) : DisplayObject
     {
-        var superHit : DisplayObject = super.hitTest(localPoint, forTouch);
+        var superHit : DisplayObject = super.hitTest(localPoint);
         
         if (m_hitSubRect == null)
         {
@@ -141,9 +144,10 @@ class BasicButton extends ToolTippableSprite
         return (m_hitSubRect.containsPoint(localPoint)) ? this : null;
     }
     
-    private var lastTouchState : DisplayObject = m_up;
+   
     override private function onTouch(event : TouchEvent) : Void
     {
+		var lastTouchState : DisplayObject = m_up;
         super.onTouch(event);
         
         Mouse.cursor = ((m_useHandCursor && m_enabled && event.interactsWith(this))) ? MouseCursor.BUTTON : MouseCursor.AUTO;
@@ -172,7 +176,8 @@ class BasicButton extends ToolTippableSprite
         }
         else if (touch.phase == TouchPhase.MOVED)
         {
-            if (hitTest(touch.getLocation(this)))
+			//TODO changed this to access the field _touchable i think this needs to be like this in all hit tests that use forTouch
+            if (hitTest(touch.getLocation(this)).__touchable)
             {
                 toState(m_down);
             }

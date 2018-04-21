@@ -2,6 +2,8 @@ package assets;
 
 import flash.errors.Error;
 import flash.media.Sound;
+import haxe.xml.Fast;
+import haxe.xml.Parser;
 
 class AssetsAudio
 {
@@ -27,9 +29,9 @@ private static var MenuButtonClass : Class<Dynamic>;
 private static var MusicNodensFieldSongClass : Class<Dynamic>;
     public static inline var MUSIC_FIELD_SONG : String = "MusicNodensFieldSong";
     
-    public static function getEmbeddedAudioXML() : Xml
-    {
-        return Xml.parse(Type.createInstance(XMLEmbeddedAudio, []));
+    public static function getEmbeddedAudioXML() : Fast
+    {	
+        return new Fast(Xml.parse(Type.createInstance(XMLEmbeddedAudio, [])));
     }
     
     public static function getSoundResource(soundName : String) : Sound

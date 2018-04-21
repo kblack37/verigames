@@ -22,11 +22,11 @@ class BaseComponent extends ToolTippableSprite
     public var clipRect(get, set) : Rectangle;
 
     private var mClipRect : Rectangle;
-    
+    public var forTouch : Bool;
     private var m_disposed : Bool;
     
     //initalized in Game
-    private static var loadingAnimationImages : Array<Texture> = null;
+    private static var loadingAnimationImages : openfl.Vector<Texture> = null;
     private static var waitAnimationImages : Array<Texture> = null;
     
     private var busyAnimationMovieClip : MovieClip;
@@ -93,13 +93,14 @@ class BaseComponent extends ToolTippableSprite
         }
     }
     
-    override public function hitTest(localPoint : Point, forTouch : Bool = false) : DisplayObject
+    override public function hitTest(localPoint : Point) : DisplayObject
     // without a clip rect, the sprite should behave just like before
+	//hit test in sprite only has one argument
     {
         
         if (mClipRect == null)
         {
-            return super.hitTest(localPoint, forTouch);
+            return super.hitTest(localPoint);
         }
         
         // on a touch test, invisible or untouchable objects cause the test to fail
@@ -110,7 +111,7 @@ class BaseComponent extends ToolTippableSprite
         
         if (mClipRect.containsPoint(localToGlobal(localPoint)))
         {
-            return super.hitTest(localPoint, forTouch);
+            return super.hitTest(localPoint);
         }
         else
         {
@@ -170,7 +171,7 @@ class BaseComponent extends ToolTippableSprite
             busyAnimationMovieClip.y = (animationParent.height - busyAnimationMovieClip.height) / 2;
             animationParent.addChild(busyAnimationMovieClip);
         }
-        Starling.juggler.add(this.busyAnimationMovieClip);
+        Starling.current.juggler.add(this.busyAnimationMovieClip);
         
         return busyAnimationMovieClip;
     }
@@ -180,7 +181,7 @@ class BaseComponent extends ToolTippableSprite
         if (busyAnimationMovieClip != null)
         {
             removeChild(busyAnimationMovieClip);
-            Starling.juggler.remove(this.busyAnimationMovieClip);
+            Starling.current.juggler.remove(this.busyAnimationMovieClip);
             
             busyAnimationMovieClip.dispose();
             busyAnimationMovieClip = null;

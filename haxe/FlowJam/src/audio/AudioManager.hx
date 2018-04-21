@@ -8,6 +8,7 @@ import flash.net.URLLoader;
 import flash.net.URLRequest;
 import flash.utils.ByteArray;
 import display.BasicButton;
+import haxe.xml.Fast;
 import starling.events.Event;
 
 class AudioManager
@@ -84,14 +85,14 @@ class AudioManager
     
     private function loadAudioFromEmbedded() : Void
     {
-        var audioXML : FastXML = AssetsAudio.getEmbeddedAudioXML();
+        var audioXML : Fast = AssetsAudio.getEmbeddedAudioXML();
         loadFromXML(audioXML);
     }
     
-    private function loadFromXML(xml : FastXML) : Void
+    private function loadFromXML(xml : Fast) : Void
     {
-        var xmlVec : Array<FastXML> = new Array<FastXML>();
-        xmlVec.push(new FastXML(xml));
+        var xmlVec : Array<Fast> = new Array<Fast>();
+        xmlVec.push(xml);
         m_audioDriver.init(xmlVec, new AudioResource());
         m_audioDriver.globalVolume = 0.3;
         m_audioLoaded = true;

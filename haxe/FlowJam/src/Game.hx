@@ -16,7 +16,7 @@ import starling.display.Sprite;
 import starling.events.Event;
 import starling.text.TextField;
 import starling.textures.Texture;
-import starling.utils.VAlign;
+import starling.utils.Align;
 
 class Game extends BaseComponent
 {
@@ -62,6 +62,7 @@ class Game extends BaseComponent
         assets.AssetInterface.prepareSounds();
         
         //load images if we haven't
+		/*TODO not sure where loadingAnimationImages and waitAnimationImages shoulr be instantiated
         if (loadingAnimationImages == null)
         {
             loadingAnimationImages = new Array<Texture>();
@@ -75,7 +76,9 @@ class Game extends BaseComponent
             {
                 waitAnimationImages.push(AssetInterface.getTexture("Game", "Wait" + ii + "Class"));
             }
+			
         }
+		*/
     }
     
     private function onAddedToStage(event : Event) : Void
@@ -96,7 +99,7 @@ class Game extends BaseComponent
             {
                 closeCurrentScene();
             }
-            if (event.scene)
+            if (event.scene!=null)
             {
                 showScene(event.scene);
             }
@@ -117,10 +120,10 @@ class Game extends BaseComponent
             m_fadeCallback();
         }
         m_fadeCallback = callback;
-        Starling.juggler.removeTweens(m_blackFadeScreen);
+        Starling.current.juggler.removeTweens(m_blackFadeScreen);
         m_blackFadeScreen.alpha = 0;
         addChild(m_blackFadeScreen);
-        Starling.juggler.tween(m_blackFadeScreen, FADE_TIME, {
+        Starling.current.juggler.tween(m_blackFadeScreen, FADE_TIME, {
                     alpha : 1,
                     onComplete : function() : Void
                     {
@@ -138,7 +141,7 @@ class Game extends BaseComponent
     {
         m_blackFadeScreen.alpha = 1;
         addChild(m_blackFadeScreen);
-        Starling.juggler.tween(m_blackFadeScreen, FADE_TIME, {
+        Starling.current.juggler.tween(m_blackFadeScreen, FADE_TIME, {
                     alpha : 0,
                     onComplete : function() : Void
                     {

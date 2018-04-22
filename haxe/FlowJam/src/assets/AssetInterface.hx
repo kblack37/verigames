@@ -293,11 +293,14 @@ class AssetInterface
     
     private static function create(file : String, name : String) : Dynamic
     {
+		/*TODO fix var textureClassObject it has an error about Void should be Dynamic
         var textureClassNameString : String = (sContentScaleFactor == 1) ? file + "AssetEmbeds_1x" : file + "AssetEmbeds_2x";
         var qualifiedName : String = "assets." + textureClassNameString;
         var textureClass : Class<Dynamic> = Type.getClass(Type.resolveClass(qualifiedName));
         var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name), Dynamic) catch(e:Dynamic) null;
         return textureClassObject;
+		*/
+		return null;
     }
     
     private static function get_contentScaleFactor() : Float

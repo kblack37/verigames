@@ -1,0 +1,9 @@
+The plan for the coming week is to meet with my team and really flesh our what work needs to be done on the project, this will help me with my goals of learning more of the Haxe api
+and working more on the port which is again the main goal for next week.
+
+
+This week I spent most of my time working on the port and I have flowjam compiling but it just displays a black screen, But im very happy with the step that has been made. I also wrote our presentation
+for the project that we presented on wednesday.
+
+Next week I plan to work more on Flowjam and sepcifically working on why it displays nothing once targeted to html5. A lot of the port involved commenting out problematic code. I marked these with 
+TODOs so they will be easy to find and work on.

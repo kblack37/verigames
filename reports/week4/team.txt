@@ -1,6 +1,6 @@
 # Team Report: Week 4 #
 
-## Last Week's Goal **
+## Last Week's Goal ##
 - Finish resolving compiler errors with FlowJam and PipeJam
 - Begin work on adding external assets back into the codebase
 

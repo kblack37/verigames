@@ -1,0 +1,17 @@
+# Individual Report (Jake Chiang): Week 4 #
+
+
+## Previous Goals ##
+- Learn more of Haxe, particularly regarding how its projects are structured
+- Solve compiler errors for the new codebase
+
+
+## Progress ##
+- Worked on FlowJam compilation fixing
+    - Resolved compatability function library
+- Examined Starling and OpenFL libraryies to understand their graphics pipeline
+
+
+## Goals ##
+- Fix FlowJam's current black screen display
+- Solve compilation errors for PipeJam

@@ -1,0 +1,20 @@
+## Previous week's goals ##
+I definitely want to get more involved in the codebase than I have been. I would
+like to see it up and running in some state or another within the next week, but
+I have doubts as to the feasibility of that plan. We'll chat some more of what
+the final architecture should look like now that everyone has had a little bit
+of experience in the codebase.
+
+## What I've done this week ##
+Worked in the PipeJam codebase fixing some compiler errors. Looked into replacing
+the FZip dependency with the Haxe Zip API, but the two are dissimilar enough that
+it'll take more than the cursory look I gave it to replace FZip. Led the team meeting.
+Worked on the user manual.
+
+## Next week's goals ##
+Since FlowJam is now free of compiler errors, I definitely want to do the same for
+the PipeJam code. Once those are up, we'll look into refactoring the assets interface
+in the current codebase to use the OpenFL Asset API instead of the embedded resources
+the Flash codebase used. Once that is up, there's likely some other sneaky errors that
+weren't caught by the compiler that we'll have to fix (since Haxe isn't statically typed)
+but hopefully we can have the games running by next Monday.

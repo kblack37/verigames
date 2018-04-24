@@ -6,6 +6,7 @@ import assets.AssetsFont;
 import dialogs.SimpleTwoButtonDialog;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import openfl.Vector;
 import scenes.BaseComponent;
 import starling.display.DisplayObject;
 import starling.display.Image;
@@ -107,7 +108,7 @@ class SelectList extends BaseComponent
             return;
         }
         
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         if (touches.length == 0)
         {
             return;
@@ -120,11 +121,11 @@ class SelectList extends BaseComponent
         
         var currentPosition : Point = touch.getLocation(scrollbarBackground.parent);
         storedMouseY = currentPosition.y;
-        if (event.getTouches(this, TouchPhase.BEGAN).length)
+        if (event.getTouches(this, TouchPhase.BEGAN).length > 0)
         {
             this.addEventListener(Event.ENTER_FRAME, updateUpArrowScroll);
         }
-        else if (event.getTouches(this, TouchPhase.ENDED).length)
+        else if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             this.removeEventListener(Event.ENTER_FRAME, updateUpArrowScroll);
         }
@@ -137,7 +138,7 @@ class SelectList extends BaseComponent
             return;
         }
         
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         if (touches.length == 0)
         {
             return;
@@ -150,11 +151,11 @@ class SelectList extends BaseComponent
         
         var currentPosition : Point = touch.getLocation(scrollbarBackground.parent);
         storedMouseY = currentPosition.y;
-        if (event.getTouches(this, TouchPhase.BEGAN).length)
+        if (event.getTouches(this, TouchPhase.BEGAN).length > 0)
         {
             this.addEventListener(Event.ENTER_FRAME, updateDownArrowScroll);
         }
-        else if (event.getTouches(this, TouchPhase.ENDED).length)
+        else if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             this.removeEventListener(Event.ENTER_FRAME, updateDownArrowScroll);
         }
@@ -219,7 +220,7 @@ class SelectList extends BaseComponent
             return;
         }
         
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         if (touches.length == 0)
         {
             return;
@@ -233,7 +234,7 @@ class SelectList extends BaseComponent
         
         var currentPosition : Point = touch.getLocation(scrollbarBackground.parent);
         
-        if (event.getTouches(this, TouchPhase.BEGAN).length)
+        if (event.getTouches(this, TouchPhase.BEGAN).length > 0)
         {
             storedMouseY = currentPosition.y;
             scrollMultiplier = 5.0;
@@ -248,7 +249,7 @@ class SelectList extends BaseComponent
                 this.addEventListener(Event.ENTER_FRAME, updatePageDownScroll);
             }
         }
-        else if (event.getTouches(this, TouchPhase.ENDED).length)
+        else if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             scrollMultiplier = 1.0;
             if (directionUp)
@@ -426,12 +427,12 @@ class SelectList extends BaseComponent
         var dialogWidth : Float = 160;
         var dialogHeight : Float = 60;
         
-        if (event.getTouches(this, TouchPhase.ENDED).length)
-        
-        //find parent button{
+        if (event.getTouches(this, TouchPhase.ENDED).length > 0)
+        {
+        //find parent button
             
             var displayObject : DisplayObject = try cast(event.target, DisplayObject) catch(e:Dynamic) null;
-            while (displayObject && !(Std.is(displayObject, BasicButton)))
+            while (displayObject != null && !(Std.is(displayObject, BasicButton)))
             {
                 displayObject = displayObject.parent;
             }

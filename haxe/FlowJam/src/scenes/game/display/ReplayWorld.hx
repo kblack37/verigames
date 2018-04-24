@@ -1,12 +1,13 @@
 package scenes.game.display;
 
+import cgs.server.logging.actions.IClientAction;
+import cgs.server.logging.actions.QuestAction;
 import constraints.ConstraintVar;
 import flash.ui.Keyboard;
 import flash.utils.Dictionary;
 import starling.events.Event;
 import starling.events.KeyboardEvent;
 import audio.AudioManager;
-import cgs.server.logging.actions.ClientAction;
 import server.ReplayController;
 import system.VerigameServerConstants;
 import utils.XString;
@@ -15,7 +16,7 @@ import utils.XString;
 class ReplayWorld extends World
 {
     
-    public function new(_worldGraphDict : Dictionary, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
+    public function new(_worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
     {
         super(_worldGraphDict, _worldObj, _layout, _assignments);
     }
@@ -45,34 +46,34 @@ class ReplayWorld extends World
         }
     }
     
-    public function performAction(action : ClientAction, isUndo : Bool = false) : Void
+    public function performAction(action : QuestAction, isUndo : Bool = false) : Void
     {
-        if (!action.detailObject)
+        if (action.detailObject == null)
         {
             return;
         }
-        if (!active_level)
+        if (active_level == null)
         {
             return;
         }
-        var varId : String;
-        var propChanged : String;
-        var newPropValue : Bool;
-        if (action.detailObject[VerigameServerConstants.ACTION_PARAMETER_VAR_ID] != null)
+        var varId : String = null;
+        var propChanged : String = null;
+        var newPropValue : Bool = false;
+        if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID))
         {
-            varId = Std.string(action.detailObject[VerigameServerConstants.ACTION_PARAMETER_VAR_ID]);
+            varId = Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID);
         }
-        if (action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED] != null)
+        if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED))
         {
-            propChanged = Std.string(action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED]);
+            propChanged = Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED);
         }
-        if (action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE] != null)
+        if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE))
         {
-            newPropValue = XString.stringToBool(Std.string(action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE]));
+            newPropValue = XString.stringToBool(Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE));
         }
         if (varId != null && propChanged != null)
         {
-            var constraintVar : ConstraintVar = active_level.levelGraph.variableDict[varId];
+            var constraintVar : ConstraintVar = Reflect.field(active_level.levelGraph.variableDict, varId);
             if (constraintVar == null)
             {
                 PipeJam3.showReplayText("Replay action failed: ConstraintVar not found: " + varId);
@@ -87,34 +88,34 @@ class ReplayWorld extends World
         }
     }
     
-    public function previewAction(action : ClientAction, isUndo : Bool = false) : Void
+    public function previewAction(action : QuestAction, isUndo : Bool = false) : Void
     {
         if (!action.detailObject)
         {
             return;
         }
-        if (!active_level)
+        if (active_level == null)
         {
             return;
         }
-        if (!edgeSetGraphViewPanel)
+        if (edgeSetGraphViewPanel == null)
         {
             return;
         }
         var edgeSetId : String;
         var propChanged : String;
         var newPropValue : Bool;
-        if (action.detailObject[VerigameServerConstants.ACTION_PARAMETER_VAR_ID] != null)
+        if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID))
         {
-            edgeSetId = Std.string(action.detailObject[VerigameServerConstants.ACTION_PARAMETER_VAR_ID]);
+            edgeSetId = Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID);
         }
-        if (action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED] != null)
+        if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED))
         {
-            propChanged = Std.string(action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED]);
+            propChanged = Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED);
         }
-        if (action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE] != null)
+        if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE))
         {
-            newPropValue = XString.stringToBool(Std.string(action.detailObject[VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE]));
+            newPropValue = XString.stringToBool(Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_PROP_VALUE));
         }
         if (edgeSetId != null && propChanged != null)
         {

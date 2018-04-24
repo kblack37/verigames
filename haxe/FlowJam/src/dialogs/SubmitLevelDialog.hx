@@ -5,7 +5,7 @@ import assets.AssetsFont;
 import display.NineSliceBatch;
 import display.NineSliceButton;
 import events.MenuEvent;
-import feathers.controls.Label;
+//import feathers.controls.Label;
 import flash.display.DisplayObject;
 import flash.geom.Point;
 import flash.text.TextFormat;
@@ -20,7 +20,7 @@ import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
-import starling.extensions.pixelmask.PixelMaskDisplayObject;
+//import starling.extensions.pixelmask.PixelMaskDisplayObject;
 import starling.textures.Texture;
 
 class SubmitLevelDialog extends BaseDialog
@@ -74,27 +74,29 @@ class SubmitLevelDialog extends BaseDialog
         enjoymentStarsMask.width *= starScaleFactor;
         enjoymentStarsMask.height *= starScaleFactor;
         
-        var enjoymentStars : PixelMaskDisplayObject = new PixelMaskDisplayObject();
-        enjoymentStars.width = enjoymentStarsMask.width;
-        enjoymentStars.height = enjoymentStarsMask.height;
-        enjoymentStars.x = background.x + .5 * background.width - .5 * enjoymentStarsMask.width;
-        enjoymentStars.y = label1.y + label1.height - 3;
-        enjoymentStars.addEventListener(TouchEvent.TOUCH, overEnjoymentStars);
+		// TODO: this will require a rework to get the alpha blending correct since
+		// PixelMaskDisplayObject is deprecated
+        //var enjoymentStars : PixelMaskDisplayObject = new PixelMaskDisplayObject();
+        //enjoymentStars.width = enjoymentStarsMask.width;
+        //enjoymentStars.height = enjoymentStarsMask.height;
+        //enjoymentStars.x = background.x + .5 * background.width - .5 * enjoymentStarsMask.width;
+        //enjoymentStars.y = label1.y + label1.height - 3;
+        //enjoymentStars.addEventListener(TouchEvent.TOUCH, overEnjoymentStars);
         
         enjoymentQuad = new Quad(enjoymentStarsMask.width / 2, enjoymentStarsMask.height, 0x243079);
-        enjoymentStars.mask = enjoymentStarsMask;
+        //enjoymentStars.mask = enjoymentStarsMask;
         
         var enjoymentBackgroundStarsTexture : Texture = AssetInterface.getTexture("Game", "RatingStarsClass");
         enjoymentStarsBackground = new Image(enjoymentBackgroundStarsTexture);
-        enjoymentStarsBackground.x = enjoymentStars.x;
-        enjoymentStarsBackground.y = enjoymentStars.y;
+        //enjoymentStarsBackground.x = enjoymentStars.x;
+        //enjoymentStarsBackground.y = enjoymentStars.y;
         enjoymentStarsBackground.width *= starScaleFactor;
         enjoymentStarsBackground.height *= starScaleFactor;
         enjoymentStarsBackground.addEventListener(TouchEvent.TOUCH, overEnjoymentStars);
         
         addChild(enjoymentStarsBackground);
-        addChild(enjoymentStars);
-        enjoymentStars.addChild(enjoymentQuad);
+        //addChild(enjoymentStars);
+        //enjoymentStars.addChild(enjoymentQuad);
     }
     
     private function overEnjoymentStars(e : TouchEvent) : Void
@@ -109,7 +111,7 @@ class SubmitLevelDialog extends BaseDialog
     
     private function overStarsDelta(e : TouchEvent, obj : Image, quad : Quad) : Float
     {
-        if (e.getTouches(this, TouchPhase.ENDED).length)
+        if (e.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             var touch : Touch = e.getTouches(this, TouchPhase.ENDED)[0];
             if (touch.tapCount > 0)

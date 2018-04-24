@@ -3,6 +3,7 @@ package scenes.game.display;
 import assets.AssetsFont;
 import display.NineSliceBatch;
 import events.GameComponentEvent;
+import openfl.Vector;
 import scenes.game.display.GameComponent;
 import starling.display.Quad;
 import starling.text.TextField;
@@ -10,6 +11,7 @@ import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
+import starling.text.TextFormat;
 
 class ScoreBlock extends GameComponent
 {
@@ -52,14 +54,14 @@ class ScoreBlock extends GameComponent
         
         var estWidth : Float = 0.5 * (m_fontSize) * m_score.length;
         if (estWidth > m_width + _radius)
-        
-        // Adjust font size if width too large{
+        {
+        // Adjust font size if width too large
             
             m_fontSize *= (m_width + _radius) / estWidth;
         }
         if (m_score == "1")
-        
-        // Cheat for now since TextFields are causing resource limits on larger levels{
+        {
+        // Cheat for now since TextFields are causing resource limits on larger levels
             
             var one_quad : Quad = new Quad(4, m_height + 2 * _radius - 16, 0x0);
             one_quad.x = _radius + 0.5 * m_width - 2;
@@ -68,7 +70,7 @@ class ScoreBlock extends GameComponent
         }
         else
         {
-            m_text = new TextField(m_width + 2 * _radius, m_height + 2 * _radius, m_score, AssetsFont.FONT_UBUNTU, m_fontSize, 0x0);
+            m_text = new TextField(Std.int(m_width + 2 * _radius), Std.int(m_height + 2 * _radius), m_score, new TextFormat(AssetsFont.FONT_UBUNTU, m_fontSize));
             addChild(m_text);
         }
         
@@ -77,7 +79,6 @@ class ScoreBlock extends GameComponent
             addEventListener(TouchEvent.TOUCH, onTouch);
             this.useHandCursor = true;
         }
-        flatten();
     }
     
     override public function dispose() : Void
@@ -97,14 +98,14 @@ class ScoreBlock extends GameComponent
     
     override private function onTouch(event : TouchEvent) : Void
     {
-        var touches : Array<Touch> = event.touches;
-        if (event.getTouches(this, TouchPhase.ENDED).length)
+        var touches : Vector<Touch> = event.touches;
+        if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             if (touches.length == 1)
             {
                 if (Std.is(m_gameComponent, GameEdgeContainer))
-                
-                // Center on marker joint - this is where we actually display the error{
+                {
+                // Center on marker joint - this is where we actually display the error
                     
                     var jointToCenter : GameEdgeJoint = (try cast(m_gameComponent, GameEdgeContainer) catch(e:Dynamic) null).m_markerJoint;
                     dispatchEvent(new GameComponentEvent(GameComponentEvent.CENTER_ON_COMPONENT, jointToCenter));

@@ -90,8 +90,8 @@ class ScrollBarThumb extends ImageStateButton
             mIsDown = false;
         }
         else if (touch.phase == TouchPhase.MOVED && mIsDown)
-        
-        // reset button when user dragged too far away after pushing{
+        {
+        // reset button when user dragged too far away after pushing
             
             var currentPosition : Point = touch.getLocation(parent);
             

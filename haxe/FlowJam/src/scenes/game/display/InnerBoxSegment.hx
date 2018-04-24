@@ -110,8 +110,8 @@ class InnerBoxSegment extends GameComponent
     public function updatePlug() : Void
     {
         if (!(isEnd || hasError()))
-        
-        // Only show plugs/sockets for end with no extension or errors (two prong into one prong){
+        {
+        // Only show plugs/sockets for end with no extension or errors (two prong into one prong)
             
             if (m_plug != null)
             {
@@ -142,8 +142,8 @@ class InnerBoxSegment extends GameComponent
             assetName = AssetInterface.PipeJamSubTexture_GrayLightPlug;
         }
         if (assetName == m_plugAssetName)
-        
-        // No need to change image{
+        {
+        // No need to change image
             
             return;
         }
@@ -164,8 +164,8 @@ class InnerBoxSegment extends GameComponent
     public function updateSocket() : Void
     {
         if (!(isEnd || hasError()))
-        
-        // Only show plugs/sockets for end with no extension or errors (two prong into one prong){
+        {
+        // Only show plugs/sockets for end with no extension or errors (two prong into one prong)
             
             if (m_socket != null)
             {
@@ -196,8 +196,8 @@ class InnerBoxSegment extends GameComponent
             assetName = AssetInterface.PipeJamSubTexture_GrayLightEnd;
         }
         if (assetName == m_socketAssetName)
-        
-        // No need to change image{
+        {
+        // No need to change image
             
             return;
         }
@@ -235,8 +235,8 @@ class InnerBoxSegment extends GameComponent
     private function getBorderAssetName() : String
     {
         if (m_isEditable)
-        
-        //return m_isWide ? GameComponent.WIDE_COLOR_BORDER : GameComponent.NARROW_COLOR_BORDER;{
+        {
+        //return m_isWide ? GameComponent.WIDE_COLOR_BORDER : GameComponent.NARROW_COLOR_BORDER;
             
             return (m_isWide) ? AssetInterface.PipeJamSubTexture_BorderBlueDark : AssetInterface.PipeJamSubTexture_BorderBlueLight;
         }

@@ -11,18 +11,18 @@ class LevelNodes
     public var original_level_name : String;
     private var m_obfuscator : NameObfuscater;
     
-    public var metadata : Dictionary = new Dictionary();
+    public var metadata : Dynamic = {};
     // Edge set id -> Edge set ref
-    public var edge_set_dictionary : Dictionary;
+    public var edge_set_dictionary : Dynamic;
     
     /** This is a dictionary of BoardNodes, which is a dictionary of Nodes; INDEXED BY BOARD NAME AND NODE ID, RESPECTIVELY */
-    public var boardNodesDictionary : Dictionary = new Dictionary();
+    public var boardNodesDictionary : Dynamic = {};
     /** This is a dictionary of Node's indexed by nodeID - so that nodes may be looked up without needing board information */
-    public var nodeIdToNodeDictionary : Dictionary = new Dictionary();
-    public var edgeIdToEdgeDictionary : Dictionary = new Dictionary();
+    public var nodeIdToNodeDictionary : Dynamic = {};
+    public var edgeIdToEdgeDictionary : Dynamic = {};
     public var qid : Int = -1;
     
-    public function new(_original_level_name : String, _obfuscater : NameObfuscater = null, _edge_set_dictionary : Dictionary = null)
+    public function new(_original_level_name : String, _obfuscater : NameObfuscater = null, _edge_set_dictionary : Dynamic = null)
     {
         original_level_name = _original_level_name;
         m_obfuscator = _obfuscater;
@@ -37,7 +37,7 @@ class LevelNodes
         edge_set_dictionary = _edge_set_dictionary;
         if (edge_set_dictionary == null)
         {
-            edge_set_dictionary = new Dictionary();
+            edge_set_dictionary = {};
         }
     }
     
@@ -48,25 +48,25 @@ class LevelNodes
         {
             new_board_name = m_obfuscator.getBoardName(_original_board_name, original_level_name);
         }
-        if (Reflect.field(boardNodesDictionary, new_board_name) == null)
+        if (!Reflect.hasField(boardNodesDictionary, new_board_name))
         {
             Reflect.setField(boardNodesDictionary, new_board_name, new BoardNodes(new_board_name, _original_board_name));
         }
-        if (nodeIdToNodeDictionary.exists(_node.node_id))
+        if (Reflect.hasField(nodeIdToNodeDictionary, _node.node_id))
         {
             throw new Error("Duplicate nodes found for node_id: " + _node.node_id);
         }
-        nodeIdToNodeDictionary[_node.node_id] = _node;
+		Reflect.setField(nodeIdToNodeDictionary, _node.node_id, _node);
         (try cast(Reflect.field(boardNodesDictionary, new_board_name), BoardNodes) catch(e:Dynamic) null).addNode(_node);
     }
     
     public function addEdge(_edge : Edge) : Void
     {
-        if (edgeIdToEdgeDictionary.exists(_edge.edge_id))
+        if (Reflect.hasField(edgeIdToEdgeDictionary, _edge.edge_id))
         {
             throw new Error("Duplicate edges found for edge_id: " + _edge.edge_id);
         }
-        edgeIdToEdgeDictionary[_edge.edge_id] = _edge;
+		Reflect.setField(edgeIdToEdgeDictionary, _edge.edge_id, _edge);
     }
     
     
@@ -77,7 +77,7 @@ class LevelNodes
         {
             new_board_name = m_obfuscator.getBoardName(_original_board_name, original_level_name);
         }
-        if (Reflect.field(boardNodesDictionary, new_board_name) == null)
+        if (Reflect.hasField(boardNodesDictionary, new_board_name))
         {
             Reflect.setField(boardNodesDictionary, new_board_name, new BoardNodes(new_board_name, _original_board_name, true));
         }
@@ -95,7 +95,7 @@ class LevelNodes
         {
             new_board_name = m_obfuscator.getBoardName(_original_board_name, original_level_name);
         }
-        if (!boardNodesDictionary.exists(new_board_name))
+        if (!Reflect.hasField(boardNodesDictionary, new_board_name))
         {
             return null;
         }
@@ -139,10 +139,10 @@ class LevelNodes
         {
             var boardNodes : BoardNodes = Reflect.field(boardNodesDictionary, boardName);
             var remainingNodes : Array<SubnetworkNode> = new Array<SubnetworkNode>();
-            for (subnetNodeToFinish/* AS3HX WARNING could not determine type for var: subnetNodeToFinish exp: EField(EIdent(boardNodes),subnetNodesToAssociate) type: null */ in boardNodes.subnetNodesToAssociate)
+            for (subnetNodeToFinish in boardNodes.subnetNodesToAssociate)
             {
                 var obsName : String = m_obfuscator.getBoardName(subnetNodeToFinish.subboard_name, original_level_name);
-                if (obsName != null && boardNodesDictionary.exists(obsName))
+                if (obsName != null && Reflect.hasField(boardNodesDictionary, obsName))
                 {
                     var foundBoardNodes : BoardNodes = try cast(Reflect.field(boardNodesDictionary, obsName), BoardNodes) catch(e:Dynamic) null;
                     subnetNodeToFinish.associated_board = foundBoardNodes;

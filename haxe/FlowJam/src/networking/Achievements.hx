@@ -1,7 +1,7 @@
 package networking;
 
 import haxe.Constraints.Function;
-import flash.events.Event;
+import openfl.events.Event;
 import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
 import events.WidgetChangeEvent;
@@ -10,13 +10,13 @@ import scenes.game.display.World;
 import server.LoggingServerInterface;
 import starling.core.Starling;
 import starling.display.Sprite;
-import utils.Base64Encoder;
+//import utils.Base64Encoder;
 import utils.XString;
 
 class Achievements
 {
-    public static var ADD_ACHIEVEMENT : Int = 0;
-    public static var GET_ACHIEVEMENTS : Int = 1;
+    public static var add_achievement : Int = 0;
+    public static var get_achievements : Int = 1;
     
     public static var TUTORIAL_FINISHED_ID : String = "5228b505cb99a6030800002a";
     public static var TUTORIAL_FINISHED_STRING : String = "Achievement: You've Finished All the Tutorials!";
@@ -49,21 +49,23 @@ class Achievements
     public var m_id : String;
     public var m_message : String;
     
-    private static var currentAchievementList : Dictionary = new Dictionary();
+    private static var currentAchievementList : Dynamic = {};
     
     public static function getAchievementsEarnedForPlayer() : Void
     {
         var newAchievement : Achievements = new Achievements();
-        newAchievement.sendMessage(GET_ACHIEVEMENTS, getAchievements);
+        newAchievement.sendMessage(get_achievements, getAchievements);
     }
     
     private static function getAchievements(result : Int, e : Event) : Void
     {
-        var achievementObject : Dynamic = haxe.Json.parse(e.target.data);
-        currentAchievementList = new Dictionary();
-        for (achievement/* AS3HX WARNING could not determine type for var: achievement exp: EField(EIdent(achievementObject),playerAchievements) type: null */ in achievementObject.playerAchievements)
+		// TODO: this reflection will fail but it will compile for now
+        var achievementObject : Dynamic = haxe.Json.parse(Reflect.field(e.target, "data"));
+        currentAchievementList = {};
+		var playerAchievements : Array<Dynamic> = try cast(achievementObject.playerAchievements, Array<Dynamic>) catch (e : Dynamic) null;
+        for (achievement in playerAchievements)
         {
-            currentAchievementList[achievement.achievementId] = achievement;
+			Reflect.setField(currentAchievementList, achievement.achievementId, achievement);
         }
     }
     
@@ -72,7 +74,7 @@ class Achievements
         var newAchievement : Achievements = new Achievements(type, message);
         if (currentAchievementList == null)
         {
-            currentAchievementList = new Dictionary();
+            currentAchievementList = {};
         }
         Reflect.setField(currentAchievementList, type, newAchievement);
         newAchievement.post();
@@ -80,14 +82,7 @@ class Achievements
     
     public static function isAchievementNew(achievementNumber : String) : Bool
     {
-        if (currentAchievementList != null && (Reflect.field(currentAchievementList, achievementNumber) != null))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !(currentAchievementList != null && Reflect.hasField(currentAchievementList, achievementNumber));
     }
     
     public function new(id : String = null, message : String = null)
@@ -98,7 +93,7 @@ class Achievements
     
     public function post() : Void
     {
-        sendMessage(ADD_ACHIEVEMENT, postMessage);
+        sendMessage(add_achievement, postMessage);
     }
     
     private function postMessage(result : Int, e : Event) : Void
@@ -116,15 +111,15 @@ class Achievements
         
         switch (type)
         {
-            case GET_ACHIEVEMENTS:
+            case get_achievements:
                 url = NetworkConnection.productionInterop + "?function=passURL2&data_id='/api/achievements/search/player?playerId=" + PlayerValidation.playerID + "'";
-            case ADD_ACHIEVEMENT:
+            case add_achievement:
                 url = NetworkConnection.productionInterop + "?function=passURLPOST2&data_id='/api/achievement/assign'";
                 var dataObj : Dynamic = {};
                 dataObj.playerId = PlayerValidation.playerID;
                 dataObj.gameId = PipeJam3.GAME_ID;
                 dataObj.achievementId = m_id;
-                dataObj.earnedOn = (Date.now()).time;
+                dataObj.earnedOn = DateTools.format(Date.now(), "%F");
                 
                 data = haxe.Json.stringify(dataObj);
                 //var enc:Base64Encoder = Base64Encoder.getEncoder();

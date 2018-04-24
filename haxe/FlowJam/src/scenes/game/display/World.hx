@@ -83,7 +83,7 @@ class World extends BaseComponent
     private var undoStack : Array<UndoEvent>;
     private var redoStack : Array<UndoEvent>;
     
-    private var m_worldGraphDict : Dictionary;
+    private var m_worldGraphDict : Dynamic;
     /** Original JSON used for this world */
     private var m_worldObj : Dynamic;
     private var m_layoutObj : Dynamic;
@@ -96,7 +96,7 @@ class World extends BaseComponent
     
     private static var m_numWidgetsClicked : Int = 0;
     
-    public function new(_worldGraphDict : Dictionary, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
+    public function new(_worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
     {
         super();
         m_worldGraphDict = _worldGraphDict;
@@ -132,7 +132,7 @@ class World extends BaseComponent
             {
                 levelNameFound = PipeJamGame.levelInfo.name;
             }
-            if (!m_worldGraphDict.exists(levelName))
+            if (!Reflect.hasField(m_worldGraphDict, levelName))
             {
                 throw new Error("World level found without constraint graph:" + levelName);
             }
@@ -302,7 +302,7 @@ class World extends BaseComponent
                     }
                     else
                     {
-                        seed += Math.max(Math.round(code), 1);
+                        seed += Std.int(Math.max(Math.round(code), 1));
                     }
                 }
             }
@@ -464,7 +464,7 @@ class World extends BaseComponent
             return;
         }
         var bottomMenuY : Float = gameControlPanel.y + GameControlPanel.OVERLAP + 5;
-        var juggler : Juggler = Starling.juggler;
+        var juggler : Juggler = Starling.current.juggler;
         var animateUp : Bool = false;
         if (inGameMenuBox == null)
         {
@@ -531,7 +531,7 @@ class World extends BaseComponent
         if (active_level != null)
         {
             active_level.onSaveLayoutFile(event);
-            if (PipeJam3.logging)
+            if (PipeJam3.logging != null)
             {
                 var details : Dynamic = {};
                 Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_LEVEL_NAME), active_level.original_level_name);  // yes, we can get this from the quest data but include it here for convenience  
@@ -562,8 +562,8 @@ class World extends BaseComponent
     {
         
         if (active_level != null)
-        
-        //update and collect all xml, and then bundle, zip, and upload{
+        {
+        //update and collect all xml, and then bundle, zip, and upload
             
             var outputObj : Dynamic = updateAssignments();
             active_level.updateLevelObj();
@@ -575,7 +575,7 @@ class World extends BaseComponent
             
             GameFileHandler.submitLevel(zipEncodedString, event.type, PipeJamGame.SEPARATE_FILES);
             
-            if (PipeJam3.logging)
+            if (PipeJam3.logging != null)
             {
                 var details : Dynamic = {};
                 Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_LEVEL_NAME), active_level.original_level_name);  // yes, we can get this from the quest data but include it here for convenience  
@@ -702,11 +702,11 @@ class World extends BaseComponent
         if (active_level != null && event.data.layoutFile)
         {
             active_level.setNewLayout(event.data.name, event.data.layoutFile, true);
-            if (PipeJam3.logging)
+            if (PipeJam3.logging != null)
             {
                 var details : Dynamic = {};
-                Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_LEVEL_NAME), active_level.original_level_name);  // yes, we can get this from the quest data but include it here for convenience  
-                Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_LAYOUT_NAME), event.data.layoutFile["id"]);
+                Reflect.setField(details, VerigameServerConstants.ACTION_PARAMETER_LEVEL_NAME, active_level.original_level_name);  // yes, we can get this from the quest data but include it here for convenience  
+                Reflect.setField(details, VerigameServerConstants.ACTION_PARAMETER_LAYOUT_NAME, Reflect.field(event.data.layoutFile, "id"));
                 PipeJam3.logging.logQuestAction(VerigameServerConstants.VERIGAME_ACTION_LOAD_LAYOUT, details, active_level.getTimeMs());
             }
             PipeJamGame.levelInfo.layoutUpdated = true;
@@ -795,9 +795,9 @@ class World extends BaseComponent
         {
             return;
         }
-        if (evt != null && evt.varChanged)
+        if (evt != null && evt.varChanged != null)
         {
-            var nodeLayout : Dynamic = active_level.nodeLayoutObjs[evt.varChanged.id];
+            var nodeLayout : Dynamic = Reflect.field(active_level.nodeLayoutObjs, evt.varChanged.id);
             if (miniMap != null && nodeLayout != null)
             {
                 miniMap.addWidget(nodeLayout);
@@ -811,8 +811,8 @@ class World extends BaseComponent
         var oldScore : Int = level_changed.prevScore;
         var newScore : Int = level_changed.currentScore;
         if (evt != null)
-        
-        // TODO: Fanfare for non-tutorial levels? We may want to encourage the players to keep optimizing{
+        {
+        // TODO: Fanfare for non-tutorial levels? We may want to encourage the players to keep optimizing
             
             if (newScore >= level_changed.getTargetScore())
             {
@@ -827,10 +827,10 @@ class World extends BaseComponent
                 var thisPt : Point = globalToLocal(evt.pt);
                 TextPopup.popupText(this, thisPt, ((newScore > oldScore) ? "+" : "") + Std.string(newScore - oldScore), (newScore > oldScore) ? 0x99FF99 : 0xFF9999);
             }
-            if (PipeJam3.logging)
+            if (PipeJam3.logging != null)
             {
                 var details : Dynamic = {};
-                if (evt.varChanged)
+                if (evt.varChanged != null)
                 {
                     Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_VAR_ID), evt.varChanged.id);
                     Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_PROP_CHANGED), evt.prop);
@@ -896,8 +896,8 @@ class World extends BaseComponent
         {
             var tutorialController : TutorialController = TutorialController.getTutorialController();
             if (evt.menuShowing && active_level != null)
-            
-            // If using in-menu "Next Level" debug button, mark the current level as complete in order to move on. Don't mark as completed{
+            {
+            // If using in-menu "Next Level" debug button, mark the current level as complete in order to move on. Don't mark as completed
                 
                 tutorialController.addCompletedTutorial(active_level.m_tutorialTag, false);
             }
@@ -906,8 +906,8 @@ class World extends BaseComponent
             var tutorialsDone : Bool = tutorialController.isTutorialDone();
             //if there are no more unplayed levels, check next if we are in levelselect screen choice
             if (tutorialsDone == true && tutorialController.fromLevelSelectList)
-            
-            //and if so, set to false, unless at the end of the tutorials{
+            {
+            //and if so, set to false, unless at the end of the tutorials
                 
                 var currentLevelId : Int = tutorialController.getNextUnplayedTutorial();
                 if (currentLevelId != 0)
@@ -966,7 +966,7 @@ class World extends BaseComponent
     {
         if (active_level != null)
         {
-            var edgeLayout : Dynamic = active_level.edgeLayoutObjs[event.constraintError.id];
+            var edgeLayout : Dynamic = Reflect.field(active_level.edgeLayoutObjs, event.constraintError.id);
             if (edgeLayout == null)
             {
                 throw new Error("No layout found for constraint with error:" + event.constraintError.id);
@@ -982,7 +982,7 @@ class World extends BaseComponent
     {
         if (active_level != null)
         {
-            var edgeLayout : Dynamic = active_level.edgeLayoutObjs[event.constraintError.id];
+            var edgeLayout : Dynamic = Reflect.field(active_level.edgeLayoutObjs, event.constraintError.id);
             if (edgeLayout == null)
             {
                 throw new Error("No layout found for constraint with error:" + event.constraintError.id);
@@ -1015,8 +1015,8 @@ class World extends BaseComponent
             if (lastEvent != null && (lastEvent.eventsToUndo.length > 0))
             {
                 if (lastEvent.eventsToUndo[0].type == evt.eventsToUndo[0].type)
-                
-                // Add these to end of lastEvent's list of events to undo{
+                {
+                // Add these to end of lastEvent's list of events to undo
                     
                     lastEvent.eventsToUndo = lastEvent.eventsToUndo.concat(evt.eventsToUndo);
                 }
@@ -1039,8 +1039,8 @@ class World extends BaseComponent
         {
             lastEvent = undoStack.pop();
             if (lastEvent != null)
-            
-            // Add these to end of lastEvent's list of events to undo{
+            {
+            // Add these to end of lastEvent's list of events to undo
                 
                 lastEvent.eventsToUndo = lastEvent.eventsToUndo.concat(evt.eventsToUndo);
             }
@@ -1071,15 +1071,14 @@ class World extends BaseComponent
                     {case 90:  //'z'  
                         {
                             if ((undoStack.length > 0) && !PipeJam3.RELEASE_BUILD)
-                            
-                            //high risk item, don't allow undo/redo until well tested{
+                            {
+                            //high risk item, don't allow undo/redo until well tested
                                 
                                 {
                                     var undoDataEvent : UndoEvent = undoStack.pop();
                                     handleUndoRedoEvent(undoDataEvent, true);
                                 }
                             }
-                            break;
                         }
                     }
 
@@ -1087,15 +1086,14 @@ class World extends BaseComponent
                     {case 89:  //'y'  
                         {
                             if ((redoStack.length > 0) && !PipeJam3.RELEASE_BUILD)
-                            
-                            //high risk item, don't allow undo/redo until well tested{
+                            {
+                            //high risk item, don't allow undo/redo until well tested
                                 
                                 {
                                     var redoDataEvent : UndoEvent = redoStack.pop();
                                     handleUndoRedoEvent(redoDataEvent, false);
                                 }
                             }
-                            break;
                         }
                     }  //'h' for hide  
                     if ((this.active_level != null) && !PipeJam3.RELEASE_BUILD)
@@ -1104,8 +1102,8 @@ class World extends BaseComponent
                     }
                 case 76:  //'l' for copy layout  
                 if (this.active_level != null)
-                
-                // && !PipeJam3.RELEASE_BUILD){
+                {
+                // && !PipeJam3.RELEASE_BUILD)
                     
                     {
                         active_level.updateLayoutObj(this);
@@ -1114,8 +1112,8 @@ class World extends BaseComponent
                 }
                 case 66:  //'b' for load Best scoring config  
                 if (this.active_level != null)
-                
-                // && !PipeJam3.RELEASE_BUILD){
+                {
+                // && !PipeJam3.RELEASE_BUILD)
                     
                     {
                         active_level.loadBestScoringConfiguration();
@@ -1187,7 +1185,7 @@ class World extends BaseComponent
         {
             return;
         }
-        if (PipeJam3.logging)
+        if (PipeJam3.logging != null)
         {
             var details : Dynamic;
             var qid : Int;
@@ -1244,7 +1242,7 @@ class World extends BaseComponent
         active_level.levelGraph.addEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
         active_level.levelGraph.addEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
         
-        if (active_level.tutorialManager)
+        if (active_level.tutorialManager != null)
         {
             miniMap.visible = active_level.tutorialManager.getMiniMapShown();
         }
@@ -1388,7 +1386,7 @@ class World extends BaseComponent
     
     private function onToolTipAdded(evt : ToolTipEvent) : Void
     {
-        if (evt.text && evt.text.length && evt.component && active_level != null && m_activeToolTip == null)
+        if (evt.text != null && evt.text.length > 0 && evt.component != null && active_level != null && m_activeToolTip == null)
         {
             function pointAt(lev : Level) : DisplayObject
             {
@@ -1398,25 +1396,25 @@ class World extends BaseComponent
             var onTop : Bool = evt.point.y < 80;
             var onLeft : Bool = evt.point.x < 80;
             if (onTop && onLeft)
-            
-            // If in top left corner, move to bottom right{
+            {
+            // If in top left corner, move to bottom right
                 
                 pointFrom = NineSliceBatch.BOTTOM_RIGHT;
             }
             else if (onLeft)
-            
-            // If on left, move to top right{
+            {
+            // If on left, move to top right
                 
                 pointFrom = NineSliceBatch.TOP_RIGHT;
             }
             else if (onTop)
-            
-            // If on top, move to bottom left{
+            {
+            // If on top, move to bottom left
                 
                 pointFrom = NineSliceBatch.BOTTOM_LEFT;
             }
             m_activeToolTip = new ToolTipText(evt.text, active_level, false, pointAt, pointFrom);
-            if (evt.point)
+            if (evt.point != null)
             {
                 m_activeToolTip.setGlobalToPoint(evt.point.clone());
             }

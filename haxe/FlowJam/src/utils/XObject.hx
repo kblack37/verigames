@@ -22,17 +22,13 @@ import flash.geom.Point;
     
     public static function clonePointArray(arrToClone : Array<Dynamic>) : Array<Dynamic>
     {
-        var newArray : Array<Dynamic> = new Array<Dynamic>(arrToClone.length);
+        var newArray : Array<Dynamic> = new Array<Dynamic>();
         for (i in 0...arrToClone.length)
         {
             var pt : Point = try cast(arrToClone[i], Point) catch(e:Dynamic) null;
-            newArray[i] = pt.clone();
+            newArray.push(pt.clone());
         }
         return newArray;
-    }
-
-    public function new()
-    {
     }
 }
 

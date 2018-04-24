@@ -12,7 +12,7 @@ import display.NineSliceToggleButton;
 import events.MenuEvent;
 import events.MouseWheelEvent;
 import events.NavigationEvent;
-import feathers.controls.List;
+//import feathers.controls.List;
 import networking.GameFileHandler;
 import networking.NetworkConnection;
 import networking.PlayerValidation;
@@ -32,7 +32,7 @@ class LevelSelectScene extends Scene
     private var levelSelectBackground : NineSliceBatch;
     private var levelSelectInfoPanel : NineSliceBatch;
     
-    private var levelList : List = null;
+    //private var levelList : List = null;
     private var matchArrayObjects : Array<Dynamic> = null;
     private var matchArrayMetadata : Array<Dynamic> = null;
     private var savedLevelsArrayMetadata : Array<Dynamic> = null;
@@ -244,7 +244,7 @@ class LevelSelectScene extends Scene
     public function updateSelectedLevelInfo(e : Event = null) : Void
     {
         var nextTextBoxYPos : Float = tutorialListBox.y;
-        if (currentVisibleListBox.currentSelection && currentVisibleListBox.currentSelection.data)
+        if (currentVisibleListBox.currentSelection != null && currentVisibleListBox.currentSelection.data != null)
         {
             var currentSelectedLevel : Dynamic = currentVisibleListBox.currentSelection.data;
             
@@ -340,8 +340,8 @@ class LevelSelectScene extends Scene
         if (dataObj != null)
         {
             if (dataObj.exists("levelId") && PipeJamGameScene.inTutorial)
-            
-            //PipeJamGameScene.inDemo = false;{
+            {
+            //PipeJamGameScene.inDemo = false;
                 
                 PipeJamGame.levelInfo.name = dataObj.name;
                 PipeJamGame.levelInfo.id = dataObj.levelId;
@@ -366,8 +366,8 @@ class LevelSelectScene extends Scene
             }
         }
         catch (err : Error)
-        
-        //probably a parse error in trying to decode the RA response{
+        {
+        //probably a parse error in trying to decode the RA response
             
             {
                 trace("ERROR: failure in loading levels " + err);
@@ -389,8 +389,8 @@ class LevelSelectScene extends Scene
             }
         }
         catch (err : Error)
-        
-        //probably a parse error in trying to decode the RA response{
+        {
+        //probably a parse error in trying to decode the RA response
             
             {
                 trace("ERROR: failure in loading levels " + err);
@@ -403,11 +403,11 @@ class LevelSelectScene extends Scene
     {
         matchArrayMetadata = new Array<Dynamic>();
         var i : Int = 0;
-        var completedLevelDictionary : Dictionary = new Dictionary();
+        var completedLevelDictionary : Dynamic = {};
         for (i in 0...GameFileHandler.completedLevelVector.length)
         {
             var completedLevel : Dynamic = GameFileHandler.completedLevelVector[i];
-            completedLevelDictionary[completedLevel.levelID] = completedLevel;
+			Reflect.setField(completedLevelDictionary, completedLevel.levelID, completedLevel);
         }
         
         for (i in 0...GameFileHandler.levelInfoVector.length)
@@ -422,7 +422,9 @@ class LevelSelectScene extends Scene
         }
         
         //alphabetize array
-        matchArrayMetadata.sortOn("name");
+        matchArrayMetadata.sort(function (a : Dynamic, b : Dynamic) : Int {
+			return cast(a.name, String) > cast (b.name, String) ? 1 : -1;
+		});
         setNewLevelInfo(matchArrayMetadata);
         
         onRequestLevelsComplete();
@@ -472,8 +474,8 @@ class LevelSelectScene extends Scene
             matchID = match.levelId;
         }
         else if (Std.is(match.emptorId, String))
-        
-        //work around for hopefully temporary bug in RA{
+        {
+        //work around for hopefully temporary bug in RA
             
             matchID = match.emptorId;
         }
@@ -507,8 +509,8 @@ class LevelSelectScene extends Scene
             index++;
         }
         if (levelNotFound)
-        
-        //TODO -report error? or just skip?{
+        {
+        //TODO -report error? or just skip?
             
             return null;
         }
@@ -550,7 +552,7 @@ class LevelSelectScene extends Scene
     
     private function onLevelSelected(e : starling.events.Event) : Void
     {
-        PipeJamGame.levelInfo = new MatchArrayMetadata()[levelList.selectedIndex];
+        //PipeJamGame.levelInfo = Type.createInstance([levelList.selectedIndex]);
         
         dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
     }

@@ -1,6 +1,7 @@
 import haxe.Constraints.Function;
 import assets.AssetInterface;
 import starling.display.Quad;
+import flash.Vector;
 import events.NavigationEvent;
 import flash.external.ExternalInterface;
 import flash.ui.Keyboard;
@@ -62,23 +63,22 @@ class Game extends BaseComponent
         assets.AssetInterface.prepareSounds();
         
         //load images if we haven't
-		/*TODO not sure where loadingAnimationImages and waitAnimationImages shoulr be instantiated
-        if (loadingAnimationImages == null)
+        if (BaseComponent.loadingAnimationImages == null)
         {
-            loadingAnimationImages = new Array<Texture>();
+            BaseComponent.loadingAnimationImages = new Vector<Texture>();
             for (i in 1...9)
             {
-                loadingAnimationImages.push(AssetInterface.getTexture("Game", "Loading" + i + "Class"));
+                BaseComponent.loadingAnimationImages.push(AssetInterface.getTexture("Game", "Loading" + i + "Class"));
             }
             
-            waitAnimationImages = new Array<Texture>();
+            BaseComponent.waitAnimationImages = new Vector<Texture>();
             for (ii in 1...9)
             {
-                waitAnimationImages.push(AssetInterface.getTexture("Game", "Wait" + ii + "Class"));
+                BaseComponent.waitAnimationImages.push(AssetInterface.getTexture("Game", "Wait" + ii + "Class"));
             }
 			
         }
-		*/
+		
     }
     
     private function onAddedToStage(event : Event) : Void

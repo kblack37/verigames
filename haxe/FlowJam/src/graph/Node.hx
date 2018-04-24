@@ -38,8 +38,8 @@ class Node
     public var outgoing_ports : Array<Port>;
     
     /** Ports listed by port_id */
-    private var incoming_port_dict : Dictionary = new Dictionary();
-    private var outgoing_port_dict : Dictionary = new Dictionary();
+    private var incoming_port_dict : Dynamic = {};
+    private var outgoing_port_dict : Dynamic = {};
     
     /** The unique id given as input from XML (unique within a given world) */
     public var node_id : String;
@@ -101,11 +101,11 @@ class Node
         _linked_edge_set.addEdge(new_edge, _levelName);
         outgoing_ports.push(new_edge.from_port);
         _destination_node.connectIncomingEdge(new_edge);
-        if (outgoing_port_dict.exists(new_edge.from_port.port_id))
+        if (Reflect.hasField(outgoing_port_dict, new_edge.from_port.port_id))
         {
             throw new Error("Attempting to add more than one port for outgoing port id:" + new_edge.from_port.port_id);
         }
-        outgoing_port_dict[new_edge.from_port.port_id] = new_edge.from_port;
+		Reflect.setField(outgoing_port_dict, new_edge.from_port.port_id, new_edge.from_port);
         return new_edge;
     }
     
@@ -116,11 +116,11 @@ class Node
     public function connectIncomingEdge(_edge : Edge) : Void
     {
         incoming_ports.push(_edge.to_port);
-        if (incoming_port_dict.exists(_edge.to_port.port_id))
+        if (Reflect.hasField(incoming_port_dict, _edge.to_port.port_id))
         {
             throw new Error("Attempting to add more than one port for incoming port id:" + _edge.to_port.port_id);
         }
-        incoming_port_dict[_edge.to_port.port_id] = _edge.to_port;
+		Reflect.setField(incoming_port_dict, _edge.to_port.port_id, _edge.to_port);
     }
     
     public function getIncomingPort(_portId : String) : Port
@@ -140,31 +140,29 @@ class Node
 		 */
     public function orderEdgesByPort() : Void
     {
-        incoming_ports.sort(comparei);
-        var comparei : Port->Port->Float = function(x : Port, y : Port) : Float
+        incoming_ports.sort(function(x : Port, y : Port) : Int
         {
             if ((try cast(x, Port) catch(e:Dynamic) null).port_id < (try cast(y, Port) catch(e:Dynamic) null).port_id)
             {
-                return -1.0;
+                return -1;
             }
             if ((try cast(x, Port) catch(e:Dynamic) null).port_id > (try cast(y, Port) catch(e:Dynamic) null).port_id)
             {
-                return 1.0;
+                return 1;
             }
-            return 0.0;
-        }
-        outgoing_ports.sort(compareo);
-        var compareo : Port->Port->Float = function(x : Port, y : Port) : Float
+            return 0;
+        });
+        outgoing_ports.sort(function(x : Port, y : Port) : Int
         {
             if ((try cast(x, Port) catch(e:Dynamic) null).port_id < (try cast(y, Port) catch(e:Dynamic) null).port_id)
             {
-                return -1.0;
+                return -1;
             }
             if ((try cast(x, Port) catch(e:Dynamic) null).port_id > (try cast(y, Port) catch(e:Dynamic) null).port_id)
             {
-                return 1.0;
+                return 1;
             }
-            return 0.0;
-        }
+            return 0;
+        });
     }
 }

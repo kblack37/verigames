@@ -5,6 +5,7 @@ import assets.AssetsFont;
 import flash.geom.Rectangle;
 import flash.ui.Mouse;
 import flash.ui.MouseCursor;
+import openfl.Vector;
 import starling.display.Image;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -36,16 +37,16 @@ class NineSliceToggleButton extends NineSliceButton
     private var touchState : String;
     override private function onTouch(event : TouchEvent) : Void
     {
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         if (touches.length == 0)
         {
             return;
         }
-        else if (event.getTouches(this, TouchPhase.BEGAN).length)
+        else if (event.getTouches(this, TouchPhase.BEGAN).length > 0)
         {
             touchState = TouchPhase.BEGAN;
         }
-        else if (event.getTouches(this, TouchPhase.HOVER).length)
+        else if (event.getTouches(this, TouchPhase.HOVER).length > 0)
         {
             if (!mIsDown)
             {
@@ -56,7 +57,7 @@ class NineSliceToggleButton extends NineSliceButton
                 touchState = TouchPhase.HOVER;
             }
         }
-        else if (event.getTouches(this, TouchPhase.ENDED).length)
+        else if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             if (touchState == TouchPhase.HOVER)
             {

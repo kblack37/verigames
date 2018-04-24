@@ -1,17 +1,17 @@
 package server;
 
-import cgs.server.logging.CGSServer;
+import cgs.server.logging.CgsServerApi;
 import cgs.server.logging.CGSServerConstants;
 import cgs.server.logging.CGSServerProps;
 import cgs.server.logging.GameServerData;
-import cgs.server.logging.actions.ClientAction;
+//import cgs.server.logging.actions.ClientAction;
 import flash.display.Stage;
-import mochi.as3.MochiServices;
+//import mochi.as3.MochiServices;
 import system.VerigameServerConstants;
 
 class LoggingServerInterface
 {
-    public var cgsServer(get, never) : CGSServer;
+    //public var cgsServer(get, never) : CgsServerApi;
 
     /** True to log to the CGS server */
     public static var LOGGING_ON : Bool = PipeJam3.LOGGING_ON;
@@ -19,7 +19,7 @@ class LoggingServerInterface
     public static inline var SETUP_KEY_FRIENDS_AND_FAMILY_BETA : String = "SETUP_KEY_FRIENDS_AND_FAMILY_BETA";
     public static inline var CGS_VERIGAMES_PREFIX : String = "cgs_vg_";
     
-    private var m_cgsServer : CGSServer;
+    //private var m_cgsServer : CgsServerApi;
     private var m_useMochi : Bool = PipeJam3.LOGGING_ON;
     private var m_props : CGSServerProps;
     public var uid : String;
@@ -33,11 +33,11 @@ class LoggingServerInterface
         setupServer(_setupKey, _stage, _forceUid);
         if (!_replay)
         {
-            m_cgsServer.initialize(m_props, saveCacheToServer, onServerInit, null, (provideIp) ? _stage : null);
+            //m_cgsServer.initialize(m_props, saveCacheToServer, onServerInit, null, (provideIp) ? _stage : null);
             
             if (m_useMochi)
             {
-                MochiServices.connect(VerigameServerConstants.MOCHI_GAME_ID, _stage, onMochiError);
+                //MochiServices.connect(VerigameServerConstants.MOCHI_GAME_ID, _stage, onMochiError);
             }
         }
     }
@@ -46,7 +46,7 @@ class LoggingServerInterface
     //Initialize logging
     {
         
-        m_cgsServer = new CGSServer();
+        //m_cgsServer = new CgsServerApi();
         var cid : Int = VerigameServerConstants.VERIGAME_CATEGORY_SEEDLING_BETA;
         switch (_setupKey)
         {
@@ -73,12 +73,13 @@ class LoggingServerInterface
         {
             m_props.forceUid = _forceUid;
         }
-        m_cgsServer.setup(m_props);
+        //m_cgsServer.setup(m_props);
     }
     
-    private function get_cgsServer() : CGSServer
+    private function get_cgsServer() : CgsServerApi
     {
-        return m_cgsServer;
+        //return m_cgsServer;
+		return null;
     }
     
     private function onMochiError(errorCode : String) : Void
@@ -101,13 +102,13 @@ class LoggingServerInterface
     public function logQuestStart(questId : Int = VerigameServerConstants.VERIGAME_QUEST_ID_UNDEFINED_WORLD, questDetails : Dynamic = null) : Void
     {
         trace("Logging quest start, qid:" + questId);
-        m_cgsServer.logQuestStart(questId, questDetails, onLogQuestStart);
+        //m_cgsServer.logQuestStart(questId, questDetails, onLogQuestStart);
     }
     
     public function logQuestEnd(questId : Int = VerigameServerConstants.VERIGAME_QUEST_ID_UNDEFINED_WORLD, questDetails : Dynamic = null) : Void
     {
         trace("Logging quest end, qid:" + questId);
-        m_cgsServer.logQuestEnd(questId, questDetails);
+        //m_cgsServer.logQuestEnd(questId, questDetails);
     }
     
     private function onLogQuestStart(dqid : String, failed : Bool) : Void
@@ -117,10 +118,10 @@ class LoggingServerInterface
     
     public function logQuestAction(actionId : Int, actionDetails : Dynamic, levelTimeMs : Float) : Void
     {
-        var clientAction : ClientAction = new ClientAction(actionId, levelTimeMs);
-        clientAction.setDetail(actionDetails);
+        //var clientAction : ClientAction = new ClientAction(actionId, levelTimeMs);
+        //clientAction.setDetail(actionDetails);
         trace("logQuestAction actionId:" + actionId + " details:" + obj2str(actionDetails) + " levelTimeMs:" + levelTimeMs);
-        m_cgsServer.logQuestAction(clientAction);
+        //m_cgsServer.logQuestAction(clientAction);
     }
     
     private static function obj2str(obj : Dynamic) : String

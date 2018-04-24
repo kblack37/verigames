@@ -17,7 +17,7 @@ class Main extends Sprite
 	{
 		super();
 		
-		m_starling = new Starling(Game, stage);
+		m_starling = new Starling(PipeJam3, stage);
 		m_starling.start();
 	}
 

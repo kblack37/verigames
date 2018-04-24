@@ -19,9 +19,9 @@ import utils.XString;
 //	Then you have to make sure they are active by activating them
 class PlayerValidation
 {
-    public static var VERIFY_SESSION : Int = 1;
-    public static var GET_ENCODED_COOKIES : Int = 2;
-    public static var PLAYER_INFO : Int = 3;
+    public static var verify_session : Int = 1;
+    public static var get_encoded_cookies : Int = 2;
+    public static var player_info : Int = 3;
     
     public static var playerLoggedIn : Bool = false;
     
@@ -63,32 +63,32 @@ class PlayerValidation
     //check for session ID cookie, and if found, try to validate it
     private function checkForCookie() : Void
     {
-        sendMessage(GET_ENCODED_COOKIES, cookieCallback);
+        sendMessage(get_encoded_cookies, cookieCallback);
     }
     
     public function cookieCallback(result : Int, event : flash.events.Event) : Void
     {
-        if (result == NetworkConnection.EVENT_COMPLETE)
-        {
-            var cookies : String = event.target.data;
-            if (cookies.indexOf("<html>") == -1 && cookies.length > 10)
-            
-            //not an error message or empty cookie string = {} = %7B%7D{
-                
-                {
-                    controller.setStatus(VALIDATING_SESSION);
-                    //encode cookies
-                    encodedCookies = escape(cookies);
-                    //if encodedCookies is double encoded, we get %25 (= encoded %) in front of encoded %7Bs, etc.
-                    if (encodedCookies.indexOf("%257B") != -1)
-                    {
-                        encodedCookies = cookies;
-                    }
-                    sendMessage(VERIFY_SESSION, sessionIDValidityCallback);
-                    return;
-                }
-            }
-        }
+        //if (result == NetworkConnection.EVENT_COMPLETE)
+        //{
+            //var cookies : String = event.target.data;
+            //if (cookies.indexOf("<html>") == -1 && cookies.length > 10)
+            //{
+            ////not an error message or empty cookie string = {} = %7B%7D
+                //
+                //{
+                    //controller.setStatus(VALIDATING_SESSION);
+                    ////encode cookies
+                    //encodedCookies = escape(cookies);
+                    ////if encodedCookies is double encoded, we get %25 (= encoded %) in front of encoded %7Bs, etc.
+                    //if (encodedCookies.indexOf("%257B") != -1)
+                    //{
+                        //encodedCookies = cookies;
+                    //}
+                    //sendMessage(verify_session, sessionIDValidityCallback);
+                    //return;
+                //}
+            //}
+        //}
         
         //if we make it this far, just exit
         onValidationFailed();
@@ -99,34 +99,34 @@ class PlayerValidation
     //if the session id is valid, then get the player id and make sure they are in the RA
     public function sessionIDValidityCallback(result : Int, event : flash.events.Event) : Void
     {
-        if (result == NetworkConnection.EVENT_COMPLETE)
-        {
-            var response : String = event.target.data;
-            if (response.indexOf("<html>") == -1)
-            
-            //else assume auth required dialog{
-                
-                {
-                    var jsonResponseObj : Dynamic = haxe.Json.parse(response);
-                    
-                    if (jsonResponseObj.userId != null)
-                    {
-                        playerID = jsonResponseObj.userId;
-                        
-                        if (LoggingServerInterface.LOGGING_ON)
-                        {
-                            PipeJam3.logging = new LoggingServerInterface(LoggingServerInterface.SETUP_KEY_FRIENDS_AND_FAMILY_BETA, PipeJam3.pipeJam3.stage, LoggingServerInterface.CGS_VERIGAMES_PREFIX + playerID);
-                        }
-                        controller.setStatus(ACTIVATING_PLAYER);
-                        onValidationSucceeded();
-                        
-                        //get player user name for storing leader info, but don't wait for it
-                        getPlayerInfo();
-                        return;
-                    }
-                }
-            }
-        }
+        //if (result == NetworkConnection.EVENT_COMPLETE)
+        //{
+            //var response : String = event.target.data;
+            //if (response.indexOf("<html>") == -1)
+            //{
+            ////else assume auth required dialog
+                //
+                //{
+                    //var jsonResponseObj : Dynamic = haxe.Json.parse(response);
+                    //
+                    //if (jsonResponseObj.userId != null)
+                    //{
+                        //playerID = jsonResponseObj.userId;
+                        //
+                        //if (LoggingServerInterface.LOGGING_ON)
+                        //{
+                            //PipeJam3.logging = new LoggingServerInterface(LoggingServerInterface.SETUP_KEY_FRIENDS_AND_FAMILY_BETA, PipeJam3.pipeJam3.stage, LoggingServerInterface.CGS_VERIGAMES_PREFIX + playerID);
+                        //}
+                        //controller.setStatus(ACTIVATING_PLAYER);
+                        //onValidationSucceeded();
+                        //
+                        ////get player user name for storing leader info, but don't wait for it
+                        //getPlayerInfo();
+                        //return;
+                    //}
+                //}
+            //}
+        //}
         //if we make it this far, just exit
         onValidationFailed();
         pipejamCallbackFunction();
@@ -134,21 +134,21 @@ class PlayerValidation
     
     public function getPlayerInfo() : Void
     {
-        sendMessage(PLAYER_INFO, playerInfoCallback);
+        sendMessage(player_info, playerInfoCallback);
     }
     
     public function playerInfoCallback(result : Int, e : flash.events.Event) : Void
     {
-        if (result == NetworkConnection.EVENT_COMPLETE)
-        {
-            var response : String = e.target.data;
-            var jsonResponseObj : Dynamic = haxe.Json.parse(response);
-            
-            if (jsonResponseObj.username != null)
-            {
-                playerUserName = jsonResponseObj.username;
-            }
-        }
+        //if (result == NetworkConnection.EVENT_COMPLETE)
+        //{
+            //var response : String = e.target.data;
+            //var jsonResponseObj : Dynamic = haxe.Json.parse(response);
+            //
+            //if (jsonResponseObj.username != null)
+            //{
+                //playerUserName = jsonResponseObj.username;
+            //}
+        //}
     }
     
     public function onValidationSucceeded() : Void
@@ -173,15 +173,15 @@ class PlayerValidation
         var url : String = null;
         switch (type)
         {
-            case PLAYER_INFO:
+            case player_info:
                 url = NetworkConnection.productionInterop + "?function=passURL2&data_id='/api/users/" + PlayerValidation.playerID + "'";
                 method = URLRequestMethod.GET;
                 request = "";
-            case VERIFY_SESSION:
+            case verify_session:
                 url = NetworkConnection.baseURL + "/verifySession";
                 request = "?cookies=" + encodedCookies;
                 method = URLRequestMethod.POST;
-            case GET_ENCODED_COOKIES:
+            case get_encoded_cookies:
                 url = NetworkConnection.baseURL + "/encodeCookies";
                 request = "";
                 method = URLRequestMethod.POST;

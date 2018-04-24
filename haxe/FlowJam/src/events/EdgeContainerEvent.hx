@@ -1,5 +1,6 @@
 package events;
 
+import openfl.Vector;
 import scenes.game.display.GameComponent;
 import scenes.game.display.GameEdgeContainer;
 import scenes.game.display.GameEdgeJoint;
@@ -25,9 +26,9 @@ class EdgeContainerEvent extends Event
     public var container : GameEdgeContainer;
     public var segmentIndex : Int;
     public var jointIndex : Int;
-    public var touches : Array<Touch>;
+    public var touches : Vector<Touch>;
     
-    public function new(type : String, _segment : GameEdgeSegment = null, _joint : GameEdgeJoint = null, _touches : Array<Touch> = null)
+    public function new(type : String, _segment : GameEdgeSegment = null, _joint : GameEdgeJoint = null, _touches : Vector<Touch> = null)
     {
         super(type, true);
         segment = _segment;
@@ -55,7 +56,7 @@ class EdgeContainerEvent extends Event
         touches = _touches;
         if (touches == null)
         {
-            touches = new Array<Touch>();
+            touches = new Vector<Touch>();
         }
     }
     
@@ -70,7 +71,7 @@ class EdgeContainerEvent extends Event
             return null;
         }
         var currentParent : DisplayObjectContainer = comp.parent;
-        while (currentParent)
+        while (currentParent != null)
         {
             if (Std.is(currentParent, GameEdgeContainer))
             {

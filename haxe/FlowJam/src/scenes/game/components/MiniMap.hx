@@ -14,6 +14,7 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.utils.Dictionary;
 import graph.PropDictionary;
+import openfl.Vector;
 import particle.ErrorParticleSystem;
 import scenes.BaseComponent;
 import scenes.game.display.GameComponent;
@@ -50,8 +51,8 @@ class MiniMap extends BaseComponent
     
     private static inline var MIN_ICON_SIZE : Float = 4;
     
-    private var edgeErrorDict : Dictionary = new Dictionary();
-    private var nodeIconDict : Dictionary = new Dictionary();
+    private var edgeErrorDict : Dynamic = {};
+    private var nodeIconDict : Dynamic = {};
     private var currentLevel : Level;
     
     private var backgroundImage : Image;
@@ -130,10 +131,10 @@ class MiniMap extends BaseComponent
             m_hideButton.removeFromParent();
         }
         // Stop showing animation (if any) and animate this up to hide
-        Starling.juggler.removeTweens(this);
+        Starling.current.juggler.removeTweens(this);
         m_showing = false;
         m_hiding = true;
-        Starling.juggler.tween(this, HIDE_SHOW_TIME_SEC, {
+        Starling.current.juggler.tween(this, HIDE_SHOW_TIME_SEC, {
                     y : HIDDEN_Y,
                     transition : Transitions.EASE_OUT,
                     onComplete : onHideComplete
@@ -166,10 +167,10 @@ class MiniMap extends BaseComponent
             m_showButton.removeFromParent();
         }
         // Stop hiding animation (if any) and animate this down to show
-        Starling.juggler.removeTweens(this);
+        Starling.current.juggler.removeTweens(this);
         m_hiding = false;
         m_showing = true;
-        Starling.juggler.tween(this, HIDE_SHOW_TIME_SEC, {
+        Starling.current.juggler.tween(this, HIDE_SHOW_TIME_SEC, {
                     y : SHOWN_Y,
                     transition : Transitions.EASE_OUT,
                     onComplete : onShowComplete
@@ -222,8 +223,8 @@ class MiniMap extends BaseComponent
     
     override private function onTouch(event : TouchEvent) : Void
     {
-        var touches : Array<Touch> = event.touches;
-        if (event.getTouches(this, TouchPhase.ENDED).length || event.getTouches(this, TouchPhase.MOVED).length)
+        var touches : Vector<Touch> = event.touches;
+        if (event.getTouches(this, TouchPhase.ENDED).length > 0 || event.getTouches(this, TouchPhase.MOVED).length > 0)
         {
             var mapPoint : Point = touches[0].getLocation(this);
             var levPct : Point = map2pct(mapPoint);
@@ -263,36 +264,34 @@ class MiniMap extends BaseComponent
         {
             return;
         }
-        edgeErrorDict = new Dictionary();
+        edgeErrorDict = {};
         for (errorId in Reflect.fields(currentLevel.errorConstraintDict))
         {
-            var constraint : Constraint = currentLevel.errorConstraintDict[errorId];
-            if (!constraint.isSatisfied() && currentLevel.edgeLayoutObjs.exists(constraint.id))
+            var constraint : Constraint = Reflect.field(currentLevel.errorConstraintDict, errorId);
+            if (!constraint.isSatisfied() && Reflect.hasField(currentLevel.edgeLayoutObjs, constraint.id))
             {
-                var edgeLayout : Dynamic = currentLevel.edgeLayoutObjs[constraint.id];
+                var edgeLayout : Dynamic = Reflect.field(currentLevel.edgeLayoutObjs, constraint.id);
                 errorConstraintAdded(edgeLayout, false);
             }
         }
-        errorLayer.flatten();
         for (id in Reflect.fields(nodeIconDict))
         {
             (try cast(Reflect.field(nodeIconDict, id), Quad) catch(e:Dynamic) null).removeFromParent();
         }
-        nodeIconDict = new Dictionary();
-        var nodeDict : Dictionary = currentLevel.nodeLayoutObjs;
+        nodeIconDict = {};
+        var nodeDict : Dynamic = currentLevel.nodeLayoutObjs;
         trace("minmap visibleBB:" + visibleBB);
         for (nodeId in Reflect.fields(nodeDict))
         {
-            addWidget(try cast(Reflect.field(nodeDict, nodeId), Dynamic) catch(e:Dynamic) null, false);
+            addWidget(Reflect.field(nodeDict, nodeId), false);
             if (nodeId == "var_2")
             {
                 for (prop in Reflect.fields(Reflect.field(nodeDict, nodeId)))
                 {
-                    trace("var_2 " + prop + " = " + Reflect.field(nodeDict, nodeId)[prop]);
+                    trace("var_2 " + prop + " = " + Reflect.field(Reflect.field(nodeDict, nodeId), prop));
                 }
             }
         }
-        gameNodeLayer.flatten();
         drawViewSpaceIndicator();
         isDirty = false;
     }
@@ -397,10 +396,6 @@ class MiniMap extends BaseComponent
         errImage.y = errPt.y - 0.5 * errImage.height;
         
         errorLayer.addChild(errImage);
-        if (flatten)
-        {
-            errorLayer.flatten();
-        }
     }
     
     public function errorRemoved(edgeLayout : Dynamic) : Void
@@ -410,10 +405,8 @@ class MiniMap extends BaseComponent
         if (errorImage != null)
         {
             errorImage.removeFromParent(true);
-            errorLayer.flatten();
         }
-        This is an intentional compilation error. See the README for handling the delete keyword
-        delete edgeErrorDict[edgeId];
+		Reflect.deleteField(edgeErrorDict, edgeId);
     }
     
     public function addWidget(widgetLayout : Dynamic, flatten : Bool = true) : Void
@@ -448,10 +441,6 @@ class MiniMap extends BaseComponent
         Reflect.setField(nodeIconDict, id, icon);
         
         gameNodeLayer.addChild(icon);
-        if (flatten)
-        {
-            gameNodeLayer.flatten();
-        }
     }
     
     private function level2pct(pt : Point) : Point

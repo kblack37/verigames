@@ -38,8 +38,8 @@ class MapGetNode extends Node
     public function getOutputBallType() : Int
     {
         if (argumentHasMapStamp())
-        
-        // Argument pinstriping matches key, ball travels from value to output{
+        {
+        // Argument pinstriping matches key, ball travels from value to output
             
             if (valueEdge.is_wide)
             {
@@ -68,8 +68,8 @@ class MapGetNode extends Node
     {
         var props : PropDictionary = new PropDictionary();
         if (argumentHasMapStamp())
-        
-        // Pass argument props as output{
+        {
+        // Pass argument props as output
             
             props = valueEdge.getExitProps().clone();
         }

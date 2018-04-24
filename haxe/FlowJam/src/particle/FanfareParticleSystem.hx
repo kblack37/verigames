@@ -1,5 +1,6 @@
 package particle;
 
+import assets.AssetInterface;
 import starling.core.Starling;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -28,13 +29,14 @@ class FanfareParticleSystem extends Sprite
     {
         super();
         
+		// TODO: this will be reworked when the asset system is
         if (!fanfareInited)
         {
-            fanfareXML = FastXML.parse(Type.createInstance(FanfareConfig, []));
-            fanfareTexture = Texture.fromBitmap(Type.createInstance(FanfareParticle, []));
+            //fanfareXML = FastXML.parse(AssetInterface.getXml("particle/fanfare.xml"));
+            //fanfareTexture = AssetInterface.getTexture("particle/fanfare_particle.png");
         }
         
-        mParticleSystem = new PDParticleSystem(fanfareXML, fanfareTexture);
+        //mParticleSystem = new PDParticleSystem(fanfareXML.toString(), fanfareTexture);
     }
     
     public function start() : Void
@@ -43,7 +45,7 @@ class FanfareParticleSystem extends Sprite
         mParticleSystem.emitterY = 0;
         mParticleSystem.start();
         addChild(mParticleSystem);
-        Starling.juggler.add(mParticleSystem);
+        Starling.current.juggler.add(mParticleSystem);
     }
     
     private function get_particleX() : Float
@@ -76,7 +78,7 @@ class FanfareParticleSystem extends Sprite
     override public function dispose() : Void
     {
         mParticleSystem.removeFromParent(true);
-        Starling.juggler.remove(mParticleSystem);
+        Starling.current.juggler.remove(mParticleSystem);
         super.dispose();
     }
 }

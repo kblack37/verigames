@@ -38,11 +38,11 @@ class InGameMenuDialog extends BaseComponent
     
     private var submitLayoutDialog : SubmitLayoutDialog;
     
-    private var shapeWidth : Int = 96;
-    private var buttonPaddingWidth : Int = 8;
-    private var buttonPaddingHeight : Int = 8;
-    private var buttonHeight : Int = 24;
-    private var buttonWidth : Int = shapeWidth - 2 * buttonPaddingWidth;
+    private var shapeWidth : Float = 96;
+    private var buttonPaddingWidth : Float = 8;
+    private var buttonPaddingHeight : Float = 8;
+    private var buttonHeight : Float = 24;
+    private var buttonWidth : Float;
     
     private var numButtons : Int = 3;
     
@@ -56,6 +56,8 @@ class InGameMenuDialog extends BaseComponent
     public function new()
     {
         super();
+		
+		buttonWidth = shapeWidth - 2 * buttonPaddingWidth;
         
         if (!PipeJam3.RELEASE_BUILD)
         {
@@ -129,7 +131,7 @@ class InGameMenuDialog extends BaseComponent
         
         if (submitLayoutDialog == null)
         {
-            if (m_levelName != null && m_levelName.length)
+            if (m_levelName != null && m_levelName.length > 0)
             {
                 submitLayoutDialog = new SubmitLayoutDialog(m_levelName);
             }
@@ -143,7 +145,7 @@ class InGameMenuDialog extends BaseComponent
             submitLayoutDialog.visible = true;
             submitLayoutDialog.clipRect = new Rectangle(background.width, y + (height - submitLayoutDialog.height), 
                     submitLayoutDialog.width, submitLayoutDialog.height);
-            Starling.juggler.tween(submitLayoutDialog, 1.0, {
+            Starling.current.juggler.tween(submitLayoutDialog, 1.0, {
                         transition : Transitions.EASE_IN_OUT,
                         x : background.width
                     });
@@ -154,7 +156,7 @@ class InGameMenuDialog extends BaseComponent
         }
         else
         {
-            if (m_levelName != null && m_levelName.length)
+            if (m_levelName != null && m_levelName.length > 0)
             {
                 submitLayoutDialog.resetText(m_levelName);
             }
@@ -168,7 +170,7 @@ class InGameMenuDialog extends BaseComponent
             submitLayoutDialog.clipRect = new Rectangle(background.width, y + (height - submitLayoutDialog.height), 
                     submitLayoutDialog.width, submitLayoutDialog.height);
             
-            Starling.juggler.tween(submitLayoutDialog, 1.0, {
+            Starling.current.juggler.tween(submitLayoutDialog, 1.0, {
                         transition : Transitions.EASE_IN_OUT,
                         x : background.width
                     });
@@ -224,7 +226,7 @@ class InGameMenuDialog extends BaseComponent
     
     private function hideSelf() : Void
     {
-        var juggler : Juggler = Starling.juggler;
+        var juggler : Juggler = Starling.current.juggler;
         juggler.removeTweens(this);
         animatingUp = false;
         animatingDown = true;
@@ -245,7 +247,7 @@ class InGameMenuDialog extends BaseComponent
     {
         hideMainDialog = _hideMainDialog;
         
-        var juggler : Juggler = Starling.juggler;
+        var juggler : Juggler = Starling.current.juggler;
         
         juggler.tween(dialog, 1.0, {
                     transition : Transitions.EASE_IN_OUT,

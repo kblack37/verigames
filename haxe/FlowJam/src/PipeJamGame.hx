@@ -10,12 +10,12 @@ import flash.utils.Timer;
 import assets.AssetsAudio;
 import audio.AudioManager;
 import buildInfo.BuildInfo;
-import cgs.cache.Cache;
+import cgs.cache.CGSCache;
 import dialogs.SimpleAlertDialog;
 import display.GameObjectBatch;
 import display.MusicButton;
 import display.NineSliceBatch;
-import display.PipeJamTheme;
+//import display.PipeJamTheme;
 import display.SoundButton;
 import events.MenuEvent;
 import events.NavigationEvent;
@@ -32,6 +32,8 @@ import starling.events.Event;
 import starling.events.KeyboardEvent;
 import utils.XSprite;
 
+// TODO: the cgs cache is no longer static and so any references
+// to it must be refactored
 class PipeJamGame extends Game
 {
     /** Set by flashVars */
@@ -43,7 +45,7 @@ class PipeJamGame extends Game
     public static var SEPARATE_FILES : Int = 1;
     public static var ALL_IN_ONE : Int = 2;
     
-    public static var theme : PipeJamTheme;
+    //public static var theme : PipeJamTheme;
     
     private var m_musicButton : MusicButton;
     private static var m_sfxButton : SoundButton;
@@ -73,7 +75,7 @@ class PipeJamGame extends Game
         
         AudioManager.getInstance().reset();
         //AudioManager.getInstance().audioDriver().musicOn = !Boolean(Cache.getSave(Constants.CACHE_MUTE_MUSIC));
-        AudioManager.getInstance().audioDriver().sfxOn = AudioManager.getInstance().audioDriver().musicOn = !cast(Cache.getSave(Constants.CACHE_MUTE_SFX), Bool);
+        //AudioManager.getInstance().audioDriver().sfxOn = AudioManager.getInstance().audioDriver().musicOn = !cast(CGSCache.getSave(Constants.CACHE_MUTE_SFX), Bool);
         
         /*
 			m_musicButton = new MusicButton();
@@ -95,7 +97,7 @@ class PipeJamGame extends Game
     //override to get your scene initialized for viewing
     private function addedToStage(event : starling.events.Event) : Void
     {
-        theme = new PipeJamTheme(this.stage);
+        //theme = new PipeJamTheme(this.stage);
         //	theme1 = new AeonDesktopTheme( this.stage );
         
         m_gameObjectBatch = new GameObjectBatch();
@@ -154,8 +156,8 @@ class PipeJamGame extends Game
         if (m_fileName != null)
         {
             if (PipeJamGame.levelInfo)
-            
-            //local file{
+            {
+            //local file
                 
                 showScene("PipeJamGame");
             }
@@ -188,7 +190,7 @@ class PipeJamGame extends Game
     
     private function loadLevel(result : Int, objVector : Array<Dynamic>) : Void
     {
-        PipeJamGame.levelInfo = new ObjVector()[0];
+        PipeJamGame.levelInfo = Type.createInstance(objVector[0], new Array<Dynamic>());
         PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
     }
     
@@ -205,8 +207,8 @@ class PipeJamGame extends Game
         PipeJamGame.levelInfo = GameFileHandler.findLevelObject(PipeJam3.m_savedCurrentLevel.data.levelInfoID);
         
         if (levelInfo != null)
-        
-        //update assignmentsID if needed{
+        {
+        //update assignmentsID if needed
             
             PipeJamGameScene.levelContinued = true;
             PipeJamGame.levelInfo.assignmentsID = PipeJam3.m_savedCurrentLevel.data.assignmentsID;
@@ -230,8 +232,8 @@ class PipeJamGame extends Game
         PipeJamGameScene.inTutorial = false;
         PipeJamGame.levelInfo = GameFileHandler.getRandomLevelObject();
         if (PipeJamGame.levelInfo == null)
-        
-        //assume level file is slow loading, and cycle back around after a while.{
+        {
+        //assume level file is slow loading, and cycle back around after a while.
             
             //maybe only happens when debugging locally...
             var timer : Timer = new Timer(250, 1);
@@ -261,18 +263,26 @@ class PipeJamGame extends Game
         var highScoreArray : Array<Dynamic> = new Array<Dynamic>();
         for (level in list)
         {
-            level.numericScore = as3hx.Compat.parseInt(level.current_score);
+            level.numericScore = level.current_score;
             highScoreArray.push(level);
         }
         
         if (highScoreArray.length > 0)
         {
-            highScoreArray.sortOn("numericScore", Array.DESCENDING | Array.NUMERIC);
+            highScoreArray.sort(function(a : Dynamic, b : Dynamic) : Int {
+				if (b.numericScore > a.numericScore) {
+					return -1;
+				} else if (a.numericScore > b.numericScore) {
+					return 1;
+				} else {
+					return 0;
+				}
+			});
         }
         
         PipeJamGame.levelInfo.highScores = highScoreArray;
         
-        if (World.m_world)
+        if (World.m_world != null)
         {
             World.m_world.setHighScores();
         }
@@ -301,15 +311,15 @@ class PipeJamGame extends Game
     private function updateMusicState(musicOn : Bool) : Void
     {
         m_musicButton.musicOn = musicOn;
-        var result : Bool = Cache.setSave(Constants.CACHE_MUTE_MUSIC, !musicOn);
-        trace("Cache updateMusicState: " + result);
+        //var result : Bool = Cache.setSave(Constants.CACHE_MUTE_MUSIC, !musicOn);
+        //trace("Cache updateMusicState: " + result);
     }
     
     private function updateSfxState(sfxOn : Bool) : Void
     {
         m_sfxButton.sfxOn = sfxOn;
-        var result : Bool = Cache.setSave(Constants.CACHE_MUTE_SFX, !sfxOn);
-        trace("Cache updateSfxState: " + result);
+        //var result : Bool = Cache.setSave(Constants.CACHE_MUTE_SFX, !sfxOn);
+        //trace("Cache updateSfxState: " + result);
     }
     
     /**
@@ -333,12 +343,12 @@ class PipeJamGame extends Game
 		 */
     public static function printWarning(_msg : String) : Void
     {
-        if (!SUPPRESS_TRACE_STATEMENTS)
+        if (!Game.SUPPRESS_TRACE_STATEMENTS)
         {
             trace(_msg);
             if (ExternalInterface.available)
-            
-            //var reply:String = ExternalInterface.call("navTo", URLBASE + "browsing/card.php?id=" + quiz_card_asked + "&topic=" + TOPIC_NUM);{
+            {
+            //var reply:String = ExternalInterface.call("navTo", URLBASE + "browsing/card.php?id=" + quiz_card_asked + "&topic=" + TOPIC_NUM);
                 
                 var reply : String = ExternalInterface.call("printDebug", _msg);
             }
@@ -347,7 +357,7 @@ class PipeJamGame extends Game
     
     public static function resetSoundButtonParent() : Void
     {
-        if (World.m_world)
+        if (World.m_world != null)
         {
             World.m_world.addSoundButton(m_sfxButton);
         }
@@ -355,7 +365,7 @@ class PipeJamGame extends Game
     
     public function changeFullScreen(newWidth : Int, newHeight : Int) : Void
     {
-        if (World.m_world)
+        if (World.m_world != null)
         {
             World.m_world.changeFullScreen(newWidth, newHeight);
         }

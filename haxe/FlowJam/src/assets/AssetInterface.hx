@@ -1,5 +1,6 @@
 package assets;
 
+import openfl.Assets;
 import flash.errors.ArgumentError;
 //import com.emibap.textureAtlas.DynamicAtlas;
 import flash.display.BitmapData;
@@ -294,14 +295,13 @@ class AssetInterface
     
     private static function create(file : String, name : String) : Dynamic
     {
-		
         var textureClassNameString : String = (sContentScaleFactor == 1) ? file + "AssetEmbeds_1x" : file + "AssetEmbeds_2x";
         var qualifiedName : String = "assets." + textureClassNameString;
-        var textureClass : Class<Dynamic> = Type.getClass(Type.resolveClass(qualifiedName));
-		//I removed the Dynamic tyep was try cast(Reflect.field(textureClass, name),Dynamiv) catch(e:Dynamic) null;
-        var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name)) catch(e:Dynamic) null;
-        return textureClassObject;
-		return null;
+		return Texture.fromBitmapData(openfl.Assets.getBitmapData(qualifiedName));
+        //var textureClass : Class<Dynamic> = Type.getClass(Type.resolveClass(qualifiedName));
+		////I removed the Dynamic tyep was try cast(Reflect.field(textureClass, name),Dynamiv) catch(e:Dynamic) null;
+        //var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name)) catch(e:Dynamic) null;
+        //return textureClassObject;
     }
     
     private static function get_contentScaleFactor() : Float
@@ -317,9 +317,5 @@ class AssetInterface
         sTextures = new Dictionary();
         sContentScaleFactor = (value < 1.5) ? 1 : 2;
         return value;
-    }
-
-    public function new()
-    {
     }
 }

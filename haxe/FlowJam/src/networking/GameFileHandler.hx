@@ -9,16 +9,16 @@ import flash.net.URLRequest;
 import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
 import flash.utils.Timer;
-import deng.fzip.FZip;
-import deng.fzip.FZipFile;
+//import deng.fzip.FZip;
+//import deng.fzip.FZipFile;
 import events.MenuEvent;
 import events.NavigationEvent;
 import scenes.Scene;
 import scenes.game.PipeJamGameScene;
 import scenes.game.display.World;
 import starling.events.Event;
-import utils.Base64Decoder;
-import utils.Base64Encoder;
+//import utils.Base64Decoder;
+//import utils.Base64Encoder;
 import utils.XMath;
 
 /** How to use:
@@ -30,16 +30,16 @@ import utils.XMath;
 class GameFileHandler
 {
     public static var GET_COMPLETED_LEVELS : Int = 1;
-    public static var GET_ALL_LEVEL_METADATA : Int = 2;
+    public static var get_all_level_metadata : Int = 2;
     public static var SAVE_LAYOUT : Int = 3;
     public static var REQUEST_LAYOUT_LIST : Int = 5;
-    public static var SAVE_LEVEL : Int = 7;
+    public static var save_level : Int = 7;
     public static var GET_ALL_SAVED_LEVELS : Int = 8;
     public static var GET_SAVED_LEVEL : Int = 15;
     public static var DELETE_SAVED_LEVEL : Int = 9;
-    public static var REPORT_PLAYER_RATING : Int = 12;
-    public static var REPORT_LEADERBOARD_SCORE : Int = 13;
-    public static var GET_HIGH_SCORES_FOR_LEVEL : Int = 14;
+    public static var report_player_rating : Int = 12;
+    public static var report_leaderboard_score : Int = 13;
+    public static var get_high_scores_for_level : Int = 14;
     public static var USE_LOCAL : Int = 1;
     public static var USE_DATABASE : Int = 2;
     public static var USE_URL : Int = 3;
@@ -61,7 +61,7 @@ class GameFileHandler
     
     
     private var m_callback : Function;
-    private var fzip : FZip;
+    //private var fzip : FZip;
     
     private var m_saveType : String;
     private var m_fileType : Int;
@@ -117,7 +117,7 @@ class GameFileHandler
     {
         var layoutDescription : String = PipeJamGame.levelInfo.layoutName + "::" + PipeJamGame.levelInfo.layoutDescription;
         
-        var encodedLayoutDescription : String = encodeURIComponent(layoutDescription);
+        var encodedLayoutDescription : String = layoutDescription;
         var fileHandler : GameFileHandler = new GameFileHandler(callback);
         fileHandler.sendMessage(SAVE_LAYOUT, callback, encodedLayoutDescription, _layoutAsString);
     }
@@ -125,7 +125,7 @@ class GameFileHandler
     public static function getHighScoresForLevel(callback : Function, levelID : String) : Void
     {
         var fileHandler : GameFileHandler = new GameFileHandler(callback);
-        fileHandler.sendMessage(GET_HIGH_SCORES_FOR_LEVEL, fileHandler.defaultJSONCallback, null, levelID);
+        fileHandler.sendMessage(get_high_scores_for_level, fileHandler.defaultJSONCallback, null, levelID);
     }
     
     public static function deleteSavedLevel(_levelIDString : String) : Void
@@ -181,7 +181,7 @@ class GameFileHandler
     {
         PipeJamGame.levelInfo.preference = preference;
         var fileHandler : GameFileHandler = new GameFileHandler();
-        fileHandler.sendMessage(REPORT_PLAYER_RATING, fileHandler.defaultJSONCallback, null);
+        fileHandler.sendMessage(report_player_rating, fileHandler.defaultJSONCallback, null);
     }
     
     //connect to the db and get a list of all levels
@@ -189,7 +189,7 @@ class GameFileHandler
     {
         levelInfoVector = null;
         var fileHandler : GameFileHandler = new GameFileHandler(callback);
-        fileHandler.sendMessage(GET_ALL_LEVEL_METADATA, fileHandler.setLevelMetadataFromCurrent);
+        fileHandler.sendMessage(get_all_level_metadata, fileHandler.setLevelMetadataFromCurrent);
     }
     
     //connect to the db and get a list of all completed levels
@@ -233,7 +233,7 @@ class GameFileHandler
     public static function reportScore() : Void
     {
         var fileHandler : GameFileHandler = new GameFileHandler();
-        fileHandler.sendMessage(REPORT_LEADERBOARD_SCORE, null);
+        fileHandler.sendMessage(report_leaderboard_score, null);
     }
     
     public static function loadGameFiles(worldFileLoadedCallback : Function, layoutFileLoadedCallback : Function, assignmentsFileLoadedCallback : Function) : Void
@@ -250,19 +250,19 @@ class GameFileHandler
             m_id = as3hx.Compat.parseInt(PipeJamGame.levelInfo.id);
         }
         if (m_id < 1000)
-        
-        // in the tutorial if a low level id{
+        {
+        // in the tutorial if a low level id
             
             {
                 PipeJamGameScene.inTutorial = true;
                 PipeJamGameScene.inDemo = false;
             }
         }
-        if (PipeJamGameScene.DEBUG_PLAY_WORLD_ZIP && !PipeJam3.RELEASE_BUILD)
-        
-        //load the zip file from it's location{
+        if (PipeJamGameScene.DEBUG_PLAY_WORLD_ZIP != null && PipeJam3.RELEASE_BUILD == null)
+        {
+        //load the zip file from it's location
             
-            loadType = USE_URL;
+            var loadType : Int = USE_URL;
             gameFileHandler = new GameFileHandler(worldFileLoadedCallback);
             gameFileHandler.loadFile(USE_LOCAL, PipeJamGameScene.DEBUG_PLAY_WORLD_ZIP, gameFileHandler.zipLoaded);
         }
@@ -288,8 +288,8 @@ class GameFileHandler
             
             
             if (PipeJamGame.levelInfo && PipeJamGame.levelInfo.assignmentsID != null && !PipeJamGameScene.inTutorial)
-            
-            //load from MongoDB{
+            {
+            //load from MongoDB
                 
                 {
                     loadType = USE_DATABASE;
@@ -341,30 +341,30 @@ class GameFileHandler
     //load files from disk or database
     public function loadFile(loadType : Int, fileName : String, callback : Function = null) : Void
     {
-        fzip = new FZip();
-        fzip.addEventListener(flash.events.Event.COMPLETE, zipLoaded);
-        fzip.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-        
-        var loader : URLLoader = new URLLoader();
-        switch (loadType)
-        {
-            case USE_DATABASE:
-            {
-                
-                //	fzip.load(new URLRequest(fileName));
-                loader.addEventListener(flash.events.Event.COMPLETE, fileLoadCallback);
-                loader.load(new URLRequest(fileName));
-            }
-            case USE_LOCAL:
-            {
-                fzip.load(new URLRequest(fileName + "?version=" + Math.round(1000000 * Math.random())));
-            }
-            case USE_URL:
-            {
-                loader.addEventListener(flash.events.Event.COMPLETE, callback);
-                loader.load(new URLRequest(fileName + "?version=" + Math.round(1000000 * Math.random())));
-            }
-        }
+        //fzip = new FZip();
+        //fzip.addEventListener(flash.events.Event.COMPLETE, zipLoaded);
+        //fzip.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+        //
+        //var loader : URLLoader = new URLLoader();
+        //switch (loadType)
+        //{
+            //case USE_DATABASE:
+            //{
+                //
+                ////	fzip.load(new URLRequest(fileName));
+                //loader.addEventListener(flash.events.Event.COMPLETE, fileLoadCallback);
+                //loader.load(new URLRequest(fileName));
+            //}
+            //case USE_LOCAL:
+            //{
+                //fzip.load(new URLRequest(fileName + "?version=" + Math.round(1000000 * Math.random())));
+            //}
+            //case USE_URL:
+            //{
+                //loader.addEventListener(flash.events.Event.COMPLETE, callback);
+                //loader.load(new URLRequest(fileName + "?version=" + Math.round(1000000 * Math.random())));
+            //}
+        //}
     }
     
     private function ioErrorHandler(event : IOErrorEvent) : Void
@@ -374,69 +374,69 @@ class GameFileHandler
     
     private function fileLoadCallback(e : flash.events.Event) : Void
     {
-        var s : String = e.target.data;
-        var decodedString : Base64Decoder = new Base64Decoder();
-        decodedString.decode(s);
-        var z : FZip = new FZip();
-        z.loadBytes(decodedString.toByteArray());
-        zipLoaded(null, z);
+        //var s : String = e.target.data;
+        //var decodedString : Base64Decoder = new Base64Decoder();
+        //decodedString.decode(s);
+        //var z : FZip = new FZip();
+        //z.loadBytes(decodedString.toByteArray());
+        //zipLoaded(null, z);
     }
     
-    private function zipLoaded(e : flash.events.Event = null, z : FZip = null) : Void
+    private function zipLoaded(e : flash.events.Event = null/*, z : FZip = null*/) : Void
     {
-        if (z == null)
-        {
-            fzip.removeEventListener(flash.events.Event.COMPLETE, zipLoaded);
-        }
-        else
-        {
-            fzip = z;
-        }
-        var zipFile : FZipFile;
-        if (fzip.getFileCount() == 3)
-        {
-            var parsedFileArray : Array<Dynamic> = new Array<Dynamic>(3);
-            for (i in 0...fzip.getFileCount())
-            {
-                zipFile = fzip.getFileAt(i);
-                if (zipFile.filename.toLowerCase().indexOf("layout") > -1)
-                {
-                    parsedFileArray[2] = haxe.Json.parse(Std.string(zipFile.content));
-                }
-                else if (zipFile.filename.toLowerCase().indexOf("assignments") > -1)
-                {
-                    parsedFileArray[1] = haxe.Json.parse(Std.string(zipFile.content));
-                }
-                else
-                {
-                    parsedFileArray[0] = haxe.Json.parse(Std.string(zipFile.content));
-                }
-            }
-            m_callback(parsedFileArray);
-        }
-        else
-        {
-            zipFile = fzip.getFileAt(0);
-            var contentsStr : String = Std.string(zipFile.content);
-            var containerObj : Dynamic = haxe.Json.parse(contentsStr);
-            var assignmentsObj : Dynamic = Reflect.field(containerObj, "assignments");
-            var layoutObj : Dynamic = Reflect.field(containerObj, "layout");
-            if (assignmentsObj != null && layoutObj != null)
-            {
-                var containerArray : Array<Dynamic> = new Array<Dynamic>(3);
-                containerArray[0] = containerObj;
-                containerArray[1] = assignmentsObj;
-                containerArray[2] = layoutObj;
-                trace("loaded world file: " + zipFile.filename);
-                m_callback(containerArray);
-            }
-            else
-            {
-                trace("loaded individual file: " + zipFile.filename);
-                zipFile = fzip.getFileAt(0);
-                m_callback(containerObj);
-            }
-        }
+        //if (z == null)
+        //{
+            //fzip.removeEventListener(flash.events.Event.COMPLETE, zipLoaded);
+        //}
+        //else
+        //{
+            //fzip = z;
+        //}
+        //var zipFile : FZipFile;
+        //if (fzip.getFileCount() == 3)
+        //{
+            //var parsedFileArray : Array<Dynamic> = new Array<Dynamic>(3);
+            //for (i in 0...fzip.getFileCount())
+            //{
+                //zipFile = fzip.getFileAt(i);
+                //if (zipFile.filename.toLowerCase().indexOf("layout") > -1)
+                //{
+                    //parsedFileArray[2] = haxe.Json.parse(Std.string(zipFile.content));
+                //}
+                //else if (zipFile.filename.toLowerCase().indexOf("assignments") > -1)
+                //{
+                    //parsedFileArray[1] = haxe.Json.parse(Std.string(zipFile.content));
+                //}
+                //else
+                //{
+                    //parsedFileArray[0] = haxe.Json.parse(Std.string(zipFile.content));
+                //}
+            //}
+            //m_callback(parsedFileArray);
+        //}
+        //else
+        //{
+            //zipFile = fzip.getFileAt(0);
+            //var contentsStr : String = Std.string(zipFile.content);
+            //var containerObj : Dynamic = haxe.Json.parse(contentsStr);
+            //var assignmentsObj : Dynamic = Reflect.field(containerObj, "assignments");
+            //var layoutObj : Dynamic = Reflect.field(containerObj, "layout");
+            //if (assignmentsObj != null && layoutObj != null)
+            //{
+                //var containerArray : Array<Dynamic> = new Array<Dynamic>(3);
+                //containerArray[0] = containerObj;
+                //containerArray[1] = assignmentsObj;
+                //containerArray[2] = layoutObj;
+                //trace("loaded world file: " + zipFile.filename);
+                //m_callback(containerArray);
+            //}
+            //else
+            //{
+                //trace("loaded individual file: " + zipFile.filename);
+                //zipFile = fzip.getFileAt(0);
+                //m_callback(containerObj);
+            //}
+        //}
     }
     
     //just pass results on to the real callback
@@ -451,18 +451,18 @@ class GameFileHandler
     //decode results and pass on
     public function defaultJSONCallback(result : Int, e : flash.events.Event) : Void
     {
-        var message : String = Std.string(e.target.data);
-        var vec : Array<Dynamic> = new Array<Dynamic>();
-        var obj : Dynamic = haxe.Json.parse(message);
-        for (entry/* AS3HX WARNING could not determine type for var: entry exp: EIdent(obj) type: Dynamic */ in obj)
-        {
-            vec.push(entry);
-        }
-        
-        if (m_callback != null)
-        {
-            m_callback(result, vec);
-        }
+        //var message : String = Std.string(e.target.data);
+        //var vec : Array<Dynamic> = new Array<Dynamic>();
+        //var obj : Dynamic = haxe.Json.parse(message);
+        //for (entry in obj)
+        //{
+            //vec.push(entry);
+        //}
+        //
+        //if (m_callback != null)
+        //{
+            //m_callback(result, vec);
+        //}
     }
     
     public function onRequestSavedLevelsFinished(result : Int, layoutObjects : Array<Dynamic>) : Void
@@ -478,19 +478,19 @@ class GameFileHandler
         
         levelInfoVector = null;
         var vector : Array<Dynamic> = new Array<Dynamic>();
-        if (e != null && e.target && e.target.data)
+        if (e != null && e.target != null && Reflect.field(e.target, "data") != null)
         {
-            var message : String = Std.string(e.target.data);
+            var message : String = Std.string(Reflect.field(e.target, "data"));
             var obj : Dynamic = haxe.Json.parse(message);
-            for (entry/* AS3HX WARNING could not determine type for var: entry exp: EIdent(obj) type: Dynamic */ in obj)
-            
-            //swiitching to using actual Mongo objects makes the id field appear different. Fix that...{
-                
-                if (!entry.exists("id"))
+            for (id in Reflect.fields(obj))
+            {
+            //swiitching to using actual Mongo objects makes the id field appear different. Fix that...
+                var entry = Reflect.field(obj, id);
+                if (!Reflect.hasField(entry, "id"))
                 {
-                    if (entry.exists("_id"))
+                    if (Reflect.hasField(entry, "_id"))
                     {
-                        if (entry._id.exists("$oid"))
+                        if (Reflect.hasField(entry._id, "$oid"))
                         {
                             entry.id = entry._id.__DOLLAR__oid;
                         }
@@ -516,12 +516,12 @@ class GameFileHandler
     
     public function saveLevel(saveType : String) : Void
     {
-        sendMessage(SAVE_LEVEL, onLevelSubmitted, saveType, m_levelFilesString);
+        sendMessage(save_level, onLevelSubmitted, saveType, m_levelFilesString);
     }
     
     public function onLevelSubmitted(result : Int, e : flash.events.Event) : Void
     {
-        var obj : Dynamic = haxe.Json.parse(e.target.data);
+        var obj : Dynamic = haxe.Json.parse(Reflect.field(e.target, "data"));
         //save new file ID and clear stored updates
         PipeJam3.m_savedCurrentLevel.data.assignmentsID = Reflect.field(obj, "assignmentsID");
         PipeJam3.m_savedCurrentLevel.data.assignmentUpdates = {};
@@ -550,9 +550,9 @@ class GameFileHandler
         
         switch (type)
         {
-            case GET_HIGH_SCORES_FOR_LEVEL:
+            case get_high_scores_for_level:
                 url = NetworkConnection.productionInterop + "?function=getHighScoresForLevel2&data_id=" + data;
-            case REPORT_PLAYER_RATING:
+            case report_player_rating:
                 if (PlayerValidation.playerID == "")
                 {
                     return;
@@ -564,9 +564,9 @@ class GameFileHandler
                         });
                 data_id = haxe.Json.stringify(messages);
                 url = NetworkConnection.productionInterop + "?function=reportPlayerRating2&data_id='" + data_id + "'";
-            case GET_ALL_LEVEL_METADATA:
+            case get_all_level_metadata:
                 url = NetworkConnection.productionInterop + "?function=getActiveLevels2&data_id=foo";
-            case SAVE_LEVEL:
+            case save_level:
                 if (PlayerValidation.playerID == "")
                 {
                     return;
@@ -580,20 +580,20 @@ class GameFileHandler
                 solutionInfo.revision = Std.string(as3hx.Compat.parseInt(PipeJamGame.levelInfo.revision) + 1);
                 solutionInfo.playerID = PlayerValidation.playerID;
                 solutionInfo.username = PlayerValidation.playerUserName;
-                Reflect.deleteField(solutionInfo, "id")  //need to remove this or else successive saves won't work  ;
-                Reflect.deleteField(solutionInfo, "_id")  //need to remove this or else successive saves won't work  ;
+                Reflect.deleteField(solutionInfo, "id");  //need to remove this or else successive saves won't work  ;
+                Reflect.deleteField(solutionInfo, "_id");  //need to remove this or else successive saves won't work  ;
                 PipeJamGame.levelInfo.revision = solutionInfo.revision;
                 //current time in seconds
                 var currentDate : Date = Date.now();
-                var dateUTC : Float = currentDate.getTime() + currentDate.getTimezoneOffset();
-                solutionInfo.submitted_date = as3hx.Compat.parseInt(dateUTC / 1000);
+                var dateUTC : Float = currentDate.getTime();
+                solutionInfo.submitted_date = Std.int(dateUTC / 1000);
                 //save, delete, stringify, and then restore highscore vector (not really needed, and they might contain an id property)
                 var savedHighScoreArray : Array<Dynamic> = solutionInfo.highScores;
                 Reflect.deleteField(solutionInfo, "highScores");
                 data_id = haxe.Json.stringify(solutionInfo);
                 solutionInfo.highScores = savedHighScoreArray;
                 url = NetworkConnection.productionInterop + "?function=submitLevelPOST2&data_id='" + data_id + "'";
-            case REPORT_LEADERBOARD_SCORE:
+            case report_leaderboard_score:
                 if (PlayerValidation.playerID == "")
                 {
                     return;

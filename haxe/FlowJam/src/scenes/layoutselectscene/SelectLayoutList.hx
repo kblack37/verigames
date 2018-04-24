@@ -74,8 +74,8 @@ class SelectLayoutList extends SelectList
     override private function reallyDeleteSavedGame(answer : Int) : Void
     {
         if (answer == 2)
-        
-        //remove button from dialog{
+        {
+        //remove button from dialog
             
             var index : Int = buttonPaneArray.indexOf(currentDeleteTarget);
             if (index != -1)

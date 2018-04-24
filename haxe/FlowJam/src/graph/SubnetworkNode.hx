@@ -45,7 +45,7 @@ class SubnetworkNode extends Node
     private function set_associated_board(bNodes : BoardNodes) : BoardNodes
     {
         m_associated_board = bNodes;
-        if (m_associated_board != null && m_associated_board.incoming_node)
+        if (m_associated_board != null && m_associated_board.incoming_node != null)
         {
             for (ip in incoming_ports)
             {
@@ -57,7 +57,7 @@ class SubnetworkNode extends Node
                 }
             }
         }
-        if (m_associated_board != null && m_associated_board.outgoing_node)
+        if (m_associated_board != null && m_associated_board.outgoing_node != null)
         {
             for (op in outgoing_ports)
             {

@@ -1,11 +1,19 @@
-import starling.display.DisplayObjectContainer;
+package;
 
-class TextFieldWrapper extends DisplayObjectContainer
+import starling.text.TextField;
+import starling.text.TextFormat;
+
+/**
+ * ...
+ * @author ...
+ */
+class TextFieldWrapper extends TextField 
 {
 
-    public function new()
-    {
-        super();
-    }
+	public function new(width:Int, height:Int, text:String="", format:TextFormat=null) 
+	{
+		super(width, height, text, format);
+		
+	}
+	
 }
-

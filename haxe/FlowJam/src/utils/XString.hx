@@ -91,7 +91,7 @@ import flash.geom.Point;
         var i : Int = 0;
         for (pt in vec)
         {
-            new_string += "(" + Std.string(pt.x.toFixed(1)) + "," + Std.string(pt.y.toFixed(1)) + ")";
+            new_string += "(" + floatFixedDigits(pt.x, 1) + "," + floatFixedDigits(pt.y, 1) + ")";
             if (i + 1 < vec.length)
             {
                 new_string += ",";
@@ -100,9 +100,10 @@ import flash.geom.Point;
         }
         return new_string;
     }
-
-    public function new()
-    {
-    }
+	
+	public static function floatFixedDigits(val : Float, n : Int) : String {
+		var floatSplit : Array<String> = Std.string(val).split(".");
+		return floatSplit[0] + floatSplit[1].substr(0, n);
+	}
 }
 

@@ -22,7 +22,7 @@ class TextBubbleFollowComponent extends TextBubble
             _size : Point = null, _arrowSz : Float = 10,
             _arrowBounce : Float = 2, _arrowBounceSpeed : Float = 0.5,
             _inset : Float = 3, _showBox : Bool = true,
-            _arrowColor : Int = GOLD, _outlineWeight : Float = 0,
+            _arrowColor : Int = TextBubble.GOLD, _outlineWeight : Float = 0,
             _outlineColor : Int = 0x0)
     {
         m_pointAtFn = _pointAtFn;
@@ -31,7 +31,7 @@ class TextBubbleFollowComponent extends TextBubble
         var pointAtComponent : DisplayObject = ((m_pointAtFn != null)) ? m_pointAtFn(m_level) : null;
         
         var pointPosAlwaysUpdate : Bool = true;
-        if (m_level.tutorialManager && !m_level.tutorialManager.getPanZoomAllowed() && m_level.tutorialManager.getLayoutFixed())
+        if (m_level.tutorialManager != null && !m_level.tutorialManager.getPanZoomAllowed() && m_level.tutorialManager.getLayoutFixed())
         {
             pointPosAlwaysUpdate = false;
         }

@@ -26,7 +26,7 @@ class LoadingState extends GenericState
     {
         super.stateLoad();
         updateStatus();
-        performNextTask();
+        performNextTask({});
     }
     
     override public function stateUnload() : Void
@@ -40,7 +40,7 @@ class LoadingState extends GenericState
     {
     }
     
-    public function performNextTask() : Void
+    public function performNextTask(e : Dynamic) : Void
     {
         if (this.tasksVector.length == 0)
         {
@@ -48,7 +48,7 @@ class LoadingState extends GenericState
             onTasksComplete();
             return;
         }
-        var now : Float = Date.now().time;
+        var now : Float = Date.now().getTime();
         if (now - last_render_time > TIME_BETWEEN_RENDERS_MS)
         {
             updateStatus();
@@ -60,7 +60,7 @@ class LoadingState extends GenericState
         tasksVector[0].perform();
         var my_task : Task = tasksVector.shift();
         completed_tasks.push(my_task);
-        performNextTask();
+        performNextTask({});
     }
     
     public function updateStatus() : Void

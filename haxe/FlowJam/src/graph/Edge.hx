@@ -57,7 +57,7 @@ class Edge extends EventDispatcher
     public var variableID : Int;
     
     /** pointers back up to all starting edges that can reach this edge. */
-    public var topmostEdgeDictionary : Dictionary = new Dictionary();
+    public var topmostEdgeDictionary : Dynamic = {};
     public var topmostEdgeIDArray : Array<Dynamic> = new Array<Dynamic>();
     
     /* Starting state of the pipe */
@@ -128,8 +128,8 @@ class Edge extends EventDispatcher
             metadata = new Metadata(null);
         }
         else if (_metadata.data != null)
-        
-        //Example: <edge description="chute1" variableID="-1" pinch="false" width="wide" id="e1" buzzsaw="false">{
+        {
+        //Example: <edge description="chute1" variableID="-1" pinch="false" width="wide" id="e1" buzzsaw="false">
             
             if (Std.string(_metadata.data.id).length > 0)
             {
@@ -232,15 +232,15 @@ class Edge extends EventDispatcher
     private function set_enter_ball_type(typ : Int) : Int
     {
         if (ballUnknown(typ) && !ballUnknown(m_enter_ball_type))
-        
-        // If setting a ball to be UNDETERMINED/GHOST to begin sim, keep previous type to compare after sim{
+        {
+        // If setting a ball to be UNDETERMINED/GHOST to begin sim, keep previous type to compare after sim
             
             m_prev_enter_ball_type = m_enter_ball_type;
             m_enter_ball_type = typ;
         }
         else if (!ballUnknown(typ))
-        
-        // If setting a type to a KNOWN ball type (done simulating, for example) record change{
+        {
+        // If setting a type to a KNOWN ball type (done simulating, for example) record change
             
             m_enter_ball_type = typ;
             if (m_prev_enter_ball_type != m_enter_ball_type)
@@ -261,15 +261,15 @@ class Edge extends EventDispatcher
     private function set_exit_ball_type(typ : Int) : Int
     {
         if (ballUnknown(typ) && !ballUnknown(m_exit_ball_type))
-        
-        // If setting a ball to be UNDETERMINED/GHOST to begin sim, keep previous type to compare after sim{
+        {
+        // If setting a ball to be UNDETERMINED/GHOST to begin sim, keep previous type to compare after sim
             
             m_prev_exit_ball_type = m_exit_ball_type;
             m_exit_ball_type = typ;
         }
         else if (!ballUnknown(typ))
-        
-        // If setting a type to a KNOWN ball type (done simulating, for example) record change{
+        {
+        // If setting a type to a KNOWN ball type (done simulating, for example) record change
             
             m_exit_ball_type = typ;
             if (m_prev_exit_ball_type != m_exit_ball_type)
@@ -299,7 +299,7 @@ class Edge extends EventDispatcher
         }
         m_enter_ball_type = BALL_TYPE_UNDETERMINED;
         m_exit_ball_type = BALL_TYPE_UNDETERMINED;
-        for (outport/* AS3HX WARNING could not determine type for var: outport exp: EField(EField(EIdent(to_port),node),outgoing_ports) type: null */ in to_port.node.outgoing_ports)
+        for (outport in to_port.node.outgoing_ports)
         {
             outport.edge.resetPropsAndRecurse();
         }
@@ -352,17 +352,17 @@ class Edge extends EventDispatcher
     {
         var edgeSets : Array<EdgeSetRef> = new Array<EdgeSetRef>();
         var edgesToExamine : Array<Edge> = new Array<Edge>();
-        var edgesExamined : Dictionary = new Dictionary();
+        var edgesExamined : Dynamic = {};
         edgesToExamine.push(this);
         while (edgesToExamine.length > 0)
         {
             var thisEdge : Edge = edgesToExamine.shift();
-            if (edgesExamined.exists(thisEdge.edge_id))
+            if (Reflect.hasField(edgesExamined, thisEdge.edge_id))
             {
                 continue;
             }
-            edgesExamined[thisEdge.edge_id] = true;
-            if (!thisEdge.from_node)
+			Reflect.setField(edgesExamined, thisEdge.edge_id, true);
+            if (thisEdge.from_node == null)
             {
                 continue;
             }
@@ -376,12 +376,12 @@ class Edge extends EventDispatcher
             }
             var nextPorts : Array<Port> = thisEdge.from_node.incoming_ports;
             if (Std.is(thisEdge.from_port, SubnetworkPort))
-            
-            // Connect through subnet if possible, otherwise don't bother{
+            {
+            // Connect through subnet if possible, otherwise don't bother
                 
                 var subnetPort : SubnetworkPort = try cast(thisEdge.from_port, SubnetworkPort) catch(e:Dynamic) null;
                 nextPorts = new Array<Port>();
-                if (subnetPort != null && subnetPort.linked_subnetwork_edge && subnetPort.linked_subnetwork_edge.to_port)
+                if (subnetPort != null && subnetPort.linked_subnetwork_edge != null && subnetPort.linked_subnetwork_edge.to_port != null)
                 {
                     nextPorts.push(subnetPort.linked_subnetwork_edge.to_port);
                 }
@@ -414,7 +414,7 @@ class Edge extends EventDispatcher
                         continue;
                     }
                 }
-                if (edgesExamined.exists(nextEdge.edge_id))
+                if (Reflect.hasField(edgesExamined, nextEdge.edge_id))
                 {
                     continue;
                 }
@@ -435,16 +435,16 @@ class Edge extends EventDispatcher
     {
         var edgeSets : Array<EdgeSetRef> = new Array<EdgeSetRef>();
         var edgesToExamine : Array<Edge> = new Array<Edge>();
-        var edgesExamined : Dictionary = new Dictionary();
+        var edgesExamined : Dynamic = {};
         edgesToExamine.push(this);
         while (edgesToExamine.length > 0)
         {
             var thisEdge : Edge = edgesToExamine.shift();
-            if (edgesExamined.exists(thisEdge.edge_id))
+            if (Reflect.hasField(edgesExamined, thisEdge.edge_id))
             {
                 continue;
             }
-            edgesExamined[thisEdge.edge_id] = true;
+			Reflect.setField(edgesExamined, thisEdge.edge_id, true);
             if (!thisEdge.linked_edge_set.editable)
             {
                 continue;
@@ -474,7 +474,7 @@ class Edge extends EventDispatcher
                     {
                         continue;
                     }
-                    if (edgesExamined.exists(outEdge.edge_id))
+                    if (Reflect.hasField(edgesExamined, outEdge.edge_id))
                     {
                         continue;
                     }
@@ -500,7 +500,7 @@ class Edge extends EventDispatcher
                     if (Std.is(thisEdge.to_port, SubnetworkPort))
                     {
                         var subnetPort : SubnetworkPort = try cast(thisEdge.to_port, SubnetworkPort) catch(e:Dynamic) null;
-                        if (subnetPort.linked_subnetwork_edge && subnetPort.linked_subnetwork_edge.from_port)
+                        if (subnetPort.linked_subnetwork_edge != null && subnetPort.linked_subnetwork_edge.from_port != null)
                         {
                             nextPorts.push(subnetPort.linked_subnetwork_edge.from_port);
                         }
@@ -529,7 +529,7 @@ class Edge extends EventDispatcher
                 {
                     continue;
                 }
-                if (edgesExamined.exists(nextEdge.edge_id))
+                if (Reflect.hasField(edgesExamined, nextEdge.edge_id))
                 {
                     continue;
                 }

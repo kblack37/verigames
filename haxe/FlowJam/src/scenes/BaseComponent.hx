@@ -5,6 +5,7 @@ import flash.display.BitmapData;
 import flash.display3D.Context3D;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import flash.Vector;
 import flash.utils.Dictionary;
 import starling.rendering.Painter;
 import starling.core.Starling;
@@ -26,8 +27,8 @@ class BaseComponent extends ToolTippableSprite
     private var m_disposed : Bool;
     
     //initalized in Game
-    private static var loadingAnimationImages : openfl.Vector<Texture> = null;
-    private static var waitAnimationImages : Array<Texture> = null;
+    private static var loadingAnimationImages : Vector<Texture> = null;
+    private static var waitAnimationImages : Vector<Texture> = null;
     
     private var busyAnimationMovieClip : MovieClip;
     public static inline var KEYFOR_COLOR : Int = 0xFF00FF;

@@ -129,14 +129,15 @@ import flash.geom.Point;
         var angles : Array<Dynamic> = [];
         for (i in 0...sides)
         {
-            do
-            {
-                var angle : Float = XMath.random(0, 2 * Math.PI);
-            }
-            while ((Lambda.indexOf(angles, angle) != -1));
+			var angle : Float = XMath.random(0, 2 * Math.PI);
+            while (Lambda.indexOf(angles, angle) != -1) {
+				angle = XMath.random(0, 2 * Math.PI);
+			}
             angles.push(angle);
         }
-        angles = angles.sort(16);
+        angles.sort(function(a : Float, b : Float) : Int {
+			return Std.int(b - a);
+		});
         //trace("Angles: " + angles);
         
         var points : Array<Dynamic> = [];
@@ -279,10 +280,6 @@ import flash.geom.Point;
     public static function radiansToDegrees(x : Float) : Float
     {
         return x * 180.0 / Math.PI;
-    }
-
-    public function new()
-    {
     }
 }
 

@@ -1,6 +1,5 @@
 package particle;
 
-import flash.utils.Dictionary;
 import starling.display.Quad;
 import starling.extensions.ColorArgb;
 import starling.core.Starling;
@@ -41,14 +40,14 @@ class ErrorParticleSystem extends Sprite
         }
         
         id = nextID++;
-        mParticleSystem = new PDParticleSystem(errorConfig, errorTexture);
+        mParticleSystem = new PDParticleSystem(errorConfig.toString(), errorTexture);
         if (errorProps != null && !errorProps.hasProp(PropDictionary.PROP_NARROW))
         {
             for (prop in Reflect.fields(errorProps.iterProps()))
             {
                 if (prop.indexOf(PropDictionary.PROP_KEYFOR_PREFIX) == 0)
-                
-                // If there's a MapGet error but no narrow error, change color{
+                {
+                // If there's a MapGet error but no narrow error, change color
                     
                     // Original values:
                     //<startColor  red="1.00" green="0.18" blue="0.08" alpha="1.00"/>
@@ -76,14 +75,14 @@ class ErrorParticleSystem extends Sprite
         mParticleSystem.start();
         
         addChild(mParticleSystem);
-        Starling.juggler.add(mParticleSystem);
+        Starling.current.juggler.add(mParticleSystem);
     }
     
     private function onRemovedFromStage(evt : Event) : Void
     {
         mParticleSystem.stop();
         mParticleSystem.removeFromParent();
-        Starling.juggler.remove(mParticleSystem);
+        Starling.current.juggler.remove(mParticleSystem);
     }
 }
 

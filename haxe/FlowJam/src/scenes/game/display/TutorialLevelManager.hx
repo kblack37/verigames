@@ -85,7 +85,7 @@ class TutorialLevelManager extends EventDispatcher
                 if (!m_levelFinished && textPointingAtSegment)
                 {
                     m_levelFinished = true;
-                    Starling.juggler.delayCall(function() : Void
+                    Starling.current.juggler.delayCall(function() : Void
                             {
                                 dispatchEvent(new TutorialEvent(TutorialEvent.SHOW_CONTINUE));
                             }, 0.5);
@@ -150,7 +150,7 @@ class TutorialLevelManager extends EventDispatcher
                 }
                 else
                 {
-                    break;
+                    return;
                 }
                 widthTxt = !(propValue) ? "Wide Link" : "Narrow Link";
                 tip = new TutorialManagerTextInfo(widthTxt, null, pointToEdge(edgeId), NineSliceBatch.BOTTOM_RIGHT, NineSliceBatch.RIGHT);
@@ -180,7 +180,7 @@ class TutorialLevelManager extends EventDispatcher
                 if (!m_levelFinished && (updatedGameNodes.length > 1))
                 {
                     m_levelFinished = true;
-                    Starling.juggler.delayCall(function() : Void
+                    Starling.current.juggler.delayCall(function() : Void
                             {
                                 dispatchEvent(new TutorialEvent(TutorialEvent.SHOW_CONTINUE));
                             }, 0.5);
@@ -320,7 +320,7 @@ class TutorialLevelManager extends EventDispatcher
         return function(currentLevel : Level) : DisplayObject
         {
             var edge : GameEdgeContainer = currentLevel.getEdgeContainer(name);
-            if (edge != null && edge.innerFromBoxSegment)
+            if (edge != null && edge.innerFromBoxSegment != null)
             {
                 return edge.innerFromBoxSegment;
             }
@@ -336,7 +336,7 @@ class TutorialLevelManager extends EventDispatcher
         return function(currentLevel : Level) : DisplayObject
         {
             var edge : GameEdgeContainer = currentLevel.getEdgeContainer(name);
-            if (edge != null && edge.errorContainer)
+            if (edge != null && edge.errorContainer != null)
             {
                 return edge.errorContainer;
             }

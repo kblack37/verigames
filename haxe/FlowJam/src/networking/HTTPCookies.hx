@@ -46,7 +46,7 @@ class HTTPCookies
     {
         if (!ExternalInterface.available)
         {
-            return;
+            return null;
         }
         return ExternalInterface.call("getEncodedCookieResult");
     }

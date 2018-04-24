@@ -1,10 +1,5 @@
 package scenes.game.components;
 
-import flash.display.StageDisplayState;
-import flash.events.MouseEvent;
-import flash.external.ExternalInterface;
-import flash.geom.Point;
-import flash.geom.Rectangle;
 import assets.AssetInterface;
 import assets.AssetsFont;
 import display.BasicButton;
@@ -18,16 +13,17 @@ import display.ZoomInButton;
 import display.ZoomOutButton;
 import events.MenuEvent;
 import events.NavigationEvent;
-import particle.ErrorParticleSystem;
+import flash.display.StageDisplayState;
+import flash.events.MouseEvent;
+import flash.external.ExternalInterface;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 import scenes.BaseComponent;
-import scenes.game.PipeJamGameScene;
 import scenes.game.display.GameComponent;
-import scenes.game.display.GameEdgeContainer;
 import scenes.game.display.Level;
 import scenes.game.display.World;
 import starling.animation.Transitions;
 import starling.core.Starling;
-import starling.display.DisplayObjectContainer;
 import starling.display.Image;
 import starling.display.MovieClip;
 import starling.display.Quad;
@@ -39,9 +35,6 @@ import starling.textures.Texture;
 import starling.textures.TextureAtlas;
 import utils.XSprite;
 
-import display.ToolTippableSprite;
-import events.ToolTipEvent;
-import scenes.game.components.GameControlPanel;
 
 
 
@@ -221,7 +214,7 @@ class GameControlPanel extends BaseComponent
         m_solveButton.y = m_zoomInButton.bounds.bottom + 3;
         addChild(m_solveButton);
         
-        busyAnimationMovieClip = new MovieClip(waitAnimationImages, 4);
+        busyAnimationMovieClip = new MovieClip(BaseComponent.waitAnimationImages, 4);
         
         busyAnimationMovieClip.x = m_solveButton.x + m_solveButton.width + 3;
         busyAnimationMovieClip.y = m_solveButton.y;
@@ -230,21 +223,21 @@ class GameControlPanel extends BaseComponent
     
     public function startSolveAnimation() : Void
     {
-        if (!Starling.juggler.contains(this.busyAnimationMovieClip))
+        if (!Starling.current.juggler.contains(this.busyAnimationMovieClip))
         {
-            if (busyAnimationMovieClip)
+            if (busyAnimationMovieClip != null)
             {
                 addChild(busyAnimationMovieClip);
             }
-            Starling.juggler.add(this.busyAnimationMovieClip);
+            Starling.current.juggler.add(this.busyAnimationMovieClip);
             trace("start animation");
         }
     }
     
     public function stopSolveAnimation() : Void
     {
-        Starling.juggler.remove(this.busyAnimationMovieClip);
-        if (busyAnimationMovieClip)
+        Starling.current.juggler.remove(this.busyAnimationMovieClip);
+        if (busyAnimationMovieClip != null)
         {
             busyAnimationMovieClip.removeFromParent();
         }
@@ -257,7 +250,7 @@ class GameControlPanel extends BaseComponent
         {
             return;
         }
-        if (!m_fullScreenButton.parent)
+        if (m_fullScreenButton.parent == null)
         {
             return;
         }
@@ -268,14 +261,14 @@ class GameControlPanel extends BaseComponent
         {
             ExternalInterface.call("console.log", "buttonTopLeft:" + buttonTopLeft);
             ExternalInterface.call("console.log", "buttonBottomRight:" + buttonBottomRight);
-            ExternalInterface.call("console.log", "Starling.contentScaleFactor:" + Starling.contentScaleFactor);
+            ExternalInterface.call("console.log", "Starling.contentScaleFactor:" + Starling.current.contentScaleFactor);
             ExternalInterface.call("console.log", "Starling.current.viewPort:" + Starling.current.viewPort);
             ExternalInterface.call("console.log", "event.stageX,Y:" + event.stageX + ", " + event.stageY);
         }
-        buttonTopLeft.x *= Starling.contentScaleFactor;
-        buttonBottomRight.x *= Starling.contentScaleFactor;
-        buttonTopLeft.y *= Starling.contentScaleFactor;
-        buttonBottomRight.y *= Starling.contentScaleFactor;
+        buttonTopLeft.x *= Starling.current.contentScaleFactor;
+        buttonBottomRight.x *= Starling.current.contentScaleFactor;
+        buttonTopLeft.y *= Starling.current.contentScaleFactor;
+        buttonBottomRight.y *= Starling.current.contentScaleFactor;
         buttonTopLeft.x += Starling.current.viewPort.x;
         buttonBottomRight.x += Starling.current.viewPort.x;
         buttonTopLeft.y += Starling.current.viewPort.y;
@@ -286,8 +279,8 @@ class GameControlPanel extends BaseComponent
             ExternalInterface.call("console.log", "adjbuttonBottomRight:" + buttonBottomRight);
         }
         if (event.stageX >= buttonTopLeft.x && event.stageX <= buttonBottomRight.x && event.stageY >= buttonTopLeft.y && event.stageY <= buttonBottomRight.y)
-        
-        //need to mark that we are doing this, so we don't lose the selection{
+        {
+        //need to mark that we are doing this, so we don't lose the selection
             
             World.changingFullScreenState = true;
             
@@ -492,8 +485,8 @@ class GameControlPanel extends BaseComponent
         m_scoreBarContainer.addChild(m_bestPlayerScoreLine);
         
         if (newBarWidth < SCORE_PANEL_AREA.width / 10)
-        
-        // If bar is not wide enough, put the text to the right of it instead of inside the bar{
+        {
+        // If bar is not wide enough, put the text to the right of it instead of inside the bar
             
             TextFactory.getInstance().updateColor(m_scoreTextfield, 0xFFFFFF);
             newScoreX = -m_scoreTextfield.width + SCORE_PANEL_AREA.width / 10;
@@ -508,51 +501,51 @@ class GameControlPanel extends BaseComponent
         var BAR_SLIDING_ANIM_SEC : Float = 1.0;
         if (skipAnimatons)
         {
-            Starling.juggler.removeTweens(m_scoreBar);
+            Starling.current.juggler.removeTweens(m_scoreBar);
             m_scoreBar.width = newBarWidth;
-            Starling.juggler.removeTweens(m_scoreTextfield);
+            Starling.current.juggler.removeTweens(m_scoreTextfield);
             m_scoreTextfield.x = newScoreX;
-            Starling.juggler.removeTweens(m_bestPlayerScoreLine);
+            Starling.current.juggler.removeTweens(m_bestPlayerScoreLine);
             m_bestPlayerScoreLine.x = bestScoreX;
         }
         else if (newBarWidth < m_scoreBar.width)
-        
-        // If we're shrinking, shrink right away - then show flash showing the difference{
+        {
+        // If we're shrinking, shrink right away - then show flash showing the difference
             
-            Starling.juggler.removeTweens(m_scoreBar);
-            Starling.juggler.tween(m_scoreBar, BAR_SLIDING_ANIM_SEC, {
+            Starling.current.juggler.removeTweens(m_scoreBar);
+            Starling.current.juggler.tween(m_scoreBar, BAR_SLIDING_ANIM_SEC, {
                         transition : Transitions.EASE_OUT,
                         width : newBarWidth
                     });
-            Starling.juggler.removeTweens(m_scoreTextfield);
-            Starling.juggler.tween(m_scoreTextfield, BAR_SLIDING_ANIM_SEC, {
+            Starling.current.juggler.removeTweens(m_scoreTextfield);
+            Starling.current.juggler.tween(m_scoreTextfield, BAR_SLIDING_ANIM_SEC, {
                         transition : Transitions.EASE_OUT,
                         x : newScoreX
                     });
-            Starling.juggler.removeTweens(m_bestPlayerScoreLine);
-            Starling.juggler.tween(m_bestPlayerScoreLine, BAR_SLIDING_ANIM_SEC, {
+            Starling.current.juggler.removeTweens(m_bestPlayerScoreLine);
+            Starling.current.juggler.tween(m_bestPlayerScoreLine, BAR_SLIDING_ANIM_SEC, {
                         transition : Transitions.EASE_OUT,
                         x : bestScoreX
                     });
         }
         else if (newBarWidth > m_scoreBar.width)
-        
-        // If we're growing, flash the difference first then grow{
+        {
+        // If we're growing, flash the difference first then grow
             
-            Starling.juggler.removeTweens(m_scoreBar);
-            Starling.juggler.tween(m_scoreBar, BAR_SLIDING_ANIM_SEC, {
+            Starling.current.juggler.removeTweens(m_scoreBar);
+            Starling.current.juggler.tween(m_scoreBar, BAR_SLIDING_ANIM_SEC, {
                         transition : Transitions.EASE_OUT,
                         delay : FLASHING_ANIM_SEC,
                         width : newBarWidth
                     });
-            Starling.juggler.removeTweens(m_scoreTextfield);
-            Starling.juggler.tween(m_scoreTextfield, BAR_SLIDING_ANIM_SEC, {
+            Starling.current.juggler.removeTweens(m_scoreTextfield);
+            Starling.current.juggler.tween(m_scoreTextfield, BAR_SLIDING_ANIM_SEC, {
                         transition : Transitions.EASE_OUT,
                         delay : FLASHING_ANIM_SEC,
                         x : newScoreX
                     });
-            Starling.juggler.removeTweens(m_bestPlayerScoreLine);
-            Starling.juggler.tween(m_bestPlayerScoreLine, BAR_SLIDING_ANIM_SEC, {
+            Starling.current.juggler.removeTweens(m_bestPlayerScoreLine);
+            Starling.current.juggler.tween(m_bestPlayerScoreLine, BAR_SLIDING_ANIM_SEC, {
                         transition : Transitions.EASE_OUT,
                         x : bestScoreX
                     });
@@ -583,8 +576,8 @@ class GameControlPanel extends BaseComponent
         // OR if was shrunk below 100% and doesn't need to be
         if (barBounds.left < 0 || barBounds.right > SCORE_PANEL_AREA.width || ((m_scoreBarContainer.scaleX < 1.0) && (newScaleX > m_scoreBarContainer.scaleX)))
         {
-            Starling.juggler.removeTweens(m_scoreBarContainer);
-            Starling.juggler.tween(m_scoreTextfield, 1.5, {
+            Starling.current.juggler.removeTweens(m_scoreBarContainer);
+            Starling.current.juggler.tween(m_scoreTextfield, 1.5, {
                         transition : Transitions.EASE_OUT,
                         delay : (FLASHING_ANIM_SEC + BAR_SLIDING_ANIM_SEC + 2 * DELAY),
                         scaleX : newScaleX
@@ -598,15 +591,15 @@ class GameControlPanel extends BaseComponent
         {
             return;
         }
-        if (evt.getTouches(m_bestPlayerScoreLine, TouchPhase.ENDED).length)
-        
-        // Clicked, load best score!{
+        if (evt.getTouches(m_bestPlayerScoreLine, TouchPhase.ENDED).length > 0)
+        {
+        // Clicked, load best score!
             
             dispatchEvent(new MenuEvent(MenuEvent.LOAD_BEST_SCORE));
         }
-        else if (evt.getTouches(m_bestPlayerScoreLine, TouchPhase.HOVER).length)
-        
-        // Hover over{
+        else if (evt.getTouches(m_bestPlayerScoreLine, TouchPhase.HOVER).length > 0)
+        {
+        // Hover over
             
             m_bestPlayerScoreLine.alpha = 1;
         }
@@ -624,15 +617,15 @@ class GameControlPanel extends BaseComponent
         {
             return;
         }
-        if (evt.getTouches(m_bestScoreLine, TouchPhase.ENDED).length)
-        
-        // Clicked, load best score!{
+        if (evt.getTouches(m_bestScoreLine, TouchPhase.ENDED).length > 0)
+        {
+        // Clicked, load best score!
             
             dispatchEvent(new MenuEvent(MenuEvent.LOAD_HIGH_SCORE));
         }
-        else if (evt.getTouches(m_bestScoreLine, TouchPhase.HOVER).length)
-        
-        // Hover over{
+        else if (evt.getTouches(m_bestScoreLine, TouchPhase.HOVER).length > 0)
+        {
+        // Hover over
             
             m_bestScoreLine.alpha = 1;
         }
@@ -703,63 +696,5 @@ class GameControlPanel extends BaseComponent
         //center in between buttons
         m_sfxButton.y = (m_newLevelButton.bounds.bottom + m_resetButton.bounds.top) / 2 - m_sfxButton.height / 2;
         addChild(m_sfxButton);
-    }
-}
-
-
-
-
-
-
-
-class TargetScoreDisplay extends ToolTippableSprite
-{
-    private var m_targetScoreTextfield : TextFieldHack;
-    private var m_textHitArea : Quad;
-    private var m_toolTipText : String;
-    
-    public function new(score : String, textY : Float, lineColor : Int, fontColor : Int, toolTipText : String = "")
-    {
-        super();
-        m_toolTipText = toolTipText;
-        // Add a dotted line effect
-        for (dq in 0...10)
-        {
-            var dottedQ : Quad = new Quad(1, 1, lineColor);
-            dottedQ.x = -dottedQ.width / 2;
-            dottedQ.y = ((dq + 1.0) / 11.0) * GameControlPanel.SCORE_PANEL_AREA.height;
-            addChild(dottedQ);
-        }
-        m_targetScoreTextfield = try cast(TextFactory.getInstance().createTextField(score, AssetsFont.FONT_UBUNTU, GameControlPanel.SCORE_PANEL_AREA.width / 2, GameControlPanel.SCORE_PANEL_AREA.height / 3.0, GameControlPanel.SCORE_PANEL_AREA.height / 3.0, fontColor), TextFieldHack) catch(e:Dynamic) null;
-        m_targetScoreTextfield.x = 2.0;
-        
-        TextFactory.getInstance().updateAlign(m_targetScoreTextfield, 0, 1);
-        m_targetScoreTextfield.y = textY;
-        addChild(m_targetScoreTextfield);
-        // Create hit areas for capturing mouse events
-        m_textHitArea = new Quad(m_targetScoreTextfield.textBounds.width, m_targetScoreTextfield.textBounds.height, 0xFFFFFF);
-        m_textHitArea.x = m_targetScoreTextfield.x + m_targetScoreTextfield.textBounds.x;
-        m_textHitArea.y = m_targetScoreTextfield.y + m_targetScoreTextfield.textBounds.y;
-        m_textHitArea.alpha = 0;
-        addChild(m_textHitArea);
-        var lineHitArea : Quad = new Quad(8, GameControlPanel.SCORE_PANEL_AREA.height, 0xFFFFFF);
-        lineHitArea.x = -4;
-        lineHitArea.alpha = 0;
-        addChild(lineHitArea);
-    }
-    
-    public function update(score : String) : Void
-    {
-        TextFactory.getInstance().updateText(m_targetScoreTextfield, score);
-        TextFactory.getInstance().updateAlign(m_targetScoreTextfield, 0, 1);
-        m_textHitArea.width = m_targetScoreTextfield.textBounds.width;
-        m_textHitArea.height = m_targetScoreTextfield.textBounds.height;
-        m_textHitArea.x = m_targetScoreTextfield.x + m_targetScoreTextfield.textBounds.x;
-        m_textHitArea.y = m_targetScoreTextfield.y + m_targetScoreTextfield.textBounds.y;
-    }
-    
-    override private function getToolTipEvent() : ToolTipEvent
-    {
-        return new ToolTipEvent(ToolTipEvent.ADD_TOOL_TIP, this, m_toolTipText);
     }
 }

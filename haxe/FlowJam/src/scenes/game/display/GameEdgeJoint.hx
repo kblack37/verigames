@@ -1,6 +1,7 @@
 package scenes.game.display;
 
 import assets.AssetInterface;
+import openfl.Vector;
 import starling.display.Sprite;
 import events.EdgePropChangeEvent;
 import events.EdgeContainerEvent;
@@ -104,15 +105,15 @@ class GameEdgeJoint extends GameComponent
             return;
         }
         
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         
-        if (event.getTouches(this, TouchPhase.MOVED).length)
+        if (event.getTouches(this, TouchPhase.MOVED).length > 0)
         {
         }
-        else if (event.getTouches(this, TouchPhase.ENDED).length)
+        else if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
         }
-        else if (event.getTouches(this, TouchPhase.HOVER).length)
+        else if (event.getTouches(this, TouchPhase.HOVER).length > 0)
         {
             if (touches.length == 1)
             {
@@ -120,7 +121,7 @@ class GameEdgeJoint extends GameComponent
                 dispatchEvent(new EdgeContainerEvent(EdgeContainerEvent.HOVER_EVENT_OVER, null, this));
             }
         }
-        else if (event.getTouches(this, TouchPhase.BEGAN).length)
+        else if (event.getTouches(this, TouchPhase.BEGAN).length > 0)
         {
         }
         else
@@ -150,7 +151,7 @@ class GameEdgeJoint extends GameComponent
         
         if ((m_propertyMode != PropDictionary.PROP_NARROW) && getProps().hasProp(m_propertyMode))
         {
-            m_jointImage = createJoint(isRound, false, m_isWide, m_incomingPt, m_outgoingPt, KEYFOR_COLOR);
+            m_jointImage = createJoint(isRound, false, m_isWide, m_incomingPt, m_outgoingPt, BaseComponent.KEYFOR_COLOR);
         }
         else
         {
@@ -215,8 +216,8 @@ class GameEdgeJoint extends GameComponent
     
     public static function createJoint(isRound : Bool, editable : Bool, wide : Bool, fromPt : Point = null, toPt : Point = null, applyColor : Int = -1) : Sprite
     {
-        var jointAssetName : String;
-        var connectorAssetName : String;
+        var jointAssetName : String = null;
+        var connectorAssetName : String = null;
         if (isRound)
         {
             fromPt = toPt = null;  // starting/ending joints don't need connectors  
@@ -308,8 +309,8 @@ class GameEdgeJoint extends GameComponent
             outDir = getDir(toPt);
         }
         if (toPt != null && (inDir != outDir))
-        
-        // Don't both making two of the same image{
+        {
+        // Don't both making two of the same image
             
             var outTexture : Texture = atlas.getTexture(connectorAssetName + outDir);
             var outImg : Image = new Image(outTexture);

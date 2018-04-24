@@ -14,12 +14,12 @@ class ButtonFactory
     {
         if (m_instance == null)
         {
-            m_instance = new ButtonFactory(new SingletonLock());
+            m_instance = new ButtonFactory();
         }
         return m_instance;
     }
     
-    public function new(lock : SingletonLock)
+    public function new()
     {
     }
     
@@ -55,13 +55,3 @@ class ButtonFactory
         "TabInactiveMouseover", "TabActive");
     }
 }
-
-
-class SingletonLock
-{
-
-    @:allow()
-    private function new()
-    {
-    }
-}  // to prevent outside construction of singleton  

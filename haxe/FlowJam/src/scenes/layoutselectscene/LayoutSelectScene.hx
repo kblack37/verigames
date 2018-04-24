@@ -8,7 +8,7 @@ import display.NineSliceButton;
 import display.NineSliceToggleButton;
 import events.MenuEvent;
 import events.NavigationEvent;
-import feathers.controls.List;
+//import feathers.controls.List;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.PixelSnapping;
@@ -24,7 +24,7 @@ import starling.display.Image;
 import starling.display.Sprite;
 import starling.events.Event;
 import starling.textures.Texture;
-import utils.Base64Decoder;
+//import utils.Base64Decoder;
 
 class LayoutSelectScene extends Scene
 {
@@ -32,9 +32,6 @@ class LayoutSelectScene extends Scene
     
     private var levelSelectBackground : NineSliceBatch;
     private var levelSelectInfoPanel : NineSliceBatch;
-    
-    private var levelList : List = null;
-    
     
     private var tutorial_levels_button : NineSliceToggleButton;
     private var new_levels_button : NineSliceToggleButton;
@@ -168,12 +165,12 @@ class LayoutSelectScene extends Scene
     public function updateSelectedLevelInfo(e : Event = null, drawThumbnail : Bool = true) : Void
     {
         var nextTextBoxYPos : Float = allLayoutslListBox.y;
-        if (currentVisibleListBox.currentSelection && currentVisibleListBox.currentSelection.data)
+        if (currentVisibleListBox.currentSelection != null && currentVisibleListBox.currentSelection.data != null)
         {
             var currentSelectedLayout : Dynamic = currentVisibleListBox.currentSelection.data;
             
             removeChild(nameText);
-            if (currentSelectedLayout.exists("name"))
+            if (Reflect.hasField(currentSelectedLayout, "name"))
             {
                 nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLayout.name, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(nameText, 0, 1);
@@ -188,7 +185,7 @@ class LayoutSelectScene extends Scene
             //				removeChild(numConflictsText);
             //				removeChild(scoreText);
             //
-            if (currentSelectedLayout.exists("description"))
+            if (Reflect.hasField(currentSelectedLayout, "description"))
             {
                 if (currentSelectedLayout.description.length > 0)
                 {
@@ -208,7 +205,7 @@ class LayoutSelectScene extends Scene
                 thumbnailViewer.y = nextTextBoxYPos;
                 addChild(thumbnailViewer);
                 
-                if (!currentSelectedLayout.exists("layoutFile"))
+                if (!Reflect.hasField(currentSelectedLayout, "layoutFile"))
                 {
                     GameFileHandler.getFileByID(currentSelectedLayout.layoutID, getNewLayout);
                 }
@@ -266,7 +263,7 @@ class LayoutSelectScene extends Scene
     private function setNewLayout(byteArray : ByteArray) : Void
     {
         var name : String = PipeJamGame.levelInfo.layoutName;
-        var layoutFile : FastXML = new FastXML(byteArray);
+        var layoutFile : FastXML = new FastXML(Xml.parse(byteArray.toString()));
         var data : Dynamic = {};
         data.name = name;
         data.layoutFile = layoutFile;
@@ -280,7 +277,7 @@ class LayoutSelectScene extends Scene
         {
             m_layouts.push(obj);
             obj.unlocked = true;
-            var namePlusDescription : String = decodeURIComponent(obj.name);
+            var namePlusDescription : String = obj.name;
             var index : Int = namePlusDescription.indexOf("::");
             if (index != -1)
             {
@@ -303,14 +300,14 @@ class LayoutSelectScene extends Scene
     public function showThumbnail() : Void
     {
         var currentSelectedLayout : Dynamic = currentVisibleListBox.currentSelection.data;
-        if (currentSelectedLayout.exists("layoutFile"))
+        if (Reflect.hasField(currentSelectedLayout, "layoutFile"))
         {
-            if (currentSelectedLayout.layoutFile["thumb"] != null)
+            if (Reflect.hasField(currentSelectedLayout.layoutFile, "thumb"))
             {
                 var thumbByteArray : ByteArray = new ByteArray();
-                var dec : Base64Decoder = new Base64Decoder();
-                dec.decode(Std.string(currentSelectedLayout.layoutFile["thumb"]));
-                thumbByteArray = dec.toByteArray();
+                //var dec : Base64Decoder = new Base64Decoder();
+                //dec.decode(Std.string(Reflect.field(currentSelectedLayout.layoutFile, "thumb")));
+                //thumbByteArray = dec.toByteArray();
                 
                 thumbByteArray.uncompress();
                 var thumbActualWidth : Int = thumbByteArray.readUnsignedInt();

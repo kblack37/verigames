@@ -24,6 +24,7 @@ import flash.system.System;
 import flash.utils.Dictionary;
 import graph.PropDictionary;
 import networking.TutorialController;
+import openfl.Vector;
 import particle.FanfareParticleSystem;
 import scenes.BaseComponent;
 import scenes.game.PipeJamGameScene;
@@ -36,7 +37,7 @@ import scenes.game.display.TutorialManagerTextInfo;
 import scenes.game.display.World;
 import starling.animation.DelayedCall;
 import starling.animation.Transitions;
-import starling.core.RenderSupport;
+//import starling.core.RenderSupport;
 import starling.core.Starling;
 import starling.display.BlendMode;
 import starling.display.DisplayObject;
@@ -49,6 +50,7 @@ import starling.events.KeyboardEvent;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
+import starling.rendering.Painter;
 import starling.textures.Texture;
 import utils.XMath;
 
@@ -70,7 +72,7 @@ class GridViewPanel extends BaseComponent
     private var m_persistentToolTips : Array<ToolTipText> = new Array<ToolTipText>();
     private var m_continueButtonForced : Bool = false;  //true to force the continue button to display, ignoring score  
     private var m_spotlight : Image;
-    private var m_errorTextBubbles : Dictionary = new Dictionary();
+    private var m_errorTextBubbles : Dynamic = {};
     private var m_nodeLayoutQueue : Array<Dynamic> = new Array<Dynamic>();
     private var m_edgeLayoutQueue : Array<Dynamic> = new Array<Dynamic>();
     
@@ -131,7 +133,7 @@ class GridViewPanel extends BaseComponent
         removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         addEventListener(TouchEvent.TOUCH, onTouch);
         addEventListener(PropertyModeChangeEvent.PROPERTY_MODE_CHANGE, onPropertyModeChange);
-        if (!PipeJam3.REPLAY_DQID)
+        if (PipeJam3.REPLAY_DQID == null)
         {
             stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
             stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -152,8 +154,8 @@ class GridViewPanel extends BaseComponent
         var offTop : Float = -VISIBLE_BUFFER_PIXELS;
         var offBottom : Float = VISIBLE_BUFFER_PIXELS;
         if (movingSelectedComponents)
-        
-        // Take account the distance we've dragged objects, if we may have{
+        {
+        // Take account the distance we've dragged objects, if we may have
             
             // dragged them into the current viewspace, recompute the visibility
             if (m_currentLevel.totalMoveDist.x > 0)
@@ -194,7 +196,7 @@ class GridViewPanel extends BaseComponent
         // Create any nodes/edges that need creating
         var NODES_PER_FRAME : Int = 100;
         var i : Int = 0;
-        var iters : Int = Math.min(NODES_PER_FRAME, m_nodeLayoutQueue.length);
+        var iters : Int = Std.int(Math.min(NODES_PER_FRAME, m_nodeLayoutQueue.length));
         for (i in 0...iters)
         {
             var nodeLayout : Dynamic = m_nodeLayoutQueue.shift();
@@ -202,7 +204,7 @@ class GridViewPanel extends BaseComponent
         var newNodes : Int = i;
         //if (newNodes > 0) trace("created " + newNodes + " GameNodes");
         var EDGES_PER_FRAME : Int = 50;
-        iters = Math.min(Math.min(EDGES_PER_FRAME, NODES_PER_FRAME - i), m_edgeLayoutQueue.length);
+        iters = Std.int(Math.min(Math.min(EDGES_PER_FRAME, NODES_PER_FRAME - i), m_edgeLayoutQueue.length));
         for (i in 0...iters)
         {
             var edgeLayout : Dynamic = m_edgeLayoutQueue.shift();
@@ -217,17 +219,17 @@ class GridViewPanel extends BaseComponent
         var redraw : Bool = false;
         for (varId in Reflect.fields(m_currentLevel.nodeLayoutObjs))
         {
-            var varBB : Rectangle = m_currentLevel.nodeLayoutObjs[varId]["bb"];
+            var varBB : Rectangle = Reflect.field(Reflect.field(m_currentLevel.nodeLayoutObjs, varId), "bb");
             if (PipeJamGameScene.inTutorial || isOnScreen(varBB, currentViewRect))
             {
-                if (!m_currentLevel.getNode(varId))
+                if (m_currentLevel.getNode(varId) == null)
                 {
-                    m_currentLevel.createNodeFromJsonObj(m_currentLevel.nodeLayoutObjs[varId]);
+                    m_currentLevel.createNodeFromJsonObj(Reflect.field(m_currentLevel.nodeLayoutObjs, varId));
                     //trace("made " + varId);
                     redraw = true;
                 }
             }
-            else if (m_currentLevel.getNode(varId))
+            else if (m_currentLevel.getNode(varId) != null)
             {
                 m_currentLevel.destroyGameNode(varId);
                 //trace("destroyed " + varId);
@@ -236,17 +238,17 @@ class GridViewPanel extends BaseComponent
         }
         for (constraintId in Reflect.fields(m_currentLevel.edgeLayoutObjs))
         {
-            var edgeBB : Rectangle = m_currentLevel.edgeLayoutObjs[constraintId]["bb"];
+            var edgeBB : Rectangle = Reflect.field(Reflect.field(m_currentLevel.edgeLayoutObjs, constraintId), "bb");
             if (PipeJamGameScene.inTutorial || isOnScreen(edgeBB, currentViewRect))
             {
-                if (!m_currentLevel.getEdgeContainer(constraintId))
+                if (m_currentLevel.getEdgeContainer(constraintId) == null)
                 {
-                    m_currentLevel.createEdgeFromJsonObj(m_currentLevel.edgeLayoutObjs[constraintId]);
+                    m_currentLevel.createEdgeFromJsonObj(Reflect.field(m_currentLevel.edgeLayoutObjs, constraintId));
                     //trace("made " + constraintId);
                     redraw = true;
                 }
             }
-            else if (m_currentLevel.getEdgeContainer(constraintId))
+            else if (m_currentLevel.getEdgeContainer(constraintId) != null)
             {
                 m_currentLevel.destroyGameEdge(constraintId);
                 //trace("destroyed " + constraintId);
@@ -269,11 +271,11 @@ class GridViewPanel extends BaseComponent
     
     private function onGameComponentsCreated() : Void
     {
-        var gameEdges : Dictionary = m_currentLevel.getEdges();
+        var gameEdges : Dynamic = m_currentLevel.getEdges();
         for (edgeId in Reflect.fields(gameEdges))
         {
             var gameEdge : GameEdgeContainer = try cast(Reflect.field(gameEdges, edgeId), GameEdgeContainer) catch(e:Dynamic) null;
-            if (!m_errorTextBubbles.exists(edgeId))
+            if (!Reflect.hasField(m_errorTextBubbles, edgeId))
             {
                 Reflect.setField(m_errorTextBubbles, edgeId, gameEdge.errorTextBubbleContainer);
                 errorBubbleContainer.addChild(gameEdge.errorTextBubbleContainer);
@@ -364,7 +366,7 @@ class GridViewPanel extends BaseComponent
     //	trace("Mode:" + event.type);
     {
         
-        if (event.getTouches(this, TouchPhase.ENDED).length)
+        if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             if (currentMode == SELECTING_MODE)
             {
@@ -389,9 +391,9 @@ class GridViewPanel extends BaseComponent
                 World.changingFullScreenState = false;
             }
         }
-        else if (event.getTouches(this, TouchPhase.MOVED).length)
+        else if (event.getTouches(this, TouchPhase.MOVED).length > 0)
         {
-            var touches : Array<Touch> = event.getTouches(this, TouchPhase.MOVED);
+            var touches : Vector<Touch> = event.getTouches(this, TouchPhase.MOVED);
             if (event.shiftKey)
             {
                 if (currentMode != SELECTING_MODE)
@@ -423,8 +425,8 @@ class GridViewPanel extends BaseComponent
                     beginMoveMode();
                 }
                 if (touches.length == 1)
-                
-                // one finger touching -> move{
+                {
+                // one finger touching -> move
                     
                     if (touches[0].target == contentBarrier)
                     {
@@ -494,6 +496,7 @@ class GridViewPanel extends BaseComponent
     
     private function handleMouseWheel(delta : Float, localMouse : Point = null, createUndoEvent : Bool = true) : Void
     {
+		var mousePoint : Point = null;
         if (!getPanZoomAllowed())
         {
             return;
@@ -504,7 +507,7 @@ class GridViewPanel extends BaseComponent
         }
         else
         {
-            var mousePoint : Point = localMouse.clone();
+            mousePoint = localMouse.clone();
             
             var native2Starling : Point = new Point(Starling.current.stage.stageWidth / Starling.current.nativeStage.stageWidth, 
             Starling.current.stage.stageHeight / Starling.current.nativeStage.stageHeight);
@@ -540,7 +543,7 @@ class GridViewPanel extends BaseComponent
         //turn this off if in an undo event
         if (createUndoEvent)
         {
-            var eventToUndo : MouseWheelEvent = new MouseWheelEvent(mousePoint, delta, Date.now().time);
+            var eventToUndo : MouseWheelEvent = new MouseWheelEvent(mousePoint, delta, Date.now().getTime());
             var eventToDispatch : UndoEvent = new UndoEvent(eventToUndo, this);
             eventToDispatch.addToSimilar = true;
             dispatchEvent(eventToDispatch);
@@ -687,13 +690,13 @@ class GridViewPanel extends BaseComponent
             m_persistentToolTips[i].removeFromParent(true);
         }
         m_persistentToolTips = new Array<ToolTipText>();
-        if (Starling.current && Starling.current.nativeStage)
+        if (Starling.current != null && Starling.current.nativeStage != null)
         {
             Starling.current.nativeStage.removeEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
         }
         content.removeEventListener(TouchEvent.TOUCH, onTouch);
         removeEventListener(PropertyModeChangeEvent.PROPERTY_MODE_CHANGE, onPropertyModeChange);
-        if (stage)
+        if (stage != null)
         {
             stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
             stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -821,7 +824,7 @@ class GridViewPanel extends BaseComponent
                 m_currentLevel.removeEventListener(TouchEvent.TOUCH, onTouch);
                 m_currentLevel.removeEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onLevelViewChanged);
                 content.removeChild(m_currentLevel);
-                if (m_currentLevel.tutorialManager)
+                if (m_currentLevel.tutorialManager != null)
                 {
                     m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
                     m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
@@ -845,7 +848,7 @@ class GridViewPanel extends BaseComponent
             var errorSprite : Sprite = Reflect.field(m_errorTextBubbles, errorEdgeId);
             errorSprite.removeFromParent();
         }
-        m_errorTextBubbles = new Dictionary();
+        m_errorTextBubbles = {};
         
         if (m_tutorialText != null)
         {
@@ -865,7 +868,7 @@ class GridViewPanel extends BaseComponent
     {
         m_currentLevel.addEventListener(TouchEvent.TOUCH, onTouch);
         m_currentLevel.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onLevelViewChanged);
-        if (m_currentLevel.tutorialManager)
+        if (m_currentLevel.tutorialManager != null)
         {
             m_currentLevel.tutorialManager.addEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
             m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
@@ -880,13 +883,13 @@ class GridViewPanel extends BaseComponent
         // Queue all nodes/edges to add (later we can refine to only on-screen
         for (nodeId in Reflect.fields(m_currentLevel.nodeLayoutObjs))
         {
-            var nodeLayoutObj : Dynamic = m_currentLevel.nodeLayoutObjs[nodeId];
+            var nodeLayoutObj : Dynamic = Reflect.field(m_currentLevel.nodeLayoutObjs, nodeId);
             m_nodeLayoutQueue.push(nodeLayoutObj);
         }
         var edgeId : String;
         for (edgeId in Reflect.fields(m_currentLevel.edgeLayoutObjs))
         {
-            var edgeLayoutObj : Dynamic = m_currentLevel.edgeLayoutObjs[edgeId];
+            var edgeLayoutObj : Dynamic = Reflect.field(m_currentLevel.edgeLayoutObjs, edgeId);
             m_edgeLayoutQueue.push(edgeLayoutObj);
         }
     }
@@ -969,8 +972,8 @@ class GridViewPanel extends BaseComponent
         var localPt : Point;
         var VIEW_HEIGHT : Float = HEIGHT - GameControlPanel.OVERLAP;
         if ((m_currentLevel.m_boundingBox.width * content.scaleX < MAX_SCALE * WIDTH) && (m_currentLevel.m_boundingBox.height * content.scaleX < MAX_SCALE * VIEW_HEIGHT))
-        
-        // If about the size of the window, just center the level{
+        {
+        // If about the size of the window, just center the level
             
             centerPt = new Point(m_currentLevel.m_boundingBox.left + m_currentLevel.m_boundingBox.width / 2, m_currentLevel.m_boundingBox.top + m_currentLevel.m_boundingBox.height / 2);
             globPt = m_currentLevel.localToGlobal(centerPt);
@@ -981,12 +984,12 @@ class GridViewPanel extends BaseComponent
         else
         {
             
-            var nodes : Dictionary = m_currentLevel.getNodes();
-            var foundNode : GameNode;
+            var nodes : Dynamic = m_currentLevel.getNodes();
+            var foundNode : GameNode = null;
             for (nodeId in Reflect.fields(nodes))
             {
                 var gameNode : GameNode = try cast(Reflect.field(nodes, nodeId), GameNode) catch(e:Dynamic) null;
-                if (gameNode.visible && (gameNode.alpha > 0) && gameNode.parent)
+                if (gameNode.visible && (gameNode.alpha > 0) && gameNode.parent != null)
                 {
                     foundNode = gameNode;
                     break;
@@ -1003,7 +1006,7 @@ class GridViewPanel extends BaseComponent
         );
         scaleContent(newScale, newScale);
         
-        if (m_currentLevel != null && m_currentLevel.tutorialManager)
+        if (m_currentLevel != null && m_currentLevel.tutorialManager != null)
         {
             var startPtOffset : Point = m_currentLevel.tutorialManager.getStartPanOffset();
             content.x += startPtOffset.x * content.scaleX;
@@ -1020,7 +1023,7 @@ class GridViewPanel extends BaseComponent
     private var m_fanfareContainer : Sprite = new Sprite();
     private var m_fanfare : Array<FanfareParticleSystem> = new Array<FanfareParticleSystem>();
     private var m_fanfareTextContainer : Sprite = new Sprite();
-    private var m_stopFanfareDelayedCall : DelayedCall;
+    private var m_stopFanfareDelayedCallId : Int;
     public function displayContinueButton(permanently : Bool = false) : Void
     {
         if (permanently)
@@ -1078,21 +1081,21 @@ class GridViewPanel extends BaseComponent
             addChild(m_fanfareTextContainer);
             
             if (PipeJamGameScene.inTutorial)
-            
-            // For tutorial, move text and button off to the side{
+            {
+            // For tutorial, move text and button off to the side
                 
                 var origX : Float = m_fanfareTextContainer.x;
                 var origY : Float = m_fanfareTextContainer.y;
                 for (i in 0...m_fanfare.length)
                 {
-                    Starling.juggler.tween(m_fanfare[i], LEVEL_COMPLETE_TEXT_MOVE_SEC, {
+                    Starling.current.juggler.tween(m_fanfare[i], LEVEL_COMPLETE_TEXT_MOVE_SEC, {
                                 delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
                                 particleX : (continueButton.x - origX),
                                 particleY : (continueButton.y - continueButton.height - origY),
                                 transition : Transitions.EASE_OUT
                             });
                 }
-                Starling.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_MOVE_SEC, {
+                Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_MOVE_SEC, {
                             delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
                             x : continueButton.x,
                             y : continueButton.y - continueButton.height,
@@ -1103,13 +1106,13 @@ class GridViewPanel extends BaseComponent
             else
             {
                 
-                Starling.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_FADE_SEC, {
+                Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_FADE_SEC, {
                             delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
                             alpha : 0,
                             transition : Transitions.EASE_IN
                         });
             }
-            m_stopFanfareDelayedCall = Starling.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
+            m_stopFanfareDelayedCallId = Starling.current.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
         }
         
         if (PipeJamGameScene.inTutorial)
@@ -1136,9 +1139,9 @@ class GridViewPanel extends BaseComponent
     
     public function removeFanfare() : Void
     {
-        if (m_stopFanfareDelayedCall != null)
+        if (m_stopFanfareDelayedCallId != null)
         {
-            Starling.juggler.remove(m_stopFanfareDelayedCall);
+            Starling.current.juggler.removeByID(m_stopFanfareDelayedCallId);
         }
         for (i in 0...m_fanfare.length)
         {
@@ -1151,7 +1154,7 @@ class GridViewPanel extends BaseComponent
         }
         if (m_fanfareTextContainer != null)
         {
-            Starling.juggler.removeTweens(m_fanfareTextContainer);
+            Starling.current.juggler.removeTweens(m_fanfareTextContainer);
             m_fanfareTextContainer.removeFromParent();
         }
     }
@@ -1244,13 +1247,13 @@ class GridViewPanel extends BaseComponent
                 }
             case TutorialEvent.HIGHLIGHT_PASSAGE:
                 edge = m_currentLevel.getEdgeContainer(evt.componentId);
-                if (edge != null && edge.innerFromBoxSegment)
+                if (edge != null && edge.innerFromBoxSegment != null)
                 {
                     spotlightComponent(edge.innerFromBoxSegment, 3.0, 3, 2);
                 }
             case TutorialEvent.HIGHLIGHT_CLASH:
                 edge = m_currentLevel.getEdgeContainer(evt.componentId);
-                if (edge != null && edge.errorContainer)
+                if (edge != null && edge.errorContainer != null)
                 {
                     spotlightComponent(edge.errorContainer, 3.0, 1.3, 1.3);
                 }
@@ -1291,13 +1294,13 @@ class GridViewPanel extends BaseComponent
         content.addChild(m_spotlight);
         var destX : Float = localPt.x - m_spotlight.width / 2;
         var destY : Float = localPt.y - m_spotlight.height / 2;
-        Starling.juggler.removeTweens(m_spotlight);
-        Starling.juggler.tween(m_spotlight, 0.9 * timeSec, {
+        Starling.current.juggler.removeTweens(m_spotlight);
+        Starling.current.juggler.tween(m_spotlight, 0.9 * timeSec, {
                     delay : 0.1 * timeSec,
                     x : destX,
                     transition : Transitions.EASE_OUT_ELASTIC
                 });
-        Starling.juggler.tween(m_spotlight, timeSec, {
+        Starling.current.juggler.tween(m_spotlight, timeSec, {
                     delay : 0,
                     y : destY,
                     transition : Transitions.EASE_OUT_ELASTIC
@@ -1353,7 +1356,7 @@ class GridViewPanel extends BaseComponent
     //byte array is compressed and contains it's width as as unsigned int at the start of the array
     public function getThumbnail(_maxwidth : Float, _maxheight : Float) : ByteArray
     {
-        var backgroundColor : Float = 0x262257;
+        var backgroundColor : Int = 0x262257;
         //save current state
         var savedClipRect : Rectangle = clipRect;
         var currentX : Float = content.x;
@@ -1365,7 +1368,7 @@ class GridViewPanel extends BaseComponent
         //remove these to help with compression
         removeChild(m_border);
         
-        var bmpdata : BitmapData = drawToBitmapData(backgroundColor);
+        var bmpdata : BitmapData = customDrawToBitmapData(backgroundColor);
         
         var scaleWidth : Float = _maxwidth / bmpdata.width;
         var scaleHeight : Float = _maxheight / bmpdata.height;
@@ -1390,7 +1393,7 @@ class GridViewPanel extends BaseComponent
         
         var m : Matrix = new Matrix();
         m.scale(scaleWidth, scaleHeight);
-        var smallBMD : BitmapData = new BitmapData(newWidth, newHeight);
+        var smallBMD : BitmapData = new BitmapData(Std.int(newWidth), Std.int(newHeight));
         smallBMD.draw(bmpdata, m);
         
         //restore state
@@ -1416,23 +1419,24 @@ class GridViewPanel extends BaseComponent
         return bytes;
     }
     
-    public function drawToBitmapData(_backgroundColor : Float = 0x00000000, destination : BitmapData = null) : BitmapData
+    public function customDrawToBitmapData(_backgroundColor : Int = 0x00000000, destination : BitmapData = null) : BitmapData
     {
-        var support : RenderSupport = new RenderSupport();
         var star : Starling = Starling.current;
+		var painter : Painter = star.painter;
         
         if (destination == null)
         {
             destination = new BitmapData(480, 320);
         }
         
-        support.renderTarget = null;
-        support.setOrthographicProjection(0, 0, 960, 640);
-        support.clear(_backgroundColor, 1);
-        render(support, 1.0);
-        support.finishQuadBatch();
+		painter.pushState();
+		painter.state.setProjectionMatrix(0, 0, 960, 640);
+		painter.clear(_backgroundColor, 1);
+		render(painter);
+        painter.finishFrame();
         
-        Starling.current.context.drawToBitmapData(destination);
+        star.context.drawToBitmapData(destination);
+		painter.popState();
         //	Starling.current.context.present(); // required on some platforms to avoid flickering
         
         return destination;

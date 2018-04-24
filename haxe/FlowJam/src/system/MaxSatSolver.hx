@@ -1,11 +1,11 @@
 package system;
 
 import haxe.Constraints.Function;
-import maxsat.MaxSatManager;
+//import maxsat.MaxSatManager;
 
 class MaxSatSolver
 {
-    private static var m_mgr : MaxSatManager = new MaxSatManager();
+    //private static var m_mgr : MaxSatManager = new MaxSatManager();
     private static var unsat_best : Int = -1;
     
     public static function test() : Void
@@ -46,12 +46,12 @@ class MaxSatSolver
     
     public static function run_solver(clause_arrays : Array<Dynamic>, initvars_Array : Array<Dynamic>, updatecallback : Function, donecallback : Function) : Void
     {
-        m_mgr.start(clause_arrays, initvars_Array, updatecallback, donecallback);
+        //m_mgr.start(clause_arrays, initvars_Array, updatecallback, donecallback);
     }
     
     public static function stop_solver() : Void
     {
-        m_mgr.stop();
+        //m_mgr.stop();
     }
     
     private static function update_callback(vars : Array<Dynamic>, unsat_weight : Int) : Int

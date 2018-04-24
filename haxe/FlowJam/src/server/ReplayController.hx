@@ -1,11 +1,12 @@
 package server;
 
+import cgs.server.logging.actions.QuestAction;
 import haxe.Constraints.Function;
-import cgs.server.logging.CGSServer;
-import cgs.server.logging.actions.ClientAction;
+import cgs.server.logging.CgsServerApi;
+import cgs.server.logging.actions.IClientAction;
 import cgs.server.logging.data.QuestData;
 import cgs.server.logging.data.QuestStartEndData;
-import com.adobe.serialization.json.JSON;
+import haxe.Json;
 import scenes.game.display.ReplayWorld;
 import system.VerigameServerConstants;
 
@@ -48,10 +49,9 @@ class ReplayController
         {
             attemptPreviewAction(questData.actions, 0, world, 1);
         }
+		 // Perform previewed action
         else if ((m_currentActionIndex == m_nextActionIndex) && (m_lastDir == 1))
-        
-        // Perform previewed action{
-            
+		{
             attemptPerformAction(questData.actions, m_currentActionIndex, world, 1);
         }
         // Otherwise preview next action
@@ -83,8 +83,8 @@ class ReplayController
             return;
         }
         if ((m_currentActionIndex == m_nextActionIndex) && (m_lastDir == -1))
-        
-        // Perform previewed action{
+        {
+        // Perform previewed action
             
             attemptPerformAction(questData.actions, m_currentActionIndex, world, -1);
         }
@@ -107,11 +107,11 @@ class ReplayController
         {
             return;
         }
-        if (!(Std.is(actions[attemptIndex], ClientAction)))
+        if (!(Std.is(actions[attemptIndex], IClientAction)))
         {
             return;
         }
-        var action : ClientAction = try cast(actions[attemptIndex], ClientAction) catch(e:Dynamic) null;
+        var action : QuestAction = try cast(actions[attemptIndex], QuestAction) catch(e:Dynamic) null;
         // perform the action now
         world.performAction(action, dir == -1);
         m_currentActionIndex = attemptIndex;
@@ -130,11 +130,11 @@ class ReplayController
         {
             return;
         }
-        if (!(Std.is(actions[attemptIndex], ClientAction)))
+        if (!(Std.is(actions[attemptIndex], IClientAction)))
         {
             return;
         }
-        var action : ClientAction = try cast(actions[attemptIndex], ClientAction) catch(e:Dynamic) null;
+        var action : QuestAction = try cast(actions[attemptIndex], QuestAction) catch(e:Dynamic) null;
         // preview the action now
         world.previewAction(action, dir == -1);
         m_currentActionIndex = attemptIndex;
@@ -151,7 +151,7 @@ class ReplayController
 		 * Load quest data from server, callback should have signature:
 		 * function onQuestDataLoaded(questData:QuestData, errMessage:String = null):void {}
 		 */
-    public function loadQuestData(dqid : String, cgsServer : CGSServer, callback : Function) : Void
+    public function loadQuestData(dqid : String, cgsServer : CgsServerApi, callback : Function) : Void
     {
         cgsServer.requestQuestData(dqid, onLoadQuestData);
         m_questDataLoadedCallback = callback;
@@ -210,7 +210,7 @@ class ReplayController
     
     private static function getQuestStart(questString : String) : QuestStartEndData
     {
-        var questObj : Array<Dynamic> = com.adobe.serialization.json.JSON.decode(questString);
+        var questObj : Array<Dynamic> = Json.parse(questString);
         
         var questStart : QuestStartEndData = new QuestStartEndData();
         questStart.parseJsonData(questObj[0]);
@@ -219,7 +219,7 @@ class ReplayController
     
     private static function getQuestEnd(questString : String) : QuestStartEndData
     {
-        var questObj : Array<Dynamic> = com.adobe.serialization.json.JSON.decode(questString);
+        var questObj : Array<Dynamic> = Json.parse(questString);
         
         if (questObj[1] != null)
         {
@@ -235,12 +235,13 @@ class ReplayController
     
     private static function getActionsArray(actionsString : String) : Array<Dynamic>
     {
-        var actionsObj : Dynamic = com.adobe.serialization.json.JSON.decode(actionsString);
+        var actionsObj : Dynamic = Json.parse(actionsString);
         
         var actionsDetail : Array<Dynamic> = new Array<Dynamic>();
-        for (actionObj/* AS3HX WARNING could not determine type for var: actionObj exp: EIdent(actionsObj) type: Dynamic */ in actionsObj)
+        for (actionObjName in Reflect.fields(actionsObj))
         {
-            var clientAction : ClientAction = new ClientAction();
+			var actionObj = Reflect.field(actionsObj, actionObjName);
+            var clientAction : QuestAction = new QuestAction();
             clientAction.parseJsonData(actionObj);
             actionsDetail.push(clientAction);
         }
@@ -278,7 +279,6 @@ class ReplayController
     
     private static function validateReplay(actionsArray : Array<Dynamic>) : Bool
     {
-        trace();
         trace("Validating replay.");
         
         var orderedActions : Array<Dynamic> = orderActions(actionsArray);

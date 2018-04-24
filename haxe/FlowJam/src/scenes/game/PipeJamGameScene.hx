@@ -17,8 +17,7 @@ class PipeJamGameScene extends Scene
     
     //takes a partial path to the files, using the base file name. -.json, -Layout.json and -Constraints.json will be assumed
     //we could obviously change it back, but this is the standard use case
-    public static var demoArray : Array<Dynamic> = new Array<Dynamic>(
-        "../SampleWorlds/L21374_V102"  //L21414_V17680  );
+    public static var demoArray : Array<Dynamic> = ["../SampleWorlds/L21374_V102"]; //L21414_V17680  );
     
     public static inline var DEBUG_PLAY_WORLD_ZIP : String = "";  // "../lib/levels/bonus/bonus.zip";  
     
@@ -38,7 +37,7 @@ class PipeJamGameScene extends Scene
     /** Start button image */
     private var start_button : Button;
     private var active_world : World;
-    private var m_worldGraphDict : Dictionary;
+    private var m_worldGraphDict : Dynamic;
     
     public function new(game : PipeJamGame)
     {
@@ -77,9 +76,9 @@ class PipeJamGameScene extends Scene
     {
         if (Std.is(obj, Array))
         {
-            m_worldObj = (try cast(obj, Array</*AS3HX WARNING no type*/>) catch(e:Dynamic) null)[0];
-            m_assignmentsObj = (try cast(obj, Array</*AS3HX WARNING no type*/>) catch(e:Dynamic) null)[1];
-            m_layoutObj = (try cast(obj, Array</*AS3HX WARNING no type*/>) catch(e:Dynamic) null)[2];
+            m_worldObj = (try cast(obj, Array<Dynamic>) catch(e:Dynamic) null)[0];
+            m_assignmentsObj = (try cast(obj, Array<Dynamic>) catch(e:Dynamic) null)[1];
+            m_layoutObj = (try cast(obj, Array<Dynamic>) catch(e:Dynamic) null)[2];
             m_assignmentsLoaded = true;
             m_layoutLoaded = true;
         }
@@ -105,7 +104,7 @@ class PipeJamGameScene extends Scene
     
     public function worldComplete(event : starling.events.Event) : Void
     {
-        m_worldGraphDict = try cast(event.data, Dictionary) catch(e:Dynamic) null;
+        m_worldGraphDict = event.data;
         m_worldLoaded = true;
         this.removeEventListener(ParseConstraintGraphState.WORLD_PARSED, worldComplete);
         onWorldParsed();
@@ -129,7 +128,7 @@ class PipeJamGameScene extends Scene
         try
         {
             PipeJamGame.printDebug("Creating World...");
-            if (PipeJam3.REPLAY_DQID)
+            if (PipeJam3.REPLAY_DQID != null)
             {
                 active_world = new ReplayWorld(m_worldGraphDict, m_worldObj, m_layoutObj, m_assignmentsObj);
             }

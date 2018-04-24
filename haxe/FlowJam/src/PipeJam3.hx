@@ -1,29 +1,24 @@
-import com.spikything.utils.MouseWheelTrap;
+//import com.spikything.utils.MouseWheelTrap;
+import assets.AssetsFont;
+import cgs.server.logging.data.QuestData;
+import events.NavigationEvent;
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.events.Event;
-import flash.events.TimerEvent;
 import flash.external.ExternalInterface;
 import flash.geom.Rectangle;
 import flash.net.SharedObject;
 import flash.text.TextField;
 import flash.text.TextFormat;
-import flash.utils.Timer;
-import assets.AssetsFont;
-import audio.AudioManager;
-import cgs.server.logging.data.QuestData;
-import events.NavigationEvent;
-import net.hires.debug.Stats;
 import networking.GameFileHandler;
 import networking.NetworkConnection;
-import scenes.splashscreen.SplashScreenScene;
 import server.LoggingServerInterface;
 import server.ReplayController;
 import starling.core.Starling;
 import starling.events.Event;
-import scenes.game.display.World;
 import system.VerigameServerConstants;
+//import net.hires.debug.Stats;
 
 //import mx.core.FlexGlobals;
 //import spark.components.Application;
@@ -77,7 +72,7 @@ class PipeJam3 extends flash.display.Sprite
             logging = new LoggingServerInterface(LoggingServerInterface.SETUP_KEY_FRIENDS_AND_FAMILY_BETA, stage, "", REPLAY_DQID != null);
             if (REPLAY_DQID != null)
             {
-                ReplayController.getInstance().loadQuestData(REPLAY_DQID, logging.cgsServer, onReplayQuestDataLoaded);
+                //ReplayController.getInstance().loadQuestData(REPLAY_DQID, logging.cgsServer, onReplayQuestDataLoaded);
             }
         }
     }
@@ -94,20 +89,20 @@ class PipeJam3 extends flash.display.Sprite
     
     public function initialize(result : Int = 0, e : flash.events.Event = null) : Void
     {
-        MouseWheelTrap.setup(stage);
+        //MouseWheelTrap.setup(stage);
         
         //set up the main controller
         stage.scaleMode = StageScaleMode.NO_SCALE;
         stage.align = StageAlign.TOP_LEFT;
         
         Starling.multitouchEnabled = false;  // useful on mobile devices  
-        Starling.handleLostContext = true;  // deactivate on mobile devices (to save memory)  
+        //Starling.handleLostContext = true;  // deactivate on mobile devices (to save memory)  
         
-        if (SHOW_PERFORMANCE_STATS)
-        {
-            var stats : Stats = new Stats();
-            stage.addChild(stats);
-        }
+        //if (SHOW_PERFORMANCE_STATS)
+        //{
+            //var stats : Stats = new Stats();
+            //stage.addChild(stats);
+        //}
         
         //	mStarling = new Starling(PipeJamGame, stage, null, null,Context3DRenderMode.SOFTWARE);
         mStarling = new Starling(PipeJamGame, stage);
@@ -173,8 +168,8 @@ class PipeJam3 extends flash.display.Sprite
         var newWidth : Int = Starling.current.nativeStage.fullScreenWidth;
         var newHeight : Int = Starling.current.nativeStage.fullScreenHeight;
         
-        stage.stageWidth = newWidth;
-        stage.stageHeight = newHeight;
+        stage.width = newWidth;
+        stage.height = newHeight;
         Starling.current.viewPort = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
         PipeJamGame.m_pipeJamGame.changeFullScreen(newWidth, newHeight);
     }
@@ -184,7 +179,7 @@ class PipeJam3 extends flash.display.Sprite
     {
         
         
-        if (Starling.context.driverInfo.toLowerCase().indexOf("software") != -1)
+        if (Starling.current.context.driverInfo.toLowerCase().indexOf("software") != -1)
         {
             Starling.current.nativeStage.frameRate = 30;
         }
@@ -221,23 +216,22 @@ class PipeJam3 extends flash.display.Sprite
     
     private function loadLevel(result : Int, objVector : Array<Dynamic>) : Void
     {
-        PipeJamGame.levelInfo = new ObjVector()[0];
+        PipeJamGame.levelInfo = Type.createInstance(objVector[0], new Array<Dynamic>());
         PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
     }
     
     private function onReplayQuestDataLoaded(questData : QuestData, err : String = null) : Void
     {
-        trace("Found " + ((questData.actions) ? questData.actions.length : 0) + " actions");
+        trace("Found " + (questData.actions != null ? questData.actions.length : 0) + " actions");
         if (err != null)
         {
             trace("Error: " + err);
         }
-        if (questData != null && questData.startData && questData.startData.details &&
-            questData.startData.details.exists(VerigameServerConstants.QUEST_PARAMETER_LEVEL_INFO) &&
-            questData.startData.details[VerigameServerConstants.QUEST_PARAMETER_LEVEL_INFO] != null &&
-            questData.startData.details[VerigameServerConstants.QUEST_PARAMETER_LEVEL_INFO].m_id)
+        if (questData != null && questData.startData != null && questData.startData.details != null &&
+            Reflect.hasField(questData.startData.details, VerigameServerConstants.QUEST_PARAMETER_LEVEL_INFO) &&
+            Reflect.hasField(Reflect.field(questData.startData.details, VerigameServerConstants.QUEST_PARAMETER_LEVEL_INFO), "m_id"))
         {
-            var levelId : String = Std.string(questData.startData.details[VerigameServerConstants.QUEST_PARAMETER_LEVEL_INFO].m_id);
+            var levelId : String = Reflect.field(Reflect.field(questData.startData.details, VerigameServerConstants.QUEST_PARAMETER_LEVEL_INFO), "m_id");
             trace("Replaying levelId: " + levelId);
             loadLevelFromObjectID(levelId);
             return;

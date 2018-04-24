@@ -120,8 +120,8 @@ class SplashScreenMenuBox extends BaseComponent
             play_button.addEventListener(starling.events.Event.TRIGGERED, getNextPlayerLevelDebug);
         }
         else if (!PipeJam3.TUTORIAL_DEMO)
-        
-        //not release, not tutorial demo{
+        {
+        //not release, not tutorial demo
             
             {
                 if (!DEMO_ONLY)

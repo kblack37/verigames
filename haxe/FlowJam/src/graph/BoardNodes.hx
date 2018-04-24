@@ -5,8 +5,8 @@ import flash.utils.Dictionary;
 
 class BoardNodes
 {
-    public var startingEdgeDictionary(get, never) : Dictionary;
-    public var outgoingEdgeDictionary(get, never) : Dictionary;
+    public var startingEdgeDictionary(get, never) : Dynamic;
+    public var outgoingEdgeDictionary(get, never) : Dynamic;
 
     /** Board name (may be obfuscated) */
     public var board_name : String;
@@ -15,7 +15,7 @@ class BoardNodes
     public var original_board_name : String;
     
     /** This is a dictionary of Nodes; INDEXED BY NODE_ID */
-    public var nodeDictionary : Dictionary = new Dictionary();
+    public var nodeDictionary : Dynamic = {};
     public var nodeIDArray : Array<Dynamic> = new Array<Dynamic>();
     
     /** The names of any boards that appear on this board */
@@ -25,10 +25,10 @@ class BoardNodes
     public var beginningNodes : Array<Node> = new Array<Node>();
     
     /** Map from edge set id to all starting edges for that edge set ON THIS BOARD (no other boards) */
-    private var m_startingEdgeDictionary : Dictionary;
+    private var m_startingEdgeDictionary : Dynamic;
     
     /** Map from edge set id to all OUTGOING edges for that edge set ON THIS BOARD (no other boards) */
-    private var m_outgoingEdgeDictionary : Dictionary;
+    private var m_outgoingEdgeDictionary : Dynamic;
     
     /** True if a change in pipe width or buzzsaw was made since the last simulation */
     public var changed_since_last_sim : Bool = true;
@@ -37,7 +37,7 @@ class BoardNodes
     /** True if the board is being checked for trouble points */
     public var simulating : Bool = false;
     
-    public var metadata : Dictionary = new Dictionary();
+    public var metadata : Dynamic = {};
     /** After all BoardNodes are created, we want to associate all SubnetNodes with their appropriate BoardNodes */
     public var subnetNodesToAssociate : Array<SubnetworkNode> = new Array<SubnetworkNode>();
     
@@ -54,9 +54,9 @@ class BoardNodes
     
     public function addNode(_node : Node) : Void
     {
-        if (!nodeDictionary.exists(_node.node_id))
+        if (!Reflect.hasField(nodeDictionary, _node.node_id))
         {
-            nodeDictionary[_node.node_id] = _node;
+			Reflect.setField(nodeDictionary, _node.node_id, _node);
             nodeIDArray.push(_node.node_id);
             var ip : Port;
             var op : Port;
@@ -139,8 +139,8 @@ class BoardNodes
         }
     }
     
-    private var m_stubInputWidthsByPort : Dictionary = new Dictionary();
-    private var m_stubOutputWidthsByPort : Dictionary = new Dictionary();
+    private var m_stubInputWidthsByPort : Dynamic = {};
+    private var m_stubOutputWidthsByPort : Dynamic = {};
     public function addStubBoardPortWidth(_port_num : String, _stub_width : String, _is_input : Bool) : Void
     {
         _stub_width = _stub_width.toLowerCase();
@@ -150,7 +150,7 @@ class BoardNodes
         }
         if (_is_input)
         {
-            if (m_stubInputWidthsByPort.exists(_port_num))
+            if (Reflect.hasField(m_stubInputWidthsByPort, _port_num))
             {
                 throw new Error("Duplicate stub inputs found for board:" + original_board_name + " port_num:" + _port_num);
             }
@@ -158,7 +158,7 @@ class BoardNodes
         }
         else
         {
-            if (m_stubOutputWidthsByPort.exists(_port_num))
+            if (Reflect.hasField(m_stubOutputWidthsByPort, _port_num))
             {
                 throw new Error("Duplicate stub outputs found for board:" + original_board_name + " port_num:" + _port_num);
             }
@@ -170,7 +170,7 @@ class BoardNodes
     {
         if (_is_input)
         {
-            if (!m_stubInputWidthsByPort.exists(_port_num))
+            if (!Reflect.hasField(m_stubInputWidthsByPort, _port_num))
             {
                 return null;
             }
@@ -178,7 +178,7 @@ class BoardNodes
         }
         else
         {
-            if (!m_stubOutputWidthsByPort.exists(_port_num))
+            if (!Reflect.hasField(m_stubOutputWidthsByPort, _port_num))
             {
                 return null;
             }
@@ -186,11 +186,11 @@ class BoardNodes
         }
     }
     
-    private function get_startingEdgeDictionary() : Dictionary
+    private function get_startingEdgeDictionary() : Dynamic
     {
         if (m_startingEdgeDictionary == null)
         {
-            m_startingEdgeDictionary = new Dictionary();
+            m_startingEdgeDictionary = {};
             for (i in 0...beginningNodes.length)
             {
                 var begNode : Node = beginningNodes[i];
@@ -204,11 +204,11 @@ class BoardNodes
         return m_startingEdgeDictionary;
     }
     
-    private function get_outgoingEdgeDictionary() : Dictionary
+    private function get_outgoingEdgeDictionary() : Dynamic
     {
         if (m_outgoingEdgeDictionary == null)
         {
-            m_outgoingEdgeDictionary = new Dictionary();
+            m_outgoingEdgeDictionary = {};
             if (outgoing_node != null)
             {
                 for (i in 0...outgoing_node.incoming_ports.length)

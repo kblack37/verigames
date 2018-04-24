@@ -8,10 +8,11 @@ class ConstraintScoringConfig
     public static inline var TYPE_0_VALUE_KEY : String = "type:0";
     public static inline var TYPE_1_VALUE_KEY : String = "type:1";
     
-    public var scoringDict : Dictionary = new Dictionary();
+    public var scoringDict : Dynamic;
     
     public function new()
     {
+		scoringDict = {};
     }
     
     public function updateScoringValue(key : String, val : Float) : Void
@@ -21,19 +22,18 @@ class ConstraintScoringConfig
     
     public function getScoringValue(key : String) : Int
     {
-        if (scoringDict.exists(key))
+        if (Reflect.hasField(scoringDict, key))
         {
-            return as3hx.Compat.parseInt(Reflect.field(scoringDict, key));
+            return Std.int(Reflect.field(scoringDict, key));
         }
         return 0;
     }
     
     public function removeScoringValue(key : String) : Void
     {
-        if (scoringDict.exists(key))
+        if (Reflect.hasField(scoringDict, key))
         {
-            This is an intentional compilation error. See the README for handling the delete keyword
-            delete scoringDict[key];
+			Reflect.deleteField(scoringDict, key);
         }
     }
     

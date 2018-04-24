@@ -9,7 +9,7 @@ class EdgeSetRef extends EventDispatcher
 {
     public var id : String;
     // Level name to Vector.<Edge> containing edges for that level
-    private var m_levelNameToEdges : Dictionary = new Dictionary();
+    private var m_levelNameToEdges : Map<String, Array<Edge>> = new Map<String, Array<Edge>>();
     public var allEdges : Array<Edge> = new Array<Edge>();
     private var m_props : PropDictionary = new PropDictionary();
     // Possible stamps that the edge set can have, can only activate possible props
@@ -31,23 +31,23 @@ class EdgeSetRef extends EventDispatcher
         allEdges.push(edge);
         if (!m_levelNameToEdges.exists(levelName))
         {
-            Reflect.setField(m_levelNameToEdges, levelName, new Array<Edge>());
+			m_levelNameToEdges[levelName] = new Array<Edge>();
         }
         getLevelEdges(levelName).push(edge);
     }
     
     public function getLevelEdges(levelName : String) : Array<Edge>
     {
-        var edges : Array<Edge> = Reflect.field(m_levelNameToEdges, levelName);
+        var edges : Array<Edge> = m_levelNameToEdges[levelName];
         if (edges != null)
         {
             return edges;
         }
         
         //assume the dictionary only has one element, if name can't be found
-        for (key in Reflect.fields(m_levelNameToEdges))
+        for (edges in m_levelNameToEdges.iterator())
         {
-            return try cast(Reflect.field(m_levelNameToEdges, key), Array/*Vector.<T> call?*/) catch(e:Dynamic) null;
+            return edges;
         }
         return null;
     }

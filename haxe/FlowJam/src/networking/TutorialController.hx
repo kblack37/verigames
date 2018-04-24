@@ -28,20 +28,20 @@ class TutorialController extends Sprite
     public static var tutorialAssignmentsJson : String = Type.createInstance(tutorialAssignmentsFileClass, []);
     public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(tutorialAssignmentsJson);
     
-    public static var TUTORIAL_LEVEL_COMPLETE : Int = 0;
-    public static var GET_COMPLETED_TUTORIAL_LEVELS : Int = 1;
+    public static var tutorial_level_complete : Int = 0;
+    public static var get_completed_tutorial_levels : Int = 1;
     
     public static var TUTORIALS_COMPLETED_STRING : String = "tutorials_completed";
     
     //used as a ordered array of order values containing all tutorial orders
-    private var tutorialOrderedList : Array<Float>;
+    private var tutorialOrderedList : Array<Int>;
     
     //these are tutorial level lookups for all tutorials
-    private var orderToTutorialDictionary : Dictionary;
-    private var qidToTutorialDictionary : Dictionary;
+    private var orderToTutorialDictionary : Map<Int, Dynamic>;
+    private var qidToTutorialDictionary : Dynamic;
     
     //lookup by qid, if not null, has been completed
-    public var completedTutorialDictionary : Dictionary;
+    public var completedTutorialDictionary : Dynamic;
     
     private static var tutorialController : TutorialController;
     
@@ -67,11 +67,11 @@ class TutorialController extends Sprite
         var levelFound : Bool = false;
         for (order in tutorialOrderedList)
         {
-            var nextName : String = Reflect.field(orderToTutorialDictionary, Std.string(order))["name"];
+            var nextName : String = Reflect.field(orderToTutorialDictionary[order], "name");
             
             if (nextName == name)
             {
-                return Reflect.field(orderToTutorialDictionary, Std.string(order))["qid"];
+                return Reflect.field(orderToTutorialDictionary[order], "qid");
             }
         }
         return "0";
@@ -79,22 +79,23 @@ class TutorialController extends Sprite
     
     public function getTutorialsCompletedByPlayer() : Void
     {
-        sendMessage(GET_COMPLETED_TUTORIAL_LEVELS, getTutorialsCompleted);
+        sendMessage(get_completed_tutorial_levels, getTutorialsCompleted);
     }
     
     private function getTutorialsCompleted(result : Int, e : flash.events.Event) : Void
     {
         if (completedTutorialDictionary == null)
         {
-            completedTutorialDictionary = new Dictionary();
+            completedTutorialDictionary = {};
         }
-        if (e != null && e.target && e.target.data)
+        if (e != null && e.target != null && Reflect.hasField(e.target, "data"))
         {
-            var message : String = Std.string(e.target.data);
+            var message : String = Reflect.field(e.target, "data");
             var obj : Dynamic = haxe.Json.parse(message);
-            for (entry/* AS3HX WARNING could not determine type for var: entry exp: EIdent(obj) type: Dynamic */ in obj)
+            for (id in Reflect.fields(obj))
             {
-                completedTutorialDictionary[entry.levelID] = entry;
+				var entry = Reflect.field(obj, id);
+				Reflect.setField(completedTutorialDictionary, entry.levelID, entry);
             }
         }
         //also check cookies for levels played when not logged in
@@ -105,16 +106,16 @@ class TutorialController extends Sprite
     {
         if (completedTutorialDictionary == null)
         {
-            completedTutorialDictionary = new Dictionary();
+            completedTutorialDictionary = {};
         }
         
         var tutorialsCompleted : String = HTTPCookies.getCookie(TutorialController.TUTORIALS_COMPLETED_STRING);
         if (tutorialsCompleted != null)
         {
-            var tutorialListArray : Array<Dynamic> = tutorialsCompleted.split(",");
+            var tutorialListArray : Array<String> = tutorialsCompleted.split(",");
             for (tutorial in tutorialListArray)
             {
-                Reflect.setField(completedTutorialDictionary, Std.string(tutorial), tutorial);
+                Reflect.setField(completedTutorialDictionary, tutorial, tutorial);
             }
         }
         setTutorialObj(tutorialObj);
@@ -132,14 +133,14 @@ class TutorialController extends Sprite
             }
             if (completedTutorialDictionary == null)
             {
-                completedTutorialDictionary = new Dictionary();
+                completedTutorialDictionary = {};
             }
-            var currentLevel : Int = as3hx.Compat.parseInt(PipeJamGame.levelInfo.tutorialLevelID);
-            if (completedTutorialDictionary[currentLevel] == null)
+            var currentLevel : Int = Std.int(PipeJamGame.levelInfo.tutorialLevelID);
+            if (!Reflect.hasField(completedTutorialDictionary, Std.string(currentLevel)))
             {
                 var newTutorialObj : TutorialController = new TutorialController();
                 newTutorialObj.levelCompletedQID = PipeJamGame.levelInfo.tutorialLevelID;
-                completedTutorialDictionary[currentLevel] = newTutorialObj;
+                Reflect.setField(completedTutorialDictionary, Std.string(currentLevel), newTutorialObj);
                 newTutorialObj.post();
             }
         }
@@ -148,7 +149,7 @@ class TutorialController extends Sprite
     {
         if (PlayerValidation.playerLoggedIn)
         {
-            sendMessage(TUTORIAL_LEVEL_COMPLETE, postMessage);
+            sendMessage(tutorial_level_complete, postMessage);
         }
         //add to cookie string
         else
@@ -166,7 +167,7 @@ class TutorialController extends Sprite
     
     public function isTutorialLevelCompleted(tutorialQID : String) : Bool
     {
-        return (completedTutorialDictionary && (Reflect.field(completedTutorialDictionary, tutorialQID) != null));
+        return (completedTutorialDictionary != null && (Reflect.field(completedTutorialDictionary, tutorialQID) != null));
     }
     
     
@@ -192,7 +193,7 @@ class TutorialController extends Sprite
             var levelFound : Bool = false;
             for (order in tutorialOrderedList)
             {
-                var nextQID : String = Reflect.field(orderToTutorialDictionary, Std.string(order))["qid"];
+                var nextQID : String = Reflect.field(orderToTutorialDictionary[order], "qid");
                 
                 if (!isTutorialLevelCompleted(nextQID))
                 {
@@ -217,8 +218,8 @@ class TutorialController extends Sprite
         {
             return 0;
         }
-        var order : Float = tutorialOrderedList[0];
-        return Reflect.field(orderToTutorialDictionary, Std.string(order))["qid"];
+        var order : Int = tutorialOrderedList[0];
+        return Reflect.field(orderToTutorialDictionary[order], "qid");
     }
     
     //uses the current PipeJamGame.levelInfo.levelId to find the next level in sequence that hasn't been played
@@ -230,9 +231,9 @@ class TutorialController extends Sprite
         {
             return 0;
         }
-        currentLevelQID = as3hx.Compat.parseInt(PipeJamGame.levelInfo.tutorialLevelID);
+        currentLevelQID = Std.int(PipeJamGame.levelInfo.tutorialLevelID);
         
-        var currentLevel : Dynamic = qidToTutorialDictionary[currentLevelQID];
+        var currentLevel : Dynamic = Reflect.field(qidToTutorialDictionary, Std.string(currentLevelQID));
         var currentPosition : Int = Reflect.field(currentLevel, "position");
         currentPosition++;
         var nextPosition : Int = currentPosition;
@@ -245,7 +246,7 @@ class TutorialController extends Sprite
                 return 0;
             }
             
-            var nextQID : Int = orderToTutorialDictionary[nextPosition]["qid"];
+            var nextQID : Int = Reflect.field(orderToTutorialDictionary[nextPosition], "qid");
             
             //if we chose the last level from the level select screen, assume we want to play in order, done or not
             if (fromLevelSelectList)
@@ -271,14 +272,14 @@ class TutorialController extends Sprite
         {
             throw new Error("Expecting 'levels' Array in tutorial world JSON");
         }
-        tutorialOrderedList = new Array<Float>();
-        orderToTutorialDictionary = new Dictionary();
-        qidToTutorialDictionary = new Dictionary();
+        tutorialOrderedList = new Array<Int>();
+        orderToTutorialDictionary = new Map<Int, Dynamic>();
+        qidToTutorialDictionary = {};
         //order the levels and store the order
         for (i in 0...levels.length)
         {
             var levelObj : Dynamic = levels[i];
-            var qid : Float = as3hx.Compat.parseFloat(Reflect.field(levelObj, "qid"));
+            var qid : Int = Std.parseInt(Reflect.field(levelObj, "qid"));
             Reflect.setField(qidToTutorialDictionary, Std.string(qid), levelObj);
             orderToTutorialDictionary[i] = levelObj;
             Reflect.setField(levelObj, "position", i);
@@ -288,7 +289,7 @@ class TutorialController extends Sprite
     
     public function clearPlayedTutorials() : Void
     {
-        completedTutorialDictionary = new Dictionary();
+        completedTutorialDictionary = {};
     }
     
     public function resetTutorialStatus() : Void
@@ -330,7 +331,7 @@ class TutorialController extends Sprite
         
         switch (type)
         {
-            case TUTORIAL_LEVEL_COMPLETE:
+            case tutorial_level_complete:
                 messages.push({
                             playerID : PlayerValidation.playerID,
                             levelID : PipeJamGame.levelInfo.tutorialLevelID
@@ -338,7 +339,7 @@ class TutorialController extends Sprite
                 var data_id : String = haxe.Json.stringify(messages);
                 url = NetworkConnection.productionInterop + "?function=reportPlayedTutorial2&data_id='" + data_id + "'";
                 method = URLRequestMethod.POST;
-            case GET_COMPLETED_TUTORIAL_LEVELS:
+            case get_completed_tutorial_levels:
                 url = NetworkConnection.productionInterop + "?function=findPlayedTutorials2&data_id=" + PlayerValidation.playerID;
                 method = URLRequestMethod.POST;
         }

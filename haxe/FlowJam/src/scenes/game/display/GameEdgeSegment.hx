@@ -8,6 +8,7 @@ import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import graph.PropDictionary;
+import openfl.Vector;
 import starling.display.BlendMode;
 import starling.display.DisplayObject;
 import starling.display.Image;
@@ -99,21 +100,21 @@ class GameEdgeSegment extends GameComponent
     private static inline var CLICK_DIST : Float = 0.2;  //for extensions, register distance dragged  
     override private function onTouch(event : TouchEvent) : Void
     {
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         if (touches.length == 0)
         {
             return;
         }
         
-        if (DEBUG_TRACE_IDS && event.getTouches(this, TouchPhase.ENDED).length && parent && (Std.is(parent, GameComponent)))
+        if (GameComponent.DEBUG_TRACE_IDS && event.getTouches(this, TouchPhase.ENDED).length > 0&& parent != null && (Std.is(parent, GameComponent)))
         {
             trace("EdgeContainer '" + (try cast(parent, GameComponent) catch(e:Dynamic) null).m_id + "'");
         }
         
-        if (m_isInnerBoxSegment && event.getTouches(this, TouchPhase.ENDED).length &&
+        if (m_isInnerBoxSegment && event.getTouches(this, TouchPhase.ENDED).length > 0 &&
             (!isMoving || !hasMovedOutsideClickDist))
-        
-        // If haven't moved enough, register this as a click on the node itself{
+        {
+        // If haven't moved enough, register this as a click on the node itself
             
             dispatchEvent(new EdgeContainerEvent(EdgeContainerEvent.INNER_SEGMENT_CLICKED, this, null, event.touches));
         }
@@ -123,7 +124,7 @@ class GameEdgeSegment extends GameComponent
         }
         
         var touch : Touch = touches[0];
-        if (event.getTouches(this, TouchPhase.MOVED).length)
+        if (event.getTouches(this, TouchPhase.MOVED).length > 0)
         {
             if (touches.length == 1)
             {
@@ -159,7 +160,7 @@ class GameEdgeSegment extends GameComponent
                 currentDragSegment = false;
             }
         }
-        else if (event.getTouches(this, TouchPhase.ENDED).length)
+        else if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
             if (touches.length == 1)
             {
@@ -186,7 +187,7 @@ class GameEdgeSegment extends GameComponent
                 }
             }
         }
-        else if (event.getTouches(this, TouchPhase.HOVER).length)
+        else if (event.getTouches(this, TouchPhase.HOVER).length > 0)
         {
             if (touches.length == 1)
             {
@@ -194,7 +195,7 @@ class GameEdgeSegment extends GameComponent
                 dispatchEvent(new EdgeContainerEvent(EdgeContainerEvent.HOVER_EVENT_OVER, this));
             }
         }
-        else if (event.getTouches(this, TouchPhase.BEGAN).length)
+        else if (event.getTouches(this, TouchPhase.BEGAN).length > 0)
         {
             trace(touches[0].target);
         }
@@ -218,8 +219,6 @@ class GameEdgeSegment extends GameComponent
     
     public function draw() : Void
     {
-        unflatten();
-        
         if (m_quad != null)
         {
             m_quad.removeFromParent(true);
@@ -229,7 +228,7 @@ class GameEdgeSegment extends GameComponent
         if ((m_propertyMode != PropDictionary.PROP_NARROW) && getProps().hasProp(m_propertyMode))
         {
             m_quad = createEdgeSegment(m_endPt, m_isWide, false);
-            m_quad.color = KEYFOR_COLOR;
+            m_quad.color = BaseComponent.KEYFOR_COLOR;
         }
         else
         {
@@ -293,8 +292,8 @@ class GameEdgeSegment extends GameComponent
         var newSegment : Image = new Image(segmentTexture);
         
         if (isHoriz)
-        
-        // Horizontal{
+        {
+        // Horizontal
             
             if (GameEdgeContainer.EDGES_OVERLAPPING_JOINTS)
             {
@@ -328,16 +327,6 @@ class GameEdgeSegment extends GameComponent
         }
         
         return newSegment;
-    }
-    
-    override public function flatten() : Void
-    {
-        if (false)
-        
-        //don't flatten{
-            
-            super.flatten();
-        }
     }
     
     public function onEnterFrame(event : Event) : Void

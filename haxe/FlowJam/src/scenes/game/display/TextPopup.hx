@@ -30,7 +30,7 @@ class TextPopup extends Sprite
         
         container.addChild(text);
         
-        Starling.juggler.tween(text, 1.5, {
+        Starling.current.juggler.tween(text, 1.5, {
                     y : pos.y - 20,
                     alpha : 0.2,
                     onComplete : function() : Void

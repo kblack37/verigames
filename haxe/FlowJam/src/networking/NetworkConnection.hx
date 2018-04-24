@@ -87,8 +87,8 @@ class NetworkConnection
         {
             urlRequest.method = URLRequestMethod.POST;
             if (data != null)
-            
-            //var variables:URLVariables = new URLVariables();{
+            {
+            //var variables:URLVariables = new URLVariables();
                 
                 //variables.file = "test";
                 urlRequest.contentType = URLLoaderDataFormat.TEXT;
@@ -156,7 +156,7 @@ class NetworkConnection
     {
         try
         {
-            trace("in complete " + e.target.data);
+            //trace("in complete " + e.target.data);
             if (m_callback != null)
             {
                 m_callback(EVENT_COMPLETE, e);

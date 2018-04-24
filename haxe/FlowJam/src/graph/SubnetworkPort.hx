@@ -16,11 +16,11 @@ class SubnetworkPort extends Port
     public var default_props : PropDictionary;
     public var default_is_wide : Bool;
     
-    public function new(_node : SubnetworkNode, _edge : Edge, _id : String, _type : Int = INCOMING_PORT_TYPE)
+    public function new(_node : SubnetworkNode, _edge : Edge, _id : String, _type : Int = Port.INCOMING_PORT_TYPE)
     {
         super(_node, _edge, _id, _type);
         default_props = new PropDictionary();
-        if (type == INCOMING_PORT_TYPE)
+        if (type == Port.INCOMING_PORT_TYPE)
         {
             setDefaultWidth("wide");
         }

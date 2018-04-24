@@ -17,12 +17,12 @@ import graph.PropDictionary;
 import starling.display.Quad;
 import starling.events.Event;
 import starling.filters.BlurFilter;
+import starling.filters.GlowFilter;
 
 class GameNode extends GameNodeBase
 {
     public var assetName(get, never) : String;
 
-    private var m_gameNodeDictionary : Dictionary = new Dictionary();
     private var m_scoreBlock : ScoreBlock;
     private var m_highlightRect : Quad;
     
@@ -54,8 +54,8 @@ class GameNode extends GameNodeBase
     
     override public function onClicked(pt : Point) : Void
     {
-        var changeEvent : VarChangeEvent;
-        var undoEvent : UndoEvent;
+        var changeEvent : VarChangeEvent = null;
+        var undoEvent : UndoEvent = null;
         if (m_propertyMode == PropDictionary.PROP_NARROW)
         {
             if (m_isEditable)
@@ -66,8 +66,8 @@ class GameNode extends GameNodeBase
                 changeEvent = new VarChangeEvent(VarChangeEvent.VAR_CHANGE_USER, constraintVar, PropDictionary.PROP_NARROW, !newIsWide, pt);
                 undoEvent = new UndoEvent(changeEvent, this);
                 if (newIsWide)
-                
-                // Wide{
+                {
+                // Wide
                     
                     AudioManager.getInstance().audioDriver().playSfx(AssetsAudio.SFX_LOW_BELT);
                 }
@@ -106,11 +106,11 @@ class GameNode extends GameNodeBase
         var redraw : Bool = (m_isWide != newIsWide);
         m_isWide = newIsWide;
         m_isDirty = redraw;
-        for (iedge/* AS3HX WARNING could not determine type for var: iedge exp: EIdent(orderedIncomingEdges) type: null */ in orderedIncomingEdges)
+        for (iedge in orderedIncomingEdges)
         {
             iedge.onWidgetChange(this);
         }
-        for (oedge/* AS3HX WARNING could not determine type for var: oedge exp: EIdent(orderedOutgoingEdges) type: null */ in orderedOutgoingEdges)
+        for (oedge in orderedOutgoingEdges)
         {
             oedge.onWidgetChange(this);
         }
@@ -151,7 +151,7 @@ class GameNode extends GameNodeBase
     
     override public function draw() : Void
     {
-        if (costume)
+        if (costume != null)
         {
             costume.removeFromParent(true);
         }
@@ -177,7 +177,7 @@ class GameNode extends GameNodeBase
         }
         useHandCursor = m_isEditable;
         
-        if (constraintVar)
+        if (constraintVar != null)
         {
             var i : Int = 0;
             for (prop in Reflect.fields(constraintVar.getProps().iterProps()))
@@ -188,7 +188,7 @@ class GameNode extends GameNodeBase
                 }
                 if (prop == m_propertyMode)
                 {
-                    var keyQuad : Quad = new Quad(3, 3, KEYFOR_COLOR);
+                    var keyQuad : Quad = new Quad(3, 3, BaseComponent.KEYFOR_COLOR);
                     keyQuad.x = 1 + i * 4;
                     keyQuad.y = boundingBox.height - 4;
                     addChild(keyQuad);
@@ -198,12 +198,12 @@ class GameNode extends GameNodeBase
         }
         
         if (isSelected)
-        
-        // Apply the glow filter{
+        {
+        // Apply the glow filter
             
-            this.filter = BlurFilter.createGlow();
+            this.filter = new GlowFilter();
         }
-        else if (this.filter)
+        else if (this.filter != null)
         {
             this.filter.dispose();
         }
@@ -221,7 +221,7 @@ class GameNode extends GameNodeBase
         {
             m_scoreBlock.dispose();
         }
-        if (constraintVar)
+        if (constraintVar != null)
         {
             constraintVar.removeEventListener(VarChangeEvent.VAR_CHANGED_IN_GRAPH, onVarChange);
         }

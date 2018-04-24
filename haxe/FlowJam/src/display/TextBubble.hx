@@ -137,10 +137,10 @@ class TextBubble extends Sprite
     
     private function onEnterFrame(evt : Event) : Void
     {
-        var timeSec : Float = Date.now().time / 1000.0;
-        var timeArrowOffset : Float = m_arrowBounce * (as3hx.Compat.parseInt(timeSec / m_arrowBounceSpeed) % 2);
+        var timeSec : Float = Date.now().getTime() / 1000.0;
+        var timeArrowOffset : Float = m_arrowBounce * (Std.int(timeSec / m_arrowBounceSpeed) % 2);
         
-        if (m_pointAt != null && m_pointAt.parent && m_tutorialArrow != null)
+        if (m_pointAt != null && m_pointAt.parent != null && m_tutorialArrow != null)
         {
             var pt : Point = new Point();
             var offset : Point = new Point();

@@ -4,7 +4,7 @@ package utils;
 /**
 	 * Class to store arbitary data, such ass the attributes of an XML object where are fields are not necessarily known
 	*/
-class Metadata extends Dynamic
+class Metadata
 {
     public var data : Dynamic;
     public var xml : FastXML;
@@ -15,7 +15,6 @@ class Metadata extends Dynamic
 		 */
     public function new(_data : Dynamic, _xml : FastXML = null)
     {
-        super();
         data = _data;
         xml = _xml;
     }
@@ -27,13 +26,14 @@ class Metadata extends Dynamic
 		 */
     public function get(_s : String) : Dynamic
     {
+		var val : Dynamic = null;
         if (data != null)
         {
-            if (Reflect.field(data, _s) != null)
+            if (Reflect.hasField(data, _s))
             {
-                return Reflect.field(data, _s);
+                val = Reflect.field(data, _s);
             }
         }
-        return null;
+        return val;
     }
 }

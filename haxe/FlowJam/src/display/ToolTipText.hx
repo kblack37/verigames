@@ -16,7 +16,7 @@ class ToolTipText extends TextBubbleFollowComponent
     public function new(text : String, level : Level, persistent : Bool, pointAtFunction : Function, pointFrom : String = NineSliceBatch.TOP_LEFT, pointTo : String = NineSliceBatch.CENTER)
     {
         var fontSz : Int = (persistent) ? PERSISTENT_FONT_SZ : ACTIVE_FONT_SZ;
-        var textColor : Int = (persistent) ? GOLD : 0xFFFFFF;
+        var textColor : Int = (persistent) ? TextBubble.GOLD : 0xFFFFFF;
         var inset : Float = fontSz / 6.0;
         
         super(pointAtFunction, level, text, fontSz, textColor, pointFrom, pointTo, null, fontSz / 1.5, 0, 0, INSET, false, textColor, OUTLINE_WEIGHT, OUTLINE_CLR);

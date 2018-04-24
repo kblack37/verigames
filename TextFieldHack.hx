@@ -17,19 +17,18 @@ import flash.text.AntiAliasType;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.utils.Dictionary;
-import starling.core.RenderSupport;
+import openfl.filters.BitmapFilter;
 import starling.core.Starling;
 import starling.display.DisplayObject;
 import starling.display.DisplayObjectContainer;
 import starling.display.Image;
+import starling.display.MeshBatch;
 import starling.display.Quad;
-import starling.display.QuadBatch;
 import starling.display.Sprite;
 import starling.events.Event;
+import starling.rendering.Painter;
 import starling.text.BitmapFont;
 import starling.textures.Texture;
-import starling.utils.HAlign;
-import starling.utils.VAlign;
 
 /** A TextField displays text, either using standard true type fonts or custom bitmap fonts.
 	 *  
@@ -91,7 +90,7 @@ class TextFieldHack extends TextFieldWrapper
     private var mUnderline : Bool;
     private var mAutoScale : Bool;
     private var mKerning : Bool;
-    private var mNativeFilters : Array<Dynamic>;
+    private var mNativeFilters : Array<BitmapFilter>;
     private var mRequiresRedraw : Bool;
     private var mIsRenderedText : Bool;
     private var mTextBounds : Rectangle;
@@ -100,13 +99,13 @@ class TextFieldHack extends TextFieldWrapper
     private var mBorder : DisplayObjectContainer;
     
     private var mImage : Image;
-    private var mQuadBatch : QuadBatch;
+    private var mMeshBatch : MeshBatch;
     
     // this object will be used for text rendering
     private static var sNativeTextField : flash.text.TextField = new flash.text.TextField();
     
     // this is the container for bitmap fonts
-    private static var sBitmapFonts : Dictionary = new Dictionary();
+    private static var sBitmapFonts : Dynamic = {};
     
     /** Create a new text field with the given properties. */
     public function new(width : Float, height : Float, text : String, fontName : String = "Verdana",
@@ -116,8 +115,8 @@ class TextFieldHack extends TextFieldWrapper
         mText = (text != null) ? text : "";
         mFontSize = fontSize;
         mColor = color;
-        mHAlign = HAlign.CENTER;
-        mVAlign = VAlign.CENTER;
+        //mHAlign = HAlign.CENTER;
+        //mVAlign = VAlign.CENTER;
         mBorder = null;
         mKerning = true;
         mBold = bold;
@@ -127,41 +126,30 @@ class TextFieldHack extends TextFieldWrapper
         mHitArea = new Quad(width, height);
         mHitArea.alpha = 0.0;
         addChild(mHitArea);
-        
-        addEventListener(Event.FLATTEN, onFlatten);
     }
     
     /** Disposes the underlying texture data. */
     override public function dispose() : Void
     {
-        removeEventListener(Event.FLATTEN, onFlatten);
         if (mImage != null)
         {
             mImage.texture.dispose();
         }
-        if (mQuadBatch != null)
+        if (mMeshBatch != null)
         {
-            mQuadBatch.dispose();
+            mMeshBatch.dispose();
         }
         super.dispose();
     }
     
-    private function onFlatten(event : Event) : Void
-    {
-        if (mRequiresRedraw)
-        {
-            redrawContents();
-        }
-    }
-    
     /** @inheritDoc */
-    override public function render(support : RenderSupport, parentAlpha : Float) : Void
+    override public function render(painter : Painter) : Void
     {
         if (mRequiresRedraw)
         {
             redrawContents();
         }
-        super.render(support, parentAlpha);
+        super.render(painter);
     }
     
     private function redrawContents() : Void
@@ -180,18 +168,18 @@ class TextFieldHack extends TextFieldWrapper
     
     private function createRenderedContents() : Void
     {
-        if (mQuadBatch != null)
+        if (mMeshBatch != null)
         {
-            mQuadBatch.removeFromParent(true);
-            mQuadBatch = null;
+            mMeshBatch.removeFromParent(true);
+            mMeshBatch = null;
         }
         
-        var scale : Float = Starling.contentScaleFactor;
+        var scale : Float = Starling.current.contentScaleFactor;
         var width : Float = mHitArea.width * scale;
         var height : Float = mHitArea.height * scale;
         
         var textFormat : TextFormat = new TextFormat(mFontName, 
-        mFontSize * scale, mColor, mBold, mItalic, mUnderline, null, null, mHAlign);
+			Std.int(mFontSize * scale), mColor, mBold, mItalic, mUnderline, null, null, mHAlign);
         textFormat.kerning = mKerning;
         
         sNativeTextField.defaultTextFormat = textFormat;
@@ -296,9 +284,9 @@ class TextFieldHack extends TextFieldWrapper
     
     private function autoScaleNativeTextField(textField : flash.text.TextField) : Void
     {
-        var size : Float = as3hx.Compat.parseFloat(textField.defaultTextFormat.size);
-        var maxHeight : Int = as3hx.Compat.parseInt(textField.height - 4);
-        var maxWidth : Int = as3hx.Compat.parseInt(textField.width - 4);
+        var size : Int = textField.defaultTextFormat.size;
+        var maxHeight : Int = Std.int(textField.height - 4);
+        var maxWidth : Int = Std.int(textField.width - 4);
         
         while (textField.textWidth > maxWidth || textField.textHeight > maxHeight)
         {
@@ -321,15 +309,15 @@ class TextFieldHack extends TextFieldWrapper
             mImage = null;
         }
         
-        if (mQuadBatch == null)
+        if (mMeshBatch == null)
         {
-            mQuadBatch = new QuadBatch();
-            mQuadBatch.touchable = false;
-            addChild(mQuadBatch);
+            mMeshBatch = new QuadBatch();
+            mMeshBatch.touchable = false;
+            addChild(mMeshBatch);
         }
         else
         {
-            mQuadBatch.reset();
+            mMeshBatch.reset();
         }
         
         var bitmapFont : BitmapFont = Reflect.field(sBitmapFonts, mFontName);
@@ -338,7 +326,7 @@ class TextFieldHack extends TextFieldWrapper
             throw new Error("Bitmap font not registered: " + mFontName);
         }
         
-        bitmapFont.fillQuadBatch(mQuadBatch, 
+        bitmapFont.fillQuadBatch(mMeshBatch, 
                 mHitArea.width, mHitArea.height, mText, mFontSize, mColor, mHAlign, mVAlign, 
                 mAutoScale, mKerning
         );
@@ -379,7 +367,7 @@ class TextFieldHack extends TextFieldWrapper
         }
         if (mTextBounds == null)
         {
-            mTextBounds = mQuadBatch.getBounds(mQuadBatch);
+            mTextBounds = mMeshBatch.getBounds(mMeshBatch);
         }
         return mTextBounds.clone();
     }
@@ -669,8 +657,7 @@ class TextFieldHack extends TextFieldWrapper
             Reflect.field(sBitmapFonts, name).dispose();
         }
         
-        This is an intentional compilation error. See the README for handling the delete keyword
-        delete sBitmapFonts[name];
+		Reflect.deleteField(sBitmapFonts, name);
     }
     
     /** Returns a registered bitmap font (or null, if the font has not been registered). */

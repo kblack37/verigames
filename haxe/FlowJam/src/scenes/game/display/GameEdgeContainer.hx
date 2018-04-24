@@ -12,7 +12,7 @@ import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
-import flash.errors.ScriptTimeoutError;
+//import flash.errors.ScriptTimeoutError;
 import utils.XObject;
 import constraints.Constraint;
 import display.NineSliceBatch;
@@ -60,7 +60,7 @@ class GameEdgeContainer extends GameComponent
     public var innerFromBoxSegment : InnerBoxSegment;
     public var innerToBoxSegment : InnerBoxSegment;
     
-    public var m_jointPoints : Array<Dynamic>;
+    public var m_jointPoints : Array<Point>;
     
     public var incomingEdgePosition : Float;
     public var outgoingEdgePosition : Float;
@@ -190,8 +190,8 @@ class GameEdgeContainer extends GameComponent
         this.x = minXedge;
         this.y = minYedge;
         if (newEdgeArray == null)
-        
-        //adjust by min{
+        {
+        //adjust by min
             
             for (i0 in 0...edgeArray.length)
             {
@@ -218,10 +218,10 @@ class GameEdgeContainer extends GameComponent
         else
         {
             
-            m_jointPoints = new Array<Dynamic>();
+            m_jointPoints = new Array<Point>();
             for (i1 in 0...edgeArray.length)
-            
-            //trace("joint pt " + m_edgeArray[i1]);{
+            {
+            //trace("joint pt " + m_edgeArray[i1]);
                 
                 var pt1 : Point = edgeArray[i1];
                 m_jointPoints.push(pt1.clone());
@@ -402,11 +402,11 @@ class GameEdgeContainer extends GameComponent
     
     private function updateFromProps() : Void
     {
-        if (innerFromBoxSegment.edgeSegment)
+        if (innerFromBoxSegment.edgeSegment != null)
         {
             innerFromBoxSegment.edgeSegment.setProps(m_fromNode.constraintVar.getProps());
         }
-        if (innerFromBoxSegment.innerCircleJoint)
+        if (innerFromBoxSegment.innerCircleJoint != null)
         {
             innerFromBoxSegment.innerCircleJoint.setProps(m_fromNode.constraintVar.getProps());
         }
@@ -418,11 +418,11 @@ class GameEdgeContainer extends GameComponent
     
     private function updateToProps() : Void
     {
-        if (innerToBoxSegment.edgeSegment)
+        if (innerToBoxSegment.edgeSegment != null)
         {
             innerToBoxSegment.edgeSegment.setProps(m_toNode.constraintVar.getProps());
         }
-        if (innerToBoxSegment.innerCircleJoint)
+        if (innerToBoxSegment.innerCircleJoint != null)
         {
             innerToBoxSegment.innerCircleJoint.setProps(m_toNode.constraintVar.getProps());
         }
@@ -499,7 +499,7 @@ class GameEdgeContainer extends GameComponent
         
         if (errorTextBubble == null)
         {
-            errorTextBubble = new TextBubble(Std.string(Math.round(graphConstraint.scoring.getScoringValue(ConstraintScoringConfig.CONSTRAINT_VALUE_KEY))), 16, ERROR_COLOR, errorContainer, null, NineSliceBatch.BOTTOM_RIGHT, NineSliceBatch.CENTER, null, true, 10, 2, 0.5, 1, false, ERROR_COLOR);
+            errorTextBubble = new TextBubble(Std.string(Math.round(graphConstraint.scoring.getScoringValue(ConstraintScoringConfig.CONSTRAINT_VALUE_KEY))), 16, GameComponent.ERROR_COLOR, errorContainer, null, NineSliceBatch.BOTTOM_RIGHT, NineSliceBatch.CENTER, null, true, 10, 2, 0.5, 1, false, GameComponent.ERROR_COLOR);
         }
         if (m_hidingErrorText)
         {
@@ -546,7 +546,6 @@ class GameEdgeContainer extends GameComponent
     
     private function onHoverOver(event : EdgeContainerEvent) : Void
     {
-        unflatten();
         handleHover(true);
     }
     
@@ -631,8 +630,8 @@ class GameEdgeContainer extends GameComponent
         innerFromBoxSegment.m_isDirty = true;
         
         if (turnHoverOn)
-        
-        //reorder to place on top{
+        {
+        //reorder to place on top
             
             parent.setChildIndex(this, parent.numChildren);
         }
@@ -692,8 +691,8 @@ class GameEdgeContainer extends GameComponent
         if (isHoriz)
         {
             if (segmentIndex + 2 == m_jointPoints.length - 1)
-            
-            // If pt3 is endpoint{
+            {
+            // If pt3 is endpoint
                 
                 pt0.x = pt3.x;
             }
@@ -703,8 +702,8 @@ class GameEdgeContainer extends GameComponent
             }
         }
         else if (segmentIndex + 2 == m_jointPoints.length - 1)
-        
-        // If pt3 is endpoint{
+        {
+        // If pt3 is endpoint
             
             pt0.y = pt3.y;
         }
@@ -925,8 +924,8 @@ class GameEdgeContainer extends GameComponent
     
     private function updateOutsideEdgeComponents() : Void
     {
-        var offX : Float = ((m_jointPoints != null && m_jointPoints.length)) ? m_jointPoints[m_jointPoints.length - 1].x : 0;
-        var offY : Float = ((m_jointPoints != null && m_jointPoints.length)) ? m_jointPoints[m_jointPoints.length - 1].y : 0;
+        var offX : Float = m_jointPoints != null && m_jointPoints.length > 0 ? m_jointPoints[m_jointPoints.length - 1].x : 0;
+        var offY : Float = m_jointPoints != null && m_jointPoints.length > 0 ? m_jointPoints[m_jointPoints.length - 1].y : 0;
         var newX : Float = this.x + offX;
         var newY : Float = this.y + offY;
         
@@ -981,16 +980,16 @@ class GameEdgeContainer extends GameComponent
         var segmentIndex : Int = Lambda.indexOf(m_edgeSegments, segment);
         //not a innerbox segment or end segment
         if (segmentIndex != -1 && segmentIndex != 0 && segmentIndex != m_edgeSegments.length - 1)
-        
-        //check for horizontal or vertical{
+        {
+        //check for horizontal or vertical
             
             if (m_jointPoints[segmentIndex].x != m_jointPoints[segmentIndex + 1].x)
             {
                 m_jointPoints[segmentIndex].y += deltaPoint.y;
                 m_jointPoints[segmentIndex + 1].y += deltaPoint.y;
                 if (m_jointPoints.length >= NUM_JOINTS)
-                
-                // Enforce minimum length on input/output segments{
+                {
+                // Enforce minimum length on input/output segments
                     
                     m_jointPoints[1].y = m_jointPoints[2].y = Math.max(m_jointPoints[1].y, m_jointPoints[0].y + InnerBoxSegment.PLUG_HEIGHT);
                     m_jointPoints[m_jointPoints.length - 2].y = m_jointPoints[m_jointPoints.length - 3].y = Math.min(m_jointPoints[m_jointPoints.length - 2].y, m_jointPoints[m_jointPoints.length - 1].y - InnerBoxSegment.PLUG_HEIGHT);
@@ -1047,8 +1046,8 @@ class GameEdgeContainer extends GameComponent
         if (segmentIndex == -1)
         {
             if (segment.m_dir == GameEdgeContainer.DIR_TO)
-            
-            // innerToSegment{
+            {
+            // innerToSegment
                 
                 {
                     jointPoint.x = m_edgeJoints[m_jointPoints.length - 1].x;
@@ -1152,16 +1151,16 @@ class GameEdgeContainer extends GameComponent
         //recreate if we have a non-initialized line
         if (m_jointPoints == null)
         {
-            m_jointPoints = new Array<Dynamic>();
+            m_jointPoints = new Array<Point>();
         }
         if (m_jointPoints.length == 0)
         {
-            m_jointPoints = new Array<Dynamic>(NUM_JOINTS);
+            m_jointPoints = new Array<Point>();
             newEdgesNeeded = true;
         }
         
         //makeInitialNodesAndExtension
-        if ((try cast(m_jointPoints[0], Point) catch(e:Dynamic) null != null) && (try cast(m_jointPoints[1], Point) catch(e:Dynamic) null != null))
+        if (((try cast(m_jointPoints[0], Point) catch(e:Dynamic) null) != null) && ((try cast(m_jointPoints[1], Point) catch(e:Dynamic) null) != null))
         {
             var inputHeight : Float = (try cast(m_jointPoints[1], Point) catch(e:Dynamic) null).y - (try cast(m_jointPoints[0], Point) catch(e:Dynamic) null).y;
             inputHeight += inputHeightOffset;
@@ -1174,8 +1173,8 @@ class GameEdgeContainer extends GameComponent
             m_jointPoints[0] = startPoint.clone();
             m_jointPoints[1] = new Point(startPoint.x, startPoint.y + InnerBoxSegment.PLUG_HEIGHT + outgoingEdgePosition * 0.2);
         }
-        var LNGTH : Float = m_jointPoints.length;
-        if ((try cast(m_jointPoints[LNGTH - 1], Point) catch(e:Dynamic) null != null) && (try cast(m_jointPoints[LNGTH - 2], Point) catch(e:Dynamic) null != null))
+        var LNGTH : Int = m_jointPoints.length;
+        if (((try cast(m_jointPoints[LNGTH - 1], Point) catch(e:Dynamic) null) != null) && ((try cast(m_jointPoints[LNGTH - 2], Point) catch(e:Dynamic) null) != null))
         {
             var outputHeight : Float = (try cast(m_jointPoints[LNGTH - 1], Point) catch(e:Dynamic) null).y - (try cast(m_jointPoints[LNGTH - 2], Point) catch(e:Dynamic) null).y;
             outputHeight += outputHeightOffset;
@@ -1197,8 +1196,8 @@ class GameEdgeContainer extends GameComponent
             m_jointPoints[LNGTH - 3] = new Point(m_jointPoints[2].x, m_jointPoints[LNGTH - 2].y);
         }
         else if (m_jointPoints.length > NUM_JOINTS)
-        
-        // Leave other interconnecting joints/segments alone, but{
+        {
+        // Leave other interconnecting joints/segments alone, but
             
             // need to update the next joints' y to match the changes above
             m_jointPoints[2].y = m_jointPoints[1].y;
@@ -1225,7 +1224,8 @@ class GameEdgeContainer extends GameComponent
     {
         var newJointsCreated : Bool = false;
         var previousSegmentVertical : Bool = false;
-        for (i in 1...m_jointPoints.length)
+		var i : Int = 1;
+        while (i < m_jointPoints.length)
         {
             var xmismatch : Bool = ((try cast(m_jointPoints[i - 1], Point) catch(e:Dynamic) null).x != (try cast(m_jointPoints[i], Point) catch(e:Dynamic) null).x);
             var ymismatch : Bool = ((try cast(m_jointPoints[i - 1], Point) catch(e:Dynamic) null).y != (try cast(m_jointPoints[i], Point) catch(e:Dynamic) null).y);
@@ -1234,8 +1234,8 @@ class GameEdgeContainer extends GameComponent
             if (xmismatch && ymismatch)
             {
                 if (previousSegmentVertical)
-                
-                // Make horizonal->vertical->horizonal segments{
+                {
+                // Make horizonal->vertical->horizonal segments
                     
                     var midx : Float = ((try cast(m_jointPoints[i], Point) catch(e:Dynamic) null).x + (try cast(m_jointPoints[i - 1], Point) catch(e:Dynamic) null).x) / 2.0;
                     newPt1 = new Point(midx, (try cast(m_jointPoints[i - 1], Point) catch(e:Dynamic) null).y);
@@ -1257,13 +1257,14 @@ class GameEdgeContainer extends GameComponent
                 continue;
             }
             else if ((ymismatch && previousSegmentVertical) || (xmismatch && !previousSegmentVertical))
-            
-            // Don't want two vertical or horizontal segments in a row, duplicate prev joint{
+            {
+            // Don't want two vertical or horizontal segments in a row, duplicate prev joint
                 
                 newPt1 = (try cast(m_jointPoints[i - 1], Point) catch(e:Dynamic) null).clone();
                 as3hx.Compat.arraySplice(m_jointPoints, i, 0, [newPt1]);
                 newJointsCreated = true;
             }
+			i++;
             previousSegmentVertical = !previousSegmentVertical;
         }
         return newJointsCreated;
@@ -1271,14 +1272,14 @@ class GameEdgeContainer extends GameComponent
     
     override private function onTouch(event : TouchEvent) : Void
     {
-        if (!event.target)
+        if (event.target == null)
         {
             return;
         }
         if (Std.is(event.target, DisplayObject))
         {
             var doc : DisplayObject = try cast(event.target, DisplayObject) catch(e:Dynamic) null;
-            while (doc.parent)
+            while (doc.parent != null)
             {
                 if (Std.is(doc.parent, InnerBoxSegment))
                 {
@@ -1292,7 +1293,7 @@ class GameEdgeContainer extends GameComponent
     
     private function onInnerBoxSegmentClicked(event : EdgeContainerEvent) : Void
     {
-        var touchClick : Touch;
+        var touchClick : Touch = null;
         for (i in 0...event.touches.length)
         {
             if (event.touches[i].phase == TouchPhase.ENDED)
@@ -1383,7 +1384,7 @@ class GameEdgeContainer extends GameComponent
         return Lambda.indexOf(m_edgeJoints, joint);
     }
     
-    public static function sortOutgoingXPositions(x : GameEdgeContainer, y : GameEdgeContainer) : Float
+    public static function sortOutgoingXPositions(x : GameEdgeContainer, y : GameEdgeContainer) : Int
     {
         if (x.globalStart.x < y.globalStart.x)
         {
@@ -1395,7 +1396,7 @@ class GameEdgeContainer extends GameComponent
         }
     }
     
-    public static function sortIncomingXPositions(x : GameEdgeContainer, y : GameEdgeContainer) : Float
+    public static function sortIncomingXPositions(x : GameEdgeContainer, y : GameEdgeContainer) : Int
     {
         if (x.globalEnd.x < y.globalEnd.x)
         {
@@ -1426,7 +1427,6 @@ class GameEdgeContainer extends GameComponent
         {
             return;
         }
-        unflatten();
         m_isWide = _isWide;
         if (m_edgeSegments != null)
         {
@@ -1464,7 +1464,7 @@ class GameEdgeContainer extends GameComponent
             {
                 m_edgeJoints[i].setProps(props);
             }
-            catch (e : ScriptTimeoutError)
+            catch (e : Dynamic)
             {
             }
         }
@@ -1474,7 +1474,7 @@ class GameEdgeContainer extends GameComponent
             {
                 m_edgeSegments[i].setProps(props);
             }
-            catch (e : ScriptTimeoutError)
+            catch (e : Dynamic)
             {
             }
         }
@@ -1494,11 +1494,11 @@ class GameEdgeContainer extends GameComponent
         }
         if (innerFromBoxSegment != null)
         {
-            if (innerFromBoxSegment.edgeSegment)
+            if (innerFromBoxSegment.edgeSegment != null)
             {
                 innerFromBoxSegment.edgeSegment.setPropertyMode(prop);
             }
-            if (innerFromBoxSegment.innerCircleJoint)
+            if (innerFromBoxSegment.innerCircleJoint != null)
             {
                 innerFromBoxSegment.innerCircleJoint.setPropertyMode(prop);
             }

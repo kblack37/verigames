@@ -4,6 +4,7 @@ import flash.errors.Error;
 import flash.geom.Point;
 import flash.utils.Dictionary;
 import graph.PropDictionary;
+import openfl.Vector;
 import starling.display.DisplayObject;
 import starling.events.Event;
 import starling.events.Touch;
@@ -33,8 +34,8 @@ class GameNodeBase extends GameComponent
     public var orderedIncomingEdges : Array<GameEdgeContainer>;
     
     private var m_edgePortArray : Array<Dynamic>;
-    private var m_incomingPortsToEdgeDict : Dictionary;
-    private var m_outgoingPortsToEdgeDict : Dictionary;
+    private var m_incomingPortsToEdgeDict : Map<Int, GameEdgeContainer>;
+    private var m_outgoingPortsToEdgeDict : Map<Int, GameEdgeContainer>;
     
     private static var WIDTH_CHANGE : String = "width_change";
     
@@ -46,8 +47,8 @@ class GameNodeBase extends GameComponent
         
         orderedOutgoingEdges = new Array<GameEdgeContainer>();
         orderedIncomingEdges = new Array<GameEdgeContainer>();
-        m_incomingPortsToEdgeDict = new Dictionary();
-        m_outgoingPortsToEdgeDict = new Dictionary();
+        m_incomingPortsToEdgeDict = new Map<Int, GameEdgeContainer>();
+        m_outgoingPortsToEdgeDict = new Map<Int, GameEdgeContainer>();
         m_edgePortArray = new Array<Dynamic>();
         
         addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -79,8 +80,8 @@ class GameNodeBase extends GameComponent
             orderedIncomingEdges[j].incomingEdgePosition = -1;
         }
         for (i in 0...orderedOutgoingEdges.length)
-        
-        // m_outgoingEdges have been ordered from min X to{
+        {
+        // m_outgoingEdges have been ordered from min X to
             
             // max X so we are moving from left to right
             var startingCurrentPos : Int = currentPos;
@@ -185,24 +186,24 @@ class GameNodeBase extends GameComponent
     private static inline var CLICK_DIST : Float = 0.2;  // if the node is moved just a tiny bit, chances are the user meant to click rather than move  
     override private function onTouch(event : TouchEvent) : Void
     {
-        var touches : Array<Touch> = event.touches;
+        var touches : Vector<Touch> = event.touches;
         var touch : Touch = touches[0];
         super.onTouch(event);
         //trace(m_id);
-        if (event.getTouches(this, TouchPhase.ENDED).length)
+        if (event.getTouches(this, TouchPhase.ENDED).length > 0)
         {
-            if (DEBUG_TRACE_IDS)
+            if (GameComponent.DEBUG_TRACE_IDS)
             {
                 trace("GameNodeBase '" + m_id + "'");
             }
-            if (DEBUG_TRACE_IDS)
+            if (GameComponent.DEBUG_TRACE_IDS)
             {
                 for (i in 0...orderedIncomingEdges.length)
                 {
                     trace("i:" + orderedIncomingEdges[i].graphConstraint.lhs.id + "->" + orderedIncomingEdges[i].graphConstraint.rhs.id);
                 }
             }
-            if (DEBUG_TRACE_IDS)
+            if (GameComponent.DEBUG_TRACE_IDS)
             {
                 for (o in 0...orderedOutgoingEdges.length)
                 {
@@ -213,8 +214,8 @@ class GameNodeBase extends GameComponent
             var undoData : Dynamic;
             var undoEvent : Event;
             if (isMoving)
-            
-            //if we were moving, stop it, and exit{
+            {
+            //if we were moving, stop it, and exit
                 
                 {
                     isMoving = false;
@@ -242,8 +243,6 @@ class GameNodeBase extends GameComponent
             //if shift key, select, else change size
             if (!event.shiftKey)
             {
-                unflattenConnectedEdges();
-                
                 var touchClick : Touch = event.getTouch(this, TouchPhase.ENDED);
                 var touchPoint : Point = (touchClick != null) ? new Point(touchClick.globalX, touchClick.globalY) : null;
                 
@@ -275,11 +274,12 @@ class GameNodeBase extends GameComponent
                     {
                         
                         {
-                            var groupDictionary : Dictionary = new Dictionary();
+                            var groupDictionary : Dynamic = {};
                             this.findGroup(groupDictionary);
                             var selection : Array<GameComponent> = new Array<GameComponent>();
-                            for (comp/* AS3HX WARNING could not determine type for var: comp exp: EIdent(groupDictionary) type: Dictionary */ in groupDictionary)
+                            for (id in Reflect.fields(groupDictionary))
                             {
+								var comp : GameComponent = try cast(Reflect.field(groupDictionary, id), GameComponent) catch (e : Dynamic) null;
                                 if (Lambda.indexOf(selection, comp) == -1)
                                 {
                                     if (Std.is(comp, GameNodeBase))
@@ -289,8 +289,8 @@ class GameNodeBase extends GameComponent
                                 }
                             }
                             if (isSelected)
-                            
-                            //we were selected on the first click{
+                            {
+                            //we were selected on the first click
                                 
                                 dispatchEvent(new GroupSelectionEvent(GroupSelectionEvent.GROUP_SELECTED, this, selection));
                             }
@@ -303,7 +303,7 @@ class GameNodeBase extends GameComponent
                 }
             }
         }
-        else if (event.getTouches(this, TouchPhase.MOVED).length)
+        else if (event.getTouches(this, TouchPhase.MOVED).length > 0)
         {
             if (touches.length == 1)
             {
@@ -337,21 +337,8 @@ class GameNodeBase extends GameComponent
                 }
                 var currentMoveLocation : Point = touch.getLocation(this);
                 var previousLocation : Point = touch.getPreviousLocation(this);
-                unflattenConnectedEdges();
                 dispatchEvent(new MoveEvent(MoveEvent.MOVE_EVENT, this, previousLocation, currentMoveLocation));
             }
-        }
-    }
-    
-    private function unflattenConnectedEdges() : Void
-    {
-        for (oedge1/* AS3HX WARNING could not determine type for var: oedge1 exp: EField(EIdent(this),orderedOutgoingEdges) type: null */ in this.orderedOutgoingEdges)
-        {
-            oedge1.unflatten();
-        }
-        for (iedge1/* AS3HX WARNING could not determine type for var: iedge1 exp: EField(EIdent(this),orderedIncomingEdges) type: null */ in this.orderedIncomingEdges)
-        {
-            iedge1.unflatten();
         }
     }
     
@@ -383,11 +370,11 @@ class GameNodeBase extends GameComponent
     
     private function rubberBandEdges(endPt : Point) : Void
     {
-        for (oedge1/* AS3HX WARNING could not determine type for var: oedge1 exp: EField(EIdent(this),orderedOutgoingEdges) type: null */ in this.orderedOutgoingEdges)
+        for (oedge1 in this.orderedOutgoingEdges)
         {
             oedge1.rubberBandEdge(endPt, true);
         }
-        for (iedge1/* AS3HX WARNING could not determine type for var: iedge1 exp: EField(EIdent(this),orderedIncomingEdges) type: null */ in this.orderedIncomingEdges)
+        for (iedge1 in this.orderedIncomingEdges)
         {
             iedge1.rubberBandEdge(endPt, false);
         }
@@ -395,11 +382,11 @@ class GameNodeBase extends GameComponent
     
     public function drawEdges(rubberBanding : Bool = false) : Void
     {
-        for (oedge1/* AS3HX WARNING could not determine type for var: oedge1 exp: EField(EIdent(this),orderedOutgoingEdges) type: null */ in this.orderedOutgoingEdges)
+        for (oedge1 in this.orderedOutgoingEdges)
         {
             oedge1.draw();
         }
-        for (iedge1/* AS3HX WARNING could not determine type for var: iedge1 exp: EField(EIdent(this),orderedIncomingEdges) type: null */ in this.orderedIncomingEdges)
+        for (iedge1 in this.orderedIncomingEdges)
         {
             iedge1.draw();
         }
@@ -452,24 +439,24 @@ class GameNodeBase extends GameComponent
         orderedOutgoingEdges = new Array<GameEdgeContainer>();
         orderedIncomingEdges = new Array<GameEdgeContainer>();
         m_edgePortArray = new Array<Dynamic>();
-        m_incomingPortsToEdgeDict = new Dictionary();
-        m_outgoingPortsToEdgeDict = new Dictionary();
+        m_incomingPortsToEdgeDict = new Map<Int, GameEdgeContainer>();
+        m_outgoingPortsToEdgeDict = new Map<Int, GameEdgeContainer>();
     }
     
     //used when double clicking a node, handles selecting entire group.
-    public function findGroup(dictionary : Dictionary) : Void
+    public function findGroup(dictionary : Dynamic) : Void
     {
         Reflect.setField(dictionary, m_id, this);
-        for (oedge1/* AS3HX WARNING could not determine type for var: oedge1 exp: EField(EIdent(this),orderedOutgoingEdges) type: null */ in this.orderedOutgoingEdges)
+        for (oedge1 in this.orderedOutgoingEdges)
         {
-            if (dictionary[oedge1.m_toNode.m_id] == null)
+            if (Reflect.hasField(dictionary, oedge1.m_toNode.m_id))
             {
                 oedge1.m_toNode.findGroup(dictionary);
             }
         }
-        for (iedge1/* AS3HX WARNING could not determine type for var: iedge1 exp: EField(EIdent(this),orderedIncomingEdges) type: null */ in this.orderedIncomingEdges)
+        for (iedge1 in this.orderedIncomingEdges)
         {
-            if (dictionary[iedge1.m_fromNode.m_id] == null)
+            if (Reflect.hasField(dictionary, iedge1.m_fromNode.m_id))
             {
                 iedge1.m_fromNode.findGroup(dictionary);
             }
@@ -484,13 +471,13 @@ class GameNodeBase extends GameComponent
         var savedEdgeGlobalPt : Point;
         if (isEdgeOutgoing)
         {
-            edgeIndex = edge.outgoingEdgePosition;
+            edgeIndex = Std.int(edge.outgoingEdgePosition);
             edgeGlobalPt = edge.globalStart;
             savedEdgeGlobalPt = edge.localToGlobal(edge.undoObject.m_savedStartPoint);
         }
         else
         {
-            edgeIndex = edge.incomingEdgePosition;
+            edgeIndex = Std.int(edge.incomingEdgePosition);
             edgeGlobalPt = edge.globalEnd;
             savedEdgeGlobalPt = edge.localToGlobal(edge.undoObject.m_savedEndPoint);
         }
@@ -538,7 +525,7 @@ class GameNodeBase extends GameComponent
             currentPos++;
             for (i in currentPos...m_edgePortArray.length)
             {
-                if (edgeAt(currentPos))
+                if (edgeAt(currentPos) != null)
                 {
                     return i;
                 }
@@ -550,7 +537,7 @@ class GameNodeBase extends GameComponent
             i = currentPos;
             while (i >= 0)
             {
-                if (edgeAt(currentPos))
+                if (edgeAt(currentPos) != null)
                 {
                     return i;
                 }

@@ -14,6 +14,7 @@ import starling.text.BitmapFont;
 import starling.text.TextField;
 import starling.textures.Texture;
 import starling.textures.TextureAtlas;
+import flash.Lib;
 
 class AssetInterface
 {
@@ -153,9 +154,9 @@ class AssetInterface
             }
             else
             {
-                //var classInfo : FastXML = flash.utils.describeType(data); TODO: get data into xml format
+                var classInfo : FastXML = FastXML.parse(data); 
                 // List the class name.
-                //trace("Class " + Std.string(classInfo.att.name));
+                trace("Class " + Std.string(classInfo.att.name));
             }
         }
         
@@ -192,9 +193,9 @@ class AssetInterface
             }
             else
             {
-                //var classInfo : FastXML = flash.utils.describeType(data);
+                var classInfo : FastXML = FastXML.parse(data);
                 // List the class name.
-                //trace("Class " + Std.string(classInfo.att.name)); TODO make xml classinfo
+                trace("Class " + Std.string(classInfo.att.name));
 				
             }
         }
@@ -231,9 +232,9 @@ class AssetInterface
             }
             else
             {
-                //var classInfo : FastXML = flash.utils.describeType(data);
+                var classInfo : FastXML = FastXML.parse(data);
                 // List the class name.
-                //trace("Class " + Std.string(classInfo.att.name));TODO: make classinfo xml
+                trace("Class " + Std.string(classInfo.att.name));
 				
             }
         }
@@ -281,9 +282,9 @@ class AssetInterface
     
     public static function getMovieClipAsTextureAtlas(filename : String, movieClipName : String) : TextureAtlas
     {
-        //var clip : Dynamic = create(filename, movieClipName);
+       // var clip : Dynamic = create(filename, movieClipName);
         //var atlas : TextureAtlas = DynamicAtlas.fromMovieClipContainer(try cast(clip, MovieClip) catch(e:Dynamic) null);
-        //return atlas;
+        //return atlas;TODO there is not DynamicAtlas in the build I dont know where this is coming from
 		return null;
     }
     
@@ -293,13 +294,13 @@ class AssetInterface
     
     private static function create(file : String, name : String) : Dynamic
     {
-		/*TODO fix var textureClassObject it has an error about Void should be Dynamic
+		
         var textureClassNameString : String = (sContentScaleFactor == 1) ? file + "AssetEmbeds_1x" : file + "AssetEmbeds_2x";
         var qualifiedName : String = "assets." + textureClassNameString;
         var textureClass : Class<Dynamic> = Type.getClass(Type.resolveClass(qualifiedName));
-        var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name), Dynamic) catch(e:Dynamic) null;
+		//I removed the Dynamic tyep was try cast(Reflect.field(textureClass, name),Dynamiv) catch(e:Dynamic) null;
+        var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name)) catch(e:Dynamic) null;
         return textureClassObject;
-		*/
 		return null;
     }
     

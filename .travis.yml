@@ -1,0 +1,6 @@
+language: haxe
+before_install:
+   - haxelib install lime
+   - haxelib install nme
+   - haxelib install openfl
+   - haxelib install starling

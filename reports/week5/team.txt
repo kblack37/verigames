@@ -1,10 +1,15 @@
 # Team Report: Week 5 #
 
-## Last Week's Goal **
--
--
--
+## Last Week's Goal ##
+- More concentrated effort on finishing the ports
+    - Resolving final missing dependencies
 
 ## Progress ##
+- Finished fixing FlowJam compilation errors
+- Began fixing asset loading
+- Began copying fixed duplicate files from FlowJam to PipeJam
 
 ## Goals ##
+- Re-enable and fix remaining components in FlowJam so the game displays
+- Add assets to FlowJam
+- Finish fixing compilation errors in PipeJam

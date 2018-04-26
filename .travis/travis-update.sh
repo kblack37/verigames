@@ -7,8 +7,7 @@ setup_git() {
 }
 
 commit_website_files() {
-    ls
-    git clone git://github.com/verigames/verigames.github.io.git
+    git clone https://github.com/verigames/verigames.github.io.git
     cd verigames.github.io
     REPO=`git config remote.origin.url`
     SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}

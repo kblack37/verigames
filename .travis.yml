@@ -1,12 +1,19 @@
 language: haxe
 
+env:
+    global:
+        - ENCRYPTION_LABEL: "1fc23e278700"
+
 before_install:
    - haxelib install lime
    - haxelib install nme
    - haxelib install openfl
    - haxelib install starling
    - haxelib install as3hx
+   - openssl aes-256-cbc -K $encrypted_1fc23e278700_key -iv $encrypted_1fc23e278700_iv -in deploy-key.enc -out deploy-key -d
 
 script:
    - haxelib run lime build "haxe/PipeJam3/project.xml" html5 -release -Dfdb
    - haxelib run lime build "haxe/FlowJam/project.xml" html5 -release -Dfdb
+   - ./travis/travis-update.sh
+

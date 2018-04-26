@@ -54,6 +54,7 @@ import system.MaxSatSolver;
 //import utils.Base64Encoder;
 import utils.XObject;
 import utils.XString;
+import lime.Assets;
 
 /**
 	 * Level all game components - widgets and links

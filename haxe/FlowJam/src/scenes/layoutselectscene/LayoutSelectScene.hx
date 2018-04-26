@@ -66,7 +66,8 @@ class LayoutSelectScene extends Scene
     {
         super.addedToStage(event);
         
-        background = new Image(AssetInterface.getTexture("Game", "Background0Class"));
+        //background = new Image(AssetInterface.getTexture("Game", "Background0Class"));TODO: remove if works
+		background = new Image(AssetInterface.getTexture("Game", "Backgrounds/FlowJamBackground0"));
         background.scaleX = stage.stageWidth / background.width;
         background.scaleY = stage.stageHeight / background.height;
         background.blendMode = BlendMode.NONE;

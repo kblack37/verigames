@@ -22,7 +22,7 @@ import system.VerigameServerConstants;
 
 //import mx.core.FlexGlobals;
 //import spark.components.Application;
-@:meta(SWF(width="960",height="640",frameRate="30",backgroundColor="#ffffff"))
+@:meta(SWF(width="960",height="640",frameRate="30",backgroundColor="#D4AF37"))
 
 class PipeJam3 extends flash.display.Sprite
 {
@@ -30,13 +30,14 @@ class PipeJam3 extends flash.display.Sprite
     
     private var mStarling : Starling;
     
-    /** Set to true if a build for the server */
+    /** Set to true if a build for the server*/
     public static var RELEASE_BUILD : Bool = false;
     public static var LOGGING_ON : Bool = false;
-    public static var LOCAL_DEPLOYMENT : Bool = false;
+    public static var LOCAL_DEPLOYMENT : Bool = true;
     public static var TUTORIAL_DEMO : Bool = true;
     public static var USE_LOCAL_PROXY : Bool = false;
     public static var SHOW_PERFORMANCE_STATS : Bool = false;
+	
     
     public static var PRODUCTION : Bool = false;
     public static var INSTALL_DVD : Bool = false;

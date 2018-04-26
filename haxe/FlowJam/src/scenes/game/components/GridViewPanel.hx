@@ -1282,7 +1282,8 @@ class GridViewPanel extends BaseComponent
         
         if (m_spotlight == null)
         {
-            var spotlightTexture : Texture = AssetInterface.getTexture("Game", "SpotlightClass");
+			//var spotlightTexture : Texture = AssetInterface.getTexture("Game", "SpotlightClass");TODO remove if works
+            var spotlightTexture : Texture = AssetInterface.getTexture("Game", "Spotlight");
             m_spotlight = new Image(spotlightTexture);
             m_spotlight.touchable = false;
             m_spotlight.alpha = 0.3;

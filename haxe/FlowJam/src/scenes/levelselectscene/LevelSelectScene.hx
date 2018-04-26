@@ -67,7 +67,8 @@ class LevelSelectScene extends Scene
     {
         super.addedToStage(event);
         
-        background = new Image(AssetInterface.getTexture("Game", "Background0Class"));
+        //background = new Image(AssetInterface.getTexture("Game", "Background0Class"));TODO: remove if works
+		background = new Image(AssetInterface.getTexture("Game", "BackGrounds/FLowJamBackground0"));
         background.scaleX = stage.stageWidth / background.width;
         background.scaleY = stage.stageHeight / background.height;
         background.blendMode = BlendMode.NONE;
@@ -465,7 +466,7 @@ class LevelSelectScene extends Scene
         
         var levelNotFound : Bool = true;
         var index : Int = 0;
-        var foundObj : Dynamic;
+        var foundObj : Dynamic = null;
         
         var objID : String;
         var matchID : String;
@@ -483,7 +484,6 @@ class LevelSelectScene extends Scene
         {
             matchID = match.levelId.__DOLLAR__oid;
         }
-        
         while (levelNotFound)
         {
             if (index >= levelMetadataVector.length)

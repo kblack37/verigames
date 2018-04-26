@@ -1,5 +1,6 @@
 import haxe.Constraints.Function;
-import assets.AssetInterface;
+import lime.utils.AssetType;
+//import assets.AssetInterface;
 import starling.display.Quad;
 import flash.Vector;
 import events.NavigationEvent;
@@ -18,6 +19,7 @@ import starling.events.Event;
 import starling.text.TextField;
 import starling.textures.Texture;
 import starling.utils.Align;
+import lime.Assets;
 
 class Game extends BaseComponent
 {
@@ -60,7 +62,7 @@ class Game extends BaseComponent
     
     private function prepareAssets() : Void
     {
-        assets.AssetInterface.prepareSounds();
+       // assets.AssetInterface.prepareSounds();
         
         //load images if we haven't
         if (BaseComponent.loadingAnimationImages == null)
@@ -68,13 +70,15 @@ class Game extends BaseComponent
             BaseComponent.loadingAnimationImages = new Vector<Texture>();
             for (i in 1...9)
             {
-                BaseComponent.loadingAnimationImages.push(AssetInterface.getTexture("Game", "Loading" + i + "Class"));
+                //BaseComponent.loadingAnimationImages.push(AssetInterface.getTexture("Game", "Loading" + i + "Class"));TODO: remove if works
+				BaseComponent.loadingAnimationImages.push(Assets.getAsset("LoadingAnimation/Loading"+i+".png",AssetType.IMAGE,true));
             }
             
             BaseComponent.waitAnimationImages = new Vector<Texture>();
             for (ii in 1...9)
             {
-                BaseComponent.waitAnimationImages.push(AssetInterface.getTexture("Game", "Wait" + ii + "Class"));
+                //BaseComponent.waitAnimationImages.push(AssetInterface.getTexture("Game", "Wait" + ii + "Class"));TODO:remove if works
+				BaseComponent.loadingAnimationImages.push(Assets.getAsset("LoadingAnimation/FlowJamWait" + ii + ".png",AssetType.IMAGE,true));
             }
 			
         }

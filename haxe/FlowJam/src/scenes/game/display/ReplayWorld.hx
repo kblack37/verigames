@@ -58,7 +58,7 @@ class ReplayWorld extends World
         }
         var varId : String = null;
         var propChanged : String = null;
-        var newPropValue : Bool = false;
+        var newPropValue : Bool = null;
         if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID))
         {
             varId = Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID);
@@ -102,9 +102,9 @@ class ReplayWorld extends World
         {
             return;
         }
-        var edgeSetId : String;
-        var propChanged : String;
-        var newPropValue : Bool;
+        var edgeSetId : String = null;
+        var propChanged : String = null;
+        var newPropValue : Bool = null ;
         if (Reflect.hasField(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID))
         {
             edgeSetId = Reflect.field(action.detailObject, VerigameServerConstants.ACTION_PARAMETER_VAR_ID);

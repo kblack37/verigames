@@ -20,7 +20,9 @@
 	
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />
-	<!--assets path="assets/img" rename="img" -->
+	<assets path="assets/LoadingAnimation" include="*.png"/>
+	<assets path="assets" include="*.jpeg|*.png"/>
+	<assets path="assets/Backgrounds" include="*.jpeg"/>
 	<!--assets path="assets/sounds" rename="sounds" -->
 	
 	<!-- optimize output

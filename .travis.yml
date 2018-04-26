@@ -14,4 +14,4 @@ before_install:
 script:
 - haxelib run lime build "haxe/PipeJam3/project.xml" html5 -release -Dfdb
 - haxelib run lime build "haxe/FlowJam/project.xml" html5 -release -Dfdb
-- bash ./travis/travis-update.sh
+- bash .travis/travis-update.sh

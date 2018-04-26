@@ -7,6 +7,7 @@ setup_git() {
 }
 
 commit_website_files() {
+    ls
     git clone git://github.com/verigames/verigames.github.io.git
     cd verigames.github.io
     REPO=`git config remote.origin.url`
@@ -16,14 +17,14 @@ commit_website_files() {
     git add index.html
     git commit -m "Travis build: $TRAVIS_BUILD_NUMBER"
 
-    ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
-    ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
-    ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
-    ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
-    openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -out ../deploy_key -d
+    #ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
+    #ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
+    #ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+    #ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+    #openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../deploy_key.enc -out ../deploy_key -d
     chmod 600 ../deploy_key
     eval `ssh-agent -s`
-    ssh-add deploy-key
+    ssh-add ../deploy_key
 
     git push -u $SSH_REPO master
 }

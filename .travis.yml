@@ -1,19 +1,17 @@
 language: haxe
-
 env:
-    global:
-        - ENCRYPTION_LABEL: "1fc23e278700"
-
+  global:
+  - ENCRYPTION_LABEL: 904d1329013d
+  - secure: U1jW8YtO4m7wbGQ70WrgRWQ4PI1hdGfPTpQtXeQ6Gm2v/dng8rTsNzeRKmoUcSe8uJlLSaaL3ZvCelwlYFXgBGypV/gDAxvN4gbmY/RGtDIZWEJv7l/Cr62kSfhbDOtUnv5VFujdAFDzkArvUL5cP8sRwFTrJf5N7gQnK7UENaDecHiRBcbOdbJ8+FMudr6IUmP8EAnohY8Ont+rYYPIMi4Rg7DGRnEC2zdtcs2OH9l9ih2w7/rdoZVIXuAA4GpMhoIhnRlxqucQx65OeIXp9i0ONYqVAEWXpbnCAJ7t7JzPzSPxEZ+KWia68irkS9LW02C+BAB/UFDbX903FNS3r1cNbh726PQU/VvkNJQWKskk1yQXwAt4ipmss4HPiijQ5Ihg58SxIFVYXvZ+rhZBJ0lWLgFSnULNAYN01LoXk7GKDtY3hqOBpexrnFC3tnq4BeEVxuDJNIf7CgYPYFFv0F0aTkZlMRII1FVKDZetVVCG4jLTqjgGVX/ImB80jeneGyVT3QIhvw4mPTovx8gXi9D4Kidh1uPRbGJA7aWj8o6eHzP2a8oPh3TuzVPvYmGpmjGaFok5/Hws9m36GpBY+Tjx4nuzAa/TKGVf57bSvcmVCNvZgGTT4m4rDj6HWwW5M4e7UeALal6gX0QZv1JI64pvBafbOdlbZA8KztlJZFM=
 before_install:
-   - haxelib install lime
-   - haxelib install nme
-   - haxelib install openfl
-   - haxelib install starling
-   - haxelib install as3hx
-   - openssl aes-256-cbc -K $encrypted_1fc23e278700_key -iv $encrypted_1fc23e278700_iv -in .travis/deploy_key.enc -out .travis/deploy_key -d
-
+- openssl aes-256-cbc -K $encrypted_904d1329013d_key -iv $encrypted_904d1329013d_iv
+  -in .travis/deploy_key.enc -out .travis/deploy_key -d
+- haxelib install lime
+- haxelib install nme
+- haxelib install openfl
+- haxelib install starling
+- haxelib install as3hx
 script:
-   - haxelib run lime build "haxe/PipeJam3/project.xml" html5 -release -Dfdb
-   - haxelib run lime build "haxe/FlowJam/project.xml" html5 -release -Dfdb
-   - ./travis/travis-update.sh
-
+- haxelib run lime build "haxe/PipeJam3/project.xml" html5 -release -Dfdb
+- haxelib run lime build "haxe/FlowJam/project.xml" html5 -release -Dfdb
+- bash ./travis/travis-update.sh

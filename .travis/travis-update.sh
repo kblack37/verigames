@@ -7,6 +7,8 @@ setup_git() {
 }
 
 update_data() {
+    FILTER="haxe/FlowJam"
+
     cd ..
     NUM_MODIFIED=$(git whatchanged --format=oneline | grep "^:" | grep $FILTER | cut -d " " -f 5 | cut -f 2 | sort | uniq | wc -l)
     NUM_TOTAL=$(find "$PWD" | grep $FILTER | wc -l)

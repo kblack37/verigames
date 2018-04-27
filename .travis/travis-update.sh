@@ -10,8 +10,9 @@ setup_git() {
 update_data_file_errors() {
     cd ..
     NUM_FILES=$(cut -d ":" -f 1 < pipejam.log | sort | uniq | wc -l)
+    DATE=$(git show -s --format=%ci)
     cd verigames.github.io
-    echo "$NUM_FILES" >> data.txt
+    echo "$DATE=$NUM_FILES" >> data.txt
 }
 
 # For amount of files modified

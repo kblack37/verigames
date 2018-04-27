@@ -6,7 +6,16 @@ setup_git() {
     git config --global user.name "Travis CI"
 }
 
-update_data() {
+# For number of files with compilation errors
+update_data_file_errors() {
+    cd ..
+    NUM_FILES=$(cut -d ":" -f 1 < pipejam.log | sort | uniq | wc -l)
+    cd verigames.github.io
+    echo "$NUM_FILES" >> data.txt
+}
+
+# For amount of files modified
+update_data_modified() {
     FILTER="haxe/FlowJam"
 
     cd ..

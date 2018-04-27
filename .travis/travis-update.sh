@@ -9,7 +9,7 @@ setup_git() {
 # For number of files with compilation errors
 update_data_file_errors() {
     cd ..
-    NUM_FILES=$(cut -d ":" -f 1 < pipejam.log | sort | uniq | wc -l)
+    NUM_FILES=$(cut -d ":" -f 1 < pipejam.log | sort | uniq | wc -l | tr -d '[:space:]')
     DATE=$(git show -s --format=%ci)
     cd verigames.github.io
     echo "$DATE=$NUM_FILES" >> data.txt

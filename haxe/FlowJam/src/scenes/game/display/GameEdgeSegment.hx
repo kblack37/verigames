@@ -284,7 +284,7 @@ class GameEdgeSegment extends GameComponent
         }
         assetName += (isHoriz) ? "Horiz" : "Vert";
         
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var segmentTexture : Texture = atlas.getTexture(assetName);
         
         var pctTextWidth : Float;

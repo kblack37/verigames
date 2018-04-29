@@ -45,7 +45,7 @@ class SubmitLayoutDialog extends BaseComponent
 		buttonWidth = (shapeWidth - 3 * buttonPaddingWidth) / 2;
 		shapeHeight = 4 * buttonPaddingHeight + buttonHeight + textInputHeight + descriptionInputHeight + labelHeight;
         
-        background = new NineSliceBatch(shapeWidth, shapeHeight, shapeHeight / 3.0, shapeHeight / 3.0, "Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML", "MenuBoxAttached");
+        background = new NineSliceBatch(shapeWidth, shapeHeight, shapeHeight / 3.0, shapeHeight / 3.0, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", "MenuBoxAttached");
         addChild(background);
         
         submit_button = ButtonFactory.getInstance().createButton("Submit", buttonWidth, buttonHeight, buttonHeight / 2.0, buttonHeight / 2.0);

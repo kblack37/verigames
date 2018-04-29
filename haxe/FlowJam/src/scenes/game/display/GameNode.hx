@@ -156,7 +156,7 @@ class GameNode extends GameNodeBase
             costume.removeFromParent(true);
         }
         
-        costume = new NineSliceBatch(shapeWidth, shapeHeight, shapeHeight / 3.0, shapeHeight / 3.0, "Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML", assetName);
+        costume = new NineSliceBatch(shapeWidth, shapeHeight, shapeHeight / 3.0, shapeHeight / 3.0, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", assetName);
         addChild(costume);
         
         var wideScore : Float = constraintVar.scoringConfig.getScoringValue(ConstraintValue.VERBOSE_TYPE_1);

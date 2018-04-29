@@ -82,7 +82,6 @@ class GameFileHandler
     public static function loadLevelInfoFromName(name : String, callback : Function) : Void
     //look up name in metadata list
     {
-        
         if (levelInfoVector != null)
         {
             PipeJamGame.levelInfo = findLevelObjectByName(name);
@@ -245,7 +244,7 @@ class GameFileHandler
         Scene.m_gameSystem.dispatchEvent(new starling.events.Event(Game.START_BUSY_ANIMATION, true));
         
         var m_id : Int = 100000;
-        if (PipeJamGame.levelInfo && PipeJamGame.levelInfo.exists("id") && PipeJamGame.levelInfo.id.length < 5)
+        if (PipeJamGame.levelInfo && Reflect.PipeJamGame.levelInfo.exists("id") && PipeJamGame.levelInfo.id.length < 5)
         {
             m_id = as3hx.Compat.parseInt(PipeJamGame.levelInfo.id);
         }
@@ -268,9 +267,11 @@ class GameFileHandler
         }
         else if (PipeJamGameScene.inTutorial)
         {
-            layoutFileLoadedCallback(TutorialController.tutorialLayoutObj);
-            assignmentsFileLoadedCallback(TutorialController.tutorialAssignmentsObj);
-            worldFileLoadedCallback(TutorialController.tutorialObj);
+			var tutorialController : TutorialController = TutorialController.getTutorialController();
+			
+            layoutFileLoadedCallback(tutorialController.tutorialLayoutObj);
+            assignmentsFileLoadedCallback(tutorialController.tutorialAssignmentsObj);
+            worldFileLoadedCallback(tutorialController.tutorialObj);
         }
         else
         {

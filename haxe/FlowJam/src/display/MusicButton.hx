@@ -12,7 +12,7 @@ class MusicButton extends ImageStateButton
 
     public function new()
     {
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var soundUp : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_SoundButton);
         var soundOver : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_SoundButtonOver);
         var soundDown : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_SoundButtonSelected);

@@ -137,31 +137,17 @@ class AssetInterface
     public static inline var LevelSelectSubTexture_MapMinimizeButtonClick : String = "MinimizeButtonClick";
     public static inline var LevelSelectSubTexture_MapMinimizeButtonMouseover : String = "MinimizeButtonMouseover";
     
-    public static function getTexture(file : String, name : String) : Texture
+    public static function getTexture(filePath : String, name : String) : Texture
     {
-        if (Reflect.field(sTextures, name) == null)
+		var texture : Texture = sTextures.get(name);
+        if (texture == null)
         {
-            var data : Dynamic = create(file, name);
-            
-            if (Std.is(data, Bitmap))
-            {
-                Reflect.setField(sTextures, name, Texture.fromBitmap(try cast(data, Bitmap) catch(e:Dynamic) null, true, false, sContentScaleFactor));
-                data = null;
-            }
-            else if (Std.is(data, ByteArray))
-            {
-                Reflect.setField(sTextures, name, Texture.fromAtfData(try cast(data, ByteArray) catch(e:Dynamic) null, sContentScaleFactor));
-                data = null;
-            }
-            else
-            {
-                var classInfo : FastXML = FastXML.parse(data); 
-                // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
-            }
+            var bmpData : BitmapData = Assets.getBitmapData(filePath + "/" + name);
+			texture = Texture.fromBitmapData(bmpData, true, false, sContentScaleFactor);
+            sTextures.set(name, texture);
         }
         
-        return Reflect.field(sTextures, name);
+        return texture;
     }
     
     /**
@@ -172,36 +158,26 @@ class AssetInterface
 		 * @param	newColor Color to replace previous color with including leading alpha bits i.e. 0xff0000ff (blue)
 		 * @return Texture created or retrieved (if already created)
 		 */
-    public static function getTextureReplaceColor(file : String, name : String, colorToReplace : Int, newColor : Int) : Texture
+    public static function getTextureReplaceColor(filePath : String, name : String, colorToReplace : Int, newColor : Int) : Texture
     {
         var newName : String = name + "_" + Std.string(colorToReplace) + "_" + Std.string(newColor);
-        if (Reflect.field(sTextures, newName) == null)
+		var texture : Texture = sTextures.get(newName);
+        if (texture == null)
         {
-            var data : Dynamic = create(file, name);
-            
-            if (Std.is(data, Bitmap))
-            {
-                var bitmapData : BitmapData = (try cast(data, Bitmap) catch(e:Dynamic) null).bitmapData;
-                // Replace Color
-                var maskToUse : Int = 0xffffffff;
-                var rect : Rectangle = new Rectangle(0, 0, bitmapData.width, bitmapData.height);
-                var p : Point = new Point(0, 0);
-                bitmapData.threshold(bitmapData, rect, p, "==", colorToReplace, newColor, maskToUse, true);
-                // Color Replaced
-                Reflect.setField(sTextures, newName, Texture.fromBitmapData(bitmapData, true, false, sContentScaleFactor));
-                bitmapData = null;
-                data = null;
-            }
-            else
-            {
-                var classInfo : FastXML = FastXML.parse(data);
-                // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
-				
-            }
+            var bitmapData : BitmapData = Assets.getBitmapData(filePath + "/" + name);
+			
+            // Replace Color
+            var maskToUse : Int = 0xffffffff;
+            var rect : Rectangle = new Rectangle(0, 0, bitmapData.width, bitmapData.height);
+            var p : Point = new Point(0, 0);
+            bitmapData.threshold(bitmapData, rect, p, "==", colorToReplace, newColor, maskToUse, true);
+			
+            // Color Replaced
+            texture = Texture.fromBitmapData(bitmapData, true, false, sContentScaleFactor);
+			sTextures.set(newName, texture);
         }
         
-        return Reflect.field(sTextures, newName);
+        return texture;
     }
     
     /**
@@ -211,36 +187,26 @@ class AssetInterface
 		 * @param	color Color to fill the shape with i.e. 0xff0000ff (blue)
 		 * @return Texture created or retrieved (if already created)
 		 */
-    public static function getTextureColorAll(file : String, name : String, color : Int) : Texture
+    public static function getTextureColorAll(filePath : String, name : String, color : Int) : Texture
     {
         var newName : String = name + "_" + Std.string(color);
-        if (Reflect.field(sTextures, newName) == null)
+		var texture : Texture = sTextures.get(newName);
+        if (texture == null)
         {
-            var data : Dynamic = create(file, name);
-            
-            if (Std.is(data, Bitmap))
-            {
-                var bitmapData : BitmapData = (try cast(data, Bitmap) catch(e:Dynamic) null).bitmapData;
-                // Replace any non-transparent color with input color
-                var maskToUse : Int = 0xffffffff;
-                var rect : Rectangle = new Rectangle(0, 0, bitmapData.width, bitmapData.height);
-                var p : Point = new Point(0, 0);
-                bitmapData.threshold(bitmapData, rect, p, ">=", 0x01000000, color, maskToUse, true);
-                // Color Replaced
-                Reflect.setField(sTextures, newName, Texture.fromBitmapData(bitmapData, true, false, sContentScaleFactor));
-                bitmapData = null;
-                data = null;
-            }
-            else
-            {
-                var classInfo : FastXML = FastXML.parse(data);
-                // List the class name.
-                trace("Class " + Std.string(classInfo.att.name));
-				
-            }
+            var bitmapData : BitmapData = Assets.getBitmapData(filePath + "/" + name);
+			
+            // Replace any non-transparent color with input color
+            var maskToUse : Int = 0xffffffff;
+            var rect : Rectangle = new Rectangle(0, 0, bitmapData.width, bitmapData.height);
+            var p : Point = new Point(0, 0);
+            bitmapData.threshold(bitmapData, rect, p, ">=", 0x01000000, color, maskToUse, true);
+			
+            // Color Replaced
+            texture = Texture.fromBitmapData(bitmapData, true, false, sContentScaleFactor);
+			sTextures.set(newName, texture);
         }
         
-        return Reflect.field(sTextures, newName);
+        return texture;
     }
     
     public static function getSound(newName : String) : Sound
@@ -256,27 +222,26 @@ class AssetInterface
         }
     }
     
-    public static function getTextureAtlas(file : String, texClassName : String, xmlClassName : String) : TextureAtlas
+    public static function getTextureAtlas(filePath : String, texName : String, xmlName : String) : TextureAtlas
     {
-        return getTextureAtlasUsingDict(sTextureAtlases, file, texClassName, xmlClassName);
+        return getTextureAtlasUsingDict(sTextureAtlases, filePath, texName, xmlName);
     }
     
-    private static function getTextureAtlasUsingDict(dict : Dictionary<String,TextureAtlas>, file : String, texClassName : String, xmlClassName : String) : TextureAtlas
+    private static function getTextureAtlasUsingDict(dict : Dictionary<String,TextureAtlas>, filePath : String, texName : String, xmlName : String) : TextureAtlas
     {
-        if (dict.get(file + texClassName) == null)
+        if (!dict.exists(texName))
         {
-            var data : Dynamic = create(file, texClassName);
-            var texture : Texture = Texture.fromBitmap(try cast(data, Bitmap) catch(e:Dynamic) null, false);
-            var xml = Xml.parse(create(file, xmlClassName));
-            dict.set(file + texClassName,new TextureAtlas(texture, xml));
+            var texture : Texture = Texture.fromBitmapData(Assets.getBitmapData(filePath + "/" + texName));
+            var xml = Xml.parse(Assets.getText(filePath + "/" + xmlName));
+            dict.set(texName, new TextureAtlas(texture, xml));
         }
-        return dict[file + texClassName];
+        return dict[texName];
     }
     
     public static function loadBitmapFont(filename : String, fontName : String, xmlFile : String) : Void
     {
         var texture : Texture = getTexture(filename, fontName);
-        var xml = Xml.parse(create(filename, xmlFile));
+        var xml = Xml.parse(Assets.getText(filename));
         TextField.registerBitmapFont(new BitmapFont(texture, xml));
         sBitmapFontsLoaded = true;
     }
@@ -291,17 +256,6 @@ class AssetInterface
     
     public static function prepareSounds() : Void
     {
-    }
-    
-    private static function create(file : String, name : String) : Dynamic
-    {
-        var textureClassNameString : String = (sContentScaleFactor == 1) ? file + "AssetEmbeds_1x" : file + "AssetEmbeds_2x";
-        var qualifiedName : String = "assets." + textureClassNameString;
-		return Texture.fromBitmapData(openfl.Assets.getBitmapData(qualifiedName));
-        //var textureClass : Class<Dynamic> = Type.getClass(Type.resolveClass(qualifiedName));
-		////I removed the Dynamic tyep was try cast(Reflect.field(textureClass, name),Dynamiv) catch(e:Dynamic) null;
-        //var textureClassObject : Dynamic = try cast(Reflect.field(textureClass, name)) catch(e:Dynamic) null;
-        //return textureClassObject;
     }
     
     private static function get_contentScaleFactor() : Float

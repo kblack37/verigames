@@ -71,14 +71,14 @@ class Game extends BaseComponent
             for (i in 1...9)
             {
                 //BaseComponent.loadingAnimationImages.push(AssetInterface.getTexture("Game", "Loading" + i + "Class"));TODO: remove if works
-				BaseComponent.loadingAnimationImages.push(Assets.getAsset("LoadingAnimation/Loading"+i+".png",AssetType.IMAGE,true));
+				BaseComponent.loadingAnimationImages.push(Assets.getAsset("img/LoadingAnimation/Loading"+i+".png",AssetType.IMAGE,true));
             }
             
             BaseComponent.waitAnimationImages = new Vector<Texture>();
             for (ii in 1...9)
             {
                 //BaseComponent.waitAnimationImages.push(AssetInterface.getTexture("Game", "Wait" + ii + "Class"));TODO:remove if works
-				BaseComponent.loadingAnimationImages.push(Assets.getAsset("LoadingAnimation/FlowJamWait" + ii + ".png",AssetType.IMAGE,true));
+				BaseComponent.loadingAnimationImages.push(Assets.getAsset("img/LoadingAnimation/FlowJamWait" + ii + ".png",AssetType.IMAGE,true));
             }
 			
         }

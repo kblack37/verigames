@@ -1,0 +1,6 @@
+{
+"id": "IntroWidget",
+"tutorial": "widget",
+"qid": 0,
+"layout":{"constraints":{},"vars":{"var_0":{"x":"3.24","h":1,"y":"2.44","w":1.8},"var_1":{"x":"0.61","h":1,"y":"0.60","w":1.8}}}
+}

@@ -10,7 +10,7 @@ class FullScreenButton extends ImageStateButton
     public function new()
     {
         m_toolTipText = "Make full screen";
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         super(
                 [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_FullscreenButton))], 
                 [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_FullscreenButtonOver))], 

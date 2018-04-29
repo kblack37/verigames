@@ -65,7 +65,7 @@ class InGameMenuDialog extends BaseComponent
         }
         
         var backgroundHeight : Int = as3hx.Compat.parseInt(numButtons * buttonHeight + (numButtons + 1) * buttonPaddingHeight + BOTTOM_BUFFER + TOP_BUFFER);
-        background = new NineSliceBatch(shapeWidth, backgroundHeight, backgroundHeight / 3.0, backgroundHeight / 3.0, "Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML", "MenuBoxAttached");
+        background = new NineSliceBatch(shapeWidth, backgroundHeight, backgroundHeight / 3.0, backgroundHeight / 3.0, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", "MenuBoxAttached");
         addChild(background);
         
         exit_button = ButtonFactory.getInstance().createButton("Exit", buttonWidth, buttonHeight, buttonHeight / 2.0, buttonHeight / 2.0, "Return to\nLevel Select");

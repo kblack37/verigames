@@ -152,7 +152,7 @@ class InnerBoxSegment extends GameComponent
             m_plug.removeFromParent(true);
         }
         m_plugAssetName = assetName;
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var plugTexture : Texture = atlas.getTexture(m_plugAssetName);
         m_plug = new Image(plugTexture);
         var scale : Float = PLUG_HEIGHT / m_plug.height;
@@ -206,7 +206,7 @@ class InnerBoxSegment extends GameComponent
             m_socket.removeFromParent(true);
         }
         m_socketAssetName = assetName;
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var socketTexture : Texture = atlas.getTexture(m_socketAssetName);
         m_socket = new Image(socketTexture);
         m_socket.touchable = false;
@@ -259,7 +259,7 @@ class InnerBoxSegment extends GameComponent
         {
             edgeSegmentOutline.removeFromParent(true);
         }
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var outlineTexture : Texture = atlas.getTexture(assetName);
         edgeSegmentOutline = new Image(outlineTexture);
         m_edgeOutlineAssetName = assetName;

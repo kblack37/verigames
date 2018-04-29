@@ -279,7 +279,7 @@ class GameEdgeJoint extends GameComponent
             }
         }
         
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var jointTexture : Texture = atlas.getTexture(jointAssetName);
         var jointImg : Image = new Image(jointTexture);
         if (applyColor >= 0)

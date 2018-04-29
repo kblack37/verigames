@@ -244,7 +244,7 @@ class GameFileHandler
         Scene.m_gameSystem.dispatchEvent(new starling.events.Event(Game.START_BUSY_ANIMATION, true));
         
         var m_id : Int = 100000;
-        if (PipeJamGame.levelInfo && Reflect.PipeJamGame.levelInfo.exists("id") && PipeJamGame.levelInfo.id.length < 5)
+        if (PipeJamGame.levelInfo && Reflect.hasField(PipeJamGame.levelInfo, "id") && PipeJamGame.levelInfo.id.length < 5)
         {
             m_id = as3hx.Compat.parseInt(PipeJamGame.levelInfo.id);
         }

@@ -1,5 +1,6 @@
 package assets;
 
+import haxe.Json;
 import openfl.Assets;
 import flash.errors.ArgumentError;
 //import com.emibap.textureAtlas.DynamicAtlas;
@@ -32,9 +33,10 @@ class AssetInterface
     // Texture cache
     
     public static var sContentScaleFactor : Int = 1;
-    private static var sTextureAtlases : Dictionary<String,TextureAtlas> = new Dictionary();
-    private static var sTextures : Dictionary<String,Texture> = new Dictionary();
-    private static var sSounds : Dictionary<String,Sound> = new Dictionary();
+    private static var sTextureAtlases : Map<String,TextureAtlas> = new Map<String, TextureAtlas>();
+    private static var sTextures : Map<String,Texture> = new Map<String, Texture>();
+    private static var sSounds : Map<String,Sound> = new Map<String, Sound>();
+	private static var sObjects : Map<String, Dynamic> = new Map<String, Dynamic>();
     private static var sTextureAtlas : TextureAtlas;
     private static var sBitmapFontsLoaded : Bool;
     
@@ -227,7 +229,7 @@ class AssetInterface
         return getTextureAtlasUsingDict(sTextureAtlases, filePath, texName, xmlName);
     }
     
-    private static function getTextureAtlasUsingDict(dict : Dictionary<String,TextureAtlas>, filePath : String, texName : String, xmlName : String) : TextureAtlas
+    private static function getTextureAtlasUsingDict(dict : Map<String,TextureAtlas>, filePath : String, texName : String, xmlName : String) : TextureAtlas
     {
         if (!dict.exists(texName))
         {
@@ -253,6 +255,18 @@ class AssetInterface
         //return atlas;TODO there is not DynamicAtlas in the build I dont know where this is coming from
 		return null;
     }
+	
+	public static function getObject(filePath : String, name : String) : Dynamic
+	{
+		var object : Dynamic = sObjects.get(name);
+		if (object == null) 
+		{
+			object = Json.parse(Assets.getText(filePath + "/" + name));
+			sObjects.set(name, object);
+		}
+		
+		return object;
+	}
     
     public static function prepareSounds() : Void
     {
@@ -264,11 +278,7 @@ class AssetInterface
     }
     private static function set_contentScaleFactor(value : Float) : Float
     {
-        for (key/* AS3HX WARNING could not determine type for var: texture exp: EIdent(sTextures) type: Dictionary */ in sTextures)
-        {
-            sTextures.remove(key);
-        }
-        sTextures = new Dictionary();
+        sTextures = new Map<String, Texture>();
         sContentScaleFactor = (value < 1.5) ? 1 : 2;
         return value;
     }

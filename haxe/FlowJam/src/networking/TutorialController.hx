@@ -1,5 +1,6 @@
 package networking;
 
+import assets.AssetInterface;
 import flash.errors.Error;
 import haxe.Constraints.Function;
 import flash.events.Event;
@@ -42,9 +43,9 @@ class TutorialController extends Sprite
     {
         super();
 		
-		this.tutorialObj = Json.parse(openfl.Assets.getText("assets/levels/tutorial/tutorial.json"));
-		this.tutorialLayoutObj = Json.parse(openfl.Assets.getText("assets/levels/tutorial/tutorialLayout.json"));
-		this.tutorialAssignmentsObj = Json.parse(openfl.Assets.getText("assets/levels/tutorial/tutorialAssignments.json"));
+		this.tutorialObj = AssetInterface.getObject("levels/tutorial", "tutorial.json");
+		this.tutorialLayoutObj = AssetInterface.getObject("levels/tutorial", "tutorialLayout.json");
+		this.tutorialAssignmentsObj = AssetInterface.getObject("levels/tutorial", "tutorialAssignments.json");
     }
     
     public static function getTutorialController() : TutorialController

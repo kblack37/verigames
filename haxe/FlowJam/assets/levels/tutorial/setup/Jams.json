@@ -1,0 +1,25 @@
+{
+  "id": "Jams",
+  "qid": 4,
+  "default": "type:1",
+  "constraints": [
+	{
+      "lhs": "var:0",
+      "constraint": "subtype",
+      "rhs": "type:0"
+    }
+  ],
+  "variables": {
+	"var:0": {
+		"default": "type:1"
+	}
+  },
+  "scoring": {
+    "constraints": 100,
+    "variables": {
+      "type:1": 0,
+      "type:0": 0
+    }
+  },
+  "version": "1"
+}

@@ -1,32 +1,22 @@
 package networking;
 
+import assets.AssetInterface;
 import flash.errors.Error;
 import haxe.Constraints.Function;
 import flash.events.Event;
 import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
+import haxe.Json;
 import scenes.loadingscreen.LoadingScreenScene;
 import starling.display.Sprite;
 
 class TutorialController extends Sprite
 {
-    @:meta(Embed(source="../../lib/levels/tutorial/tutorial.json",mimeType="application/octet-stream"))
-
-    public static var tutorialFileClass : Class<Dynamic>;
-    public static var tutorialJson : String = Type.createInstance(tutorialFileClass, []);
-    public static var tutorialObj : Dynamic = haxe.Json.parse(tutorialJson);
+    public var tutorialObj : Dynamic;
     
-    @:meta(Embed(source="../../lib/levels/tutorial/tutorialLayout.json",mimeType="application/octet-stream"))
+    public var tutorialLayoutObj : Dynamic;
 
-    public static var tutorialLayoutFileClass : Class<Dynamic>;
-    public static var tutorialLayoutJson : String = Type.createInstance(tutorialLayoutFileClass, []);
-    public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(tutorialLayoutJson);
-    
-    @:meta(Embed(source="../../lib/levels/tutorial/tutorialAssignments.json",mimeType="application/octet-stream"))
-
-    public static var tutorialAssignmentsFileClass : Class<Dynamic>;
-    public static var tutorialAssignmentsJson : String = Type.createInstance(tutorialAssignmentsFileClass, []);
-    public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(tutorialAssignmentsJson);
+    public var tutorialAssignmentsObj : Dynamic;
     
     public static var tutorial_level_complete : Int = 0;
     public static var get_completed_tutorial_levels : Int = 1;
@@ -48,6 +38,15 @@ class TutorialController extends Sprite
     public var fromLevelSelectList : Bool = false;
     
     private var levelCompletedQID : String;
+	
+	public function new()
+    {
+        super();
+		
+		this.tutorialObj = AssetInterface.getObject("levels/tutorial", "tutorial.json");
+		this.tutorialLayoutObj = AssetInterface.getObject("levels/tutorial", "tutorialLayout.json");
+		this.tutorialAssignmentsObj = AssetInterface.getObject("levels/tutorial", "tutorialAssignments.json");
+    }
     
     public static function getTutorialController() : TutorialController
     {
@@ -345,10 +344,5 @@ class TutorialController extends Sprite
         }
         
         NetworkConnection.sendMessage(callback, null, url, method, "");
-    }
-
-    public function new()
-    {
-        super();
     }
 }

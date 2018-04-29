@@ -90,7 +90,7 @@ class GameIfTestJoint extends GameNode
         {
             assetName = AssetInterface.PipeJamSubTexture_BallSizeTestMapNarrow;
         }
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var texture : Texture = atlas.getTexture(assetName);
         costume = new Image(texture);
         var scaleFactor : Float = boundingBox.width / costume.width;

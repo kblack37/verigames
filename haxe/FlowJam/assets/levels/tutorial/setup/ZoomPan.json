@@ -1,0 +1,21 @@
+{
+  "id": "ZoomPan",
+  "qid": 7,
+  "default": "type:1",
+  "constraints": [
+	"var:0 <= type:0",
+	"type:1 <= var:1"
+  ],
+  "variables": {
+	"var:0": {"default": "type:1"},
+	"var:1": {"default": "type:0"}
+  },
+  "scoring": {
+    "constraints": 100,
+    "variables": {
+      "type:1": 0,
+      "type:0": 0
+    }
+  },
+  "version": "1"
+}

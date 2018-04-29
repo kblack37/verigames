@@ -76,14 +76,14 @@ class LevelSelectScene extends Scene
         
         var levelSelectWidth : Float = 305;
         var levelSelectHeight : Float = 320;
-        levelSelectBackground = new NineSliceBatch(levelSelectWidth, levelSelectHeight, levelSelectWidth / 6.0, levelSelectHeight / 6.0, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", "LevelSelectWindow");
+        levelSelectBackground = new NineSliceBatch(levelSelectWidth, levelSelectHeight, levelSelectWidth / 6.0, levelSelectHeight / 6.0, "atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", "LevelSelectWindow");
         levelSelectBackground.x = 10;
         levelSelectBackground.y = 5;
         addChild(levelSelectBackground);
         
         var levelSelectInfoWidth : Float = 150;
         var levelSelectInfoHeight : Float = 320;
-        levelSelectInfoPanel = new NineSliceBatch(levelSelectInfoWidth, levelSelectInfoHeight, levelSelectInfoWidth / 6.0, levelSelectInfoHeight / 6.0, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", "LevelSelectWindow");
+        levelSelectInfoPanel = new NineSliceBatch(levelSelectInfoWidth, levelSelectInfoHeight, levelSelectInfoWidth / 6.0, levelSelectInfoHeight / 6.0, "atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", "LevelSelectWindow");
         levelSelectInfoPanel.x = width - levelSelectInfoWidth - 10;
         levelSelectInfoPanel.y = 5;
         addChild(levelSelectInfoPanel);
@@ -184,9 +184,10 @@ class LevelSelectScene extends Scene
             saved_levels_button.enabled = false;
         }
         
-        setTutorialFile(TutorialController.tutorialObj);
+		var tutorialController : TutorialController = TutorialController.getTutorialController();
+        setTutorialFile(tutorialController.tutorialObj);
         
-        if (!TutorialController.getTutorialController().isTutorialDone() || !PlayerValidation.playerLoggedIn)
+        if (!tutorialController.isTutorialDone() || !PlayerValidation.playerLoggedIn)
         {
             onTutorialButtonTriggered(null);
         }
@@ -250,7 +251,7 @@ class LevelSelectScene extends Scene
             var currentSelectedLevel : Dynamic = currentVisibleListBox.currentSelection.data;
             
             removeChild(nameText);
-            if (currentSelectedLevel.exists("name"))
+            if (Reflect.hasField(currentSelectedLevel, "name"))
             {
                 nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLevel.name, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(nameText, 0, 1);

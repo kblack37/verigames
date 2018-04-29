@@ -17,19 +17,19 @@ import flash.text.AntiAliasType;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.utils.Dictionary;
-import starling.core.RenderSupport;
+//import starling.core.RenderSupport;
 import starling.core.Starling;
 import starling.display.DisplayObject;
 import starling.display.DisplayObjectContainer;
 import starling.display.Image;
 import starling.display.Quad;
-import starling.display.QuadBatch;
+//import starling.display.QuadBatch;
 import starling.display.Sprite;
 import starling.events.Event;
 import starling.text.BitmapFont;
 import starling.textures.Texture;
-import starling.utils.HAlign;
-import starling.utils.VAlign;
+//import starling.utils.HAlign;
+//import starling.utils.VAlign;
 
 /** A TextField displays text, either using standard true type fonts or custom bitmap fonts.
 	 *  
@@ -100,7 +100,7 @@ class TextFieldHack extends TextFieldWrapper
     private var mBorder : DisplayObjectContainer;
     
     private var mImage : Image;
-    private var mQuadBatch : QuadBatch;
+    //private var mQuadBatch : QuadBatch; TODO figure this out
     
     // this object will be used for text rendering
     private static var sNativeTextField : flash.text.TextField = new flash.text.TextField();
@@ -666,13 +666,10 @@ class TextFieldHack extends TextFieldWrapper
     {
         if (dispose && Reflect.field(sBitmapFonts, name) != null)
         {
-            Reflect.field(sBitmapFonts, name).dispose();
+            sBitmapFonts = null;
         }
-        
-        This is an intentional compilation error. See the README for handling the delete keyword
-        delete sBitmapFonts[name];
     }
-    
+	
     /** Returns a registered bitmap font (or null, if the font has not been registered). */
     public static function getBitmapFont(name : String) : BitmapFont
     {

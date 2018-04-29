@@ -1,6 +1,6 @@
 package assets;
 
-import openfl.Assets;
+//import openfl.Assets;
 import flash.errors.ArgumentError;
 //import com.emibap.textureAtlas.DynamicAtlas;
 import flash.display.BitmapData;
@@ -16,6 +16,7 @@ import starling.text.TextField;
 import starling.textures.Texture;
 import starling.textures.TextureAtlas;
 import flash.Lib;
+import openfl.Assets;
 
 class AssetInterface
 {
@@ -145,12 +146,14 @@ class AssetInterface
             
             if (Std.is(data, Bitmap))
             {
-                Reflect.setField(sTextures, name, Texture.fromBitmap(try cast(data, Bitmap) catch(e:Dynamic) null, true, false, sContentScaleFactor));
+                //Reflect.setField(sTextures, name, Texture.fromBitmap(try cast(data, Bitmap) catch (e:Dynamic) null, true, false, sContentScaleFactor));
+				Reflect.setField(sTextures, name, Texture.fromBitmapData(Assets.getBitmapData(name,true)));
                 data = null;
             }
             else if (Std.is(data, ByteArray))
             {
-                Reflect.setField(sTextures, name, Texture.fromAtfData(try cast(data, ByteArray) catch(e:Dynamic) null, sContentScaleFactor));
+                //Reflect.setField(sTextures, name, Texture.fromAtfData(try cast(data, ByteArray) catch(e:Dynamic) null, sContentScaleFactor));
+				Reflect.setField(sTextures, name, Texture.fromAtfData(Assets.getBytes(name)));
                 data = null;
             }
             else

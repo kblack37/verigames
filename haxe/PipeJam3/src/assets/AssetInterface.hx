@@ -22,7 +22,7 @@ class AssetInterface
     public static var DialogWindowAtlas(get, never) : TextureAtlas;
     public static var PipeJamLevelSelectAtlas(get, never) : TextureAtlas;
     public static var contentScaleFactor(get, set) : Float;
-
+	
     // If you're developing a game for the Flash Player / browser plugin, you can directly
     // embed all textures directly in this class. This demo, however, provides two sets of
     // textures for different resolutions. That's useful especially for mobile development,
@@ -300,18 +300,20 @@ class AssetInterface
     
     private static function get_PipeJamSpriteSheetAtlas() : TextureAtlas
     {
+		var pipe3 : String = Reflect.field(PipeJam3,"ASSET_SUFFIX");
         if (sPipeJamSpriteSheetAtlas == null)
         {
-            sPipeJamSpriteSheetAtlas = getTextureAtlas("Game", "PipeJamSpriteSheetPNG" + PipeJam3.ASSET_SUFFIX, "PipeJamSpriteSheetXML" + PipeJam3.ASSET_SUFFIX);
+            sPipeJamSpriteSheetAtlas = getTextureAtlas("Game", "PipeJamSpriteSheetPNG" + pipe3, "PipeJamSpriteSheetXML" + pipe3);
         }
         return sPipeJamSpriteSheetAtlas;
     }
     
     private static function get_ParadoxSpriteSheetAtlas() : TextureAtlas
     {
+		var pipe3 : String = Reflect.field(PipeJam3, "ASSET_SUFFIX");
         if (sParadoxSpriteSheetAtlas == null)
         {
-            sParadoxSpriteSheetAtlas = getTextureAtlas("Game", "ParadoxSpriteSheetPNG" + PipeJam3.ASSET_SUFFIX, "ParadoxSpriteSheetXML" + PipeJam3.ASSET_SUFFIX);
+            sParadoxSpriteSheetAtlas = getTextureAtlas("Game", "ParadoxSpriteSheetPNG" + pipe3, "ParadoxSpriteSheetXML" + pipe3);
         }
         return sParadoxSpriteSheetAtlas;
     }

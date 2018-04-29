@@ -18,11 +18,13 @@
 	<haxelib name="starling" />
 	<haxelib name="as3hx" />
 	
+	<haxedef name="fdb" if="flash"/>
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />
-	<assets path="assets/LoadingAnimation" include="*.png"/>
+	<assets path="assets/LoadingAnimation" rename="LoadingAnimation" include="*.png"/>
 	<assets path="assets" include="*.jpeg|*.png"/>
-	<assets path="assets/Backgrounds" include="*.jpeg"/>
+	<assets path="assets/Backgrounds" rename="Backgrounds" include="*.jpeg"/>
+	<assets path="assets/lib/levels/tutorial" rename="Tutorial" include="*"/>
 	<!--assets path="assets/sounds" rename="sounds" -->
 	
 	<!-- optimize output

@@ -1,0 +1,3691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE world SYSTEM "world.dtd">
+<world version="1">
+ <level name="IntroWidget" qid="1">
+  <linked-edges>
+   <edge-set id="IntroWidget2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="IntroWidget3">
+    <edgeref id="e31"/>
+	<edgeref id="e32"/>
+	<edgeref id="e33"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="IntroWidget--Board">
+    <node kind="INCOMING" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n31">
+     <input/>
+     <output>
+      <port num="0" edge="e31"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n32">
+     <input/>
+     <output>
+      <port num="0" edge="e32"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n33">
+     <input/>
+     <output>
+      <port num="0" edge="e33"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="END" id="n20">
+     <input>
+      <port num="0" edge="e2"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n310">
+     <input>
+      <port num="0" edge="e31"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n320">
+     <input>
+      <port num="0" edge="e32"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n330">
+     <input>
+      <port num="0" edge="e33"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n20" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e31" buzzsaw="false">
+     <from><noderef id="n31" port="0"/></from>
+     <to><noderef id="n310" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e32" buzzsaw="false">
+     <from><noderef id="n32" port="0"/></from>
+     <to><noderef id="n320" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e33" buzzsaw="false">
+     <from><noderef id="n33" port="0"/></from>
+     <to><noderef id="n330" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="WidgetPractice" qid="2">
+  <linked-edges>
+   <edge-set id="WidgetPractice1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="WidgetPractice2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="WidgetPractice3">
+    <edgeref id="e31"/>
+	<edgeref id="e32"/>
+	<edgeref id="e33"/>
+   </edge-set>
+   <edge-set id="WidgetPractice4">
+    <edgeref id="e41"/>
+	<edgeref id="e42"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="WidgetPractice--Board">
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n1">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+    <node kind="INCOMING" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n31">
+     <input/>
+     <output>
+      <port num="0" edge="e31"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n32">
+     <input/>
+     <output>
+      <port num="0" edge="e32"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n33">
+     <input/>
+     <output>
+      <port num="0" edge="e33"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="INCOMING" id="n41">
+     <input/>
+     <output>
+      <port num="0" edge="e41"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="INCOMING" id="n42">
+     <input/>
+     <output>
+      <port num="0" edge="e42"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n10">
+     <input>
+      <port num="0" edge="e1"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n20">
+     <input>
+      <port num="0" edge="e2"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n310">
+     <input>
+      <port num="0" edge="e31"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n320">
+     <input>
+      <port num="0" edge="e32"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n330">
+     <input>
+      <port num="0" edge="e33"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n410">
+     <input>
+      <port num="0" edge="e41"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n420">
+     <input>
+      <port num="0" edge="e42"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n1" port="0"/></from>
+     <to><noderef id="n10" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n20" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e31" buzzsaw="false">
+     <from><noderef id="n31" port="0"/></from>
+     <to><noderef id="n310" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e32" buzzsaw="false">
+     <from><noderef id="n32" port="0"/></from>
+     <to><noderef id="n320" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e33" buzzsaw="false">
+     <from><noderef id="n33" port="0"/></from>
+     <to><noderef id="n330" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e41" buzzsaw="false">
+     <from><noderef id="n41" port="0"/></from>
+     <to><noderef id="n410" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e42" buzzsaw="false">
+     <from><noderef id="n42" port="0"/></from>
+     <to><noderef id="n420" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="LockedWidget" qid="3">
+  <linked-edges>
+   <edge-set id="LockedWidget1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="LockedWidget2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="LockedWidget3">
+    <edgeref id="e31"/>
+	<edgeref id="e32"/>
+	<edgeref id="e33"/>
+   </edge-set>
+   <edge-set id="LockedWidget4">
+    <edgeref id="e41"/>
+	<edgeref id="e42"/>
+   </edge-set>
+   <edge-set id="LockedWidget5">
+    <edgeref id="e5"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="LockedWidget--Board">
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n1">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n31">
+     <input/>
+     <output>
+      <port num="0" edge="e31"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="INCOMING" id="n32">
+     <input/>
+     <output>
+      <port num="0" edge="e32"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n33">
+     <input/>
+     <output>
+      <port num="0" edge="e33"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n5">
+     <input/>
+     <output>
+      <port num="0" edge="e5"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="INCOMING" id="n41">
+     <input/>
+     <output>
+      <port num="0" edge="e41"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="INCOMING" id="n42">
+     <input/>
+     <output>
+      <port num="0" edge="e42"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n10">
+     <input>
+      <port num="0" edge="e1"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n20">
+     <input>
+      <port num="0" edge="e2"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n310">
+     <input>
+      <port num="0" edge="e31"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n320">
+     <input>
+      <port num="0" edge="e32"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n330">
+     <input>
+      <port num="0" edge="e33"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n410">
+     <input>
+      <port num="0" edge="e41"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n420">
+     <input>
+      <port num="0" edge="e42"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n50">
+     <input>
+      <port num="0" edge="e5"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n1" port="0"/></from>
+     <to><noderef id="n10" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n20" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e31" buzzsaw="false">
+     <from><noderef id="n31" port="0"/></from>
+     <to><noderef id="n310" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e32" buzzsaw="false">
+     <from><noderef id="n32" port="0"/></from>
+     <to><noderef id="n320" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e33" buzzsaw="false">
+     <from><noderef id="n33" port="0"/></from>
+     <to><noderef id="n330" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e41" buzzsaw="false">
+     <from><noderef id="n41" port="0"/></from>
+     <to><noderef id="n410" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e42" buzzsaw="false">
+     <from><noderef id="n42" port="0"/></from>
+     <to><noderef id="n420" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e5" buzzsaw="false">
+     <from><noderef id="n5" port="0"/></from>
+     <to><noderef id="n50" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Links" qid="4">
+  <linked-edges>
+   <edge-set id="SatisfyBoxes1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="SatisfyBoxes2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="SatisfyBoxes3">
+    <edgeref id="e3"/>
+    <edgeref id="e4"/>
+   </edge-set>
+   <edge-set id="SatisfyBoxes10">
+    <edgeref id="e10"/>
+   </edge-set>
+   <edge-set id="SatisfyBoxes20">
+    <edgeref id="e20"/>
+   </edge-set>
+   <edge-set id="SatisfyBoxes30">
+    <edgeref id="e30"/>
+   </edge-set>
+   <edge-set id="SatisfyBoxes40">
+    <edgeref id="e40"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="SatisfyBoxes--Board">
+    <node kind="INCOMING" id="n1">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+	  <port num="1" edge="e3"/>
+	  <port num="2" edge="e4"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_SMALL_BALL" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n10">
+     <input>
+	  <port num="0" edge="e1"/>
+	 </input>
+     <output>
+      <port num="0" edge="e10"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n20">
+     <input>
+	  <port num="0" edge="e2"/>
+	 </input>
+     <output>
+      <port num="0" edge="e20"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n30">
+     <input>
+	  <port num="0" edge="e3"/>
+	 </input>
+     <output>
+      <port num="0" edge="e30"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n40">
+     <input>
+	  <port num="0" edge="e4"/>
+	 </input>
+     <output>
+      <port num="0" edge="e40"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n100">
+     <input>
+      <port num="0" edge="e10"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n200">
+     <input>
+      <port num="0" edge="e20"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n300">
+     <input>
+      <port num="0" edge="e30"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n400">
+     <input>
+      <port num="0" edge="e40"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e1" buzzsaw="false">
+     <from>
+      <noderef id="n1" port="0"/>
+     </from>
+     <to>
+      <noderef id="n10" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e2" buzzsaw="false">
+     <from>
+      <noderef id="n2" port="0"/>
+     </from>
+     <to>
+      <noderef id="n20" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e3" buzzsaw="false">
+     <from>
+      <noderef id="n1" port="1"/>
+     </from>
+     <to>
+      <noderef id="n30" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e4" buzzsaw="false">
+     <from>
+      <noderef id="n1" port="2"/>
+     </from>
+     <to>
+      <noderef id="n40" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e10" buzzsaw="false">
+     <from>
+      <noderef id="n10" port="0"/>
+     </from>
+     <to>
+      <noderef id="n100" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e20" buzzsaw="false">
+     <from>
+      <noderef id="n20" port="0"/>
+     </from>
+     <to>
+      <noderef id="n200" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e30" buzzsaw="false">
+     <from>
+      <noderef id="n30" port="0"/>
+     </from>
+     <to>
+      <noderef id="n300" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e40" buzzsaw="false">
+     <from>
+      <noderef id="n40" port="0"/>
+     </from>
+     <to>
+      <noderef id="n400" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Passages" qid="5">
+  <linked-edges>
+   <edge-set id="Passages2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="Passages3">
+	<edgeref id="e32"/>
+	<edgeref id="e33"/>
+   </edge-set>
+   <edge-set id="Passages4">
+    <edgeref id="e42"/>
+   </edge-set>
+   <edge-set id="Passages5">
+    <edgeref id="e53"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="Passages--Board">
+	<node kind="START_SMALL_BALL" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="INCOMING" id="n3">
+     <input/>
+     <output>
+      <port num="0" edge="e33"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="CONNECT" id="n23">
+     <input><port num="0" edge="e2"/></input>
+     <output><port num="0" edge="e32"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n342">
+     <input><port num="0" edge="e32"/></input>
+     <output><port num="0" edge="e42"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n353">
+     <input><port num="0" edge="e33"/></input>
+     <output><port num="0" edge="e53"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n420">
+     <input>
+      <port num="0" edge="e42"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n530">
+     <input>
+      <port num="0" edge="e53"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n23" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e32" buzzsaw="false">
+     <from><noderef id="n23" port="0"/></from>
+     <to><noderef id="n342" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e33" buzzsaw="false">
+     <from><noderef id="n3" port="0"/></from>
+     <to><noderef id="n353" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e42" buzzsaw="false">
+     <from><noderef id="n342" port="0"/></from>
+     <to><noderef id="n420" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e53" buzzsaw="false">
+     <from><noderef id="n353" port="0"/></from>
+     <to><noderef id="n530" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Jams" qid="6">
+  <linked-edges>
+   <edge-set id="Clashes1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="Clashes2">
+    <edgeref id="e2"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="Clashes--Board">
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n1">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="CONNECT" id="n12">
+     <input><port num="0" edge="e1"/></input>
+     <output><port num="0" edge="e2"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n2">
+     <input>
+      <port num="0" edge="e2"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n1" port="0"/></from>
+     <to><noderef id="n12" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e2" buzzsaw="false">
+     <from><noderef id="n12" port="0"/></from>
+     <to><noderef id="n2" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Widen" qid="7">
+  <linked-edges>
+   <edge-set id="WidenBoxes1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="WidenBoxes2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="WidenBoxes3">
+    <edgeref id="e3"/>
+   </edge-set>
+   <edge-set id="WidenBoxes4">
+    <edgeref id="e4"/>
+   </edge-set>
+   <edge-set id="WidenBoxes10">
+    <edgeref id="e10"/>
+   </edge-set>
+   <edge-set id="WidenBoxes20">
+    <edgeref id="e20"/>
+   </edge-set>
+   <edge-set id="WidenBoxes30">
+    <edgeref id="e30"/>
+    <edgeref id="e40"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="WidenBoxes--Board">
+    <node kind="START_LARGE_BALL" id="n1">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+    <node kind="START_LARGE_BALL" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_LARGE_BALL" id="n3">
+     <input/>
+     <output>
+      <port num="0" edge="e3"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_LARGE_BALL" id="n4">
+     <input/>
+     <output>
+      <port num="0" edge="e4"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n10">
+     <input>
+	  <port num="0" edge="e1"/>
+	 </input>
+     <output>
+      <port num="0" edge="e10"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n20">
+     <input>
+	  <port num="0" edge="e2"/>
+	 </input>
+     <output>
+      <port num="0" edge="e20"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n30">
+     <input>
+	  <port num="0" edge="e3"/>
+	 </input>
+     <output>
+      <port num="0" edge="e30"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n40">
+     <input>
+	  <port num="0" edge="e4"/>
+	 </input>
+     <output>
+      <port num="0" edge="e40"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n100">
+     <input>
+      <port num="0" edge="e10"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n200">
+     <input>
+      <port num="0" edge="e20"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n300">
+     <input>
+      <port num="0" edge="e30"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n400">
+     <input>
+      <port num="0" edge="e40"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e1" buzzsaw="false">
+     <from>
+      <noderef id="n1" port="0"/>
+     </from>
+     <to>
+      <noderef id="n10" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e2" buzzsaw="false">
+     <from>
+      <noderef id="n2" port="0"/>
+     </from>
+     <to>
+      <noderef id="n20" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e3" buzzsaw="false">
+     <from>
+      <noderef id="n3" port="0"/>
+     </from>
+     <to>
+      <noderef id="n30" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e4" buzzsaw="false">
+     <from>
+      <noderef id="n4" port="0"/>
+     </from>
+     <to>
+      <noderef id="n40" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e10" buzzsaw="false">
+     <from>
+      <noderef id="n10" port="0"/>
+     </from>
+     <to>
+      <noderef id="n100" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e20" buzzsaw="false">
+     <from>
+      <noderef id="n20" port="0"/>
+     </from>
+     <to>
+      <noderef id="n200" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e30" buzzsaw="false">
+     <from>
+      <noderef id="n30" port="0"/>
+     </from>
+     <to>
+      <noderef id="n300" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e40" buzzsaw="false">
+     <from>
+      <noderef id="n40" port="0"/>
+     </from>
+     <to>
+      <noderef id="n400" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="LockedPassage" qid="8">
+  <linked-edges>
+   <edge-set id="NarrowBoxes1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="NarrowBoxes2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="NarrowBoxes3">
+    <edgeref id="e3"/>
+   </edge-set>
+   <edge-set id="NarrowBoxes4">
+    <edgeref id="e4"/>
+   </edge-set>
+   <edge-set id="NarrowBoxes10">
+    <edgeref id="e10"/>
+   </edge-set>
+   <edge-set id="NarrowBoxes20">
+    <edgeref id="e20"/>
+   </edge-set>
+   <edge-set id="NarrowBoxes30">
+    <edgeref id="e30"/>
+    <edgeref id="e40"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="NarrowBoxes--Board">
+    <node kind="START_LARGE_BALL" id="n1">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_LARGE_BALL" id="n3">
+     <input/>
+     <output>
+      <port num="0" edge="e3"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n4">
+     <input/>
+     <output>
+      <port num="0" edge="e4"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n10">
+     <input>
+	  <port num="0" edge="e1"/>
+	 </input>
+     <output>
+      <port num="0" edge="e10"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n20">
+     <input>
+	  <port num="0" edge="e2"/>
+	 </input>
+     <output>
+      <port num="0" edge="e20"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n30">
+     <input>
+	  <port num="0" edge="e3"/>
+	 </input>
+     <output>
+      <port num="0" edge="e30"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n40">
+     <input>
+	  <port num="0" edge="e4"/>
+	 </input>
+     <output>
+      <port num="0" edge="e40"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n100">
+     <input>
+      <port num="0" edge="e10"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n200">
+     <input>
+      <port num="0" edge="e20"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n300">
+     <input>
+      <port num="0" edge="e30"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n400">
+     <input>
+      <port num="0" edge="e40"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e1" buzzsaw="false">
+     <from>
+      <noderef id="n1" port="0"/>
+     </from>
+     <to>
+      <noderef id="n10" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e2" buzzsaw="false">
+     <from>
+      <noderef id="n2" port="0"/>
+     </from>
+     <to>
+      <noderef id="n20" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e3" buzzsaw="false">
+     <from>
+      <noderef id="n3" port="0"/>
+     </from>
+     <to>
+      <noderef id="n30" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e4" buzzsaw="false">
+     <from>
+      <noderef id="n4" port="0"/>
+     </from>
+     <to>
+      <noderef id="n40" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e10" buzzsaw="false">
+     <from>
+      <noderef id="n10" port="0"/>
+     </from>
+     <to>
+      <noderef id="n100" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="true" width="narrow" editable="true" id="e20" buzzsaw="false">
+     <from>
+      <noderef id="n20" port="0"/>
+     </from>
+     <to>
+      <noderef id="n200" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e30" buzzsaw="false">
+     <from>
+      <noderef id="n30" port="0"/>
+     </from>
+     <to>
+      <noderef id="n300" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="true" width="wide" editable="true" id="e40" buzzsaw="false">
+     <from>
+      <noderef id="n40" port="0"/>
+     </from>
+     <to>
+      <noderef id="n400" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Optimize" qid="9">
+  <linked-edges>
+   <edge-set id="Optimize1">
+    <edgeref id="e11"/>
+	<edgeref id="e12"/>
+   </edge-set>
+   <edge-set id="Optimize2">
+    <edgeref id="e21"/>
+	<edgeref id="e22"/>
+	<edgeref id="e23"/>
+	<edgeref id="e24"/>
+   </edge-set>
+   <edge-set id="Optimize3">
+    <edgeref id="e31"/>
+	<edgeref id="e32"/>
+	<edgeref id="e33"/>
+	<edgeref id="e34"/>
+	<edgeref id="e35"/>
+   </edge-set>
+   <edge-set id="Optimize4">
+    <edgeref id="e41"/>
+	<edgeref id="e42"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="Optimize--Board">
+    <node kind="INCOMING" id="n11">
+     <input/>
+     <output>
+      <port num="0" edge="e11"/>
+	  <port num="1" edge="e21"/>
+	  <port num="2" edge="e31"/>
+	  <port num="3" edge="e32"/>
+	  <port num="4" edge="e41"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n12">
+     <input/>
+     <output>
+      <port num="0" edge="e12"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n23">
+     <input/>
+     <output>
+      <port num="0" edge="e23"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n34">
+     <input/>
+     <output>
+      <port num="0" edge="e34"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n42">
+     <input/>
+     <output>
+      <port num="0" edge="e42"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n22">
+     <input>
+	  <port num="0" edge="e12"/>
+	 </input>
+     <output>
+      <port num="0" edge="e22"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n24">
+     <input>
+	  <port num="0" edge="e34"/>
+	 </input>
+     <output>
+      <port num="0" edge="e24"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n33">
+     <input>
+	  <port num="0" edge="e23"/>
+	 </input>
+     <output>
+      <port num="0" edge="e33"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n35">
+     <input>
+	  <port num="0" edge="e42"/>
+	 </input>
+     <output>
+      <port num="0" edge="e35"/>
+     </output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n110">
+     <input>
+      <port num="0" edge="e11"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n210">
+     <input>
+      <port num="0" edge="e21"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n220">
+     <input>
+      <port num="0" edge="e22"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n240">
+     <input>
+      <port num="0" edge="e24"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n310">
+     <input>
+      <port num="0" edge="e31"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n320">
+     <input>
+      <port num="0" edge="e32"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n330">
+     <input>
+      <port num="0" edge="e33"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n350">
+     <input>
+      <port num="0" edge="e35"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n410">
+     <input>
+      <port num="0" edge="e41"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e11" buzzsaw="false">
+     <from>
+      <noderef id="n11" port="0"/>
+     </from>
+     <to>
+      <noderef id="n110" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e12" buzzsaw="false">
+     <from>
+      <noderef id="n12" port="0"/>
+     </from>
+     <to>
+      <noderef id="n22" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e21" buzzsaw="false">
+     <from>
+      <noderef id="n11" port="1"/>
+     </from>
+     <to>
+      <noderef id="n210" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e22" buzzsaw="false">
+     <from>
+      <noderef id="n22" port="0"/>
+     </from>
+     <to>
+      <noderef id="n220" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e23" buzzsaw="false">
+     <from>
+      <noderef id="n23" port="0"/>
+     </from>
+     <to>
+      <noderef id="n33" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e24" buzzsaw="false">
+     <from>
+      <noderef id="n24" port="0"/>
+     </from>
+     <to>
+      <noderef id="n240" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e31" buzzsaw="false">
+     <from>
+      <noderef id="n11" port="2"/>
+     </from>
+     <to>
+      <noderef id="n310" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e32" buzzsaw="false">
+     <from>
+      <noderef id="n11" port="3"/>
+     </from>
+     <to>
+      <noderef id="n320" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="true" width="narrow" editable="true" id="e33" buzzsaw="false">
+     <from>
+      <noderef id="n33" port="0"/>
+     </from>
+     <to>
+      <noderef id="n330" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e34" buzzsaw="false">
+     <from>
+      <noderef id="n34" port="0"/>
+     </from>
+     <to>
+      <noderef id="n24" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="true" width="narrow" editable="true" id="e35" buzzsaw="false">
+     <from>
+      <noderef id="n35" port="0"/>
+     </from>
+     <to>
+      <noderef id="n350" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e41" buzzsaw="false">
+     <from>
+      <noderef id="n11" port="4"/>
+     </from>
+     <to>
+      <noderef id="n410" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e42" buzzsaw="false">
+     <from>
+      <noderef id="n42" port="0"/>
+     </from>
+     <to>
+      <noderef id="n35" port="0"/>
+     </to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Splits" qid="10">
+  <linked-edges>
+   <edge-set id="Splits1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="Splits2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="Splits3">
+    <edgeref id="e3"/>
+   </edge-set>
+   <edge-set id="Splits4">
+    <edgeref id="e4"/>
+   </edge-set>
+   <edge-set id="Splits5">
+    <edgeref id="e5"/>
+   </edge-set>
+   <edge-set id="Splits6">
+    <edgeref id="e6"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+    <board name="Splits--Sub">
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n1">
+     <input/>
+     <output><port num="0" edge="e1"/></output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n10">
+     <input><port num="0" edge="e1"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n1" port="0"/></from>
+     <to><noderef id="n10" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+   <board name="Splits--Board">
+    <node id="n2" kind="SUBBOARD" name="Splits--Sub">
+     <input/>
+     <output>
+      <port edge="e2" num="0"/>
+     </output>
+     <layout><x>0</x><y>0</y>
+     </layout>
+    </node>
+	<node id="n3" kind="SUBBOARD" name="Splits--Sub">
+     <input/>
+     <output>
+      <port edge="e3" num="0"/>
+     </output>
+     <layout><x>0</x><y>0</y>
+     </layout>
+    </node>
+	<node id="n4" kind="SUBBOARD" name="Splits--Sub">
+     <input/>
+     <output>
+      <port edge="e4" num="0"/>
+     </output>
+     <layout><x>0</x><y>0</y>
+     </layout>
+    </node>
+	<node id="n40" kind="SPLIT">
+     <input><port edge="e4" num="input"/></input>
+     <output>
+      <port edge="e5" num="output"/>
+      <port edge="e6" num="split"/>
+     </output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="END" id="n20">
+     <input><port num="0" edge="e2"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="END" id="n30">
+     <input><port num="0" edge="e3"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="END" id="n50">
+     <input><port num="0" edge="e5"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="END" id="n60">
+     <input><port num="0" edge="e6"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n20" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e3" buzzsaw="false">
+     <from><noderef id="n3" port="0"/></from>
+     <to><noderef id="n30" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e4" buzzsaw="false">
+     <from><noderef id="n4" port="0"/></from>
+     <to><noderef id="n40" port="input"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e5" buzzsaw="false">
+     <from><noderef id="n40" port="output"/></from>
+     <to><noderef id="n50" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e6" buzzsaw="false">
+     <from><noderef id="n40" port="split"/></from>
+     <to><noderef id="n60" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Merges" qid="11">
+  <linked-edges>
+   <edge-set id="Merges1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="Merges2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="Merges3">
+    <edgeref id="e3"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="Merges--Board">
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n1">
+     <input/>
+     <output><port num="0" edge="e1"/></output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n2">
+     <input/>
+     <output><port num="0" edge="e2"/></output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+    <node id="n123" kind="MERGE">
+     <input>
+      <port edge="e1" num="left"/>
+      <port edge="e2" num="right"/>
+     </input>
+     <output><port edge="e3" num="output"/></output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="END" id="n3">
+     <input><port num="0" edge="e3"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n1" port="0"/></from>
+     <to><noderef id="n123" port="left"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n123" port="right"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e3" buzzsaw="false">
+     <from><noderef id="n123" port="output"/></from>
+     <to><noderef id="n3" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="SplitMerge" qid="17">
+  <linked-edges>
+   <edge-set id="SplitMergePractice1">
+    <edgeref id="e1"/>
+	<edgeref id="e11"/>
+   </edge-set>
+   <edge-set id="SplitMergePractice2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="SplitMergePractice3">
+    <edgeref id="e3"/>
+	<edgeref id="e33"/>
+   </edge-set>
+   <edge-set id="SplitMergePractice4">
+    <edgeref id="e4"/>
+   </edge-set>
+   <edge-set id="SplitMergePractice5">
+    <edgeref id="e5"/>
+   </edge-set>
+   <edge-set id="SplitMergePractice6">
+    <edgeref id="e6"/>
+   </edge-set>
+   <edge-set id="SplitMergePractice7">
+    <edgeref id="e7"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="SplitMergePractice--Board">
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n11">
+     <input/>
+     <output><port num="0" edge="e11"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="INCOMING" id="n33">
+     <input/>
+     <output><port num="0" edge="e33"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="INCOMING" id="n4">
+     <input/>
+     <output><port num="0" edge="e4"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="INCOMING" id="n5">
+     <input/>
+     <output><port num="0" edge="e5"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node id="n123" kind="MERGE">
+     <input>
+      <port edge="e1" num="left"/>
+      <port edge="e2" num="right"/>
+     </input>
+     <output><port edge="e3" num="output"/></output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node id="n367" kind="SPLIT">
+     <input><port edge="e3" num="input"/></input>
+     <output>
+      <port edge="e6" num="output"/>
+      <port edge="e7" num="split"/>
+     </output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node id="n461" kind="MERGE">
+     <input>
+      <port edge="e4" num="left"/>
+      <port edge="e6" num="right"/>
+     </input>
+     <output><port edge="e1" num="output"/></output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node id="n572" kind="MERGE">
+     <input>
+      <port edge="e7" num="left"/>
+      <port edge="e5" num="right"/>
+     </input>
+     <output><port edge="e2" num="output"/></output>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n110">
+     <input><port num="0" edge="e11"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+	<node kind="END" id="n330">
+     <input><port num="0" edge="e33"/></input>
+     <output/>
+     <layout><x>0</x><y>0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n461" port="output"/></from>
+     <to><noderef id="n123" port="left"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e11" buzzsaw="false">
+     <from><noderef id="n11" port="0"/></from>
+     <to><noderef id="n110" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e2" buzzsaw="false">
+     <from><noderef id="n572" port="output"/></from>
+     <to><noderef id="n123" port="right"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e3" buzzsaw="false">
+     <from><noderef id="n123" port="output"/></from>
+     <to><noderef id="n367" port="input"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e33" buzzsaw="false">
+     <from><noderef id="n33" port="0"/></from>
+     <to><noderef id="n330" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e4" buzzsaw="false">
+     <from><noderef id="n4" port="0"/></from>
+     <to><noderef id="n461" port="left"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e5" buzzsaw="false">
+     <from><noderef id="n5" port="0"/></from>
+     <to><noderef id="n572" port="right"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e6" buzzsaw="false">
+     <from><noderef id="n367" port="output"/></from>
+     <to><noderef id="n461" port="right"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e7" buzzsaw="false">
+     <from><noderef id="n367" port="split"/></from>
+     <to><noderef id="n572" port="left"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="ZoomPan" qid="13">
+  <linked-edges>
+   <edge-set id="ZoomPan1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="ZoomPan2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="ZoomPan3">
+    <edgeref id="e31"/>
+	<edgeref id="e32"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="ZoomPan--Board">
+    <node kind="START_PIPE_DEPENDENT_BALL" id="n1">
+     <input/>
+     <output>
+      <port num="0" edge="e1"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n2">
+     <input/>
+     <output>
+      <port num="0" edge="e2"/>
+     </output>
+     <layout>
+      <x>0.0</x>
+      <y>0.0</y>
+     </layout>
+    </node>
+	<node kind="CONNECT" id="n13">
+     <input><port num="0" edge="e1"/></input>
+     <output><port num="0" edge="e31"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="CONNECT" id="n23">
+     <input><port num="0" edge="e2"/></input>
+     <output><port num="0" edge="e32"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n310">
+     <input>
+      <port num="0" edge="e31"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n320">
+     <input>
+      <port num="0" edge="e32"/>
+     </input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n1" port="0"/></from>
+     <to><noderef id="n13" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n23" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e31" buzzsaw="false">
+     <from><noderef id="n13" port="0"/></from>
+     <to><noderef id="n310" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e32" buzzsaw="false">
+     <from><noderef id="n23" port="0"/></from>
+     <to><noderef id="n320" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+ <level name="Layout" qid="12">
+  <linked-edges>
+   <edge-set id="Layout1">
+    <edgeref id="e1"/>
+   </edge-set>
+   <edge-set id="Layout2">
+    <edgeref id="e2"/>
+   </edge-set>
+   <edge-set id="Layout3">
+    <edgeref id="e3"/>
+   </edge-set>
+   <edge-set id="Layout4">
+    <edgeref id="e4"/>
+   </edge-set>
+   <edge-set id="Layout5">
+    <edgeref id="e5"/>
+   </edge-set>
+  </linked-edges>
+  <boards>
+   <board name="Layout--Board">
+    <node kind="INCOMING" id="n1">
+     <input/>
+     <output><port num="0" edge="e1"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n2">
+     <input/>
+     <output><port num="0" edge="e2"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n3">
+     <input/>
+     <output><port num="0" edge="e3"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n4">
+     <input/>
+     <output><port num="0" edge="e4"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="START_PIPE_DEPENDENT_BALL" id="n5">
+     <input/>
+     <output><port num="0" edge="e5"/></output>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n10">
+     <input><port num="0" edge="e1"/></input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n20">
+     <input><port num="0" edge="e2"/></input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n30">
+     <input><port num="0" edge="e3"/></input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="OUTGOING" id="n40">
+     <input><port num="0" edge="e4"/></input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+	<node kind="END" id="n50">
+     <input><port num="0" edge="e5"/></input>
+     <output/>
+     <layout><x>0.0</x><y>0.0</y></layout>
+    </node>
+    <edge description="this" variableID="-1" pinch="false" width="narrow" editable="true" id="e1" buzzsaw="false">
+     <from><noderef id="n1" port="0"/></from>
+     <to><noderef id="n10" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e2" buzzsaw="false">
+     <from><noderef id="n2" port="0"/></from>
+     <to><noderef id="n20" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="narrow" editable="false" id="e3" buzzsaw="false">
+     <from><noderef id="n3" port="0"/></from>
+     <to><noderef id="n30" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="true" id="e4" buzzsaw="false">
+     <from><noderef id="n4" port="0"/></from>
+     <to><noderef id="n40" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+	<edge description="this" variableID="-1" pinch="false" width="wide" editable="false" id="e5" buzzsaw="false">
+     <from><noderef id="n5" port="0"/></from>
+     <to><noderef id="n50" port="0"/></to>
+     <edge-layout><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point><point><x>0</x><y>0</y></point></edge-layout>
+    </edge>
+   </board>
+  </boards>
+ </level>
+  <level name="GroupSelect" qid="18">
+    <linked-edges>
+      <edge-set id="es11">
+        <edgeref id="e11x0"/>
+      </edge-set>
+      <edge-set id="es14">
+        <edgeref id="e14x0"/>
+      </edge-set>
+      <edge-set id="es15">
+        <edgeref id="e15x0"/>
+        <edgeref id="e15x1"/>
+        <edgeref id="e15x2"/>
+        <edgeref id="e15x3"/>
+      </edge-set>
+      <edge-set id="es16">
+        <edgeref id="e16x0"/>
+        <edgeref id="e16x1"/>
+      </edge-set>
+      <edge-set id="es17">
+        <edgeref id="e17x0"/>
+      </edge-set>
+      <edge-set id="es18">
+        <edgeref id="e18x0"/>
+      </edge-set>
+    </linked-edges>
+    <boards>
+      <board name="GroupSelect">
+        <node id="nEND11x0"  kind="END">
+          <input><port num="0" edge="e11x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA14x0" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e14x0"/></output>
+        </node>
+        <node id="nSTA15x0" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e15x0"/></output>
+        </node>
+        <node id="nEND15x1"  kind="END">
+          <input><port num="0" edge="e15x1"/></input>
+          <output/>
+        </node>
+        <node id="nEND15x2"  kind="END">
+          <input><port num="0" edge="e15x2"/></input>
+          <output/>
+        </node>
+        <node id="nEND15x3"  kind="END">
+          <input><port num="0" edge="e15x3"/></input>
+          <output/>
+        </node>
+        <node id="nSTA16x0" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e16x0"/></output>
+        </node>
+        <node id="nEND16x1"  kind="END">
+          <input><port num="0" edge="e16x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA17x0" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e17x0"/></output>
+        </node>
+        <node id="nSTA18x0" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e18x0"/></output>
+        </node>
+        <node id="n11"  kind="CONNECT">
+          <input><port num="0" edge="e16x0"/></input>
+          <output><port num="0" edge="e11x0"/></output>
+        </node>
+        <node id="n12"  kind="CONNECT">
+          <input><port num="0" edge="e15x0"/></input>
+          <output><port num="0" edge="e16x1"/></output>
+        </node>
+        <node id="n13"  kind="CONNECT">
+          <input><port num="0" edge="e14x0"/></input>
+          <output><port num="0" edge="e15x1"/></output>
+        </node>
+        <node id="n14"  kind="CONNECT">
+          <input><port num="0" edge="e17x0"/></input>
+          <output><port num="0" edge="e15x2"/></output>
+        </node>
+        <node id="n15"  kind="CONNECT">
+          <input><port num="0" edge="e18x0"/></input>
+          <output><port num="0" edge="e15x3"/></output>
+        </node>
+        <edge id="e11x0"  width="wide" editable="false" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n11" port="0"/></from>
+          <to><noderef id="nEND11x0" port="0"/></to>
+        </edge>
+        <edge id="e14x0"  width="wide" editable="true" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA14x0" port="0"/></from>
+          <to><noderef id="n13" port="0"/></to>
+        </edge>
+        <edge id="e15x0"  width="wide" editable="false" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA15x0" port="0"/></from>
+          <to><noderef id="n12" port="0"/></to>
+        </edge>
+        <edge id="e15x1"  width="wide" editable="false" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n13" port="0"/></from>
+          <to><noderef id="nEND15x1" port="0"/></to>
+        </edge>
+        <edge id="e15x2"  width="wide" editable="false" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n14" port="0"/></from>
+          <to><noderef id="nEND15x2" port="0"/></to>
+        </edge>
+        <edge id="e15x3"  width="wide" editable="false" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n15" port="0"/></from>
+          <to><noderef id="nEND15x3" port="0"/></to>
+        </edge>
+        <edge id="e16x0"  width="wide" editable="false" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA16x0" port="0"/></from>
+          <to><noderef id="n11" port="0"/></to>
+        </edge>
+        <edge id="e16x1"  width="wide" editable="false" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n12" port="0"/></from>
+          <to><noderef id="nEND16x1" port="0"/></to>
+        </edge>
+        <edge id="e17x0"  width="wide" editable="true" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA17x0" port="0"/></from>
+          <to><noderef id="n14" port="0"/></to>
+        </edge>
+        <edge id="e18x0"  width="wide" editable="true" description="GroupSelect" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA18x0" port="0"/></from>
+          <to><noderef id="n15" port="0"/></to>
+        </edge>
+      </board>
+    </boards>
+  </level>
+  <level name="CreateJoint" qid="19">
+    <linked-edges>
+      <edge-set id="es1">
+        <edgeref id="e1x0"/>
+      </edge-set>
+      <edge-set id="es2">
+        <edgeref id="e2x0"/>
+      </edge-set>
+    </linked-edges>
+    <boards>
+      <board name="CreateJoint">
+        <node id="nSTA1x0" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e1x0"/></output>
+        </node>
+        <node id="nEND2x0"  kind="END">
+          <input><port num="0" edge="e2x0"/></input>
+          <output/>
+        </node>
+        <node id="n1"  kind="CONNECT">
+          <input><port num="0" edge="e1x0"/></input>
+          <output><port num="0" edge="e2x0"/></output>
+        </node>
+        <edge id="e1x0"  width="wide" editable="true" description="CreateJoint" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA1x0" port="0"/></from>
+          <to><noderef id="n1" port="0"/></to>
+        </edge>
+        <edge id="e2x0"  width="wide" editable="false" description="CreateJoint" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n1" port="0"/></from>
+          <to><noderef id="nEND2x0" port="0"/></to>
+        </edge>
+      </board>
+    </boards>
+  </level>
+ <level name="SkillsA" qid="14">
+    <linked-edges>
+      <edge-set id="es2">
+        <edgeref id="e2x0"/>
+        <edgeref id="e2x1"/>
+        <edgeref id="e2x2"/>
+      </edge-set>
+      <edge-set id="es3">
+        <edgeref id="e3x0"/>
+      </edge-set>
+      <edge-set id="es4">
+        <edgeref id="e4x0"/>
+      </edge-set>
+      <edge-set id="es5">
+        <edgeref id="e5x0"/>
+        <edgeref id="e5x1"/>
+        <edgeref id="e5x2"/>
+      </edge-set>
+      <edge-set id="es6">
+        <edgeref id="e6x0"/>
+        <edgeref id="e6x1"/>
+      </edge-set>
+      <edge-set id="es7">
+        <edgeref id="e7x0"/>
+      </edge-set>
+      <edge-set id="es8">
+        <edgeref id="e8x0"/>
+      </edge-set>
+      <edge-set id="es9">
+        <edgeref id="e9x0"/>
+      </edge-set>
+      <edge-set id="es10">
+        <edgeref id="e10x0"/>
+        <edgeref id="e10x1"/>
+        <edgeref id="e10x2"/>
+        <edgeref id="e10x3"/>
+        <edgeref id="e10x4"/>
+        <edgeref id="e10x5"/>
+      </edge-set>
+      <edge-set id="es11">
+        <edgeref id="e11x0"/>
+        <edgeref id="e11x1"/>
+      </edge-set>
+      <edge-set id="es12">
+        <edgeref id="e12x0"/>
+        <edgeref id="e12x1"/>
+        <edgeref id="e12x2"/>
+        <edgeref id="e12x3"/>
+        <edgeref id="e12x4"/>
+      </edge-set>
+      <edge-set id="es13">
+        <edgeref id="e13x0"/>
+        <edgeref id="e13x1"/>
+        <edgeref id="e13x2"/>
+      </edge-set>
+      <edge-set id="es17">
+        <edgeref id="e17x0"/>
+        <edgeref id="e17x1"/>
+      </edge-set>
+      <edge-set id="es18">
+        <edgeref id="e18x0"/>
+        <edgeref id="e18x1"/>
+        <edgeref id="e18x2"/>
+      </edge-set>
+    </linked-edges>
+    <boards>
+      <board name="SkillsA">
+        <node id="nSTA2x0" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e2x0"/></output>
+        </node>
+        <node id="nSTA2x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e2x1"/></output>
+        </node>
+        <node id="nEND2x2"  kind="OUTGOING">
+          <input><port num="0" edge="e2x2"/></input>
+          <output/>
+        </node>
+        <node id="nSTA3x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e3x0"/></output>
+        </node>
+        <node id="nSTA4x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e4x0"/></output>
+        </node>
+        <node id="nEND5x1"  kind="OUTGOING">
+          <input><port num="0" edge="e5x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA5x2" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e5x2"/></output>
+        </node>
+        <node id="nSTA6x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e6x0"/></output>
+        </node>
+        <node id="nSTA6x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e6x1"/></output>
+        </node>
+        <node id="nEND8x0"  kind="END">
+          <input><port num="0" edge="e8x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND9x0"  kind="END">
+          <input><port num="0" edge="e9x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND10x0"  kind="OUTGOING">
+          <input><port num="0" edge="e10x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND10x1"  kind="OUTGOING">
+          <input><port num="0" edge="e10x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA10x4" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e10x4"/></output>
+        </node>
+        <node id="nSTA10x5" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e10x5"/></output>
+        </node>
+        <node id="nSTA11x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e11x0"/></output>
+        </node>
+        <node id="nSTA11x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e11x1"/></output>
+        </node>
+        <node id="nEND12x1"  kind="OUTGOING">
+          <input><port num="0" edge="e12x1"/></input>
+          <output/>
+        </node>
+        <node id="nEND12x3"  kind="OUTGOING">
+          <input><port num="0" edge="e12x3"/></input>
+          <output/>
+        </node>
+        <node id="nSTA12x4" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e12x4"/></output>
+        </node>
+        <node id="nEND13x0"  kind="OUTGOING">
+          <input><port num="0" edge="e13x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND13x1"  kind="END">
+          <input><port num="0" edge="e13x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA13x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e13x2"/></output>
+        </node>
+        <node id="nEND17x0"  kind="OUTGOING">
+          <input><port num="0" edge="e17x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA17x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e17x1"/></output>
+        </node>
+        <node id="nEND18x0"  kind="OUTGOING">
+          <input><port num="0" edge="e18x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND18x1"  kind="OUTGOING">
+          <input><port num="0" edge="e18x1"/></input>
+          <output/>
+        </node>
+        <node id="nEND18x2"  kind="END">
+          <input><port num="0" edge="e18x2"/></input>
+          <output/>
+        </node>
+        <node id="n1"  kind="CONNECT">
+          <input><port num="0" edge="e3x0"/></input>
+          <output><port num="0" edge="e5x0"/></output>
+        </node>
+        <node id="n2"  kind="CONNECT">
+          <input><port num="0" edge="e5x0"/></input>
+          <output><port num="0" edge="e10x0"/></output>
+        </node>
+        <node id="n3"  kind="CONNECT">
+          <input><port num="0" edge="e2x0"/></input>
+          <output><port num="0" edge="e5x1"/></output>
+        </node>
+        <node id="n4"  kind="CONNECT">
+          <input><port num="0" edge="e2x1"/></input>
+          <output><port num="0" edge="e7x0"/></output>
+        </node>
+        <node id="n5"  kind="CONNECT">
+          <input><port num="0" edge="e7x0"/></input>
+          <output><port num="0" edge="e8x0"/></output>
+        </node>
+        <node id="n6"  kind="CONNECT">
+          <input><port num="0" edge="e6x0"/></input>
+          <output><port num="0" edge="e10x1"/></output>
+        </node>
+        <node id="n7"  kind="CONNECT">
+          <input><port num="0" edge="e6x1"/></input>
+          <output><port num="0" edge="e9x0"/></output>
+        </node>
+        <node id="n8"  kind="CONNECT">
+          <input><port num="0" edge="e4x0"/></input>
+          <output><port num="0" edge="e10x2"/></output>
+        </node>
+        <node id="n9"  kind="CONNECT">
+          <input><port num="0" edge="e10x2"/></input>
+          <output><port num="0" edge="e13x0"/></output>
+        </node>
+        <node id="n10"  kind="CONNECT">
+          <input><port num="0" edge="e5x2"/></input>
+          <output><port num="0" edge="e10x3"/></output>
+        </node>
+        <node id="n11"  kind="CONNECT">
+          <input><port num="0" edge="e10x3"/></input>
+          <output><port num="0" edge="e13x1"/></output>
+        </node>
+        <node id="n12"  kind="CONNECT">
+          <input><port num="0" edge="e11x0"/></input>
+          <output><port num="0" edge="e12x0"/></output>
+        </node>
+        <node id="n13"  kind="CONNECT">
+          <input><port num="0" edge="e12x0"/></input>
+          <output><port num="0" edge="e18x0"/></output>
+        </node>
+        <node id="n14"  kind="CONNECT">
+          <input><port num="0" edge="e10x4"/></input>
+          <output><port num="0" edge="e12x1"/></output>
+        </node>
+        <node id="n15"  kind="CONNECT">
+          <input><port num="0" edge="e10x5"/></input>
+          <output><port num="0" edge="e12x2"/></output>
+        </node>
+        <node id="n16"  kind="CONNECT">
+          <input><port num="0" edge="e12x2"/></input>
+          <output><port num="0" edge="e17x0"/></output>
+        </node>
+        <node id="n17"  kind="CONNECT">
+          <input><port num="0" edge="e11x1"/></input>
+          <output><port num="0" edge="e12x3"/></output>
+        </node>
+        <node id="n18"  kind="CONNECT">
+          <input><port num="0" edge="e12x4"/></input>
+          <output><port num="0" edge="e18x1"/></output>
+        </node>
+        <node id="n19"  kind="CONNECT">
+          <input><port num="0" edge="e13x2"/></input>
+          <output><port num="0" edge="e18x2"/></output>
+        </node>
+        <node id="n20"  kind="CONNECT">
+          <input><port num="0" edge="e17x1"/></input>
+          <output><port num="0" edge="e2x2"/></output>
+        </node>
+        <edge id="e2x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA2x0" port="0"/></from>
+          <to><noderef id="n3" port="0"/></to>
+        </edge>
+        <edge id="e2x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA2x1" port="0"/></from>
+          <to><noderef id="n4" port="0"/></to>
+        </edge>
+        <edge id="e2x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n20" port="0"/></from>
+          <to><noderef id="nEND2x2" port="0"/></to>
+        </edge>
+        <edge id="e3x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA3x0" port="0"/></from>
+          <to><noderef id="n1" port="0"/></to>
+        </edge>
+        <edge id="e4x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA4x0" port="0"/></from>
+          <to><noderef id="n8" port="0"/></to>
+        </edge>
+        <edge id="e5x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n1" port="0"/></from>
+          <to><noderef id="n2" port="0"/></to>
+        </edge>
+        <edge id="e5x1"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n3" port="0"/></from>
+          <to><noderef id="nEND5x1" port="0"/></to>
+        </edge>
+        <edge id="e5x2"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA5x2" port="0"/></from>
+          <to><noderef id="n10" port="0"/></to>
+        </edge>
+        <edge id="e6x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA6x0" port="0"/></from>
+          <to><noderef id="n6" port="0"/></to>
+        </edge>
+        <edge id="e6x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA6x1" port="0"/></from>
+          <to><noderef id="n7" port="0"/></to>
+        </edge>
+        <edge id="e7x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n4" port="0"/></from>
+          <to><noderef id="n5" port="0"/></to>
+        </edge>
+        <edge id="e8x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n5" port="0"/></from>
+          <to><noderef id="nEND8x0" port="0"/></to>
+        </edge>
+        <edge id="e9x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n7" port="0"/></from>
+          <to><noderef id="nEND9x0" port="0"/></to>
+        </edge>
+        <edge id="e10x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n2" port="0"/></from>
+          <to><noderef id="nEND10x0" port="0"/></to>
+        </edge>
+        <edge id="e10x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n6" port="0"/></from>
+          <to><noderef id="nEND10x1" port="0"/></to>
+        </edge>
+        <edge id="e10x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n8" port="0"/></from>
+          <to><noderef id="n9" port="0"/></to>
+        </edge>
+        <edge id="e10x3"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n10" port="0"/></from>
+          <to><noderef id="n11" port="0"/></to>
+        </edge>
+        <edge id="e10x4"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA10x4" port="0"/></from>
+          <to><noderef id="n14" port="0"/></to>
+        </edge>
+        <edge id="e10x5"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA10x5" port="0"/></from>
+          <to><noderef id="n15" port="0"/></to>
+        </edge>
+        <edge id="e11x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA11x0" port="0"/></from>
+          <to><noderef id="n12" port="0"/></to>
+        </edge>
+        <edge id="e11x1"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA11x1" port="0"/></from>
+          <to><noderef id="n17" port="0"/></to>
+        </edge>
+        <edge id="e12x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n12" port="0"/></from>
+          <to><noderef id="n13" port="0"/></to>
+        </edge>
+        <edge id="e12x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n14" port="0"/></from>
+          <to><noderef id="nEND12x1" port="0"/></to>
+        </edge>
+        <edge id="e12x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n15" port="0"/></from>
+          <to><noderef id="n16" port="0"/></to>
+        </edge>
+        <edge id="e12x3"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n17" port="0"/></from>
+          <to><noderef id="nEND12x3" port="0"/></to>
+        </edge>
+        <edge id="e12x4"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA12x4" port="0"/></from>
+          <to><noderef id="n18" port="0"/></to>
+        </edge>
+        <edge id="e13x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n9" port="0"/></from>
+          <to><noderef id="nEND13x0" port="0"/></to>
+        </edge>
+        <edge id="e13x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n11" port="0"/></from>
+          <to><noderef id="nEND13x1" port="0"/></to>
+        </edge>
+        <edge id="e13x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA13x2" port="0"/></from>
+          <to><noderef id="n19" port="0"/></to>
+        </edge>
+        <edge id="e17x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n16" port="0"/></from>
+          <to><noderef id="nEND17x0" port="0"/></to>
+        </edge>
+        <edge id="e17x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA17x1" port="0"/></from>
+          <to><noderef id="n20" port="0"/></to>
+        </edge>
+        <edge id="e18x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n13" port="0"/></from>
+          <to><noderef id="nEND18x0" port="0"/></to>
+        </edge>
+        <edge id="e18x1"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n18" port="0"/></from>
+          <to><noderef id="nEND18x1" port="0"/></to>
+        </edge>
+        <edge id="e18x2"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n19" port="0"/></from>
+          <to><noderef id="nEND18x2" port="0"/></to>
+        </edge>
+      </board>
+    </boards>
+  </level>
+ <level name="SkillsB" qid="15">
+    <linked-edges>
+      <edge-set id="es1">
+        <edgeref id="e1x0"/>
+        <edgeref id="e1x1"/>
+        <edgeref id="e1x2"/>
+      </edge-set>
+      <edge-set id="es3">
+        <edgeref id="e3x0"/>
+      </edge-set>
+      <edge-set id="es4">
+        <edgeref id="e4x0"/>
+      </edge-set>
+      <edge-set id="es5">
+        <edgeref id="e5x0"/>
+        <edgeref id="e5x1"/>
+      </edge-set>
+      <edge-set id="es6">
+        <edgeref id="e6x0"/>
+      </edge-set>
+      <edge-set id="es7">
+        <edgeref id="e7x0"/>
+        <edgeref id="e7x1"/>
+        <edgeref id="e7x2"/>
+      </edge-set>
+      <edge-set id="es8">
+        <edgeref id="e8x0"/>
+        <edgeref id="e8x1"/>
+        <edgeref id="e8x2"/>
+        <edgeref id="e8x3"/>
+      </edge-set>
+      <edge-set id="es10">
+        <edgeref id="e10x0"/>
+        <edgeref id="e10x1"/>
+      </edge-set>
+      <edge-set id="es11">
+        <edgeref id="e11x0"/>
+      </edge-set>
+      <edge-set id="es12">
+        <edgeref id="e12x0"/>
+        <edgeref id="e12x1"/>
+      </edge-set>
+      <edge-set id="es13">
+        <edgeref id="e13x0"/>
+        <edgeref id="e13x1"/>
+        <edgeref id="e13x2"/>
+        <edgeref id="e13x3"/>
+      </edge-set>
+      <edge-set id="es14">
+        <edgeref id="e14x0"/>
+      </edge-set>
+      <edge-set id="es15">
+        <edgeref id="e15x0"/>
+        <edgeref id="e15x1"/>
+        <edgeref id="e15x2"/>
+      </edge-set>
+      <edge-set id="es16">
+        <edgeref id="e16x0"/>
+        <edgeref id="e16x1"/>
+        <edgeref id="e16x2"/>
+        <edgeref id="e16x3"/>
+      </edge-set>
+      <edge-set id="es19">
+        <edgeref id="e19x0"/>
+        <edgeref id="e19x1"/>
+        <edgeref id="e19x2"/>
+      </edge-set>
+      <edge-set id="es20">
+        <edgeref id="e20x0"/>
+        <edgeref id="e20x1"/>
+      </edge-set>
+      <edge-set id="es21">
+        <edgeref id="e21x0"/>
+      </edge-set>
+      <edge-set id="es22">
+        <edgeref id="e22x0"/>
+      </edge-set>
+      <edge-set id="es23">
+        <edgeref id="e23x0"/>
+        <edgeref id="e23x1"/>
+      </edge-set>
+      <edge-set id="es24">
+        <edgeref id="e24x0"/>
+        <edgeref id="e24x1"/>
+        <edgeref id="e24x2"/>
+        <edgeref id="e24x3"/>
+      </edge-set>
+      <edge-set id="es25">
+        <edgeref id="e25x0"/>
+        <edgeref id="e25x1"/>
+        <edgeref id="e25x2"/>
+        <edgeref id="e25x3"/>
+        <edgeref id="e25x4"/>
+        <edgeref id="e25x5"/>
+      </edge-set>
+      <edge-set id="es26">
+        <edgeref id="e26x0"/>
+        <edgeref id="e26x1"/>
+        <edgeref id="e26x2"/>
+        <edgeref id="e26x3"/>
+      </edge-set>
+      <edge-set id="es28">
+        <edgeref id="e28x0"/>
+        <edgeref id="e28x1"/>
+      </edge-set>
+      <edge-set id="es29">
+        <edgeref id="e29x0"/>
+        <edgeref id="e29x1"/>
+        <edgeref id="e29x2"/>
+      </edge-set>
+      <edge-set id="es31">
+        <edgeref id="e31x0"/>
+        <edgeref id="e31x1"/>
+        <edgeref id="e31x2"/>
+        <edgeref id="e31x3"/>
+      </edge-set>
+      <edge-set id="es33">
+        <edgeref id="e33x0"/>
+      </edge-set>
+      <edge-set id="es34">
+        <edgeref id="e34x0"/>
+        <edgeref id="e34x1"/>
+        <edgeref id="e34x2"/>
+        <edgeref id="e34x3"/>
+      </edge-set>
+      <edge-set id="es35">
+        <edgeref id="e35x0"/>
+        <edgeref id="e35x1"/>
+      </edge-set>
+      <edge-set id="es36">
+        <edgeref id="e36x0"/>
+        <edgeref id="e36x1"/>
+        <edgeref id="e36x2"/>
+      </edge-set>
+      <edge-set id="es37">
+        <edgeref id="e37x0"/>
+        <edgeref id="e37x1"/>
+        <edgeref id="e37x2"/>
+        <edgeref id="e37x3"/>
+      </edge-set>
+      <edge-set id="es38">
+        <edgeref id="e38x0"/>
+        <edgeref id="e38x1"/>
+        <edgeref id="e38x2"/>
+        <edgeref id="e38x3"/>
+      </edge-set>
+      <edge-set id="es39">
+        <edgeref id="e39x0"/>
+      </edge-set>
+      <edge-set id="es40">
+        <edgeref id="e40x0"/>
+        <edgeref id="e40x1"/>
+        <edgeref id="e40x2"/>
+      </edge-set>
+      <edge-set id="es41">
+        <edgeref id="e41x0"/>
+      </edge-set>
+      <edge-set id="es42">
+        <edgeref id="e42x0"/>
+        <edgeref id="e42x1"/>
+      </edge-set>
+      <edge-set id="es43">
+        <edgeref id="e43x0"/>
+        <edgeref id="e43x1"/>
+        <edgeref id="e43x2"/>
+      </edge-set>
+      <edge-set id="es45">
+        <edgeref id="e45x0"/>
+      </edge-set>
+      <edge-set id="es48">
+        <edgeref id="e48x0"/>
+      </edge-set>
+      <edge-set id="es52">
+        <edgeref id="e52x0"/>
+        <edgeref id="e52x1"/>
+      </edge-set>
+    </linked-edges>
+    <boards>
+      <board name="SkillsB">
+        <node id="nSTA1x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e1x0"/></output>
+        </node>
+        <node id="nSTA1x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e1x1"/></output>
+        </node>
+        <node id="nSTA1x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e1x2"/></output>
+        </node>
+        <node id="nSTA3x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e3x0"/></output>
+        </node>
+        <node id="nSTA4x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e4x0"/></output>
+        </node>
+        <node id="nEND5x0"  kind="OUTGOING">
+          <input><port num="0" edge="e5x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND5x1"  kind="OUTGOING">
+          <input><port num="0" edge="e5x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA6x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e6x0"/></output>
+        </node>
+        <node id="nEND7x0"  kind="OUTGOING">
+          <input><port num="0" edge="e7x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA7x1" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e7x1"/></output>
+        </node>
+        <node id="nSTA7x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e7x2"/></output>
+        </node>
+        <node id="nEND8x0"  kind="OUTGOING">
+          <input><port num="0" edge="e8x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND8x1"  kind="OUTGOING">
+          <input><port num="0" edge="e8x1"/></input>
+          <output/>
+        </node>
+        <node id="nEND8x2"  kind="OUTGOING">
+          <input><port num="0" edge="e8x2"/></input>
+          <output/>
+        </node>
+        <node id="nSTA8x3" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e8x3"/></output>
+        </node>
+        <node id="nEND10x0"  kind="OUTGOING">
+          <input><port num="0" edge="e10x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA10x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e10x1"/></output>
+        </node>
+        <node id="nSTA11x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e11x0"/></output>
+        </node>
+        <node id="nEND12x0"  kind="OUTGOING">
+          <input><port num="0" edge="e12x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA12x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e12x1"/></output>
+        </node>
+        <node id="nEND13x0"  kind="OUTGOING">
+          <input><port num="0" edge="e13x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND13x1"  kind="OUTGOING">
+          <input><port num="0" edge="e13x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA13x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e13x2"/></output>
+        </node>
+        <node id="nEND13x3"  kind="OUTGOING">
+          <input><port num="0" edge="e13x3"/></input>
+          <output/>
+        </node>
+        <node id="nSTA14x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e14x0"/></output>
+        </node>
+        <node id="nEND15x0"  kind="OUTGOING">
+          <input><port num="0" edge="e15x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND15x1"  kind="OUTGOING">
+          <input><port num="0" edge="e15x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA15x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e15x2"/></output>
+        </node>
+        <node id="nEND16x0"  kind="OUTGOING">
+          <input><port num="0" edge="e16x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND16x1"  kind="OUTGOING">
+          <input><port num="0" edge="e16x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA16x2" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e16x2"/></output>
+        </node>
+        <node id="nSTA16x3" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e16x3"/></output>
+        </node>
+        <node id="nEND19x0"  kind="OUTGOING">
+          <input><port num="0" edge="e19x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND19x1"  kind="OUTGOING">
+          <input><port num="0" edge="e19x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA19x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e19x2"/></output>
+        </node>
+        <node id="nEND20x0"  kind="OUTGOING">
+          <input><port num="0" edge="e20x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA20x1" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e20x1"/></output>
+        </node>
+        <node id="nSTA21x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e21x0"/></output>
+        </node>
+        <node id="nEND22x0"  kind="END">
+          <input><port num="0" edge="e22x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA23x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e23x0"/></output>
+        </node>
+        <node id="nSTA23x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e23x1"/></output>
+        </node>
+        <node id="nEND24x0"  kind="OUTGOING">
+          <input><port num="0" edge="e24x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA24x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e24x1"/></output>
+        </node>
+        <node id="nSTA24x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e24x2"/></output>
+        </node>
+        <node id="nEND24x3"  kind="OUTGOING">
+          <input><port num="0" edge="e24x3"/></input>
+          <output/>
+        </node>
+        <node id="nEND25x0"  kind="OUTGOING">
+          <input><port num="0" edge="e25x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND25x1"  kind="OUTGOING">
+          <input><port num="0" edge="e25x1"/></input>
+          <output/>
+        </node>
+        <node id="nEND25x2"  kind="OUTGOING">
+          <input><port num="0" edge="e25x2"/></input>
+          <output/>
+        </node>
+        <node id="nEND25x3"  kind="END">
+          <input><port num="0" edge="e25x3"/></input>
+          <output/>
+        </node>
+        <node id="nSTA25x4" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e25x4"/></output>
+        </node>
+        <node id="nSTA25x5" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e25x5"/></output>
+        </node>
+        <node id="nEND26x0"  kind="OUTGOING">
+          <input><port num="0" edge="e26x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND26x1"  kind="OUTGOING">
+          <input><port num="0" edge="e26x1"/></input>
+          <output/>
+        </node>
+        <node id="nEND26x2"  kind="END">
+          <input><port num="0" edge="e26x2"/></input>
+          <output/>
+        </node>
+        <node id="nSTA26x3" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e26x3"/></output>
+        </node>
+        <node id="nSTA28x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e28x0"/></output>
+        </node>
+        <node id="nSTA28x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e28x1"/></output>
+        </node>
+        <node id="nSTA29x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e29x0"/></output>
+        </node>
+        <node id="nSTA29x1" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e29x1"/></output>
+        </node>
+        <node id="nSTA29x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e29x2"/></output>
+        </node>
+        <node id="nEND31x0"  kind="END">
+          <input><port num="0" edge="e31x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA31x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e31x1"/></output>
+        </node>
+        <node id="nSTA31x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e31x2"/></output>
+        </node>
+        <node id="nEND31x3"  kind="OUTGOING">
+          <input><port num="0" edge="e31x3"/></input>
+          <output/>
+        </node>
+        <node id="nEND33x0"  kind="OUTGOING">
+          <input><port num="0" edge="e33x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND34x0"  kind="OUTGOING">
+          <input><port num="0" edge="e34x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND34x1"  kind="OUTGOING">
+          <input><port num="0" edge="e34x1"/></input>
+          <output/>
+        </node>
+        <node id="nEND34x2"  kind="OUTGOING">
+          <input><port num="0" edge="e34x2"/></input>
+          <output/>
+        </node>
+        <node id="nSTA34x3" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e34x3"/></output>
+        </node>
+        <node id="nEND35x0"  kind="OUTGOING">
+          <input><port num="0" edge="e35x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA35x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e35x1"/></output>
+        </node>
+        <node id="nEND36x0"  kind="OUTGOING">
+          <input><port num="0" edge="e36x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND36x1"  kind="END">
+          <input><port num="0" edge="e36x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA36x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e36x2"/></output>
+        </node>
+        <node id="nEND37x0"  kind="OUTGOING">
+          <input><port num="0" edge="e37x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA37x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e37x1"/></output>
+        </node>
+        <node id="nSTA37x2" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e37x2"/></output>
+        </node>
+        <node id="nSTA37x3" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e37x3"/></output>
+        </node>
+        <node id="nEND38x0"  kind="END">
+          <input><port num="0" edge="e38x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND38x1"  kind="OUTGOING">
+          <input><port num="0" edge="e38x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA38x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e38x2"/></output>
+        </node>
+        <node id="nSTA38x3" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e38x3"/></output>
+        </node>
+        <node id="nSTA39x0" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e39x0"/></output>
+        </node>
+        <node id="nEND40x0"  kind="OUTGOING">
+          <input><port num="0" edge="e40x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND40x1"  kind="OUTGOING">
+          <input><port num="0" edge="e40x1"/></input>
+          <output/>
+        </node>
+        <node id="nSTA40x2" kind="START_PIPE_DEPENDENT_BALL">
+          <input/>
+          <output><port num="0" edge="e40x2"/></output>
+        </node>
+        <node id="nEND41x0"  kind="OUTGOING">
+          <input><port num="0" edge="e41x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND42x0"  kind="OUTGOING">
+          <input><port num="0" edge="e42x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA42x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e42x1"/></output>
+        </node>
+        <node id="nEND43x0"  kind="OUTGOING">
+          <input><port num="0" edge="e43x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA43x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e43x1"/></output>
+        </node>
+        <node id="nSTA43x2" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e43x2"/></output>
+        </node>
+        <node id="nEND45x0"  kind="OUTGOING">
+          <input><port num="0" edge="e45x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND48x0"  kind="OUTGOING">
+          <input><port num="0" edge="e48x0"/></input>
+          <output/>
+        </node>
+        <node id="nEND52x0"  kind="OUTGOING">
+          <input><port num="0" edge="e52x0"/></input>
+          <output/>
+        </node>
+        <node id="nSTA52x1" kind="INCOMING">
+          <input/>
+          <output><port num="0" edge="e52x1"/></output>
+        </node>
+        <node id="n1"  kind="CONNECT">
+          <input><port num="0" edge="e1x0"/></input>
+          <output><port num="0" edge="e8x0"/></output>
+        </node>
+        <node id="n2"  kind="CONNECT">
+          <input><port num="0" edge="e6x0"/></input>
+          <output><port num="0" edge="e8x1"/></output>
+        </node>
+        <node id="n3"  kind="CONNECT">
+          <input><port num="0" edge="e1x1"/></input>
+          <output><port num="0" edge="e8x2"/></output>
+        </node>
+        <node id="n4"  kind="CONNECT">
+          <input><port num="0" edge="e3x0"/></input>
+          <output><port num="0" edge="e12x0"/></output>
+        </node>
+        <node id="n5"  kind="CONNECT">
+          <input><port num="0" edge="e4x0"/></input>
+          <output><port num="0" edge="e7x0"/></output>
+        </node>
+        <node id="n6"  kind="CONNECT">
+          <input><port num="0" edge="e1x2"/></input>
+          <output><port num="0" edge="e10x0"/></output>
+        </node>
+        <node id="n7"  kind="CONNECT">
+          <input><port num="0" edge="e11x0"/></input>
+          <output><port num="0" edge="e15x0"/></output>
+        </node>
+        <node id="n8"  kind="CONNECT">
+          <input><port num="0" edge="e8x3"/></input>
+          <output><port num="0" edge="e16x0"/></output>
+        </node>
+        <node id="n9"  kind="CONNECT">
+          <input><port num="0" edge="e7x1"/></input>
+          <output><port num="0" edge="e15x1"/></output>
+        </node>
+        <node id="n10"  kind="CONNECT">
+          <input><port num="0" edge="e10x1"/></input>
+          <output><port num="0" edge="e13x0"/></output>
+        </node>
+        <node id="n11"  kind="CONNECT">
+          <input><port num="0" edge="e7x2"/></input>
+          <output><port num="0" edge="e13x1"/></output>
+        </node>
+        <node id="n12"  kind="CONNECT">
+          <input><port num="0" edge="e12x1"/></input>
+          <output><port num="0" edge="e16x1"/></output>
+        </node>
+        <node id="n13"  kind="CONNECT">
+          <input><port num="0" edge="e16x2"/></input>
+          <output><port num="0" edge="e24x0"/></output>
+        </node>
+        <node id="n14"  kind="CONNECT">
+          <input><port num="0" edge="e15x2"/></input>
+          <output><port num="0" edge="e20x0"/></output>
+        </node>
+        <node id="n15"  kind="CONNECT">
+          <input><port num="0" edge="e14x0"/></input>
+          <output><port num="0" edge="e19x0"/></output>
+        </node>
+        <node id="n16"  kind="CONNECT">
+          <input><port num="0" edge="e16x3"/></input>
+          <output><port num="0" edge="e22x0"/></output>
+        </node>
+        <node id="n17"  kind="CONNECT">
+          <input><port num="0" edge="e13x2"/></input>
+          <output><port num="0" edge="e19x1"/></output>
+        </node>
+        <node id="n18"  kind="CONNECT">
+          <input><port num="0" edge="e19x2"/></input>
+          <output><port num="0" edge="e26x0"/></output>
+        </node>
+        <node id="n19"  kind="CONNECT">
+          <input><port num="0" edge="e24x1"/></input>
+          <output><port num="0" edge="e26x1"/></output>
+        </node>
+        <node id="n20"  kind="CONNECT">
+          <input><port num="0" edge="e23x0"/></input>
+          <output><port num="0" edge="e25x0"/></output>
+        </node>
+        <node id="n21"  kind="CONNECT">
+          <input><port num="0" edge="e20x1"/></input>
+          <output><port num="0" edge="e25x1"/></output>
+        </node>
+        <node id="n22"  kind="CONNECT">
+          <input><port num="0" edge="e24x2"/></input>
+          <output><port num="0" edge="e26x2"/></output>
+        </node>
+        <node id="n23"  kind="CONNECT">
+          <input><port num="0" edge="e21x0"/></input>
+          <output><port num="0" edge="e25x2"/></output>
+        </node>
+        <node id="n24"  kind="CONNECT">
+          <input><port num="0" edge="e23x1"/></input>
+          <output><port num="0" edge="e25x3"/></output>
+        </node>
+        <node id="n25"  kind="CONNECT">
+          <input><port num="0" edge="e25x4"/></input>
+          <output><port num="0" edge="e33x0"/></output>
+        </node>
+        <node id="n26"  kind="CONNECT">
+          <input><port num="0" edge="e26x3"/></input>
+          <output><port num="0" edge="e31x0"/></output>
+        </node>
+        <node id="n27"  kind="CONNECT">
+          <input><port num="0" edge="e28x0"/></input>
+          <output><port num="0" edge="e36x0"/></output>
+        </node>
+        <node id="n28"  kind="CONNECT">
+          <input><port num="0" edge="e29x0"/></input>
+          <output><port num="0" edge="e36x1"/></output>
+        </node>
+        <node id="n29"  kind="CONNECT">
+          <input><port num="0" edge="e29x1"/></input>
+          <output><port num="0" edge="e34x0"/></output>
+        </node>
+        <node id="n30"  kind="CONNECT">
+          <input><port num="0" edge="e31x1"/></input>
+          <output><port num="0" edge="e35x0"/></output>
+        </node>
+        <node id="n31"  kind="CONNECT">
+          <input><port num="0" edge="e28x1"/></input>
+          <output><port num="0" edge="e34x1"/></output>
+        </node>
+        <node id="n32"  kind="CONNECT">
+          <input><port num="0" edge="e31x2"/></input>
+          <output><port num="0" edge="e34x2"/></output>
+        </node>
+        <node id="n33"  kind="CONNECT">
+          <input><port num="0" edge="e29x2"/></input>
+          <output><port num="0" edge="e37x0"/></output>
+        </node>
+        <node id="n34"  kind="CONNECT">
+          <input><port num="0" edge="e35x1"/></input>
+          <output><port num="0" edge="e40x0"/></output>
+        </node>
+        <node id="n35"  kind="CONNECT">
+          <input><port num="0" edge="e37x1"/></input>
+          <output><port num="0" edge="e40x1"/></output>
+        </node>
+        <node id="n36"  kind="CONNECT">
+          <input><port num="0" edge="e36x2"/></input>
+          <output><port num="0" edge="e38x0"/></output>
+        </node>
+        <node id="n37"  kind="CONNECT">
+          <input><port num="0" edge="e34x3"/></input>
+          <output><port num="0" edge="e38x1"/></output>
+        </node>
+        <node id="n38"  kind="CONNECT">
+          <input><port num="0" edge="e40x2"/></input>
+          <output><port num="0" edge="e43x0"/></output>
+        </node>
+        <node id="n39"  kind="CONNECT">
+          <input><port num="0" edge="e38x2"/></input>
+          <output><port num="0" edge="e41x0"/></output>
+        </node>
+        <node id="n40"  kind="CONNECT">
+          <input><port num="0" edge="e39x0"/></input>
+          <output><port num="0" edge="e42x0"/></output>
+        </node>
+        <node id="n41"  kind="CONNECT">
+          <input><port num="0" edge="e43x1"/></input>
+          <output><port num="0" edge="e52x0"/></output>
+        </node>
+        <node id="n42"  kind="CONNECT">
+          <input><port num="0" edge="e42x1"/></input>
+          <output><port num="0" edge="e48x0"/></output>
+        </node>
+        <node id="n43"  kind="CONNECT">
+          <input><port num="0" edge="e43x2"/></input>
+          <output><port num="0" edge="e45x0"/></output>
+        </node>
+        <node id="n44"  kind="CONNECT">
+          <input><port num="0" edge="e37x2"/></input>
+          <output><port num="0" edge="e5x0"/></output>
+        </node>
+        <node id="n45"  kind="CONNECT">
+          <input><port num="0" edge="e38x3"/></input>
+          <output><port num="0" edge="e5x1"/></output>
+        </node>
+        <node id="n46"  kind="CONNECT">
+          <input><port num="0" edge="e37x3"/></input>
+          <output><port num="0" edge="e24x3"/></output>
+        </node>
+        <node id="n47"  kind="CONNECT">
+          <input><port num="0" edge="e25x5"/></input>
+          <output><port num="0" edge="e13x3"/></output>
+        </node>
+        <node id="n48"  kind="CONNECT">
+          <input><port num="0" edge="e52x1"/></input>
+          <output><port num="0" edge="e31x3"/></output>
+        </node>
+        <edge id="e1x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA1x0" port="0"/></from>
+          <to><noderef id="n1" port="0"/></to>
+        </edge>
+        <edge id="e1x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA1x1" port="0"/></from>
+          <to><noderef id="n3" port="0"/></to>
+        </edge>
+        <edge id="e1x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA1x2" port="0"/></from>
+          <to><noderef id="n6" port="0"/></to>
+        </edge>
+        <edge id="e3x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA3x0" port="0"/></from>
+          <to><noderef id="n4" port="0"/></to>
+        </edge>
+        <edge id="e4x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA4x0" port="0"/></from>
+          <to><noderef id="n5" port="0"/></to>
+        </edge>
+        <edge id="e5x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n44" port="0"/></from>
+          <to><noderef id="nEND5x0" port="0"/></to>
+        </edge>
+        <edge id="e5x1"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n45" port="0"/></from>
+          <to><noderef id="nEND5x1" port="0"/></to>
+        </edge>
+        <edge id="e6x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA6x0" port="0"/></from>
+          <to><noderef id="n2" port="0"/></to>
+        </edge>
+        <edge id="e7x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n5" port="0"/></from>
+          <to><noderef id="nEND7x0" port="0"/></to>
+        </edge>
+        <edge id="e7x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA7x1" port="0"/></from>
+          <to><noderef id="n9" port="0"/></to>
+        </edge>
+        <edge id="e7x2"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA7x2" port="0"/></from>
+          <to><noderef id="n11" port="0"/></to>
+        </edge>
+        <edge id="e8x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n1" port="0"/></from>
+          <to><noderef id="nEND8x0" port="0"/></to>
+        </edge>
+        <edge id="e8x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n2" port="0"/></from>
+          <to><noderef id="nEND8x1" port="0"/></to>
+        </edge>
+        <edge id="e8x2"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n3" port="0"/></from>
+          <to><noderef id="nEND8x2" port="0"/></to>
+        </edge>
+        <edge id="e8x3"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA8x3" port="0"/></from>
+          <to><noderef id="n8" port="0"/></to>
+        </edge>
+        <edge id="e10x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n6" port="0"/></from>
+          <to><noderef id="nEND10x0" port="0"/></to>
+        </edge>
+        <edge id="e10x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA10x1" port="0"/></from>
+          <to><noderef id="n10" port="0"/></to>
+        </edge>
+        <edge id="e11x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA11x0" port="0"/></from>
+          <to><noderef id="n7" port="0"/></to>
+        </edge>
+        <edge id="e12x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n4" port="0"/></from>
+          <to><noderef id="nEND12x0" port="0"/></to>
+        </edge>
+        <edge id="e12x1"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA12x1" port="0"/></from>
+          <to><noderef id="n12" port="0"/></to>
+        </edge>
+        <edge id="e13x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n10" port="0"/></from>
+          <to><noderef id="nEND13x0" port="0"/></to>
+        </edge>
+        <edge id="e13x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n11" port="0"/></from>
+          <to><noderef id="nEND13x1" port="0"/></to>
+        </edge>
+        <edge id="e13x2"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA13x2" port="0"/></from>
+          <to><noderef id="n17" port="0"/></to>
+        </edge>
+        <edge id="e13x3"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n47" port="0"/></from>
+          <to><noderef id="nEND13x3" port="0"/></to>
+        </edge>
+        <edge id="e14x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA14x0" port="0"/></from>
+          <to><noderef id="n15" port="0"/></to>
+        </edge>
+        <edge id="e15x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n7" port="0"/></from>
+          <to><noderef id="nEND15x0" port="0"/></to>
+        </edge>
+        <edge id="e15x1"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n9" port="0"/></from>
+          <to><noderef id="nEND15x1" port="0"/></to>
+        </edge>
+        <edge id="e15x2"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA15x2" port="0"/></from>
+          <to><noderef id="n14" port="0"/></to>
+        </edge>
+        <edge id="e16x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n8" port="0"/></from>
+          <to><noderef id="nEND16x0" port="0"/></to>
+        </edge>
+        <edge id="e16x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n12" port="0"/></from>
+          <to><noderef id="nEND16x1" port="0"/></to>
+        </edge>
+        <edge id="e16x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA16x2" port="0"/></from>
+          <to><noderef id="n13" port="0"/></to>
+        </edge>
+        <edge id="e16x3"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA16x3" port="0"/></from>
+          <to><noderef id="n16" port="0"/></to>
+        </edge>
+        <edge id="e19x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n15" port="0"/></from>
+          <to><noderef id="nEND19x0" port="0"/></to>
+        </edge>
+        <edge id="e19x1"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n17" port="0"/></from>
+          <to><noderef id="nEND19x1" port="0"/></to>
+        </edge>
+        <edge id="e19x2"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA19x2" port="0"/></from>
+          <to><noderef id="n18" port="0"/></to>
+        </edge>
+        <edge id="e20x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n14" port="0"/></from>
+          <to><noderef id="nEND20x0" port="0"/></to>
+        </edge>
+        <edge id="e20x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA20x1" port="0"/></from>
+          <to><noderef id="n21" port="0"/></to>
+        </edge>
+        <edge id="e21x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA21x0" port="0"/></from>
+          <to><noderef id="n23" port="0"/></to>
+        </edge>
+        <edge id="e22x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n16" port="0"/></from>
+          <to><noderef id="nEND22x0" port="0"/></to>
+        </edge>
+        <edge id="e23x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA23x0" port="0"/></from>
+          <to><noderef id="n20" port="0"/></to>
+        </edge>
+        <edge id="e23x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA23x1" port="0"/></from>
+          <to><noderef id="n24" port="0"/></to>
+        </edge>
+        <edge id="e24x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n13" port="0"/></from>
+          <to><noderef id="nEND24x0" port="0"/></to>
+        </edge>
+        <edge id="e24x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA24x1" port="0"/></from>
+          <to><noderef id="n19" port="0"/></to>
+        </edge>
+        <edge id="e24x2"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA24x2" port="0"/></from>
+          <to><noderef id="n22" port="0"/></to>
+        </edge>
+        <edge id="e24x3"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n46" port="0"/></from>
+          <to><noderef id="nEND24x3" port="0"/></to>
+        </edge>
+        <edge id="e25x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n20" port="0"/></from>
+          <to><noderef id="nEND25x0" port="0"/></to>
+        </edge>
+        <edge id="e25x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n21" port="0"/></from>
+          <to><noderef id="nEND25x1" port="0"/></to>
+        </edge>
+        <edge id="e25x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n23" port="0"/></from>
+          <to><noderef id="nEND25x2" port="0"/></to>
+        </edge>
+        <edge id="e25x3"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n24" port="0"/></from>
+          <to><noderef id="nEND25x3" port="0"/></to>
+        </edge>
+        <edge id="e25x4"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA25x4" port="0"/></from>
+          <to><noderef id="n25" port="0"/></to>
+        </edge>
+        <edge id="e25x5"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA25x5" port="0"/></from>
+          <to><noderef id="n47" port="0"/></to>
+        </edge>
+        <edge id="e26x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n18" port="0"/></from>
+          <to><noderef id="nEND26x0" port="0"/></to>
+        </edge>
+        <edge id="e26x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n19" port="0"/></from>
+          <to><noderef id="nEND26x1" port="0"/></to>
+        </edge>
+        <edge id="e26x2"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n22" port="0"/></from>
+          <to><noderef id="nEND26x2" port="0"/></to>
+        </edge>
+        <edge id="e26x3"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA26x3" port="0"/></from>
+          <to><noderef id="n26" port="0"/></to>
+        </edge>
+        <edge id="e28x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA28x0" port="0"/></from>
+          <to><noderef id="n27" port="0"/></to>
+        </edge>
+        <edge id="e28x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA28x1" port="0"/></from>
+          <to><noderef id="n31" port="0"/></to>
+        </edge>
+        <edge id="e29x0"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA29x0" port="0"/></from>
+          <to><noderef id="n28" port="0"/></to>
+        </edge>
+        <edge id="e29x1"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA29x1" port="0"/></from>
+          <to><noderef id="n29" port="0"/></to>
+        </edge>
+        <edge id="e29x2"  width="wide" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA29x2" port="0"/></from>
+          <to><noderef id="n33" port="0"/></to>
+        </edge>
+        <edge id="e31x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n26" port="0"/></from>
+          <to><noderef id="nEND31x0" port="0"/></to>
+        </edge>
+        <edge id="e31x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA31x1" port="0"/></from>
+          <to><noderef id="n30" port="0"/></to>
+        </edge>
+        <edge id="e31x2"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA31x2" port="0"/></from>
+          <to><noderef id="n32" port="0"/></to>
+        </edge>
+        <edge id="e31x3"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n48" port="0"/></from>
+          <to><noderef id="nEND31x3" port="0"/></to>
+        </edge>
+        <edge id="e33x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n25" port="0"/></from>
+          <to><noderef id="nEND33x0" port="0"/></to>
+        </edge>
+        <edge id="e34x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n29" port="0"/></from>
+          <to><noderef id="nEND34x0" port="0"/></to>
+        </edge>
+        <edge id="e34x1"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n31" port="0"/></from>
+          <to><noderef id="nEND34x1" port="0"/></to>
+        </edge>
+        <edge id="e34x2"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n32" port="0"/></from>
+          <to><noderef id="nEND34x2" port="0"/></to>
+        </edge>
+        <edge id="e34x3"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA34x3" port="0"/></from>
+          <to><noderef id="n37" port="0"/></to>
+        </edge>
+        <edge id="e35x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n30" port="0"/></from>
+          <to><noderef id="nEND35x0" port="0"/></to>
+        </edge>
+        <edge id="e35x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA35x1" port="0"/></from>
+          <to><noderef id="n34" port="0"/></to>
+        </edge>
+        <edge id="e36x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n27" port="0"/></from>
+          <to><noderef id="nEND36x0" port="0"/></to>
+        </edge>
+        <edge id="e36x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n28" port="0"/></from>
+          <to><noderef id="nEND36x1" port="0"/></to>
+        </edge>
+        <edge id="e36x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA36x2" port="0"/></from>
+          <to><noderef id="n36" port="0"/></to>
+        </edge>
+        <edge id="e37x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n33" port="0"/></from>
+          <to><noderef id="nEND37x0" port="0"/></to>
+        </edge>
+        <edge id="e37x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA37x1" port="0"/></from>
+          <to><noderef id="n35" port="0"/></to>
+        </edge>
+        <edge id="e37x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA37x2" port="0"/></from>
+          <to><noderef id="n44" port="0"/></to>
+        </edge>
+        <edge id="e37x3"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA37x3" port="0"/></from>
+          <to><noderef id="n46" port="0"/></to>
+        </edge>
+        <edge id="e38x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n36" port="0"/></from>
+          <to><noderef id="nEND38x0" port="0"/></to>
+        </edge>
+        <edge id="e38x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n37" port="0"/></from>
+          <to><noderef id="nEND38x1" port="0"/></to>
+        </edge>
+        <edge id="e38x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA38x2" port="0"/></from>
+          <to><noderef id="n39" port="0"/></to>
+        </edge>
+        <edge id="e38x3"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA38x3" port="0"/></from>
+          <to><noderef id="n45" port="0"/></to>
+        </edge>
+        <edge id="e39x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA39x0" port="0"/></from>
+          <to><noderef id="n40" port="0"/></to>
+        </edge>
+        <edge id="e40x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n34" port="0"/></from>
+          <to><noderef id="nEND40x0" port="0"/></to>
+        </edge>
+        <edge id="e40x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n35" port="0"/></from>
+          <to><noderef id="nEND40x1" port="0"/></to>
+        </edge>
+        <edge id="e40x2"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA40x2" port="0"/></from>
+          <to><noderef id="n38" port="0"/></to>
+        </edge>
+        <edge id="e41x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n39" port="0"/></from>
+          <to><noderef id="nEND41x0" port="0"/></to>
+        </edge>
+        <edge id="e42x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n40" port="0"/></from>
+          <to><noderef id="nEND42x0" port="0"/></to>
+        </edge>
+        <edge id="e42x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA42x1" port="0"/></from>
+          <to><noderef id="n42" port="0"/></to>
+        </edge>
+        <edge id="e43x0"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="true" buzzsaw="false">
+          <from><noderef id="n38" port="0"/></from>
+          <to><noderef id="nEND43x0" port="0"/></to>
+        </edge>
+        <edge id="e43x1"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA43x1" port="0"/></from>
+          <to><noderef id="n41" port="0"/></to>
+        </edge>
+        <edge id="e43x2"  width="wide" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA43x2" port="0"/></from>
+          <to><noderef id="n43" port="0"/></to>
+        </edge>
+        <edge id="e45x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n43" port="0"/></from>
+          <to><noderef id="nEND45x0" port="0"/></to>
+        </edge>
+        <edge id="e48x0"  width="narrow" editable="false" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n42" port="0"/></from>
+          <to><noderef id="nEND48x0" port="0"/></to>
+        </edge>
+        <edge id="e52x0"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="n41" port="0"/></from>
+          <to><noderef id="nEND52x0" port="0"/></to>
+        </edge>
+        <edge id="e52x1"  width="narrow" editable="true" description="Bonus" variableID="-1" pinch="false" buzzsaw="false">
+          <from><noderef id="nSTA52x1" port="0"/></from>
+          <to><noderef id="n48" port="0"/></to>
+        </edge>
+      </board>
+    </boards>
+  </level>
+</world>

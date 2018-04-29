@@ -12,7 +12,7 @@ import assets.AssetsFont;
 import dialogs.SimpleAlertDialog;
 import events.MenuEvent;
 import events.NavigationEvent;
-import net.hires.debug.Stats;
+//import net.hires.debug.Stats;
 import networking.Achievements;
 import networking.GameFileHandler;
 import networking.HTTPCookies;
@@ -33,8 +33,8 @@ class PipeJam3 extends flash.display.Sprite
     /** At most one of these two should be true. They can both be false. */
     public static var RELEASE_BUILD : Bool = false;
     public static var TUTORIAL_DEMO : Bool = false;
-    public static inline var ASSET_SUFFIX : String = "";  // specify "Turk" to change atlases to turk  
-    
+    public static var ASSET_SUFFIX : String = "";  // specify "Turk" to change atlases to turk  
+	
     //if release build is true, true if using production machine db/info, false if using staging
     public static var PRODUCTION_BUILD : Bool = true;
     

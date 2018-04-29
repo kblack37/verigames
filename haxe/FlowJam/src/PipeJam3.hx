@@ -34,7 +34,7 @@ class PipeJam3 extends flash.display.Sprite
     public static var RELEASE_BUILD : Bool = false;
     public static var LOGGING_ON : Bool = false;
     public static var LOCAL_DEPLOYMENT : Bool = true;
-    public static var TUTORIAL_DEMO : Bool = true;
+    public static var TUTORIAL_DEMO : Bool = false;
     public static var USE_LOCAL_PROXY : Bool = false;
     public static var SHOW_PERFORMANCE_STATS : Bool = false;
 	

@@ -5,19 +5,25 @@ import haxe.Constraints.Function;
 import flash.events.Event;
 import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
+import openfl.Assets;
+import lime.utils.AssetType;
 import scenes.loadingscreen.LoadingScreenScene;
 import starling.display.Sprite;
-
+import haxe.rtti.Meta;
+import haxe.Resource;
 class TutorialController extends Sprite
 {
     @:meta(Embed(source="../../lib/levels/tutorial/tutorial.json",mimeType="application/octet-stream"))
-
     public static var tutorialFileClass : Class<Dynamic>;
-    public static var tutorialJson : String = Type.createInstance(tutorialFileClass, []);
-    public static var tutorialObj : Dynamic = haxe.Json.parse(tutorialJson);
+    //public static var tutorialJson : String = Type.createInstance(tutorialFileClass, []);
+    //public static var tutorialObj : Dynamic = haxe.Json.parse(tutorialJson);  //THere is a problem using assets statically
+	public function getTutorialObj() : Dynamic{
+		return	haxe.Json.parse(Assets.getText("tutorial/tutorial.json"));
+	}
+	public static var tutorialObj : Dynamic = haxe.Json.parse(Resource.getString("tutorial"));
     
-    @:meta(Embed(source="../../lib/levels/tutorial/tutorialLayout.json",mimeType="application/octet-stream"))
-
+    @:meta(Embed(source = "../../lib/levels/tutorial/tutorialLayout.json", mimeType = "application/octet-stream"))
+	
     public static var tutorialLayoutFileClass : Class<Dynamic>;
     public static var tutorialLayoutJson : String = Type.createInstance(tutorialLayoutFileClass, []);
     public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(tutorialLayoutJson);
@@ -51,6 +57,7 @@ class TutorialController extends Sprite
     
     public static function getTutorialController() : TutorialController
     {
+		trace(Meta.getFields(TutorialController).meta);
         if (tutorialController == null)
         {
             tutorialController = new TutorialController();

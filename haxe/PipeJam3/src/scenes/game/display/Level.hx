@@ -160,7 +160,7 @@ class Level extends BaseComponent
     public function new(_name : String, _levelGraph : ConstraintGraph, _levelObj : Dynamic, _levelLayoutObj : Dynamic, _levelAssignmentsObj : Dynamic, _originalLevelName : String)
     {
         super();
-        UNLOCK_ALL_LEVELS_FOR_DEBUG = PipeJamGame.DEBUG_MODE;
+        UNLOCK_ALL_LEVELS_FOR_DEBUG = Reflect.field(PipeJamGame,"DEBUG_MODE");
         level_name = _name;
         original_level_name = _originalLevelName;
         levelGraph = _levelGraph;
@@ -195,7 +195,7 @@ class Level extends BaseComponent
         }
         
         m_targetScore = as3hx.Compat.INT_MAX;
-        if (PipeJam3.ASSET_SUFFIX == "Turk")
+        if (Reflect.field(PipeJam3,"ASSET_SUFFIX") == "Turk")
         {
             m_targetScore = 0;
             for (key in Reflect.fields(nodeLayoutObjs))
@@ -212,7 +212,7 @@ class Level extends BaseComponent
             //now check to see if we have a higher target if not in tutorial
             if (!PipeJamGameScene.inTutorial)
             {
-                if (PipeJamGame.levelInfo && PipeJamGame.levelInfo.target_score && m_targetScore < PipeJamGame.levelInfo.target_score)
+                if (Reflect.field(PipeJamGame,"levelInfo") && PipeJamGame.levelInfo.target_score && m_targetScore < PipeJamGame.levelInfo.target_score)
                 {
                     m_targetScore = PipeJamGame.levelInfo.target_score;
                 }
@@ -251,6 +251,7 @@ class Level extends BaseComponent
         var wideIds : String = "";
         for (varId in Reflect.fields(levelGraph.variableDict))
         {
+			varId = Std.int(varId)
             graphVar = try cast(levelGraph.variableDict[varId], ConstraintVar) catch(e:Dynamic) null;
             var wasSetWide : Bool = setGraphVarFromAssignments(graphVar, assignmentsObj, updateTutorialManager);
             if (PipeJam3.logging)

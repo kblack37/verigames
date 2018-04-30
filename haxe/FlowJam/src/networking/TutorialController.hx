@@ -20,19 +20,20 @@ class TutorialController extends Sprite
 	public function getTutorialObj() : Dynamic{
 		return	haxe.Json.parse(Assets.getText("tutorial/tutorial.json"));
 	}
-	public static var tutorialObj : Dynamic = haxe.Json.parse(Resource.getString("tutorial"));
+	public static var tutorialObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorial.json"));
     
     @:meta(Embed(source = "../../lib/levels/tutorial/tutorialLayout.json", mimeType = "application/octet-stream"))
 	
     public static var tutorialLayoutFileClass : Class<Dynamic>;
-    public static var tutorialLayoutJson : String = Type.createInstance(tutorialLayoutFileClass, []);
-    public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(tutorialLayoutJson);
+    //public static var tutorialLayoutJson : String = Type.createInstance(tutorialLayoutFileClass, []);
+    //public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(tutorialLayoutJson);
+	public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialLayout.json"));
     
     @:meta(Embed(source="../../lib/levels/tutorial/tutorialAssignments.json",mimeType="application/octet-stream"))
 
     public static var tutorialAssignmentsFileClass : Class<Dynamic>;
-    public static var tutorialAssignmentsJson : String = Type.createInstance(tutorialAssignmentsFileClass, []);
-    public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(tutorialAssignmentsJson);
+   // public static var tutorialAssignmentsJson : String = Type.createInstance(tutorialAssignmentsFileClass, []);
+    public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialAssignments.json"));
     
     public static var tutorial_level_complete : Int = 0;
     public static var get_completed_tutorial_levels : Int = 1;

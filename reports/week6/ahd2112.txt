@@ -1,0 +1,8 @@
+Next week I plan to work more on Flowjam and sepcifically working on why it displays nothing once targeted to html5. A lot of the port involved commenting out problematic code. I marked these with 
+TODOs so they will be easy to find and work on.
+
+
+I made good progress along with the team on making flowjam work, it now shows a loading bar before encountering a null pointer in the code which is a huge step. I also worked on the report this week to adress the changes that were recommended.
+
+The plan for this week is to move ahread more on flowjam, Pipejam seems like it is a more complicated program than flowjam and will be more work than anticipated. The classes I thought would share similair code are at times completely different.
+Pipejam will be worked on but I feel my priority is flowjam because I am more familiar with its code.

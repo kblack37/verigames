@@ -11,7 +11,7 @@ class ZoomOutButton extends ImageStateButton
     public function new()
     {
         m_toolTipText = "Zoom Out";
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         super(
                 [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_ZoomOutButton))], 
                 [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_ZoomOutButtonOver))], 

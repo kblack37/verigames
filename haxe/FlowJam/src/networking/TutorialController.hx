@@ -1,39 +1,39 @@
 package networking;
 
+import assets.AssetInterface;
 import flash.errors.Error;
 import haxe.Constraints.Function;
 import flash.events.Event;
 import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
+
 import openfl.Assets;
 import lime.utils.AssetType;
+
+import haxe.Json;
+
 import scenes.loadingscreen.LoadingScreenScene;
 import starling.display.Sprite;
 import haxe.rtti.Meta;
 import haxe.Resource;
 class TutorialController extends Sprite
 {
-    @:meta(Embed(source="../../lib/levels/tutorial/tutorial.json",mimeType="application/octet-stream"))
-    public static var tutorialFileClass : Class<Dynamic>;
-    //public static var tutorialJson : String = Type.createInstance(tutorialFileClass, []);
-    //public static var tutorialObj : Dynamic = haxe.Json.parse(tutorialJson);  //THere is a problem using assets statically
-	public function getTutorialObj() : Dynamic{
-		return	haxe.Json.parse(Assets.getText("tutorial/tutorial.json"));
-	}
-	public static var tutorialObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorial.json"));
+	  public static var tutorialObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorial.json"));
     
-    @:meta(Embed(source = "../../lib/levels/tutorial/tutorialLayout.json", mimeType = "application/octet-stream"))
+   // @:meta(Embed(source = "../../lib/levels/tutorial/tutorialLayout.json", mimeType = "application/octet-stream"))
 	
-    public static var tutorialLayoutFileClass : Class<Dynamic>;
+   
     //public static var tutorialLayoutJson : String = Type.createInstance(tutorialLayoutFileClass, []);
     //public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(tutorialLayoutJson);
-	public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialLayout.json"));
-    
-    @:meta(Embed(source="../../lib/levels/tutorial/tutorialAssignments.json",mimeType="application/octet-stream"))
+	  public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialLayout.json"));
 
-    public static var tutorialAssignmentsFileClass : Class<Dynamic>;
-   // public static var tutorialAssignmentsJson : String = Type.createInstance(tutorialAssignmentsFileClass, []);
-    public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialAssignments.json"));
+    public var tutorialObj : Dynamic;
+    
+    public var tutorialLayoutObj : Dynamic;
+
+
+    //public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialAssignments.json"));
+    public var tutorialAssignmentsObj : Dynamic;
     
     public static var tutorial_level_complete : Int = 0;
     public static var get_completed_tutorial_levels : Int = 1;
@@ -55,6 +55,15 @@ class TutorialController extends Sprite
     public var fromLevelSelectList : Bool = false;
     
     private var levelCompletedQID : String;
+	
+	public function new()
+    {
+        super();
+		
+		this.tutorialObj = AssetInterface.getObject("levels/tutorial", "tutorial.json");
+		this.tutorialLayoutObj = AssetInterface.getObject("levels/tutorial", "tutorialLayout.json");
+		this.tutorialAssignmentsObj = AssetInterface.getObject("levels/tutorial", "tutorialAssignments.json");
+    }
     
     public static function getTutorialController() : TutorialController
     {
@@ -353,10 +362,5 @@ class TutorialController extends Sprite
         }
         
         NetworkConnection.sendMessage(callback, null, url, method, "");
-    }
-
-    public function new()
-    {
-        super();
     }
 }

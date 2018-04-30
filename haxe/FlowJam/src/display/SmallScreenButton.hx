@@ -10,7 +10,7 @@ class SmallScreenButton extends ImageStateButton
     public function new()
     {
         m_toolTipText = "Exit full screen";
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         super(
                 [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_SmallscreenButton))], 
                 [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_SmallscreenButtonOver))], 

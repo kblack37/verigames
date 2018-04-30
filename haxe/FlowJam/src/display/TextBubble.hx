@@ -108,7 +108,7 @@ class TextBubble extends Sprite
         // arrow
         if (m_pointAt != null)
         {
-            var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+            var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
             var arrowTexture : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_TutorialArrow);
             m_tutorialArrow = new Image(arrowTexture);
             m_tutorialArrow.color = _arrowColor;

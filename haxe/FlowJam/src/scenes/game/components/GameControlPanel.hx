@@ -109,7 +109,7 @@ class GameControlPanel extends BaseComponent
     
     public function addedToStage(event : Event) : Void
     {
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var foregroundTexture : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_ScoreBarForeground);
         m_scorebarForeground = new Image(foregroundTexture);
         m_scorebarForeground.touchable = false;

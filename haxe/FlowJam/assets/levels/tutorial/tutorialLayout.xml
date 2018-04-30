@@ -1,0 +1,4443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph id="world">
+  <level id="IntroWidget" qid="1" tutorial="widget">
+    <box height="1.0" id="IntroWidget2" lines="1" width="1.81" x="1.67" y="1.54" visible="true"/>
+    <box height="1.0" id="IntroWidget3" lines="3" width="3.0" x="5.13" y="3.86" visible="true"/>
+    <joint height="0.51" id="n2__OUT__0" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="0" width="0.59" x="0.88" y="4.32"/>
+    <joint height="0.51" id="n330__IN__0" inputs="1" outputs="0" width="0.59" x="5.88" y="4.32"/>
+    <joint height="0.51" id="n320__IN__0" inputs="1" outputs="0" width="0.59" x="4.28" y="4.32"/>
+    <joint height="0.51" id="n310__IN__0" inputs="1" outputs="0" width="0.59" x="2.68" y="4.32"/>
+    <joint height="0.51" id="n31" inputs="0" outputs="1" width="0.59" x="2.68" y="0.26"/>
+    <joint height="0.51" id="n32" inputs="0" outputs="1" width="0.59" x="4.28" y="0.26"/>
+    <joint height="0.51" id="n33" inputs="0" outputs="1" width="0.59" x="5.88" y="0.26"/>
+    <line id="e2__IN__">
+      <fromjoint id="n2__OUT__0" port="0"/>
+      <tobox id="IntroWidget2" port="0"/>
+      <point x="0.89" y="0.52"/>
+      <point x="0.89" y="1.77"/>
+    </line>
+    <line id="e2__OUT__">
+      <frombox id="IntroWidget2" port="0"/>
+      <tojoint id="n20" port="0"/>
+      <point x="0.89" y="2.8"/>
+      <point x="0.89" y="4.05"/>
+    </line>
+    <line id="e31__IN__">
+      <fromjoint id="n31" port="0"/>
+      <tobox id="IntroWidget3" port="0"/>
+      <point x="2.69" y="0.52"/>
+      <point x="3.67" y="1.52"/>
+    </line>
+    <line id="e31__OUT__">
+      <frombox id="IntroWidget3" port="0"/>
+      <tojoint id="n310__IN__0" port="0"/>
+      <point x="3.67" y="3.05"/>
+      <point x="2.69" y="4.05"/>
+    </line>
+    <line id="e32__IN__">
+      <fromjoint id="n32" port="0"/>
+      <tobox id="IntroWidget3" port="1"/>
+      <point x="4.29" y="0.52"/>
+      <point x="4.29" y="1.52"/>
+    </line>
+    <line id="e32__OUT__">
+      <frombox id="IntroWidget3" port="1"/>
+      <tojoint id="n320__IN__0" port="0"/>
+      <point x="4.29" y="3.05"/>
+      <point x="4.29" y="4.05"/>
+    </line>
+    <line id="e33__IN__">
+      <fromjoint id="n33" port="0"/>
+      <tobox id="IntroWidget3" port="2"/>
+      <point x="5.89" y="0.52"/>
+      <point x="4.93" y="1.52"/>
+    </line>
+    <line id="e33__OUT__">
+      <frombox id="IntroWidget3" port="2"/>
+      <tojoint id="n330__IN__0" port="0"/>
+      <point x="4.93" y="3.05"/>
+      <point x="5.89" y="4.05"/>
+    </line>
+  </level>
+  <level id="WidgetPractice" qid="2" tutorial="widgetpractice">
+    <box height="1.0" id="WidgetPractice1" lines="1" width="1.81" x="6.52" y="4.03" visible="true"/>
+    <box height="1.0" id="WidgetPractice2" lines="1" width="1.81" x="6.54" y="2.20" visible="true"/>
+    <box height="1.0" id="WidgetPractice3" lines="3" width="3.0" x="9.56" y="1.03" visible="true"/>
+    <box height="1.0" id="WidgetPractice4" lines="2" width="2.4" x="3.73" y="1.01" visible="true"/>
+    <joint height="0.51" id="n10__IN__0" inputs="1" outputs="0" width="0.59" x="0.88" y="4.32"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="0" width="0.59" x="3.68" y="4.32"/>
+    <joint height="0.51" id="n310" inputs="1" outputs="0" width="0.59" x="5.49" y="4.32"/>
+    <joint height="0.51" id="n420" inputs="1" outputs="0" width="0.59" x="12.11" y="4.32"/>
+    <joint height="0.51" id="n42__OUT__0" inputs="0" outputs="1" width="0.59" x="12.33" y="0.26"/>
+    <joint height="0.51" id="n41__OUT__0" inputs="0" outputs="1" width="0.59" x="10.74" y="0.26"/>
+    <joint height="0.51" id="n410" inputs="1" outputs="0" width="0.59" x="10.51" y="4.32"/>
+    <joint height="0.51" id="n31" inputs="0" outputs="1" width="0.59" x="5.49" y="0.26"/>
+    <joint height="0.51" id="n1" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="3.68" y="0.26"/>
+    <joint height="0.51" id="n33" inputs="0" outputs="1" width="0.59" x="8.68" y="0.26"/>
+    <joint height="0.51" id="n330" inputs="1" outputs="0" width="0.59" x="8.68" y="4.32"/>
+    <joint height="0.51" id="n32" inputs="0" outputs="1" width="0.59" x="7.08" y="0.26"/>
+    <joint height="0.51" id="n320" inputs="1" outputs="0" width="0.59" x="7.08" y="4.32"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="WidgetPractice1" port="0"/>
+      <point x="0.89" y="0.52"/>
+      <point x="0.89" y="1.77"/>
+    </line>
+    <line id="e1__OUT__">
+      <frombox id="WidgetPractice1" port="0"/>
+      <tojoint id="n10__IN__0" port="0"/>
+      <point x="0.89" y="2.8"/>
+      <point x="0.89" y="4.05"/>
+    </line>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="WidgetPractice2" port="0"/>
+      <point x="3.69" y="0.52"/>
+      <point x="3.69" y="1.77"/>
+    </line>
+    <line id="e2__OUT__">
+      <frombox id="WidgetPractice2" port="0"/>
+      <tojoint id="n20" port="0"/>
+      <point x="3.69" y="2.8"/>
+      <point x="3.69" y="4.05"/>
+    </line>
+    <line id="e31__IN__">
+      <fromjoint id="n31" port="0"/>
+      <tobox id="WidgetPractice3" port="0"/>
+      <point x="5.5" y="0.52"/>
+      <point x="6.47" y="1.52"/>
+    </line>
+    <line id="e31__OUT__">
+      <frombox id="WidgetPractice3" port="0"/>
+      <tojoint id="n310" port="0"/>
+      <point x="6.47" y="3.05"/>
+      <point x="5.5" y="4.05"/>
+    </line>
+    <line id="e32__IN__">
+      <fromjoint id="n32" port="0"/>
+      <tobox id="WidgetPractice3" port="1"/>
+      <point x="7.1" y="0.52"/>
+      <point x="7.1" y="1.52"/>
+    </line>
+    <line id="e32__OUT__">
+      <frombox id="WidgetPractice3" port="1"/>
+      <tojoint id="n320" port="0"/>
+      <point x="7.1" y="3.05"/>
+      <point x="7.1" y="4.05"/>
+    </line>
+    <line id="e33__IN__">
+      <fromjoint id="n33" port="0"/>
+      <tobox id="WidgetPractice3" port="2"/>
+      <point x="8.69" y="0.52"/>
+      <point x="7.74" y="1.52"/>
+    </line>
+    <line id="e33__OUT__">
+      <frombox id="WidgetPractice3" port="2"/>
+      <tojoint id="n330" port="0"/>
+      <point x="7.74" y="3.05"/>
+      <point x="8.69" y="4.05"/>
+    </line>
+    <line id="e41__IN__">
+      <fromjoint id="n41__OUT__0" port="0"/>
+      <tobox id="WidgetPractice4" port="0"/>
+      <point x="10.75" y="0.52"/>
+      <point x="11.11" y="1.65"/>
+    </line>
+    <line id="e41__OUT__">
+      <frombox id="WidgetPractice4" port="0"/>
+      <tojoint id="n410" port="0"/>
+      <point x="11.11" y="2.93"/>
+      <point x="10.53" y="4.05"/>
+    </line>
+    <line id="e42__IN__">
+      <fromjoint id="n42__OUT__0" port="0"/>
+      <tobox id="WidgetPractice4" port="1"/>
+      <point x="12.35" y="0.52"/>
+      <point x="11.76" y="1.65"/>
+    </line>
+    <line id="e42__OUT__">
+      <frombox id="WidgetPractice4" port="1"/>
+      <tojoint id="n420" port="0"/>
+      <point x="11.76" y="2.93"/>
+      <point x="12.13" y="4.05"/>
+    </line>
+  </level>
+  <level id="LockedWidget" qid="3" tutorial="locked">
+    <box height="1.0" id="LockedWidget1" lines="1" width="1.81" x="3.83" y="3.90" visible="true"/>
+    <box height="1.0" id="LockedWidget2" lines="1" width="1.81" x="5.50" y="1.39" visible="true"/>
+    <box height="1.0" id="LockedWidget3" lines="3" width="3.0" x="10.86" y="3.85" visible="true"/>
+    <box height="1.0" id="LockedWidget4" lines="2" width="2.4" x="7.17" y="4.85" visible="true"/>
+    <box height="1.0" id="LockedWidget5" lines="1" width="1.81" x="9.09" y="1.39" visible="true"/>
+    <joint height="0.51" id="n10__IN__0" inputs="1" kind="OUTGOING" outputs="0" width="0.59" x="0.88" y="5.82" visible="false"/>
+    <joint height="0.51" id="n20" inputs="1" kind="END" outputs="0" width="0.59" x="3.68" y="5.82" visible="false"/>
+    <joint height="0.51" id="n310" inputs="1" kind="END" outputs="0" width="0.59" x="5.49" y="5.82" visible="false"/>
+    <joint height="0.51" id="n420" inputs="1" kind="END" outputs="0" width="0.59" x="12.4" y="5.82" visible="false"/>
+    <joint height="0.51" id="n50" inputs="1" kind="END" outputs="0" width="0.59" x="14.33" y="5.82" visible="false"/>
+    <joint height="0.51" id="n5" inputs="0" kind="START_PIPE_DEPENDENT_BALL" outputs="1" width="0.59" x="14.33" y="0.26" visible="false"/>
+    <joint height="0.51" id="n42__OUT__0" inputs="0" kind="INCOMING" outputs="1" width="0.59" x="11.97" y="0.26" visible="false"/>
+    <joint height="0.51" id="n41__OUT__0" inputs="0" kind="INCOMING" outputs="1" width="0.59" x="10.38" y="0.26" visible="false"/>
+    <joint height="0.51" id="n410" inputs="1" kind="END" outputs="0" width="0.59" x="10.81" y="5.82" visible="false"/>
+    <joint height="0.51" id="n31" inputs="0" kind="START_PIPE_DEPENDENT_BALL" outputs="1" width="0.59" x="5.49" y="0.26" visible="false"/>
+    <joint height="0.51" id="n1" inputs="0" kind="START_PIPE_DEPENDENT_BALL" outputs="1" width="0.59" x="0.88" y="0.26" visible="false"/>
+    <joint height="0.51" id="n2" inputs="0" kind="START_PIPE_DEPENDENT_BALL" outputs="1" width="0.59" x="3.68" y="0.26" visible="false"/>
+    <joint height="0.51" id="n33" inputs="0" kind="START_PIPE_DEPENDENT_BALL" outputs="1" width="0.59" x="8.68" y="0.26" visible="false"/>
+    <joint height="0.51" id="n330" inputs="1" kind="END" outputs="0" width="0.59" x="8.68" y="5.82" visible="false"/>
+    <joint height="0.51" id="n32__OUT__0" inputs="0" kind="INCOMING" outputs="1" width="0.59" x="7.08" y="0.26" visible="false"/>
+    <joint height="0.51" id="n320" inputs="1" kind="END" outputs="0" width="0.59" x="7.08" y="5.82" visible="false"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="LockedWidget1" port="0"/>
+      <point x="0.89" y="0.53"/>
+      <point x="0.89" y="0.91"/>
+      <point x="0.89" y="2.15"/>
+      <point x="0.89" y="2.53"/>
+    </line>
+    <line id="e1__OUT__">
+      <frombox id="LockedWidget1" port="0"/>
+      <tojoint id="n10__IN__0" port="0"/>
+      <point x="0.89" y="3.56"/>
+      <point x="0.89" y="3.94"/>
+      <point x="0.89" y="5.18"/>
+      <point x="0.89" y="5.56"/>
+    </line>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="LockedWidget2" port="0"/>
+      <point x="3.69" y="0.53"/>
+      <point x="3.69" y="0.91"/>
+      <point x="3.69" y="2.15"/>
+      <point x="3.69" y="2.53"/>
+    </line>
+    <line id="e2__OUT__">
+      <frombox id="LockedWidget2" port="0"/>
+      <tojoint id="n20" port="0"/>
+      <point x="3.69" y="3.56"/>
+      <point x="3.69" y="3.94"/>
+      <point x="3.69" y="5.18"/>
+      <point x="3.69" y="5.56"/>
+    </line>
+    <line id="e31__IN__">
+      <fromjoint id="n31" port="0"/>
+      <tobox id="LockedWidget3" port="0"/>
+      <point x="5.5" y="0.53"/>
+      <point x="5.5" y="0.91"/>
+      <point x="6.0" y="0.91"/>
+      <point x="6.0" y="2.16"/>
+      <point x="6.49" y="2.16"/>
+      <point x="6.49" y="2.53"/>
+    </line>
+    <line id="e31__OUT__">
+      <frombox id="LockedWidget3" port="0"/>
+      <tojoint id="n310" port="0"/>
+      <point x="6.49" y="3.56"/>
+      <point x="6.49" y="3.93"/>
+      <point x="6.0" y="3.93"/>
+      <point x="6.0" y="5.18"/>
+      <point x="5.5" y="5.18"/>
+      <point x="5.5" y="5.56"/>
+    </line>
+    <line id="e32__IN__">
+      <fromjoint id="n32__OUT__0" port="0"/>
+      <tobox id="LockedWidget3" port="1"/>
+      <point x="7.1" y="0.53"/>
+      <point x="7.1" y="0.91"/>
+      <point x="7.1" y="1.78"/>
+      <point x="7.1" y="2.53"/>
+    </line>
+    <line id="e32__OUT__">
+      <frombox id="LockedWidget3" port="1"/>
+      <tojoint id="n320" port="0"/>
+      <point x="7.1" y="3.56"/>
+      <point x="7.1" y="4.31"/>
+      <point x="7.1" y="5.18"/>
+      <point x="7.1" y="5.56"/>
+    </line>
+    <line id="e33__IN__">
+      <fromjoint id="n33" port="0"/>
+      <tobox id="LockedWidget3" port="2"/>
+      <point x="8.69" y="0.53"/>
+      <point x="8.69" y="0.91"/>
+      <point x="8.21" y="0.91"/>
+      <point x="8.21" y="1.41"/>
+      <point x="7.72" y="1.41"/>
+      <point x="7.72" y="2.53"/>
+    </line>
+    <line id="e33__OUT__">
+      <frombox id="LockedWidget3" port="2"/>
+      <tojoint id="n330" port="0"/>
+      <point x="7.72" y="3.56"/>
+      <point x="7.72" y="4.68"/>
+      <point x="8.21" y="4.68"/>
+      <point x="8.21" y="5.18"/>
+      <point x="8.69" y="5.18"/>
+      <point x="8.69" y="5.56"/>
+    </line>
+    <line id="e41__IN__">
+      <fromjoint id="n41__OUT__0" port="0"/>
+      <tobox id="LockedWidget4" port="0"/>
+      <point x="10.39" y="0.53"/>
+      <point x="10.39" y="0.91"/>
+      <point x="10.66" y="0.91"/>
+      <point x="10.66" y="2.15"/>
+      <point x="10.93" y="2.15"/>
+      <point x="10.93" y="2.525"/>
+    </line>
+    <line id="e41__OUT__">
+      <frombox id="LockedWidget4" port="0"/>
+      <tojoint id="n410" port="0"/>
+      <point x="10.93" y="3.555"/>
+      <point x="10.93" y="3.93"/>
+      <point x="10.88" y="3.93"/>
+      <point x="10.88" y="5.18"/>
+      <point x="10.82" y="5.18"/>
+      <point x="10.82" y="5.56"/>
+    </line>
+    <line id="e42__IN__">
+      <fromjoint id="n42__OUT__0" port="0"/>
+      <tobox id="LockedWidget4" port="1"/>
+      <point x="11.99" y="0.53"/>
+      <point x="11.99" y="0.91"/>
+      <point x="11.78" y="0.91"/>
+      <point x="11.78" y="1.77"/>
+      <point x="11.56" y="1.77"/>
+      <point x="11.56" y="2.525"/>
+    </line>
+    <line id="e42__OUT__">
+      <frombox id="LockedWidget4" port="1"/>
+      <tojoint id="n420" port="0"/>
+      <point x="11.56" y="3.555"/>
+      <point x="11.56" y="4.3"/>
+      <point x="11.99" y="4.3"/>
+      <point x="11.99" y="5.18"/>
+      <point x="12.42" y="5.18"/>
+      <point x="12.42" y="5.56"/>
+    </line>
+    <line id="e5__IN__">
+      <fromjoint id="n5" port="0"/>
+      <tobox id="LockedWidget5" port="0"/>
+      <point x="14.35" y="0.53"/>
+      <point x="14.35" y="0.91"/>
+      <point x="14.35" y="2.15"/>
+      <point x="14.35" y="2.53"/>
+    </line>
+    <line id="e5__OUT__">
+      <frombox id="LockedWidget5" port="0"/>
+      <tojoint id="n50" port="0"/>
+      <point x="14.35" y="3.56"/>
+      <point x="14.35" y="3.94"/>
+      <point x="14.35" y="5.18"/>
+      <point x="14.35" y="5.56"/>
+    </line>
+  </level>
+  <level id="Links" qid="4" tutorial="links">
+    <box height="1.0" id="SatisfyBoxes1" lines="1" width="1.81" x="1.51" y="1.90" visible="true"/>
+    <box height="1.0" id="SatisfyBoxes2" lines="1" width="1.81" x="9.39" y="2.31" visible="true"/>
+    <box height="1.0" id="SatisfyBoxes3" lines="2" width="2.4" x="5.16" y="2.64" visible="true"/>
+    <box height="1.0" id="SatisfyBoxes10" lines="1" width="1.81" x="0.90" y="5.85" visible="true"/>
+    <box height="1.0" id="SatisfyBoxes20" lines="1" width="1.81" x="9.39" y="5.99" visible="true"/>
+    <box height="1.0" id="SatisfyBoxes30" lines="1" width="1.81" x="3.76" y="6.19" visible="true"/>
+    <box height="1.0" id="SatisfyBoxes40" lines="1" width="1.81" x="6.56" y="6.19" visible="true"/>
+    <joint height="0.51" id="n10" inputs="1" outputs="1" width="0.59" x="0.88" y="4.07" visible="true"/>
+    <joint height="0.51" id="n1__OUT__1" inputs="0" outputs="1" width="0.59" x="4.29" y="0.26"/>
+    <joint height="0.51" id="n1__OUT__0" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n1__OUT__2" inputs="0" outputs="1" width="0.59" x="5.89" y="0.26"/>
+    <joint height="0.51" id="n40" inputs="1" outputs="1" width="0.59" x="5.94" y="4.41" visible="true"/>
+    <joint height="0.51" id="n400" inputs="1" outputs="0" width="0.59" x="6.49" y="7.63"/>
+    <joint height="0.51" id="n100" inputs="1" outputs="0" width="0.59" x="0.88" y="7.63"/>
+    <joint height="0.51" id="n30" inputs="1" outputs="1" width="0.59" x="4.04" y="4.41" visible="true"/>
+    <joint height="0.51" id="n200__IN__0" inputs="1" outputs="0" width="0.59" x="9.29" y="7.63"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="9.36" y="0.40" visible="true"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="1" width="0.59" x="9.36" y="4.21" visible="true"/>
+    <joint height="0.51" id="n300" inputs="1" outputs="0" width="0.59" x="3.68" y="7.63"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1__OUT__0" port="0"/>
+      <tobox id="SatisfyBoxes1" port="0"/>
+      <point x="0.89" y="0.53"/>
+      <point x="0.89" y="1.65"/>
+    </line>
+    <line id="e1__OUT__" visible="true">
+      <frombox id="SatisfyBoxes1" port="0"/>
+      <tojoint id="n10" port="0"/>
+      <point x="1.50" y="2.40"/>
+      <point x="1.50" y="2.84"/>
+      <point x="1.20" y="2.84"/>
+      <point x="1.20" y="3.38"/>
+      <point x="0.89" y="3.38"/>
+      <point x="0.89" y="3.82"/>
+    </line>
+    <line id="e2__IN__" visible="true">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="SatisfyBoxes2" port="0"/>
+      <point x="9.38" y="0.65"/>
+      <point x="9.38" y="1.07"/>
+      <point x="9.38" y="1.07"/>
+      <point x="9.38" y="1.39"/>
+      <point x="9.38" y="1.39"/>
+      <point x="9.38" y="1.81"/>
+    </line>
+    <line id="e2__OUT__" visible="true">
+      <frombox id="SatisfyBoxes2" port="0"/>
+      <tojoint id="n20" port="0"/>
+      <point x="9.38" y="2.81"/>
+      <point x="9.38" y="3.23"/>
+      <point x="9.38" y="3.23"/>
+      <point x="9.38" y="3.53"/>
+      <point x="9.38" y="3.53"/>
+      <point x="9.38" y="3.95"/>
+    </line>
+    <line id="e3__IN__">
+      <fromjoint id="n1__OUT__1" port="0"/>
+      <tobox id="SatisfyBoxes3" port="0"/>
+      <point x="4.31" y="0.53"/>
+      <point x="4.78" y="1.53"/>
+    </line>
+    <line id="e3__OUT__" visible="true">
+      <frombox id="SatisfyBoxes3" port="0"/>
+      <tojoint id="n30" port="0"/>
+      <point x="4.83" y="3.14"/>
+      <point x="4.83" y="3.56"/>
+      <point x="4.44" y="3.56"/>
+      <point x="4.44" y="3.74"/>
+      <point x="4.05" y="3.74"/>
+      <point x="4.05" y="4.16"/>
+    </line>
+    <line id="e4__IN__">
+      <fromjoint id="n1__OUT__2" port="0"/>
+      <tobox id="SatisfyBoxes3" port="1"/>
+      <point x="5.9" y="0.53"/>
+      <point x="5.43" y="1.53"/>
+    </line>
+    <line id="e4__OUT__" visible="true">
+      <frombox id="SatisfyBoxes3" port="1"/>
+      <tojoint id="n40" port="0"/>
+      <point x="5.48" y="3.14"/>
+      <point x="5.48" y="3.56"/>
+      <point x="5.71" y="3.56"/>
+      <point x="5.71" y="3.74"/>
+      <point x="5.95" y="3.74"/>
+      <point x="5.95" y="4.16"/>
+    </line>
+    <line id="e10__IN__" visible="true">
+      <fromjoint id="n10" port="0"/>
+      <tobox id="SatisfyBoxes10" port="0"/>
+      <point x="0.89" y="4.33"/>
+      <point x="0.89" y="4.75"/>
+      <point x="0.89" y="4.75"/>
+      <point x="0.89" y="4.93"/>
+      <point x="0.89" y="4.93"/>
+      <point x="0.89" y="5.35"/>
+    </line>
+    <line id="e10__OUT__">
+      <frombox id="SatisfyBoxes10" port="0"/>
+      <tojoint id="n100" port="0"/>
+      <point x="0.89" y="6.36"/>
+      <point x="0.89" y="7.36"/>
+    </line>
+    <line id="e20__IN__" visible="true">
+      <fromjoint id="n20" port="0"/>
+      <tobox id="SatisfyBoxes20" port="0"/>
+      <point x="9.38" y="4.46"/>
+      <point x="9.38" y="4.88"/>
+      <point x="9.38" y="4.88"/>
+      <point x="9.38" y="5.07"/>
+      <point x="9.38" y="5.07"/>
+      <point x="9.38" y="5.49"/>
+    </line>
+    <line id="e20__OUT__">
+      <frombox id="SatisfyBoxes20" port="0"/>
+      <tojoint id="n200__IN__0" port="0"/>
+      <point x="9.31" y="6.36"/>
+      <point x="9.31" y="7.36"/>
+    </line>
+    <line id="e30__IN__" visible="true">
+      <fromjoint id="n30" port="0"/>
+      <tobox id="SatisfyBoxes30" port="0"/>
+      <point x="4.05" y="4.67"/>
+      <point x="4.05" y="5.09"/>
+      <point x="3.89" y="5.09"/>
+      <point x="3.89" y="5.27"/>
+      <point x="3.74" y="5.27"/>
+      <point x="3.74" y="5.69"/>
+    </line>
+    <line id="e30__OUT__">
+      <frombox id="SatisfyBoxes30" port="0"/>
+      <tojoint id="n300" port="0"/>
+      <point x="3.69" y="6.36"/>
+      <point x="3.69" y="7.36"/>
+    </line>
+    <line id="e40__IN__" visible="true">
+      <fromjoint id="n40" port="0"/>
+      <tobox id="SatisfyBoxes40" port="0"/>
+      <point x="5.95" y="4.67"/>
+      <point x="5.95" y="5.09"/>
+      <point x="6.25" y="5.09"/>
+      <point x="6.25" y="5.27"/>
+      <point x="6.55" y="5.27"/>
+      <point x="6.55" y="5.69"/>
+    </line>
+    <line id="e40__OUT__">
+      <frombox id="SatisfyBoxes40" port="0"/>
+      <tojoint id="n400" port="0"/>
+      <point x="6.5" y="6.36"/>
+      <point x="6.5" y="7.36"/>
+    </line>
+  </level>
+  <level id="Passages" qid="5" tutorial="passage">
+    <box height="1.0" id="Passages2" lines="1" width="1.81" x="1.21" y="2.04"/>
+    <box height="1.0" id="Passages3" lines="2" width="2.4" x="2.0" y="5.845"/>
+    <box height="1.0" id="Passages4" lines="1" width="1.81" x="0.9" y="9.4"/>
+    <box height="1.0" id="Passages5" lines="1" width="1.81" x="3.71" y="9.4"/>
+    <joint height="0.51" id="n342" inputs="1" outputs="1" width="0.59" x="1.18" y="7.62"/>
+    <joint height="0.51" id="n420" inputs="1" outputs="0" width="0.59" x="0.88" y="11.18"/>
+    <joint height="0.51" id="n353" inputs="1" outputs="1" width="0.59" x="3.38" y="7.62"/>
+    <joint height="0.51" id="n23" inputs="1" outputs="1" width="0.59" x="1.18" y="3.81"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="1.18" y="0.26"/>
+    <joint height="0.51" id="n3" inputs="0" outputs="1" width="0.59" x="2.78" y="3.81"/>
+    <joint height="0.51" id="n530" inputs="1" outputs="0" width="0.59" x="3.68" y="11.18"/>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="Passages2" port="0"/>
+    <point x="1.19" y="0.52"/><point x="1.19" y="1.52"/></line>
+    <line id="e2__OUT__">
+      <frombox id="Passages2" port="0"/>
+      <tojoint id="n23" port="0"/>
+    <point x="1.19" y="2.55"/><point x="1.19" y="3.55"/></line>
+    <line id="e32__IN__">
+      <fromjoint id="n23" port="0"/>
+      <tobox id="Passages3" port="0"/>
+    <point x="1.19" y="4.08"/><point x="1.67" y="5.08"/></line>
+    <line id="e32__OUT__">
+      <frombox id="Passages3" port="0"/>
+      <tojoint id="n342" port="0"/>
+    <point x="1.67" y="6.36"/><point x="1.19" y="7.36"/></line>
+    <line id="e33__IN__">
+      <fromjoint id="n3" port="0"/>
+      <tobox id="Passages3" port="1"/>
+    <point x="2.79" y="4.08"/><point x="2.32" y="5.08"/></line>
+    <line id="e33__OUT__">
+      <frombox id="Passages3" port="1"/>
+      <tojoint id="n353" port="0"/>
+    <point x="2.32" y="6.36"/><point x="3.39" y="7.36"/></line>
+    <line id="e42__IN__">
+      <fromjoint id="n342" port="0"/>
+      <tobox id="Passages4" port="0"/>
+    <point x="1.19" y="7.88"/><point x="0.89" y="8.88"/></line>
+    <line id="e42__OUT__">
+      <frombox id="Passages4" port="0"/>
+      <tojoint id="n420" port="0"/>
+    <point x="0.89" y="9.91"/><point x="0.89" y="10.91"/></line>
+    <line id="e53__IN__">
+      <fromjoint id="n353" port="0"/>
+      <tobox id="Passages5" port="0"/>
+    <point x="3.39" y="7.88"/><point x="3.69" y="8.88"/></line>
+    <line id="e53__OUT__">
+      <frombox id="Passages5" port="0"/>
+      <tojoint id="n530" port="0"/>
+    <point x="3.69" y="9.91"/><point x="3.69" y="10.91"/></line>
+  </level>
+  <level id="Jams" qid="6" tutorial="clash">
+    <box height="1.0" id="Clashes1" lines="1" width="1.81" x="0.9" y="2.04"/>
+    <box height="1.0" id="Clashes2" lines="1" width="1.81" x="0.9" y="5.6"/>
+    <joint height="0.51" id="n12" inputs="1" outputs="1" width="0.59" x="0.88" y="3.82"/>
+    <joint height="0.51" id="n1" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n2" inputs="1" outputs="0" width="0.59" x="0.88" y="7.38"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="Clashes1" port="0"/>
+    <point x="0.89" y="0.53"/><point x="0.89" y="1.53"/></line>
+    <line id="e1__OUT__">
+      <frombox id="Clashes1" port="0"/>
+      <tojoint id="n12" port="0"/>
+    <point x="0.89" y="2.56"/><point x="0.89" y="3.56"/></line>
+    <line id="e2__IN__">
+      <fromjoint id="n12" port="0"/>
+      <tobox id="Clashes2" port="0"/>
+    <point x="0.89" y="4.08"/><point x="0.89" y="5.08"/></line>
+    <line id="e2__OUT__">
+      <frombox id="Clashes2" port="0"/>
+      <tojoint id="n2" port="0"/>
+    <point x="0.89" y="6.11"/><point x="0.89" y="7.11"/></line>
+  </level>
+  <level id="Widen" qid="7" tutorial="widen">
+    <box height="1.0" id="WidenBoxes1" lines="1" width="1.81" x="0.9" y="2.04"/>
+    <box height="1.0" id="WidenBoxes2" lines="1" width="1.81" x="3.71" y="2.04"/>
+    <box height="1.0" id="WidenBoxes3" lines="1" width="1.81" x="6.51" y="2.04"/>
+    <box height="1.0" id="WidenBoxes4" lines="1" width="1.81" x="9.32" y="2.04"/>
+    <box height="1.0" id="WidenBoxes10" lines="1" width="1.81" x="0.9" y="5.72"/>
+    <box height="1.0" id="WidenBoxes20" lines="1" width="1.81" x="3.71" y="5.72"/>
+    <box height="1.0" id="WidenBoxes30" lines="2" width="2.4" x="7.9" y="5.845"/>
+    <joint height="0.51" id="n10" inputs="1" outputs="1" width="0.59" x="0.88" y="3.82"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="1" width="0.59" x="3.68" y="3.82"/>
+    <joint height="0.51" id="n300" inputs="1" outputs="0" width="0.59" x="7.08" y="7.63"/>
+    <joint height="0.51" id="n40" inputs="1" outputs="1" width="0.59" x="8.99" y="3.82"/>
+    <joint height="0.51" id="n400" inputs="1" outputs="0" width="0.59" x="8.68" y="7.63"/>
+    <joint height="0.51" id="n200" inputs="1" outputs="0" width="0.59" x="3.68" y="7.63"/>
+    <joint height="0.51" id="n100" inputs="1" outputs="0" width="0.59" x="0.88" y="7.63"/>
+    <joint height="0.51" id="n30" inputs="1" outputs="1" width="0.59" x="6.79" y="3.82"/>
+    <joint height="0.51" id="n1" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="3.68" y="0.26"/>
+    <joint height="0.51" id="n3" inputs="0" outputs="1" width="0.59" x="6.49" y="0.26"/>
+    <joint height="0.51" id="n4" inputs="0" outputs="1" width="0.59" x="9.29" y="0.26"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="WidenBoxes1" port="0"/>
+    <point x="0.89" y="0.53"/><point x="0.89" y="1.53"/></line>
+    <line id="e1__OUT__">
+      <frombox id="WidenBoxes1" port="0"/>
+      <tojoint id="n10" port="0"/>
+    <point x="0.89" y="2.56"/><point x="0.89" y="3.56"/></line>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="WidenBoxes2" port="0"/>
+    <point x="3.69" y="0.53"/><point x="3.69" y="1.53"/></line>
+    <line id="e2__OUT__">
+      <frombox id="WidenBoxes2" port="0"/>
+      <tojoint id="n20" port="0"/>
+    <point x="3.69" y="2.56"/><point x="3.69" y="3.56"/></line>
+    <line id="e3__IN__">
+      <fromjoint id="n3" port="0"/>
+      <tobox id="WidenBoxes3" port="0"/>
+    <point x="6.5" y="0.53"/><point x="6.5" y="1.53"/></line>
+    <line id="e3__OUT__">
+      <frombox id="WidenBoxes3" port="0"/>
+      <tojoint id="n30" port="0"/>
+    <point x="6.5" y="2.56"/><point x="6.81" y="3.56"/></line>
+    <line id="e4__IN__">
+      <fromjoint id="n4" port="0"/>
+      <tobox id="WidenBoxes4" port="0"/>
+    <point x="9.31" y="0.53"/><point x="9.31" y="1.53"/></line>
+    <line id="e4__OUT__">
+      <frombox id="WidenBoxes4" port="0"/>
+      <tojoint id="n40" port="0"/>
+    <point x="9.31" y="2.56"/><point x="9.0" y="3.56"/></line>
+    <line id="e10__IN__">
+      <fromjoint id="n10" port="0"/>
+      <tobox id="WidenBoxes10" port="0"/>
+    <point x="0.89" y="4.08"/><point x="0.89" y="5.21"/></line>
+    <line id="e10__OUT__">
+      <frombox id="WidenBoxes10" port="0"/>
+      <tojoint id="n100" port="0"/>
+    <point x="0.89" y="6.24"/><point x="0.89" y="7.36"/></line>
+    <line id="e20__IN__">
+      <fromjoint id="n20" port="0"/>
+      <tobox id="WidenBoxes20" port="0"/>
+    <point x="3.69" y="4.08"/><point x="3.69" y="5.21"/></line>
+    <line id="e20__OUT__">
+      <frombox id="WidenBoxes20" port="0"/>
+      <tojoint id="n200" port="0"/>
+    <point x="3.69" y="6.24"/><point x="3.69" y="7.36"/></line>
+    <line id="e30__IN__">
+      <fromjoint id="n30" port="0"/>
+      <tobox id="WidenBoxes30" port="0"/>
+    <point x="6.81" y="4.08"/><point x="7.57" y="5.08"/></line>
+    <line id="e30__OUT__">
+      <frombox id="WidenBoxes30" port="0"/>
+      <tojoint id="n300" port="0"/>
+    <point x="7.57" y="6.36"/><point x="7.1" y="7.36"/></line>
+    <line id="e40__IN__">
+      <fromjoint id="n40" port="0"/>
+      <tobox id="WidenBoxes30" port="1"/>
+    <point x="9.0" y="4.08"/><point x="8.22" y="5.08"/></line>
+    <line id="e40__OUT__">
+      <frombox id="WidenBoxes30" port="1"/>
+      <tojoint id="n400" port="0"/>
+    <point x="8.22" y="6.36"/><point x="8.69" y="7.36"/></line>
+  </level>
+  <level id="LockedPassage" qid="8" tutorial="pinch">
+    <box height="1.0" id="NarrowBoxes1" lines="1" width="1.81" x="0.33" y="1.50" visible="true"/>
+    <box height="1.0" id="NarrowBoxes2" lines="1" width="1.81" x="4.48" y="2.40" visible="true"/>
+    <box height="1.0" id="NarrowBoxes3" lines="1" width="1.81" x="8.12" y="1.31" visible="true"/>
+    <box height="1.0" id="NarrowBoxes4" lines="1" width="1.81" x="10.93" y="1.31" visible="true"/>
+    <box height="1.0" id="NarrowBoxes10" lines="1" width="1.81" x="0.33" y="5.18" visible="true"/>
+    <box height="1.0" id="NarrowBoxes20" lines="1" width="1.81" x="4.48" y="6.08" visible="true"/>
+    <box height="1.0" id="NarrowBoxes30" lines="2" width="2.4" x="9.51" y="5.12" visible="true"/>
+    <joint height="0.51" id="n10" inputs="1" outputs="1" width="0.59" x="0.31" y="3.28" visible="true"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="1" width="0.59" x="4.45" y="4.18" visible="true"/>
+    <joint height="0.51" id="n300" inputs="1" outputs="0" width="0.59" x="7.08" y="7.63"/>
+    <joint height="0.51" id="n40" inputs="1" outputs="1" width="0.59" x="10.60" y="3.09" visible="true"/>
+    <joint height="0.51" id="n400" inputs="1" outputs="0" width="0.59" x="8.68" y="7.63"/>
+    <joint height="0.51" id="n200" inputs="1" outputs="0" width="0.59" x="3.68" y="7.63"/>
+    <joint height="0.51" id="n100" inputs="1" outputs="0" width="0.59" x="0.88" y="7.63"/>
+    <joint height="0.51" id="n30" inputs="1" outputs="1" width="0.59" x="8.40" y="3.09" visible="true"/>
+    <joint height="0.51" id="n1" inputs="0" outputs="1" width="0.59" x="0.31" y="-0.28" visible="true"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="3.68" y="0.26"/>
+    <joint height="0.51" id="n3" inputs="0" outputs="1" width="0.59" x="8.10" y="-0.47" visible="true"/>
+    <joint height="0.51" id="n4" inputs="0" outputs="1" width="0.59" x="9.29" y="0.26"/>
+    <line id="e1__IN__" visible="true">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="NarrowBoxes1" port="0"/>
+      <point x="0.32" y="-0.03"/>
+      <point x="0.32" y="0.39"/>
+      <point x="0.32" y="0.39"/>
+      <point x="0.32" y="0.58"/>
+      <point x="0.32" y="0.58"/>
+      <point x="0.32" y="1.00"/>
+    </line>
+    <line id="e1__OUT__" visible="true">
+      <frombox id="NarrowBoxes1" port="0"/>
+      <tojoint id="n10" port="0"/>
+      <point x="0.32" y="2.00"/>
+      <point x="0.32" y="2.42"/>
+      <point x="0.32" y="2.42"/>
+      <point x="0.32" y="2.60"/>
+      <point x="0.32" y="2.60"/>
+      <point x="0.32" y="3.02"/>
+    </line>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="NarrowBoxes2" port="0"/>
+      <point x="3.69" y="0.53"/>
+      <point x="3.69" y="1.53"/>
+    </line>
+    <line id="e2__OUT__" visible="true">
+      <frombox id="NarrowBoxes2" port="0"/>
+      <tojoint id="n20" port="0"/>
+      <point x="4.46" y="2.90"/>
+      <point x="4.46" y="3.32"/>
+      <point x="4.46" y="3.32"/>
+      <point x="4.46" y="3.51"/>
+      <point x="4.46" y="3.51"/>
+      <point x="4.46" y="3.93"/>
+    </line>
+    <line id="e3__IN__" visible="true">
+      <fromjoint id="n3" port="0"/>
+      <tobox id="NarrowBoxes3" port="0"/>
+      <point x="8.11" y="-0.21"/>
+      <point x="8.11" y="0.21"/>
+      <point x="8.11" y="0.21"/>
+      <point x="8.11" y="0.39"/>
+      <point x="8.11" y="0.39"/>
+      <point x="8.11" y="0.81"/>
+    </line>
+    <line id="e3__OUT__" visible="true">
+      <frombox id="NarrowBoxes3" port="0"/>
+      <tojoint id="n30" port="0"/>
+      <point x="8.11" y="1.81"/>
+      <point x="8.11" y="2.23"/>
+      <point x="8.27" y="2.23"/>
+      <point x="8.27" y="2.42"/>
+      <point x="8.42" y="2.42"/>
+      <point x="8.42" y="2.84"/>
+    </line>
+    <line id="e4__IN__">
+      <fromjoint id="n4" port="0"/>
+      <tobox id="NarrowBoxes4" port="0"/>
+      <point x="9.31" y="0.53"/>
+      <point x="9.31" y="1.53"/>
+    </line>
+    <line id="e4__OUT__" visible="true">
+      <frombox id="NarrowBoxes4" port="0"/>
+      <tojoint id="n40" port="0"/>
+      <point x="10.92" y="1.81"/>
+      <point x="10.92" y="2.23"/>
+      <point x="10.77" y="2.23"/>
+      <point x="10.77" y="2.42"/>
+      <point x="10.61" y="2.42"/>
+      <point x="10.61" y="2.84"/>
+    </line>
+    <line id="e10__IN__" visible="true">
+      <fromjoint id="n10" port="0"/>
+      <tobox id="NarrowBoxes10" port="0"/>
+      <point x="0.32" y="3.53"/>
+      <point x="0.32" y="3.95"/>
+      <point x="0.32" y="3.95"/>
+      <point x="0.32" y="4.26"/>
+      <point x="0.32" y="4.26"/>
+      <point x="0.32" y="4.68"/>
+    </line>
+    <line id="e10__OUT__">
+      <frombox id="NarrowBoxes10" port="0"/>
+      <tojoint id="n100" port="0"/>
+      <point x="0.89" y="6.24"/>
+      <point x="0.89" y="7.36"/>
+    </line>
+    <line id="e20__IN__" visible="true">
+      <fromjoint id="n20" port="0"/>
+      <tobox id="NarrowBoxes20" port="0"/>
+      <point x="4.46" y="4.44"/>
+      <point x="4.46" y="4.86"/>
+      <point x="4.46" y="4.86"/>
+      <point x="4.46" y="5.16"/>
+      <point x="4.46" y="5.16"/>
+      <point x="4.46" y="5.58"/>
+    </line>
+    <line id="e20__OUT__">
+      <frombox id="NarrowBoxes20" port="0"/>
+      <tojoint id="n200" port="0"/>
+      <point x="3.69" y="6.24"/>
+      <point x="3.69" y="7.36"/>
+    </line>
+    <line id="e30__IN__" visible="true">
+      <fromjoint id="n30" port="0"/>
+      <tobox id="NarrowBoxes30" port="0"/>
+      <point x="8.42" y="3.35"/>
+      <point x="8.42" y="3.77"/>
+      <point x="8.80" y="3.77"/>
+      <point x="8.80" y="4.20"/>
+      <point x="9.18" y="4.20"/>
+      <point x="9.18" y="4.62"/>
+    </line>
+    <line id="e30__OUT__">
+      <frombox id="NarrowBoxes30" port="0"/>
+      <tojoint id="n300" port="0"/>
+      <point x="7.57" y="6.36"/>
+      <point x="7.1" y="7.36"/>
+    </line>
+    <line id="e40__IN__" visible="true">
+      <fromjoint id="n40" port="0"/>
+      <tobox id="NarrowBoxes30" port="1"/>
+      <point x="10.61" y="3.35"/>
+      <point x="10.61" y="3.77"/>
+      <point x="10.22" y="3.77"/>
+      <point x="10.22" y="4.20"/>
+      <point x="9.83" y="4.20"/>
+      <point x="9.83" y="4.62"/>
+    </line>
+    <line id="e40__OUT__">
+      <frombox id="NarrowBoxes30" port="1"/>
+      <tojoint id="n400" port="0"/>
+      <point x="8.22" y="6.36"/>
+      <point x="8.69" y="7.36"/>
+    </line>
+  </level>
+  <level id="Optimize" qid="9" tutorial="optimize">
+    <box height="1.0" id="Optimize1" lines="2" visible="true" width="2.4" x="6.69" y="5.07"/>
+    <box height="1.0" id="Optimize2" lines="4" visible="true" width="3.59" x="7.34" y="7.75"/>
+    <box height="1.0" id="Optimize3" lines="5" visible="true" width="4.19" x="6.49" y="11.15"/>
+    <box height="1.0" id="Optimize4" lines="2" visible="true" width="2.4" x="3.37" y="7.99"/>
+    <joint height="0.51" id="n12" inputs="0" outputs="1" width="0.59" x="5.24" y="0.26"/>
+    <joint height="0.51" id="n410" inputs="1" outputs="0" width="0.59" x="13.51" y="8.37"/>
+    <joint height="0.51" id="n33" inputs="1" outputs="1" visible="true" width="0.59" x="7.64" y="9.24"/>
+    <joint height="0.51" id="n34" inputs="0" outputs="1" width="0.59" x="8.28" y="8.37"/>
+    <joint height="0.51" id="n35" inputs="1" outputs="1" visible="true" width="0.59" x="5.79" y="9.80"/>
+    <joint height="0.51" id="n240" inputs="1" outputs="0" width="0.59" x="11.92" y="8.37"/>
+    <joint height="0.51" id="n11__OUT__3" inputs="0" outputs="1" width="0.59" x="5.08" y="8.37"/>
+    <joint height="0.51" id="n11__OUT__2" inputs="0" outputs="1" width="0.59" x="3.49" y="8.37"/>
+    <joint height="0.51" id="n11__OUT__1" inputs="0" outputs="1" width="0.59" x="4.44" y="4.07"/>
+    <joint height="0.51" id="n11__OUT__0" inputs="0" outputs="1" width="0.59" x="3.64" y="0.26"/>
+    <joint height="0.51" id="n11__OUT__4" inputs="0" outputs="1" width="0.59" x="13.51" y="4.07"/>
+    <joint height="0.51" id="n110" inputs="1" outputs="0" width="0.59" x="2.85" y="4.07"/>
+    <joint height="0.51" id="n220" inputs="1" outputs="0" width="0.59" x="1.89" y="8.37"/>
+    <joint height="0.51" id="n320" inputs="1" outputs="0" width="0.59" x="4.97" y="12.93"/>
+    <joint height="0.51" id="n42" inputs="0" outputs="1" width="0.59" x="15.11" y="4.07"/>
+    <joint height="0.51" id="n23" inputs="0" outputs="1" width="0.59" x="7.64" y="4.07"/>
+    <joint height="0.51" id="n22" inputs="1" outputs="1" visible="true" width="0.59" x="7.00" y="6.38"/>
+    <joint height="0.51" id="n24" inputs="1" outputs="1" visible="true" width="0.59" x="7.73" y="12.39"/>
+    <joint height="0.51" id="n350" inputs="1" outputs="0" width="0.59" x="8.17" y="12.93"/>
+    <joint height="0.51" id="n310" inputs="1" outputs="0" width="0.59" x="3.38" y="12.93"/>
+    <joint height="0.51" id="n330" inputs="1" outputs="0" width="0.59" x="6.57" y="12.93"/>
+    <joint height="0.51" id="n210" inputs="1" outputs="0" width="0.59" x="0.29" y="8.37"/>
+    <line id="e11__IN__">
+      <fromjoint id="n11__OUT__0" port="0"/>
+      <tobox id="Optimize1" port="0"/>
+      <point x="3.65" y="0.53"/>
+      <point x="4.13" y="1.53"/>
+    </line>
+    <line id="e11__OUT__">
+      <frombox id="Optimize1" port="0"/>
+      <tojoint id="n110" port="0"/>
+      <point x="4.13" y="2.81"/>
+      <point x="2.86" y="3.81"/>
+    </line>
+    <line id="e12__IN__">
+      <fromjoint id="n12" port="0"/>
+      <tobox id="Optimize1" port="1"/>
+      <point x="5.25" y="0.53"/>
+      <point x="4.78" y="1.53"/>
+    </line>
+    <line id="e12__OUT__" visible="true">
+      <frombox id="Optimize1" port="1"/>
+      <tojoint id="n22" port="0"/>
+      <point x="7.01" y="5.57"/>
+      <point x="7.01" y="5.87"/>
+      <point x="7.02" y="5.87"/>
+      <point x="7.02" y="5.83"/>
+      <point x="7.02" y="5.83"/>
+      <point x="7.02" y="6.13"/>
+    </line>
+    <line id="e21__IN__">
+      <fromjoint id="n11__OUT__1" port="0"/>
+      <tobox id="Optimize2" port="0"/>
+      <point x="4.46" y="4.33"/>
+      <point x="5.43" y="5.33"/>
+    </line>
+    <line id="e21__OUT__">
+      <frombox id="Optimize2" port="0"/>
+      <tojoint id="n210" port="0"/>
+      <point x="5.43" y="7.11"/>
+      <point x="0.31" y="8.11"/>
+    </line>
+    <line id="e22__IN__" visible="true">
+      <fromjoint id="n22" port="0"/>
+      <tobox id="Optimize2" port="1"/>
+      <point x="7.02" y="6.64"/>
+      <point x="7.02" y="6.94"/>
+      <point x="7.02" y="6.94"/>
+      <point x="7.02" y="6.95"/>
+      <point x="7.02" y="6.95"/>
+      <point x="7.02" y="7.25"/>
+    </line>
+    <line id="e22__OUT__">
+      <frombox id="Optimize2" port="1"/>
+      <tojoint id="n220" port="0"/>
+      <point x="6.06" y="7.11"/>
+      <point x="1.9" y="8.11"/>
+    </line>
+    <line id="e23__IN__">
+      <fromjoint id="n23" port="0"/>
+      <tobox id="Optimize2" port="2"/>
+      <point x="7.65" y="4.33"/>
+      <point x="6.68" y="5.33"/>
+    </line>
+    <line id="e23__OUT__" visible="true">
+      <frombox id="Optimize2" port="2"/>
+      <tojoint id="n33" port="0"/>
+      <point x="7.64" y="8.25"/>
+      <point x="7.64" y="8.57"/>
+      <point x="7.64" y="8.57"/>
+      <point x="7.64" y="8.69"/>
+      <point x="7.65" y="8.69"/>
+      <point x="7.65" y="8.99"/>
+    </line>
+    <line id="e24__IN__" visible="true">
+      <fromjoint id="n24" port="0"/>
+      <tobox id="Optimize2" port="3"/>
+      <point x="7.74" y="12.64"/>
+      <point x="7.74" y="12.94"/>
+      <point x="9.54" y="12.94"/>
+      <point x="9.54" y="6.67"/>
+      <point x="8.27" y="6.67"/>
+      <point x="8.27" y="6.91"/>
+      <point x="8.27" y="7.25"/>
+    </line>
+    <line id="e24__OUT__">
+      <frombox id="Optimize2" port="3"/>
+      <tojoint id="n240" port="0"/>
+      <point x="7.31" y="7.11"/>
+      <point x="11.93" y="8.11"/>
+    </line>
+    <line id="e31__IN__">
+      <fromjoint id="n11__OUT__2" port="0"/>
+      <tobox id="Optimize3" port="0"/>
+      <point x="3.5" y="8.64"/>
+      <point x="5.22" y="9.64"/>
+    </line>
+    <line id="e31__OUT__">
+      <frombox id="Optimize3" port="0"/>
+      <tojoint id="n310" port="0"/>
+      <point x="5.22" y="11.67"/>
+      <point x="3.39" y="12.67"/>
+    </line>
+    <line id="e32__IN__">
+      <fromjoint id="n11__OUT__3" port="0"/>
+      <tobox id="Optimize3" port="1"/>
+      <point x="5.1" y="8.64"/>
+      <point x="5.85" y="9.64"/>
+    </line>
+    <line id="e32__OUT__">
+      <frombox id="Optimize3" port="1"/>
+      <tojoint id="n320" port="0"/>
+      <point x="5.85" y="11.67"/>
+      <point x="4.99" y="12.67"/>
+    </line>
+    <line id="e33__IN__" visible="true">
+      <fromjoint id="n33" port="0"/>
+      <tobox id="Optimize3" port="2"/>
+      <point x="7.65" y="9.50"/>
+      <point x="7.65" y="9.80"/>
+      <point x="7.65" y="9.94"/>
+      <point x="7.38" y="9.94"/>
+      <point x="7.38" y="9.93"/>
+      <point x="7.11" y="9.93"/>
+      <point x="7.11" y="10.33"/>
+      <point x="7.11" y="10.65"/>
+    </line>
+    <line id="e33__OUT__">
+      <frombox id="Optimize3" port="2"/>
+      <tojoint id="n330" port="0"/>
+      <point x="6.47" y="11.67"/>
+      <point x="6.58" y="12.67"/>
+    </line>
+    <line id="e34__IN__">
+      <fromjoint id="n34" port="0"/>
+      <tobox id="Optimize3" port="3"/>
+      <point x="8.29" y="8.64"/>
+      <point x="7.11" y="9.64"/>
+    </line>
+    <line id="e34__OUT__" visible="true">
+      <frombox id="Optimize3" port="3"/>
+      <tojoint id="n24" port="0"/>
+      <point x="7.74" y="11.65"/>
+      <point x="7.74" y="11.99"/>
+      <point x="7.74" y="11.99"/>
+      <point x="7.74" y="11.83"/>
+      <point x="7.74" y="11.83"/>
+      <point x="7.74" y="12.13"/>
+    </line>
+    <line id="e35__IN__" visible="true">
+      <fromjoint id="n35" port="0"/>
+      <tobox id="Optimize3" port="4"/>
+      <point x="5.81" y="10.05"/>
+      <point x="5.81" y="10.35"/>
+      <point x="6.14" y="10.35"/>
+      <point x="6.14" y="10.35"/>
+      <point x="6.47" y="10.35"/>
+      <point x="6.47" y="10.65"/>
+    </line>
+    <line id="e35__OUT__">
+      <frombox id="Optimize3" port="4"/>
+      <tojoint id="n350" port="0"/>
+      <point x="7.74" y="11.67"/>
+      <point x="8.18" y="12.67"/>
+    </line>
+    <line id="e41__IN__">
+      <fromjoint id="n11__OUT__4" port="0"/>
+      <tobox id="Optimize4" port="0"/>
+      <point x="13.53" y="4.33"/>
+      <point x="14.0" y="5.58"/>
+    </line>
+    <line id="e41__OUT__">
+      <frombox id="Optimize4" port="0"/>
+      <tojoint id="n410" port="0"/>
+      <point x="14.0" y="6.86"/>
+      <point x="13.53" y="8.11"/>
+    </line>
+    <line id="e42__IN__">
+      <fromjoint id="n42" port="0"/>
+      <tobox id="Optimize4" port="1"/>
+      <point x="15.13" y="4.33"/>
+      <point x="14.65" y="5.58"/>
+    </line>
+    <line id="e42__OUT__" visible="true">
+      <frombox id="Optimize4" port="1"/>
+      <tojoint id="n35" port="0"/>
+      <point x="3.69" y="8.49"/>
+      <point x="3.69" y="8.79"/>
+      <point x="3.69" y="9.24"/>
+      <point x="4.75" y="9.24"/>
+      <point x="4.75" y="9.24"/>
+      <point x="5.81" y="9.24"/>
+      <point x="5.81" y="9.54"/>
+    </line>
+  </level>
+  <level id="Splits" qid="10" tutorial="split">
+    <box height="1.0" id="Splits1" lines="1" width="1.81" x="3.68" y="2.04"/>
+    <box height="1.0" id="Splits2" lines="1" width="1.81" x="0.9" y="5.59"/>
+    <box height="1.0" id="Splits3" lines="1" width="1.81" x="3.71" y="5.59"/>
+    <box height="1.0" id="Splits4" lines="1" width="1.81" x="6.51" y="5.59"/>
+    <box height="1.0" id="Splits5" lines="1" width="1.81" x="5.13" y="9.15"/>
+    <box height="1.0" id="Splits6" lines="1" width="1.81" x="7.93" y="9.15"/>
+    <joint height="0.51" id="n10__IN__0" inputs="1" outputs="3" width="1.81" x="3.68" y="3.81"/>
+    <joint height="0.51" id="n60" inputs="1" outputs="0" width="0.59" x="7.9" y="10.93"/>
+    <joint height="0.51" id="n40" inputs="1" outputs="2" width="1.19" x="6.51" y="7.37"/>
+    <joint height="0.51" id="n50" inputs="1" outputs="0" width="0.59" x="5.1" y="10.93"/>
+    <joint height="0.51" id="n30" inputs="1" outputs="0" width="0.59" x="3.68" y="7.37"/>
+    <joint height="0.51" id="n1" inputs="0" outputs="1" width="0.59" x="3.65" y="0.26"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="0" width="0.59" x="0.88" y="7.37"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="Splits1" port="0"/>
+    <point x="3.67" y="0.52"/><point x="3.67" y="1.52"/></line>
+    <line id="e1__OUT__">
+      <frombox id="Splits1" port="0"/>
+      <tojoint id="n10__IN__0" port="0"/>
+    <point x="3.67" y="2.55"/><point x="3.67" y="3.55"/></line>
+    <line id="e2__IN__">
+      <fromjoint id="n10__IN__0" port="0"/>
+      <tobox id="Splits2" port="0"/>
+    <point x="3.26" y="4.08"/><point x="0.89" y="5.08"/></line>
+    <line id="e2__OUT__">
+      <frombox id="Splits2" port="0"/>
+      <tojoint id="n20" port="0"/>
+    <point x="0.89" y="6.11"/><point x="0.89" y="7.11"/></line>
+    <line id="e3__IN__">
+      <fromjoint id="n10__IN__0" port="1"/>
+      <tobox id="Splits3" port="0"/>
+    <point x="3.69" y="4.08"/><point x="3.69" y="5.08"/></line>
+    <line id="e3__OUT__">
+      <frombox id="Splits3" port="0"/>
+      <tojoint id="n30" port="0"/>
+    <point x="3.69" y="6.11"/><point x="3.69" y="7.11"/></line>
+    <line id="e4__IN__">
+      <fromjoint id="n10__IN__0" port="2"/>
+      <tobox id="Splits4" port="0"/>
+    <point x="4.11" y="4.08"/><point x="6.5" y="5.08"/></line>
+    <line id="e4__OUT__">
+      <frombox id="Splits4" port="0"/>
+      <tojoint id="n40" port="input"/>
+    <point x="6.5" y="6.11"/><point x="6.5" y="7.11"/></line>
+    <line id="e5__IN__">
+      <fromjoint id="n40" port="output"/>
+      <tobox id="Splits5" port="0"/>
+    <point x="6.32" y="7.63"/><point x="5.11" y="8.63"/></line>
+    <line id="e5__OUT__">
+      <frombox id="Splits5" port="0"/>
+      <tojoint id="n50" port="0"/>
+    <point x="5.11" y="9.66"/><point x="5.11" y="10.66"/></line>
+    <line id="e6__IN__">
+      <fromjoint id="n40" port="split"/>
+      <tobox id="Splits6" port="0"/>
+    <point x="6.71" y="7.63"/><point x="7.92" y="8.63"/></line>
+    <line id="e6__OUT__">
+      <frombox id="Splits6" port="0"/>
+      <tojoint id="n60" port="0"/>
+    <point x="7.92" y="9.66"/><point x="7.92" y="10.66"/></line>
+  </level>
+  <level id="Merges" qid="11" tutorial="merge">
+    <box height="1.0" id="Merges1" lines="1" width="1.81" x="0.9" y="2.04"/>
+    <box height="1.0" id="Merges2" lines="1" width="1.81" x="3.71" y="2.04"/>
+    <box height="1.0" id="Merges3" lines="1" width="1.81" x="2.29" y="5.6"/>
+    <joint height="0.51" id="n1" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="3.68" y="0.26"/>
+    <joint height="0.51" id="n3" inputs="1" outputs="0" width="0.59" x="2.26" y="7.38"/>
+    <joint height="0.51" id="n123" inputs="2" outputs="1" width="1.19" x="2.28" y="3.82"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="Merges1" port="0"/>
+    <point x="0.89" y="0.53"/><point x="0.89" y="1.53"/></line>
+    <line id="e1__OUT__">
+      <frombox id="Merges1" port="0"/>
+      <tojoint id="n123" port="left"/>
+    <point x="0.89" y="2.56"/><point x="2.11" y="3.56"/></line>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="Merges2" port="0"/>
+    <point x="3.69" y="0.53"/><point x="3.69" y="1.53"/></line>
+    <line id="e2__OUT__">
+      <frombox id="Merges2" port="0"/>
+      <tojoint id="n123" port="right"/>
+    <point x="3.69" y="2.56"/><point x="2.46" y="3.56"/></line>
+    <line id="e3__IN__">
+      <fromjoint id="n123" port="output"/>
+      <tobox id="Merges3" port="0"/>
+    <point x="2.28" y="4.08"/><point x="2.28" y="5.08"/></line>
+    <line id="e3__OUT__">
+      <frombox id="Merges3" port="0"/>
+      <tojoint id="n3" port="0"/>
+    <point x="2.28" y="6.11"/><point x="2.28" y="7.11"/></line>
+  </level>
+  <level id="SplitMerge" qid="17" tutorial="splitmergepractice">
+    <box height="1.0" id="SplitMergePractice1" lines="2" width="2.4" x="4.66" y="2.61" visible="true"/>
+    <box height="1.0" id="SplitMergePractice2" lines="1" width="1.81" x="9.40" y="2.57" visible="true"/>
+    <box height="1.0" id="SplitMergePractice3" lines="2" width="2.4" x="6.93" y="6.08" visible="true"/>
+    <box height="1.0" id="SplitMergePractice4" lines="1" width="1.81" x="3.00" y="9.70" visible="true"/>
+    <box height="1.0" id="SplitMergePractice5" lines="1" width="1.81" x="8.59" y="9.72" visible="true"/>
+    <box height="1.0" id="SplitMergePractice6" lines="1" width="1.81" x="5.74" y="9.66" visible="true"/>
+    <box height="1.0" id="SplitMergePractice7" lines="1" width="1.81" x="11.09" y="9.68" visible="true"/>
+    <joint height="0.51" id="n11" inputs="0" outputs="1" width="0.59" x="8.83" y="0.27"/>
+    <joint height="0.51" id="n367" inputs="1" outputs="2" width="1.19" x="6.61" y="8.03" visible="true"/>
+    <joint height="0.51" id="n461" inputs="2" outputs="1" width="1.19" x="4.46" y="11.33" visible="true"/>
+    <joint height="0.51" id="n572" inputs="2" outputs="1" width="1.19" x="9.74" y="11.35" visible="true"/>
+    <joint height="0.51" id="n330" inputs="1" outputs="0" width="0.59" x="10.11" y="7.88"/>
+    <joint height="0.51" id="n4__OUT__0" inputs="0" outputs="1" width="0.59" x="0.88" y="7.88"/>
+    <joint height="0.51" id="n5__OUT__0" inputs="0" outputs="1" width="0.59" x="8.51" y="7.88"/>
+    <joint height="0.51" id="n33__OUT__0" inputs="0" outputs="1" width="0.59" x="6.44" y="4.07"/>
+    <joint height="0.51" id="n110__IN__0" inputs="1" outputs="0" width="0.59" x="10.25" y="4.07"/>
+    <joint height="0.51" id="n123" inputs="2" outputs="1" width="1.19" x="6.60" y="4.24" visible="true"/>
+    <line id="e1__IN__" visible="true">
+      <fromjoint id="n461" port="output"/>
+      <tobox id="SplitMergePractice1" port="0"/>
+      <point x="4.46" y="11.59"/>
+      <point x="4.46" y="12.05"/>
+      <point x="1.71" y="12.05"/>
+      <point x="1.71" y="1.67"/>
+      <point x="4.32" y="1.67"/>
+      <point x="4.32" y="2.11"/>
+    </line>
+    <line id="e1__OUT__" visible="true">
+      <frombox id="SplitMergePractice1" port="0"/>
+      <tojoint id="n123" port="left"/>
+      <point x="4.32" y="3.11"/>
+      <point x="4.32" y="3.55"/>
+      <point x="5.38" y="3.55"/>
+      <point x="5.38" y="3.55"/>
+      <point x="6.43" y="3.55"/>
+      <point x="6.43" y="3.99"/>
+    </line>
+    <line id="e11__IN__">
+      <fromjoint id="n11" port="0"/>
+      <tobox id="SplitMergePractice1" port="1"/>
+      <point x="8.85" y="0.53"/>
+      <point x="8.85" y="1.53"/>
+    </line>
+    <line id="e11__OUT__">
+      <frombox id="SplitMergePractice1" port="1"/>
+      <tojoint id="n110__IN__0" port="0"/>
+      <point x="8.85" y="2.81"/>
+      <point x="10.26" y="3.81"/>
+    </line>
+    <line id="e2__IN__" visible="true">
+      <fromjoint id="n572" port="output"/>
+      <tobox id="SplitMergePractice2" port="0"/>
+      <point x="9.74" y="11.61"/>
+      <point x="9.74" y="12.07"/>
+      <point x="12.50" y="12.07"/>
+      <point x="12.50" y="1.63"/>
+      <point x="9.39" y="1.63"/>
+      <point x="9.39" y="2.07"/>
+    </line>
+    <line id="e2__OUT__" visible="true">
+      <frombox id="SplitMergePractice2" port="0"/>
+      <tojoint id="n123" port="right"/>
+      <point x="9.39" y="3.07"/>
+      <point x="9.39" y="3.51"/>
+      <point x="8.09" y="3.51"/>
+      <point x="8.09" y="3.51"/>
+      <point x="6.78" y="3.51"/>
+      <point x="6.78" y="3.99"/>
+    </line>
+    <line id="e3__IN__" visible="true">
+      <fromjoint id="n123" port="output"/>
+      <tobox id="SplitMergePractice3" port="0"/>
+      <point x="6.60" y="4.50"/>
+      <point x="6.60" y="4.96"/>
+      <point x="6.60" y="4.96"/>
+      <point x="6.60" y="5.14"/>
+      <point x="6.60" y="5.14"/>
+      <point x="6.60" y="5.58"/>
+    </line>
+    <line id="e3__OUT__" visible="true">
+      <frombox id="SplitMergePractice3" port="0"/>
+      <tojoint id="n367" port="input"/>
+      <point x="6.60" y="6.58"/>
+      <point x="6.60" y="7.02"/>
+      <point x="6.60" y="7.02"/>
+      <point x="6.60" y="7.32"/>
+      <point x="6.60" y="7.32"/>
+      <point x="6.60" y="7.78"/>
+    </line>
+    <line id="e33__IN__">
+      <fromjoint id="n33__OUT__0" port="0"/>
+      <tobox id="SplitMergePractice3" port="1"/>
+      <point x="6.46" y="4.34"/>
+      <point x="8.79" y="5.34"/>
+    </line>
+    <line id="e33__OUT__">
+      <frombox id="SplitMergePractice3" port="1"/>
+      <tojoint id="n330" port="0"/>
+      <point x="8.79" y="6.62"/>
+      <point x="10.13" y="7.62"/>
+    </line>
+    <line id="e4__IN__">
+      <fromjoint id="n4__OUT__0" port="0"/>
+      <tobox id="SplitMergePractice4" port="0"/>
+      <point x="0.89" y="8.14"/>
+      <point x="0.89" y="9.14"/>
+    </line>
+    <line id="e4__OUT__" visible="true">
+      <frombox id="SplitMergePractice4" port="0"/>
+      <tojoint id="n461" port="left"/>
+      <point x="2.99" y="10.20"/>
+      <point x="2.99" y="10.64"/>
+      <point x="3.64" y="10.64"/>
+      <point x="3.64" y="10.64"/>
+      <point x="4.29" y="10.64"/>
+      <point x="4.29" y="11.08"/>
+    </line>
+    <line id="e5__IN__">
+      <fromjoint id="n5__OUT__0" port="0"/>
+      <tobox id="SplitMergePractice5" port="0"/>
+      <point x="8.53" y="8.14"/>
+      <point x="8.53" y="9.14"/>
+    </line>
+    <line id="e5__OUT__" visible="true">
+      <frombox id="SplitMergePractice5" port="0"/>
+      <tojoint id="n572" port="right"/>
+      <point x="8.58" y="10.22"/>
+      <point x="8.58" y="10.66"/>
+      <point x="9.08" y="10.66"/>
+      <point x="9.08" y="10.66"/>
+      <point x="9.58" y="10.66"/>
+      <point x="9.58" y="11.10"/>
+    </line>
+    <line id="e6__IN__" visible="true">
+      <fromjoint id="n367" port="output"/>
+      <tobox id="SplitMergePractice6" port="0"/>
+      <point x="6.42" y="8.28"/>
+      <point x="6.42" y="8.72"/>
+      <point x="6.07" y="8.72"/>
+      <point x="6.07" y="8.72"/>
+      <point x="5.72" y="8.72"/>
+      <point x="5.72" y="9.16"/>
+    </line>
+    <line id="e6__OUT__" visible="true">
+      <frombox id="SplitMergePractice6" port="0"/>
+      <tojoint id="n461" port="right"/>
+      <point x="5.72" y="10.16"/>
+      <point x="5.72" y="10.60"/>
+      <point x="5.18" y="10.60"/>
+      <point x="5.18" y="10.60"/>
+      <point x="4.64" y="10.60"/>
+      <point x="4.64" y="11.08"/>
+    </line>
+    <line id="e7__IN__" visible="true">
+      <fromjoint id="n367" port="split"/>
+      <tobox id="SplitMergePractice7" port="0"/>
+      <point x="6.81" y="8.28"/>
+      <point x="6.81" y="8.74"/>
+      <point x="8.94" y="8.74"/>
+      <point x="8.94" y="8.74"/>
+      <point x="11.07" y="8.74"/>
+      <point x="11.07" y="9.18"/>
+    </line>
+    <line id="e7__OUT__" visible="true">
+      <frombox id="SplitMergePractice7" port="0"/>
+      <tojoint id="n572" port="left"/>
+      <point x="11.07" y="10.18"/>
+      <point x="11.07" y="10.62"/>
+      <point x="10.49" y="10.62"/>
+      <point x="10.49" y="10.62"/>
+      <point x="9.92" y="10.62"/>
+      <point x="9.92" y="11.10"/>
+    </line>
+  </level>
+  <level id="ZoomPan" qid="13" tutorial="zoompan">
+    <box height="1.0" id="ZoomPan1" lines="1" width="1.81" x="-9.92" y="-1.12" visible="true"/>
+    <box height="1.0" id="ZoomPan2" lines="1" width="1.81" x="21.46" y="-1.57" visible="true"/>
+    <box height="1.0" id="ZoomPan3" lines="2" width="2.4" x="2.44" y="5.84" visible="true"/>
+    <joint height="0.51" id="n13" inputs="1" outputs="1" width="0.59" x="1.47" y="3.82" visible="true"/>
+    <joint height="0.51" id="n23" inputs="1" outputs="1" width="0.59" x="3.38" y="3.82" visible="true"/>
+    <joint height="0.51" id="n1" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="3.68" y="0.26"/>
+    <joint height="0.51" id="n310" inputs="1" outputs="0" width="0.59" x="1.63" y="7.63"/>
+    <joint height="0.51" id="n320" inputs="1" outputs="0" width="0.59" x="3.22" y="7.63"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="ZoomPan1" port="0"/>
+      <point x="0.89" y="0.53"/>
+      <point x="0.89" y="1.53"/>
+    </line>
+    <line id="e1__OUT__" visible="true">
+      <frombox id="ZoomPan1" port="0"/>
+      <tojoint id="n13" port="0"/>
+      <point x="-9.93" y="-0.62"/>
+      <point x="-9.93" y="-0.18"/>
+      <point x="-4.22" y="-0.18"/>
+      <point x="-4.22" y="3.13"/>
+      <point x="1.49" y="3.13"/>
+      <point x="1.49" y="3.56"/>
+    </line>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="ZoomPan2" port="0"/>
+      <point x="3.69" y="0.53"/>
+      <point x="3.69" y="1.53"/>
+    </line>
+    <line id="e2__OUT__" visible="true">
+      <frombox id="ZoomPan2" port="0"/>
+      <tojoint id="n23" port="0"/>
+      <point x="21.44" y="-1.07"/>
+      <point x="21.44" y="-0.63"/>
+      <point x="12.42" y="-0.63"/>
+      <point x="12.42" y="3.13"/>
+      <point x="3.39" y="3.13"/>
+      <point x="3.39" y="3.56"/>
+    </line>
+    <line id="e31__IN__" visible="true">
+      <fromjoint id="n13" port="0"/>
+      <tobox id="ZoomPan3" port="0"/>
+      <point x="1.49" y="4.08"/>
+      <point x="1.49" y="4.50"/>
+      <point x="1.80" y="4.50"/>
+      <point x="1.80" y="4.92"/>
+      <point x="2.11" y="4.92"/>
+      <point x="2.11" y="5.34"/>
+    </line>
+    <line id="e31__OUT__">
+      <frombox id="ZoomPan3" port="0"/>
+      <tojoint id="n310" port="0"/>
+      <point x="2.11" y="6.36"/>
+      <point x="1.64" y="7.36"/>
+    </line>
+    <line id="e32__IN__" visible="true">
+      <fromjoint id="n23" port="0"/>
+      <tobox id="ZoomPan3" port="1"/>
+      <point x="3.39" y="4.08"/>
+      <point x="3.39" y="4.50"/>
+      <point x="3.08" y="4.50"/>
+      <point x="3.08" y="4.92"/>
+      <point x="2.76" y="4.92"/>
+      <point x="2.76" y="5.34"/>
+    </line>
+    <line id="e32__OUT__">
+      <frombox id="ZoomPan3" port="1"/>
+      <tojoint id="n320" port="0"/>
+      <point x="2.76" y="6.36"/>
+      <point x="3.24" y="7.36"/>
+    </line>
+  </level>
+  <level id="Layout" qid="12" tutorial="layout">
+    <box height="1.0" id="Layout1" lines="1" width="1.81" x="3.92" y="2.67" visible="true"/>
+    <box height="1.0" id="Layout2" lines="1" width="1.81" x="4.34" y="3.02" visible="true"/>
+    <box height="1.0" id="Layout3" lines="1" width="1.81" x="3.61" y="2.75" visible="true"/>
+    <box height="1.0" id="Layout4" lines="1" width="1.81" x="4.49" y="2.47" visible="true"/>
+    <box height="1.0" id="Layout5" lines="1" width="1.81" x="3.86" y="2.39" visible="true"/>
+    <joint height="0.51" id="n10" inputs="1" outputs="0" width="0.59" x="0.88" y="3.82"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="0" width="0.59" x="3.68" y="3.82"/>
+    <joint height="0.51" id="n1__OUT__0" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="n50" inputs="1" outputs="0" width="0.59" x="6.49" y="3.82"/>
+    <joint height="0.51" id="n40__IN__0" inputs="1" outputs="0" width="0.59" x="9.29" y="3.82"/>
+    <joint height="0.51" id="n30" inputs="1" outputs="0" width="0.59" x="12.1" y="3.82"/>
+    <joint height="0.51" id="n2" inputs="0" outputs="1" width="0.59" x="3.68" y="0.26"/>
+    <joint height="0.51" id="n3" inputs="0" outputs="1" width="0.59" x="12.1" y="0.26"/>
+    <joint height="0.51" id="n4" inputs="0" outputs="1" width="0.59" x="9.29" y="0.26"/>
+    <joint height="0.51" id="n5" inputs="0" outputs="1" width="0.59" x="6.49" y="0.26"/>
+    <line id="e1__IN__">
+      <fromjoint id="n1__OUT__0" port="0"/>
+      <tobox id="Layout1" port="0"/>
+      <point x="0.89" y="0.52"/>
+      <point x="0.89" y="1.52"/>
+    </line>
+    <line id="e1__OUT__">
+      <frombox id="Layout1" port="0"/>
+      <tojoint id="n10" port="0"/>
+      <point x="0.89" y="2.55"/>
+      <point x="0.89" y="3.55"/>
+    </line>
+    <line id="e2__IN__">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="Layout2" port="0"/>
+      <point x="3.69" y="0.52"/>
+      <point x="3.69" y="1.52"/>
+    </line>
+    <line id="e2__OUT__">
+      <frombox id="Layout2" port="0"/>
+      <tojoint id="n20" port="0"/>
+      <point x="3.69" y="2.55"/>
+      <point x="3.69" y="3.55"/>
+    </line>
+    <line id="e3__IN__">
+      <fromjoint id="n3" port="0"/>
+      <tobox id="Layout3" port="0"/>
+      <point x="12.11" y="0.52"/>
+      <point x="12.11" y="1.52"/>
+    </line>
+    <line id="e3__OUT__">
+      <frombox id="Layout3" port="0"/>
+      <tojoint id="n30" port="0"/>
+      <point x="12.11" y="2.55"/>
+      <point x="12.11" y="3.55"/>
+    </line>
+    <line id="e4__IN__">
+      <fromjoint id="n4" port="0"/>
+      <tobox id="Layout4" port="0"/>
+      <point x="9.31" y="0.52"/>
+      <point x="9.31" y="1.52"/>
+    </line>
+    <line id="e4__OUT__">
+      <frombox id="Layout4" port="0"/>
+      <tojoint id="n40__IN__0" port="0"/>
+      <point x="9.31" y="2.55"/>
+      <point x="9.31" y="3.55"/>
+    </line>
+    <line id="e5__IN__">
+      <fromjoint id="n5" port="0"/>
+      <tobox id="Layout5" port="0"/>
+      <point x="6.5" y="0.52"/>
+      <point x="6.5" y="1.52"/>
+    </line>
+    <line id="e5__OUT__">
+      <frombox id="Layout5" port="0"/>
+      <tojoint id="n50" port="0"/>
+      <point x="6.5" y="2.55"/>
+      <point x="6.5" y="3.55"/>
+    </line>
+  </level>
+  <level id="GroupSelect" qid="18" tutorial="groupselect">
+    <box height="1.0" id="es11" lines="1" width="1.81" x="3.31" y="14.78" visible="true"/>
+    <box height="1.0" id="es14" lines="1" width="1.81" x="14.60" y="7.08" visible="true"/>
+    <box height="1.0" id="es15" lines="4" width="3.59" x="4.89" y="6.34" visible="true"/>
+    <box height="1.0" id="es16" lines="2" width="2.4" x="3.63" y="11.02" visible="true"/>
+    <box height="1.0" id="es17" lines="1" width="1.81" x="17.00" y="7.15" visible="true"/>
+    <box height="1.0" id="es18" lines="1" width="1.81" x="19.49" y="7.15" visible="true"/>
+    <joint height="0.51" id="n12" inputs="1" outputs="1" width="0.59" x="3.92" y="8.88" visible="true"/>
+    <joint height="0.51" id="nSTA16x0" inputs="0" outputs="1" width="0.59" x="0.88" y="8.12"/>
+    <joint height="0.51" id="nSTA14x0" inputs="0" outputs="1" width="0.59" x="2.86" y="0.26"/>
+    <joint height="0.51" id="n14" inputs="1" outputs="1" width="0.59" x="16.98" y="8.93" visible="true"/>
+    <joint height="0.51" id="n13" inputs="1" outputs="1" width="0.59" x="14.58" y="8.90" visible="true"/>
+    <joint height="0.51" id="nSTA17x0" inputs="0" outputs="1" width="0.59" x="5.67" y="0.26"/>
+    <joint height="0.51" id="n15" inputs="1" outputs="1" width="0.59" x="19.43" y="8.93" visible="true"/>
+    <joint height="0.51" id="nEND15x3" inputs="1" outputs="0" width="0.59" x="7.26" y="8.12"/>
+    <joint height="0.51" id="nEND15x2" inputs="1" outputs="0" width="0.59" x="5.67" y="8.12"/>
+    <joint height="0.51" id="nEND15x1" inputs="1" outputs="0" width="0.59" x="4.07" y="8.12"/>
+    <joint height="0.51" id="nSTA18x0" inputs="0" outputs="1" width="0.59" x="8.47" y="0.26"/>
+    <joint height="0.51" id="n11" inputs="1" outputs="1" width="0.59" x="3.29" y="12.78" visible="true"/>
+    <joint height="0.51" id="nEND16x1" inputs="1" outputs="0" width="0.59" x="2.47" y="11.93"/>
+    <joint height="0.51" id="nSTA15x0" inputs="0" outputs="1" width="0.59" x="2.47" y="3.82"/>
+    <joint height="0.51" id="nEND11x0" inputs="1" outputs="0" width="0.59" x="0.88" y="15.49"/>
+    <line id="e11x0__IN__" visible="true">
+      <fromjoint id="n11" port="0"/>
+      <tobox id="es11" port="0"/>
+      <point x="3.30" y="13.04"/>
+      <point x="3.30" y="13.48"/>
+      <point x="3.30" y="13.48"/>
+      <point x="3.30" y="13.84"/>
+      <point x="3.30" y="13.84"/>
+      <point x="3.30" y="14.28"/>
+    </line>
+    <line id="e11x0__OUT__">
+      <frombox id="es11" port="0"/>
+      <tojoint id="nEND11x0" port="0"/>
+      <point x="0.89" y="14.22"/>
+      <point x="0.89" y="15.22"/>
+    </line>
+    <line id="e14x0__IN__">
+      <fromjoint id="nSTA14x0" port="0"/>
+      <tobox id="es14" port="0"/>
+      <point x="2.88" y="0.53"/>
+      <point x="2.88" y="1.53"/>
+    </line>
+    <line id="e14x0__OUT__" visible="true">
+      <frombox id="es14" port="0"/>
+      <tojoint id="n13" port="0"/>
+      <point x="14.59" y="7.58"/>
+      <point x="14.59" y="8.02"/>
+      <point x="14.59" y="8.02"/>
+      <point x="14.59" y="8.20"/>
+      <point x="14.59" y="8.20"/>
+      <point x="14.59" y="8.64"/>
+    </line>
+    <line id="e15x0__IN__">
+      <fromjoint id="nSTA15x0" port="0"/>
+      <tobox id="es15" port="0"/>
+      <point x="2.49" y="4.08"/>
+      <point x="3.94" y="5.08"/>
+    </line>
+    <line id="e15x0__OUT__" visible="true">
+      <frombox id="es15" port="0"/>
+      <tojoint id="n12" port="0"/>
+      <point x="3.94" y="6.84"/>
+      <point x="3.94" y="7.28"/>
+      <point x="3.94" y="7.28"/>
+      <point x="3.94" y="8.19"/>
+      <point x="3.94" y="8.19"/>
+      <point x="3.94" y="8.63"/>
+    </line>
+    <line id="e15x1__IN__" visible="true">
+      <fromjoint id="n13" port="0"/>
+      <tobox id="es15" port="1"/>
+      <point x="14.59" y="9.15"/>
+      <point x="14.59" y="9.59"/>
+      <point x="9.58" y="9.59"/>
+      <point x="9.58" y="4.30"/>
+      <point x="4.57" y="4.30"/>
+      <point x="4.57" y="5.84"/>
+    </line>
+    <line id="e15x1__OUT__">
+      <frombox id="es15" port="1"/>
+      <tojoint id="nEND15x1" port="0"/>
+      <point x="4.57" y="6.86"/>
+      <point x="4.08" y="7.86"/>
+    </line>
+    <line id="e15x2__IN__" visible="true">
+      <fromjoint id="n14" port="0"/>
+      <tobox id="es15" port="2"/>
+      <point x="16.99" y="9.19"/>
+      <point x="16.99" y="10.24"/>
+      <point x="11.09" y="10.24"/>
+      <point x="11.09" y="4.82"/>
+      <point x="5.19" y="4.82"/>
+      <point x="5.19" y="5.84"/>
+    </line>
+    <line id="e15x2__OUT__">
+      <frombox id="es15" port="2"/>
+      <tojoint id="nEND15x2" port="0"/>
+      <point x="5.19" y="6.86"/>
+      <point x="5.68" y="7.86"/>
+    </line>
+    <line id="e15x3__IN__" visible="true">
+      <fromjoint id="n15" port="0"/>
+      <tobox id="es15" port="3"/>
+      <point x="19.45" y="9.19"/>
+      <point x="19.45" y="11.24"/>
+      <point x="12.63" y="11.24"/>
+      <point x="12.63" y="5.24"/>
+      <point x="5.82" y="5.24"/>
+      <point x="5.82" y="5.84"/>
+    </line>
+    <line id="e15x3__OUT__">
+      <frombox id="es15" port="3"/>
+      <tojoint id="nEND15x3" port="0"/>
+      <point x="5.82" y="6.86"/>
+      <point x="7.28" y="7.86"/>
+    </line>
+    <line id="e16x0__IN__">
+      <fromjoint id="nSTA16x0" port="0"/>
+      <tobox id="es16" port="0"/>
+      <point x="0.89" y="8.39"/>
+      <point x="1.36" y="9.39"/>
+    </line>
+    <line id="e16x0__OUT__" visible="true">
+      <frombox id="es16" port="0"/>
+      <tojoint id="n11" port="0"/>
+      <point x="3.30" y="11.52"/>
+      <point x="3.30" y="11.96"/>
+      <point x="3.30" y="11.96"/>
+      <point x="3.30" y="12.09"/>
+      <point x="3.30" y="12.09"/>
+      <point x="3.30" y="12.53"/>
+    </line>
+    <line id="e16x1__IN__" visible="true">
+      <fromjoint id="n12" port="0"/>
+      <tobox id="es16" port="1"/>
+      <point x="3.94" y="9.14"/>
+      <point x="3.94" y="9.58"/>
+      <point x="3.94" y="9.58"/>
+      <point x="3.94" y="10.06"/>
+      <point x="3.95" y="10.06"/>
+      <point x="3.95" y="10.52"/>
+    </line>
+    <line id="e16x1__OUT__">
+      <frombox id="es16" port="1"/>
+      <tojoint id="nEND16x1" port="0"/>
+      <point x="2.01" y="10.67"/>
+      <point x="2.49" y="11.67"/>
+    </line>
+    <line id="e17x0__IN__">
+      <fromjoint id="nSTA17x0" port="0"/>
+      <tobox id="es17" port="0"/>
+      <point x="5.68" y="0.53"/>
+      <point x="5.68" y="1.53"/>
+    </line>
+    <line id="e17x0__OUT__" visible="true">
+      <frombox id="es17" port="0"/>
+      <tojoint id="n14" port="0"/>
+      <point x="16.99" y="7.65"/>
+      <point x="16.99" y="8.09"/>
+      <point x="16.99" y="8.09"/>
+      <point x="16.99" y="8.24"/>
+      <point x="16.99" y="8.24"/>
+      <point x="16.99" y="8.68"/>
+    </line>
+    <line id="e18x0__IN__">
+      <fromjoint id="nSTA18x0" port="0"/>
+      <tobox id="es18" port="0"/>
+      <point x="8.49" y="0.53"/>
+      <point x="8.49" y="1.53"/>
+    </line>
+    <line id="e18x0__OUT__" visible="true">
+      <frombox id="es18" port="0"/>
+      <tojoint id="n15" port="0"/>
+      <point x="19.48" y="7.65"/>
+      <point x="19.48" y="8.09"/>
+      <point x="19.46" y="8.09"/>
+      <point x="19.46" y="8.24"/>
+      <point x="19.45" y="8.24"/>
+      <point x="19.45" y="8.68"/>
+    </line>
+  </level>
+  <level id="CreateJoint" qid="19" tutorial="createjoint">
+    <box height="1.0" id="es1" lines="1" width="1.81" x="-0.14" y="1.69" visible="true"/>
+    <box height="1.0" id="es2" lines="1" width="1.81" x="-0.21" y="5.93" visible="true"/>
+    <joint height="0.51" id="n1" inputs="1" outputs="1" width="0.59" x="6.52" y="3.89" visible="true"/>
+    <joint height="0.51" id="nSTA1x0" inputs="0" outputs="1" width="0.59" x="0.88" y="0.26"/>
+    <joint height="0.51" id="nEND2x0" inputs="1" outputs="0" width="0.59" x="0.88" y="7.38"/>
+    <line id="e1x0__IN__">
+      <fromjoint id="nSTA1x0" port="0"/>
+      <tobox id="es1" port="0"/>
+      <point x="0.89" y="0.53"/>
+      <point x="0.89" y="1.53"/>
+    </line>
+    <line id="e1x0__OUT__" visible="true">
+      <frombox id="es1" port="0"/>
+      <tojoint id="n1" port="0"/>
+      <point x="-0.15" y="2.19"/>
+      <point x="-0.15" y="2.63"/>
+      <point x="3.04" y="2.63"/>
+      <point x="3.04" y="1.15"/>
+      <point x="4.01" y="1.15"/>
+      <point x="4.01" y="3.71"/>
+      <point x="4.83" y="3.71"/>
+      <point x="4.83" y="3.19"/>
+      <point x="6.53" y="3.19"/>
+      <point x="6.53" y="3.63"/>
+    </line>
+    <line id="e2x0__IN__" visible="true">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="es2" port="0"/>
+      <point x="6.53" y="4.14"/>
+      <point x="6.53" y="4.58"/>
+      <point x="4.79" y="4.58"/>
+      <point x="4.79" y="6.24"/>
+      <point x="3.00" y="6.24"/>
+      <point x="3.00" y="4.99"/>
+      <point x="1.83" y="4.99"/>
+      <point x="1.83" y="4.05"/>
+      <point x="-0.22" y="4.05"/>
+      <point x="-0.22" y="5.43"/>
+    </line>
+    <line id="e2x0__OUT__">
+      <frombox id="es2" port="0"/>
+      <tojoint id="nEND2x0" port="0"/>
+      <point x="0.89" y="6.11"/>
+      <point x="0.89" y="7.11"/>
+    </line>
+  </level>
+  <level id="SkillsA" qid="14" tutorial="skillsa">
+    <box height="1.0" id="es2" lines="3" width="3.0" x="17.86" y="480.99" visible="true"/>
+    <box height="1.0" id="es3" lines="1" width="1.81" x="5.97" y="480.74" visible="true"/>
+    <box height="1.0" id="es4" lines="1" width="1.81" x="2.50" y="484.14" visible="true"/>
+    <box height="1.0" id="es5" lines="3" width="3.0" x="7.10" y="485.04" visible="true"/>
+    <box height="1.0" id="es6" lines="2" width="2.39" x="11.85" y="484.92" visible="true"/>
+    <box height="1.0" id="es7" lines="1" width="1.81" x="18.40" y="484.82" visible="true"/>
+    <box height="1.0" id="es8" lines="1" width="1.81" x="18.94" y="489.35" visible="true"/>
+    <box height="1.0" id="es9" lines="1" width="1.81" x="12.28" y="489.22" visible="true"/>
+    <box height="1.0" id="es10" lines="6" width="4.81" x="8.09" y="489.85" visible="true"/>
+    <box height="1.0" id="es11" lines="2" width="2.39" x="22.56" y="468.56" visible="true"/>
+    <box height="1.0" id="es12" lines="5" width="4.19" x="23.04" y="473.12" visible="true"/>
+    <box height="1.0" id="es13" lines="3" width="3.0" x="11.33" y="494.07" visible="true"/>
+    <box height="1.0" id="es17" lines="2" width="2.39" x="19.97" y="476.94" visible="true"/>
+    <box height="1.0" id="es18" lines="3" width="3.0" x="24.24" y="497.96" visible="true"/>
+    <joint height="0.51" id="n12" inputs="1" outputs="1" width="0.58" x="22.07" y="470.32" visible="true"/>
+    <joint height="0.51" id="nSTA12x4__OUT__0" inputs="0" outputs="1" width="0.58" x="24.93" y="470.35"/>
+    <joint height="0.51" id="n10" inputs="1" outputs="1" width="0.58" x="7.70" y="486.91" visible="true"/>
+    <joint height="0.51" id="n11" inputs="1" outputs="1" width="0.58" x="8.07" y="491.68" visible="true"/>
+    <joint height="0.51" id="n16" inputs="1" outputs="1" width="0.58" x="20.46" y="475.37" visible="true"/>
+    <joint height="0.51" id="nEND12x3__IN__0" inputs="1" outputs="0" width="0.58" x="25.14" y="474.9"/>
+    <joint height="0.51" id="n14" inputs="1" outputs="1" width="0.58" x="8.66" y="491.65" visible="true"/>
+    <joint height="0.51" id="nSTA4x0__OUT__0" inputs="0" outputs="1" width="0.58" x="3.38" y="482.76"/>
+    <joint height="0.51" id="n13" inputs="1" outputs="1" width="0.58" x="22.89" y="476.81" visible="true"/>
+    <joint height="0.51" id="n18" inputs="1" outputs="1" width="0.58" x="26.78" y="493.65" visible="true"/>
+    <joint height="0.51" id="n19" inputs="1" outputs="1" width="0.58" x="22.63" y="495.93" visible="true"/>
+    <joint height="0.51" id="nSTA10x5" inputs="0" outputs="1" width="0.58" x="11.31" y="486.82"/>
+    <joint height="0.51" id="nEND13x0__IN__0" inputs="1" outputs="0" width="0.58" x="10.53" y="495.68"/>
+    <joint height="0.51" id="nEND18x2" inputs="1" outputs="0" width="0.58" x="25.79" y="499.74"/>
+    <joint height="0.51" id="n17" inputs="1" outputs="1" width="0.58" x="23.35" y="470.35" visible="true"/>
+    <joint height="0.51" id="nSTA10x4__OUT__0" inputs="0" outputs="1" width="0.58" x="9.72" y="486.82"/>
+    <joint height="0.51" id="nSTA2x1__OUT__0" inputs="0" outputs="1" width="0.58" x="18.08" y="478.71"/>
+    <joint height="0.51" id="nEND10x0__IN__0" inputs="1" outputs="0" width="0.58" x="4.04" y="491.62"/>
+    <joint height="0.51" id="n9" inputs="1" outputs="1" width="0.58" x="7.21" y="491.62" visible="true"/>
+    <joint height="0.51" id="n15" inputs="1" outputs="1" width="0.58" x="10.34" y="491.27" visible="true"/>
+    <joint height="0.51" id="nSTA3x0__OUT__0" inputs="0" outputs="1" width="0.58" x="5.94" y="478.71"/>
+    <joint height="0.51" id="nSTA6x1__OUT__0" inputs="0" outputs="1" width="0.58" x="12.44" y="482.76"/>
+    <joint height="0.51" id="nSTA11x0__OUT__0" inputs="0" outputs="1" width="0.58" x="21.75" y="466.54"/>
+    <joint height="0.51" id="nEND10x1__IN__0" inputs="1" outputs="0" width="0.58" x="5.63" y="491.62"/>
+    <joint height="0.51" id="nSTA17x1__OUT__0" inputs="0" outputs="1" width="0.58" x="19.94" y="474.9"/>
+    <joint height="0.51" id="nEND18x0__IN__0" inputs="1" outputs="0" width="0.58" x="22.63" y="499.74"/>
+    <joint height="0.51" id="nEND2x2__IN__0" inputs="1" outputs="0" width="0.58" x="19.04" y="482.76"/>
+    <joint height="0.51" id="nSTA6x0__OUT__0" inputs="0" outputs="1" width="0.58" x="10.86" y="482.76"/>
+    <joint height="0.51" id="nSTA13x2__OUT__0" inputs="0" outputs="1" width="0.58" x="13.54" y="491.62"/>
+    <joint height="0.51" id="nEND5x1__IN__0" inputs="1" outputs="0" width="0.58" x="4.97" y="486.82"/>
+    <joint height="0.51" id="nEND13x1" inputs="1" outputs="0" width="0.58" x="12.11" y="495.68"/>
+    <joint height="0.51" id="nSTA5x2" inputs="0" outputs="1" width="0.58" x="9.13" y="482.76"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="1" width="0.58" x="21.25" y="478.71" visible="true"/>
+    <joint height="0.51" id="nEND17x0__IN__0" inputs="1" outputs="0" width="0.58" x="19.67" y="478.71"/>
+    <joint height="0.51" id="nSTA2x0" inputs="0" outputs="1" width="0.58" x="16.5" y="478.71"/>
+    <joint height="0.51" id="nEND18x1__IN__0" inputs="1" outputs="0" width="0.58" x="24.21" y="499.74"/>
+    <joint height="0.51" id="nEND12x1__IN__0" inputs="1" outputs="0" width="0.58" x="23.56" y="474.9"/>
+    <joint height="0.51" id="n8" inputs="1" outputs="1" width="0.58" x="3.35" y="486.92" visible="true"/>
+    <joint height="0.51" id="nEND9x0" inputs="1" outputs="0" width="0.58" x="15.13" y="491.62"/>
+    <joint height="0.51" id="nSTA11x1__OUT__0" inputs="0" outputs="1" width="0.58" x="23.33" y="466.54"/>
+    <joint height="0.51" id="nEND8x0" inputs="1" outputs="0" width="0.58" x="17.47" y="491.62"/>
+    <joint height="0.51" id="n1" inputs="1" outputs="1" width="0.58" x="5.96" y="482.76" visible="true"/>
+    <joint height="0.51" id="n2" inputs="1" outputs="1" width="0.58" x="6.66" y="486.88" visible="true"/>
+    <joint height="0.51" id="n3" inputs="1" outputs="1" width="0.58" x="7.54" y="482.76" visible="true"/>
+    <joint height="0.51" id="n4" inputs="1" outputs="1" width="0.58" x="18.31" y="482.76" visible="true"/>
+    <joint height="0.51" id="n5" inputs="1" outputs="1" width="0.58" x="18.47" y="486.91" visible="true"/>
+    <joint height="0.51" id="n6" inputs="1" outputs="1" width="0.58" x="10.73" y="487.29" visible="true"/>
+    <joint height="0.51" id="n7" inputs="1" outputs="1" width="0.58" x="12.89" y="486.82" visible="true"/>
+    <line id="e2x0__IN__">
+      <fromjoint id="nSTA2x0" port="0"/>
+      <tobox id="es2" port="0"/>
+      <point x="16.51" y="478.97"/>
+      <point x="17.21" y="479.99"/>
+    </line>
+    <line id="e2x0__OUT__" visible="true">
+      <frombox id="es2" port="0"/>
+      <tojoint id="n3" port="0"/>
+      <point x="17.21" y="481.49"/>
+      <point x="17.21" y="481.91"/>
+      <point x="17.21" y="482.10"/>
+      <point x="12.38" y="482.10"/>
+      <point x="12.38" y="482.09"/>
+      <point x="7.54" y="482.09"/>
+      <point x="7.54" y="482.50"/>
+    </line>
+    <line id="e2x1__IN__">
+      <fromjoint id="nSTA2x1__OUT__0" port="0"/>
+      <tobox id="es2" port="1"/>
+      <point x="18.1" y="478.97"/>
+      <point x="17.85" y="479.99"/>
+    </line>
+    <line id="e2x1__OUT__" visible="true">
+      <frombox id="es2" port="1"/>
+      <tojoint id="n4" port="0"/>
+      <point x="17.85" y="481.49"/>
+      <point x="17.85" y="481.95"/>
+      <point x="18.08" y="481.95"/>
+      <point x="18.08" y="482.07"/>
+      <point x="18.31" y="482.07"/>
+      <point x="18.31" y="482.50"/>
+    </line>
+    <line id="e2x2__IN__" visible="true">
+      <fromjoint id="n20" port="0"/>
+      <tobox id="es2" port="2"/>
+      <point x="21.26" y="478.96"/>
+      <point x="21.26" y="479.38"/>
+      <point x="19.88" y="479.38"/>
+      <point x="19.88" y="480.07"/>
+      <point x="18.50" y="480.07"/>
+      <point x="18.50" y="480.49"/>
+    </line>
+    <line id="e2x2__OUT__">
+      <frombox id="es2" port="2"/>
+      <tojoint id="nEND2x2__IN__0" port="0"/>
+      <point x="18.5" y="481.47"/>
+      <point x="19.06" y="482.51"/>
+    </line>
+    <line id="e3x0__IN__">
+      <fromjoint id="nSTA3x0__OUT__0" port="0"/>
+      <tobox id="es3" port="0"/>
+      <point x="5.96" y="478.97"/>
+      <point x="5.96" y="480.24"/>
+    </line>
+    <line id="e3x0__OUT__" visible="true">
+      <frombox id="es3" port="0"/>
+      <tojoint id="n1" port="0"/>
+      <point x="5.96" y="481.24"/>
+      <point x="5.96" y="481.66"/>
+      <point x="5.96" y="481.66"/>
+      <point x="5.96" y="482.09"/>
+      <point x="5.96" y="482.09"/>
+      <point x="5.96" y="482.50"/>
+    </line>
+    <line id="e4x0__IN__">
+      <fromjoint id="nSTA4x0__OUT__0" port="0"/>
+      <tobox id="es4" port="0"/>
+      <point x="3.39" y="483.03"/>
+      <point x="3.39" y="484.29"/>
+    </line>
+    <line id="e4x0__OUT__" visible="true">
+      <frombox id="es4" port="0"/>
+      <tojoint id="n8" port="0"/>
+      <point x="2.49" y="484.64"/>
+      <point x="2.49" y="485.08"/>
+      <point x="2.92" y="485.08"/>
+      <point x="2.92" y="486.22"/>
+      <point x="3.35" y="486.22"/>
+      <point x="3.35" y="486.66"/>
+    </line>
+    <line id="e5x0__IN__" visible="true">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="es5" port="0"/>
+      <point x="5.97" y="483.02"/>
+      <point x="5.97" y="483.44"/>
+      <point x="6.21" y="483.44"/>
+      <point x="6.21" y="484.12"/>
+      <point x="6.44" y="484.12"/>
+      <point x="6.44" y="484.54"/>
+    </line>
+    <line id="e5x0__OUT__" visible="true">
+      <frombox id="es5" port="0"/>
+      <tojoint id="n2" port="0"/>
+      <point x="6.44" y="485.54"/>
+      <point x="6.44" y="485.98"/>
+      <point x="6.55" y="485.98"/>
+      <point x="6.55" y="486.18"/>
+      <point x="6.66" y="486.18"/>
+      <point x="6.66" y="486.62"/>
+    </line>
+    <line id="e5x1__IN__" visible="true">
+      <fromjoint id="n3" port="0"/>
+      <tobox id="es5" port="1"/>
+      <point x="7.56" y="483.02"/>
+      <point x="7.56" y="483.44"/>
+      <point x="7.32" y="483.44"/>
+      <point x="7.32" y="484.12"/>
+      <point x="7.08" y="484.12"/>
+      <point x="7.08" y="484.54"/>
+    </line>
+    <line id="e5x1__OUT__">
+      <frombox id="es5" port="1"/>
+      <tojoint id="nEND5x1__IN__0" port="0"/>
+      <point x="7.08" y="485.53"/>
+      <point x="4.99" y="486.57"/>
+    </line>
+    <line id="e5x2__IN__">
+      <fromjoint id="nSTA5x2" port="0"/>
+      <tobox id="es5" port="2"/>
+      <point x="9.14" y="483.03"/>
+      <point x="7.74" y="484.04"/>
+    </line>
+    <line id="e5x2__OUT__" visible="true">
+      <frombox id="es5" port="2"/>
+      <tojoint id="n10" port="0"/>
+      <point x="7.74" y="485.54"/>
+      <point x="7.74" y="486.02"/>
+      <point x="7.72" y="486.02"/>
+      <point x="7.72" y="486.22"/>
+      <point x="7.70" y="486.22"/>
+      <point x="7.70" y="486.66"/>
+    </line>
+    <line id="e6x0__IN__">
+      <fromjoint id="nSTA6x0__OUT__0" port="0"/>
+      <tobox id="es6" port="0"/>
+      <point x="10.88" y="483.03"/>
+      <point x="11.51" y="484.17"/>
+    </line>
+    <line id="e6x0__OUT__" visible="true">
+      <frombox id="es6" port="0"/>
+      <tojoint id="n6" port="0"/>
+      <point x="11.51" y="485.42"/>
+      <point x="11.51" y="485.86"/>
+      <point x="11.12" y="485.86"/>
+      <point x="11.12" y="486.60"/>
+      <point x="10.73" y="486.60"/>
+      <point x="10.73" y="487.04"/>
+    </line>
+    <line id="e6x1__IN__">
+      <fromjoint id="nSTA6x1__OUT__0" port="0"/>
+      <tobox id="es6" port="1"/>
+      <point x="12.46" y="483.03"/>
+      <point x="12.17" y="484.17"/>
+    </line>
+    <line id="e6x1__OUT__" visible="true">
+      <frombox id="es6" port="1"/>
+      <tojoint id="n7" port="0"/>
+      <point x="12.17" y="485.42"/>
+      <point x="12.17" y="485.84"/>
+      <point x="12.53" y="485.84"/>
+      <point x="12.53" y="486.14"/>
+      <point x="12.89" y="486.14"/>
+      <point x="12.89" y="486.56"/>
+    </line>
+    <line id="e7x0__IN__" visible="true">
+      <fromjoint id="n4" port="0"/>
+      <tobox id="es7" port="0"/>
+      <point x="18.32" y="483.02"/>
+      <point x="18.32" y="483.46"/>
+      <point x="18.35" y="483.46"/>
+      <point x="18.35" y="483.88"/>
+      <point x="18.38" y="483.88"/>
+      <point x="18.38" y="484.32"/>
+    </line>
+    <line id="e7x0__OUT__" visible="true">
+      <frombox id="es7" port="0"/>
+      <tojoint id="n5" port="0"/>
+      <point x="18.38" y="485.32"/>
+      <point x="18.38" y="485.76"/>
+      <point x="18.43" y="485.76"/>
+      <point x="18.43" y="486.22"/>
+      <point x="18.47" y="486.22"/>
+      <point x="18.47" y="486.66"/>
+    </line>
+    <line id="e8x0__IN__" visible="true">
+      <fromjoint id="n5" port="0"/>
+      <tobox id="es8" port="0"/>
+      <point x="18.49" y="487.17"/>
+      <point x="18.49" y="487.61"/>
+      <point x="18.71" y="487.61"/>
+      <point x="18.71" y="488.41"/>
+      <point x="18.93" y="488.41"/>
+      <point x="18.93" y="488.85"/>
+    </line>
+    <line id="e8x0__OUT__">
+      <frombox id="es8" port="0"/>
+      <tojoint id="nEND8x0" port="0"/>
+      <point x="17.49" y="489.72"/>
+      <point x="17.49" y="491.37"/>
+    </line>
+    <line id="e9x0__IN__" visible="true">
+      <fromjoint id="n7" port="0"/>
+      <tobox id="es9" port="0"/>
+      <point x="12.90" y="487.07"/>
+      <point x="12.90" y="487.50"/>
+      <point x="12.58" y="487.50"/>
+      <point x="12.58" y="488.30"/>
+      <point x="12.26" y="488.30"/>
+      <point x="12.26" y="488.72"/>
+    </line>
+    <line id="e9x0__OUT__">
+      <frombox id="es9" port="0"/>
+      <tojoint id="nEND9x0" port="0"/>
+      <point x="12.26" y="489.72"/>
+      <point x="15.14" y="491.37"/>
+    </line>
+    <line id="e10x0__IN__" visible="true">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="es10" port="0"/>
+      <point x="6.67" y="487.13"/>
+      <point x="6.67" y="487.57"/>
+      <point x="6.91" y="487.57"/>
+      <point x="6.91" y="488.89"/>
+      <point x="7.15" y="488.89"/>
+      <point x="7.15" y="489.35"/>
+    </line>
+    <line id="e10x0__OUT__">
+      <frombox id="es10" port="0"/>
+      <tojoint id="nEND10x0__IN__0" port="0"/>
+      <point x="6.11" y="490.33"/>
+      <point x="4.06" y="491.37"/>
+    </line>
+    <line id="e10x1__IN__" visible="true">
+      <fromjoint id="n6" port="0"/>
+      <tobox id="es10" port="1"/>
+      <point x="10.74" y="487.55"/>
+      <point x="10.74" y="487.99"/>
+      <point x="10.20" y="487.99"/>
+      <point x="10.20" y="488.81"/>
+      <point x="9.65" y="488.81"/>
+      <point x="9.65" y="489.35"/>
+    </line>
+    <line id="e10x1__OUT__">
+      <frombox id="es10" port="1"/>
+      <tojoint id="nEND10x1__IN__0" port="0"/>
+      <point x="6.74" y="490.33"/>
+      <point x="5.64" y="491.37"/>
+    </line>
+    <line id="e10x2__IN__" visible="true">
+      <fromjoint id="n8" port="0"/>
+      <tobox id="es10" port="2"/>
+      <point x="3.36" y="487.17"/>
+      <point x="3.36" y="487.61"/>
+      <point x="4.94" y="487.61"/>
+      <point x="4.94" y="488.91"/>
+      <point x="6.52" y="488.91"/>
+      <point x="6.52" y="489.35"/>
+    </line>
+    <line id="e10x2__OUT__" visible="true">
+      <frombox id="es10" port="2"/>
+      <tojoint id="n9" port="0"/>
+      <point x="6.52" y="490.35"/>
+      <point x="6.52" y="490.79"/>
+      <point x="6.86" y="490.79"/>
+      <point x="6.86" y="490.93"/>
+      <point x="7.21" y="490.93"/>
+      <point x="7.21" y="491.36"/>
+    </line>
+    <line id="e10x3__IN__" visible="true">
+      <fromjoint id="n10" port="0"/>
+      <tobox id="es10" port="3"/>
+      <point x="7.71" y="487.17"/>
+      <point x="7.71" y="487.61"/>
+      <point x="7.74" y="487.61"/>
+      <point x="7.74" y="488.87"/>
+      <point x="7.77" y="488.87"/>
+      <point x="7.77" y="489.35"/>
+    </line>
+    <line id="e10x3__OUT__" visible="true">
+      <frombox id="es10" port="3"/>
+      <tojoint id="n11" port="0"/>
+      <point x="7.77" y="490.35"/>
+      <point x="7.77" y="490.83"/>
+      <point x="7.92" y="490.83"/>
+      <point x="7.92" y="490.98"/>
+      <point x="8.07" y="490.98"/>
+      <point x="8.07" y="491.42"/>
+    </line>
+    <line id="e10x4__IN__">
+      <fromjoint id="nSTA10x4__OUT__0" port="0"/>
+      <tobox id="es10" port="4"/>
+      <point x="9.74" y="487.08"/>
+      <point x="8.63" y="488.1"/>
+    </line>
+    <line id="e10x4__OUT__" visible="true">
+      <frombox id="es10" port="4"/>
+      <tojoint id="n14" port="0"/>
+      <point x="8.40" y="490.35"/>
+      <point x="8.40" y="490.85"/>
+      <point x="8.53" y="490.85"/>
+      <point x="8.53" y="490.96"/>
+      <point x="8.66" y="490.96"/>
+      <point x="8.66" y="491.40"/>
+    </line>
+    <line id="e10x5__IN__">
+      <fromjoint id="nSTA10x5" port="0"/>
+      <tobox id="es10" port="5"/>
+      <point x="11.32" y="487.08"/>
+      <point x="9.24" y="488.1"/>
+    </line>
+    <line id="e10x5__OUT__" visible="true">
+      <frombox id="es10" port="5"/>
+      <tojoint id="n15" port="0"/>
+      <point x="9.04" y="490.35"/>
+      <point x="9.04" y="490.87"/>
+      <point x="9.69" y="490.87"/>
+      <point x="9.69" y="490.58"/>
+      <point x="10.34" y="490.58"/>
+      <point x="10.34" y="491.02"/>
+    </line>
+    <line id="e11x0__IN__">
+      <fromjoint id="nSTA11x0__OUT__0" port="0"/>
+      <tobox id="es11" port="0"/>
+      <point x="21.76" y="466.81"/>
+      <point x="22.22" y="467.82"/>
+    </line>
+    <line id="e11x0__OUT__" visible="true">
+      <frombox id="es11" port="0"/>
+      <tojoint id="n12" port="0"/>
+      <point x="22.22" y="469.06"/>
+      <point x="22.22" y="469.50"/>
+      <point x="22.15" y="469.50"/>
+      <point x="22.15" y="469.62"/>
+      <point x="22.07" y="469.62"/>
+      <point x="22.07" y="470.06"/>
+    </line>
+    <line id="e11x1__IN__">
+      <fromjoint id="nSTA11x1__OUT__0" port="0"/>
+      <tobox id="es11" port="1"/>
+      <point x="23.35" y="466.81"/>
+      <point x="22.88" y="467.82"/>
+    </line>
+    <line id="e11x1__OUT__" visible="true">
+      <frombox id="es11" port="1"/>
+      <tojoint id="n17" port="0"/>
+      <point x="22.88" y="469.06"/>
+      <point x="22.88" y="469.48"/>
+      <point x="23.11" y="469.48"/>
+      <point x="23.11" y="469.68"/>
+      <point x="23.35" y="469.68"/>
+      <point x="23.35" y="470.09"/>
+    </line>
+    <line id="e12x0__IN__" visible="true">
+      <fromjoint id="n12" port="0"/>
+      <tobox id="es12" port="0"/>
+      <point x="22.09" y="470.57"/>
+      <point x="22.09" y="471.01"/>
+      <point x="22.25" y="471.01"/>
+      <point x="22.25" y="472.16"/>
+      <point x="22.40" y="472.16"/>
+      <point x="22.40" y="472.62"/>
+    </line>
+    <line id="e12x0__OUT__" visible="true">
+      <frombox id="es12" port="0"/>
+      <tojoint id="n13" port="0"/>
+      <point x="22.40" y="473.62"/>
+      <point x="22.40" y="474.08"/>
+      <point x="22.64" y="474.08"/>
+      <point x="22.64" y="476.12"/>
+      <point x="22.89" y="476.12"/>
+      <point x="22.89" y="476.56"/>
+    </line>
+    <line id="e12x1__IN__" visible="true">
+      <fromjoint id="n14" port="0"/>
+      <tobox id="es12" port="1"/>
+      <point x="8.68" y="491.91"/>
+      <point x="8.68" y="492.35"/>
+      <point x="15.23" y="492.35"/>
+      <point x="15.23" y="471.03"/>
+      <point x="21.78" y="471.03"/>
+      <point x="21.78" y="472.16"/>
+      <point x="21.78" y="472.62"/>
+    </line>
+    <line id="e12x1__OUT__">
+      <frombox id="es12" port="1"/>
+      <tojoint id="nEND12x1__IN__0" port="0"/>
+      <point x="22.4" y="473.61"/>
+      <point x="23.57" y="474.65"/>
+    </line>
+    <line id="e12x2__IN__" visible="true">
+      <fromjoint id="n15" port="0"/>
+      <tobox id="es12" port="2"/>
+      <point x="10.35" y="491.53"/>
+      <point x="10.35" y="491.97"/>
+      <point x="15.91" y="491.97"/>
+      <point x="15.91" y="471.56"/>
+      <point x="23.04" y="471.56"/>
+      <point x="23.04" y="472.16"/>
+      <point x="23.04" y="472.62"/>
+    </line>
+    <line id="e12x2__OUT__" visible="true">
+      <frombox id="es12" port="2"/>
+      <tojoint id="n16" port="0"/>
+      <point x="23.04" y="473.62"/>
+      <point x="23.04" y="474.10"/>
+      <point x="23.04" y="474.66"/>
+      <point x="21.75" y="474.66"/>
+      <point x="21.75" y="474.68"/>
+      <point x="20.46" y="474.68"/>
+      <point x="20.46" y="475.12"/>
+    </line>
+    <line id="e12x3__IN__" visible="true">
+      <fromjoint id="n17" port="0"/>
+      <tobox id="es12" port="3"/>
+      <point x="23.36" y="470.61"/>
+      <point x="23.36" y="471.02"/>
+      <point x="23.52" y="471.02"/>
+      <point x="23.52" y="472.20"/>
+      <point x="23.67" y="472.20"/>
+      <point x="23.67" y="472.62"/>
+    </line>
+    <line id="e12x3__OUT__">
+      <frombox id="es12" port="3"/>
+      <tojoint id="nEND12x3__IN__0" port="0"/>
+      <point x="23.67" y="473.61"/>
+      <point x="25.15" y="474.65"/>
+    </line>
+    <line id="e12x4__IN__">
+      <fromjoint id="nSTA12x4__OUT__0" port="0"/>
+      <tobox id="es12" port="4"/>
+      <point x="24.94" y="470.61"/>
+      <point x="24.29" y="471.62"/>
+    </line>
+    <line id="e12x4__OUT__" visible="true">
+      <frombox id="es12" port="4"/>
+      <tojoint id="n18" port="0"/>
+      <point x="24.29" y="473.62"/>
+      <point x="24.29" y="474.04"/>
+      <point x="25.54" y="474.04"/>
+      <point x="25.54" y="492.98"/>
+      <point x="26.78" y="492.98"/>
+      <point x="26.78" y="493.39"/>
+    </line>
+    <line id="e13x0__IN__" visible="true">
+      <fromjoint id="n9" port="0"/>
+      <tobox id="es13" port="0"/>
+      <point x="7.22" y="491.88"/>
+      <point x="7.22" y="492.31"/>
+      <point x="7.26" y="492.31"/>
+      <point x="7.26" y="493.13"/>
+      <point x="10.67" y="493.13"/>
+      <point x="10.67" y="493.57"/>
+    </line>
+    <line id="e13x0__OUT__">
+      <frombox id="es13" port="0"/>
+      <tojoint id="nEND13x0__IN__0" port="0"/>
+      <point x="11.01" y="494.39"/>
+      <point x="10.54" y="495.43"/>
+    </line>
+    <line id="e13x1__IN__" visible="true">
+      <fromjoint id="n11" port="0"/>
+      <tobox id="es13" port="1"/>
+      <point x="8.08" y="491.93"/>
+      <point x="8.08" y="492.37"/>
+      <point x="8.08" y="492.70"/>
+      <point x="9.69" y="492.70"/>
+      <point x="9.69" y="492.71"/>
+      <point x="11.31" y="492.71"/>
+      <point x="11.31" y="493.11"/>
+      <point x="11.31" y="493.57"/>
+    </line>
+    <line id="e13x1__OUT__">
+      <frombox id="es13" port="1"/>
+      <tojoint id="nEND13x1" port="0"/>
+      <point x="11.65" y="494.39"/>
+      <point x="12.13" y="495.43"/>
+    </line>
+    <line id="e13x2__IN__">
+      <fromjoint id="nSTA13x2__OUT__0" port="0"/>
+      <tobox id="es13" port="2"/>
+      <point x="13.56" y="491.89"/>
+      <point x="12.31" y="492.9"/>
+    </line>
+    <line id="e13x2__OUT__" visible="true">
+      <frombox id="es13" port="2"/>
+      <tojoint id="n19" port="0"/>
+      <point x="11.97" y="494.57"/>
+      <point x="11.97" y="495.05"/>
+      <point x="17.30" y="495.05"/>
+      <point x="17.30" y="495.24"/>
+      <point x="22.63" y="495.24"/>
+      <point x="22.63" y="495.68"/>
+    </line>
+    <line id="e17x0__IN__" visible="true">
+      <fromjoint id="n16" port="0"/>
+      <tobox id="es17" port="0"/>
+      <point x="20.48" y="475.63"/>
+      <point x="20.48" y="476.07"/>
+      <point x="20.06" y="476.07"/>
+      <point x="20.06" y="476.00"/>
+      <point x="19.64" y="476.00"/>
+      <point x="19.64" y="476.44"/>
+    </line>
+    <line id="e17x0__OUT__">
+      <frombox id="es17" port="0"/>
+      <tojoint id="nEND17x0__IN__0" port="0"/>
+      <point x="19.64" y="477.42"/>
+      <point x="19.68" y="478.46"/>
+    </line>
+    <line id="e17x1__IN__">
+      <fromjoint id="nSTA17x1__OUT__0" port="0"/>
+      <tobox id="es17" port="1"/>
+      <point x="19.96" y="475.17"/>
+      <point x="20.29" y="476.18"/>
+    </line>
+    <line id="e17x1__OUT__" visible="true">
+      <frombox id="es17" port="1"/>
+      <tojoint id="n20" port="0"/>
+      <point x="20.29" y="477.44"/>
+      <point x="20.29" y="477.86"/>
+      <point x="20.77" y="477.86"/>
+      <point x="20.77" y="478.03"/>
+      <point x="21.25" y="478.03"/>
+      <point x="21.25" y="478.45"/>
+    </line>
+    <line id="e18x0__IN__" visible="true">
+      <fromjoint id="n13" port="0"/>
+      <tobox id="es18" port="0"/>
+      <point x="22.90" y="477.07"/>
+      <point x="22.90" y="477.50"/>
+      <point x="24.09" y="477.50"/>
+      <point x="24.09" y="497.02"/>
+      <point x="24.22" y="497.02"/>
+      <point x="24.22" y="497.46"/>
+    </line>
+    <line id="e18x0__OUT__">
+      <frombox id="es18" port="0"/>
+      <tojoint id="nEND18x0__IN__0" port="0"/>
+      <point x="23.58" y="498.44"/>
+      <point x="22.64" y="499.49"/>
+    </line>
+    <line id="e18x1__IN__" visible="true">
+      <fromjoint id="n18" port="0"/>
+      <tobox id="es18" port="1"/>
+      <point x="26.79" y="493.91"/>
+      <point x="26.79" y="494.34"/>
+      <point x="25.83" y="494.34"/>
+      <point x="25.83" y="496.98"/>
+      <point x="24.88" y="496.98"/>
+      <point x="24.88" y="497.46"/>
+    </line>
+    <line id="e18x1__OUT__">
+      <frombox id="es18" port="1"/>
+      <tojoint id="nEND18x1__IN__0" port="0"/>
+      <point x="24.22" y="498.44"/>
+      <point x="24.22" y="499.49"/>
+    </line>
+    <line id="e18x2__IN__" visible="true">
+      <fromjoint id="n19" port="0"/>
+      <tobox id="es18" port="2"/>
+      <point x="22.65" y="496.19"/>
+      <point x="22.65" y="496.63"/>
+      <point x="23.12" y="496.63"/>
+      <point x="23.12" y="497.02"/>
+      <point x="23.58" y="497.02"/>
+      <point x="23.58" y="497.46"/>
+    </line>
+    <line id="e18x2__OUT__">
+      <frombox id="es18" port="2"/>
+      <tojoint id="nEND18x2" port="0"/>
+      <point x="24.88" y="498.44"/>
+      <point x="25.81" y="499.49"/>
+    </line>
+  </level>
+  <level id="SkillsB" qid="15" tutorial="skillsb">
+    <box height="1.0" id="es1" lines="3" width="3.0" x="32.58" y="459.71" visible="true"/>
+    <box height="1.0" id="es3" lines="1" width="1.81" x="24.24" y="459.46" visible="true"/>
+    <box height="1.0" id="es4" lines="1" width="1.81" x="9.81" y="451.04" visible="true"/>
+    <box height="1.0" id="es5" lines="2" width="2.39" x="16.37" y="496.79" visible="true"/>
+    <box height="1.0" id="es6" lines="1" width="1.81" x="36.46" y="459.55" visible="true"/>
+    <box height="1.0" id="es7" lines="3" width="3.0" x="10.44" y="454.69" visible="true"/>
+    <box height="1.0" id="es8" lines="4" width="3.58" x="32.75" y="464.26" visible="true"/>
+    <box height="1.0" id="es10" lines="2" width="2.39" x="28.04" y="464.01" visible="true"/>
+    <box height="1.0" id="es11" lines="1" width="1.81" x="17.41" y="452.99" visible="true"/>
+    <box height="1.0" id="es12" lines="2" width="2.39" x="24.68" y="463.94" visible="true"/>
+    <box height="1.0" id="es13" lines="4" width="3.58" x="21.09" y="469.85" visible="true"/>
+    <box height="1.0" id="es14" lines="1" width="1.81" x="15.77" y="471.04" visible="true"/>
+    <box height="1.0" id="es15" lines="3" width="3.0" x="16.79" y="456.15" visible="true"/>
+    <box height="1.0" id="es16" lines="4" width="3.58" x="32.68" y="468.81" visible="true"/>
+    <box height="1.0" id="es19" lines="3" width="3.0" x="19.59" y="474.47" visible="true"/>
+    <box height="1.0" id="es20" lines="2" width="2.39" x="16.53" y="459.58" visible="true"/>
+    <box height="1.0" id="es21" lines="1" width="1.81" x="13.14" y="459.46" visible="true"/>
+    <box height="1.0" id="es22" lines="1" width="1.81" x="30.89" y="472.75" visible="true"/>
+    <box height="1.0" id="es23" lines="2" width="2.39" x="20.21" y="459.58" visible="true"/>
+    <box height="1.0" id="es24" lines="4" width="3.58" x="24.40" y="473.13" visible="true"/>
+    <box height="1.0" id="es25" lines="6" width="4.81" x="17.93" y="464.51" visible="true"/>
+    <box height="1.0" id="es26" lines="4" width="3.58" x="25.51" y="477.44" visible="true"/>
+    <box height="1.0" id="es28" lines="2" width="2.39" x="3.84" y="482.68" visible="true"/>
+    <box height="1.0" id="es29" lines="3" width="3.0" x="2.29" y="461.48" visible="true"/>
+    <box height="1.0" id="es31" lines="4" width="3.58" x="19.14" y="484.64" visible="true"/>
+    <box height="1.0" id="es33" lines="1" width="1.81" x="16.48" y="467.54" visible="true"/>
+    <box height="1.0" id="es34" lines="4" width="3.58" x="15.03" y="488.95" visible="true"/>
+    <box height="1.0" id="es35" lines="2" width="2.39" x="8.19" y="488.70" visible="true"/>
+    <box height="1.0" id="es36" lines="3" width="3.0" x="2.47" y="488.82" visible="true"/>
+    <box height="1.0" id="es37" lines="4" width="3.58" x="6.47" y="466.15" visible="true"/>
+    <box height="1.0" id="es38" lines="4" width="3.58" x="17.17" y="493.25" visible="true"/>
+    <box height="1.0" id="es39" lines="1" width="1.81" x="6.73" y="457.86" visible="true"/>
+    <box height="1.0" id="es40" lines="3" width="3.0" x="13.58" y="473.00" visible="true"/>
+    <box height="1.0" id="es41" lines="1" width="1.81" x="19.75" y="496.59" visible="true"/>
+    <box height="1.0" id="es42" lines="2" width="2.39" x="7.06" y="460.78" visible="true"/>
+    <box height="1.0" id="es43" lines="3" width="3.0" x="17.93" y="477.31" visible="true"/>
+    <box height="1.0" id="es45" lines="1" width="1.81" x="21.61" y="481.11" visible="true"/>
+    <box height="1.0" id="es48" lines="1" width="1.81" x="7.42" y="463.99" visible="true"/>
+    <box height="1.0" id="es52" lines="2" width="2.39" x="18.35" y="481.24" visible="true"/>
+    <joint height="0.51" id="nSTA37x2" inputs="0" outputs="1" width="0.58" x="7.33" y="466.29" visible="false"/>
+    <joint height="0.51" id="nSTA37x3" inputs="0" outputs="1" width="0.58" x="8.92" y="466.29" visible="false"/>
+    <joint height="0.51" id="nSTA1x1__OUT__0" inputs="0" outputs="1" width="0.58" x="32.56" y="457.43" visible="false"/>
+    <joint height="0.51" id="nEND38x0" inputs="1" outputs="0" width="0.58" x="14.97" y="495.03" visible="false"/>
+    <joint height="0.51" id="nSTA1x0__OUT__0" inputs="0" outputs="1" width="0.58" x="30.97" y="457.43" visible="false"/>
+    <joint height="0.51" id="nEND25x0__IN__0" inputs="1" outputs="0" width="0.58" x="12.60" y="466.29" visible="false"/>
+    <joint height="0.51" id="n38" inputs="1" outputs="1" width="0.58" x="16.32" y="474.90" visible="true"/>
+    <joint height="0.51" id="n39" inputs="1" outputs="1" width="0.58" x="19.72" y="495.03" visible="true"/>
+    <joint height="0.51" id="nEND45x0__IN__0" inputs="1" outputs="0" width="0.58" x="21.61" y="482.11" visible="false"/>
+    <joint height="0.51" id="n30" inputs="1" outputs="1" width="0.58" x="17.03" y="486.38" visible="true"/>
+    <joint height="0.51" id="n31" inputs="1" outputs="1" width="0.58" x="14.72" y="486.42" visible="true"/>
+    <joint height="0.51" id="nEND8x2__IN__0" inputs="1" outputs="0" width="0.58" x="33.18" y="466.29" visible="false"/>
+    <joint height="0.51" id="n33" inputs="1" outputs="1" width="0.58" x="4.08" y="463.63" visible="true"/>
+    <joint height="0.51" id="n34" inputs="1" outputs="1" width="0.58" x="10.47" y="490.72" visible="true"/>
+    <joint height="0.51" id="n35" inputs="1" outputs="1" width="0.58" x="11.51" y="470.67" visible="true"/>
+    <joint height="0.51" id="n36" inputs="1" outputs="1" width="0.58" x="7.29" y="490.72" visible="true"/>
+    <joint height="0.51" id="n37" inputs="1" outputs="1" width="0.58" x="16.83" y="490.72" visible="true"/>
+    <joint height="0.51" id="nEND24x3__IN__0" inputs="1" outputs="0" width="0.58" x="27.38" y="474.90" visible="false"/>
+    <joint height="0.51" id="nSTA24x2__OUT__0" inputs="0" outputs="1" width="0.58" x="24.63" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND10x0__IN__0" inputs="1" outputs="0" width="0.58" x="26.85" y="466.29" visible="false"/>
+    <joint height="0.51" id="nSTA11x0__OUT__0" inputs="0" outputs="1" width="0.58" x="15.97" y="449.32" visible="false"/>
+    <joint height="0.51" id="nSTA28x1__OUT__0" inputs="0" outputs="1" width="0.58" x="11.01" y="482.11" visible="false"/>
+    <joint height="0.51" id="nSTA8x3__OUT__0" inputs="0" outputs="1" width="0.58" x="35.42" y="461.49" visible="false"/>
+    <joint height="0.51" id="nSTA34x3" inputs="0" outputs="1" width="0.58" x="21.06" y="486.42" visible="false"/>
+    <joint height="0.51" id="nEND8x0__IN__0" inputs="1" outputs="0" width="0.58" x="30.01" y="466.29" visible="false"/>
+    <joint height="0.51" id="nSTA7x1" inputs="0" outputs="1" width="0.58" x="11.38" y="452.82" visible="false"/>
+    <joint height="0.51" id="nSTA7x2__OUT__0" inputs="0" outputs="1" width="0.58" x="12.00" y="452.41" visible="false"/>
+    <joint height="0.51" id="nEND15x0__IN__0" inputs="1" outputs="0" width="0.58" x="14.09" y="457.66" visible="false"/>
+    <joint height="0.51" id="nSTA10x1__OUT__0" inputs="0" outputs="1" width="0.58" x="29.08" y="461.49" visible="false"/>
+    <joint height="0.51" id="nSTA1x2__OUT__0" inputs="0" outputs="1" width="0.58" x="34.14" y="457.43" visible="false"/>
+    <joint height="0.51" id="nSTA14x0__OUT__0" inputs="0" outputs="1" width="0.58" x="39.51" y="466.29" visible="false"/>
+    <joint height="0.51" id="nEND13x1__IN__0" inputs="1" outputs="0" width="0.58" x="23.04" y="470.60" visible="false"/>
+    <joint height="0.51" id="nSTA23x0__OUT__0" inputs="0" outputs="1" width="0.58" x="17.74" y="457.83" visible="false"/>
+    <joint height="0.51" id="nEND34x2__IN__0" inputs="1" outputs="0" width="0.58" x="15.25" y="490.72" visible="false"/>
+    <joint height="0.51" id="nSTA42x1__OUT__0" inputs="0" outputs="1" width="0.58" x="35.71" y="449.32" visible="false"/>
+    <joint height="0.51" id="nSTA40x2" inputs="0" outputs="1" width="0.58" x="14.21" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND19x0__IN__0" inputs="1" outputs="0" width="0.58" x="32.28" y="474.90" visible="false"/>
+    <joint height="0.51" id="nSTA31x1__OUT__0" inputs="0" outputs="1" width="0.58" x="18.44" y="482.11" visible="false"/>
+    <joint height="0.51" id="nSTA15x2__OUT__0" inputs="0" outputs="1" width="0.58" x="15.50" y="454.40" visible="false"/>
+    <joint height="0.51" id="n13" inputs="1" outputs="1" width="0.58" x="30.81" y="470.71" visible="true"/>
+    <joint height="0.51" id="n10" inputs="1" outputs="1" width="0.58" x="27.28" y="465.68" visible="true"/>
+    <joint height="0.51" id="n11" inputs="1" outputs="1" width="0.58" x="10.44" y="464.90" visible="true"/>
+    <joint height="0.51" id="n16" inputs="1" outputs="1" width="0.58" x="33.64" y="471.10" visible="true"/>
+    <joint height="0.51" id="nEND22x0" inputs="1" outputs="0" width="0.58" x="30.69" y="474.90" visible="false"/>
+    <joint height="0.51" id="n14" inputs="1" outputs="1" width="0.58" x="16.16" y="457.83" visible="true"/>
+    <joint height="0.51" id="n15" inputs="1" outputs="1" width="0.58" x="16.59" y="472.94" visible="true"/>
+    <joint height="0.51" id="n18" inputs="1" outputs="1" width="0.58" x="21.35" y="475.99" visible="true"/>
+    <joint height="0.51" id="n19" inputs="1" outputs="1" width="0.58" x="24.34" y="474.88" visible="true"/>
+    <joint height="0.51" id="nSTA16x3__OUT__0" inputs="0" outputs="1" width="0.58" x="37.93" y="466.29" visible="false"/>
+    <joint height="0.51" id="nSTA38x3__OUT__0" inputs="0" outputs="1" width="0.58" x="20.00" y="490.72" visible="false"/>
+    <joint height="0.51" id="n32" inputs="1" outputs="1" width="0.58" x="19.47" y="486.42" visible="true"/>
+    <joint height="0.51" id="nEND48x0__IN__0" inputs="1" outputs="0" width="0.58" x="35.72" y="457.43" visible="false"/>
+    <joint height="0.51" id="nSTA38x2__OUT__0" inputs="0" outputs="1" width="0.58" x="18.42" y="490.72" visible="false"/>
+    <joint height="0.51" id="nSTA29x2__OUT__0" inputs="0" outputs="1" width="0.58" x="3.93" y="461.49" visible="false"/>
+    <joint height="0.51" id="nEND31x0" inputs="1" outputs="0" width="0.58" x="16.31" y="486.42" visible="false"/>
+    <joint height="0.51" id="nEND5x0__IN__0" inputs="1" outputs="0" width="0.58" x="12.36" y="498.84" visible="false"/>
+    <joint height="0.51" id="nSTA43x2__OUT__0" inputs="0" outputs="1" width="0.58" x="19.49" y="474.90" visible="false"/>
+    <joint height="0.51" id="nSTA37x1__OUT__0" inputs="0" outputs="1" width="0.58" x="5.75" y="466.29" visible="false"/>
+    <joint height="0.51" id="nEND5x1__IN__0" inputs="1" outputs="0" width="0.58" x="13.94" y="498.84" visible="false"/>
+    <joint height="0.51" id="nSTA21x0__OUT__0" inputs="0" outputs="1" width="0.58" x="12.51" y="457.66" visible="false"/>
+    <joint height="0.51" id="nEND15x1__IN__0" inputs="1" outputs="0" width="0.58" x="14.58" y="457.83" visible="false"/>
+    <joint height="0.51" id="nSTA35x1__OUT__0" inputs="0" outputs="1" width="0.58" x="8.50" y="486.42" visible="false"/>
+    <joint height="0.51" id="nSTA16x2" inputs="0" outputs="1" width="0.58" x="36.35" y="466.29" visible="false"/>
+    <joint height="0.51" id="nEND25x3" inputs="1" outputs="0" width="0.58" x="17.35" y="466.29" visible="false"/>
+    <joint height="0.51" id="n29" inputs="1" outputs="1" width="0.58" x="7.50" y="481.11" visible="true"/>
+    <joint height="0.51" id="nEND12x0__IN__0" inputs="1" outputs="0" width="0.58" x="22.10" y="466.29" visible="false"/>
+    <joint height="0.51" id="nEND8x1__IN__0" inputs="1" outputs="0" width="0.58" x="31.60" y="466.29" visible="false"/>
+    <joint height="0.51" id="nSTA28x0__OUT__0" inputs="0" outputs="1" width="0.58" x="9.43" y="482.11" visible="false"/>
+    <joint height="0.51" id="nEND34x1__IN__0" inputs="1" outputs="0" width="0.58" x="13.67" y="490.72" visible="false"/>
+    <joint height="0.51" id="nSTA12x1__OUT__0" inputs="0" outputs="1" width="0.58" x="25.81" y="461.49" visible="false"/>
+    <joint height="0.51" id="nEND35x0__IN__0" inputs="1" outputs="0" width="0.58" x="8.88" y="490.72" visible="false"/>
+    <joint height="0.51" id="nEND26x1__IN__0" inputs="1" outputs="0" width="0.58" x="24.25" y="479.21" visible="false"/>
+    <joint height="0.51" id="n12" inputs="1" outputs="1" width="0.58" x="23.13" y="465.82" visible="true"/>
+    <joint height="0.51" id="nEND31x3__IN__0" inputs="1" outputs="0" width="0.58" x="22.64" y="486.42" visible="false"/>
+    <joint height="0.51" id="nEND38x1__IN__0" inputs="1" outputs="0" width="0.58" x="16.56" y="495.03" visible="false"/>
+    <joint height="0.51" id="nSTA4x0__OUT__0" inputs="0" outputs="1" width="0.58" x="8.71" y="445.76" visible="false"/>
+    <joint height="0.51" id="nEND7x0__IN__0" inputs="1" outputs="0" width="0.58" x="8.10" y="456.20" visible="false"/>
+    <joint height="0.51" id="nSTA24x1__OUT__0" inputs="0" outputs="1" width="0.58" x="16.22" y="470.60" visible="false"/>
+    <joint height="0.51" id="n17" inputs="1" outputs="1" width="0.58" x="19.56" y="472.52" visible="true"/>
+    <joint height="0.51" id="nEND36x1" inputs="1" outputs="0" width="0.58" x="2.92" y="490.72" visible="false"/>
+    <joint height="0.51" id="nSTA3x0__OUT__0" inputs="0" outputs="1" width="0.58" x="24.21" y="457.43" visible="false"/>
+    <joint height="0.51" id="nEND33x0__IN__0" inputs="1" outputs="0" width="0.58" x="19.39" y="470.60" visible="false"/>
+    <joint height="0.51" id="nSTA29x1" inputs="0" outputs="1" width="0.58" x="2.35" y="461.49" visible="false"/>
+    <joint height="0.51" id="nEND37x0__IN__0" inputs="1" outputs="0" width="0.58" x="4.17" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND34x0__IN__0" inputs="1" outputs="0" width="0.58" x="12.08" y="490.72" visible="false"/>
+    <joint height="0.51" id="nSTA26x3__OUT__0" inputs="0" outputs="1" width="0.58" x="37.03" y="474.90" visible="false"/>
+    <joint height="0.51" id="nEND26x0__IN__0" inputs="1" outputs="0" width="0.58" x="22.67" y="479.21" visible="false"/>
+    <joint height="0.51" id="n48" inputs="1" outputs="1" width="0.58" x="20.03" y="483.01" visible="true"/>
+    <joint height="0.51" id="nSTA20x1" inputs="0" outputs="1" width="0.58" x="15.67" y="457.66" visible="false"/>
+    <joint height="0.51" id="n41" inputs="1" outputs="1" width="0.58" x="17.92" y="479.21" visible="true"/>
+    <joint height="0.51" id="n40" inputs="1" outputs="1" width="0.58" x="6.72" y="459.26" visible="true"/>
+    <joint height="0.51" id="n43" inputs="1" outputs="1" width="0.58" x="21.08" y="479.21" visible="true"/>
+    <joint height="0.51" id="n42" inputs="1" outputs="1" width="0.58" x="7.39" y="462.39" visible="true"/>
+    <joint height="0.51" id="n45" inputs="1" outputs="1" width="0.58" x="16.63" y="495.07" visible="true"/>
+    <joint height="0.51" id="n44" inputs="1" outputs="1" width="0.58" x="6.14" y="492.94" visible="true"/>
+    <joint height="0.51" id="n47" inputs="1" outputs="1" width="0.58" x="20.57" y="466.74" visible="true"/>
+    <joint height="0.51" id="n46" inputs="1" outputs="1" width="0.58" x="17.81" y="470.60" visible="true"/>
+    <joint height="0.51" id="nEND43x0__IN__0" inputs="1" outputs="0" width="0.58" x="16.33" y="479.21" visible="false"/>
+    <joint height="0.51" id="nSTA31x2__OUT__0" inputs="0" outputs="1" width="0.58" x="25.22" y="483.01" visible="false"/>
+    <joint height="0.51" id="nSTA25x4__OUT__0" inputs="0" outputs="1" width="0.58" x="21.04" y="461.49" visible="false"/>
+    <joint height="0.51" id="nEND25x2__IN__0" inputs="1" outputs="0" width="0.58" x="15.76" y="466.29" visible="false"/>
+    <joint height="0.51" id="nSTA23x1__OUT__0" inputs="0" outputs="1" width="0.58" x="19.33" y="457.83" visible="false"/>
+    <joint height="0.51" id="nEND20x0__IN__0" inputs="1" outputs="0" width="0.58" x="14.71" y="461.49" visible="false"/>
+    <joint height="0.51" id="nEND24x0__IN__0" inputs="1" outputs="0" width="0.58" x="22.63" y="474.90" visible="false"/>
+    <joint height="0.51" id="nSTA36x2__OUT__0" inputs="0" outputs="1" width="0.58" x="3.68" y="486.42" visible="false"/>
+    <joint height="0.51" id="nSTA25x5" inputs="0" outputs="1" width="0.58" x="22.63" y="461.49" visible="false"/>
+    <joint height="0.51" id="nEND13x3__IN__0" inputs="1" outputs="0" width="0.58" x="27.79" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND40x1__IN__0" inputs="1" outputs="0" width="0.58" x="14.74" y="474.90" visible="false"/>
+    <joint height="0.51" id="nSTA52x1__OUT__0" inputs="0" outputs="1" width="0.58" x="19.50" y="479.21" visible="false"/>
+    <joint height="0.51" id="nEND13x0__IN__0" inputs="1" outputs="0" width="0.58" x="21.46" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND16x1__IN__0" inputs="1" outputs="0" width="0.58" x="30.96" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND16x0__IN__0" inputs="1" outputs="0" width="0.58" x="29.38" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND52x0__IN__0" inputs="1" outputs="0" width="0.58" x="16.86" y="482.11" visible="false"/>
+    <joint height="0.51" id="nEND25x1__IN__0" inputs="1" outputs="0" width="0.58" x="14.18" y="466.29" visible="false"/>
+    <joint height="0.51" id="nEND40x0__IN__0" inputs="1" outputs="0" width="0.58" x="11.13" y="474.90" visible="false"/>
+    <joint height="0.51" id="nSTA39x0__OUT__0" inputs="0" outputs="1" width="0.58" x="34.11" y="445.76" visible="false"/>
+    <joint height="0.51" id="nEND36x0__IN__0" inputs="1" outputs="0" width="0.58" x="1.33" y="490.72" visible="false"/>
+    <joint height="0.51" id="nSTA6x0__OUT__0" inputs="0" outputs="1" width="0.58" x="8.49" y="463.90" visible="false"/>
+    <joint height="0.51" id="nSTA13x2__OUT__0" inputs="0" outputs="1" width="0.58" x="23.68" y="466.29" visible="false"/>
+    <joint height="0.51" id="n28" inputs="1" outputs="1" width="0.58" x="0.29" y="477.06" visible="true"/>
+    <joint height="0.51" id="nEND19x1__IN__0" inputs="1" outputs="0" width="0.58" x="33.86" y="474.90" visible="false"/>
+    <joint height="0.51" id="n23" inputs="1" outputs="1" width="0.58" x="13.13" y="461.49" visible="true"/>
+    <joint height="0.51" id="n22" inputs="1" outputs="1" width="0.58" x="25.79" y="474.90" visible="true"/>
+    <joint height="0.51" id="n21" inputs="1" outputs="1" width="0.58" x="17.48" y="461.38" visible="true"/>
+    <joint height="0.51" id="n20" inputs="1" outputs="1" width="0.58" x="18.74" y="461.67" visible="true"/>
+    <joint height="0.51" id="n27" inputs="1" outputs="1" width="0.58" x="2.24" y="486.31" visible="true"/>
+    <joint height="0.51" id="n26" inputs="1" outputs="1" width="0.58" x="26.47" y="481.17" visible="true"/>
+    <joint height="0.51" id="n25" inputs="1" outputs="1" width="0.58" x="16.85" y="466.03" visible="true"/>
+    <joint height="0.51" id="n24" inputs="1" outputs="1" width="0.58" x="21.01" y="461.45" visible="true"/>
+    <joint height="0.51" id="n3" inputs="1" outputs="1" width="0.58" x="33.32" y="462.02" visible="true"/>
+    <joint height="0.51" id="nSTA43x1__OUT__0" inputs="0" outputs="1" width="0.58" x="17.90" y="474.90" visible="false"/>
+    <joint height="0.51" id="n8" inputs="1" outputs="1" width="0.58" x="34.76" y="466.29" visible="true"/>
+    <joint height="0.51" id="n9" inputs="1" outputs="1" width="0.58" x="11.08" y="456.25" visible="true"/>
+    <joint height="0.51" id="nEND26x2" inputs="1" outputs="0" width="0.58" x="25.83" y="479.21" visible="false"/>
+    <joint height="0.51" id="nSTA19x2__OUT__0" inputs="0" outputs="1" width="0.58" x="37.29" y="470.60" visible="false"/>
+    <joint height="0.51" id="nEND42x0__IN__0" inputs="1" outputs="0" width="0.58" x="34.14" y="453.37" visible="false"/>
+    <joint height="0.51" id="nEND41x0__IN__0" inputs="1" outputs="0" width="0.58" x="19.72" y="498.84" visible="false"/>
+    <joint height="0.51" id="n1" inputs="1" outputs="1" width="0.58" x="32.22" y="462.32" visible="true"/>
+    <joint height="0.51" id="n2" inputs="1" outputs="1" width="0.58" x="34.87" y="462.09" visible="true"/>
+    <joint height="0.51" id="nSTA29x0__OUT__0" inputs="0" outputs="1" width="0.58" x="0.76" y="461.49" visible="false"/>
+    <joint height="0.51" id="n4" inputs="1" outputs="1" width="0.58" x="24.22" y="461.49" visible="true"/>
+    <joint height="0.51" id="n5" inputs="1" outputs="1" width="0.58" x="9.79" y="452.82" visible="true"/>
+    <joint height="0.51" id="n6" inputs="1" outputs="1" width="0.58" x="28.39" y="461.76" visible="true"/>
+    <joint height="0.51" id="n7" inputs="1" outputs="1" width="0.58" x="17.42" y="454.56" visible="true"/>
+    <line id="e1x0__IN__" visible="true">
+      <fromjoint id="nSTA1x0__OUT__0" port="0"/>
+      <tobox id="es1" port="0"/>
+      <point x="30.99" y="457.69"/>
+      <point x="30.99" y="458.11"/>
+      <point x="31.46" y="458.11"/>
+      <point x="31.46" y="458.79"/>
+      <point x="31.93" y="458.79"/>
+      <point x="31.93" y="459.21"/>
+    </line>
+    <line id="e1x0__OUT__" visible="true">
+      <frombox id="es1" port="0"/>
+      <tojoint id="n1" port="0"/>
+      <point x="32.57" y="460.21"/>
+      <point x="32.57" y="460.67"/>
+      <point x="32.39" y="460.67"/>
+      <point x="32.39" y="461.62"/>
+      <point x="32.22" y="461.62"/>
+      <point x="32.22" y="462.06"/>
+    </line>
+    <line id="e1x1__IN__" visible="true">
+      <fromjoint id="nSTA1x1__OUT__0" port="0"/>
+      <tobox id="es1" port="1"/>
+      <point x="32.57" y="457.69"/>
+      <point x="32.57" y="458.11"/>
+      <point x="32.57" y="458.11"/>
+      <point x="32.57" y="458.79"/>
+      <point x="32.57" y="458.79"/>
+      <point x="32.57" y="459.21"/>
+    </line>
+    <line id="e1x1__OUT__" visible="true">
+      <frombox id="es1" port="1"/>
+      <tojoint id="n3" port="0"/>
+      <point x="33.22" y="460.21"/>
+      <point x="33.22" y="460.67"/>
+      <point x="33.27" y="460.67"/>
+      <point x="33.27" y="461.33"/>
+      <point x="33.32" y="461.33"/>
+      <point x="33.32" y="461.77"/>
+    </line>
+    <line id="e1x2__IN__" visible="true">
+      <fromjoint id="nSTA1x2__OUT__0" port="0"/>
+      <tobox id="es1" port="2"/>
+      <point x="34.15" y="457.69"/>
+      <point x="34.15" y="458.11"/>
+      <point x="33.69" y="458.11"/>
+      <point x="33.69" y="458.79"/>
+      <point x="33.22" y="458.79"/>
+      <point x="33.22" y="459.21"/>
+    </line>
+    <line id="e1x2__OUT__" visible="true">
+      <frombox id="es1" port="2"/>
+      <tojoint id="n6" port="0"/>
+      <point x="31.93" y="460.21"/>
+      <point x="31.93" y="460.65"/>
+      <point x="30.16" y="460.65"/>
+      <point x="30.16" y="461.06"/>
+      <point x="28.39" y="461.06"/>
+      <point x="28.39" y="461.50"/>
+    </line>
+    <line id="e3x0__IN__" visible="true">
+      <fromjoint id="nSTA3x0__OUT__0" port="0"/>
+      <tobox id="es3" port="0"/>
+      <point x="24.22" y="457.69"/>
+      <point x="24.22" y="458.11"/>
+      <point x="24.22" y="458.11"/>
+      <point x="24.22" y="458.54"/>
+      <point x="24.22" y="458.54"/>
+      <point x="24.22" y="458.96"/>
+    </line>
+    <line id="e3x0__OUT__" visible="true">
+      <frombox id="es3" port="0"/>
+      <tojoint id="n4" port="0"/>
+      <point x="24.22" y="459.96"/>
+      <point x="24.22" y="460.40"/>
+      <point x="24.22" y="460.40"/>
+      <point x="24.22" y="460.79"/>
+      <point x="24.22" y="460.79"/>
+      <point x="24.22" y="461.23"/>
+    </line>
+    <line id="e4x0__IN__" visible="true">
+      <fromjoint id="nSTA4x0__OUT__0" port="0"/>
+      <tobox id="es4" port="0"/>
+      <point x="8.72" y="446.02"/>
+      <point x="8.72" y="446.44"/>
+      <point x="9.25" y="446.44"/>
+      <point x="9.25" y="450.12"/>
+      <point x="9.79" y="450.12"/>
+      <point x="9.79" y="450.54"/>
+    </line>
+    <line id="e4x0__OUT__" visible="true">
+      <frombox id="es4" port="0"/>
+      <tojoint id="n5" port="0"/>
+      <point x="9.79" y="451.54"/>
+      <point x="9.79" y="451.98"/>
+      <point x="9.79" y="451.98"/>
+      <point x="9.79" y="452.13"/>
+      <point x="9.79" y="452.13"/>
+      <point x="9.79" y="452.56"/>
+    </line>
+    <line id="e5x0__IN__" visible="true">
+      <fromjoint id="n44" port="0"/>
+      <tobox id="es5" port="0"/>
+      <point x="6.16" y="493.19"/>
+      <point x="6.16" y="495.05"/>
+      <point x="11.09" y="495.05"/>
+      <point x="11.09" y="495.09"/>
+      <point x="16.03" y="495.09"/>
+      <point x="16.03" y="496.29"/>
+    </line>
+    <line id="e5x0__OUT__" visible="true">
+      <frombox id="es5" port="0"/>
+      <tojoint id="nEND5x0__IN__0" port="0"/>
+      <point x="16.03" y="497.29"/>
+      <point x="16.03" y="497.71"/>
+      <point x="14.20" y="497.71"/>
+      <point x="14.20" y="498.17"/>
+      <point x="12.38" y="498.17"/>
+      <point x="12.38" y="498.59"/>
+    </line>
+    <line id="e5x1__IN__" visible="true">
+      <fromjoint id="n45" port="0"/>
+      <tobox id="es5" port="1"/>
+      <point x="16.64" y="495.32"/>
+      <point x="16.64" y="495.76"/>
+      <point x="16.66" y="495.76"/>
+      <point x="16.66" y="495.83"/>
+      <point x="16.69" y="495.83"/>
+      <point x="16.69" y="496.29"/>
+    </line>
+    <line id="e5x1__OUT__" visible="true">
+      <frombox id="es5" port="1"/>
+      <tojoint id="nEND5x1__IN__0" port="0"/>
+      <point x="16.69" y="497.29"/>
+      <point x="16.69" y="497.71"/>
+      <point x="15.32" y="497.71"/>
+      <point x="15.32" y="498.17"/>
+      <point x="13.96" y="498.17"/>
+      <point x="13.96" y="498.59"/>
+    </line>
+    <line id="e6x0__IN__" visible="true">
+      <fromjoint id="nSTA6x0__OUT__0" port="0"/>
+      <tobox id="es6" port="0"/>
+      <point x="8.51" y="464.15"/>
+      <point x="8.51" y="464.57"/>
+      <point x="18.84" y="464.57"/>
+      <point x="18.84" y="458.63"/>
+      <point x="29.17" y="458.63"/>
+      <point x="29.17" y="459.05"/>
+    </line>
+    <line id="e6x0__OUT__" visible="true">
+      <frombox id="es6" port="0"/>
+      <tojoint id="n2" port="0"/>
+      <point x="36.45" y="460.05"/>
+      <point x="36.45" y="460.49"/>
+      <point x="35.66" y="460.49"/>
+      <point x="35.66" y="461.40"/>
+      <point x="34.87" y="461.40"/>
+      <point x="34.87" y="461.84"/>
+    </line>
+    <line id="e7x0__IN__" visible="true">
+      <fromjoint id="n5" port="0"/>
+      <tobox id="es7" port="0"/>
+      <point x="9.81" y="453.07"/>
+      <point x="9.81" y="453.51"/>
+      <point x="9.80" y="453.51"/>
+      <point x="9.80" y="453.75"/>
+      <point x="9.79" y="453.75"/>
+      <point x="9.79" y="454.19"/>
+    </line>
+    <line id="e7x0__OUT__" visible="true">
+      <frombox id="es7" port="0"/>
+      <tojoint id="nEND7x0__IN__0" port="0"/>
+      <point x="9.79" y="455.19"/>
+      <point x="9.79" y="455.61"/>
+      <point x="8.95" y="455.61"/>
+      <point x="8.95" y="455.52"/>
+      <point x="8.11" y="455.52"/>
+      <point x="8.11" y="455.94"/>
+    </line>
+    <line id="e7x1__IN__" visible="true">
+      <fromjoint id="nSTA7x1" port="0"/>
+      <tobox id="es7" port="1"/>
+      <point x="11.39" y="453.08"/>
+      <point x="11.39" y="453.50"/>
+      <point x="10.91" y="453.50"/>
+      <point x="10.91" y="453.77"/>
+      <point x="10.43" y="453.77"/>
+      <point x="10.43" y="454.19"/>
+    </line>
+    <line id="e7x1__OUT__" visible="true">
+      <frombox id="es7" port="1"/>
+      <tojoint id="n9" port="0"/>
+      <point x="11.08" y="455.19"/>
+      <point x="11.08" y="455.65"/>
+      <point x="11.08" y="455.65"/>
+      <point x="11.08" y="455.56"/>
+      <point x="11.08" y="455.56"/>
+      <point x="11.08" y="456.00"/>
+    </line>
+    <line id="e7x2__IN__" visible="true">
+      <fromjoint id="nSTA7x2__OUT__0" port="0"/>
+      <tobox id="es7" port="2"/>
+      <point x="12.01" y="452.66"/>
+      <point x="12.01" y="453.08"/>
+      <point x="11.55" y="453.08"/>
+      <point x="11.55" y="453.77"/>
+      <point x="11.08" y="453.77"/>
+      <point x="11.08" y="454.19"/>
+    </line>
+    <line id="e7x2__OUT__" visible="true">
+      <frombox id="es7" port="2"/>
+      <tojoint id="n11" port="0"/>
+      <point x="10.43" y="455.19"/>
+      <point x="10.43" y="455.63"/>
+      <point x="10.44" y="455.63"/>
+      <point x="10.44" y="464.20"/>
+      <point x="10.44" y="464.20"/>
+      <point x="10.44" y="464.64"/>
+    </line>
+    <line id="e8x0__IN__" visible="true">
+      <fromjoint id="n1" port="0"/>
+      <tobox id="es8" port="0"/>
+      <point x="32.23" y="462.57"/>
+      <point x="32.23" y="463.01"/>
+      <point x="32.33" y="463.01"/>
+      <point x="32.33" y="463.30"/>
+      <point x="32.43" y="463.30"/>
+      <point x="32.43" y="463.76"/>
+    </line>
+    <line id="e8x0__OUT__" visible="true">
+      <frombox id="es8" port="0"/>
+      <tojoint id="nEND8x0__IN__0" port="0"/>
+      <point x="31.79" y="464.76"/>
+      <point x="31.79" y="465.18"/>
+      <point x="30.91" y="465.18"/>
+      <point x="30.91" y="465.62"/>
+      <point x="30.03" y="465.62"/>
+      <point x="30.03" y="466.04"/>
+    </line>
+    <line id="e8x1__IN__" visible="true">
+      <fromjoint id="n2" port="0"/>
+      <tobox id="es8" port="1"/>
+      <point x="34.88" y="462.35"/>
+      <point x="34.88" y="462.79"/>
+      <point x="34.29" y="462.79"/>
+      <point x="34.29" y="463.26"/>
+      <point x="33.69" y="463.26"/>
+      <point x="33.69" y="463.76"/>
+    </line>
+    <line id="e8x1__OUT__" visible="true">
+      <frombox id="es8" port="1"/>
+      <tojoint id="nEND8x1__IN__0" port="0"/>
+      <point x="32.43" y="464.76"/>
+      <point x="32.43" y="465.18"/>
+      <point x="32.02" y="465.18"/>
+      <point x="32.02" y="465.62"/>
+      <point x="31.61" y="465.62"/>
+      <point x="31.61" y="466.04"/>
+    </line>
+    <line id="e8x2__IN__" visible="true">
+      <fromjoint id="n3" port="0"/>
+      <tobox id="es8" port="2"/>
+      <point x="33.34" y="462.28"/>
+      <point x="33.34" y="462.72"/>
+      <point x="33.20" y="462.72"/>
+      <point x="33.20" y="463.26"/>
+      <point x="33.06" y="463.26"/>
+      <point x="33.06" y="463.76"/>
+    </line>
+    <line id="e8x2__OUT__" visible="true">
+      <frombox id="es8" port="2"/>
+      <tojoint id="nEND8x2__IN__0" port="0"/>
+      <point x="33.06" y="464.76"/>
+      <point x="33.06" y="465.18"/>
+      <point x="33.13" y="465.18"/>
+      <point x="33.13" y="465.62"/>
+      <point x="33.19" y="465.62"/>
+      <point x="33.19" y="466.04"/>
+    </line>
+    <line id="e8x3__IN__" visible="true">
+      <fromjoint id="nSTA8x3__OUT__0" port="0"/>
+      <tobox id="es8" port="3"/>
+      <point x="35.43" y="461.75"/>
+      <point x="35.43" y="462.16"/>
+      <point x="34.56" y="462.16"/>
+      <point x="34.56" y="463.34"/>
+      <point x="33.69" y="463.34"/>
+      <point x="33.69" y="463.76"/>
+    </line>
+    <line id="e8x3__OUT__" visible="true">
+      <frombox id="es8" port="3"/>
+      <tojoint id="n8" port="0"/>
+      <point x="31.79" y="464.76"/>
+      <point x="31.79" y="465.60"/>
+      <point x="33.27" y="465.60"/>
+      <point x="33.27" y="465.60"/>
+      <point x="34.76" y="465.60"/>
+      <point x="34.76" y="466.04"/>
+    </line>
+    <line id="e10x0__IN__" visible="true">
+      <fromjoint id="n6" port="0"/>
+      <tobox id="es10" port="0"/>
+      <point x="28.40" y="462.01"/>
+      <point x="28.40" y="462.45"/>
+      <point x="28.05" y="462.45"/>
+      <point x="28.05" y="463.07"/>
+      <point x="27.71" y="463.07"/>
+      <point x="27.71" y="463.51"/>
+    </line>
+    <line id="e10x0__OUT__" visible="true">
+      <frombox id="es10" port="0"/>
+      <tojoint id="nEND10x0__IN__0" port="0"/>
+      <point x="27.71" y="464.51"/>
+      <point x="27.71" y="464.93"/>
+      <point x="27.29" y="464.93"/>
+      <point x="27.29" y="465.62"/>
+      <point x="26.86" y="465.62"/>
+      <point x="26.86" y="466.04"/>
+    </line>
+    <line id="e10x1__IN__" visible="true">
+      <fromjoint id="nSTA10x1__OUT__0" port="0"/>
+      <tobox id="es10" port="1"/>
+      <point x="29.10" y="461.75"/>
+      <point x="29.10" y="462.16"/>
+      <point x="28.73" y="462.16"/>
+      <point x="28.73" y="463.09"/>
+      <point x="28.36" y="463.09"/>
+      <point x="28.36" y="463.51"/>
+    </line>
+    <line id="e10x1__OUT__" visible="true">
+      <frombox id="es10" port="1"/>
+      <tojoint id="n10" port="0"/>
+      <point x="28.36" y="464.51"/>
+      <point x="28.36" y="464.95"/>
+      <point x="27.82" y="464.95"/>
+      <point x="27.82" y="464.94"/>
+      <point x="27.28" y="464.94"/>
+      <point x="27.28" y="465.42"/>
+    </line>
+    <line id="e11x0__IN__" visible="true">
+      <fromjoint id="nSTA11x0__OUT__0" port="0"/>
+      <tobox id="es11" port="0"/>
+      <point x="15.99" y="449.57"/>
+      <point x="15.99" y="450.00"/>
+      <point x="14.97" y="450.00"/>
+      <point x="14.97" y="452.07"/>
+      <point x="13.95" y="452.07"/>
+      <point x="13.95" y="452.49"/>
+    </line>
+    <line id="e11x0__OUT__" visible="true">
+      <frombox id="es11" port="0"/>
+      <tojoint id="n7" port="0"/>
+      <point x="17.40" y="453.49"/>
+      <point x="17.40" y="453.93"/>
+      <point x="17.41" y="453.93"/>
+      <point x="17.41" y="453.87"/>
+      <point x="17.42" y="453.87"/>
+      <point x="17.42" y="454.31"/>
+    </line>
+    <line id="e12x0__IN__" visible="true">
+      <fromjoint id="n4" port="0"/>
+      <tobox id="es12" port="0"/>
+      <point x="24.24" y="461.75"/>
+      <point x="24.24" y="462.18"/>
+      <point x="24.30" y="462.18"/>
+      <point x="24.30" y="463.00"/>
+      <point x="24.35" y="463.00"/>
+      <point x="24.35" y="463.44"/>
+    </line>
+    <line id="e12x0__OUT__" visible="true">
+      <frombox id="es12" port="0"/>
+      <tojoint id="nEND12x0__IN__0" port="0"/>
+      <point x="24.28" y="464.44"/>
+      <point x="24.28" y="464.86"/>
+      <point x="23.20" y="464.86"/>
+      <point x="23.20" y="465.62"/>
+      <point x="22.11" y="465.62"/>
+      <point x="22.11" y="466.04"/>
+    </line>
+    <line id="e12x1__IN__" visible="true">
+      <fromjoint id="nSTA12x1__OUT__0" port="0"/>
+      <tobox id="es12" port="1"/>
+      <point x="25.82" y="461.75"/>
+      <point x="25.82" y="462.16"/>
+      <point x="25.38" y="462.16"/>
+      <point x="25.38" y="463.02"/>
+      <point x="24.93" y="463.02"/>
+      <point x="24.93" y="463.44"/>
+    </line>
+    <line id="e12x1__OUT__" visible="true">
+      <frombox id="es12" port="1"/>
+      <tojoint id="n12" port="0"/>
+      <point x="25.00" y="464.44"/>
+      <point x="25.00" y="464.88"/>
+      <point x="24.07" y="464.88"/>
+      <point x="24.07" y="464.87"/>
+      <point x="23.13" y="464.87"/>
+      <point x="23.13" y="465.57"/>
+    </line>
+    <line id="e13x0__IN__" visible="true">
+      <fromjoint id="n10" port="0"/>
+      <tobox id="es13" port="0"/>
+      <point x="27.29" y="465.93"/>
+      <point x="27.29" y="466.37"/>
+      <point x="24.66" y="466.37"/>
+      <point x="24.66" y="468.85"/>
+      <point x="22.03" y="468.85"/>
+      <point x="22.03" y="469.35"/>
+    </line>
+    <line id="e13x0__OUT__" visible="true">
+      <frombox id="es13" port="0"/>
+      <tojoint id="nEND13x0__IN__0" port="0"/>
+      <point x="22.43" y="470.35"/>
+      <point x="22.43" y="470.77"/>
+      <point x="21.95" y="470.77"/>
+      <point x="21.95" y="469.93"/>
+      <point x="21.47" y="469.93"/>
+      <point x="21.47" y="470.34"/>
+    </line>
+    <line id="e13x1__IN__" visible="true">
+      <fromjoint id="n11" port="0"/>
+      <tobox id="es13" port="1"/>
+      <point x="10.45" y="465.15"/>
+      <point x="10.45" y="465.59"/>
+      <point x="15.29" y="465.59"/>
+      <point x="15.29" y="468.67"/>
+      <point x="20.13" y="468.67"/>
+      <point x="20.13" y="468.89"/>
+      <point x="20.13" y="468.89"/>
+      <point x="20.13" y="469.35"/>
+    </line>
+    <line id="e13x1__OUT__" visible="true">
+      <frombox id="es13" port="1"/>
+      <tojoint id="nEND13x1__IN__0" port="0"/>
+      <point x="23.07" y="470.35"/>
+      <point x="23.07" y="470.77"/>
+      <point x="23.06" y="470.77"/>
+      <point x="23.06" y="469.93"/>
+      <point x="23.06" y="469.93"/>
+      <point x="23.06" y="470.34"/>
+    </line>
+    <line id="e13x2__IN__" visible="true">
+      <fromjoint id="nSTA13x2__OUT__0" port="0"/>
+      <tobox id="es13" port="2"/>
+      <point x="23.69" y="466.55"/>
+      <point x="23.69" y="466.97"/>
+      <point x="23.69" y="466.97"/>
+      <point x="23.69" y="468.93"/>
+      <point x="23.69" y="468.93"/>
+      <point x="23.69" y="469.35"/>
+    </line>
+    <line id="e13x2__OUT__" visible="true">
+      <frombox id="es13" port="2"/>
+      <tojoint id="n17" port="0"/>
+      <point x="20.77" y="470.35"/>
+      <point x="20.77" y="470.79"/>
+      <point x="20.17" y="470.79"/>
+      <point x="20.17" y="471.83"/>
+      <point x="19.56" y="471.83"/>
+      <point x="19.56" y="472.27"/>
+    </line>
+    <line id="e13x3__IN__" visible="true">
+      <fromjoint id="n47" port="0"/>
+      <tobox id="es13" port="3"/>
+      <point x="20.59" y="467.00"/>
+      <point x="20.59" y="468.12"/>
+      <point x="20.99" y="468.12"/>
+      <point x="20.99" y="468.13"/>
+      <point x="21.39" y="468.13"/>
+      <point x="21.39" y="469.35"/>
+    </line>
+    <line id="e13x3__OUT__" visible="true">
+      <frombox id="es13" port="3"/>
+      <tojoint id="nEND13x3__IN__0" port="0"/>
+      <point x="24.33" y="470.35"/>
+      <point x="24.33" y="470.77"/>
+      <point x="26.07" y="470.77"/>
+      <point x="26.07" y="469.93"/>
+      <point x="27.81" y="469.93"/>
+      <point x="27.81" y="470.34"/>
+    </line>
+    <line id="e14x0__IN__" visible="true">
+      <fromjoint id="nSTA14x0__OUT__0" port="0"/>
+      <tobox id="es14" port="0"/>
+      <point x="39.53" y="466.55"/>
+      <point x="39.53" y="466.97"/>
+      <point x="38.85" y="466.97"/>
+      <point x="38.85" y="470.12"/>
+      <point x="38.17" y="470.12"/>
+      <point x="38.17" y="470.54"/>
+    </line>
+    <line id="e14x0__OUT__" visible="true">
+      <frombox id="es14" port="0"/>
+      <tojoint id="n15" port="0"/>
+      <point x="15.76" y="471.54"/>
+      <point x="15.76" y="472.25"/>
+      <point x="16.17" y="472.25"/>
+      <point x="16.17" y="472.25"/>
+      <point x="16.59" y="472.25"/>
+      <point x="16.59" y="472.69"/>
+    </line>
+    <line id="e15x0__IN__" visible="true">
+      <fromjoint id="n7" port="0"/>
+      <tobox id="es15" port="0"/>
+      <point x="17.43" y="454.82"/>
+      <point x="17.43" y="455.26"/>
+      <point x="17.43" y="455.26"/>
+      <point x="17.43" y="455.17"/>
+      <point x="17.43" y="455.17"/>
+      <point x="17.43" y="455.65"/>
+    </line>
+    <line id="e15x0__OUT__" visible="true">
+      <frombox id="es15" port="0"/>
+      <tojoint id="nEND15x0__IN__0" port="0"/>
+      <point x="14.12" y="456.65"/>
+      <point x="14.12" y="457.07"/>
+      <point x="14.11" y="457.07"/>
+      <point x="14.11" y="456.98"/>
+      <point x="14.11" y="456.98"/>
+      <point x="14.11" y="457.40"/>
+    </line>
+    <line id="e15x1__IN__" visible="true">
+      <fromjoint id="n9" port="0"/>
+      <tobox id="es15" port="1"/>
+      <point x="11.09" y="456.51"/>
+      <point x="11.09" y="457.01"/>
+      <point x="13.93" y="457.01"/>
+      <point x="13.93" y="455.19"/>
+      <point x="16.78" y="455.19"/>
+      <point x="16.78" y="455.65"/>
+    </line>
+    <line id="e15x1__OUT__" visible="true">
+      <frombox id="es15" port="1"/>
+      <tojoint id="nEND15x1__IN__0" port="0"/>
+      <point x="14.76" y="456.65"/>
+      <point x="14.76" y="457.07"/>
+      <point x="14.67" y="457.07"/>
+      <point x="14.67" y="457.16"/>
+      <point x="14.59" y="457.16"/>
+      <point x="14.59" y="457.58"/>
+    </line>
+    <line id="e15x2__IN__" visible="true">
+      <fromjoint id="nSTA15x2__OUT__0" port="0"/>
+      <tobox id="es15" port="2"/>
+      <point x="15.51" y="454.65"/>
+      <point x="15.51" y="455.07"/>
+      <point x="15.46" y="455.07"/>
+      <point x="15.46" y="455.23"/>
+      <point x="15.41" y="455.23"/>
+      <point x="15.41" y="455.65"/>
+    </line>
+    <line id="e15x2__OUT__" visible="true">
+      <frombox id="es15" port="2"/>
+      <tojoint id="n14" port="0"/>
+      <point x="16.14" y="456.65"/>
+      <point x="16.14" y="457.11"/>
+      <point x="16.15" y="457.11"/>
+      <point x="16.15" y="457.14"/>
+      <point x="16.16" y="457.14"/>
+      <point x="16.16" y="457.58"/>
+    </line>
+    <line id="e16x0__IN__" visible="true">
+      <fromjoint id="n8" port="0"/>
+      <tobox id="es16" port="0"/>
+      <point x="34.78" y="466.55"/>
+      <point x="34.78" y="466.99"/>
+      <point x="33.57" y="466.99"/>
+      <point x="33.57" y="466.99"/>
+      <point x="32.36" y="466.99"/>
+      <point x="32.36" y="468.31"/>
+    </line>
+    <line id="e16x0__OUT__" visible="true">
+      <frombox id="es16" port="0"/>
+      <tojoint id="nEND16x0__IN__0" port="0"/>
+      <point x="31.72" y="469.31"/>
+      <point x="31.72" y="469.73"/>
+      <point x="30.55" y="469.73"/>
+      <point x="30.55" y="469.93"/>
+      <point x="29.39" y="469.93"/>
+      <point x="29.39" y="470.34"/>
+    </line>
+    <line id="e16x1__IN__" visible="true">
+      <fromjoint id="n12" port="0"/>
+      <tobox id="es16" port="1"/>
+      <point x="23.15" y="466.08"/>
+      <point x="23.15" y="466.52"/>
+      <point x="23.15" y="466.52"/>
+      <point x="23.15" y="467.35"/>
+      <point x="27.44" y="467.35"/>
+      <point x="27.44" y="467.35"/>
+      <point x="31.72" y="467.35"/>
+      <point x="31.72" y="467.81"/>
+      <point x="31.72" y="467.81"/>
+      <point x="31.72" y="468.31"/>
+    </line>
+    <line id="e16x1__OUT__" visible="true">
+      <frombox id="es16" port="1"/>
+      <tojoint id="nEND16x1__IN__0" port="0"/>
+      <point x="32.36" y="469.31"/>
+      <point x="32.36" y="469.73"/>
+      <point x="31.66" y="469.73"/>
+      <point x="31.66" y="469.93"/>
+      <point x="30.97" y="469.93"/>
+      <point x="30.97" y="470.34"/>
+    </line>
+    <line id="e16x2__IN__" visible="true">
+      <fromjoint id="nSTA16x2" port="0"/>
+      <tobox id="es16" port="2"/>
+      <point x="36.36" y="466.55"/>
+      <point x="36.36" y="466.97"/>
+      <point x="34.67" y="466.97"/>
+      <point x="34.67" y="467.89"/>
+      <point x="32.99" y="467.89"/>
+      <point x="32.99" y="468.31"/>
+    </line>
+    <line id="e16x2__OUT__" visible="true">
+      <frombox id="es16" port="2"/>
+      <tojoint id="n13" port="0"/>
+      <point x="32.99" y="469.31"/>
+      <point x="32.99" y="469.68"/>
+      <point x="31.90" y="469.68"/>
+      <point x="31.90" y="469.67"/>
+      <point x="30.81" y="469.67"/>
+      <point x="30.81" y="470.45"/>
+    </line>
+    <line id="e16x3__IN__" visible="true">
+      <fromjoint id="nSTA16x3__OUT__0" port="0"/>
+      <tobox id="es16" port="3"/>
+      <point x="37.94" y="466.55"/>
+      <point x="37.94" y="466.97"/>
+      <point x="35.79" y="466.97"/>
+      <point x="35.79" y="467.89"/>
+      <point x="33.63" y="467.89"/>
+      <point x="33.63" y="468.31"/>
+    </line>
+    <line id="e16x3__OUT__" visible="true">
+      <frombox id="es16" port="3"/>
+      <tojoint id="n16" port="0"/>
+      <point x="33.63" y="469.31"/>
+      <point x="33.63" y="469.81"/>
+      <point x="33.64" y="469.81"/>
+      <point x="33.64" y="470.41"/>
+      <point x="33.64" y="470.41"/>
+      <point x="33.64" y="470.85"/>
+    </line>
+    <line id="e19x0__IN__" visible="true">
+      <fromjoint id="n15" port="0"/>
+      <tobox id="es19" port="0"/>
+      <point x="16.60" y="473.20"/>
+      <point x="16.60" y="473.55"/>
+      <point x="17.77" y="473.55"/>
+      <point x="17.77" y="473.53"/>
+      <point x="18.93" y="473.53"/>
+      <point x="18.93" y="473.97"/>
+    </line>
+    <line id="e19x0__OUT__" visible="true">
+      <frombox id="es19" port="0"/>
+      <tojoint id="nEND19x0__IN__0" port="0"/>
+      <point x="33.97" y="474.97"/>
+      <point x="33.97" y="475.39"/>
+      <point x="33.13" y="475.39"/>
+      <point x="33.13" y="474.23"/>
+      <point x="32.29" y="474.23"/>
+      <point x="32.29" y="474.64"/>
+    </line>
+    <line id="e19x1__IN__" visible="true">
+      <fromjoint id="n17" port="0"/>
+      <tobox id="es19" port="1"/>
+      <point x="19.57" y="472.78"/>
+      <point x="19.57" y="473.22"/>
+      <point x="19.57" y="473.22"/>
+      <point x="19.57" y="473.51"/>
+      <point x="19.57" y="473.51"/>
+      <point x="19.57" y="473.97"/>
+    </line>
+    <line id="e19x1__OUT__" visible="true">
+      <frombox id="es19" port="1"/>
+      <tojoint id="nEND19x1__IN__0" port="0"/>
+      <point x="34.61" y="474.97"/>
+      <point x="34.61" y="475.39"/>
+      <point x="34.25" y="475.39"/>
+      <point x="34.25" y="474.23"/>
+      <point x="33.88" y="474.23"/>
+      <point x="33.88" y="474.64"/>
+    </line>
+    <line id="e19x2__IN__" visible="true">
+      <fromjoint id="nSTA19x2__OUT__0" port="0"/>
+      <tobox id="es19" port="2"/>
+      <point x="37.31" y="470.86"/>
+      <point x="37.31" y="471.27"/>
+      <point x="36.29" y="471.27"/>
+      <point x="36.29" y="473.55"/>
+      <point x="35.26" y="473.55"/>
+      <point x="35.26" y="473.97"/>
+    </line>
+    <line id="e19x2__OUT__" visible="true">
+      <frombox id="es19" port="2"/>
+      <tojoint id="n18" port="0"/>
+      <point x="20.22" y="474.97"/>
+      <point x="20.22" y="475.41"/>
+      <point x="20.79" y="475.41"/>
+      <point x="20.79" y="475.40"/>
+      <point x="21.35" y="475.40"/>
+      <point x="21.35" y="475.73"/>
+    </line>
+    <line id="e20x0__IN__" visible="true">
+      <fromjoint id="n14" port="0"/>
+      <tobox id="es20" port="0"/>
+      <point x="16.18" y="458.09"/>
+      <point x="16.18" y="458.53"/>
+      <point x="16.18" y="458.53"/>
+      <point x="16.18" y="458.64"/>
+      <point x="16.19" y="458.64"/>
+      <point x="16.19" y="459.08"/>
+    </line>
+    <line id="e20x0__OUT__" visible="true">
+      <frombox id="es20" port="0"/>
+      <tojoint id="nEND20x0__IN__0" port="0"/>
+      <point x="16.19" y="460.08"/>
+      <point x="16.19" y="460.50"/>
+      <point x="15.46" y="460.50"/>
+      <point x="15.46" y="460.81"/>
+      <point x="14.72" y="460.81"/>
+      <point x="14.72" y="461.23"/>
+    </line>
+    <line id="e20x1__IN__" visible="true">
+      <fromjoint id="nSTA20x1" port="0"/>
+      <tobox id="es20" port="1"/>
+      <point x="15.69" y="457.91"/>
+      <point x="15.69" y="458.33"/>
+      <point x="16.27" y="458.33"/>
+      <point x="16.27" y="458.66"/>
+      <point x="16.85" y="458.66"/>
+      <point x="16.85" y="459.08"/>
+    </line>
+    <line id="e20x1__OUT__" visible="true">
+      <frombox id="es20" port="1"/>
+      <tojoint id="n21" port="0"/>
+      <point x="16.85" y="460.08"/>
+      <point x="16.85" y="460.52"/>
+      <point x="17.17" y="460.52"/>
+      <point x="17.17" y="460.69"/>
+      <point x="17.48" y="460.69"/>
+      <point x="17.48" y="461.13"/>
+    </line>
+    <line id="e21x0__IN__" visible="true">
+      <fromjoint id="nSTA21x0__OUT__0" port="0"/>
+      <tobox id="es21" port="0"/>
+      <point x="12.52" y="457.91"/>
+      <point x="12.52" y="458.33"/>
+      <point x="12.82" y="458.33"/>
+      <point x="12.82" y="458.54"/>
+      <point x="13.13" y="458.54"/>
+      <point x="13.13" y="458.96"/>
+    </line>
+    <line id="e21x0__OUT__" visible="true">
+      <frombox id="es21" port="0"/>
+      <tojoint id="n23" port="0"/>
+      <point x="13.13" y="459.96"/>
+      <point x="13.13" y="460.40"/>
+      <point x="13.13" y="460.40"/>
+      <point x="13.13" y="460.79"/>
+      <point x="13.13" y="460.79"/>
+      <point x="13.13" y="461.23"/>
+    </line>
+    <line id="e22x0__IN__" visible="true">
+      <fromjoint id="n16" port="0"/>
+      <tobox id="es22" port="0"/>
+      <point x="33.65" y="471.36"/>
+      <point x="33.65" y="471.80"/>
+      <point x="32.27" y="471.80"/>
+      <point x="32.27" y="471.81"/>
+      <point x="30.88" y="471.81"/>
+      <point x="30.88" y="472.25"/>
+    </line>
+    <line id="e22x0__OUT__" visible="true">
+      <frombox id="es22" port="0"/>
+      <tojoint id="nEND22x0" port="0"/>
+      <point x="30.88" y="473.25"/>
+      <point x="30.88" y="473.67"/>
+      <point x="30.80" y="473.67"/>
+      <point x="30.80" y="474.23"/>
+      <point x="30.71" y="474.23"/>
+      <point x="30.71" y="474.64"/>
+    </line>
+    <line id="e23x0__IN__" visible="true">
+      <fromjoint id="nSTA23x0__OUT__0" port="0"/>
+      <tobox id="es23" port="0"/>
+      <point x="17.76" y="458.09"/>
+      <point x="17.76" y="458.51"/>
+      <point x="18.82" y="458.51"/>
+      <point x="18.82" y="458.66"/>
+      <point x="19.88" y="458.66"/>
+      <point x="19.88" y="459.08"/>
+    </line>
+    <line id="e23x0__OUT__" visible="true">
+      <frombox id="es23" port="0"/>
+      <tojoint id="n20" port="0"/>
+      <point x="19.88" y="460.08"/>
+      <point x="19.88" y="460.52"/>
+      <point x="19.31" y="460.52"/>
+      <point x="19.31" y="460.98"/>
+      <point x="18.74" y="460.98"/>
+      <point x="18.74" y="461.42"/>
+    </line>
+    <line id="e23x1__IN__" visible="true">
+      <fromjoint id="nSTA23x1__OUT__0" port="0"/>
+      <tobox id="es23" port="1"/>
+      <point x="19.34" y="458.09"/>
+      <point x="19.34" y="458.51"/>
+      <point x="19.93" y="458.51"/>
+      <point x="19.93" y="458.66"/>
+      <point x="20.53" y="458.66"/>
+      <point x="20.53" y="459.08"/>
+    </line>
+    <line id="e23x1__OUT__" visible="true">
+      <frombox id="es23" port="1"/>
+      <tojoint id="n24" port="0"/>
+      <point x="20.53" y="460.08"/>
+      <point x="20.53" y="460.54"/>
+      <point x="20.77" y="460.54"/>
+      <point x="20.77" y="460.76"/>
+      <point x="21.01" y="460.76"/>
+      <point x="21.01" y="461.20"/>
+    </line>
+    <line id="e24x0__IN__" visible="true">
+      <fromjoint id="n13" port="0"/>
+      <tobox id="es24" port="0"/>
+      <point x="30.83" y="470.96"/>
+      <point x="30.83" y="471.40"/>
+      <point x="28.09" y="471.40"/>
+      <point x="28.09" y="471.41"/>
+      <point x="25.35" y="471.41"/>
+      <point x="25.35" y="472.63"/>
+    </line>
+    <line id="e24x0__OUT__" visible="true">
+      <frombox id="es24" port="0"/>
+      <tojoint id="nEND24x0__IN__0" port="0"/>
+      <point x="23.44" y="473.63"/>
+      <point x="23.44" y="474.05"/>
+      <point x="23.04" y="474.05"/>
+      <point x="23.04" y="474.23"/>
+      <point x="22.64" y="474.23"/>
+      <point x="22.64" y="474.64"/>
+    </line>
+    <line id="e24x1__IN__" visible="true">
+      <fromjoint id="nSTA24x1__OUT__0" port="0"/>
+      <tobox id="es24" port="1"/>
+      <point x="16.24" y="470.86"/>
+      <point x="16.24" y="471.27"/>
+      <point x="20.16" y="471.27"/>
+      <point x="20.16" y="472.21"/>
+      <point x="24.08" y="472.21"/>
+      <point x="24.08" y="472.63"/>
+    </line>
+    <line id="e24x1__OUT__" visible="true">
+      <frombox id="es24" port="1"/>
+      <tojoint id="n19" port="0"/>
+      <point x="24.08" y="473.63"/>
+      <point x="24.08" y="474.16"/>
+      <point x="24.21" y="474.16"/>
+      <point x="24.21" y="474.18"/>
+      <point x="24.34" y="474.18"/>
+      <point x="24.34" y="474.62"/>
+    </line>
+    <line id="e24x2__IN__" visible="true">
+      <fromjoint id="nSTA24x2__OUT__0" port="0"/>
+      <tobox id="es24" port="2"/>
+      <point x="24.64" y="470.86"/>
+      <point x="24.64" y="471.27"/>
+      <point x="24.68" y="471.27"/>
+      <point x="24.68" y="472.21"/>
+      <point x="24.71" y="472.21"/>
+      <point x="24.71" y="472.63"/>
+    </line>
+    <line id="e24x2__OUT__" visible="true">
+      <frombox id="es24" port="2"/>
+      <tojoint id="n22" port="0"/>
+      <point x="24.71" y="473.63"/>
+      <point x="24.71" y="474.20"/>
+      <point x="25.25" y="474.20"/>
+      <point x="25.25" y="474.21"/>
+      <point x="25.79" y="474.21"/>
+      <point x="25.79" y="474.64"/>
+    </line>
+    <line id="e24x3__IN__" visible="true">
+      <fromjoint id="n46" port="0"/>
+      <tobox id="es24" port="3"/>
+      <point x="17.82" y="470.86"/>
+      <point x="17.82" y="471.29"/>
+      <point x="20.63" y="471.29"/>
+      <point x="20.63" y="471.29"/>
+      <point x="23.44" y="471.29"/>
+      <point x="23.44" y="472.63"/>
+    </line>
+    <line id="e24x3__OUT__" visible="true">
+      <frombox id="es24" port="3"/>
+      <tojoint id="nEND24x3__IN__0" port="0"/>
+      <point x="25.35" y="473.63"/>
+      <point x="25.35" y="474.05"/>
+      <point x="26.37" y="474.05"/>
+      <point x="26.37" y="474.23"/>
+      <point x="27.39" y="474.23"/>
+      <point x="27.39" y="474.64"/>
+    </line>
+    <line id="e25x0__IN__" visible="true">
+      <fromjoint id="n20" port="0"/>
+      <tobox id="es25" port="0"/>
+      <point x="18.76" y="461.93"/>
+      <point x="18.76" y="462.37"/>
+      <point x="18.50" y="462.37"/>
+      <point x="18.50" y="463.51"/>
+      <point x="18.24" y="463.51"/>
+      <point x="18.24" y="464.01"/>
+    </line>
+    <line id="e25x0__OUT__" visible="true">
+      <frombox id="es25" port="0"/>
+      <tojoint id="nEND25x0__IN__0" port="0"/>
+      <point x="16.36" y="465.01"/>
+      <point x="16.36" y="465.43"/>
+      <point x="14.48" y="465.43"/>
+      <point x="14.48" y="465.62"/>
+      <point x="12.61" y="465.62"/>
+      <point x="12.61" y="466.04"/>
+    </line>
+    <line id="e25x1__IN__" visible="true">
+      <fromjoint id="n21" port="0"/>
+      <tobox id="es25" port="1"/>
+      <point x="17.49" y="461.64"/>
+      <point x="17.49" y="462.08"/>
+      <point x="16.93" y="462.08"/>
+      <point x="16.93" y="463.48"/>
+      <point x="16.36" y="463.48"/>
+      <point x="16.36" y="464.01"/>
+    </line>
+    <line id="e25x1__OUT__" visible="true">
+      <frombox id="es25" port="1"/>
+      <tojoint id="nEND25x1__IN__0" port="0"/>
+      <point x="16.99" y="465.01"/>
+      <point x="16.99" y="465.43"/>
+      <point x="15.59" y="465.43"/>
+      <point x="15.59" y="465.62"/>
+      <point x="14.19" y="465.62"/>
+      <point x="14.19" y="466.04"/>
+    </line>
+    <line id="e25x2__IN__" visible="true">
+      <fromjoint id="n23" port="0"/>
+      <tobox id="es25" port="2"/>
+      <point x="13.14" y="461.75"/>
+      <point x="13.14" y="462.18"/>
+      <point x="15.38" y="462.18"/>
+      <point x="15.38" y="462.75"/>
+      <point x="17.61" y="462.75"/>
+      <point x="17.61" y="463.57"/>
+      <point x="17.61" y="463.57"/>
+      <point x="17.61" y="464.01"/>
+    </line>
+    <line id="e25x2__OUT__" visible="true">
+      <frombox id="es25" port="2"/>
+      <tojoint id="nEND25x2__IN__0" port="0"/>
+      <point x="17.61" y="465.01"/>
+      <point x="17.61" y="465.43"/>
+      <point x="16.70" y="465.43"/>
+      <point x="16.70" y="465.62"/>
+      <point x="15.78" y="465.62"/>
+      <point x="15.78" y="466.04"/>
+    </line>
+    <line id="e25x3__IN__" visible="true">
+      <fromjoint id="n24" port="0"/>
+      <tobox id="es25" port="3"/>
+      <point x="21.02" y="461.71"/>
+      <point x="21.02" y="462.15"/>
+      <point x="19.95" y="462.15"/>
+      <point x="19.95" y="463.48"/>
+      <point x="18.88" y="463.48"/>
+      <point x="18.88" y="464.01"/>
+    </line>
+    <line id="e25x3__OUT__" visible="true">
+      <frombox id="es25" port="3"/>
+      <tojoint id="nEND25x3" port="0"/>
+      <point x="18.24" y="465.01"/>
+      <point x="18.24" y="465.43"/>
+      <point x="17.80" y="465.43"/>
+      <point x="17.80" y="465.62"/>
+      <point x="17.36" y="465.62"/>
+      <point x="17.36" y="466.04"/>
+    </line>
+    <line id="e25x4__IN__" visible="true">
+      <fromjoint id="nSTA25x4__OUT__0" port="0"/>
+      <tobox id="es25" port="4"/>
+      <point x="21.06" y="461.75"/>
+      <point x="21.06" y="462.16"/>
+      <point x="19.97" y="462.16"/>
+      <point x="19.97" y="463.59"/>
+      <point x="18.88" y="463.59"/>
+      <point x="18.88" y="464.01"/>
+    </line>
+    <line id="e25x4__OUT__" visible="true">
+      <frombox id="es25" port="4"/>
+      <tojoint id="n25" port="0"/>
+      <point x="16.99" y="465.01"/>
+      <point x="16.99" y="465.48"/>
+      <point x="16.92" y="465.48"/>
+      <point x="16.92" y="465.33"/>
+      <point x="16.85" y="465.33"/>
+      <point x="16.85" y="465.77"/>
+    </line>
+    <line id="e25x5__IN__" visible="true">
+      <fromjoint id="nSTA25x5" port="0"/>
+      <tobox id="es25" port="5"/>
+      <point x="22.64" y="461.75"/>
+      <point x="22.64" y="462.16"/>
+      <point x="21.06" y="462.16"/>
+      <point x="21.06" y="463.59"/>
+      <point x="19.49" y="463.59"/>
+      <point x="19.49" y="464.01"/>
+    </line>
+    <line id="e25x5__OUT__" visible="true">
+      <frombox id="es25" port="5"/>
+      <tojoint id="n47" port="0"/>
+      <point x="19.49" y="465.01"/>
+      <point x="19.49" y="466.03"/>
+      <point x="20.03" y="466.03"/>
+      <point x="20.03" y="466.05"/>
+      <point x="20.57" y="466.05"/>
+      <point x="20.57" y="466.49"/>
+    </line>
+    <line id="e26x0__IN__" visible="true">
+      <fromjoint id="n18" port="0"/>
+      <tobox id="es26" port="0"/>
+      <point x="21.37" y="476.24"/>
+      <point x="21.37" y="476.51"/>
+      <point x="22.97" y="476.51"/>
+      <point x="22.97" y="476.50"/>
+      <point x="24.56" y="476.50"/>
+      <point x="24.56" y="476.94"/>
+    </line>
+    <line id="e26x0__OUT__" visible="true">
+      <frombox id="es26" port="0"/>
+      <tojoint id="nEND26x0__IN__0" port="0"/>
+      <point x="24.56" y="477.94"/>
+      <point x="24.56" y="478.36"/>
+      <point x="23.62" y="478.36"/>
+      <point x="23.62" y="478.53"/>
+      <point x="22.68" y="478.53"/>
+      <point x="22.68" y="478.95"/>
+    </line>
+    <line id="e26x1__IN__" visible="true">
+      <fromjoint id="n19" port="0"/>
+      <tobox id="es26" port="1"/>
+      <point x="24.35" y="475.13"/>
+      <point x="24.35" y="476.03"/>
+      <point x="24.77" y="476.03"/>
+      <point x="24.77" y="476.02"/>
+      <point x="25.19" y="476.02"/>
+      <point x="25.19" y="476.94"/>
+    </line>
+    <line id="e26x1__OUT__" visible="true">
+      <frombox id="es26" port="1"/>
+      <tojoint id="nEND26x1__IN__0" port="0"/>
+      <point x="25.19" y="477.94"/>
+      <point x="25.19" y="478.36"/>
+      <point x="24.73" y="478.36"/>
+      <point x="24.73" y="478.53"/>
+      <point x="24.26" y="478.53"/>
+      <point x="24.26" y="478.95"/>
+    </line>
+    <line id="e26x2__IN__" visible="true">
+      <fromjoint id="n22" port="0"/>
+      <tobox id="es26" port="2"/>
+      <point x="25.81" y="475.16"/>
+      <point x="25.81" y="475.59"/>
+      <point x="25.81" y="475.59"/>
+      <point x="25.81" y="476.46"/>
+      <point x="25.82" y="476.46"/>
+      <point x="25.82" y="476.94"/>
+    </line>
+    <line id="e26x2__OUT__" visible="true">
+      <frombox id="es26" port="2"/>
+      <tojoint id="nEND26x2" port="0"/>
+      <point x="25.82" y="477.94"/>
+      <point x="25.82" y="478.36"/>
+      <point x="25.84" y="478.36"/>
+      <point x="25.84" y="478.53"/>
+      <point x="25.85" y="478.53"/>
+      <point x="25.85" y="478.95"/>
+    </line>
+    <line id="e26x3__IN__" visible="true">
+      <fromjoint id="nSTA26x3__OUT__0" port="0"/>
+      <tobox id="es26" port="3"/>
+      <point x="37.04" y="475.16"/>
+      <point x="37.04" y="475.57"/>
+      <point x="31.75" y="475.57"/>
+      <point x="31.75" y="476.52"/>
+      <point x="26.46" y="476.52"/>
+      <point x="26.46" y="476.94"/>
+    </line>
+    <line id="e26x3__OUT__" visible="true">
+      <frombox id="es26" port="3"/>
+      <tojoint id="n26" port="0"/>
+      <point x="26.46" y="477.94"/>
+      <point x="26.46" y="478.44"/>
+      <point x="26.47" y="478.44"/>
+      <point x="26.47" y="480.48"/>
+      <point x="26.47" y="480.48"/>
+      <point x="26.47" y="480.92"/>
+    </line>
+    <line id="e28x0__IN__" visible="true">
+      <fromjoint id="nSTA28x0__OUT__0" port="0"/>
+      <tobox id="es28" port="0"/>
+      <point x="9.44" y="482.37"/>
+      <point x="9.44" y="482.79"/>
+      <point x="9.67" y="482.79"/>
+      <point x="9.67" y="481.76"/>
+      <point x="9.89" y="481.76"/>
+      <point x="9.89" y="482.18"/>
+    </line>
+    <line id="e28x0__OUT__" visible="true">
+      <frombox id="es28" port="0"/>
+      <tojoint id="n27" port="0"/>
+      <point x="3.51" y="483.18"/>
+      <point x="3.51" y="484.57"/>
+      <point x="2.88" y="484.57"/>
+      <point x="2.88" y="484.58"/>
+      <point x="2.24" y="484.58"/>
+      <point x="2.24" y="486.06"/>
+    </line>
+    <line id="e28x1__IN__" visible="true">
+      <fromjoint id="nSTA28x1__OUT__0" port="0"/>
+      <tobox id="es28" port="1"/>
+      <point x="11.03" y="482.37"/>
+      <point x="11.03" y="482.79"/>
+      <point x="10.79" y="482.79"/>
+      <point x="10.79" y="481.76"/>
+      <point x="10.54" y="481.76"/>
+      <point x="10.54" y="482.18"/>
+    </line>
+    <line id="e28x1__OUT__" visible="true">
+      <frombox id="es28" port="1"/>
+      <tojoint id="n31" port="0"/>
+      <point x="4.16" y="483.18"/>
+      <point x="4.16" y="483.64"/>
+      <point x="9.44" y="483.64"/>
+      <point x="9.44" y="483.66"/>
+      <point x="14.72" y="483.66"/>
+      <point x="14.72" y="485.73"/>
+      <point x="14.72" y="485.73"/>
+      <point x="14.72" y="486.16"/>
+    </line>
+    <line id="e29x0__IN__" visible="true">
+      <fromjoint id="nSTA29x0__OUT__0" port="0"/>
+      <tobox id="es29" port="0"/>
+      <point x="0.78" y="461.75"/>
+      <point x="0.78" y="462.16"/>
+      <point x="1.25" y="462.16"/>
+      <point x="1.25" y="460.56"/>
+      <point x="1.72" y="460.56"/>
+      <point x="1.72" y="460.98"/>
+    </line>
+    <line id="e29x0__OUT__" visible="true">
+      <frombox id="es29" port="0"/>
+      <tojoint id="n28" port="0"/>
+      <point x="1.63" y="461.98"/>
+      <point x="1.63" y="462.42"/>
+      <point x="0.96" y="462.42"/>
+      <point x="0.96" y="476.37"/>
+      <point x="0.29" y="476.37"/>
+      <point x="0.29" y="476.81"/>
+    </line>
+    <line id="e29x1__IN__" visible="true">
+      <fromjoint id="nSTA29x1" port="0"/>
+      <tobox id="es29" port="1"/>
+      <point x="2.36" y="461.75"/>
+      <point x="2.36" y="462.16"/>
+      <point x="2.36" y="462.16"/>
+      <point x="2.36" y="460.56"/>
+      <point x="2.36" y="460.56"/>
+      <point x="2.36" y="460.98"/>
+    </line>
+    <line id="e29x1__OUT__" visible="true">
+      <frombox id="es29" port="1"/>
+      <tojoint id="n29" port="0"/>
+      <point x="2.27" y="461.98"/>
+      <point x="2.27" y="462.44"/>
+      <point x="2.28" y="462.44"/>
+      <point x="2.28" y="480.42"/>
+      <point x="7.50" y="480.42"/>
+      <point x="7.50" y="480.86"/>
+    </line>
+    <line id="e29x2__IN__" visible="true">
+      <fromjoint id="nSTA29x2__OUT__0" port="0"/>
+      <tobox id="es29" port="2"/>
+      <point x="3.94" y="461.75"/>
+      <point x="3.94" y="462.16"/>
+      <point x="3.48" y="462.16"/>
+      <point x="3.48" y="460.56"/>
+      <point x="3.01" y="460.56"/>
+      <point x="3.01" y="460.98"/>
+    </line>
+    <line id="e29x2__OUT__" visible="true">
+      <frombox id="es29" port="2"/>
+      <tojoint id="n33" port="0"/>
+      <point x="2.92" y="461.98"/>
+      <point x="2.92" y="462.46"/>
+      <point x="3.50" y="462.46"/>
+      <point x="3.50" y="462.93"/>
+      <point x="4.08" y="462.93"/>
+      <point x="4.08" y="463.37"/>
+    </line>
+    <line id="e31x0__IN__" visible="true">
+      <fromjoint id="n26" port="0"/>
+      <tobox id="es31" port="0"/>
+      <point x="26.49" y="481.43"/>
+      <point x="26.49" y="481.87"/>
+      <point x="26.49" y="481.87"/>
+      <point x="26.49" y="483.72"/>
+      <point x="21.98" y="483.72"/>
+      <point x="21.98" y="483.72"/>
+      <point x="18.18" y="483.72"/>
+      <point x="18.18" y="483.71"/>
+      <point x="18.18" y="483.71"/>
+      <point x="18.18" y="484.14"/>
+    </line>
+    <line id="e31x0__OUT__" visible="true">
+      <frombox id="es31" port="0"/>
+      <tojoint id="nEND31x0" port="0"/>
+      <point x="18.18" y="485.14"/>
+      <point x="18.18" y="485.56"/>
+      <point x="17.25" y="485.56"/>
+      <point x="17.25" y="485.75"/>
+      <point x="16.32" y="485.75"/>
+      <point x="16.32" y="486.17"/>
+    </line>
+    <line id="e31x1__IN__" visible="true">
+      <fromjoint id="nSTA31x1__OUT__0" port="0"/>
+      <tobox id="es31" port="1"/>
+      <point x="18.46" y="482.37"/>
+      <point x="18.46" y="482.79"/>
+      <point x="18.64" y="482.79"/>
+      <point x="18.64" y="483.72"/>
+      <point x="18.82" y="483.72"/>
+      <point x="18.82" y="484.14"/>
+    </line>
+    <line id="e31x1__OUT__" visible="true">
+      <frombox id="es31" port="1"/>
+      <tojoint id="n30" port="0"/>
+      <point x="18.82" y="485.14"/>
+      <point x="18.82" y="485.69"/>
+      <point x="17.92" y="485.69"/>
+      <point x="17.92" y="485.69"/>
+      <point x="17.03" y="485.69"/>
+      <point x="17.03" y="486.13"/>
+    </line>
+    <line id="e31x2__IN__" visible="true">
+      <fromjoint id="nSTA31x2__OUT__0" port="0"/>
+      <tobox id="es31" port="2"/>
+      <point x="25.24" y="483.27"/>
+      <point x="25.24" y="483.69"/>
+      <point x="22.34" y="483.69"/>
+      <point x="22.34" y="483.72"/>
+      <point x="19.44" y="483.72"/>
+      <point x="19.44" y="484.14"/>
+    </line>
+    <line id="e31x2__OUT__" visible="true">
+      <frombox id="es31" port="2"/>
+      <tojoint id="n32" port="0"/>
+      <point x="19.44" y="485.14"/>
+      <point x="19.44" y="485.62"/>
+      <point x="19.46" y="485.62"/>
+      <point x="19.46" y="485.73"/>
+      <point x="19.47" y="485.73"/>
+      <point x="19.47" y="486.16"/>
+    </line>
+    <line id="e31x3__IN__" visible="true">
+      <fromjoint id="n48" port="0"/>
+      <tobox id="es31" port="3"/>
+      <point x="20.04" y="483.27"/>
+      <point x="20.04" y="483.71"/>
+      <point x="20.06" y="483.71"/>
+      <point x="20.06" y="483.64"/>
+      <point x="20.08" y="483.64"/>
+      <point x="20.08" y="484.14"/>
+    </line>
+    <line id="e31x3__OUT__" visible="true">
+      <frombox id="es31" port="3"/>
+      <tojoint id="nEND31x3__IN__0" port="0"/>
+      <point x="20.08" y="485.14"/>
+      <point x="20.08" y="485.56"/>
+      <point x="21.36" y="485.56"/>
+      <point x="21.36" y="485.75"/>
+      <point x="22.65" y="485.75"/>
+      <point x="22.65" y="486.17"/>
+    </line>
+    <line id="e33x0__IN__" visible="true">
+      <fromjoint id="n25" port="0"/>
+      <tobox id="es33" port="0"/>
+      <point x="16.86" y="466.28"/>
+      <point x="16.86" y="466.72"/>
+      <point x="16.66" y="466.72"/>
+      <point x="16.66" y="466.60"/>
+      <point x="16.47" y="466.60"/>
+      <point x="16.47" y="467.04"/>
+    </line>
+    <line id="e33x0__OUT__" visible="true">
+      <frombox id="es33" port="0"/>
+      <tojoint id="nEND33x0__IN__0" port="0"/>
+      <point x="18.99" y="468.04"/>
+      <point x="18.99" y="468.46"/>
+      <point x="19.20" y="468.46"/>
+      <point x="19.20" y="469.93"/>
+      <point x="19.40" y="469.93"/>
+      <point x="19.40" y="470.34"/>
+    </line>
+    <line id="e34x0__IN__" visible="true">
+      <fromjoint id="n29" port="0"/>
+      <tobox id="es34" port="0"/>
+      <point x="7.51" y="481.37"/>
+      <point x="7.51" y="481.81"/>
+      <point x="10.79" y="481.81"/>
+      <point x="10.79" y="488.01"/>
+      <point x="14.07" y="488.01"/>
+      <point x="14.07" y="488.45"/>
+    </line>
+    <line id="e34x0__OUT__" visible="true">
+      <frombox id="es34" port="0"/>
+      <tojoint id="nEND34x0__IN__0" port="0"/>
+      <point x="14.07" y="489.45"/>
+      <point x="14.07" y="489.87"/>
+      <point x="13.08" y="489.87"/>
+      <point x="13.08" y="490.05"/>
+      <point x="12.10" y="490.05"/>
+      <point x="12.10" y="490.47"/>
+    </line>
+    <line id="e34x1__IN__" visible="true">
+      <fromjoint id="n31" port="0"/>
+      <tobox id="es34" port="1"/>
+      <point x="14.74" y="486.67"/>
+      <point x="14.74" y="487.11"/>
+      <point x="14.72" y="487.11"/>
+      <point x="14.72" y="487.99"/>
+      <point x="14.71" y="487.99"/>
+      <point x="14.71" y="488.45"/>
+    </line>
+    <line id="e34x1__OUT__" visible="true">
+      <frombox id="es34" port="1"/>
+      <tojoint id="nEND34x1__IN__0" port="0"/>
+      <point x="14.71" y="489.45"/>
+      <point x="14.71" y="489.87"/>
+      <point x="14.20" y="489.87"/>
+      <point x="14.20" y="490.05"/>
+      <point x="13.68" y="490.05"/>
+      <point x="13.68" y="490.47"/>
+    </line>
+    <line id="e34x2__IN__" visible="true">
+      <fromjoint id="n32" port="0"/>
+      <tobox id="es34" port="2"/>
+      <point x="19.49" y="486.67"/>
+      <point x="19.49" y="487.97"/>
+      <point x="17.41" y="487.97"/>
+      <point x="17.41" y="487.97"/>
+      <point x="15.33" y="487.97"/>
+      <point x="15.33" y="488.45"/>
+    </line>
+    <line id="e34x2__OUT__" visible="true">
+      <frombox id="es34" port="2"/>
+      <tojoint id="nEND34x2__IN__0" port="0"/>
+      <point x="15.33" y="489.45"/>
+      <point x="15.33" y="489.87"/>
+      <point x="15.29" y="489.87"/>
+      <point x="15.29" y="490.05"/>
+      <point x="15.26" y="490.05"/>
+      <point x="15.26" y="490.47"/>
+    </line>
+    <line id="e34x3__IN__" visible="true">
+      <fromjoint id="nSTA34x3" port="0"/>
+      <tobox id="es34" port="3"/>
+      <point x="21.07" y="486.68"/>
+      <point x="21.07" y="487.10"/>
+      <point x="18.52" y="487.10"/>
+      <point x="18.52" y="488.03"/>
+      <point x="15.97" y="488.03"/>
+      <point x="15.97" y="488.45"/>
+    </line>
+    <line id="e34x3__OUT__" visible="true">
+      <frombox id="es34" port="3"/>
+      <tojoint id="n37" port="0"/>
+      <point x="15.97" y="489.45"/>
+      <point x="15.97" y="490.02"/>
+      <point x="16.40" y="490.02"/>
+      <point x="16.40" y="490.03"/>
+      <point x="16.83" y="490.03"/>
+      <point x="16.83" y="490.46"/>
+    </line>
+    <line id="e35x0__IN__" visible="true">
+      <fromjoint id="n30" port="0"/>
+      <tobox id="es35" port="0"/>
+      <point x="17.04" y="486.64"/>
+      <point x="17.04" y="487.08"/>
+      <point x="12.45" y="487.08"/>
+      <point x="12.45" y="487.08"/>
+      <point x="7.86" y="487.08"/>
+      <point x="7.86" y="487.76"/>
+      <point x="7.86" y="487.76"/>
+      <point x="7.86" y="488.20"/>
+    </line>
+    <line id="e35x0__OUT__" visible="true">
+      <frombox id="es35" port="0"/>
+      <tojoint id="nEND35x0__IN__0" port="0"/>
+      <point x="7.86" y="489.20"/>
+      <point x="7.86" y="489.62"/>
+      <point x="8.38" y="489.62"/>
+      <point x="8.38" y="490.05"/>
+      <point x="8.89" y="490.05"/>
+      <point x="8.89" y="490.47"/>
+    </line>
+    <line id="e35x1__IN__" visible="true">
+      <fromjoint id="nSTA35x1__OUT__0" port="0"/>
+      <tobox id="es35" port="1"/>
+      <point x="8.51" y="486.68"/>
+      <point x="8.51" y="487.10"/>
+      <point x="8.51" y="487.10"/>
+      <point x="8.51" y="487.78"/>
+      <point x="8.51" y="487.78"/>
+      <point x="8.51" y="488.20"/>
+    </line>
+    <line id="e35x1__OUT__" visible="true">
+      <frombox id="es35" port="1"/>
+      <tojoint id="n34" port="0"/>
+      <point x="8.51" y="489.20"/>
+      <point x="8.51" y="490.03"/>
+      <point x="9.49" y="490.03"/>
+      <point x="9.49" y="490.03"/>
+      <point x="10.47" y="490.03"/>
+      <point x="10.47" y="490.46"/>
+    </line>
+    <line id="e36x0__IN__" visible="true">
+      <fromjoint id="n27" port="0"/>
+      <tobox id="es36" port="0"/>
+      <point x="2.25" y="486.57"/>
+      <point x="2.25" y="487.33"/>
+      <point x="2.68" y="487.33"/>
+      <point x="2.68" y="487.35"/>
+      <point x="3.11" y="487.35"/>
+      <point x="3.11" y="488.32"/>
+    </line>
+    <line id="e36x0__OUT__" visible="true">
+      <frombox id="es36" port="0"/>
+      <tojoint id="nEND36x0__IN__0" port="0"/>
+      <point x="1.82" y="489.32"/>
+      <point x="1.82" y="489.74"/>
+      <point x="1.58" y="489.74"/>
+      <point x="1.58" y="490.05"/>
+      <point x="1.35" y="490.05"/>
+      <point x="1.35" y="490.47"/>
+    </line>
+    <line id="e36x1__IN__" visible="true">
+      <fromjoint id="n28" port="0"/>
+      <tobox id="es36" port="1"/>
+      <point x="0.31" y="477.32"/>
+      <point x="0.31" y="477.75"/>
+      <point x="1.06" y="477.75"/>
+      <point x="1.06" y="487.84"/>
+      <point x="1.82" y="487.84"/>
+      <point x="1.82" y="488.32"/>
+    </line>
+    <line id="e36x1__OUT__" visible="true">
+      <frombox id="es36" port="1"/>
+      <tojoint id="nEND36x1" port="0"/>
+      <point x="2.46" y="489.32"/>
+      <point x="2.46" y="489.74"/>
+      <point x="2.70" y="489.74"/>
+      <point x="2.70" y="490.05"/>
+      <point x="2.93" y="490.05"/>
+      <point x="2.93" y="490.47"/>
+    </line>
+    <line id="e36x2__IN__" visible="true">
+      <fromjoint id="nSTA36x2__OUT__0" port="0"/>
+      <tobox id="es36" port="2"/>
+      <point x="3.69" y="486.68"/>
+      <point x="3.69" y="487.10"/>
+      <point x="3.40" y="487.10"/>
+      <point x="3.40" y="487.90"/>
+      <point x="3.11" y="487.90"/>
+      <point x="3.11" y="488.32"/>
+    </line>
+    <line id="e36x2__OUT__" visible="true">
+      <frombox id="es36" port="2"/>
+      <tojoint id="n36" port="0"/>
+      <point x="2.46" y="489.32"/>
+      <point x="2.46" y="490.01"/>
+      <point x="4.88" y="490.01"/>
+      <point x="4.88" y="490.03"/>
+      <point x="7.29" y="490.03"/>
+      <point x="7.29" y="490.46"/>
+    </line>
+    <line id="e37x0__IN__" visible="true">
+      <fromjoint id="n33" port="0"/>
+      <tobox id="es37" port="0"/>
+      <point x="4.09" y="463.88"/>
+      <point x="4.09" y="464.32"/>
+      <point x="4.80" y="464.32"/>
+      <point x="4.80" y="465.21"/>
+      <point x="5.51" y="465.21"/>
+      <point x="5.51" y="465.65"/>
+    </line>
+    <line id="e37x0__OUT__" visible="true">
+      <frombox id="es37" port="0"/>
+      <tojoint id="nEND37x0__IN__0" port="0"/>
+      <point x="5.60" y="466.65"/>
+      <point x="5.60" y="467.07"/>
+      <point x="4.89" y="467.07"/>
+      <point x="4.89" y="469.93"/>
+      <point x="4.18" y="469.93"/>
+      <point x="4.18" y="470.34"/>
+    </line>
+    <line id="e37x1__IN__" visible="true">
+      <fromjoint id="nSTA37x1__OUT__0" port="0"/>
+      <tobox id="es37" port="1"/>
+      <point x="5.76" y="466.55"/>
+      <point x="5.76" y="466.97"/>
+      <point x="6.00" y="466.97"/>
+      <point x="6.00" y="465.23"/>
+      <point x="6.24" y="465.23"/>
+      <point x="6.24" y="465.65"/>
+    </line>
+    <line id="e37x1__OUT__" visible="true">
+      <frombox id="es37" port="1"/>
+      <tojoint id="n35" port="0"/>
+      <point x="6.77" y="466.65"/>
+      <point x="6.77" y="467.11"/>
+      <point x="9.14" y="467.11"/>
+      <point x="9.14" y="469.98"/>
+      <point x="11.51" y="469.98"/>
+      <point x="11.51" y="470.42"/>
+    </line>
+    <line id="e37x2__IN__" visible="true">
+      <fromjoint id="nSTA37x2" port="0"/>
+      <tobox id="es37" port="2"/>
+      <point x="7.35" y="466.55"/>
+      <point x="7.35" y="466.97"/>
+      <point x="7.11" y="466.97"/>
+      <point x="7.11" y="465.23"/>
+      <point x="6.86" y="465.23"/>
+      <point x="6.86" y="465.65"/>
+    </line>
+    <line id="e37x2__OUT__" visible="true">
+      <frombox id="es37" port="2"/>
+      <tojoint id="n44" port="0"/>
+      <point x="6.15" y="466.65"/>
+      <point x="6.15" y="467.09"/>
+      <point x="6.15" y="467.09"/>
+      <point x="6.15" y="492.24"/>
+      <point x="6.14" y="492.24"/>
+      <point x="6.14" y="492.68"/>
+    </line>
+    <line id="e37x3__IN__" visible="true">
+      <fromjoint id="nSTA37x3" port="0"/>
+      <tobox id="es37" port="3"/>
+      <point x="8.93" y="466.55"/>
+      <point x="8.93" y="466.97"/>
+      <point x="8.21" y="466.97"/>
+      <point x="8.21" y="465.23"/>
+      <point x="7.50" y="465.23"/>
+      <point x="7.50" y="465.65"/>
+    </line>
+    <line id="e37x3__OUT__" visible="true">
+      <frombox id="es37" port="3"/>
+      <tojoint id="n46" port="0"/>
+      <point x="7.41" y="466.65"/>
+      <point x="7.41" y="467.13"/>
+      <point x="12.61" y="467.13"/>
+      <point x="12.61" y="469.91"/>
+      <point x="17.81" y="469.91"/>
+      <point x="17.81" y="470.34"/>
+    </line>
+    <line id="e38x0__IN__" visible="true">
+      <fromjoint id="n36" port="0"/>
+      <tobox id="es38" port="0"/>
+      <point x="7.31" y="490.98"/>
+      <point x="7.31" y="491.41"/>
+      <point x="7.31" y="491.41"/>
+      <point x="7.31" y="492.10"/>
+      <point x="11.76" y="492.10"/>
+      <point x="11.76" y="492.31"/>
+      <point x="16.21" y="492.31"/>
+      <point x="16.21" y="492.75"/>
+    </line>
+    <line id="e38x0__OUT__" visible="true">
+      <frombox id="es38" port="0"/>
+      <tojoint id="nEND38x0" port="0"/>
+      <point x="16.21" y="493.75"/>
+      <point x="16.21" y="494.17"/>
+      <point x="15.60" y="494.17"/>
+      <point x="15.60" y="494.36"/>
+      <point x="14.99" y="494.36"/>
+      <point x="14.99" y="494.78"/>
+    </line>
+    <line id="e38x1__IN__" visible="true">
+      <fromjoint id="n37" port="0"/>
+      <tobox id="es38" port="1"/>
+      <point x="16.85" y="490.98"/>
+      <point x="16.85" y="491.41"/>
+      <point x="16.85" y="491.41"/>
+      <point x="16.85" y="492.29"/>
+      <point x="16.85" y="492.29"/>
+      <point x="16.85" y="492.75"/>
+    </line>
+    <line id="e38x1__OUT__" visible="true">
+      <frombox id="es38" port="1"/>
+      <tojoint id="nEND38x1__IN__0" port="0"/>
+      <point x="16.85" y="493.75"/>
+      <point x="16.85" y="494.17"/>
+      <point x="16.71" y="494.17"/>
+      <point x="16.71" y="494.36"/>
+      <point x="16.57" y="494.36"/>
+      <point x="16.57" y="494.78"/>
+    </line>
+    <line id="e38x2__IN__" visible="true">
+      <fromjoint id="nSTA38x2__OUT__0" port="0"/>
+      <tobox id="es38" port="2"/>
+      <point x="18.43" y="490.98"/>
+      <point x="18.43" y="491.40"/>
+      <point x="17.95" y="491.40"/>
+      <point x="17.95" y="492.33"/>
+      <point x="17.47" y="492.33"/>
+      <point x="17.47" y="492.75"/>
+    </line>
+    <line id="e38x2__OUT__" visible="true">
+      <frombox id="es38" port="2"/>
+      <tojoint id="n39" port="0"/>
+      <point x="18.11" y="493.75"/>
+      <point x="18.11" y="494.21"/>
+      <point x="18.78" y="494.21"/>
+      <point x="18.78" y="494.25"/>
+      <point x="19.72" y="494.25"/>
+      <point x="19.72" y="494.78"/>
+    </line>
+    <line id="e38x3__IN__" visible="true">
+      <fromjoint id="nSTA38x3__OUT__0" port="0"/>
+      <tobox id="es38" port="3"/>
+      <point x="20.01" y="490.98"/>
+      <point x="20.01" y="491.40"/>
+      <point x="19.06" y="491.40"/>
+      <point x="19.06" y="492.33"/>
+      <point x="18.11" y="492.33"/>
+      <point x="18.11" y="492.75"/>
+    </line>
+    <line id="e38x3__OUT__" visible="true">
+      <frombox id="es38" port="3"/>
+      <tojoint id="n45" port="0"/>
+      <point x="17.47" y="493.75"/>
+      <point x="17.47" y="494.19"/>
+      <point x="17.05" y="494.19"/>
+      <point x="17.05" y="494.22"/>
+      <point x="16.63" y="494.22"/>
+      <point x="16.63" y="494.81"/>
+    </line>
+    <line id="e39x0__IN__" visible="true">
+      <fromjoint id="nSTA39x0__OUT__0" port="0"/>
+      <tobox id="es39" port="0"/>
+      <point x="34.13" y="446.02"/>
+      <point x="34.13" y="446.44"/>
+      <point x="24.26" y="446.44"/>
+      <point x="24.26" y="456.94"/>
+      <point x="14.39" y="456.94"/>
+      <point x="14.39" y="457.36"/>
+    </line>
+    <line id="e39x0__OUT__" visible="true">
+      <frombox id="es39" port="0"/>
+      <tojoint id="n40" port="0"/>
+      <point x="6.72" y="458.36"/>
+      <point x="6.72" y="458.80"/>
+      <point x="6.72" y="458.80"/>
+      <point x="6.72" y="458.57"/>
+      <point x="6.72" y="458.57"/>
+      <point x="6.72" y="459.01"/>
+    </line>
+    <line id="e40x0__IN__" visible="true">
+      <fromjoint id="n34" port="0"/>
+      <tobox id="es40" port="0"/>
+      <point x="10.49" y="490.98"/>
+      <point x="10.49" y="491.41"/>
+      <point x="11.71" y="491.41"/>
+      <point x="11.71" y="471.99"/>
+      <point x="12.93" y="471.99"/>
+      <point x="12.93" y="472.06"/>
+      <point x="12.93" y="472.06"/>
+      <point x="12.93" y="472.50"/>
+    </line>
+    <line id="e40x0__OUT__" visible="true">
+      <frombox id="es40" port="0"/>
+      <tojoint id="nEND40x0__IN__0" port="0"/>
+      <point x="12.93" y="473.50"/>
+      <point x="12.93" y="473.92"/>
+      <point x="12.04" y="473.92"/>
+      <point x="12.04" y="474.23"/>
+      <point x="11.14" y="474.23"/>
+      <point x="11.14" y="474.64"/>
+    </line>
+    <line id="e40x1__IN__" visible="true">
+      <fromjoint id="n35" port="0"/>
+      <tobox id="es40" port="1"/>
+      <point x="11.52" y="470.93"/>
+      <point x="11.52" y="471.37"/>
+      <point x="12.55" y="471.37"/>
+      <point x="12.55" y="471.39"/>
+      <point x="13.57" y="471.39"/>
+      <point x="13.57" y="472.04"/>
+      <point x="13.57" y="472.04"/>
+      <point x="13.57" y="472.50"/>
+    </line>
+    <line id="e40x1__OUT__" visible="true">
+      <frombox id="es40" port="1"/>
+      <tojoint id="nEND40x1__IN__0" port="0"/>
+      <point x="13.57" y="473.50"/>
+      <point x="13.57" y="473.92"/>
+      <point x="14.16" y="473.92"/>
+      <point x="14.16" y="474.23"/>
+      <point x="14.75" y="474.23"/>
+      <point x="14.75" y="474.64"/>
+    </line>
+    <line id="e40x2__IN__" visible="true">
+      <fromjoint id="nSTA40x2" port="0"/>
+      <tobox id="es40" port="2"/>
+      <point x="14.22" y="470.86"/>
+      <point x="14.22" y="471.27"/>
+      <point x="14.22" y="471.27"/>
+      <point x="14.22" y="472.08"/>
+      <point x="14.22" y="472.08"/>
+      <point x="14.22" y="472.50"/>
+    </line>
+    <line id="e40x2__OUT__" visible="true">
+      <frombox id="es40" port="2"/>
+      <tojoint id="n38" port="0"/>
+      <point x="14.22" y="473.50"/>
+      <point x="14.22" y="473.98"/>
+      <point x="15.27" y="473.98"/>
+      <point x="15.27" y="474.21"/>
+      <point x="16.32" y="474.21"/>
+      <point x="16.32" y="474.64"/>
+    </line>
+    <line id="e41x0__IN__" visible="true">
+      <fromjoint id="n39" port="0"/>
+      <tobox id="es41" port="0"/>
+      <point x="19.74" y="495.29"/>
+      <point x="19.74" y="495.73"/>
+      <point x="19.74" y="495.73"/>
+      <point x="19.74" y="495.65"/>
+      <point x="19.74" y="495.65"/>
+      <point x="19.74" y="496.09"/>
+    </line>
+    <line id="e41x0__OUT__" visible="true">
+      <frombox id="es41" port="0"/>
+      <tojoint id="nEND41x0__IN__0" port="0"/>
+      <point x="19.74" y="497.09"/>
+      <point x="19.74" y="497.51"/>
+      <point x="19.74" y="497.51"/>
+      <point x="19.74" y="498.17"/>
+      <point x="19.74" y="498.17"/>
+      <point x="19.74" y="498.59"/>
+    </line>
+    <line id="e42x0__IN__" visible="true">
+      <fromjoint id="n40" port="0"/>
+      <tobox id="es42" port="0"/>
+      <point x="6.73" y="459.52"/>
+      <point x="6.73" y="459.96"/>
+      <point x="6.73" y="459.96"/>
+      <point x="6.73" y="459.84"/>
+      <point x="6.73" y="459.84"/>
+      <point x="6.73" y="460.28"/>
+    </line>
+    <line id="e42x0__OUT__" visible="true">
+      <frombox id="es42" port="0"/>
+      <tojoint id="nEND42x0__IN__0" port="0"/>
+      <point x="14.40" y="461.28"/>
+      <point x="14.40" y="461.70"/>
+      <point x="24.27" y="461.70"/>
+      <point x="24.27" y="452.69"/>
+      <point x="34.15" y="452.69"/>
+      <point x="34.15" y="453.11"/>
+    </line>
+    <line id="e42x1__IN__" visible="true">
+      <fromjoint id="nSTA42x1__OUT__0" port="0"/>
+      <tobox id="es42" port="1"/>
+      <point x="35.72" y="449.57"/>
+      <point x="35.72" y="450.00"/>
+      <point x="25.38" y="450.00"/>
+      <point x="25.38" y="459.86"/>
+      <point x="15.05" y="459.86"/>
+      <point x="15.05" y="460.28"/>
+    </line>
+    <line id="e42x1__OUT__" visible="true">
+      <frombox id="es42" port="1"/>
+      <tojoint id="n42" port="0"/>
+      <point x="7.38" y="461.28"/>
+      <point x="7.38" y="461.74"/>
+      <point x="7.38" y="461.74"/>
+      <point x="7.38" y="461.70"/>
+      <point x="7.39" y="461.70"/>
+      <point x="7.39" y="462.14"/>
+    </line>
+    <line id="e43x0__IN__" visible="true">
+      <fromjoint id="n38" port="0"/>
+      <tobox id="es43" port="0"/>
+      <point x="16.33" y="475.16"/>
+      <point x="16.33" y="475.59"/>
+      <point x="16.80" y="475.59"/>
+      <point x="16.80" y="476.37"/>
+      <point x="17.28" y="476.37"/>
+      <point x="17.28" y="476.81"/>
+    </line>
+    <line id="e43x0__OUT__" visible="true">
+      <frombox id="es43" port="0"/>
+      <tojoint id="nEND43x0__IN__0" port="0"/>
+      <point x="17.28" y="477.81"/>
+      <point x="17.28" y="478.23"/>
+      <point x="16.82" y="478.23"/>
+      <point x="16.82" y="478.53"/>
+      <point x="16.35" y="478.53"/>
+      <point x="16.35" y="478.95"/>
+    </line>
+    <line id="e43x1__IN__" visible="true">
+      <fromjoint id="nSTA43x1__OUT__0" port="0"/>
+      <tobox id="es43" port="1"/>
+      <point x="17.92" y="475.16"/>
+      <point x="17.92" y="475.57"/>
+      <point x="17.92" y="475.57"/>
+      <point x="17.92" y="476.39"/>
+      <point x="17.92" y="476.39"/>
+      <point x="17.92" y="476.81"/>
+    </line>
+    <line id="e43x1__OUT__" visible="true">
+      <frombox id="es43" port="1"/>
+      <tojoint id="n41" port="0"/>
+      <point x="17.92" y="477.81"/>
+      <point x="17.92" y="478.27"/>
+      <point x="17.92" y="478.27"/>
+      <point x="17.92" y="478.51"/>
+      <point x="17.92" y="478.51"/>
+      <point x="17.92" y="478.95"/>
+    </line>
+    <line id="e43x2__IN__" visible="true">
+      <fromjoint id="nSTA43x2__OUT__0" port="0"/>
+      <tobox id="es43" port="2"/>
+      <point x="19.50" y="475.16"/>
+      <point x="19.50" y="475.57"/>
+      <point x="19.04" y="475.57"/>
+      <point x="19.04" y="476.39"/>
+      <point x="18.57" y="476.39"/>
+      <point x="18.57" y="476.81"/>
+    </line>
+    <line id="e43x2__OUT__" visible="true">
+      <frombox id="es43" port="2"/>
+      <tojoint id="n43" port="0"/>
+      <point x="18.57" y="477.81"/>
+      <point x="18.57" y="478.29"/>
+      <point x="19.82" y="478.29"/>
+      <point x="19.82" y="478.51"/>
+      <point x="21.08" y="478.51"/>
+      <point x="21.08" y="478.95"/>
+    </line>
+    <line id="e45x0__IN__" visible="true">
+      <fromjoint id="n43" port="0"/>
+      <tobox id="es45" port="0"/>
+      <point x="21.10" y="479.46"/>
+      <point x="21.10" y="479.90"/>
+      <point x="21.35" y="479.90"/>
+      <point x="21.35" y="480.17"/>
+      <point x="21.60" y="480.17"/>
+      <point x="21.60" y="480.61"/>
+    </line>
+    <line id="e45x0__OUT__" visible="true">
+      <frombox id="es45" port="0"/>
+      <tojoint id="nEND45x0__IN__0" port="0"/>
+      <point x="21.60" y="481.61"/>
+      <point x="21.60" y="482.03"/>
+      <point x="21.61" y="482.03"/>
+      <point x="21.61" y="481.44"/>
+      <point x="21.63" y="481.44"/>
+      <point x="21.63" y="481.86"/>
+    </line>
+    <line id="e48x0__IN__" visible="true">
+      <fromjoint id="n42" port="0"/>
+      <tobox id="es48" port="0"/>
+      <point x="7.41" y="462.65"/>
+      <point x="7.41" y="463.09"/>
+      <point x="7.41" y="463.09"/>
+      <point x="7.41" y="463.05"/>
+      <point x="7.41" y="463.05"/>
+      <point x="7.41" y="463.49"/>
+    </line>
+    <line id="e48x0__OUT__" visible="true">
+      <frombox id="es48" port="0"/>
+      <tojoint id="nEND48x0__IN__0" port="0"/>
+      <point x="15.08" y="464.49"/>
+      <point x="15.08" y="464.91"/>
+      <point x="25.41" y="464.91"/>
+      <point x="25.41" y="456.75"/>
+      <point x="35.74" y="456.75"/>
+      <point x="35.74" y="457.18"/>
+    </line>
+    <line id="e52x0__IN__" visible="true">
+      <fromjoint id="n41" port="0"/>
+      <tobox id="es52" port="0"/>
+      <point x="17.93" y="479.46"/>
+      <point x="17.93" y="479.90"/>
+      <point x="17.97" y="479.90"/>
+      <point x="17.97" y="480.30"/>
+      <point x="18.01" y="480.30"/>
+      <point x="18.01" y="480.74"/>
+    </line>
+    <line id="e52x0__OUT__" visible="true">
+      <frombox id="es52" port="0"/>
+      <tojoint id="nEND52x0__IN__0" port="0"/>
+      <point x="18.01" y="481.74"/>
+      <point x="18.01" y="482.16"/>
+      <point x="17.45" y="482.16"/>
+      <point x="17.45" y="481.44"/>
+      <point x="16.88" y="481.44"/>
+      <point x="16.88" y="481.86"/>
+    </line>
+    <line id="e52x1__IN__" visible="true">
+      <fromjoint id="nSTA52x1__OUT__0" port="0"/>
+      <tobox id="es52" port="1"/>
+      <point x="19.51" y="479.46"/>
+      <point x="19.51" y="479.88"/>
+      <point x="19.09" y="479.88"/>
+      <point x="19.09" y="480.32"/>
+      <point x="18.67" y="480.32"/>
+      <point x="18.67" y="480.74"/>
+    </line>
+    <line id="e52x1__OUT__" visible="true">
+      <frombox id="es52" port="1"/>
+      <tojoint id="n48" port="0"/>
+      <point x="18.67" y="481.74"/>
+      <point x="18.67" y="482.32"/>
+      <point x="19.35" y="482.32"/>
+      <point x="19.35" y="482.32"/>
+      <point x="20.03" y="482.32"/>
+      <point x="20.03" y="482.75"/>
+    </line>
+  </level>
+</graph>

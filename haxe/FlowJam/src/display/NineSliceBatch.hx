@@ -45,7 +45,7 @@ class NineSliceBatch extends Sprite
     public static var gameObjectBatch : GameObjectBatch;
     
     public function new(_width : Float, _height : Float, _cX : Float, _cY : Float,
-            _atlasFile : String, _atlasImgName : String, _atlasXMLName : String,
+            _atlasFilePath : String, _atlasImgName : String, _atlasXMLName : String,
             _atlasXMLTexturePrefix : String)
     {
         super();
@@ -54,7 +54,7 @@ class NineSliceBatch extends Sprite
         mCx = Math.min(_cX, mWidth / 2.0);  // can't be > half the width  
         mCy = Math.min(_cY, mHeight / 2.0);  // can't be > half the height  
         
-        mAtlas = AssetInterface.getTextureAtlas(_atlasFile, _atlasImgName, _atlasXMLName);
+        mAtlas = AssetInterface.getTextureAtlas(_atlasFilePath, _atlasImgName, _atlasXMLName);
         
         mTopLeft = new Image(mAtlas.getTexture(_atlasXMLTexturePrefix + TOP_LEFT));
         mTop = new Image(mAtlas.getTexture(_atlasXMLTexturePrefix + TOP));

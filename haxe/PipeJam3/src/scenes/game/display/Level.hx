@@ -160,7 +160,7 @@ class Level extends BaseComponent
     public function new(_name : String, _levelGraph : ConstraintGraph, _levelObj : Dynamic, _levelLayoutObj : Dynamic, _levelAssignmentsObj : Dynamic, _originalLevelName : String)
     {
         super();
-        UNLOCK_ALL_LEVELS_FOR_DEBUG = PipeJamGame.DEBUG_MODE;
+        UNLOCK_ALL_LEVELS_FOR_DEBUG = Reflect.field(PipeJamGame,"DEBUG_MODE");
         level_name = _name;
         original_level_name = _originalLevelName;
         levelGraph = _levelGraph;
@@ -195,7 +195,7 @@ class Level extends BaseComponent
         }
         
         m_targetScore = as3hx.Compat.INT_MAX;
-        if (PipeJam3.ASSET_SUFFIX == "Turk")
+        if (Reflect.field(PipeJam3,"ASSET_SUFFIX") == "Turk")
         {
             m_targetScore = 0;
             for (key in Reflect.fields(nodeLayoutObjs))
@@ -212,15 +212,15 @@ class Level extends BaseComponent
             //now check to see if we have a higher target if not in tutorial
             if (!PipeJamGameScene.inTutorial)
             {
-                if (PipeJamGame.levelInfo && PipeJamGame.levelInfo.target_score && m_targetScore < PipeJamGame.levelInfo.target_score)
+                if (Reflect.field(PipeJamGame,"levelInfo") && Reflect.field(PipeJamGame,"levelInfo").target_score && m_targetScore < Reflect.field(PipeJamGame,"levelInfo").target_score)
                 {
-                    m_targetScore = PipeJamGame.levelInfo.target_score;
+                    m_targetScore = Reflect.field(PipeJamGame,"levelInfo").target_score;
                 }
             }
         }
         else
         {
-            m_targetScore = PipeJamGame.levelInfo.target_score;
+            m_targetScore = Reflect.field(PipeJamGame,"levelInfo").target_score;
         }
         targetScoreReached = false;
         addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
@@ -251,9 +251,11 @@ class Level extends BaseComponent
         var wideIds : String = "";
         for (varId in Reflect.fields(levelGraph.variableDict))
         {
-            graphVar = try cast(levelGraph.variableDict[varId], ConstraintVar) catch(e:Dynamic) null;
+            //graphVar = try cast(levelGraph.variableDict[varId], ConstraintVar) catch (e:Dynamic) null;TODO:REmove if works
+			graphVar = try cast(Reflect.field(variableDict,varId), ConstraintVar) catch(e:Dynamic) null;
             var wasSetWide : Bool = setGraphVarFromAssignments(graphVar, assignmentsObj, updateTutorialManager);
-            if (PipeJam3.logging)
+            //if (PipeJam3.logging) TODO: remove if works
+			if (Reflect.field(PipeJam3,"logging") != null)
             {
                 var simpleId : String = varId;
                 var idArr : Array<Dynamic> = varId.split("var_");
@@ -277,7 +279,8 @@ class Level extends BaseComponent
         }
         refreshTroublePoints();
         onScoreChange();
-        if (PipeJam3.logging)
+        //if (PipeJam3.logging) TODO: remove if works
+		if (Reflect.field(PipeJam3,"logging") != null)
         {
             var details : Dynamic = {};
             if (wideIds.length < narrowIds.length)
@@ -295,7 +298,8 @@ class Level extends BaseComponent
             Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_LEVEL_NAME), original_level_name);  // yes, we can get this from the quest data but include it here for convenience  
             Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_SCORE), currentScore);
             Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_TARGET_SCORE), m_targetScore);
-            PipeJam3.logging.logQuestAction((isBest) ? VerigameServerConstants.VERIGAME_ACTION_LOAD_BEST_ASSIGNMENTS : VerigameServerConstants.VERIGAME_ACTION_LOAD_ASSIGNMENTS, details, getTimeMs());
+            //PipeJam3.logging.logQuestAction((isBest) ? VerigameServerConstants.VERIGAME_ACTION_LOAD_BEST_ASSIGNMENTS : VerigameServerConstants.VERIGAME_ACTION_LOAD_ASSIGNMENTS, details, getTimeMs()); TODO: Remove if works
+			Reflect.field(PipeJam3,"logging").logQuestAction((isBest) ? VerigameServerConstants.VERIGAME_ACTION_LOAD_BEST_ASSIGNMENTS : VerigameServerConstants.VERIGAME_ACTION_LOAD_ASSIGNMENTS, details, getTimeMs());
         }
     }
     
@@ -384,7 +388,7 @@ class Level extends BaseComponent
             trace("newGroupDepth: ", newGroupDepth);
         }
         
-        var candidatesToRemove : Dictionary = new Dictionary();
+        var candidatesToRemove : Dictionary<Node> = new Dictionary();
         for (nodeOnScreenId in m_nodeOnScreenDict.keys())
         {
             Reflect.setField(candidatesToRemove, nodeOnScreenId, true);
@@ -862,11 +866,13 @@ class Level extends BaseComponent
         //quick fix to make large level actually playable
         if (m_numNodes > 50000)
         {
-            PipeJam3.SELECTION_STYLE = PipeJam3.SELECTION_STYLE_CLASSIC;
+			//PipeJam3.SELECTION_STYLE = PipeJam3.SELECTION_STYLE_CLASSIC;TODO:Remove if works
+            Reflect.field(PipeJam3,"SELECTION_STYLE") = Reflect.field(PipeJam3,"SELECTION_STYLE_CLASSIC");
         }
         else
         {
-            PipeJam3.SELECTION_STYLE = PipeJam3.SELECTION_STYLE_VAR_BY_VAR_AND_CNSTR;
+            //PipeJam3.SELECTION_STYLE = PipeJam3.SELECTION_STYLE_VAR_BY_VAR_AND_CNSTR;TODO:remove if works
+			Reflect.field(PipeJam3,"SELECTION_STYLE") = Reflect.field(PipeJam3,"SELECTION_STYLE_VAR_BY_VAR_AND_CNSTR");
         }
         
         //trace("node count = " + n);
@@ -907,7 +913,8 @@ class Level extends BaseComponent
             
             m_numNodes++;
         }
-        if (PipeJam3.ASSET_SUFFIX == "Turk")
+        //if (PipeJam3.ASSET_SUFFIX == "Turk") TODO: remove if works
+		if (Reflect.field(PipeJam3,"ASSET_SUFFIX") == "Turk")
         {
             m_targetScore = 0;
             for (key in Reflect.fields(nodeLayoutObjs))
@@ -943,7 +950,7 @@ class Level extends BaseComponent
         
         addEventListener(TouchEvent.TOUCH, onTouch);
         
-        m_levelStartTime = Date.now().time;
+        m_levelStartTime = Date.now().getTime();
         
         levelGraph.resetScoring();
         m_bestScore = levelGraph.currentScore;
@@ -1319,7 +1326,7 @@ class Level extends BaseComponent
     
     public function getTimeMs() : Float
     {
-        return Date.now().time - m_levelStartTime;
+        return Date.getTime() - m_levelStartTime;
     }
     
     public function hideErrorText() : Void
@@ -1552,7 +1559,7 @@ class Level extends BaseComponent
             var node : Node = try cast(evt.component, Node) catch(e:Dynamic) null;
             currentSelectionProcessCount = 1;
             var nextToVisitArray : Array<Dynamic> = new Array<Dynamic>();
-            var previouslyCheckedNodes : Dictionary = new Dictionary();
+            var previouslyCheckedNodes : Dictionary<Node> = new Dictionary();
             selectSurroundingNodes(node, nextToVisitArray, previouslyCheckedNodes);
             for (nextNode in nextToVisitArray)
             {
@@ -2430,6 +2437,7 @@ class Level extends BaseComponent
     
     private static function popNode(d : Map<String, Node>) : Node
     {
+		//TODO: why does this method take in a map ane remove everything and cannot return a node
         for (id in d.keys())
         {
 			return d.remove(id);

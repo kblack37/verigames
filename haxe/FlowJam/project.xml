@@ -18,6 +18,7 @@
 	<haxelib name="starling" />
 	<haxelib name="as3hx" />
 	
+	<haxedef name="fdb" if="flash"/>
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />
 	<assets path="assets/img" include="*.jpeg|*.png" rename="img" />

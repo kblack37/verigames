@@ -1,5 +1,4 @@
 package assets;
-
 import haxe.Json;
 import openfl.Assets;
 import flash.errors.ArgumentError;
@@ -17,6 +16,7 @@ import starling.text.TextField;
 import starling.textures.Texture;
 import starling.textures.TextureAtlas;
 import flash.Lib;
+import openfl.Assets;
 
 class AssetInterface
 {
@@ -36,7 +36,7 @@ class AssetInterface
     private static var sTextureAtlases : Map<String,TextureAtlas> = new Map<String, TextureAtlas>();
     private static var sTextures : Map<String,Texture> = new Map<String, Texture>();
     private static var sSounds : Map<String,Sound> = new Map<String, Sound>();
-	private static var sObjects : Map<String, Dynamic> = new Map<String, Dynamic>();
+	  private static var sObjects : Map<String, Dynamic> = new Map<String, Dynamic>();
     private static var sTextureAtlas : TextureAtlas;
     private static var sBitmapFontsLoaded : Bool;
     
@@ -144,8 +144,9 @@ class AssetInterface
 		var texture : Texture = sTextures.get(name);
         if (texture == null)
         {
+
             var bmpData : BitmapData = Assets.getBitmapData(filePath + "/" + name);
-			texture = Texture.fromBitmapData(bmpData, true, false, sContentScaleFactor);
+			      texture = Texture.fromBitmapData(bmpData, true, false, sContentScaleFactor);
             sTextures.set(name, texture);
         }
         

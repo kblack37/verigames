@@ -3,10 +3,11 @@ package utils;
 import haxe.Constraints.Function;
 import starling.display.DisplayObject;
 import starling.display.DisplayObjectContainer;
-import starling.display.graphics.Fill;
-import starling.display.graphics.NGon;
-import starling.display.graphics.Stroke;
+//import starling.display.graphics.Fill;
+//import starling.display.graphics.NGon;
+//import starling.display.graphics.Stroke;
 import starling.events.Event;
+import starling.display.Quad;
 
 class XSprite
 {
@@ -25,12 +26,12 @@ class XSprite
         return as3hx.Compat.parseInt(cc & 0xFF);
     }
     
-    private static function toByte(nn : Float) : Int
+    private static function toByte(nn : Int) : Int
     {
-        return Math.max(0, Math.min(255, nn * 255));
+        return Std.int(Math.max(0, Math.min(255, nn * 255)));
     }
     
-    public static function toColor(rr : Float, gg : Float, bb : Float) : Int
+    public static function toColor(rr : Int, gg : Int, bb : Int) : Int
     {
         return as3hx.Compat.parseInt((toByte(rr) << 16) | (toByte(gg) << 8) | toByte(bb));
     }
@@ -38,9 +39,9 @@ class XSprite
     public static function scaleColor(scale : Float, cc : Int) : Int
     {
         return toColor(
-                scale * extractRed(cc) / 255.0, 
-                scale * extractGreen(cc) / 255.0, 
-                scale * extractBlue(cc) / 255.0
+                Std.int(scale * extractRed(cc) / 255.0), 
+                Std.int(scale * extractGreen(cc) / 255.0), 
+                Std.int(scale * extractBlue(cc) / 255.0)
         );
     }
     
@@ -83,25 +84,32 @@ class XSprite
     
     public static function createPolyLine(x0 : Float, y0 : Float, x1 : Float, y1 : Float, color : Int, thickness : Int, alpha : Float = 1.0) : DisplayObject
     {
+		/*
         var stroke : Stroke = new Stroke();
         stroke.addVertex(x0, y0, thickness, color, alpha, color, alpha);
         stroke.addVertex(x1, y1, thickness, color, alpha, color, alpha);
-        return stroke;
+        return stroke; TODO find stroke replacement*/
+		return new Quad(x0, x1, color);
     }
     
     public static function createPolyRect(width : Float, height : Float, color : Int, thickness : Int, alpha : Float = 1.0) : DisplayObject
     {
         if (thickness == 0)
         {
+			/*
             var fill : Fill = new Fill();
             fill.addVertex(0, 0, color, alpha);
             fill.addVertex(0, height, color, alpha);
             fill.addVertex(width, height, color, alpha);
             fill.addVertex(width, 0, color, alpha);
-            return fill;
+            return fill;TODO does this work?
+			*/
+			var quad : Quad = new Quad(width, height, color);
+			return quad;
         }
         else
         {
+			/*
             var stroke : Stroke = new Stroke();
             stroke.addVertex(0, 0, thickness, color, alpha, color, alpha);
             stroke.addVertex(0, height, thickness, color, alpha, color, alpha);
@@ -109,11 +117,14 @@ class XSprite
             stroke.addVertex(width, 0, thickness, color, alpha, color, alpha);
             stroke.addVertex(0, 0, thickness, color, alpha, color, alpha);
             return stroke;
+			*/
+			 return new Quad(width, height, color);
         }
     }
     
     public static function createPolyCircle(radius : Float, color : Int, thickness : Int, alpha : Float = 1.0) : DisplayObject
     {
+		/*
         var SECTIONS : Int = 16;
         var ii : Int;
         var ang : Float;
@@ -131,6 +142,8 @@ class XSprite
         ngon.material.color = color;
         ngon.material.alpha = alpha;
         return ngon;
+		TODO find ngon replacement*/
+		return new Quad(radius, thickness, color);
     }
 
     public function new()

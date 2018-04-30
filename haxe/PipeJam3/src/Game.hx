@@ -17,14 +17,14 @@ import starling.display.Sprite;
 import starling.events.Event;
 import starling.text.TextField;
 import starling.textures.Texture;
-import starling.utils.VAlign;
+//import starling.utils.VAlign;
 
 class Game extends BaseComponent
 {
     private var mMainMenu : Sprite;
     private var mCurrentScene : Scene;
-    private var scenesToCreate : Dictionary = new Dictionary();
-    private var sceneDictionary : Dictionary = new Dictionary();
+    private var scenesToCreate : Dictionary<String,Scene> = new Dictionary();
+    private var sceneDictionary : Dictionary<String,Scene> = new Dictionary();
     
     private var m_blackFadeScreen : Quad;
     

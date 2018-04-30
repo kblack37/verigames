@@ -26,7 +26,9 @@
   </classpaths>
   <!-- Build options -->
   <build>
+
     <option directives="openfl=6.1.0&#xA;lime=5.4.0&#xA;starling=1.8.10&#xA;tools=5.4.0&#xA;howlerjs&#xA;no-compilation&#xA;openfl-html5&#xA;lime-html5&#xA;html5&#xA;web&#xA;html5&#xA;display" />
+
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />

@@ -1,0 +1,16 @@
+# Individual Report (Jake Chiang): Week 6 #
+
+
+## Previous Goals ##
+- Fix FlowJam's current black screen display
+- Solve compilation errors for PipeJam
+
+
+## Progress ##
+- Added Travis CI automatic progress log and graph
+- Worked on FlowJam compilation fixing
+
+
+## Goals ##
+- Fix FlowJam runtime errors
+- Adjust report to update evaluation techniques for single game scope

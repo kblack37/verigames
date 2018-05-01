@@ -42,21 +42,10 @@ class LoadingState extends GenericState
     
     public function performNextTask(e : Dynamic) : Void
     {
-		trace(this.tasksVector.length);
         if (this.tasksVector.length == 0)
         {
             updateStatus();
             onTasksComplete();
-            return;
-        }
-        var now : Float = Date.now().getTime();
-        if (now - last_render_time > TIME_BETWEEN_RENDERS_MS)
-        {
-			last_render_time = now;
-            updateStatus();
-            timer = new Timer(RENDER_TIME_MS / 1000);
-            timer.addEventListener(TimerEvent.TIMER, performNextTask);
-            timer.start();
             return;
         }
         tasksVector[0].perform();

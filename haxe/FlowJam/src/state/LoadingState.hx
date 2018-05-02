@@ -48,15 +48,6 @@ class LoadingState extends GenericState
             onTasksComplete();
             return;
         }
-        var now : Float = Date.now().getTime();
-        if (now - last_render_time > TIME_BETWEEN_RENDERS_MS)
-        {
-            updateStatus();
-            timer = new Timer(RENDER_TIME_MS / 1000);
-            timer.addEventListener(TimerEvent.TIMER, performNextTask);
-            timer.start();
-            return;
-        }
         tasksVector[0].perform();
         var my_task : Task = tasksVector.shift();
         completed_tasks.push(my_task);

@@ -21,7 +21,8 @@
 	<haxedef name="fdb" if="flash"/>
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />
-	<assets path="assets/img" include="*.jpeg|*.png" rename="img" />
+	<assets path="assets" />
+	<assets path="assets/img" rename="img" />
 	<assets path="assets/levels" rename="levels" />
 	<assets path="assets/audio" rename="audio" />
 	<assets path="assets/atlases" rename="atlases" />

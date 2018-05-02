@@ -64,7 +64,7 @@ class TextBubble extends Sprite
         m_paddingSz = m_arrowSz + 2 * m_arrowBounce + 4 * m_inset;
         
         // estimate size if none given
-        var size : Point = (_size != null) ? _size : TextFactory.getInstance().estimateTextFieldSize(_text, AssetsFont.FONT_UBUNTU, m_fontSize);
+        var size : Point = (_size != null) ? _size : TextFactory.getInstance().estimateTextFieldSize(_text, AssetsFont.FONT_UBUNTU.fontName, m_fontSize);
         
         // a transparent sprite with padding around the edges so we can put the arrow outside the text box
         var padding : Quad = new Quad(10, 10, 0xff00ff);

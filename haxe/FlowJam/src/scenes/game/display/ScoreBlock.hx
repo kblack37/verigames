@@ -70,7 +70,7 @@ class ScoreBlock extends GameComponent
         }
         else
         {
-            m_text = new TextField(Std.int(m_width + 2 * _radius), Std.int(m_height + 2 * _radius), m_score, new TextFormat(AssetsFont.FONT_UBUNTU, m_fontSize));
+            m_text = new TextField(Std.int(m_width + 2 * _radius), Std.int(m_height + 2 * _radius), m_score, new TextFormat(AssetsFont.FONT_UBUNTU.fontName, m_fontSize));
             addChild(m_text);
         }
         

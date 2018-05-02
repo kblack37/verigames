@@ -42,7 +42,7 @@ class PipeJam3 extends flash.display.Sprite
     public static var PRODUCTION : Bool = false;
     public static var INSTALL_DVD : Bool = false;
     public static var REPLAY_DQID : String;  // = "dqid_5252fd7aa741e8.90134465";  
-    private static var REPLAY_TEXT_FORMAT : TextFormat = new TextFormat(AssetsFont.FONT_UBUNTU, 6, 0xFFFF00);
+    private static var REPLAY_TEXT_FORMAT : TextFormat = new TextFormat(AssetsFont.FONT_UBUNTU.fontName, 6, 0xFFFF00);
     
     public static var DISABLE_FILTERS : Bool = true;
     

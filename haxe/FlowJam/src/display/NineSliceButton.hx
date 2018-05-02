@@ -4,8 +4,10 @@ import assets.AssetsAudio;
 import events.ToolTipEvent;
 import audio.AudioManager;
 import flash.geom.Rectangle;
+import flash.text.Font;
 import flash.ui.Mouse;
 import flash.ui.MouseCursor;
+import openfl.Assets;
 import starling.display.Sprite;
 import starling.events.Event;
 import starling.events.Touch;
@@ -30,7 +32,7 @@ class NineSliceButton extends ToolTippableSprite
     private static inline var TXT_PCT : Float = 0.9;
     private static inline var MAX_DRAG_DIST : Float = 50;
     
-    private var fontName : String;
+    private var fontName : Font;
     private var fontColor : Int;
     private var m_toolTipText : String;
     
@@ -39,7 +41,7 @@ class NineSliceButton extends ToolTippableSprite
     
     public function new(_text : String, _width : Float, _height : Float, _cX : Float, _cY : Float,
             _atlasFile : String, _atlasImgName : String, _atlasXMLName : String,
-            _atlasXMLButtonTexturePrefix : String, _fontName : String, _fontColor : Int, _atlasXMLButtonOverTexturePrefix : String = "",
+            _atlasXMLButtonTexturePrefix : String, _fontName : Font, _fontColor : Int, _atlasXMLButtonOverTexturePrefix : String = "",
             _atlasXMLButtonClickTexturePrefix : String = "", _fontColorOver : Int = 0xFFFFFF, _fontColorClick : Int = 0xFFFFFF,
             _toolTipText : String = "")
     {

@@ -1,4 +1,6 @@
 package assets;
+import openfl.Assets;
+import openfl.text.Font;
 
 
 class AssetsFont
@@ -18,14 +20,18 @@ private static var FontSpecialElite : Class<Dynamic>;
     @:meta(Embed(source="../../lib/assets/font/UbuntuTitling-Bold.ttf",fontFamily="UbuntuTitlingBold",embedAsCFF="false",mimeType="application/x-font"))
 private static var FontUbuntuTitlingBold : Class<Dynamic>;
     
-    
-    public static inline var FONT_DEFAULT : String = "Vegur";
-    public static inline var FONT_FRACTION : String = "Bebas";
-    public static inline var FONT_NUMERIC : String = "DenkOne";
-    public static inline var FONT_METAL : String = "MetalMania";
-    public static inline var FONT_BANGERS : String = "Bangers";
-    public static inline var FONT_SPECIAL_ELITE : String = "SpecialElite";
-    public static inline var FONT_UBUNTU : String = "UbuntuTitlingBold";
+    public static function getFont(filePath : String, name : String) : Font
+    {
+        var font : Font = Assets.getFont(filePath + "/" + name);
+        return font;
+    }
+    public static  var FONT_DEFAULT : Font = getFont("fonts","Vegur-R 0.602.otf");
+    public static  var FONT_FRACTION : Font = getFont("fonts","BEBAS_.ttf");
+    public static  var FONT_NUMERIC : Font = getFont("fonts/Denk_One","DenkOne-Regular.otf");
+    public static  var FONT_METAL : Font = getFont("fonts/Metal_Mania","MetalMania-Regular.ttf");
+    public static  var FONT_BANGERS : Font = getFont("fonts/Banger","Bangers.otf");
+    public static  var FONT_SPECIAL_ELITE : Font = getFont("fonts/Special_Elite","SpecialElite");
+    public static  var FONT_UBUNTU : Font = getFont("fonts","UbuntuTitling-Bold.otf");
 
     public function new()
     {

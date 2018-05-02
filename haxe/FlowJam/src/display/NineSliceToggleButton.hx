@@ -6,6 +6,7 @@ import flash.geom.Rectangle;
 import flash.ui.Mouse;
 import flash.ui.MouseCursor;
 import openfl.Vector;
+import openfl.text.Font;
 import starling.display.Image;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -26,7 +27,7 @@ class NineSliceToggleButton extends NineSliceButton
     private var text : String;
     private var secondaryText : String;
     
-    public function new(_text : String, _width : Float, _height : Float, _cX : Float, _cY : Float, _atlasFile : String, _atlasImgName : String, _atlasXMLName : String, _atlasXMLButtonTexturePrefix : String, _fontName : String, _fontColor : Int, _atlasXMLButtonOverTexturePrefix : String = "", _atlasXMLButtonClickTexturePrefix : String = "", _fontColorOver : Int = 0xFFFFFF, _fontColorClick : Int = 0xFFFFFF)
+    public function new(_text : String, _width : Float, _height : Float, _cX : Float, _cY : Float, _atlasFile : String, _atlasImgName : String, _atlasXMLName : String, _atlasXMLButtonTexturePrefix : String, _fontName : Font, _fontColor : Int, _atlasXMLButtonOverTexturePrefix : String = "", _atlasXMLButtonClickTexturePrefix : String = "", _fontColorOver : Int = 0xFFFFFF, _fontColorClick : Int = 0xFFFFFF)
     {
         super(_text, _width, _height, _cX, _cY, _atlasFile, _atlasImgName, _atlasXMLName, _atlasXMLButtonTexturePrefix, _fontName, _fontColor, _atlasXMLButtonOverTexturePrefix, _atlasXMLButtonClickTexturePrefix, _fontColorOver, _fontColorClick);
         

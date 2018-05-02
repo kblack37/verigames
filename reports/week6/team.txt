@@ -13,4 +13,6 @@
 - once levels are loading, asses all game assets to make sure the are working and behaving as expected
 
 ## Agenda ##
--- Discuss PipeJam
+-- Discuss the feasibility of also fixing PipeJam
+-- Discuss changing the goals of the project late into the quarter
+-- Discuss what 'results' means for our team

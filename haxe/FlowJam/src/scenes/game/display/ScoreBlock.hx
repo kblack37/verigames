@@ -3,6 +3,7 @@ package scenes.game.display;
 import assets.AssetsFont;
 import display.NineSliceBatch;
 import events.GameComponentEvent;
+import openfl.Assets;
 import openfl.Vector;
 import scenes.game.display.GameComponent;
 import starling.display.Quad;
@@ -70,7 +71,7 @@ class ScoreBlock extends GameComponent
         }
         else
         {
-            m_text = new TextField(Std.int(m_width + 2 * _radius), Std.int(m_height + 2 * _radius), m_score, new TextFormat(AssetsFont.FONT_UBUNTU.fontName, m_fontSize));
+            m_text = new TextField(Std.int(m_width + 2 * _radius), Std.int(m_height + 2 * _radius), m_score, new TextFormat(Assets.getFont("fonts/UbuntuTitling-Bold.otf").fontName, m_fontSize));
             addChild(m_text);
         }
         

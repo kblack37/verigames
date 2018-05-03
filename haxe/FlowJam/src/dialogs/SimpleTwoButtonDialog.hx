@@ -5,6 +5,7 @@ import assets.AssetInterface;
 import assets.AssetsFont;
 import display.NineSliceBatch;
 import display.NineSliceButton;
+import openfl.Assets;
 import scenes.BaseComponent;
 import starling.events.Event;
 
@@ -22,7 +23,7 @@ class SimpleTwoButtonDialog extends BaseDialog
         
         m_answerCallback = answerCallback;
         
-        var label : TextFieldWrapper = TextFactory.getInstance().createTextField(text, AssetsFont.FONT_UBUNTU, 120, 14, 12, 0x0077FF);
+        var label : TextFieldWrapper = TextFactory.getInstance().createTextField(text, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), 120, 14, 12, 0x0077FF);
         TextFactory.getInstance().updateAlign(label, 1, 1);
         addChild(label);
         label.x = background.x + (_width - label.width) / 2;

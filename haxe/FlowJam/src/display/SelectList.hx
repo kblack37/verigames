@@ -6,6 +6,7 @@ import assets.AssetsFont;
 import dialogs.SimpleTwoButtonDialog;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import openfl.Assets;
 import openfl.Vector;
 import scenes.BaseComponent;
 import starling.display.DisplayObject;
@@ -326,7 +327,7 @@ class SelectList extends BaseComponent
         var bg : NineSliceBatch = new NineSliceBatch(DOC_WIDTH * 4, DOC_HEIGHT * 4, 16, 16, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", bgTexName);
         bg.scaleX = bg.scaleY = 0.25;
         
-        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(label, AssetsFont.FONT_UBUNTU, DOC_WIDTH - ICON_SZ - 3 * PAD, DOC_HEIGHT - 2 * PAD, labelSz, 0xFFFFFF);
+        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(label, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), DOC_WIDTH - ICON_SZ - 3 * PAD, DOC_HEIGHT - 2 * PAD, labelSz, 0xFFFFFF);
         textField.x = ICON_SZ + 2 * PAD;
         textField.y = PAD;
         

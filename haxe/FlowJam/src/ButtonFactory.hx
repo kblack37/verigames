@@ -45,14 +45,14 @@ class ButtonFactory
     public function createToggleButton(text : String, width : Float, height : Float, cX : Float, cY : Float) : NineSliceToggleButton
     {
         return new NineSliceToggleButton(text, width, height, cX, cY, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", 
-        AssetInterface.PipeJamSubTexture_MenuButtonPrefix, AssetsFont.FONT_UBUNTU, BUTTON_TEXT_COLOR, 
+        AssetInterface.PipeJamSubTexture_MenuButtonPrefix, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), BUTTON_TEXT_COLOR, 
         AssetInterface.PipeJamSubTexture_MenuButtonOverPrefix, AssetInterface.PipeJamSubTexture_MenuButtonSelectedPrefix);
     }
     
     public function createTabButton(text : String, width : Float, height : Float, cX : Float, cY : Float) : NineSliceToggleButton
     {
         return new NineSliceToggleButton(text, width, height, cX, cY, "Game", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", 
-        "TabInactive", AssetsFont.FONT_UBUNTU, BUTTON_TEXT_COLOR, 
+        "TabInactive", Assets.getFont("fonts/UbuntuTitling-Bold.otf"), BUTTON_TEXT_COLOR, 
         "TabInactiveMouseover", "TabActive");
     }
 }

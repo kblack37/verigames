@@ -22,13 +22,13 @@ private static var FontSpecialElite : Class<Dynamic>;
 private static var FontUbuntuTitlingBold : Class<Dynamic>;
 */
     
-    public static  var FONT_DEFAULT : Dynamic;//Font = getFont("fonts","Vegur-R 0.602.otf");
-    public static  var FONT_FRACTION : Dynamic;//Font = getFont("fonts","BEBAS_.ttf");
-    public static  var FONT_NUMERIC : Dynamic;//Font = getFont("fonts/Denk_One","DenkOne-Regular.otf");
-    public static  var FONT_METAL : Dynamic;//Font = getFont("fonts/Metal_Mania","MetalMania-Regular.ttf");
-    public static  var FONT_BANGERS : Dynamic;//Font = getFont("fonts/Banger","Bangers.otf");
-    public static  var FONT_SPECIAL_ELITE : Dynamic;//Font = getFont("fonts/Special_Elite","SpecialElite");
-    public static  var FONT_UBUNTU : Dynamic;//Font = getFont("fonts","UbuntuTitling-Bold.otf");
+    public  var FONT_DEFAULT : Dynamic;//Font = getFont("fonts","Vegur-R 0.602.otf");
+    public  var FONT_FRACTION : Dynamic;//Font = getFont("fonts","BEBAS_.ttf");
+    public  var FONT_NUMERIC : Dynamic;//Font = getFont("fonts/Denk_One","DenkOne-Regular.otf");
+    public  var FONT_METAL : Dynamic;//Font = getFont("fonts/Metal_Mania","MetalMania-Regular.ttf");
+    public  var FONT_BANGERS : Dynamic;//Font = getFont("fonts/Banger","Bangers.otf");
+    public  var FONT_SPECIAL_ELITE : Dynamic;//Font = getFont("fonts/Special_Elite","SpecialElite");
+    public  var FONT_UBUNTU : Dynamic;//Font = getFont("fonts","UbuntuTitling-Bold.otf");
 
     public function new()
     {

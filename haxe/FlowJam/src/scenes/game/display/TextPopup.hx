@@ -2,6 +2,7 @@ package scenes.game.display;
 
 import assets.AssetsFont;
 import flash.geom.Point;
+import openfl.Assets;
 import starling.core.Starling;
 import starling.display.DisplayObjectContainer;
 import starling.display.Sprite;
@@ -12,7 +13,7 @@ class TextPopup extends Sprite
     public function new(str : String, color : Int)
     {
         super();
-        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(str, AssetsFont.FONT_UBUNTU, 100, 25, 8, color);
+        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(str, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), 100, 25, 8, color);
         TextFactory.getInstance().updateAlign(textField, TextFactory.HCENTER, TextFactory.VCENTER);
         if (!PipeJam3.DISABLE_FILTERS)
         {

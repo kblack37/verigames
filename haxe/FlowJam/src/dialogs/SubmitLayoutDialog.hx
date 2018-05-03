@@ -69,7 +69,7 @@ class SubmitLayoutDialog extends BaseComponent
         //label.text = "Enter a layout name:";
         //label.x = buttonPaddingWidth;
         //addChild(label);
-        //label.textRendererProperties.textFormat = new TextFormat(AssetsFont.FONT_UBUNTU, 12, 0xffffff);
+        //label.textRendererProperties.textFormat = new TextFormat(Assets.getFont("fonts/UbuntuTitling-Bold.otf"), 12, 0xffffff);
         //
         //input = new TextInput();
         //

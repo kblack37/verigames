@@ -58,7 +58,7 @@ class LoadingScreenScene extends Scene
     {
         super.addedToStage(event);
         
-        background = new Image(AssetInterface.getTexture("assets", "BoxesStartScreen.jpg"));
+        background = new Image(AssetInterface.getTexture("Game", "BoxesStartScreenImageClass"));
         background.scaleX = stage.stageWidth / background.width;
         background.scaleY = stage.stageHeight / background.height;
         background.blendMode = BlendMode.NONE;
@@ -70,7 +70,7 @@ class LoadingScreenScene extends Scene
         particleSystem.scaleX = particleSystem.scaleY = 8.0;
         addChild(particleSystem);
         
-        foreground = new Image(AssetInterface.getTexture("assets", "BoxesStartScreenForeground.png"));
+        foreground = new Image(AssetInterface.getTexture("Game", "BoxesStartScreenForegroundImageClass"));
         foreground.scaleX = background.scaleX;
         foreground.scaleY = background.scaleY;
         addChild(foreground);

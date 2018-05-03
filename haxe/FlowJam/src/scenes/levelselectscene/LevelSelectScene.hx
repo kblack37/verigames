@@ -67,7 +67,8 @@ class LevelSelectScene extends Scene
     {
         super.addedToStage(event);
         
-		background = new Image(AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground0.jpg"));
+        //background = new Image(AssetInterface.getTexture("Game", "Background0Class"));TODO: remove if works
+		background = new Image(AssetInterface.getTexture("Game", "BackGrounds/FLowJamBackground0"));
         background.scaleX = stage.stageWidth / background.width;
         background.scaleY = stage.stageHeight / background.height;
         background.blendMode = BlendMode.NONE;

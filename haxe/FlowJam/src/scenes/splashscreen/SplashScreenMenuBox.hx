@@ -67,9 +67,7 @@ class SplashScreenMenuBox extends BaseComponent
         var BUTTON_CENTER_X : Float = 252;  // center point to put Play and Log In buttons  
         var TOP_BUTTON_Y : Int = 205;
         
-        if (PipeJam3.m_savedCurrentLevel != null && 
-			Reflect.hasField(PipeJam3.m_savedCurrentLevel.data, "levelInfoID") &&
-			PipeJam3.m_savedCurrentLevel.data.levelInfoID != null)
+        if (PipeJam3.m_savedCurrentLevel.data.exists("levelInfoID") && PipeJam3.m_savedCurrentLevel.data.levelInfoID != null)
         {
             return_to_last_level_button = ButtonFactory.getInstance().createDefaultButton("Continue", 88, 32);
             return_to_last_level_button.addEventListener(starling.events.Event.TRIGGERED, onReturnToLastTriggered);

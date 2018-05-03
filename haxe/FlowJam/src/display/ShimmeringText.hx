@@ -13,7 +13,7 @@ import starling.textures.Texture;
 class ShimmeringText extends Sprite
 {
     
-    private static var m_shimmerTexture : Texture = AssetInterface.getTexture("assets", "shimmer.png");
+    private static var m_shimmerTexture : Texture = AssetInterface.getTexture("Game", "ShimmerClass");
     
     private var m_textField : TextFieldWrapper;
     private var m_textFieldShadow : TextFieldWrapper;

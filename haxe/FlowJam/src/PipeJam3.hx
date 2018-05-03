@@ -14,6 +14,7 @@ import flash.text.TextFormat;
 import networking.GameFileHandler;
 import networking.NetworkConnection;
 import openfl.Assets;
+import openfl.text.Font;
 import server.LoggingServerInterface;
 import server.ReplayController;
 import starling.core.Starling;
@@ -43,7 +44,7 @@ class PipeJam3 extends flash.display.Sprite
     public static var PRODUCTION : Bool = false;
     public static var INSTALL_DVD : Bool = false;
     public static var REPLAY_DQID : String;  // = "dqid_5252fd7aa741e8.90134465";  
-    private static var REPLAY_TEXT_FORMAT : TextFormat = new TextFormat(Assets.getFont("fonts/UbuntuTitling-Bold.otf").fontName, 6, 0xFFFF00);
+    private static var REPLAY_TEXT_FORMAT : TextFormat = new TextFormat("_sans", 6, 0xFFFF00);
     
     public static var DISABLE_FILTERS : Bool = true;
     

@@ -58,13 +58,13 @@ class SubmitLevelDialog extends BaseDialog
         submit_button.y = cancel_button.y;
         addChild(submit_button);
         
-        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Rate It!", Assets.getFont("fonts/UbuntuTitling-Bold.otf"), _width - 30, 18, 18, 0xFFFFFF);
+        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Rate It!", "_sans", _width - 30, 18, 18, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(label, 1, 1);
         addChild(label);
         label.x = 15 + background.x;
         label.y = 10 + background.y;
         
-        var label1 : TextFieldWrapper = TextFactory.getInstance().createTextField("Did you enjoy that level?", Assets.getFont("fonts/UbuntuTitling-Bold.otf"), _width - 30, 32, 18, 0x243079);
+        var label1 : TextFieldWrapper = TextFactory.getInstance().createTextField("Did you enjoy that level?", "_sans", _width - 30, 32, 18, 0x243079);
         TextFactory.getInstance().updateAlign(label1, 1, 1);
         label1.x = 15 + background.x;
         label1.y = label.y + label.height - 6;

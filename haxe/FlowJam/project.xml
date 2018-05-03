@@ -26,7 +26,7 @@
 	<assets path="assets/levels" rename="levels" />
 	<assets path="assets/audio" rename="audio" />
 	<assets path="assets/atlases" rename="atlases" />
-	<!--assets path="assets/fontHaxe" rename="fonts" />
+	<assets path="assets/fontHaxe" rename="fonts" />
 	<!--assets path="assets/sounds" rename="sounds" -->
 	
 	<!-- optimize output

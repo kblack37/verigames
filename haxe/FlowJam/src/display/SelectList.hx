@@ -327,7 +327,7 @@ class SelectList extends BaseComponent
         var bg : NineSliceBatch = new NineSliceBatch(DOC_WIDTH * 4, DOC_HEIGHT * 4, 16, 16, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", bgTexName);
         bg.scaleX = bg.scaleY = 0.25;
         
-        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(label, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), DOC_WIDTH - ICON_SZ - 3 * PAD, DOC_HEIGHT - 2 * PAD, labelSz, 0xFFFFFF);
+        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(label, "_sans", DOC_WIDTH - ICON_SZ - 3 * PAD, DOC_HEIGHT - 2 * PAD, labelSz, 0xFFFFFF);
         textField.x = ICON_SZ + 2 * PAD;
         textField.y = PAD;
         

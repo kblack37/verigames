@@ -97,7 +97,7 @@ class TextBubble extends Sprite
         }
         
         // text field
-        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(_text, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), size.x - 2 * m_inset, size.y - 2 * m_inset, m_fontSize, _fontColor);
+        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(_text, "_sans", size.x - 2 * m_inset, size.y - 2 * m_inset, m_fontSize, _fontColor);
         if (_outlineWeight > 0 && !PipeJam3.DISABLE_FILTERS)
         {
             TextFactory.getInstance().updateFilter(textField, new GlowFilter(_outlineColor, 1, _outlineWeight, _outlineWeight, 4 * _outlineWeight));

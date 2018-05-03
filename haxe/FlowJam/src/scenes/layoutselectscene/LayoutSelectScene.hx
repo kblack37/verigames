@@ -66,7 +66,8 @@ class LayoutSelectScene extends Scene
     {
         super.addedToStage(event);
         
-		background = new Image(AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground0.jpg"));
+        //background = new Image(AssetInterface.getTexture("Game", "Background0Class"));TODO: remove if works
+		background = new Image(AssetInterface.getTexture("Game", "Backgrounds/FlowJamBackground0"));
         background.scaleX = stage.stageWidth / background.width;
         background.scaleY = stage.stageHeight / background.height;
         background.blendMode = BlendMode.NONE;
@@ -74,7 +75,7 @@ class LayoutSelectScene extends Scene
         
         var levelSelectWidth : Float = 305;
         var levelSelectHeight : Float = 300;
-        levelSelectBackground = new NineSliceBatch(levelSelectWidth, levelSelectHeight, levelSelectWidth / 6.0, levelSelectHeight / 6.0, "atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", "LevelSelectWindow");
+        levelSelectBackground = new NineSliceBatch(levelSelectWidth, levelSelectHeight, levelSelectWidth / 6.0, levelSelectHeight / 6.0, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", "LevelSelectWindow");
         levelSelectBackground.x = 10;
         levelSelectBackground.y = 10;
         addChild(levelSelectBackground);
@@ -119,7 +120,7 @@ class LayoutSelectScene extends Scene
     {
         var levelSelectInfoWidth : Float = 150;
         var levelSelectInfoHeight : Float = 300;
-        levelSelectInfoPanel = new NineSliceBatch(levelSelectInfoWidth, levelSelectInfoHeight, levelSelectInfoWidth / 6.0, levelSelectInfoHeight / 6.0, "atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", "LevelSelectWindow");
+        levelSelectInfoPanel = new NineSliceBatch(levelSelectInfoWidth, levelSelectInfoHeight, levelSelectInfoWidth / 6.0, levelSelectInfoHeight / 6.0, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", "LevelSelectWindow");
         levelSelectInfoPanel.x = width - levelSelectInfoWidth - 10;
         levelSelectInfoPanel.y = 10;
         addChild(levelSelectInfoPanel);

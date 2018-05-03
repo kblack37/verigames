@@ -12,8 +12,16 @@ class FanfareParticleSystem extends Sprite
     public var particleX(get, set) : Float;
     public var particleY(get, set) : Float;
 
+    @:meta(Embed(source="../../lib/assets/particle/fanfare.pex",mimeType="application/octet-stream"))
+
+    private static var FanfareConfig : Class<Dynamic>;
+    
+    @:meta(Embed(source="../../lib/assets/particle/fanfare_particle.png"))
+
+    private static var FanfareParticle : Class<Dynamic>;
+    
     private static var fanfareInited : Bool = false;
-    private static var fanfareXML : Xml;
+    private static var fanfareXML : FastXML;
     private static var fanfareTexture : Texture;
     private var mParticleSystem : PDParticleSystem;
     
@@ -21,13 +29,14 @@ class FanfareParticleSystem extends Sprite
     {
         super();
         
+		// TODO: this will be reworked when the asset system is
         if (!fanfareInited)
         {
-            fanfareXML = AssetInterface.getXml("img/particle", "fanfare.xml");
-            fanfareTexture = AssetInterface.getTexture("img/particle", "fanfare_particle.png");
+            //fanfareXML = FastXML.parse(AssetInterface.getXml("particle/fanfare.xml"));
+            //fanfareTexture = AssetInterface.getTexture("particle/fanfare_particle.png");
         }
         
-        mParticleSystem = new PDParticleSystem(fanfareXML.toString(), fanfareTexture);
+        //mParticleSystem = new PDParticleSystem(fanfareXML.toString(), fanfareTexture);
     }
     
     public function start() : Void

@@ -107,7 +107,7 @@ class GridViewPanel extends BaseComponent
         errorBubbleContainer = new Sprite();
         addChild(errorBubbleContainer);
         
-        var borderTexture : Texture = AssetInterface.getTexture("assets", "BorderVignette.png");
+        var borderTexture : Texture = AssetInterface.getTexture("Game", "BorderVignetteClass");
         m_border = new Image(borderTexture);
         m_border.width = WIDTH;
         m_border.height = HEIGHT;
@@ -1282,7 +1282,8 @@ class GridViewPanel extends BaseComponent
         
         if (m_spotlight == null)
         {
-            var spotlightTexture : Texture = AssetInterface.getTexture("assets", "spotlight.png");
+			//var spotlightTexture : Texture = AssetInterface.getTexture("Game", "SpotlightClass");TODO remove if works
+            var spotlightTexture : Texture = AssetInterface.getTexture("Game", "Spotlight");
             m_spotlight = new Image(spotlightTexture);
             m_spotlight.touchable = false;
             m_spotlight.alpha = 0.3;

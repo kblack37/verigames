@@ -25,7 +25,7 @@ class ScrollBarThumb extends ImageStateButton
     
     public function new(minYPos : Float, maxYPos : Float)
     {
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml");
         var thumbUp : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_Thumb);
         var thumbOver : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_ThumbOver);
         var thumbDown : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_ThumbSelected);

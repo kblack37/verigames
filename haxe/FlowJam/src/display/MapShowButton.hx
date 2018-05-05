@@ -11,7 +11,7 @@ class MapShowButton extends ImageStateButton
     public function new()
     {
         m_toolTipText = "Show Map";
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml");
         super(
                 [new Image(atlas.getTexture(AssetInterface.LevelSelectSubTexture_MapMaximizeButton))], 
                 [new Image(atlas.getTexture(AssetInterface.LevelSelectSubTexture_MapMaximizeButtonMouseover))], 

@@ -49,7 +49,7 @@ class ScoreBlock extends GameComponent
             _radius = Math.min(m_width, m_height) / 5.0;
         }
         
-        m_sliceBatch = new NineSliceBatch(m_width + 2 * _radius, m_height + 2 * _radius, _radius, _radius, "Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML", m_assetName);
+        m_sliceBatch = new NineSliceBatch(m_width + 2 * _radius, m_height + 2 * _radius, _radius, _radius, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", m_assetName);
         m_sliceBatch.adjustUsedSlices(true, true, false, true, true, false, false, false, false);
         addChild(m_sliceBatch);
         
@@ -71,7 +71,7 @@ class ScoreBlock extends GameComponent
         }
         else
         {
-            m_text = new TextField(Std.int(m_width + 2 * _radius), Std.int(m_height + 2 * _radius), m_score, new TextFormat(Assets.getFont("fonts/UbuntuTitling-Bold.otf").fontName, m_fontSize));
+            m_text = new TextField(Std.int(m_width + 2 * _radius), Std.int(m_height + 2 * _radius), m_score, new TextFormat("_sans", m_fontSize));
             addChild(m_text);
         }
         

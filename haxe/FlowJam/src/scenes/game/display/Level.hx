@@ -9,6 +9,7 @@ import flash.geom.Rectangle;
 import flash.utils.ByteArray;
 import flash.utils.Dictionary;
 import flash.utils.Timer;
+import haxe.DynamicAccess;
 import openfl.Vector;
 import starling.events.EnterFrameEvent;
 import assets.AssetInterface;
@@ -102,7 +103,7 @@ class Level extends BaseComponent
     public var nodeLayoutObjs : Dynamic = {};
     public var edgeLayoutObjs : Dynamic = {};
     
-    private var m_gameNodeDict : Dynamic = {};
+    private var m_gameNodeDict : DynamicAccess<Dynamic> = {};
     private var m_gameEdgeDict : Dynamic = {};
     
     private var m_hidingErrorText : Bool = false;
@@ -294,7 +295,8 @@ class Level extends BaseComponent
         {
         // TODO: may need to refine GridViewPanel .onTouch method as well to get this to work: if(this.m_currentLevel && event.target == m_backgroundImage)
             
-            var background : Texture = AssetInterface.getTexture("Game", "BoxesGamePanelBackgroundImageClass");
+           // var background : Texture = AssetInterface.getTexture("Game", "BoxesGamePanelBackgroundImageClass");TODO couldnt find this image references so used other backgrounf
+            var background : Texture = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground2.jpeg");
             m_backgroundImage = new Image(background);
 			m_backgroundImage.textureRepeat = true;
             m_backgroundImage.width = m_backgroundImage.height = 2 * MIN_BORDER;
@@ -437,7 +439,7 @@ class Level extends BaseComponent
     public function createNodeFromJsonObj(boxLayoutObj : Dynamic) : Void
     {
         var varId : String = Reflect.field(boxLayoutObj, "id");
-        if (!levelGraph.variableDict.exists(varId))
+        if (levelGraph.variableDict.get(varId) == null)
         {
             throw new Error("Couldn't find edge set for var id: " + varId);
         }
@@ -564,7 +566,7 @@ class Level extends BaseComponent
             maxY = Math.max(maxY, nodeBoundingBox.bottom);
             Reflect.setField(boxLayoutObj, "bb", nodeBoundingBox);
             Reflect.setField(nodeLayoutObjs, varId, boxLayoutObj);
-            if (m_gameNodeDict.exists(varId))
+            if (m_gameNodeDict.get(varId)!=null)
             {
             // If node exists, update its position
                 

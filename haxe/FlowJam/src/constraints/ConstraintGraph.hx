@@ -3,6 +3,7 @@ package constraints;
 import flash.errors.Error;
 import constraints.events.ErrorEvent;
 import flash.utils.Dictionary;
+import haxe.DynamicAccess;
 import starling.events.EventDispatcher;
 import utils.XString;
 
@@ -36,7 +37,7 @@ class ConstraintGraph extends EventDispatcher
     
     private static var NULL_SCORING : ConstraintScoringConfig = new ConstraintScoringConfig();
     
-    public var variableDict : Dynamic = {};
+    public var variableDict : DynamicAccess<Dynamic> = {};
     public var constraintsDict : Dynamic = {};
     public var unsatisfiedConstraintDict : Dynamic = {};
     public var graphScoringConfig : ConstraintScoringConfig = new ConstraintScoringConfig();

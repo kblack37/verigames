@@ -8,6 +8,7 @@ import display.NineSliceButton;
 import display.NineSliceToggleButton;
 import events.MenuEvent;
 import events.NavigationEvent;
+import openfl.Assets;
 //import feathers.controls.List;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
@@ -86,7 +87,7 @@ class LayoutSelectScene extends Scene
         var buttonHeight : Float = 25;
         var buttonY : Float = 30;
         
-        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Select Layout", AssetsFont.FONT_UBUNTU, 120, 30, 24, 0xFFFFFF);
+        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Select Layout", "_sans", 120, 30, 24, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(label, 1, 1);
         addChild(label);
         label.x = (levelSelectWidth - label.width) / 2 + levelSelectBackground.x;
@@ -125,7 +126,7 @@ class LayoutSelectScene extends Scene
         levelSelectInfoPanel.y = 10;
         addChild(levelSelectInfoPanel);
         
-        infoLabel = TextFactory.getInstance().createTextField("Layout Info", AssetsFont.FONT_UBUNTU, 80, 24, 18, 0xFFFFFF);
+        infoLabel = TextFactory.getInstance().createTextField("Layout Info", "_sans", 80, 24, 18, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(infoLabel, 1, 1);
         addChild(infoLabel);
         infoLabel.x = (levelSelectInfoWidth - infoLabel.width) / 2 + levelSelectInfoPanel.x;
@@ -173,7 +174,7 @@ class LayoutSelectScene extends Scene
             removeChild(nameText);
             if (Reflect.hasField(currentSelectedLayout, "name"))
             {
-                nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLayout.name, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLayout.name, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(nameText, 0, 1);
                 addChild(nameText);
                 nameText.x = levelSelectInfoPanel.x + 10;
@@ -190,7 +191,7 @@ class LayoutSelectScene extends Scene
             {
                 if (currentSelectedLayout.description.length > 0)
                 {
-                    descriptionText = TextFactory.getInstance().createTextField("Description:\r\t" + currentSelectedLayout.description, AssetsFont.FONT_UBUNTU, 140, 60, 12, 0xFFFFFF, true);
+                    descriptionText = TextFactory.getInstance().createTextField("Description:\r\t" + currentSelectedLayout.description, "_sans", 140, 60, 12, 0xFFFFFF, true);
                     TextFactory.getInstance().updateAlign(descriptionText, 0, 1);
                     addChild(descriptionText);
                     descriptionText.x = levelSelectInfoPanel.x + 10;

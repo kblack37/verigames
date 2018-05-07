@@ -7,6 +7,7 @@ import display.NineSliceBatch;
 import display.NineSliceButton;
 import events.MenuEvent;
 import flash.geom.Rectangle;
+import openfl.Assets;
 import scenes.BaseComponent;
 import starling.display.Image;
 import starling.display.Quad;
@@ -27,7 +28,7 @@ class SaveDialog extends BaseDialog
     {
         super(_width, _height);
         
-        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Share with\nyour group\nalso?", AssetsFont.FONT_UBUNTU, _width - 30, 32, 18, 0xFFFFFF);
+        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Share with\nyour group\nalso?", "_sans", _width - 30, 32, 18, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(label, 1, 1);
         addChild(label);
         label.x = 15 + background.x;

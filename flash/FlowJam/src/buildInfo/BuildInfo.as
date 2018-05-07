@@ -6,7 +6,7 @@ package buildInfo
 {
 	public class BuildInfo
 	{
-		public static const DATE:String = "20151216";
-		public static const VERSION:String = "85b257e7a14a";
+		public static const DATE:String = "20180503";
+		public static const VERSION:String = "unknown";
 	}
 }

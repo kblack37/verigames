@@ -1,0 +1,18 @@
+# Individual Report (Jake Chiang): Week 7 #
+
+
+## Previous Goals ##
+- Fix FlowJam runtime errors
+- Adjust report to update evaluation techniques for single game scope
+
+
+## Progress ##
+- Work on FlowJam runtime error fixes
+    - Asset loading
+- Adjusted project report for new goals
+    - Added A/B testing plan for single game playtesting
+
+
+## Goals ##
+- Finish FlowJam runtime fixes
+- Begin work on new features for FlowJam once it is running

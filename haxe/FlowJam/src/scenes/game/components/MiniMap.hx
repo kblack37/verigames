@@ -77,7 +77,7 @@ class MiniMap extends BaseComponent
     public function new()
     {
         super();
-        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML");
+        var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml");
         var background : Texture = atlas.getTexture("MapMaximized");
         backgroundImage = new Image(background);
         addChild(backgroundImage);

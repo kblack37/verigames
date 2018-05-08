@@ -205,7 +205,7 @@ class NetworkConnection
         
         if (braceCount == 0)
         {
-            return as3hx.Compat.parseInt(currentIndex - 1);
+            return currentIndex - 1;
         }
         else
         {

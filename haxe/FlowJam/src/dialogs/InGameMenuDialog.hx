@@ -64,7 +64,7 @@ class InGameMenuDialog extends BaseComponent
             numButtons++;
         }
         
-        var backgroundHeight : Int = as3hx.Compat.parseInt(numButtons * buttonHeight + (numButtons + 1) * buttonPaddingHeight + BOTTOM_BUFFER + TOP_BUFFER);
+        var backgroundHeight : Int = Std.int(numButtons * buttonHeight + (numButtons + 1) * buttonPaddingHeight + BOTTOM_BUFFER + TOP_BUFFER);
         background = new NineSliceBatch(shapeWidth, backgroundHeight, backgroundHeight / 3.0, backgroundHeight / 3.0, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", "MenuBoxAttached");
         addChild(background);
         

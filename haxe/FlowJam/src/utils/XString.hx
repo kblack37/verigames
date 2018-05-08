@@ -28,19 +28,6 @@ import flash.geom.Point;
         return true;
     }
     
-    public static function stringToInt(st : String) : Int
-    {
-        var num : Int = 0;
-        for (i in 0...st.length)
-        {
-            if (!Math.isNaN(st.charCodeAt(i)))
-            {
-                num += as3hx.Compat.parseInt(st.charCodeAt(i));
-            }
-        }
-        return num;
-    }
-    
     public static function leftPad(str : Dynamic, len : Int, padChar : String = " ") : String
     {
         var ret : String = Std.string(str);

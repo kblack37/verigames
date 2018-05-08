@@ -4,6 +4,7 @@ import flash.errors.Error;
 import constraints.events.ErrorEvent;
 import flash.utils.Dictionary;
 import haxe.DynamicAccess;
+import haxe.Json;
 import starling.events.EventDispatcher;
 import utils.XString;
 
@@ -53,7 +54,6 @@ class ConstraintGraph extends EventDispatcher
     {
         oldScore = prevScore;
         prevScore = currentScore;
-        trace("updateScore currentScore ", currentScore, " varIdChanged:", varIdChanged);
         var constraintId : String;
         var lhsConstraint : Constraint;
         var rhsConstraint : Constraint;
@@ -167,7 +167,6 @@ class ConstraintGraph extends EventDispatcher
         {
             startingScore = currentScore;
         }
-        trace("Score: " + currentScore);
     }
     
     public function resetScoring() : Void
@@ -415,8 +414,8 @@ class ConstraintGraph extends EventDispatcher
             lsuffix = "__" + GRP + "_" + (Std.string(Reflect.field(rhsResult, Std.string(2))));
         }
         else if ((Std.string(Reflect.field(lhsResult, Std.string(1)))) == TYPE && (Std.string(Reflect.field(rhsResult, Std.string(1)))) == TYPE)
-        {  //trace("WARNING! Constraint found between two types (no var): " + JSON.stringify(_constraintJson));  
-            
+        {
+            trace("WARNING! Constraint found between two types (no var): " + Json.stringify(_constraintJson));  
         }
         
         var lhs : ConstraintVar = parseConstraintSide(Std.string(Reflect.field(lhsResult, Std.string(1))), Std.string(Reflect.field(lhsResult, Std.string(2))), lsuffix, _variableDictionary, _defaultVal, _defaultScoring.clone());

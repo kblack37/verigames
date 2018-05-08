@@ -108,7 +108,7 @@ class GridViewPanel extends BaseComponent
         errorBubbleContainer = new Sprite();
         addChild(errorBubbleContainer);
         
-        var borderTexture : Texture = AssetInterface.getTexture("assets", "BorderVignette.png");
+        var borderTexture : Texture = AssetInterface.getTexture("img/misc", "BorderVignette.png");
         m_border = new Image(borderTexture);
         m_border.width = WIDTH;
         m_border.height = HEIGHT;
@@ -226,14 +226,14 @@ class GridViewPanel extends BaseComponent
                 if (m_currentLevel.getNode(varId) == null)
                 {
                     m_currentLevel.createNodeFromJsonObj(Reflect.field(m_currentLevel.nodeLayoutObjs, varId));
-                    //trace("made " + varId);
+                    trace("made " + varId);
                     redraw = true;
                 }
             }
             else if (m_currentLevel.getNode(varId) != null)
             {
                 m_currentLevel.destroyGameNode(varId);
-                //trace("destroyed " + varId);
+                trace("destroyed " + varId);
                 redraw = true;
             }
         }
@@ -887,7 +887,6 @@ class GridViewPanel extends BaseComponent
             var nodeLayoutObj : Dynamic = Reflect.field(m_currentLevel.nodeLayoutObjs, nodeId);
             m_nodeLayoutQueue.push(nodeLayoutObj);
         }
-        var edgeId : String;
         for (edgeId in Reflect.fields(m_currentLevel.edgeLayoutObjs))
         {
             var edgeLayoutObj : Dynamic = Reflect.field(m_currentLevel.edgeLayoutObjs, edgeId);
@@ -1283,7 +1282,7 @@ class GridViewPanel extends BaseComponent
         
         if (m_spotlight == null)
         {
-            var spotlightTexture : Texture = AssetInterface.getTexture("assets", "spotlight.png");
+            var spotlightTexture : Texture = AssetInterface.getTexture("img/misc", "spotlight.png");
             m_spotlight = new Image(spotlightTexture);
             m_spotlight.touchable = false;
             m_spotlight.alpha = 0.3;

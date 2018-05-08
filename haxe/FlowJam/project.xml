@@ -9,7 +9,7 @@
 	<app main="Main" file="FlowJam" path="bin" />
 	
 	<window background="#000000" fps="60" />
-	<window width="800" height="480" unless="mobile" />
+	<window width="960" height="640" unless="mobile" />
 	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
 	
 	<!-- classpath, haxe libs -->
@@ -21,12 +21,10 @@
 	<haxedef name="fdb" if="flash"/>
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />
-	<assets path="assets" />
 	<assets path="assets/img" rename="img" />
 	<assets path="assets/levels" rename="levels" />
 	<assets path="assets/audio" rename="audio" />
 	<assets path="assets/atlases" rename="atlases" />
-	<assets path="assets/fontHaxe" rename="fonts" />
 	<!--assets path="assets/sounds" rename="sounds" -->
 	
 	<!-- optimize output

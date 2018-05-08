@@ -115,7 +115,7 @@ class ReplayController
         // perform the action now
         world.performAction(action, dir == -1);
         m_currentActionIndex = attemptIndex;
-        m_nextActionIndex = as3hx.Compat.parseInt(m_currentActionIndex + dir);
+        m_nextActionIndex = m_currentActionIndex + dir;
         m_lastDir = dir;
     }
     

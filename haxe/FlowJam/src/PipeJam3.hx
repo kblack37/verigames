@@ -1,7 +1,8 @@
 //import com.spikything.utils.MouseWheelTrap;
-import assets.AssetsFont;
 import cgs.server.logging.data.QuestData;
 import events.NavigationEvent;
+import flash.display.StageAlign;
+import flash.display.StageScaleMode;
 import flash.external.ExternalInterface;
 import flash.geom.Rectangle;
 import flash.net.SharedObject;
@@ -9,25 +10,21 @@ import flash.text.TextField;
 import flash.text.TextFormat;
 import networking.GameFileHandler;
 import networking.NetworkConnection;
-import openfl.Assets;
-import openfl.text.Font;
+import openfl.display.Sprite;
+import openfl.events.Event;
 import server.LoggingServerInterface;
-import server.ReplayController;
 import starling.core.Starling;
-import starling.events.Event;
 import system.VerigameServerConstants;
-import starling.display.Sprite;
 //import net.hires.debug.Stats;
 
 //import mx.core.FlexGlobals;
 //import spark.components.Application;
-@:meta(SWF(width="960",height="640",frameRate="30",backgroundColor="#D4AF37"))
 
 class PipeJam3 extends Sprite
 {
     public static var GAME_ID : Int = 1;
     
-    private var mStarling : Starling;
+    private var m_starling : Starling;
     
     /** Set to true if a build for the server*/
     public static var RELEASE_BUILD : Bool = false;
@@ -90,13 +87,13 @@ class PipeJam3 extends Sprite
     public function initialize(result : Int = 0, e : Event = null) : Void
     {
         //MouseWheelTrap.setup(stage);
-		mStarling = Starling.current;
+		m_starling = Starling.current;
         
         //set up the main controller
-        //stage.scaleMode = StageScaleMode.NO_SCALE;
-        //stage.align = StageAlign.TOP_LEFT;
+        stage.scaleMode = StageScaleMode.NO_SCALE;
+        stage.align = StageAlign.TOP_LEFT;
         
-        //Starling.multitouchEnabled = false;  // useful on mobile devices  
+        Starling.multitouchEnabled = false;  // useful on mobile devices  
         //Starling.handleLostContext = true;  // deactivate on mobile devices (to save memory)  
         
         //if (SHOW_PERFORMANCE_STATS)
@@ -105,11 +102,12 @@ class PipeJam3 extends Sprite
             //stage.addChild(stats);
         //}
 		
-		//var game : PipeJamGame = new PipeJamGame();
-		//this.addChildAt(game, 0);
+		m_starling = new Starling(PipeJamGame, this.stage);
         
         //mostly just an annoyance in desktop mode, so turn off...
-        
+        m_starling.simulateMultitouch = false;
+        m_starling.enableErrorChecking = false;
+        m_starling.start();
         
         if (REPLAY_DQID != null)
         {
@@ -117,11 +115,11 @@ class PipeJam3 extends Sprite
             m_replayText.width = Constants.GameWidth;
             m_replayText.height = 30;
             m_replayText.setTextFormat(REPLAY_TEXT_FORMAT);
-            mStarling.nativeOverlay.addChild(m_replayText);
+            m_starling.nativeOverlay.addChild(m_replayText);
         }
         
         // this event is dispatched when stage3D is set up
-        mStarling.stage3D.addEventListener(flash.events.Event.CONTEXT3D_CREATE, onContextCreated);
+        m_starling.stage3D.addEventListener(flash.events.Event.CONTEXT3D_CREATE, onContextCreated);
         
         //FlexGlobals.topLevelApplication.stage.addEventListener(Event.RESIZE, updateSize);
         stage.addEventListener(Event.RESIZE, updateSize);

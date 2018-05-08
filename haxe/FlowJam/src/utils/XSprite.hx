@@ -13,17 +13,17 @@ class XSprite
 {
     public static function extractRed(cc : Int) : Int
     {
-        return as3hx.Compat.parseInt(as3hx.Compat.parseInt(cc >> 16) & 0xFF);
+        return (cc >> 16) & 0xFF;
     }
     
     public static function extractGreen(cc : Int) : Int
     {
-        return as3hx.Compat.parseInt(as3hx.Compat.parseInt(cc >> 8) & 0xFF);
+        return (cc >> 8) & 0xFF;
     }
     
     public static function extractBlue(cc : Int) : Int
     {
-        return as3hx.Compat.parseInt(cc & 0xFF);
+        return cc & 0xFF;
     }
     
     private static function toByte(nn : Int) : Int
@@ -33,7 +33,7 @@ class XSprite
     
     public static function toColor(rr : Int, gg : Int, bb : Int) : Int
     {
-        return as3hx.Compat.parseInt((toByte(rr) << 16) | (toByte(gg) << 8) | toByte(bb));
+        return (toByte(rr) << 16) | (toByte(gg) << 8) | toByte(bb);
     }
     
     public static function scaleColor(scale : Float, cc : Int) : Int
@@ -78,8 +78,7 @@ class XSprite
     
     public static function setPivotCenter(obj : DisplayObject) : Void
     {
-        obj.pivotX = as3hx.Compat.parseInt(obj.width / 2);
-        obj.pivotY = as3hx.Compat.parseInt(obj.height / 2);
+        obj.pivotX = obj.width / 2;
     }
     
     public static function createPolyLine(x0 : Float, y0 : Float, x1 : Float, y1 : Float, color : Int, thickness : Int, alpha : Float = 1.0) : DisplayObject

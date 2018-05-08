@@ -277,7 +277,7 @@ class SelectList extends BaseComponent
     {
         if (e.data != null)
         {
-            var ratioScrolled : Float = as3hx.Compat.parseFloat(e.data);
+            var ratioScrolled : Float = e.data;
             
             if (buttonPane.height > initialHeight)
             {
@@ -385,7 +385,7 @@ class SelectList extends BaseComponent
                 
                 if (objArray[ii].checked)
                 {
-                    var checkmarkTexture : Texture = AssetInterface.getTexture("assets", "checkmark.png");
+                    var checkmarkTexture : Texture = AssetInterface.getTexture("img/misc", "checkmark.png");
                     var checkmark : Image = new Image(checkmarkTexture);
                     checkmark.x = checkmark.y = 10;
                     newButton.addChild(checkmark);

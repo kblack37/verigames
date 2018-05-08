@@ -67,7 +67,6 @@ class TutorialController extends Sprite
     
     public static function getTutorialController() : TutorialController
     {
-		trace(Meta.getFields(TutorialController).meta);
         if (tutorialController == null)
         {
             tutorialController = new TutorialController();
@@ -193,7 +192,7 @@ class TutorialController extends Sprite
     //first unplayed tutorial that immediately follows a completed tutorial should be unlocked
     public function tutorialShouldBeUnlocked(tutorialQID : String) : Bool
     {
-        var tutorialQIDInt : Int = as3hx.Compat.parseInt(tutorialQID);
+        var tutorialQIDInt : Int = Std.parseInt(tutorialQID);
         
         if (tutorialQIDInt == getFirstTutorialLevel())
         {

@@ -1,26 +1,13 @@
 package scenes.game.display;
 
-import flash.errors.Error;
-import haxe.Constraints.Function;
-import constraints.events.VarChangeEvent;
-import flash.events.TimerEvent;
-import flash.geom.Point;
-import flash.geom.Rectangle;
-import flash.utils.ByteArray;
-import flash.utils.Dictionary;
-import flash.utils.Timer;
-import haxe.DynamicAccess;
-import openfl.Vector;
-import starling.events.EnterFrameEvent;
 import assets.AssetInterface;
 import constraints.Constraint;
 import constraints.ConstraintGraph;
 import constraints.ConstraintValue;
 import constraints.ConstraintVar;
-//import deng.fzip.FZip;
-import display.ToolTipText;
-import events.EdgeContainerEvent;
 import constraints.events.ErrorEvent;
+import constraints.events.VarChangeEvent;
+import events.EdgeContainerEvent;
 import events.GameComponentEvent;
 import events.GroupSelectionEvent;
 import events.MenuEvent;
@@ -29,33 +16,32 @@ import events.MoveEvent;
 import events.PropertyModeChangeEvent;
 import events.UndoEvent;
 import events.WidgetChangeEvent;
-import graph.BoardNodes;
-import graph.Edge;
-import graph.EdgeSetRef;
-import graph.LevelNodes;
-import graph.Node;
-import graph.NodeTypes;
-import graph.Port;
+import flash.errors.Error;
+import flash.geom.Point;
+import flash.geom.Rectangle;
+import flash.utils.ByteArray;
 import graph.PropDictionary;
+import haxe.Constraints.Function;
 import networking.GameFileHandler;
+import openfl.Vector;
 import scenes.BaseComponent;
 import scenes.game.PipeJamGameScene;
 import starling.display.BlendMode;
 import starling.display.DisplayObject;
 import starling.display.Image;
-import starling.display.Quad;
 import starling.display.Sprite;
+import starling.events.EnterFrameEvent;
 import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
-import starling.filters.BlurFilter;
 import starling.textures.Texture;
 import system.MaxSatSolver;
-//import utils.Base64Encoder;
+import utils.XMath;
 import utils.XObject;
 import utils.XString;
-import lime.Assets;
+//import deng.fzip.FZip;
+//import utils.Base64Encoder;
 
 /**
 	 * Level all game components - widgets and links
@@ -103,7 +89,7 @@ class Level extends BaseComponent
     public var nodeLayoutObjs : Dynamic = {};
     public var edgeLayoutObjs : Dynamic = {};
     
-    private var m_gameNodeDict : DynamicAccess<Dynamic> = {};
+    private var m_gameNodeDict : Dynamic = {};
     private var m_gameEdgeDict : Dynamic = {};
     
     private var m_hidingErrorText : Bool = false;
@@ -182,10 +168,10 @@ class Level extends BaseComponent
             m_layoutFixed = tutorialManager.getLayoutFixed();
         }
         
-        m_targetScore = as3hx.Compat.INT_MAX;
-        if ((Reflect.field(m_levelAssignmentsObj, "target_score") != null) && !Math.isNaN(as3hx.Compat.parseInt(Reflect.field(m_levelAssignmentsObj, "target_score"))))
+        m_targetScore = Std.int(Math.POSITIVE_INFINITY);
+        if (Reflect.hasField(m_levelAssignmentsObj, "target_score") && !Math.isNaN(Reflect.field(m_levelAssignmentsObj, "target_score")))
         {
-            m_targetScore = as3hx.Compat.parseInt(Reflect.field(m_levelAssignmentsObj, "target_score"));
+            m_targetScore = Reflect.field(m_levelAssignmentsObj, "target_score");
         }
         targetScoreReached = false;
         
@@ -232,10 +218,10 @@ class Level extends BaseComponent
         var savedAssignmentObj : Dynamic = PipeJam3.m_savedCurrentLevel.data.assignmentUpdates;
         // By default, reset gameNode to default value, then if contained in "assignments" obj, use that value instead
         var assignmentIsWide : Bool = (graphVar.defaultVal.verboseStrVal == ConstraintValue.VERBOSE_TYPE_1);
-        if (Reflect.field(assignmentsObj, "assignments").exists(graphVar.formattedId)
-            && Reflect.field(Reflect.field(assignmentsObj, "assignments"), Std.string(graphVar.formattedId)).exists(ConstraintGraph.TYPE_VALUE))
+        if (Reflect.hasField(Reflect.field(assignmentsObj, "assignments"), graphVar.formattedId)
+            && Reflect.hasField(Reflect.field(Reflect.field(assignmentsObj, "assignments"), graphVar.formattedId), ConstraintGraph.TYPE_VALUE))
         {
-            assignmentIsWide = (Reflect.field(Reflect.field(Reflect.field(assignmentsObj, "assignments"), Std.string(graphVar.formattedId)), Std.string(ConstraintGraph.TYPE_VALUE)) == ConstraintValue.VERBOSE_TYPE_1);
+            assignmentIsWide = (Reflect.field(Reflect.field(Reflect.field(assignmentsObj, "assignments"), graphVar.formattedId), ConstraintGraph.TYPE_VALUE) == ConstraintValue.VERBOSE_TYPE_1);
         }
         if (graphVar.getProps().hasProp(PropDictionary.PROP_NARROW) == assignmentIsWide)
         {
@@ -251,7 +237,7 @@ class Level extends BaseComponent
         //and then set from local storage, if there (but only if we really want it)
         if (PipeJamGameScene.levelContinued && !updateTutorialManager && savedAssignmentObj != null && Reflect.field(savedAssignmentObj, Std.string(graphVar.id)) != null)
         {
-            var newWidth : String = Reflect.field(savedAssignmentObj, Std.string(graphVar.id));
+            var newWidth : String = Reflect.field(savedAssignmentObj, graphVar.id);
             var savedAssignmentIsWide : Bool = (newWidth == ConstraintValue.VERBOSE_TYPE_1);
             if (graphVar.getProps().hasProp(PropDictionary.PROP_NARROW) == savedAssignmentIsWide)
             {
@@ -296,7 +282,7 @@ class Level extends BaseComponent
         // TODO: may need to refine GridViewPanel .onTouch method as well to get this to work: if(this.m_currentLevel && event.target == m_backgroundImage)
             
            // var background : Texture = AssetInterface.getTexture("Game", "BoxesGamePanelBackgroundImageClass");TODO couldnt find this image references so used other backgrounf
-            var background : Texture = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground2.jpeg");
+            var background : Texture = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground2.jpg");
             m_backgroundImage = new Image(background);
 			m_backgroundImage.textureRepeat = true;
             m_backgroundImage.width = m_backgroundImage.height = 2 * MIN_BORDER;
@@ -405,23 +391,23 @@ class Level extends BaseComponent
         
         var CALLS_PER_FRAME : Int = 200;
         var i : Int = 0;
-        if (nodeLayoutObjs.length > 0)
+		var nodeLayoutIds : Array<String> = Reflect.fields(nodeLayoutObjs);
+		var edgeLayoutIds : Array<String> = Reflect.fields(edgeLayoutObjs);
+		if (nodeLayoutIds.length > 0)
+		{
+			for (nodeLayoutId in nodeLayoutIds)
+			{
+				var nodeLayout : Dynamic = Reflect.field(nodeLayoutObjs, nodeLayoutId);
+				createNodeFromJsonObj(nodeLayout);
+			}
+		}
+        else if (edgeLayoutIds.length > 0)
         {
-            while (nodeLayoutObjs.length > 0 && i < CALLS_PER_FRAME)
-            {
-                var nodeLayout : Dynamic = nodeLayoutObjs.shift();
-                createNodeFromJsonObj(nodeLayout);
-                i++;
-            }
-        }
-        else if (edgeLayoutObjs.length > 0)
-        {
-            while (edgeLayoutObjs.length > 0 && i < CALLS_PER_FRAME)
-            {
-                var edgeLayout : Dynamic = edgeLayoutObjs.shift();
-                createEdgeFromJsonObj(edgeLayout);
-                i++;
-            }
+			for (edgeLayoutId in nodeLayoutIds) 
+			{
+				var edgeLayout : Dynamic = Reflect.field(edgeLayoutObjs, edgeLayoutId);
+				createEdgeFromJsonObj(edgeLayout);
+			}
         }
         else
         {
@@ -449,7 +435,7 @@ class Level extends BaseComponent
         setGraphVarFromAssignments(constraintVar, m_levelAssignmentsObj, true);
         
         var boxVisible : Bool = true;
-        if (boxLayoutObj.exists("visible") && (Reflect.field(boxLayoutObj, "visible") == "false"))
+        if (Reflect.hasField(boxLayoutObj, "visible") && (Reflect.field(boxLayoutObj, "visible") == "false"))
         {
             boxVisible = false;
         }
@@ -483,7 +469,7 @@ class Level extends BaseComponent
     {
         var edgeFromVarId : String = Reflect.field(edgeLayoutObj, "from_var_id");
         var edgeToVarId : String = Reflect.field(edgeLayoutObj, "to_var_id");
-        if (!m_gameNodeDict.exists(edgeFromVarId))
+        if (!Reflect.hasField(m_gameNodeDict, edgeFromVarId))
         {
             var fromNodeLayout : Dynamic = Reflect.field(nodeLayoutObjs, edgeFromVarId);
             if (fromNodeLayout == null)
@@ -492,7 +478,7 @@ class Level extends BaseComponent
             }
             createNodeFromJsonObj(fromNodeLayout);
         }
-        if (!m_gameNodeDict.exists(edgeToVarId))
+        if (!Reflect.hasField(m_gameNodeDict, edgeToVarId))
         {
             var toNodeLayout : Dynamic = Reflect.field(nodeLayoutObjs, edgeToVarId);
             if (toNodeLayout == null)
@@ -503,7 +489,7 @@ class Level extends BaseComponent
         }
         var fromNode : GameNode = try cast(Reflect.field(m_gameNodeDict, edgeFromVarId), GameNode) catch(e:Dynamic) null;
         var toNode : GameNode = try cast(Reflect.field(m_gameNodeDict, edgeToVarId), GameNode) catch(e:Dynamic) null;
-        if (!levelGraph.constraintsDict.exists(edgeId))
+        if (!Reflect.hasField(levelGraph.constraintsDict, edgeId))
         {
             throw new Error("Edge not found in levelGraph.constraintsDict:" + edgeId);
         }
@@ -555,10 +541,10 @@ class Level extends BaseComponent
             }
             Reflect.setField(boxLayoutObj, "id", varId);
             Reflect.setField(boxLayoutObj, "var", graphVar);
-            var nodeX : Float = as3hx.Compat.parseFloat(Reflect.field(boxLayoutObj, "x")) * Constants.GAME_SCALE;
-            var nodeY : Float = as3hx.Compat.parseFloat(Reflect.field(boxLayoutObj, "y")) * Constants.GAME_SCALE;
-            var nodeWidth : Float = as3hx.Compat.parseFloat(Reflect.field(boxLayoutObj, "w")) * Constants.GAME_SCALE;
-            var nodeHeight : Float = as3hx.Compat.parseFloat(Reflect.field(boxLayoutObj, "h")) * Constants.GAME_SCALE;
+            var nodeX : Float = Reflect.field(boxLayoutObj, "x") * Constants.GAME_SCALE;
+            var nodeY : Float = Reflect.field(boxLayoutObj, "y") * Constants.GAME_SCALE;
+            var nodeWidth : Float = Reflect.field(boxLayoutObj, "w") * Constants.GAME_SCALE;
+            var nodeHeight : Float = Reflect.field(boxLayoutObj, "h") * Constants.GAME_SCALE;
             var nodeBoundingBox : Rectangle = new Rectangle(nodeX - 0.5 * nodeWidth, nodeY - 0.5 * nodeHeight, nodeWidth, nodeHeight);
             minX = Math.min(minX, nodeBoundingBox.left);
             minY = Math.min(minY, nodeBoundingBox.top);
@@ -566,7 +552,7 @@ class Level extends BaseComponent
             maxY = Math.max(maxY, nodeBoundingBox.bottom);
             Reflect.setField(boxLayoutObj, "bb", nodeBoundingBox);
             Reflect.setField(nodeLayoutObjs, varId, boxLayoutObj);
-            if (m_gameNodeDict.get(varId)!=null)
+            if (Reflect.hasField(m_gameNodeDict, varId))
             {
             // If node exists, update its position
                 
@@ -603,7 +589,7 @@ class Level extends BaseComponent
             Reflect.setField(edgeLayoutObj, "to_var_id", Reflect.field(result, Std.string(2)));
             //create edge array
             var edgeArray : Array<Dynamic> = new Array<Dynamic>();
-            var ptsArr : Array<Dynamic> = try cast(Reflect.field(edgeLayoutObj, "pts"), Array<Dynamic>) catch(e:Dynamic) null;
+            var ptsArr : Array<Dynamic> = try cast(Reflect.field(edgeLayoutObj, "pts"), Array<Dynamic>) catch (e:Dynamic) null;
             if (ptsArr == null)
             {
                 throw new Error("No layout pts found for edge:" + constraintId);
@@ -620,8 +606,8 @@ class Level extends BaseComponent
             edgeXMax = edgeYMax = Math.NEGATIVE_INFINITY;
             for (i in 0...ptsArr.length)
             {
-                var ptx : Float = as3hx.Compat.parseFloat(Reflect.field(ptsArr[i], "x")) * Constants.GAME_SCALE;
-                var pty : Float = as3hx.Compat.parseFloat(Reflect.field(ptsArr[i], "y")) * Constants.GAME_SCALE;
+                var ptx : Float = Reflect.field(ptsArr[i], "x") * Constants.GAME_SCALE;
+                var pty : Float = Reflect.field(ptsArr[i], "y") * Constants.GAME_SCALE;
                 edgeXMin = Math.min(edgeXMin, ptx);
                 edgeYMin = Math.min(edgeYMin, pty);
                 edgeXMax = Math.max(edgeXMax, ptx);
@@ -636,7 +622,7 @@ class Level extends BaseComponent
             Reflect.setField(edgeLayoutObj, "edge_array", edgeArray);
             Reflect.setField(edgeLayoutObj, "bb", new Rectangle(edgeXMin, edgeYMin, edgeXMax - edgeXMin, edgeYMax - edgeYMin));
             Reflect.setField(edgeLayoutObjs, constraintId, edgeLayoutObj);
-            if (m_gameEdgeDict.exists(constraintId))
+            if (Reflect.hasField(m_gameEdgeDict, constraintId))
             {
                 createEdgeFromJsonObj(edgeLayoutObj);
             }
@@ -782,16 +768,16 @@ class Level extends BaseComponent
         for (varId in Reflect.fields(Reflect.field(Reflect.field(m_levelLayoutObj, "layout"), "vars")))
         {
             Reflect.setField(Reflect.field(Reflect.field(m_levelLayoutObjWrapper, "layout"), "vars"), varId, {});
-            if (!m_gameNodeDict.exists(varId))
+            if (!Reflect.hasField(m_gameNodeDict, varId))
             {
                 trace("Warning! Layout varid where no gameNode exists in boxDictionary varId:" + varId);
                 continue;
             }
             var gameNode : GameNode = try cast(Reflect.field(m_gameNodeDict, varId), GameNode) catch(e:Dynamic) null;
             var currentLayoutX : Float = (gameNode.x /*+ m_boundingBox.x*/ + gameNode.boundingBox.width / 2) / Constants.GAME_SCALE;
-            Reflect.setField(Reflect.field(Reflect.field(Reflect.field(m_levelLayoutObjWrapper, "layout"), "vars"), varId), "x", as3hx.Compat.toFixed(currentLayoutX, 2));
+            Reflect.setField(Reflect.field(Reflect.field(Reflect.field(m_levelLayoutObjWrapper, "layout"), "vars"), varId), "x", XString.floatFixedDigits(currentLayoutX, 2));
             var currentLayoutY : Float = (gameNode.y /*+ m_boundingBox.y*/ + gameNode.boundingBox.height / 2) / Constants.GAME_SCALE;
-            Reflect.setField(Reflect.field(Reflect.field(Reflect.field(m_levelLayoutObjWrapper, "layout"), "vars"), varId), "y", as3hx.Compat.toFixed(currentLayoutY, 2));
+            Reflect.setField(Reflect.field(Reflect.field(Reflect.field(m_levelLayoutObjWrapper, "layout"), "vars"), varId), "y", XString.floatFixedDigits(currentLayoutY, 2));
             if (gameNode.hidden)
             {
                 Reflect.setField(Reflect.field(Reflect.field(Reflect.field(m_levelLayoutObjWrapper, "layout"), "vars"), varId), "visible", "false");
@@ -805,7 +791,7 @@ class Level extends BaseComponent
         for (constraintId in Reflect.fields(Reflect.field(Reflect.field(m_levelLayoutObj, "layout"), "constraints")))
         {
             Reflect.setField(Reflect.field(Reflect.field(m_levelLayoutObjWrapper, "layout"), "constraints"), constraintId, {});
-            if (!m_gameEdgeDict.exists(constraintId))
+            if (!Reflect.hasField(m_gameEdgeDict, constraintId))
             {
                 trace("Warning! Layout constraint found with no corresponding game edgeContainer found: " + constraintId);
                 continue;
@@ -875,7 +861,7 @@ class Level extends BaseComponent
             {
                 continue;
             }
-            if (!Reflect.field(assignmentsObj, "assignments").exists(node.constraintVar.formattedId))
+            if (!Reflect.hasField(Reflect.field(assignmentsObj, "assignments"), node.constraintVar.formattedId))
             {
                 Reflect.setField(Reflect.field(assignmentsObj, "assignments"), Std.string(node.constraintVar.formattedId), { });
             }
@@ -1717,7 +1703,7 @@ class Level extends BaseComponent
     
     public function getNode(_id : String) : GameNode
     {
-        if (m_gameNodeDict.exists(_id) && (Std.is(Reflect.field(m_gameNodeDict, _id), GameNode)))
+        if (Reflect.hasField(m_gameNodeDict, _id) && (Std.is(Reflect.field(m_gameNodeDict, _id), GameNode)))
         {
             return (try cast(Reflect.field(m_gameNodeDict, _id), GameNode) catch(e:Dynamic) null);
         }
@@ -1731,7 +1717,7 @@ class Level extends BaseComponent
     
     public function getEdgeContainer(_id : String) : GameEdgeContainer
     {
-        if (m_gameEdgeDict.exists(_id) && (Std.is(Reflect.field(m_gameEdgeDict, _id), GameEdgeContainer)))
+        if (Reflect.hasField(m_gameEdgeDict, _id) && (Std.is(Reflect.field(m_gameEdgeDict, _id), GameEdgeContainer)))
         {
             return (try cast(Reflect.field(m_gameEdgeDict, _id), GameEdgeContainer) catch(e:Dynamic) null);
         }
@@ -1854,7 +1840,7 @@ class Level extends BaseComponent
         }
         else if (m_currentConflictIndex < 0)
         {
-            m_currentConflictIndex = as3hx.Compat.parseInt(m_levelConflictEdges.length - 1);
+            m_currentConflictIndex = m_levelConflictEdges.length - 1;
         }
         return m_levelConflictEdges[m_currentConflictIndex].errorContainer;
     }

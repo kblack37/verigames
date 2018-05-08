@@ -557,7 +557,7 @@ class GameNodeBase extends GameComponent
         {
             return null;
         }
-        var port : Int = as3hx.Compat.parseInt(m_edgePortArray[edgePortArrayIndex]);
+        var port : Int = m_edgePortArray[edgePortArrayIndex];
         if (m_incomingPortsToEdgeDict.exists(port))
         {
             return try cast(m_incomingPortsToEdgeDict[port], GameEdgeContainer) catch(e:Dynamic) null;

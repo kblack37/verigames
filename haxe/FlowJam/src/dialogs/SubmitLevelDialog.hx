@@ -147,7 +147,7 @@ class SubmitLevelDialog extends BaseDialog
         }
         PipeJamGame.levelInfo.enjoymentRating = eRating;
         
-        GameFileHandler.reportPlayerPreference(Std.string(as3hx.Compat.parseInt(Math.round(eRating * 20))));  //0-100 scale  
+        GameFileHandler.reportPlayerPreference(Std.string(Math.round(eRating * 20)));  //0-100 scale  
         dispatchEvent(new MenuEvent(MenuEvent.SUBMIT_LEVEL));
         
         GameFileHandler.reportScore();

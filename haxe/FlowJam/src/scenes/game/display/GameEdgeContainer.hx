@@ -738,7 +738,8 @@ class GameEdgeContainer extends GameComponent
         }
         
         var secondJointPt : Point = newJointPt.clone();
-        as3hx.Compat.arraySplice(m_jointPoints, startingJointIndex + 1, 0, [newJointPt, secondJointPt]);
+		m_jointPoints.insert(startingJointIndex + 1, secondJointPt);
+		m_jointPoints.insert(startingJointIndex + 1, newJointPt);
         
         //trace("inserted to " + m_jointPoints.indexOf(newJointPt) + " , " + m_jointPoints.indexOf(secondJointPt) + " of " + m_jointPoints.length);
         createChildren();
@@ -1251,7 +1252,8 @@ class GameEdgeContainer extends GameComponent
                     newPt2 = new Point((try cast(m_jointPoints[i], Point) catch(e:Dynamic) null).x, midy);
                     previousSegmentVertical = true;
                 }
-                as3hx.Compat.arraySplice(m_jointPoints, i, 0, [newPt1, newPt2]);
+				m_jointPoints.insert(i, newPt2);
+				m_jointPoints.insert(i, newPt1);
                 newJointsCreated = true;
                 i += 2;  // we've just filled in m_jointPoints[i] and m_jointPoints[i+1] so move to i+3, i+2 check  
                 continue;
@@ -1261,7 +1263,7 @@ class GameEdgeContainer extends GameComponent
             // Don't want two vertical or horizontal segments in a row, duplicate prev joint
                 
                 newPt1 = (try cast(m_jointPoints[i - 1], Point) catch(e:Dynamic) null).clone();
-                as3hx.Compat.arraySplice(m_jointPoints, i, 0, [newPt1]);
+				m_jointPoints.insert(i, newPt1);
                 newJointsCreated = true;
             }
 			i++;

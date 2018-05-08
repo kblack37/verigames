@@ -1,8 +1,11 @@
 package assets;
+import openfl.Assets;
+import openfl.text.Font;
 
 
 class AssetsFont
 {
+	/*
     @:meta(Embed(source="../../lib/assets/font/Vegur-R 0.602.otf",fontFamily="Vegur",embedAsCFF="false",mimeType="application/x-font"))
 private static var FontVegur : Class<Dynamic>;
     @:meta(Embed(source="../../lib/assets/font/BEBAS___.TTF",fontFamily="Bebas",embedAsCFF="false",mimeType="application/x-font"))
@@ -17,15 +20,15 @@ private static var FontBangers : Class<Dynamic>;
 private static var FontSpecialElite : Class<Dynamic>;
     @:meta(Embed(source="../../lib/assets/font/UbuntuTitling-Bold.ttf",fontFamily="UbuntuTitlingBold",embedAsCFF="false",mimeType="application/x-font"))
 private static var FontUbuntuTitlingBold : Class<Dynamic>;
+*/
     
-    
-    public static inline var FONT_DEFAULT : String = "Vegur";
-    public static inline var FONT_FRACTION : String = "Bebas";
-    public static inline var FONT_NUMERIC : String = "DenkOne";
-    public static inline var FONT_METAL : String = "MetalMania";
-    public static inline var FONT_BANGERS : String = "Bangers";
-    public static inline var FONT_SPECIAL_ELITE : String = "SpecialElite";
-    public static inline var FONT_UBUNTU : String = "UbuntuTitlingBold";
+    public  var FONT_DEFAULT : Dynamic;//Font = getFont("fonts","Vegur-R 0.602.otf");
+    public  var FONT_FRACTION : Dynamic;//Font = getFont("fonts","BEBAS_.ttf");
+    public  var FONT_NUMERIC : Dynamic;//Font = getFont("fonts/Denk_One","DenkOne-Regular.otf");
+    public  var FONT_METAL : Dynamic;//Font = getFont("fonts/Metal_Mania","MetalMania-Regular.ttf");
+    public  var FONT_BANGERS : Dynamic;//Font = getFont("fonts/Banger","Bangers.otf");
+    public  var FONT_SPECIAL_ELITE : Dynamic;//Font = getFont("fonts/Special_Elite","SpecialElite");
+    public  var FONT_UBUNTU : Dynamic;//Font = getFont("fonts","UbuntuTitling-Bold.otf");
 
     public function new()
     {

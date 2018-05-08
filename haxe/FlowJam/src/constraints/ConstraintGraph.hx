@@ -3,6 +3,7 @@ package constraints;
 import flash.errors.Error;
 import constraints.events.ErrorEvent;
 import flash.utils.Dictionary;
+import haxe.DynamicAccess;
 import starling.events.EventDispatcher;
 import utils.XString;
 
@@ -36,7 +37,7 @@ class ConstraintGraph extends EventDispatcher
     
     private static var NULL_SCORING : ConstraintScoringConfig = new ConstraintScoringConfig();
     
-    public var variableDict : Dynamic = {};
+    public var variableDict : DynamicAccess<Dynamic> = {};
     public var constraintsDict : Dynamic = {};
     public var unsatisfiedConstraintDict : Dynamic = {};
     public var graphScoringConfig : ConstraintScoringConfig = new ConstraintScoringConfig();
@@ -148,7 +149,7 @@ class ConstraintGraph extends EventDispatcher
         }
         for (constraintId in Reflect.fields(newSatisfiedConstraints))
         {
-            if (Reflect.hasField(unsatisfiedConstraintDict, constraintId))
+            if (unsatisfiedConstraintDict.exists(constraintId))
             {
 				Reflect.deleteField(unsatisfiedConstraintDict, constraintId);
                 dispatchEvent(new ErrorEvent(ErrorEvent.ERROR_REMOVED, Reflect.field(newSatisfiedConstraints, constraintId)));
@@ -156,7 +157,7 @@ class ConstraintGraph extends EventDispatcher
         }
         for (constraintId in Reflect.fields(newUnsatisfiedConstraints))
         {
-            if (!Reflect.hasField(unsatisfiedConstraintDict, constraintId))
+            if (!unsatisfiedConstraintDict.exists(constraintId))
             {
                 Reflect.setField(unsatisfiedConstraintDict, constraintId, Reflect.field(newUnsatisfiedConstraints, constraintId));
                 dispatchEvent(new ErrorEvent(ErrorEvent.ERROR_ADDED, Reflect.field(newUnsatisfiedConstraints, constraintId)));
@@ -186,7 +187,7 @@ class ConstraintGraph extends EventDispatcher
         var graph : ConstraintGraph = new ConstraintGraph();
         var ver : String = Reflect.field(levelObj, VERSION);
         var defaultValue : String = Reflect.field(levelObj, DEFAULT_VAR);
-        graph.qid = Reflect.field(levelObj, QID);
+        graph.qid = as3hx.Compat.parseInt(Reflect.field(levelObj, QID));
         switch (ver)
         {
             case "1":  // Version 1  
@@ -225,7 +226,7 @@ class ConstraintGraph extends EventDispatcher
                         var formattedId : String = idParts[0] + "_" + idParts[1];
                         var varParamsObj : Dynamic = Reflect.field(variablesObj, varId);
                         var isConstant : Bool = false;
-                        if (Reflect.hasField(varParamsObj, CONSTANT))
+                        if (varParamsObj.exists(CONSTANT))
                         {
                             isConstant = XString.stringToBool(Std.string(Reflect.field(varParamsObj, CONSTANT)));
                         }
@@ -287,7 +288,7 @@ class ConstraintGraph extends EventDispatcher
                 for (c in 0...constraintsArr.length)
                 {
                     var newConstraint : Constraint;
-                    if (Std.is(constraintsArr[c], String))
+                    if (Type.getClassName(constraintsArr[c]) == "String")
                     {
                     // process as String, i.e. "var:1 <= var:2"
                         

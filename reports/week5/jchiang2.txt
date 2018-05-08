@@ -1,4 +1,4 @@
-# Individual Report (Jake Chiang): Week 4 #
+# Individual Report (Jake Chiang): Week 5 #
 
 
 ## Previous Goals ##
@@ -9,7 +9,7 @@
 ## Progress ##
 - Worked on FlowJam compilation fixing
     - Resolved compatability function library
-- Examined Starling and OpenFL libraryies to understand their graphics pipeline
+- Examined Starling and OpenFL libraries to understand their graphics pipeline
 
 
 ## Goals ##

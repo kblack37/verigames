@@ -2,6 +2,7 @@ package scenes.game.components;
 
 import assets.AssetsFont;
 import display.ToolTippableSprite;
+import openfl.Assets;
 import starling.display.Quad;
 import events.ToolTipEvent;
 
@@ -23,7 +24,7 @@ class TargetScoreDisplay extends ToolTippableSprite
             dottedQ.y = ((dq + 1.0) / 11.0) * GameControlPanel.SCORE_PANEL_AREA.height;
             addChild(dottedQ);
         }
-        m_targetScoreTextfield = try cast(TextFactory.getInstance().createTextField(score, AssetsFont.FONT_UBUNTU, GameControlPanel.SCORE_PANEL_AREA.width / 2, GameControlPanel.SCORE_PANEL_AREA.height / 3.0, GameControlPanel.SCORE_PANEL_AREA.height / 3.0, fontColor), TextFieldWrapper) catch(e:Dynamic) null;
+        m_targetScoreTextfield = try cast(TextFactory.getInstance().createTextField(score, "_sans", GameControlPanel.SCORE_PANEL_AREA.width / 2, GameControlPanel.SCORE_PANEL_AREA.height / 3.0, GameControlPanel.SCORE_PANEL_AREA.height / 3.0, fontColor), TextFieldWrapper) catch(e:Dynamic) null;
         m_targetScoreTextfield.x = 2.0;
         
         TextFactory.getInstance().updateAlign(m_targetScoreTextfield, 0, 1);

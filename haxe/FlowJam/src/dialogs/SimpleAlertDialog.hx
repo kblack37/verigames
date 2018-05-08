@@ -7,6 +7,7 @@ import display.BasicButton;
 import display.NineSliceBatch;
 import display.NineSliceButton;
 import flash.geom.Rectangle;
+import openfl.Assets;
 import scenes.BaseComponent;
 import starling.display.Image;
 import starling.events.Event;
@@ -25,7 +26,7 @@ class SimpleAlertDialog extends BaseDialog
         m_socialText = _socialText;
         m_callback = callback;
         
-        var label : TextFieldWrapper = TextFactory.getInstance().createTextField(text, AssetsFont.FONT_UBUNTU, 120, 14 * numLinesInText, 12, 0x0077FF);
+        var label : TextFieldWrapper = TextFactory.getInstance().createTextField(text, "_sans", 120, 14 * numLinesInText, 12, 0x0077FF);
         TextFactory.getInstance().updateAlign(label, 1, 1);
         addChild(label);
         label.x = (width - label.width) / 2;

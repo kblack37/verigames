@@ -5,6 +5,7 @@ import assets.AssetsFont;
 import display.NineSliceBatch;
 import flash.filters.GlowFilter;
 import flash.geom.Point;
+import openfl.Assets;
 import scenes.game.components.GameControlPanel;
 import starling.display.DisplayObject;
 import starling.display.DisplayObjectContainer;
@@ -64,7 +65,7 @@ class TextBubble extends Sprite
         m_paddingSz = m_arrowSz + 2 * m_arrowBounce + 4 * m_inset;
         
         // estimate size if none given
-        var size : Point = (_size != null) ? _size : TextFactory.getInstance().estimateTextFieldSize(_text, AssetsFont.FONT_UBUNTU, m_fontSize);
+        var size : Point = (_size != null) ? _size : TextFactory.getInstance().estimateTextFieldSize(_text,"_sans", m_fontSize);
         
         // a transparent sprite with padding around the edges so we can put the arrow outside the text box
         var padding : Quad = new Quad(10, 10, 0xff00ff);
@@ -85,7 +86,7 @@ class TextBubble extends Sprite
         // background box
         if (_showBox)
         {
-            var box : NineSliceBatch = new NineSliceBatch(size.x, size.y, 8, 8, "Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML", AssetInterface.PipeJamSubTexture_TutorialBoxPrefix);
+            var box : NineSliceBatch = new NineSliceBatch(size.x, size.y, 8, 8, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", AssetInterface.PipeJamSubTexture_TutorialBoxPrefix);
             m_textContainer.addChild(box);
         }
         //squeeze text closer to arrow if no box
@@ -96,7 +97,7 @@ class TextBubble extends Sprite
         }
         
         // text field
-        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(_text, AssetsFont.FONT_UBUNTU, size.x - 2 * m_inset, size.y - 2 * m_inset, m_fontSize, _fontColor);
+        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(_text, "_sans", size.x - 2 * m_inset, size.y - 2 * m_inset, m_fontSize, _fontColor);
         if (_outlineWeight > 0 && !PipeJam3.DISABLE_FILTERS)
         {
             TextFactory.getInstance().updateFilter(textField, new GlowFilter(_outlineColor, 1, _outlineWeight, _outlineWeight, 4 * _outlineWeight));

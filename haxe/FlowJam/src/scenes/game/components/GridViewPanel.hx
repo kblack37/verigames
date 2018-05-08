@@ -24,6 +24,7 @@ import flash.system.System;
 import flash.utils.Dictionary;
 import graph.PropDictionary;
 import networking.TutorialController;
+import openfl.Assets;
 import openfl.Vector;
 import particle.FanfareParticleSystem;
 import scenes.BaseComponent;
@@ -107,7 +108,7 @@ class GridViewPanel extends BaseComponent
         errorBubbleContainer = new Sprite();
         addChild(errorBubbleContainer);
         
-        var borderTexture : Texture = AssetInterface.getTexture("assets", "BorderVignette.png");
+        var borderTexture : Texture = AssetInterface.getTexture("Game", "BorderVignetteClass");
         m_border = new Image(borderTexture);
         m_border.width = WIDTH;
         m_border.height = HEIGHT;
@@ -1071,7 +1072,7 @@ class GridViewPanel extends BaseComponent
             var LEVEL_COMPLETE_TEXT_MOVE_SEC : Float = (PipeJamGameScene.inTutorial) ? 2.0 : 0.0;
             var LEVEL_COMPLETE_TEXT_FADE_SEC : Float = (PipeJamGameScene.inTutorial) ? 0.0 : 1.0;
             var LEVEL_COMPLETE_TEXT_PAUSE_SEC : Float = (PipeJamGameScene.inTutorial) ? 1.0 : 5.0;
-            var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(levelCompleteText, AssetsFont.FONT_UBUNTU, textWidth, continueButton.height, 16, 0xFFEC00);
+            var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(levelCompleteText, "_sans", textWidth, continueButton.height, 16, 0xFFEC00);
             if (!PipeJam3.DISABLE_FILTERS)
             {
                 TextFactory.getInstance().updateFilter(textField, OutlineFilter.getOutlineFilter());
@@ -1282,7 +1283,8 @@ class GridViewPanel extends BaseComponent
         
         if (m_spotlight == null)
         {
-            var spotlightTexture : Texture = AssetInterface.getTexture("assets", "spotlight.png");
+			//var spotlightTexture : Texture = AssetInterface.getTexture("Game", "SpotlightClass");TODO remove if works
+            var spotlightTexture : Texture = AssetInterface.getTexture("Game", "Spotlight");
             m_spotlight = new Image(spotlightTexture);
             m_spotlight.touchable = false;
             m_spotlight.alpha = 0.3;

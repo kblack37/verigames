@@ -296,7 +296,7 @@ class TutorialController extends Sprite
         for (i in 0...levels.length)
         {
             var levelObj : Dynamic = levels[i];
-            var qid : Int = Reflect.field(levelObj, "qid");
+            var qid : Int = Std.parseInt(Reflect.field(levelObj, "qid"));
             Reflect.setField(qidToTutorialDictionary, Std.string(qid), levelObj);
             orderToTutorialDictionary[i] = levelObj;
             Reflect.setField(levelObj, "position", i);

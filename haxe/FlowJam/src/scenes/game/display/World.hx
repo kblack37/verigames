@@ -312,14 +312,14 @@ class World extends BaseComponent
         var m_backgroundImage : Image;
         if (Starling.current.nativeStage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE)
         {
-            background = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground" + backMod + ".jpg");
+            background = AssetInterface.getTexture("Game", "Background" + backMod + "Class");
             m_backgroundImage = new Image(background);
             m_backgroundImage.width = 480;
             m_backgroundImage.height = 320;
         }
         else
         {
-            background = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground" + backMod + ".jpg");
+            background = AssetInterface.getTexture("Game", "Background" + backMod + "Class");
             m_backgroundImage = new Image(background);
             if (newWidth != 0)
             {

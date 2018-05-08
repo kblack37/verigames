@@ -81,7 +81,7 @@ class Game extends BaseComponent
             {
 
                 //BaseComponent.waitAnimationImages.push(AssetInterface.getTexture("Game", "Wait" + ii + "Class"));TODO:remove if works
-				        BaseComponent.loadingAnimationImages.push(AssetInterface.getTexture("img/LoadingAnimation", "FlowJamWait" + ii + ".png"));
+				BaseComponent.waitAnimationImages.push(AssetInterface.getTexture("img/LoadingAnimation", "FlowJamWait" + ii + ".png"));
 
             }
 			

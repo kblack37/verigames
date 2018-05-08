@@ -91,17 +91,17 @@ class TextFactory
     
     public function createDefaultTextField(text : String, width : Float, height : Float, fontSize : Float, color : Int) : TextFieldWrapper
     {
-        return createTextField(text, Assets.getFont("fonts/Vegur-R 0.602.otf"), width, height, fontSize, color);
+        return createTextField(text,"_sans", width, height, fontSize, color);
     }
     
     public function createDebugTextField(text : String, width : Float, height : Float, fontSize : Float, color : Int) : TextFieldWrapper
     {
-        return createTextField(text, Assets.getFont("fonts/Banger/Bangers.otf"), width, height, fontSize, color);
+        return createTextField(text,"_sans", width, height, fontSize, color);
     }
     
-    public function createTextField(text : String, font: Font, width : Float, height : Float, fontSize : Float, color : Int, wrap : Bool = false) : TextFieldWrapper
+    public function createTextField(text : String, fontName: String, width : Float, height : Float, fontSize : Float, color : Int, wrap : Bool = false) : TextFieldWrapper
     {
-        var ret : TextFieldWrapper = new TextFieldWrapper(Std.int(width), Std.int(height), text, new TextFormat(font.fontName, fontSize, color));
+        var ret : TextFieldWrapper = new TextFieldWrapper(Std.int(width), Std.int(height), text, new TextFormat(fontName, fontSize, color));
 		ret.wordWrap = wrap;
         //ret.border = true;
         ret.touchable = false;

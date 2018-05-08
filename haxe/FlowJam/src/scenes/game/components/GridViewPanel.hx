@@ -1072,7 +1072,7 @@ class GridViewPanel extends BaseComponent
             var LEVEL_COMPLETE_TEXT_MOVE_SEC : Float = (PipeJamGameScene.inTutorial) ? 2.0 : 0.0;
             var LEVEL_COMPLETE_TEXT_FADE_SEC : Float = (PipeJamGameScene.inTutorial) ? 0.0 : 1.0;
             var LEVEL_COMPLETE_TEXT_PAUSE_SEC : Float = (PipeJamGameScene.inTutorial) ? 1.0 : 5.0;
-            var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(levelCompleteText, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), textWidth, continueButton.height, 16, 0xFFEC00);
+            var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(levelCompleteText, "_sans", textWidth, continueButton.height, 16, 0xFFEC00);
             if (!PipeJam3.DISABLE_FILTERS)
             {
                 TextFactory.getInstance().updateFilter(textField, OutlineFilter.getOutlineFilter());

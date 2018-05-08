@@ -28,7 +28,7 @@ class NineSliceToggleButton extends NineSliceButton
     private var text : String;
     private var secondaryText : String;
     
-    public function new(_text : String, _width : Float, _height : Float, _cX : Float, _cY : Float, _atlasFile : String, _atlasImgName : String, _atlasXMLName : String, _atlasXMLButtonTexturePrefix : String, _fontName : Font, _fontColor : Int, _atlasXMLButtonOverTexturePrefix : String = "", _atlasXMLButtonClickTexturePrefix : String = "", _fontColorOver : Int = 0xFFFFFF, _fontColorClick : Int = 0xFFFFFF)
+    public function new(_text : String, _width : Float, _height : Float, _cX : Float, _cY : Float, _atlasFile : String, _atlasImgName : String, _atlasXMLName : String, _atlasXMLButtonTexturePrefix : String, _fontName : String, _fontColor : Int, _atlasXMLButtonOverTexturePrefix : String = "", _atlasXMLButtonClickTexturePrefix : String = "", _fontColorOver : Int = 0xFFFFFF, _fontColorClick : Int = 0xFFFFFF)
     {
         super(_text, _width, _height, _cX, _cY, _atlasFile, _atlasImgName, _atlasXMLName, _atlasXMLButtonTexturePrefix, _fontName, _fontColor, _atlasXMLButtonOverTexturePrefix, _atlasXMLButtonClickTexturePrefix, _fontColorOver, _fontColorClick);
         
@@ -124,7 +124,7 @@ class NineSliceToggleButton extends NineSliceButton
         text = _text;
         if (_text != null)
         {
-            label = TextFactory.getInstance().createTextField(_text, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), width - 4, 10, 10, 0x0077FF);
+            label = TextFactory.getInstance().createTextField(_text, "_sans", width - 4, 10, 10, 0x0077FF);
             TextFactory.getInstance().updateAlign(label, 1, 1);
             addChild(label);
             label.x = 2;
@@ -141,7 +141,7 @@ class NineSliceToggleButton extends NineSliceButton
         secondaryText = _text;
         if (secondaryText != null)
         {
-            secondaryLabel = TextFactory.getInstance().createTextField(_text, Assets.getFont("fonts/UbuntuTitling-Bold.otf"), width - 4 - currentIcon.width, 10, 10, 0x0077FF);
+            secondaryLabel = TextFactory.getInstance().createTextField(_text, "_sans", width - 4 - currentIcon.width, 10, 10, 0x0077FF);
             TextFactory.getInstance().updateAlign(secondaryLabel, 0, 1);
             addChild(secondaryLabel);
             secondaryLabel.x = currentIcon.width + 12;

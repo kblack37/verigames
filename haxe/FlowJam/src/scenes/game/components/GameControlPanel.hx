@@ -130,7 +130,7 @@ class GameControlPanel extends BaseComponent
         var topLeftScorePanel : Point = m_scorePanel.localToGlobal(new Point(0, 0));
         m_scorePanel.clipRect = new Rectangle(topLeftScorePanel.x, topLeftScorePanel.y, m_scorePanel.width, m_scorePanel.height);
         
-        m_scoreTextfield = TextFactory.getInstance().createTextField("0", Assets.getFont("fonts/UbuntuTitling-Bold.otf"), SCORE_PANEL_AREA.width / 10, 2.0 * SCORE_PANEL_AREA.height / 3.0, 2.0 * SCORE_PANEL_AREA.height / 3.0, GameComponent.SCORE_COLOR);
+        m_scoreTextfield = TextFactory.getInstance().createTextField("0", "_sans", SCORE_PANEL_AREA.width / 10, 2.0 * SCORE_PANEL_AREA.height / 3.0, 2.0 * SCORE_PANEL_AREA.height / 3.0, GameComponent.SCORE_COLOR);
         m_scoreTextfield.touchable = false;
         m_scoreTextfield.x = (SCORE_PANEL_AREA.width - m_scoreTextfield.width) / 2;
         m_scoreTextfield.y = SCORE_PANEL_AREA.height / 6.0;
@@ -145,7 +145,7 @@ class GameControlPanel extends BaseComponent
         m_scorePanel.addChild(shadowOverlay);
         
         var LEVEL_TEXT_WIDTH : Float = 100.0;
-        m_levelNameTextfield = TextFactory.getInstance().createTextField("", Assets.getFont("fonts/UbuntuTitling-Bold.otf"), LEVEL_TEXT_WIDTH, 10, 10, GameComponent.WIDE_COLOR);
+        m_levelNameTextfield = TextFactory.getInstance().createTextField("", "_sans", LEVEL_TEXT_WIDTH, 10, 10, GameComponent.WIDE_COLOR);
         m_levelNameTextfield.touchable = false;
         m_levelNameTextfield.x = WIDTH - LEVEL_TEXT_WIDTH - 10;
         m_levelNameTextfield.y = -10;

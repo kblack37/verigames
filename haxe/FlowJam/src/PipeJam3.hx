@@ -2,10 +2,6 @@
 import assets.AssetsFont;
 import cgs.server.logging.data.QuestData;
 import events.NavigationEvent;
-import flash.display.Sprite;
-import flash.display.StageAlign;
-import flash.display.StageScaleMode;
-import flash.events.Event;
 import flash.external.ExternalInterface;
 import flash.geom.Rectangle;
 import flash.net.SharedObject;
@@ -20,13 +16,14 @@ import server.ReplayController;
 import starling.core.Starling;
 import starling.events.Event;
 import system.VerigameServerConstants;
+import starling.display.Sprite;
 //import net.hires.debug.Stats;
 
 //import mx.core.FlexGlobals;
 //import spark.components.Application;
 @:meta(SWF(width="960",height="640",frameRate="30",backgroundColor="#D4AF37"))
 
-class PipeJam3 extends flash.display.Sprite
+class PipeJam3 extends Sprite
 {
     public static var GAME_ID : Int = 1;
     
@@ -68,37 +65,38 @@ class PipeJam3 extends flash.display.Sprite
         super();
         pipeJam3 = this;
         
-        addEventListener(flash.events.Event.ADDED_TO_STAGE, onAddedToStage);
+        addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         
-        if (REPLAY_DQID != null || LoggingServerInterface.LOGGING_ON)
-        {
-            logging = new LoggingServerInterface(LoggingServerInterface.SETUP_KEY_FRIENDS_AND_FAMILY_BETA, stage, "", REPLAY_DQID != null);
-            if (REPLAY_DQID != null)
-            {
-                //ReplayController.getInstance().loadQuestData(REPLAY_DQID, logging.cgsServer, onReplayQuestDataLoaded);
-            }
-        }
+        //if (REPLAY_DQID != null || LoggingServerInterface.LOGGING_ON)
+        //{
+            //logging = new LoggingServerInterface(LoggingServerInterface.SETUP_KEY_FRIENDS_AND_FAMILY_BETA, stage, "", REPLAY_DQID != null);
+            //if (REPLAY_DQID != null)
+            //{
+                ////ReplayController.getInstance().loadQuestData(REPLAY_DQID, logging.cgsServer, onReplayQuestDataLoaded);
+            //}
+        //}
     }
     
-    public function onAddedToStage(evt : flash.events.Event) : Void
+    public function onAddedToStage(evt : Event) : Void
     {
         if (hasBeenAddedToStage == false)
         {
-            removeEventListener(flash.events.Event.ADDED_TO_STAGE, onAddedToStage);
+            removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
             
             initialize();
         }
     }
     
-    public function initialize(result : Int = 0, e : flash.events.Event = null) : Void
+    public function initialize(result : Int = 0, e : Event = null) : Void
     {
         //MouseWheelTrap.setup(stage);
+		mStarling = Starling.current;
         
         //set up the main controller
-        stage.scaleMode = StageScaleMode.NO_SCALE;
-        stage.align = StageAlign.TOP_LEFT;
+        //stage.scaleMode = StageScaleMode.NO_SCALE;
+        //stage.align = StageAlign.TOP_LEFT;
         
-        Starling.multitouchEnabled = false;  // useful on mobile devices  
+        //Starling.multitouchEnabled = false;  // useful on mobile devices  
         //Starling.handleLostContext = true;  // deactivate on mobile devices (to save memory)  
         
         //if (SHOW_PERFORMANCE_STATS)
@@ -106,13 +104,12 @@ class PipeJam3 extends flash.display.Sprite
             //var stats : Stats = new Stats();
             //stage.addChild(stats);
         //}
+		
+		//var game : PipeJamGame = new PipeJamGame();
+		//this.addChildAt(game, 0);
         
-        //	mStarling = new Starling(PipeJamGame, stage, null, null,Context3DRenderMode.SOFTWARE);
-        mStarling = new Starling(PipeJamGame, stage);
         //mostly just an annoyance in desktop mode, so turn off...
-        mStarling.simulateMultitouch = false;
-        mStarling.enableErrorChecking = false;
-        mStarling.start();
+        
         
         if (REPLAY_DQID != null)
         {
@@ -127,33 +124,33 @@ class PipeJam3 extends flash.display.Sprite
         mStarling.stage3D.addEventListener(flash.events.Event.CONTEXT3D_CREATE, onContextCreated);
         
         //FlexGlobals.topLevelApplication.stage.addEventListener(Event.RESIZE, updateSize);
-        stage.addEventListener(flash.events.Event.RESIZE, updateSize);
-        stage.dispatchEvent(new flash.events.Event(flash.events.Event.RESIZE));
+        stage.addEventListener(Event.RESIZE, updateSize);
+        stage.dispatchEvent(new Event(Event.RESIZE));
         if (ExternalInterface.available)
         {
             ExternalInterface.addCallback("loadLevelFromObjectID", loadLevelFromObjectID);
         }
         
-        var fullURL : String = this.loaderInfo.url;
-        var protocolEndIndex : Int = fullURL.indexOf("//");
-        var baseURLEndIndex : Int = fullURL.indexOf("/", protocolEndIndex + 2);
-        NetworkConnection.baseURL = fullURL.substring(0, baseURLEndIndex);
-        if (NetworkConnection.baseURL.indexOf("http") != -1)
-        {
-            if (PipeJam3.PRODUCTION == true)
-            {
-                NetworkConnection.productionInterop = NetworkConnection.baseURL + "/game/interop.php";
-            }
-            else if (PipeJam3.INSTALL_DVD == true)
-            {
-                NetworkConnection.productionInterop = NetworkConnection.baseURL + "/flowjam/scripts/interop.php";
-            }
-        }
-        else
-        {
-            NetworkConnection.productionInterop = "http://flowjam.verigames.com/game/interop.php";
-            NetworkConnection.baseURL = "http://flowjam.verigames.com";
-        }
+        //var fullURL : String = this.loaderInfo.url;
+        //var protocolEndIndex : Int = fullURL.indexOf("//");
+        //var baseURLEndIndex : Int = fullURL.indexOf("/", protocolEndIndex + 2);
+        //NetworkConnection.baseURL = fullURL.substring(0, baseURLEndIndex);
+        //if (NetworkConnection.baseURL.indexOf("http") != -1)
+        //{
+            //if (PipeJam3.PRODUCTION == true)
+            //{
+                //NetworkConnection.productionInterop = NetworkConnection.baseURL + "/game/interop.php";
+            //}
+            //else if (PipeJam3.INSTALL_DVD == true)
+            //{
+                //NetworkConnection.productionInterop = NetworkConnection.baseURL + "/flowjam/scripts/interop.php";
+            //}
+        //}
+        //else
+        //{
+            //NetworkConnection.productionInterop = "http://flowjam.verigames.com/game/interop.php";
+            //NetworkConnection.baseURL = "http://flowjam.verigames.com";
+        //}
         //initialize stuff
         new NetworkConnection();
         m_savedCurrentLevel = SharedObject.getLocal("FlowJamData");

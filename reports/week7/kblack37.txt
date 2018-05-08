@@ -1,0 +1,21 @@
+## NOTE ##
+Was sick all weekend and Monday 5/7, so collapsing Tuesday 5/8's work into this report as well
+
+## Previous week's goals ##
+Now that FlowJam is ACTUALLY free of compiler errors and can demonstrate the solutions to
+many of the common compiler errors, I hope to also have PipeJam be in the same state by
+next week. Want to finish cleaning up the FlowJam code so it doesn't crash immediately upon launch.
+Integrate all the feedback we've gotten on the proposal & the user manual; this will likely
+have to be delegated as it's easier to explain than the code errors.
+
+## What I've done this week ##
+Cleaned up FlowJam code so that we are able to launch the game and the tutorial level without
+any issues, but the tutorial level itself is plagued by display errors (scaling, placement,
+etc) to an unplayable extent. Doled out responsibilities for the week to the rest of the team.
+Discussed future of the project with the work we have ahead of us.
+
+## Next week's goals ##
+Have every person's part of the code refactored. Once this is done, getting a level up and running
+properly should be much easier. (possibly) update the proposal to reflect new goals, if review of
+current work necessitates it. May have to consider a different final goal (getting the code base in
+a decent enough state).

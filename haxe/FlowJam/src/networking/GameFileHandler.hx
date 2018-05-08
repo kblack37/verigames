@@ -188,7 +188,7 @@ class GameFileHandler
     {
         levelInfoVector = null;
         var fileHandler : GameFileHandler = new GameFileHandler(callback);
-        fileHandler.sendMessage(get_all_level_metadata, fileHandler.setLevelMetadataFromCurrent);
+        //fileHandler.sendMessage(get_all_level_metadata, fileHandler.setLevelMetadataFromCurrent);
     }
     
     //connect to the db and get a list of all completed levels

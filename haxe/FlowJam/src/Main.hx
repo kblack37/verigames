@@ -1,8 +1,7 @@
 package;
 
-import openfl.display.Sprite;
-import openfl.Lib;
 import starling.core.Starling;
+import openfl.display.Sprite;
 
 /**
  * ...
@@ -17,8 +16,11 @@ class Main extends Sprite
 	{
 		super();
 		
-		m_starling = new Starling(PipeJamGame, stage);
-		m_starling.start();
+		var asdf = new PipeJam3();
+		m_starling = new Starling(PipeJamGame, this.stage);
+		m_starling.simulateMultitouch = false;
+        m_starling.enableErrorChecking = false;
+        m_starling.start();
 	}
 
 }

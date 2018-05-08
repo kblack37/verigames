@@ -12,6 +12,7 @@ import display.NineSliceToggleButton;
 import events.MenuEvent;
 import events.MouseWheelEvent;
 import events.NavigationEvent;
+import openfl.Assets;
 //import feathers.controls.List;
 import networking.GameFileHandler;
 import networking.NetworkConnection;
@@ -94,13 +95,13 @@ class LevelSelectScene extends Scene
         var buttonHeight : Float = 25;
         var buttonY : Float = 30;
         
-        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Select Level", AssetsFont.FONT_UBUNTU, 120, 30, 24, 0xFFFFFF);
+        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Select Level", "_sans", 120, 30, 24, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(label, 1, 1);
         addChild(label);
         label.x = (levelSelectWidth - label.width) / 2 + levelSelectBackground.x;
         label.y = 10;
         
-        infoLabel = TextFactory.getInstance().createTextField("Level Info", AssetsFont.FONT_UBUNTU, 80, 24, 18, 0xFFFFFF);
+        infoLabel = TextFactory.getInstance().createTextField("Level Info", "_sans", 80, 24, 18, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(infoLabel, 1, 1);
         addChild(infoLabel);
         infoLabel.x = (levelSelectInfoWidth - infoLabel.width) / 2 + levelSelectInfoPanel.x;
@@ -253,7 +254,7 @@ class LevelSelectScene extends Scene
             removeChild(nameText);
             if (Reflect.hasField(currentSelectedLevel, "name"))
             {
-                nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLevel.name, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLevel.name, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(nameText, 0, 1);
                 addChild(nameText);
                 nameText.x = levelSelectInfoPanel.x + 10;
@@ -269,35 +270,35 @@ class LevelSelectScene extends Scene
             
             if (currentSelectedLevel.exists("widgets"))
             {
-                numNodesText = TextFactory.getInstance().createTextField("Widgets: " + currentSelectedLevel.widgets, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                numNodesText = TextFactory.getInstance().createTextField("Widgets: " + currentSelectedLevel.widgets, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(numNodesText, 0, 1);
                 addChild(numNodesText);
                 numNodesText.x = levelSelectInfoPanel.x + 10;
                 numNodesText.y = nextTextBoxYPos;
                 nextTextBoxYPos += 20;
                 
-                numEdgesText = TextFactory.getInstance().createTextField("Links: " + currentSelectedLevel.links, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                numEdgesText = TextFactory.getInstance().createTextField("Links: " + currentSelectedLevel.links, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(numEdgesText, 0, 1);
                 addChild(numEdgesText);
                 numEdgesText.x = levelSelectInfoPanel.x + 10;
                 numEdgesText.y = nextTextBoxYPos;
                 nextTextBoxYPos += 20;
                 
-                numConflictsText = TextFactory.getInstance().createTextField("Jams: " + currentSelectedLevel.conflicts, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                numConflictsText = TextFactory.getInstance().createTextField("Jams: " + currentSelectedLevel.conflicts, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(numConflictsText, 0, 1);
                 addChild(numConflictsText);
                 numConflictsText.x = levelSelectInfoPanel.x + 10;
                 numConflictsText.y = nextTextBoxYPos;
                 nextTextBoxYPos += 20;
                 
-                scoreText = TextFactory.getInstance().createTextField("Score: " + currentSelectedLevel.current_score, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                scoreText = TextFactory.getInstance().createTextField("Score: " + currentSelectedLevel.current_score, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(scoreText, 0, 1);
                 addChild(scoreText);
                 scoreText.x = levelSelectInfoPanel.x + 10;
                 scoreText.y = nextTextBoxYPos;
                 nextTextBoxYPos += 20;
                 
-                leaderText = TextFactory.getInstance().createTextField("Leader: " + currentSelectedLevel.leader, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                leaderText = TextFactory.getInstance().createTextField("Leader: " + currentSelectedLevel.leader, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(leaderText, 0, 1);
                 addChild(leaderText);
                 leaderText.x = levelSelectInfoPanel.x + 10;

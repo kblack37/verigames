@@ -28,7 +28,7 @@ class SplashScreenScene extends Scene
     {
         super.addedToStage(event);
         
-        background = new Image(AssetInterface.getTexture("assets", "BoxesStartScreen.jpg"));
+        background = new Image(AssetInterface.getTexture("img/misc", "BoxesStartScreen.jpg"));
         background.scaleX = stage.stageWidth / background.width;
         background.scaleY = stage.stageHeight / background.height;
         background.blendMode = BlendMode.NONE;
@@ -40,7 +40,7 @@ class SplashScreenScene extends Scene
         particleSystem.scaleX = particleSystem.scaleY = 8.0;
         addChild(particleSystem);
         
-        foreground = new Image(AssetInterface.getTexture("assets", "BoxesStartScreenForeground.png"));
+        foreground = new Image(AssetInterface.getTexture("img/misc", "BoxesStartScreenForeground.png"));
         foreground.scaleX = background.scaleX;
         foreground.scaleY = background.scaleY;
         addChild(foreground);

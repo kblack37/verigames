@@ -219,8 +219,8 @@ class AnimationStep
         
         while (m_tweenStartTimes.length > currTweenIndex || m_callbackTimes.length > currCallbackIndex)
         {
-            var nextTweenStartTime : Float = ((m_tweenStartTimes.length > currTweenIndex)) ? m_tweenStartTimes[currTweenIndex] : as3hx.Compat.FLOAT_MAX;
-            var nextCallbackStartTime : Float = ((m_callbackTimes.length > currCallbackIndex)) ? m_callbackTimes[currCallbackIndex] : as3hx.Compat.FLOAT_MAX;
+            var nextTweenStartTime : Float = m_tweenStartTimes.length > currTweenIndex ? m_tweenStartTimes[currTweenIndex] : Math.POSITIVE_INFINITY;
+            var nextCallbackStartTime : Float = m_callbackTimes.length > currCallbackIndex ? m_callbackTimes[currCallbackIndex] : Math.POSITIVE_INFINITY;
             
             // Tween is up next
             if (nextTweenStartTime < nextCallbackStartTime)

@@ -172,7 +172,7 @@ class World extends BaseComponent
         if (m_initQueue.length > 0)
         {
             var func : Function = m_initQueue.shift();
-            Reflect.callMethod(null, func, []);
+            func();
         }
     }
     
@@ -203,7 +203,6 @@ class World extends BaseComponent
         }
         addChild(gameControlPanel);
         setHighScores();
-        trace(Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight);
         gameControlPanel.adjustSize(Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight);
         
         PipeJamGame.resetSoundButtonParent();
@@ -307,9 +306,9 @@ class World extends BaseComponent
                 }
             }
         }
-        var backMod : Int = as3hx.Compat.parseInt(seed % Constants.NUM_BACKGROUNDS);
-        var background : Texture;
-        var m_backgroundImage : Image;
+        var backMod : Int = seed % Constants.NUM_BACKGROUNDS;
+        var background : Texture = null;
+        var m_backgroundImage : Image = null;
         if (Starling.current.nativeStage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE)
         {
             background = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground" + backMod + ".jpg");
@@ -330,7 +329,6 @@ class World extends BaseComponent
                 m_backgroundImage.height = newHeight;
             }
         }
-        
         
         m_backgroundImage.blendMode = BlendMode.NONE;
         if (m_backgroundLayer != null)

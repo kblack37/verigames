@@ -67,7 +67,6 @@ class TutorialController extends Sprite
     
     public static function getTutorialController() : TutorialController
     {
-		trace(Meta.getFields(TutorialController).meta);
         if (tutorialController == null)
         {
             tutorialController = new TutorialController();

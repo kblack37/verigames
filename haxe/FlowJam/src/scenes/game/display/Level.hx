@@ -281,7 +281,7 @@ class Level extends BaseComponent
         // TODO: may need to refine GridViewPanel .onTouch method as well to get this to work: if(this.m_currentLevel && event.target == m_backgroundImage)
             
            // var background : Texture = AssetInterface.getTexture("Game", "BoxesGamePanelBackgroundImageClass");TODO couldnt find this image references so used other backgrounf
-            var background : Texture = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground2.jpeg");
+            var background : Texture = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground2.jpg");
             m_backgroundImage = new Image(background);
 			m_backgroundImage.textureRepeat = true;
             m_backgroundImage.width = m_backgroundImage.height = 2 * MIN_BORDER;
@@ -390,23 +390,23 @@ class Level extends BaseComponent
         
         var CALLS_PER_FRAME : Int = 200;
         var i : Int = 0;
-        if (nodeLayoutObjs.length > 0)
+		var nodeLayoutIds : Array<String> = Reflect.fields(nodeLayoutObjs);
+		var edgeLayoutIds : Array<String> = Reflect.fields(edgeLayoutObjs);
+		if (nodeLayoutIds.length > 0)
+		{
+			for (nodeLayoutId in nodeLayoutIds)
+			{
+				var nodeLayout : Dynamic = Reflect.field(nodeLayoutObjs, nodeLayoutId);
+				createNodeFromJsonObj(nodeLayout);
+			}
+		}
+        else if (edgeLayoutIds.length > 0)
         {
-            while (nodeLayoutObjs.length > 0 && i < CALLS_PER_FRAME)
-            {
-                var nodeLayout : Dynamic = nodeLayoutObjs.shift();
-                createNodeFromJsonObj(nodeLayout);
-                i++;
-            }
-        }
-        else if (edgeLayoutObjs.length > 0)
-        {
-            while (edgeLayoutObjs.length > 0 && i < CALLS_PER_FRAME)
-            {
-                var edgeLayout : Dynamic = edgeLayoutObjs.shift();
-                createEdgeFromJsonObj(edgeLayout);
-                i++;
-            }
+			for (edgeLayoutId in nodeLayoutIds) 
+			{
+				var edgeLayout : Dynamic = Reflect.field(edgeLayoutObjs, edgeLayoutId);
+				createEdgeFromJsonObj(edgeLayout);
+			}
         }
         else
         {

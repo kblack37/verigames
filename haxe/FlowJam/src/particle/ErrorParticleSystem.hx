@@ -1,26 +1,20 @@
 package particle;
 
-import starling.display.Quad;
-import starling.extensions.ColorArgb;
+import assets.AssetInterface;
+import graph.PropDictionary;
+import openfl.Assets;
 import starling.core.Starling;
+import starling.display.Quad;
 import starling.display.Sprite;
 import starling.events.Event;
+import starling.extensions.ColorArgb;
 import starling.extensions.PDParticleSystem;
 import starling.textures.Texture;
-import graph.PropDictionary;
 
 class ErrorParticleSystem extends Sprite
 {
-    @:meta(Embed(source="../../lib/assets/particle/error.pex",mimeType="application/octet-stream"))
-
-    private static var ErrorConfig : Class<Dynamic>;
-    
-    @:meta(Embed(source="../../lib/assets/particle/error_particle.png"))
-
-    private static var ErrorParticle : Class<Dynamic>;
-    
     private static var errorInited : Bool = false;
-    private static var errorConfig : FastXML;
+    private static var errorConfig : Xml;
     public static var errorTexture : Texture;
     private var mParticleSystem : PDParticleSystem;
     private var mHitQuad : Quad;
@@ -35,8 +29,8 @@ class ErrorParticleSystem extends Sprite
         if (!errorInited)
         {
             errorInited = true;
-            errorConfig = FastXML.parse(Type.createInstance(ErrorConfig, []));
-            errorTexture = Texture.fromBitmap(Type.createInstance(ErrorParticle, []));
+            errorConfig = AssetInterface.getXml("img/particle", "error.pex");
+            errorTexture = AssetInterface.getTexture("img/particle", "error_particle.png");
         }
         
         id = nextID++;

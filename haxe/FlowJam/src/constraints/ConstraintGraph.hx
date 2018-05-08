@@ -149,7 +149,7 @@ class ConstraintGraph extends EventDispatcher
         }
         for (constraintId in Reflect.fields(newSatisfiedConstraints))
         {
-            if (unsatisfiedConstraintDict.exists(constraintId))
+            if (Reflect.hasField(unsatisfiedConstraintDict, constraintId))
             {
 				Reflect.deleteField(unsatisfiedConstraintDict, constraintId);
                 dispatchEvent(new ErrorEvent(ErrorEvent.ERROR_REMOVED, Reflect.field(newSatisfiedConstraints, constraintId)));
@@ -157,7 +157,7 @@ class ConstraintGraph extends EventDispatcher
         }
         for (constraintId in Reflect.fields(newUnsatisfiedConstraints))
         {
-            if (!unsatisfiedConstraintDict.exists(constraintId))
+            if (!Reflect.hasField(unsatisfiedConstraintDict, constraintId))
             {
                 Reflect.setField(unsatisfiedConstraintDict, constraintId, Reflect.field(newUnsatisfiedConstraints, constraintId));
                 dispatchEvent(new ErrorEvent(ErrorEvent.ERROR_ADDED, Reflect.field(newUnsatisfiedConstraints, constraintId)));
@@ -187,7 +187,7 @@ class ConstraintGraph extends EventDispatcher
         var graph : ConstraintGraph = new ConstraintGraph();
         var ver : String = Reflect.field(levelObj, VERSION);
         var defaultValue : String = Reflect.field(levelObj, DEFAULT_VAR);
-        graph.qid = as3hx.Compat.parseInt(Reflect.field(levelObj, QID));
+        graph.qid = Reflect.field(levelObj, QID);
         switch (ver)
         {
             case "1":  // Version 1  
@@ -226,7 +226,7 @@ class ConstraintGraph extends EventDispatcher
                         var formattedId : String = idParts[0] + "_" + idParts[1];
                         var varParamsObj : Dynamic = Reflect.field(variablesObj, varId);
                         var isConstant : Bool = false;
-                        if (varParamsObj.exists(CONSTANT))
+                        if (Reflect.hasField(varParamsObj, CONSTANT))
                         {
                             isConstant = XString.stringToBool(Std.string(Reflect.field(varParamsObj, CONSTANT)));
                         }
@@ -288,7 +288,7 @@ class ConstraintGraph extends EventDispatcher
                 for (c in 0...constraintsArr.length)
                 {
                     var newConstraint : Constraint;
-                    if (Type.getClassName(constraintsArr[c]) == "String")
+                    if (Std.is(constraintsArr[c], String))
                     {
                     // process as String, i.e. "var:1 <= var:2"
                         

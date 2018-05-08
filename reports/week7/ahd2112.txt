@@ -1,0 +1,6 @@
+The plan for this week is to move ahread more on flowjam, Pipejam seems like it is a more complicated program than flowjam and will be more work than anticipated. The classes I thought would share similair code are at times completely different.
+Pipejam will be worked on but I feel my priority is flowjam because I am more familiar with its code.
+
+I made headway on getting the turorial to load on flowjam. This involved changing some calls to assets that were wrong and changing the fonts that the program is using. There is some problem with calling getFont during runtime. I also worked on changing the manual and the report to reflect the changes we made to our plan
+
+This week is all flowjam. We need to get a lot done and figure out the bugs we have that stop it from working. 

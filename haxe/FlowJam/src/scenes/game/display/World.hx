@@ -309,28 +309,28 @@ class World extends BaseComponent
         var backMod : Int = seed % Constants.NUM_BACKGROUNDS;
         var background : Texture = null;
         var m_backgroundImage : Image = null;
-        if (Starling.current.nativeStage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE)
-        {
+        //if (Starling.current.nativeStage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE)
+        //{
             background = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground" + backMod + ".jpg");
             m_backgroundImage = new Image(background);
             m_backgroundImage.width = 480;
             m_backgroundImage.height = 320;
-        }
-        else
-        {
-            background = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground" + backMod + ".jpg");
-            m_backgroundImage = new Image(background);
-            if (newWidth != 0)
-            {
-                m_backgroundImage.width = newWidth;
-            }
-            if (newHeight != 0)
-            {
-                m_backgroundImage.height = newHeight;
-            }
-        }
+        //}
+        //else
+        //{
+            //background = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground" + backMod + ".jpg");
+            //m_backgroundImage = new Image(background);
+            //if (newWidth != 0)
+            //{
+                //m_backgroundImage.width = newWidth;
+            //}
+            //if (newHeight != 0)
+            //{
+                //m_backgroundImage.height = newHeight;
+            //}
+        //}
         
-        m_backgroundImage.blendMode = BlendMode.NONE;
+        //m_backgroundImage.blendMode = BlendMode.NONE;
         if (m_backgroundLayer != null)
         {
             m_backgroundLayer.addChild(m_backgroundImage);

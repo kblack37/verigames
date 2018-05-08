@@ -19,7 +19,6 @@ import system.VerigameServerConstants;
 
 //import mx.core.FlexGlobals;
 //import spark.components.Application;
-@:meta(SWF(width="960",height="640",frameRate="30",backgroundColor="#D4AF37"))
 
 class PipeJam3 extends Sprite
 {

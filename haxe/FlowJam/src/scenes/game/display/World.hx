@@ -244,7 +244,7 @@ class World extends BaseComponent
                 obj.tutorialLevelID = Std.string(tutorialController.getFirstTutorialLevel());
                 if (!tutorialController.isTutorialLevelCompleted(obj.tutorialLevelID))
                 {
-                    nextLevelQID = as3hx.Compat.parseInt(obj.tutorialLevelID);
+                    nextLevelQID = Std.int(obj.tutorialLevelID);
                 }
                 else
                 {
@@ -253,7 +253,7 @@ class World extends BaseComponent
             }
             else
             {
-                nextLevelQID = as3hx.Compat.parseInt(obj.tutorialLevelID);
+                nextLevelQID = Std.int(obj.tutorialLevelID);
             }
             
             for (level in levels)
@@ -469,7 +469,7 @@ class World extends BaseComponent
             inGameMenuBox = new InGameMenuDialog();
             inGameMenuBox.x = 0;
             inGameMenuBox.y = bottomMenuY;
-            var childIndex : Int = as3hx.Compat.parseInt(numChildren - 1);
+            var childIndex : Int = numChildren - 1;
             if (gameControlPanel != null && gameControlPanel.parent == this)
             {
                 childIndex = getChildIndex(gameControlPanel);
@@ -889,7 +889,7 @@ class World extends BaseComponent
     
     private function onNextLevel(evt : NavigationEvent) : Void
     {
-        var prevLevelNumber : Float = as3hx.Compat.parseInt(PipeJamGame.levelInfo.RaLevelID);
+        var prevLevelNumber : Float = PipeJamGame.levelInfo.RaLevelID;
         if (PipeJamGameScene.inTutorial)
         {
             var tutorialController : TutorialController = TutorialController.getTutorialController();
@@ -944,12 +944,12 @@ class World extends BaseComponent
                     
                     m_currentLevelNumber++;
                 }
-                m_currentLevelNumber = as3hx.Compat.parseInt(m_currentLevelNumber % levels.length);
+                m_currentLevelNumber = m_currentLevelNumber % levels.length;
             }
         }
         else
         {
-            m_currentLevelNumber = as3hx.Compat.parseInt((m_currentLevelNumber + 1) % levels.length);
+            m_currentLevelNumber = (m_currentLevelNumber + 1) % levels.length;
             updateAssignments();
         }
         var callback : Function = 
@@ -1148,7 +1148,7 @@ class World extends BaseComponent
     //added newest at the end, so start at the end
     {
         
-        var i : Int = as3hx.Compat.parseInt(event.eventsToUndo.length - 1);
+        var i : Int = event.eventsToUndo.length - 1;
         while (i >= 0)
         {
             var eventObj : Event = event.eventsToUndo[i];
@@ -1431,7 +1431,7 @@ class World extends BaseComponent
     
     public function setHighScores() : Void
     {
-        if (PipeJamGame.levelInfo && PipeJamGame.levelInfo.highScores)
+        if (PipeJamGame.levelInfo != null && Reflect.hasField(PipeJamGame.levelInfo, "highScores"))
         {
             gameControlPanel.setHighScores(PipeJamGame.levelInfo.highScores);
         }

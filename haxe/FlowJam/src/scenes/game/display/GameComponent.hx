@@ -26,7 +26,7 @@ class GameComponent extends BaseComponent
     public var isHoverOn : Bool = false;
     public var draggable : Bool = true;
     private var m_propertyMode : String = PropDictionary.PROP_NARROW;
-    public var m_forceColor : Float = -1;
+    public var m_forceColor : Int = -1;
     private var m_hidden : Bool = false;
     
     public static inline var NARROW_COLOR : Int = 0x6ED4FF;
@@ -111,7 +111,7 @@ class GameComponent extends BaseComponent
         m_isWide = b;
     }
     
-    public function forceColor(color : Float) : Void
+    public function forceColor(color : Int) : Void
     {
         m_forceColor = color;
         m_isDirty = true;
@@ -123,7 +123,7 @@ class GameComponent extends BaseComponent
         var color : Int;
         if (m_forceColor > -1)
         {
-            color = as3hx.Compat.parseInt(m_forceColor);
+            color = m_forceColor;
         }
         else if (m_shouldShowError && hasError())
         {
@@ -156,7 +156,7 @@ class GameComponent extends BaseComponent
             }
         }
         
-        return as3hx.Compat.parseInt(color);
+        return color;
     }
     
     public function updateSize() : Void

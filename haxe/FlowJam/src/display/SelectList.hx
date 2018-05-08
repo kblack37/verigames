@@ -277,7 +277,7 @@ class SelectList extends BaseComponent
     {
         if (e.data != null)
         {
-            var ratioScrolled : Float = as3hx.Compat.parseFloat(e.data);
+            var ratioScrolled : Float = e.data;
             
             if (buttonPane.height > initialHeight)
             {

@@ -246,7 +246,7 @@ class GameFileHandler
         var m_id : Int = 100;
         if (PipeJamGame.levelInfo != null && Reflect.hasField(PipeJamGame.levelInfo, "id") && PipeJamGame.levelInfo.id.length < 5)
         {
-            m_id = as3hx.Compat.parseInt(PipeJamGame.levelInfo.id);
+            m_id = PipeJamGame.levelInfo.id;
         }
         if (m_id < 1000)
         {
@@ -575,7 +575,7 @@ class GameFileHandler
                 var solutionInfo : Dynamic = PipeJamGame.levelInfo;
                 solutionInfo.current_score = Std.string(World.m_world.active_level.currentScore);
                 solutionInfo.prev_score = Std.string(World.m_world.active_level.oldScore);
-                solutionInfo.revision = Std.string(as3hx.Compat.parseInt(PipeJamGame.levelInfo.revision) + 1);
+                solutionInfo.revision = Std.string(PipeJamGame.levelInfo.revision + 1);
                 solutionInfo.playerID = PlayerValidation.playerID;
                 solutionInfo.username = PlayerValidation.playerUserName;
                 Reflect.deleteField(solutionInfo, "id");  //need to remove this or else successive saves won't work  ;

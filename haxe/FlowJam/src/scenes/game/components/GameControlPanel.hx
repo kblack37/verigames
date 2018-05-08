@@ -421,7 +421,7 @@ class GameControlPanel extends BaseComponent
         var targetScore : Int = level.getTargetScore();
         var maxScoreShown : Float = Math.max(currentScore, bestScore);
         maxScoreShown = Math.max(1, maxScoreShown);  // avoid divide by zero  
-        if (targetScore < as3hx.Compat.INT_MAX)
+        if (targetScore < Math.POSITIVE_INFINITY)
         {
             maxScoreShown = Math.max(maxScoreShown, targetScore);
         }
@@ -443,7 +443,7 @@ class GameControlPanel extends BaseComponent
         }
         m_scoreBarContainer.addChild(m_scoreBar);
         
-        if (targetScore < as3hx.Compat.INT_MAX)
+        if (targetScore < Math.POSITIVE_INFINITY)
         {
             if (m_targetScoreLine == null)
             {
@@ -658,7 +658,7 @@ class GameControlPanel extends BaseComponent
             {
                 m_bestScoreLine.update(score);
             }
-            m_bestScoreLine.x = (SCORE_PANEL_AREA.width * 2.0 / 3.0) * as3hx.Compat.parseInt(score) / maxScoreShown;
+            m_bestScoreLine.x = (SCORE_PANEL_AREA.width * 2.0 / 3.0) * Std.parseFloat(score) / maxScoreShown;
             m_scoreBarContainer.addChild(m_bestScoreLine);
         }
     }

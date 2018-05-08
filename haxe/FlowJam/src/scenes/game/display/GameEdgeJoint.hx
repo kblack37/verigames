@@ -341,6 +341,6 @@ class GameEdgeJoint extends GameComponent
         var red : Int = XSprite.extractRed(color);
         var green : Int = XSprite.extractGreen(color);
         var blue : Int = XSprite.extractBlue(color);
-        return as3hx.Compat.parseInt((Math.round(red * 0.8) << 16) | (Math.round(green * 0.8) << 8) | Math.round(blue * 0.8));
+        return (Math.round(red * 0.8) << 16) | (Math.round(green * 0.8) << 8) | Math.round(blue * 0.8);
     }
 }

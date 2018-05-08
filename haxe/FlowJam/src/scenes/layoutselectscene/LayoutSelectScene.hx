@@ -312,7 +312,7 @@ class LayoutSelectScene extends Scene
                 
                 thumbByteArray.uncompress();
                 var thumbActualWidth : Int = thumbByteArray.readUnsignedInt();
-                var thumbActualHeight : Int = as3hx.Compat.parseInt(((thumbByteArray.length - 4) / 4) / thumbActualWidth);
+                var thumbActualHeight : Int = Std.int(((thumbByteArray.length - 4) / 4) / thumbActualWidth);
                 var smallBMD : BitmapData = new BitmapData(thumbActualWidth, thumbActualHeight);
                 smallBMD.setPixels(smallBMD.rect, thumbByteArray);
                 var bmp : Bitmap = new Bitmap(smallBMD, PixelSnapping.ALWAYS, true);

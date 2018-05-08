@@ -70,9 +70,9 @@ import flash.geom.Point;
 		 * @param p2 The second vector.
 		 * @return A number representing the dot product of the two vectors.
 		 */
-    public static function dot(p1 : Dynamic, p2 : Dynamic) : Float
+    public static function dot(p1 : Point, p2 : Point) : Float
     {
-        return ((as3hx.Compat.parseFloat(p1.x) * as3hx.Compat.parseFloat(p2.x)) + (as3hx.Compat.parseFloat(p1.y) * as3hx.Compat.parseFloat(p2.y)));
+        return (p1.x * p2.x) + (p1.y * p2.y);
     }
     
     /**
@@ -94,7 +94,7 @@ import flash.geom.Point;
 		 */
     public static function triangleNum(x : Int) : Int
     {
-        return as3hx.Compat.parseInt((Math.pow(x, 2) + x) / 2);
+        return Std.int((Math.pow(x, 2) + x) / 2);
     }
     
     /**
@@ -109,8 +109,8 @@ import flash.geom.Point;
         var b : Int = y;
         while (b != 0)
         {
-            var q : Int = as3hx.Compat.parseInt(a / b);
-            var r : Int = as3hx.Compat.parseInt(a - q * b);
+            var q : Int = Math.round(a / b);
+            var r : Int = Math.round(a - q * b);
             a = b;
             b = r;
         }

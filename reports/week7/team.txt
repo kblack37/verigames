@@ -1,10 +1,16 @@
 # Team Report: Week 7 #
 
 ## Last Week's Goal **
--
--
--
+- Fix FlowJam so levels parse json correctly
+- once levels are loading, asses all game assets to make sure the are working and behaving as expected
 
 ## Progress ##
+- Fixed some errors on level loading involving assets and fonts. still resolving issues with game flow and level loading
+
 
 ## Goals ##
+- Get tutorial loading and conduct playtesting by next week
+
+## Agenda ##
+- discuss refactor or level gridviewpanel and world haxe files
+- discuss progress of flowjam.

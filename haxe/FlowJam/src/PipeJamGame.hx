@@ -116,7 +116,6 @@ class PipeJamGame extends Game
         if (Reflect.hasField(obj, "tutorial"))
         {
             m_fileName = "tutorial";
-            PipeJamGame.levelInfo = {};
             PipeJamGame.levelInfo.name = "foo";
             PipeJamGame.levelInfo.id = Reflect.field(obj, "tutorial");
             PipeJamGame.levelInfo.tutorialLevelID = Reflect.field(obj, "tutorial");
@@ -190,7 +189,7 @@ class PipeJamGame extends Game
     
     private function loadLevel(result : Int, objVector : Array<Dynamic>) : Void
     {
-        PipeJamGame.levelInfo = Type.createInstance(objVector[0], new Array<Dynamic>());
+        PipeJamGame.levelInfo = Type.createInstance(objVector[0], []);
         PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
     }
     

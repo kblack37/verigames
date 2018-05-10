@@ -214,7 +214,7 @@ class PipeJam3 extends Sprite
     
     private function loadLevel(result : Int, objVector : Array<Dynamic>) : Void
     {
-        PipeJamGame.levelInfo = Type.createInstance(objVector[0], new Array<Dynamic>());
+        PipeJamGame.levelInfo = Type.createInstance(objVector[0], []);
         PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
     }
     

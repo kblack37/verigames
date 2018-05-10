@@ -1,6 +1,6 @@
 # Verigames #
 
-PipeJam Port Progress: [View Continuous Updates](https://verigames.github.io/)
+PipeJam Port Progress: [View Continuous Updates](https://verigames.github.io/pipejam)
 
-Travis CI Page: [Travis CI](https://travis-ci.org/kblack37/verigames/builds)
+Continuous Integration: [Travis CI](https://travis-ci.org/kblack37/verigames/builds)
 

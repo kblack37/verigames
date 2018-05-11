@@ -76,24 +76,23 @@ class TutorialController extends Sprite
         return tutorialController;
     }
     
-    
     public function getTutorialIDFromName(name : String) : String
     //find first next level to play, then compare with argument
     {
         
-        var levelFound : Bool = false;
+        //var levelFound : Bool = false;TODO:remove if works probably not needed decleration
         for (order in tutorialOrderedList)
         {
-            var nextName : String = Reflect.field(orderToTutorialDictionary[order], "name");
+            var nextName : String = Reflect.field(orderToTutorialDictionary.get(order), "name");
             
             if (nextName == name)
             {
-                return Reflect.field(orderToTutorialDictionary[order], "qid");
+                return Reflect.field(orderToTutorialDictionary.get(order), "qid");
             }
         }
         return "0";
     }
-    
+	
     public function getTutorialsCompletedByPlayer() : Void
     {
         sendMessage(get_completed_tutorial_levels, getTutorialsCompleted);
@@ -118,7 +117,8 @@ class TutorialController extends Sprite
         //also check cookies for levels played when not logged in
         getTutorialsCompletedFromCookieString();
     }
-    
+	
+	
     public function getTutorialsCompletedFromCookieString() : Void
     {
         if (completedTutorialDictionary == null)
@@ -139,7 +139,7 @@ class TutorialController extends Sprite
         
         LoadingScreenScene.getLoadingScreenScene().changeScene();
     }
-    
+
     public function addCompletedTutorial(qid : String, markComplete : Bool) : Void
     {
         if (PipeJam3.RELEASE_BUILD)
@@ -162,6 +162,7 @@ class TutorialController extends Sprite
             }
         }
     }
+	
     public function post() : Void
     {
         if (PlayerValidation.playerLoggedIn)

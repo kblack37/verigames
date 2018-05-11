@@ -19,7 +19,7 @@ update_data_file_errors() {
 update_cohesion_graph() {
     cd ..
     python3 .travis/relations.py
-    mv fj_relations_data.txt verigames.github.io/
+    mv fj_relation_data.txt verigames.github.io/
     cd verigames.github.io
 }
 
@@ -47,7 +47,7 @@ commit_website_files() {
     git add data.txt
     
     update_cohesion_graph
-    git add fj_relations_data.txt
+    git add fj_relation_data.txt
 
     git commit -m "Travis build: $TRAVIS_BUILD_NUMBER"
     chmod 600 ../.travis/deploy_key

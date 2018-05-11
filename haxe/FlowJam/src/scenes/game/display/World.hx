@@ -95,7 +95,13 @@ class World extends BaseComponent
     private var m_activeToolTip : TextBubble;
     
     private static var m_numWidgetsClicked : Int = 0;
-    
+	
+    /*A world in the game that keeps track of all the levels
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
     public function new(_worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
     {
         super();
@@ -166,16 +172,18 @@ class World extends BaseComponent
         m_initQueue.push(initMusic);
         addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
     }
-    
+    //model
     private function onEnterFrame(evt : EnterFrameEvent) : Void
     {
+		//calls all functions in queue
         if (m_initQueue.length > 0)
         {
             var func : Function = m_initQueue.shift();
             func();
         }
     }
-    
+	
+    //graphics
     private function initGridViewPanel() : Void
     {
         trace("Initializing GridViewPanel...");
@@ -183,7 +191,8 @@ class World extends BaseComponent
         addChild(edgeSetGraphViewPanel);
         trace("Done initializing GridViewPanel.");
     }
-    
+	
+    //view
     private function initGameControlPanel() : Void
     {
         trace("Initializing GameControlPanel...");
@@ -209,7 +218,7 @@ class World extends BaseComponent
         
         trace("Done initializing GameControlPanel.");
     }
-    
+    //view
     private function initMiniMap() : Void
     {
         trace("Initializing Minimap....");
@@ -275,7 +284,7 @@ class World extends BaseComponent
         selectLevel(firstLevel);
         trace("Done initializing Level.");
     }
-    
+    //view
     public function initBackground(isWide : Bool = false, newWidth : Float = 0, newHeight : Float = 0) : Void
     {
         if (m_backgroundLayer == null)
@@ -392,7 +401,8 @@ class World extends BaseComponent
         addEventListener(ToolTipEvent.CLEAR_TOOL_TIP, onToolTipCleared);
         trace("Done initializing event listeners.");
     }
-    
+    //sets callback loop for active level
+	//view and model
     private function onSolveSelection() : Void
     {
         if (active_level != null)
@@ -424,14 +434,14 @@ class World extends BaseComponent
         
         gameControlPanel.stopSolveAnimation();
     }
-    
+    //view
     private function initMusic() : Void
     {
         AudioManager.getInstance().reset();
         AudioManager.getInstance().playMusic(AssetsAudio.MUSIC_FIELD_SONG);
         trace("Playing music...");
     }
-    
+    //view
     public function changeFullScreen(newWidth : Float, newHeight : Float) : Void
     //backgrounds get scaled by the AssetInterface content scale factor, so change scale before setting a new background
     {
@@ -451,7 +461,7 @@ class World extends BaseComponent
         edgeSetGraphViewPanel.adjustSize(newWidth, newHeight);
         gameControlPanel.adjustSize(newWidth, newHeight);
     }
-    
+    //Not sure, but looks like this always returns.
     private function onShowGameMenuEvent(evt : NavigationEvent) : Void
     {
         dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
@@ -548,7 +558,7 @@ class World extends BaseComponent
         
         addChild(shareDialog);
     }
-    
+    //view
     private function postSubmitDialog(event : MenuEvent) : Void
     {
         var submitLevelDialog : SubmitLevelDialog = new SubmitLevelDialog(150, 120);
@@ -589,7 +599,7 @@ class World extends BaseComponent
             Achievements.checkAchievements(Achievements.SHARED_WITH_GROUP_ID, 0);
         }
     }
-    
+    //view and model
     public function onLevelUploadSuccess(event : MenuEvent) : Void
     {
         var dialogText : String;
@@ -623,7 +633,7 @@ class World extends BaseComponent
         var alert : SimpleAlertDialog = new SimpleAlertDialog(dialogText, dialogWidth, dialogHeight, socialText, callbackFunction, numLinesInText);
         addChild(alert);
     }
-    
+    //model
     public function reportSubmitAchievement() : Void
     {
         Achievements.checkAchievements(MenuEvent.LEVEL_SUBMITTED, 0);
@@ -633,7 +643,7 @@ class World extends BaseComponent
             Achievements.checkAchievements(MenuEvent.SET_NEW_LAYOUT, 0);
         }
     }
-    
+    //model
     public function reportSavedLayoutAchievement() : Void
     {
         Achievements.checkAchievements(MenuEvent.SAVE_LAYOUT, 0);
@@ -710,7 +720,7 @@ class World extends BaseComponent
             PipeJamGame.levelInfo.layoutUpdated = true;
         }
     }
-    
+    // model
     public function updateAssignments(currentLevelOnly : Bool = false) : Dynamic
     // TODO: think about this more, when do we update WORLD assignments? Real-time or in this method?
     {
@@ -1189,6 +1199,7 @@ class World extends BaseComponent
             var qid : Int;
             if (active_level != null)
             {
+				//set details to be the values of the active level
                 details = {};
                 Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_LEVEL_NAME), active_level.original_level_name);
                 Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_SCORE), active_level.currentScore);
@@ -1202,6 +1213,7 @@ class World extends BaseComponent
                 active_level.removeEventListener(MenuEvent.LEVEL_LOADED, onLevelLoaded);
             }
             details = {};
+			//set details to be values of new level
             Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_LEVEL_NAME), newLevel.original_level_name);
             Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_SCORE), newLevel.currentScore);
             Reflect.setField(details, Std.string(VerigameServerConstants.ACTION_PARAMETER_START_SCORE), newLevel.startingScore);

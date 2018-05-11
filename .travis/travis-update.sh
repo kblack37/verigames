@@ -15,6 +15,14 @@ update_data_file_errors() {
     echo "$DATE=$NUM_FILES" >> data.txt
 }
 
+# For FlowJam cohesion graph
+update_cohesion_graph() {
+    cd ..
+    python3 .travis/relations.py
+    mv fj_relations_data.txt verigames.github.io/
+    cd verigames.github.io
+}
+
 # For amount of files modified
 update_data_modified() {
     FILTER="haxe/FlowJam"
@@ -36,6 +44,7 @@ commit_website_files() {
     setup_git
     update_data_file_errors
     git add data.txt
+    git add fj_relations_data.txt
     git commit -m "Travis build: $TRAVIS_BUILD_NUMBER"
     chmod 600 ../.travis/deploy_key
     eval `ssh-agent -s`

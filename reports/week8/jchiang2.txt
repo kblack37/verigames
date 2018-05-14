@@ -1,0 +1,21 @@
+# Individual Report (Jake Chiang): Week 8 #
+
+
+## Previous Goals ##
+- Finish FlowJam runtime fixes
+- Begin work on new features for FlowJam once it is running
+
+
+## Progress ##
+- Created FlowJam coupling graph
+    - Integrated with Travis CI
+- Created outline for refactoring GridViewPanel
+    - Determined functionality
+    - Began creating new public interface
+
+
+## Goals ##
+- Prepare results presentation
+- Finish creating model for the refactored GridViewPanel 
+    - Determine separation and new functionality of new parts
+- Document GridViewPanel public interface

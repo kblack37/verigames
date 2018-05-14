@@ -11,20 +11,53 @@ Output File Format:
 
 import os
 
+SRC_ROOT = "./haxe/FlowJam/src"
+EXTENSION = "hx"
+IGNORE = ["/cgs/"]
+
 # Get all modules
 modules = set()
-for root, dirs, files in os.walk("./haxe/FlowJam/src"):
+for root, dirs, files in os.walk(SRC_ROOT):
+    ignore = False
+    for ig in IGNORE:
+        if (ig in root):
+            ignore = True
+            break
+    if (ignore):
+        continue
+    
     for f in files:
-        module_name = f.split(".")[0]
+        parts = f.split(".")
+        if (len(parts) == 1):
+            continue
+        module_name = parts[0]
+        extension = parts[1]
+        if (extension != EXTENSION):
+            continue
         modules.add(module_name)
 
 
 # Determine file relations
 relations = {}
 line_count = {}
-for root, dirs, files in os.walk("./haxe/FlowJam/src"):
+for root, dirs, files in os.walk(SRC_ROOT):
+    ignore = False
+    for ig in IGNORE:
+        if (ig in root):
+            ignore = True
+            break
+    if (ignore):
+        continue
+
     for f in files:
-        module_name = f.split(".")[0]
+        parts = f.split(".")
+        if (len(parts) == 1):
+            continue
+        module_name = parts[0]
+        extension = parts[1]
+        if (extension != EXTENSION):
+            continue
+
         path = root + "/" + f
         relations[module_name] = set()
         with open(path) as infile:

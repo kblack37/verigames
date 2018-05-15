@@ -1,0 +1,6 @@
+This week is all flowjam. We need to get a lot done and figure out the bugs we have that stop it from working. 
+
+FlowJam is working a little better. I spent most of my time this week on the report for the week and going over World.hx to prepare for the refactor this involved looking through every function and seeing what part of the code it was dealing with
+if it was purely data, or also loaded sprites or dealt with eventlisteners.
+
+This week I pland to work on the slides and continue to work on the refactor.

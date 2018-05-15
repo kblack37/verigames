@@ -1,0 +1,12 @@
+## Previous week's goals ##
+Have every person's part of the code refactored. Once this is done, getting a level up and running
+properly should be much easier. (possibly) update the proposal to reflect new goals, if review of
+current work necessitates it. May have to consider a different final goal (getting the code base in
+a decent enough state).
+
+## What I've done this week ##
+Specified and added skeleton code and few implementations of updated engine code. Directed team meeting.
+Rewrote parts of proposal.
+
+## Next week's goals ##
+Have full top-level engine goal integrated into game and hopefully team members' components as well.

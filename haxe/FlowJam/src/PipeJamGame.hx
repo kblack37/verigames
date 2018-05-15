@@ -104,16 +104,16 @@ class PipeJamGame extends Game
         NineSliceBatch.gameObjectBatch = m_gameObjectBatch;
         
         var obj : Dynamic = Starling.current.nativeStage.loaderInfo.parameters;
-        if (obj.exists("localfile"))
+		PipeJamGame.levelInfo = {};
+        if (Reflect.hasField(obj, "localfile"))
         {
             m_fileName = Reflect.field(obj, "localfile");
-            PipeJamGame.levelInfo = {};
         }
-        else if (obj.exists("dbfile"))
+        else if (Reflect.hasField(obj, "dbfile"))
         {
             m_fileName = Reflect.field(obj, "dbfile");
         }
-        if (obj.exists("tutorial"))
+        if (Reflect.hasField(obj, "tutorial"))
         {
             m_fileName = "tutorial";
             PipeJamGame.levelInfo = {};

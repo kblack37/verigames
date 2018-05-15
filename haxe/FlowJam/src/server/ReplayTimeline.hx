@@ -59,7 +59,7 @@ class ReplayTimeline extends Sprite
         desiredWidth -= 100;
         x = 10;
         y = y_pos;
-        m_maxActionIndex = as3hx.Compat.parseInt(actionObjects.length - 1);
+        m_maxActionIndex = actionObjects.length - 1;
         m_positionStepScale = desiredWidth / m_maxActionIndex;
         
         m_timelineBack = new Sprite();

@@ -53,7 +53,7 @@ class PMPRNG
         {
             _seed = 1;
         }
-        seed = as3hx.Compat.parseInt(_seed % 2147483646);
+        seed = _seed % 2147483646;
     }
     
     /**
@@ -113,6 +113,6 @@ class PMPRNG
     //integer version 1, for max int 2^46 - 1 or larger.
     {
         
-        return seed = as3hx.Compat.parseInt((seed * 16807) % 2147483647);
+        return seed = (seed * 16807) % 2147483647;
     }
 }

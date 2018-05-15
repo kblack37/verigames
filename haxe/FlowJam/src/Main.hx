@@ -1,8 +1,7 @@
 package;
 
-import openfl.display.Sprite;
-import openfl.Lib;
 import starling.core.Starling;
+import openfl.display.Sprite;
 
 /**
  * ...
@@ -17,8 +16,8 @@ class Main extends Sprite
 	{
 		super();
 		
-		m_starling = new Starling(PipeJamGame, stage);
-		m_starling.start();
+		var pj3 : PipeJam3 = new PipeJam3();
+		this.stage.addChild(pj3);
 	}
 
 }

@@ -188,7 +188,7 @@ class GameFileHandler
     {
         levelInfoVector = null;
         var fileHandler : GameFileHandler = new GameFileHandler(callback);
-        fileHandler.sendMessage(get_all_level_metadata, fileHandler.setLevelMetadataFromCurrent);
+        //fileHandler.sendMessage(get_all_level_metadata, fileHandler.setLevelMetadataFromCurrent);
     }
     
     //connect to the db and get a list of all completed levels
@@ -243,19 +243,16 @@ class GameFileHandler
         
         Scene.m_gameSystem.dispatchEvent(new starling.events.Event(Game.START_BUSY_ANIMATION, true));
         
-        var m_id : Int = 100000;
-        if (PipeJamGame.levelInfo && Reflect.hasField(PipeJamGame.levelInfo, "id") && PipeJamGame.levelInfo.id.length < 5)
+        var m_id : Int = 100;
+        if (PipeJamGame.levelInfo != null && Reflect.hasField(PipeJamGame.levelInfo, "id") && PipeJamGame.levelInfo.id.length < 5)
         {
-            m_id = as3hx.Compat.parseInt(PipeJamGame.levelInfo.id);
+            m_id = PipeJamGame.levelInfo.id;
         }
         if (m_id < 1000)
         {
-        // in the tutorial if a low level id
-            
-            {
-                PipeJamGameScene.inTutorial = true;
-                PipeJamGameScene.inDemo = false;
-            }
+			// in the tutorial if a low level id
+            PipeJamGameScene.inTutorial = true;
+            PipeJamGameScene.inDemo = false;
         }
         if (PipeJamGameScene.DEBUG_PLAY_WORLD_ZIP != null && PipeJam3.RELEASE_BUILD == null)
         {
@@ -578,7 +575,7 @@ class GameFileHandler
                 var solutionInfo : Dynamic = PipeJamGame.levelInfo;
                 solutionInfo.current_score = Std.string(World.m_world.active_level.currentScore);
                 solutionInfo.prev_score = Std.string(World.m_world.active_level.oldScore);
-                solutionInfo.revision = Std.string(as3hx.Compat.parseInt(PipeJamGame.levelInfo.revision) + 1);
+                solutionInfo.revision = Std.string(PipeJamGame.levelInfo.revision + 1);
                 solutionInfo.playerID = PlayerValidation.playerID;
                 solutionInfo.username = PlayerValidation.playerUserName;
                 Reflect.deleteField(solutionInfo, "id");  //need to remove this or else successive saves won't work  ;

@@ -36,7 +36,9 @@ class GenericState extends Sprite
         // Remove all children from stage
         while (numChildren > 0)
         {
-            var disp : DisplayObject = getChildAt(0);removeChild(disp);disp = null;
+            var disp : DisplayObject = getChildAt(0);
+			removeChild(disp);
+			disp = null;
         }
     }
     

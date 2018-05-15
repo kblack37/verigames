@@ -144,9 +144,9 @@ class Edge extends EventDispatcher
             }
             if (metadata.data.variableID)
             {
-                if (!Math.isNaN(as3hx.Compat.parseInt(metadata.data.variableID)))
+                if (!Math.isNaN(Std.parseFloat(metadata.data.variableID)))
                 {
-                    variableID = as3hx.Compat.parseInt(metadata.data.variableID);
+                    variableID = Std.parseInt(metadata.data.variableID);
                 }
             }
             if (Std.string(metadata.data.pinch).toLowerCase() == "true")

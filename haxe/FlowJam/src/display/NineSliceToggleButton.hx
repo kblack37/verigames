@@ -5,7 +5,9 @@ import assets.AssetsFont;
 import flash.geom.Rectangle;
 import flash.ui.Mouse;
 import flash.ui.MouseCursor;
+import openfl.Assets;
 import openfl.Vector;
+import openfl.text.Font;
 import starling.display.Image;
 import starling.display.Sprite;
 import starling.events.Event;
@@ -122,7 +124,7 @@ class NineSliceToggleButton extends NineSliceButton
         text = _text;
         if (_text != null)
         {
-            label = TextFactory.getInstance().createTextField(_text, AssetsFont.FONT_UBUNTU, width - 4, 10, 10, 0x0077FF);
+            label = TextFactory.getInstance().createTextField(_text, "_sans", width - 4, 10, 10, 0x0077FF);
             TextFactory.getInstance().updateAlign(label, 1, 1);
             addChild(label);
             label.x = 2;
@@ -139,7 +141,7 @@ class NineSliceToggleButton extends NineSliceButton
         secondaryText = _text;
         if (secondaryText != null)
         {
-            secondaryLabel = TextFactory.getInstance().createTextField(_text, AssetsFont.FONT_UBUNTU, width - 4 - currentIcon.width, 10, 10, 0x0077FF);
+            secondaryLabel = TextFactory.getInstance().createTextField(_text, "_sans", width - 4 - currentIcon.width, 10, 10, 0x0077FF);
             TextFactory.getInstance().updateAlign(secondaryLabel, 0, 1);
             addChild(secondaryLabel);
             secondaryLabel.x = currentIcon.width + 12;

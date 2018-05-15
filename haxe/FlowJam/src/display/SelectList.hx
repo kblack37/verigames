@@ -6,6 +6,7 @@ import assets.AssetsFont;
 import dialogs.SimpleTwoButtonDialog;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import openfl.Assets;
 import openfl.Vector;
 import scenes.BaseComponent;
 import starling.display.DisplayObject;
@@ -59,7 +60,7 @@ class SelectList extends BaseComponent
         var scrollbarWidth : Float = 10.0;
         
         mainAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
-        levelAtlas = AssetInterface.getTextureAtlas("Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML");
+        levelAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml");
         
         upArrow = new Image(levelAtlas.getTexture(AssetInterface.PipeJamSubTexture_MenuArrowVertical));
         addChild(upArrow);
@@ -276,7 +277,7 @@ class SelectList extends BaseComponent
     {
         if (e.data != null)
         {
-            var ratioScrolled : Float = as3hx.Compat.parseFloat(e.data);
+            var ratioScrolled : Float = e.data;
             
             if (buttonPane.height > initialHeight)
             {
@@ -323,10 +324,10 @@ class SelectList extends BaseComponent
         icon.x = PAD;
         icon.y = DOC_HEIGHT / 2 - ICON_SZ / 2;
         
-        var bg : NineSliceBatch = new NineSliceBatch(DOC_WIDTH * 4, DOC_HEIGHT * 4, 16, 16, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", bgTexName);
+        var bg : NineSliceBatch = new NineSliceBatch(DOC_WIDTH * 4, DOC_HEIGHT * 4, 16, 16, "atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", bgTexName);
         bg.scaleX = bg.scaleY = 0.25;
         
-        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(label, AssetsFont.FONT_UBUNTU, DOC_WIDTH - ICON_SZ - 3 * PAD, DOC_HEIGHT - 2 * PAD, labelSz, 0xFFFFFF);
+        var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(label, "_sans", DOC_WIDTH - ICON_SZ - 3 * PAD, DOC_HEIGHT - 2 * PAD, labelSz, 0xFFFFFF);
         textField.x = ICON_SZ + 2 * PAD;
         textField.y = PAD;
         
@@ -384,7 +385,7 @@ class SelectList extends BaseComponent
                 
                 if (objArray[ii].checked)
                 {
-                    var checkmarkTexture : Texture = AssetInterface.getTexture("Game", "CheckmarkClass");
+                    var checkmarkTexture : Texture = AssetInterface.getTexture("img/misc", "checkmark.png");
                     var checkmark : Image = new Image(checkmarkTexture);
                     checkmark.x = checkmark.y = 10;
                     newButton.addChild(checkmark);

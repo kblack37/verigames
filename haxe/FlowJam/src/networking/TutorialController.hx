@@ -2,28 +2,19 @@ package networking;
 
 import assets.AssetInterface;
 import flash.errors.Error;
-import haxe.Constraints.Function;
 import flash.events.Event;
 import flash.net.URLRequestMethod;
-import flash.utils.Dictionary;
-
-import openfl.Assets;
-import lime.utils.AssetType;
-
+import haxe.Constraints.Function;
 import haxe.Json;
-
 import scenes.loadingscreen.LoadingScreenScene;
 import starling.display.Sprite;
-import haxe.rtti.Meta;
-import haxe.Resource;
+
 class TutorialController extends Sprite
 {
     public var tutorialObj : Dynamic;
     
     public var tutorialLayoutObj : Dynamic;
 
-
-    //public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialAssignments.json"));
     public var tutorialAssignmentsObj : Dynamic;
     
     public static var tutorial_level_complete : Int = 0;
@@ -58,7 +49,6 @@ class TutorialController extends Sprite
     
     public static function getTutorialController() : TutorialController
     {
-		trace(Meta.getFields(TutorialController).meta);
         if (tutorialController == null)
         {
             tutorialController = new TutorialController();
@@ -184,7 +174,7 @@ class TutorialController extends Sprite
     //first unplayed tutorial that immediately follows a completed tutorial should be unlocked
     public function tutorialShouldBeUnlocked(tutorialQID : String) : Bool
     {
-        var tutorialQIDInt : Int = as3hx.Compat.parseInt(tutorialQID);
+        var tutorialQIDInt : Int = Std.parseInt(tutorialQID);
         
         if (tutorialQIDInt == getFirstTutorialLevel())
         {
@@ -287,7 +277,7 @@ class TutorialController extends Sprite
         for (i in 0...levels.length)
         {
             var levelObj : Dynamic = levels[i];
-            var qid : Int = Std.parseInt(Reflect.field(levelObj, "qid"));
+            var qid : Int = Reflect.field(levelObj, "qid");
             Reflect.setField(qidToTutorialDictionary, Std.string(qid), levelObj);
             orderToTutorialDictionary[i] = levelObj;
             Reflect.setField(levelObj, "position", i);

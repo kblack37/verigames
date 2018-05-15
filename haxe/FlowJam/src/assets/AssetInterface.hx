@@ -36,7 +36,8 @@ class AssetInterface
     private static var sTextureAtlases : Map<String,TextureAtlas> = new Map<String, TextureAtlas>();
     private static var sTextures : Map<String,Texture> = new Map<String, Texture>();
     private static var sSounds : Map<String,Sound> = new Map<String, Sound>();
-	  private static var sObjects : Map<String, Dynamic> = new Map<String, Dynamic>();
+	private static var sObjects : Map<String, Dynamic> = new Map<String, Dynamic>();
+	private static var sXmls : Map<String, Xml> = new Map<String, Xml>();
     private static var sTextureAtlas : TextureAtlas;
     private static var sBitmapFontsLoaded : Bool;
     
@@ -256,6 +257,18 @@ class AssetInterface
         //return atlas;TODO there is not DynamicAtlas in the build I dont know where this is coming from
 		return null;
     }
+	
+	public static function getXml(filePath : String, name : String) : Xml
+	{
+		var xml : Xml = sXmls.get(name);
+		if (xml == null)
+		{
+			xml = Xml.parse(Assets.getText(filePath + "/" + name));
+			sXmls.set(name, xml);
+		}
+		
+		return xml;
+	}
 	
 	public static function getObject(filePath : String, name : String) : Dynamic
 	{

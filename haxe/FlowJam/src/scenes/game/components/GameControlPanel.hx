@@ -18,6 +18,7 @@ import flash.events.MouseEvent;
 import flash.external.ExternalInterface;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import openfl.Assets;
 import scenes.BaseComponent;
 import scenes.game.display.GameComponent;
 import scenes.game.display.Level;
@@ -129,7 +130,7 @@ class GameControlPanel extends BaseComponent
         var topLeftScorePanel : Point = m_scorePanel.localToGlobal(new Point(0, 0));
         m_scorePanel.clipRect = new Rectangle(topLeftScorePanel.x, topLeftScorePanel.y, m_scorePanel.width, m_scorePanel.height);
         
-        m_scoreTextfield = TextFactory.getInstance().createTextField("0", AssetsFont.FONT_UBUNTU, SCORE_PANEL_AREA.width / 10, 2.0 * SCORE_PANEL_AREA.height / 3.0, 2.0 * SCORE_PANEL_AREA.height / 3.0, GameComponent.SCORE_COLOR);
+        m_scoreTextfield = TextFactory.getInstance().createTextField("0", "_sans", SCORE_PANEL_AREA.width / 10, 2.0 * SCORE_PANEL_AREA.height / 3.0, 2.0 * SCORE_PANEL_AREA.height / 3.0, GameComponent.SCORE_COLOR);
         m_scoreTextfield.touchable = false;
         m_scoreTextfield.x = (SCORE_PANEL_AREA.width - m_scoreTextfield.width) / 2;
         m_scoreTextfield.y = SCORE_PANEL_AREA.height / 6.0;
@@ -144,7 +145,7 @@ class GameControlPanel extends BaseComponent
         m_scorePanel.addChild(shadowOverlay);
         
         var LEVEL_TEXT_WIDTH : Float = 100.0;
-        m_levelNameTextfield = TextFactory.getInstance().createTextField("", AssetsFont.FONT_UBUNTU, LEVEL_TEXT_WIDTH, 10, 10, GameComponent.WIDE_COLOR);
+        m_levelNameTextfield = TextFactory.getInstance().createTextField("", "_sans", LEVEL_TEXT_WIDTH, 10, 10, GameComponent.WIDE_COLOR);
         m_levelNameTextfield.touchable = false;
         m_levelNameTextfield.x = WIDTH - LEVEL_TEXT_WIDTH - 10;
         m_levelNameTextfield.y = -10;
@@ -157,7 +158,7 @@ class GameControlPanel extends BaseComponent
         m_newLevelButton.y = 25.5;
         addChild(m_newLevelButton);
         
-        m_resetButton = ButtonFactory.getInstance().createButton("   Reset\t", 44, 14, 8, 8, "Reset the board to\nits starting condition");
+        m_resetButton = ButtonFactory.getInstance().createButton("Reset", 44, 14, 8, 8, "Reset the board to\nits starting condition");
         m_resetButton.addEventListener(Event.TRIGGERED, onStartOverButtonTriggered);
         m_resetButton.x = m_newLevelButton.x;
         m_resetButton.y = m_newLevelButton.y + m_newLevelButton.height + 3;
@@ -189,22 +190,22 @@ class GameControlPanel extends BaseComponent
         
         // Note: this button is for display only, we listen for native touch events below on the stage and
         // see whether this button was clicked because Flash requires native MouseEvents to trigger fullScreen
-        Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_DOWN, checkForTriggerFullScreen);
-        m_fullScreenButton = new FullScreenButton();
-        m_fullScreenButton.scaleX = m_fullScreenButton.scaleY = 0.5;
-        XSprite.setPivotCenter(m_fullScreenButton);
-        m_fullScreenButton.x = m_recenterButton.x + m_recenterButton.width + 3;
-        m_fullScreenButton.y = m_zoomInButton.y;
-        addChild(m_fullScreenButton);
-        
-        m_smallScreenButton = new SmallScreenButton();
-        m_smallScreenButton.addEventListener(Event.TRIGGERED, onFullScreenButtonTriggered);
-        m_smallScreenButton.scaleX = m_smallScreenButton.scaleY = 0.5;
-        XSprite.setPivotCenter(m_smallScreenButton);
-        m_smallScreenButton.x = m_fullScreenButton.x;
-        m_smallScreenButton.y = m_fullScreenButton.y;
-        addChild(m_smallScreenButton);
-        m_smallScreenButton.visible = false;
+        //Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_DOWN, checkForTriggerFullScreen);
+        //m_fullScreenButton = new FullScreenButton();
+        //m_fullScreenButton.scaleX = m_fullScreenButton.scaleY = 0.5;
+        //XSprite.setPivotCenter(m_fullScreenButton);
+        //m_fullScreenButton.x = m_recenterButton.x + m_recenterButton.width + 3;
+        //m_fullScreenButton.y = m_zoomInButton.y;
+        //addChild(m_fullScreenButton);
+        //
+        //m_smallScreenButton = new SmallScreenButton();
+        //m_smallScreenButton.addEventListener(Event.TRIGGERED, onFullScreenButtonTriggered);
+        //m_smallScreenButton.scaleX = m_smallScreenButton.scaleY = 0.5;
+        //XSprite.setPivotCenter(m_smallScreenButton);
+        //m_smallScreenButton.x = m_fullScreenButton.x;
+        //m_smallScreenButton.y = m_fullScreenButton.y;
+        //addChild(m_smallScreenButton);
+        //m_smallScreenButton.visible = false;
         
         m_solveButton = ButtonFactory.getInstance().createButton("Solve Selection", (m_recenterButton.x + m_recenterButton.width) - m_zoomInButton.x, 
                         14, 8, 8, "Autosolve the current selection.\nShift-click or shift-marquee to select."
@@ -420,7 +421,7 @@ class GameControlPanel extends BaseComponent
         var targetScore : Int = level.getTargetScore();
         var maxScoreShown : Float = Math.max(currentScore, bestScore);
         maxScoreShown = Math.max(1, maxScoreShown);  // avoid divide by zero  
-        if (targetScore < as3hx.Compat.INT_MAX)
+        if (targetScore < Math.POSITIVE_INFINITY)
         {
             maxScoreShown = Math.max(maxScoreShown, targetScore);
         }
@@ -442,7 +443,7 @@ class GameControlPanel extends BaseComponent
         }
         m_scoreBarContainer.addChild(m_scoreBar);
         
-        if (targetScore < as3hx.Compat.INT_MAX)
+        if (targetScore < Math.POSITIVE_INFINITY)
         {
             if (m_targetScoreLine == null)
             {
@@ -657,7 +658,7 @@ class GameControlPanel extends BaseComponent
             {
                 m_bestScoreLine.update(score);
             }
-            m_bestScoreLine.x = (SCORE_PANEL_AREA.width * 2.0 / 3.0) * as3hx.Compat.parseInt(score) / maxScoreShown;
+            m_bestScoreLine.x = (SCORE_PANEL_AREA.width * 2.0 / 3.0) * Std.parseFloat(score) / maxScoreShown;
             m_scoreBarContainer.addChild(m_bestScoreLine);
         }
     }
@@ -675,8 +676,8 @@ class GameControlPanel extends BaseComponent
             y = 320 - 72 * scaleY + 10;
             topLeftScorePanel = m_scorePanel.localToGlobal(new Point(0, 0));
             m_scorePanel.clipRect = new Rectangle(topLeftScorePanel.x, topLeftScorePanel.y, m_scorePanel.width, m_scorePanel.height);
-            m_fullScreenButton.visible = false;
-            m_smallScreenButton.visible = true;
+            //m_fullScreenButton.visible = false;
+            //m_smallScreenButton.visible = true;
         }
         else
         {
@@ -685,8 +686,8 @@ class GameControlPanel extends BaseComponent
             y = 320 - height + 10;  //level name extends up out of the bounds  
             topLeftScorePanel = m_scorePanel.localToGlobal(new Point(0, 0));
             m_scorePanel.clipRect = new Rectangle(topLeftScorePanel.x, topLeftScorePanel.y, m_scorePanel.width, m_scorePanel.height);
-            m_fullScreenButton.visible = true;
-            m_smallScreenButton.visible = false;
+            //m_fullScreenButton.visible = true;
+            //m_smallScreenButton.visible = false;
         }
     }
     

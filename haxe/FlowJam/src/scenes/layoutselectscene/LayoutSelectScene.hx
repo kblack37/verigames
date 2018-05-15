@@ -8,6 +8,7 @@ import display.NineSliceButton;
 import display.NineSliceToggleButton;
 import events.MenuEvent;
 import events.NavigationEvent;
+import openfl.Assets;
 //import feathers.controls.List;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
@@ -66,8 +67,7 @@ class LayoutSelectScene extends Scene
     {
         super.addedToStage(event);
         
-        //background = new Image(AssetInterface.getTexture("Game", "Background0Class"));TODO: remove if works
-		background = new Image(AssetInterface.getTexture("Game", "Backgrounds/FlowJamBackground0"));
+		background = new Image(AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground0.jpg"));
         background.scaleX = stage.stageWidth / background.width;
         background.scaleY = stage.stageHeight / background.height;
         background.blendMode = BlendMode.NONE;
@@ -75,7 +75,7 @@ class LayoutSelectScene extends Scene
         
         var levelSelectWidth : Float = 305;
         var levelSelectHeight : Float = 300;
-        levelSelectBackground = new NineSliceBatch(levelSelectWidth, levelSelectHeight, levelSelectWidth / 6.0, levelSelectHeight / 6.0, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", "LevelSelectWindow");
+        levelSelectBackground = new NineSliceBatch(levelSelectWidth, levelSelectHeight, levelSelectWidth / 6.0, levelSelectHeight / 6.0, "atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", "LevelSelectWindow");
         levelSelectBackground.x = 10;
         levelSelectBackground.y = 10;
         addChild(levelSelectBackground);
@@ -86,7 +86,7 @@ class LayoutSelectScene extends Scene
         var buttonHeight : Float = 25;
         var buttonY : Float = 30;
         
-        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Select Layout", AssetsFont.FONT_UBUNTU, 120, 30, 24, 0xFFFFFF);
+        var label : TextFieldWrapper = TextFactory.getInstance().createTextField("Select Layout", "_sans", 120, 30, 24, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(label, 1, 1);
         addChild(label);
         label.x = (levelSelectWidth - label.width) / 2 + levelSelectBackground.x;
@@ -120,12 +120,12 @@ class LayoutSelectScene extends Scene
     {
         var levelSelectInfoWidth : Float = 150;
         var levelSelectInfoHeight : Float = 300;
-        levelSelectInfoPanel = new NineSliceBatch(levelSelectInfoWidth, levelSelectInfoHeight, levelSelectInfoWidth / 6.0, levelSelectInfoHeight / 6.0, "Game", "PipeJamLevelSelectSpriteSheetPNG", "PipeJamLevelSelectSpriteSheetXML", "LevelSelectWindow");
+        levelSelectInfoPanel = new NineSliceBatch(levelSelectInfoWidth, levelSelectInfoHeight, levelSelectInfoWidth / 6.0, levelSelectInfoHeight / 6.0, "atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml", "LevelSelectWindow");
         levelSelectInfoPanel.x = width - levelSelectInfoWidth - 10;
         levelSelectInfoPanel.y = 10;
         addChild(levelSelectInfoPanel);
         
-        infoLabel = TextFactory.getInstance().createTextField("Layout Info", AssetsFont.FONT_UBUNTU, 80, 24, 18, 0xFFFFFF);
+        infoLabel = TextFactory.getInstance().createTextField("Layout Info", "_sans", 80, 24, 18, 0xFFFFFF);
         TextFactory.getInstance().updateAlign(infoLabel, 1, 1);
         addChild(infoLabel);
         infoLabel.x = (levelSelectInfoWidth - infoLabel.width) / 2 + levelSelectInfoPanel.x;
@@ -173,7 +173,7 @@ class LayoutSelectScene extends Scene
             removeChild(nameText);
             if (Reflect.hasField(currentSelectedLayout, "name"))
             {
-                nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLayout.name, AssetsFont.FONT_UBUNTU, 140, 18, 12, 0xFFFFFF);
+                nameText = TextFactory.getInstance().createTextField("Name: " + currentSelectedLayout.name, "_sans", 140, 18, 12, 0xFFFFFF);
                 TextFactory.getInstance().updateAlign(nameText, 0, 1);
                 addChild(nameText);
                 nameText.x = levelSelectInfoPanel.x + 10;
@@ -190,7 +190,7 @@ class LayoutSelectScene extends Scene
             {
                 if (currentSelectedLayout.description.length > 0)
                 {
-                    descriptionText = TextFactory.getInstance().createTextField("Description:\r\t" + currentSelectedLayout.description, AssetsFont.FONT_UBUNTU, 140, 60, 12, 0xFFFFFF, true);
+                    descriptionText = TextFactory.getInstance().createTextField("Description:\r\t" + currentSelectedLayout.description, "_sans", 140, 60, 12, 0xFFFFFF, true);
                     TextFactory.getInstance().updateAlign(descriptionText, 0, 1);
                     addChild(descriptionText);
                     descriptionText.x = levelSelectInfoPanel.x + 10;
@@ -312,7 +312,7 @@ class LayoutSelectScene extends Scene
                 
                 thumbByteArray.uncompress();
                 var thumbActualWidth : Int = thumbByteArray.readUnsignedInt();
-                var thumbActualHeight : Int = as3hx.Compat.parseInt(((thumbByteArray.length - 4) / 4) / thumbActualWidth);
+                var thumbActualHeight : Int = Std.int(((thumbByteArray.length - 4) / 4) / thumbActualWidth);
                 var smallBMD : BitmapData = new BitmapData(thumbActualWidth, thumbActualHeight);
                 smallBMD.setPixels(smallBMD.rect, thumbByteArray);
                 var bmp : Bitmap = new Bitmap(smallBMD, PixelSnapping.ALWAYS, true);

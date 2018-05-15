@@ -25,7 +25,7 @@ class BaseDialog extends BaseComponent
         
         //multiplying by two and then scaling seems to give the best result
         //but it does mean we can't add the buttons to the background.
-        background = new NineSliceBatch(_width * 2, _height * 2, 64, 64, "Game", "DialogWindowPNG", "DialogWindowXML", "DialogWindow");
+        background = new NineSliceBatch(_width * 2, _height * 2, 64, 64, "atlases", "DialogWindow.png", "DialogWindow.xml", "DialogWindow");
         background.scaleX = background.scaleY = .5;
         
         addChild(background);

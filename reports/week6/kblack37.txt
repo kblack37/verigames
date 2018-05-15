@@ -1,0 +1,20 @@
+## Previous week's goals ##
+Since FlowJam is now free of compiler errors, I definitely want to do the same for
+the PipeJam code. Once those are up, we'll look into refactoring the assets interface
+in the current codebase to use the OpenFL Asset API instead of the embedded resources
+the Flash codebase used. Once that is up, there's likely some other sneaky errors that
+weren't caught by the compiler that we'll have to fix (since Haxe isn't statically typed)
+but hopefully we can have the games running by next Monday.
+
+## What I've done this week ##
+Fixed many additional compiler errors in FlowJam after correcting the static entry point.
+Refactored the AssetInterface class to use the new OpenFL Asset API. Worked on a few of
+the aforementioned sneaky errors. Updated the architecture section of the proposal. Led
+the team meeting. Delegated tasks.
+
+## Next week's goals ##
+Now that FlowJam is ACTUALLY free of compiler errors and can demonstrate the solutions to
+many of the common compiler errors, I hope to also have PipeJam be in the same state by
+next week. Want to finish cleaning up the FlowJam code so it doesn't crash immediately upon launch.
+Integrate all the feedback we've gotten on the proposal & the user manual; this will likely
+have to be delegated as it's easier to explain than the code errors.

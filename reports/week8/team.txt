@@ -1,6 +1,6 @@
 # Team Report: Week 8 #
 
-## Last Week's Goal **
+## Last Week's Goal ##
 - Get tutorial loading and conduct playtesting by next week
 
 ## Progress ##
@@ -13,4 +13,4 @@
 - Finish skeleton code for refactored World, Level, GridViewPanel
 
 ## Agenda ##
-- 
+- Discuss refactorings and transitioning from skeletons to implementation

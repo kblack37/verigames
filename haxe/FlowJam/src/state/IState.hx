@@ -1,4 +1,5 @@
 package state;
+import src.display.ISprite;
 
 /**
  * States are the largest groupings of game logic. They are swapped between
@@ -6,7 +7,7 @@ package state;
  * 
  * @author kristen autumn blackburn
  */
-interface IState {
+interface IState extends ISprite {
 	/**
 	 * Initializes and begins running this state
 	 * @param	from	The state transitioning into this one

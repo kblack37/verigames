@@ -121,7 +121,6 @@ class PipeJam3 extends Sprite
         // this event is dispatched when stage3D is set up
         m_starling.stage3D.addEventListener(flash.events.Event.CONTEXT3D_CREATE, onContextCreated);
         
-        //FlexGlobals.topLevelApplication.stage.addEventListener(Event.RESIZE, updateSize);
         stage.addEventListener(Event.RESIZE, updateSize);
         stage.dispatchEvent(new Event(Event.RESIZE));
         if (ExternalInterface.available)

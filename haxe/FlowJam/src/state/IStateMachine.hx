@@ -1,5 +1,5 @@
 package state;
-import display.ISprite;
+import src.display.ISprite;
 
 /**
  * The state machine is responsible for cleanly transitioning between game states

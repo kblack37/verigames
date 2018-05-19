@@ -175,7 +175,7 @@ class World extends BaseComponent
     //model
     private function onEnterFrame(evt : EnterFrameEvent) : Void
     {
-		//calls all functions in queue
+		//calls all functions in queue they are all init functions
         if (m_initQueue.length > 0)
         {
             var func : Function = m_initQueue.shift();
@@ -461,7 +461,7 @@ class World extends BaseComponent
         edgeSetGraphViewPanel.adjustSize(newWidth, newHeight);
         gameControlPanel.adjustSize(newWidth, newHeight);
     }
-    //Not sure, but looks like this always returns.
+    //Not sure, but looks like this always returns after first dispatch
     private function onShowGameMenuEvent(evt : NavigationEvent) : Void
     {
         dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
@@ -735,22 +735,22 @@ class World extends BaseComponent
         }
         return m_assignmentsObj;
     }
-    
+    //view
     public function onZoomIn(event : MenuEvent) : Void
     {
         edgeSetGraphViewPanel.zoomInDiscrete();
     }
-    
+    //veiw
     public function onZoomOut(event : MenuEvent) : Void
     {
         edgeSetGraphViewPanel.zoomOutDiscrete();
     }
-    
+    //view
     public function onRecenter(event : MenuEvent) : Void
     {
         edgeSetGraphViewPanel.recenter();
     }
-    
+    //view
     public function onMaxZoomReached(event : MenuEvent) : Void
     {
         if (gameControlPanel != null)
@@ -758,7 +758,7 @@ class World extends BaseComponent
             gameControlPanel.onMaxZoomReached();
         }
     }
-    
+    //view
     public function onMinZoomReached(event : MenuEvent) : Void
     {
         if (gameControlPanel != null)
@@ -766,7 +766,7 @@ class World extends BaseComponent
             gameControlPanel.onMinZoomReached();
         }
     }
-    
+    //view
     public function onZoomReset(event : MenuEvent) : Void
     {
         if (gameControlPanel != null)
@@ -774,7 +774,7 @@ class World extends BaseComponent
             gameControlPanel.onZoomReset();
         }
     }
-    
+    //view
     public function onErrorsMoved(event : MiniMapEvent) : Void
     {
         if (miniMap != null)
@@ -782,7 +782,7 @@ class World extends BaseComponent
             miniMap.isDirty = true;
         }
     }
-    
+    //view
     public function onLevelResized(event : MiniMapEvent) : Void
     {
         if (miniMap != null)
@@ -790,12 +790,12 @@ class World extends BaseComponent
             miniMap.isDirty = true;
         }
     }
-    
+    //view
     public function onViewspaceChanged(event : MiniMapEvent) : Void
     {
         miniMap.onViewspaceChanged(event);
     }
-    
+    //view and model
     public function onWidgetChange(evt : WidgetChangeEvent = null) : Void
     {
         var level_changed : Level = (evt != null) ? evt.level : active_level;
@@ -985,7 +985,7 @@ class World extends BaseComponent
             }
         }
     }
-    
+    //view
     public function onErrorRemoved(event : ErrorEvent) : Void
     {
         if (active_level != null)
@@ -1064,7 +1064,7 @@ class World extends BaseComponent
         //when we build on the undoStack, clear out the redoStack
         redoStack = new Array<UndoEvent>();
     }
-    
+    //control
     public function handleKeyUp(event : starling.events.KeyboardEvent) : Void
     {
         if (event.ctrlKey)
@@ -1148,7 +1148,7 @@ class World extends BaseComponent
             }
         }
     }
-    
+    //view
     public function getThumbnail(_maxwidth : Float, _maxheight : Float) : ByteArray
     {
         return edgeSetGraphViewPanel.getThumbnail(_maxwidth, _maxheight);
@@ -1362,7 +1362,7 @@ class World extends BaseComponent
         m_worldObj = null;
         m_layoutObj = null;
     }
-    
+    //model
     public function findLevelFile(name : String, fileObj : Dynamic) : Dynamic
     {
         var levels : Array<Dynamic> = Reflect.field(fileObj, "levels");
@@ -1380,7 +1380,7 @@ class World extends BaseComponent
         }
         return null;
     }
-    
+    //not sure
     public function hasDialogOpen() : Bool
     {
         if (inGameMenuBox != null && inGameMenuBox.visible)

@@ -1,0 +1,20 @@
+# Individual Report (Jake Chiang): Week 9 #
+
+
+## Previous Goals ##
+- Prepare results presentation
+- Finish creating model for the refactored GridViewPanel 
+    - Determine separation and new functionality of new parts
+- Document GridViewPanel public interface
+
+
+## Progress ##
+- Presentation: Initial results component
+- Peer review report
+- Created summary documentation for main display methods of GridViewPanel
+
+
+## Goals ##
+- Refactor GridViewPanel
+    - Incorporate events into new script manager
+

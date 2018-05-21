@@ -1,0 +1,9 @@
+## Previous week's goals ##
+Have full top-level engine goal integrated into game and hopefully team members' components as well.
+
+## What I've done this week ##
+Continued integration of existing code into new top-level architecture. Assisted other teammates with
+their own refactoring. Provided example and direction.
+
+## Next week's goals ##
+Have new architecture integrated and tested.

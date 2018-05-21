@@ -62,6 +62,11 @@ class GameEngine extends Sprite implements IGameEngine
 	
 	/** INTERFACE METHODS **/
 	
+	public function getSprite() : Sprite
+	{
+		return this;
+	}
+	
 	public function getStateMachine() : IStateMachine 
 	{
 		return m_stateMachine;

@@ -14,11 +14,11 @@ class WorldErrorScript extends ScriptNode
 	private var errorDict : Dynamic;
 	
 	private var m_minimap : MiniMap;
-
+	private var gameEngine : IGameEngine;
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
-		
+		this.gameEngine = gameEngine;
 		errorDict = {};
 		
 		gameEngine.addEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);

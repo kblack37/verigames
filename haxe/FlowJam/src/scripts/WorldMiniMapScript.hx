@@ -9,11 +9,11 @@ import events.MiniMapEvent;
  */
 class WorldMiniMapScript extends ScriptNode 
 {
-
+	private var gameEngine : IGameEngine;
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
-		
+		this.gameEngine = gameEngine;
 		gameEngine.addEventListener(MiniMapEvent.ERRORS_MOVED, onErrorsMoved);
         gameEngine.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onViewspaceChanged);
         gameEngine.addEventListener(MiniMapEvent.LEVEL_RESIZED, onLevelResized);

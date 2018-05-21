@@ -17,13 +17,15 @@ import networking.Achievements;
  */
 class DialogScript extends ScriptNode 
 {
-	var childToAdd :Sprite;
+	private var childToAdd :Sprite;
+	private var gameEngine : IGameEngine
 	//Dialog events from the old menu events class
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
 		childToAdd = new Sprite();
-		
+		this.gameEngine = gameEngine;
+		gameEngine.getSprite().addChild(childToAdd);
 		gameEngine.addEventListener(DialogEvent.LEVEL_SAVED, onLevelUploadSuccess);
 		gameEngine.addEventListener(DialogEvent.POST_SAVE_DIALOG, postSaveDialog );
 		gameEngine.addEventListener(DialogEvent.LEVEL_SUBMITTED, onLevelUploadSuccess);
@@ -39,7 +41,7 @@ class DialogScript extends ScriptNode
             shareDialog = new SaveDialog(150, 100);
         }
         
-        addChild(shareDialog);
+        childToAdd.addChild(shareDialog);
     }
 	
 	private function onLevelUploadSuccess(event : DialogEvent) : Void
@@ -72,7 +74,7 @@ class DialogScript extends ScriptNode
             }
         }
         var alert : SimpleAlertDialog = new SimpleAlertDialog(dialogText, dialogWidth, dialogHeight, socialText, callbackFunction, numLinesInText);
-        addChild(alert);
+        childToAdd.addChild(alert);
     }
 	
 	private function reportSavedLayoutAchievement() : Void
@@ -93,7 +95,7 @@ class DialogScript extends ScriptNode
 	private function postSubmitDialog(event : MenuEvent) : Void
     {
         var submitLevelDialog : SubmitLevelDialog = new SubmitLevelDialog(150, 120);
-        addChild(submitLevelDialog);
+        childToAdd.addChild(submitLevelDialog);
     }
 	
 	private function switchToLevelSelect() : Void
@@ -119,6 +121,6 @@ class DialogScript extends ScriptNode
         {
             alert = new SimpleAlertDialog(dialogText, dialogWidth, dialogHeight, socialText, null);
         }
-        addChild(alert);
+        childToAdd.addChild(alert);
     }
 }

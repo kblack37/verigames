@@ -2,6 +2,7 @@ package scripts;
 
 import engine.IGameEngine;
 import engine.scripting.ScriptNode;
+import lime.graphics.opengl.ext.IMG_multisampled_render_to_texture;
 
 import events.MenuEvent;
 
@@ -22,10 +23,12 @@ import system.VerigameServerConstants;
  */
 class WorldMenuScript extends ScriptNode 
 {
+	private var gameEngine : IGameEngine;
 	//world menu events taht are not dialogs
 	public function new(gameEngine: IGameEngine,id:String=null) 
 	{
 		super(id);
+		this.gameEngine = gameEngine;
 		gameEngine.addEventListener(MenuEvent.SAVE_LEVEL, onPutLevelInDatabase);
         gameEngine.addEventListener(MenuEvent.SUBMIT_LEVEL, onPutLevelInDatabase);
 

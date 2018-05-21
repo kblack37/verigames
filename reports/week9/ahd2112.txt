@@ -1,0 +1,6 @@
+This week I planned to work on the slides and continue to work on the refactor.
+
+I made most of the slides on the presentation and did some work on the report for last week and did 2 hours of peer review for the holistics report. I also worked on the refactor
+focusing on world.hx by taking the event listeners out and moving them over to scripts to be fed to the game engine.
+
+This week I will continue to work on removing the dependencies of all the events into more script files and start on world state.

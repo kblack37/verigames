@@ -37,7 +37,6 @@ import starling.events.TouchEvent;
 import starling.events.TouchPhase;
 import starling.textures.Texture;
 import system.MaxSatSolver;
-import utils.XMath;
 import utils.XObject;
 import utils.XString;
 //import deng.fzip.FZip;

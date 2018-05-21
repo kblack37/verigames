@@ -3,13 +3,14 @@ package engine;
 import assets.AssetInterface;
 import engine.component.IComponentManager;
 import haxe.Constraints.Function;
+import src.display.ISprite;
 import state.IStateMachine;
 import starling.events.Event;
 
 /**
  * @author kristen autumn blackburn
  */
-interface IGameEngine {
+interface IGameEngine extends ISprite {
 	public function getStateMachine() : IStateMachine;
 	public function getTime() : Time;
 	public function getComponentManager() : IComponentManager;

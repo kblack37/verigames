@@ -6,11 +6,15 @@ import engine.component.ComponentManager;
 import engine.component.IComponentManager;
 import engine.component.RenderableComponent;
 import events.NavigationEvent;
+import networking.GameFileHandler;
 import starling.display.DisplayObject;
 import starling.display.Sprite;
 import starling.events.Event;
+import state.FlowJamGameState;
+import state.IState;
 import state.IStateMachine;
 import state.StateMachine;
+import state.TitleScreenState;
 
 /**
  * ...
@@ -23,6 +27,7 @@ class GameEngine extends Sprite implements IGameEngine
 	private var m_componentManager : IComponentManager;
 	private var m_assetInterface : AssetInterface;
 	private var m_savedData : Dynamic;
+	private var m_fileHandler : GameFileHandler;
 
 	public function new() 
 	{
@@ -30,13 +35,16 @@ class GameEngine extends Sprite implements IGameEngine
 		
 		// Initialize the fields
 		m_stateMachine = new StateMachine();
-		//m_stateMachine.registerState(new SplashScreenState()); eg
+		m_stateMachine.registerState(new FlowJamGameState(this));
+		m_stateMachine.registerState(new TitleScreenState(this));
 		
 		m_time = new Time();
 		
 		m_componentManager = new ComponentManager();
 		
 		m_assetInterface = new AssetInterface();
+		
+		m_fileHandler = new GameFileHandler();
 		
 		// Set up the listener for when this is added to the stage
 		this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
@@ -54,6 +62,20 @@ class GameEngine extends Sprite implements IGameEngine
 		
 		// Set up the state change listener
 		this.addEventListener(NavigationEvent.CHANGE_SCREEN, onStateChange);
+		
+		// Supposedly here we need to make some audio buttons? Though these should
+		// only be displayed in certain states, not all of them, eg the loading state
+		
+		// If the test flag is set, just jump straight into a level
+		// instead of having to click through the menu
+		var startState : IState = 
+		#if test
+			m_stateMachine.getStateInstance(FlowJamGameState);
+		#else
+			m_stateMachine.getStateInstance(TitleScreenState);
+		#end
+		
+		m_stateMachine.changeState(startState);
 	}
 	
 	private function onStateChange(e : NavigationEvent) 
@@ -94,10 +116,16 @@ class GameEngine extends Sprite implements IGameEngine
 		return m_savedData;
 	}
 	
+	public function getFileHandler() : GameFileHandler
+	{
+		return m_fileHandler;
+	}
+	
 	public function update() : Void 
 	{
 		m_time.update();
 		m_stateMachine.getCurrentState().update();
+		trace(Type.getClassName(Type.getClass(m_stateMachine.getCurrentState())));
 	}
 	
 	public function addUIComponent(entityId : String, display : DisplayObject) : Void
@@ -137,4 +165,10 @@ class GameEngine extends Sprite implements IGameEngine
 		return null;
 	}
 	
+	public function debugTrace(msg : String)
+	{
+		#if debug
+			trace(msg);
+		#end
+	}
 }

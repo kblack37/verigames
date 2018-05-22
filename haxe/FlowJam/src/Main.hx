@@ -82,4 +82,7 @@ class Main extends Sprite
         // Set the updated view port
         Starling.current.viewPort = viewPort;
     }
+	
+	// There might need to be a method here to handle a change to fullscreen, but that
+	// remains to be implemented
 }

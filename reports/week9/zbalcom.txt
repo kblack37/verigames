@@ -1,0 +1,6 @@
+From last week:
+"My goal for this week is to make progress on refactoring Level, ideally completing one or more, if not all of my interfaces, so that my teammates may begin refactoring their classes with respect to mine."
+
+This week our team sat down in a call together and really worked through what we want our refactoring to look like. After that much more direct communication and hands-on experience, I can say that I am much more confident in my ability to contribute to this team, and I hope that over the next couple of weeks I can somewhat make up for what has been a rather disappointing quarter from me. So far I have factored out the MoveEvent handlers from Level into their own class as part of our entity-component-system architectural plan. The script which handles those events will be run by the game engine, leaving Level more specialized to handling the data and display of the level itself.
+
+My goal this week is to continue factoring out scripts from Level which do not belong. After that (or around the same time) I will get feedback from Autumn about how we want to separate model and view in Level, and help that process along as well. And of course, improved team communication is always a goal.

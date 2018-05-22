@@ -4,7 +4,9 @@ import assets.AssetInterface;
 import engine.Time;
 import engine.component.ComponentManager;
 import engine.component.IComponentManager;
+import engine.component.RenderableComponent;
 import events.NavigationEvent;
+import starling.display.DisplayObject;
 import starling.display.Sprite;
 import starling.events.Event;
 import state.IStateMachine;
@@ -26,11 +28,10 @@ class GameEngine extends Sprite implements IGameEngine
 	{
 		super();
 		
-		// Initialize the state machine and register all the states
+		// Initialize the fields
 		m_stateMachine = new StateMachine();
 		//m_stateMachine.registerState(new SplashScreenState()); eg
 		
-		// Initialize the time class
 		m_time = new Time();
 		
 		m_componentManager = new ComponentManager();
@@ -55,9 +56,10 @@ class GameEngine extends Sprite implements IGameEngine
 		this.addEventListener(NavigationEvent.CHANGE_SCREEN, onStateChange);
 	}
 	
-	private function onStateChange(e : Dynamic) 
+	private function onStateChange(e : NavigationEvent) 
 	{
-		
+		var sceneClass : Class<Dynamic> = e.scene;
+		m_stateMachine.changeState(m_stateMachine.getStateInstance(sceneClass));
 	}
 	
 	/** INTERFACE METHODS **/
@@ -94,7 +96,30 @@ class GameEngine extends Sprite implements IGameEngine
 	
 	public function update() : Void 
 	{
+		m_time.update();
+		m_stateMachine.getCurrentState().update();
+	}
+	
+	public function addUIComponent(entityId : String, display : DisplayObject) : Void
+	{
+		var renderComponent : RenderableComponent =
+			try cast(m_componentManager.addComponentToEntity(entityId, RenderableComponent.TYPE_ID), RenderableComponent) catch (e : Dynamic) null;
 		
+		renderComponent.view = display;
+	}
+	
+	public function getUIComponent(entityId : String) : DisplayObject
+	{
+		var display : DisplayObject = null;
+		var renderComponent : RenderableComponent =
+			try cast(m_componentManager.getComponentByIdAndType(entityId, RenderableComponent.TYPE_ID), RenderableComponent) catch (e : Dynamic) null;
+		
+		if (renderComponent != null)
+		{
+			display = renderComponent.view;
+		}
+		
+		return display;
 	}
 	
 	public function addTagToEntity(entityId : String, tag : String) : Void 

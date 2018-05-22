@@ -4,6 +4,7 @@ import assets.AssetInterface;
 import engine.component.IComponentManager;
 import haxe.Constraints.Function;
 import src.display.ISprite;
+import starling.display.DisplayObject;
 import state.IStateMachine;
 import starling.events.Event;
 
@@ -25,6 +26,9 @@ interface IGameEngine extends ISprite {
 	 * as well as Time
 	 */
 	public function update() : Void;
+	
+	public function addUIComponent(entityId : String, display : DisplayObject) : Void;
+	public function getUIComponent(entityId : String) : DisplayObject;
 	
 	public function addTagToEntity(entityId : String, tag : String) : Void;
 	public function removeTagFromEntity(entityId : String, tag : String) : Void;

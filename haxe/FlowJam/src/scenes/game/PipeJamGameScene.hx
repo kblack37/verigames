@@ -49,6 +49,11 @@ class PipeJamGameScene extends Scene
         super.addedToStage(event);
         m_layoutLoaded = m_worldLoaded = m_assignmentsLoaded = false;
         GameFileHandler.loadGameFiles(onWorldLoaded, onLayoutLoaded, onConstraintsLoaded);
+		
+		//var minimap;
+		//gameengine.adduicomponent("minimap", minimap)
+		//gridviewpanel;
+		//gameengine.aeduicomponent('gridviewpanel', gridviewpanel)
     }
     
     override private function removedFromStage(event : starling.events.Event) : Void
@@ -56,6 +61,8 @@ class PipeJamGameScene extends Scene
         removeChildren(0, -1, true);
         active_world = null;
     }
+	
+	public function getWorld() : World;
     
     private function onLayoutLoaded(_layoutObj : Dynamic) : Void
     {

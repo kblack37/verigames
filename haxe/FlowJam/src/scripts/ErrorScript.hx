@@ -11,14 +11,14 @@ import scenes.game.components.MiniMap;
  */
 class ErrorScript extends ScriptNode {
 	
-	private var errorDict : Dynamic;
+	private var errorConstraintDict : Dynamic;
 	
 	private var m_minimap : MiniMap;
 
 	public function new(gameEngine : IGameEngine, id:String=null) {
 		super(id);
 		
-		errorDict = {};
+		errorConstraintDict = {};
 		
 		gameEngine.addEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
 		gameEngine.addEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);

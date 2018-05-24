@@ -1,5 +1,6 @@
 package display;
 
+import assets.AssetNames;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import assets.AssetInterface;
@@ -26,9 +27,9 @@ class ScrollBarThumb extends ImageStateButton
     public function new(minYPos : Float, maxYPos : Float)
     {
         var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml");
-        var thumbUp : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_Thumb);
-        var thumbOver : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_ThumbOver);
-        var thumbDown : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_ThumbSelected);
+        var thumbUp : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_Thumb);
+        var thumbOver : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_ThumbOver);
+        var thumbDown : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_ThumbSelected);
         
         var thumbUpImage : Image = new Image(thumbUp);
         var thumbOnOverImage : Image = new Image(thumbOver);

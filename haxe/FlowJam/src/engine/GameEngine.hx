@@ -1,15 +1,20 @@
 package engine;
 
 import assets.AssetInterface;
+import display.GameObjectBatch;
+import display.NineSliceBatch;
 import engine.Time;
 import engine.component.ComponentManager;
 import engine.component.IComponentManager;
 import engine.component.RenderableComponent;
 import events.NavigationEvent;
 import networking.GameFileHandler;
+import openfl.Vector;
+import scenes.BaseComponent;
 import starling.display.DisplayObject;
 import starling.display.Sprite;
 import starling.events.Event;
+import starling.textures.Texture;
 import state.FlowJamGameState;
 import state.IState;
 import state.IStateMachine;
@@ -25,7 +30,6 @@ class GameEngine extends Sprite implements IGameEngine
 	private var m_stateMachine : IStateMachine;
 	private var m_time : Time;
 	private var m_componentManager : IComponentManager;
-	private var m_assetInterface : AssetInterface;
 	private var m_savedData : Dynamic;
 	private var m_fileHandler : GameFileHandler;
 
@@ -42,9 +46,9 @@ class GameEngine extends Sprite implements IGameEngine
 		
 		m_componentManager = new ComponentManager();
 		
-		m_assetInterface = new AssetInterface();
-		
 		m_fileHandler = new GameFileHandler();
+		
+		prepareAssets();
 		
 		// Set up the listener for when this is added to the stage
 		this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
@@ -52,6 +56,10 @@ class GameEngine extends Sprite implements IGameEngine
 	
 	private function onAddedToStage(e : Dynamic) 
 	{
+		// TODO: there's really better ways to do batching than this
+		var gameObjectBatch : GameObjectBatch = new GameObjectBatch();
+		NineSliceBatch.gameObjectBatch = gameObjectBatch;
+		
 		// Look for current saved data; if doesnt exist, use a default saved data
 		// this should search the local machine, probably using openfl's sharedobject
 		// or if there's a starling equivalent
@@ -75,8 +83,30 @@ class GameEngine extends Sprite implements IGameEngine
 			m_stateMachine.getStateInstance(TitleScreenState);
 		#end
 		
+		addChild(m_stateMachine.getSprite());
 		m_stateMachine.changeState(startState);
 	}
+	
+	// TODO: this is really just awful, but we don't have time to refactor this much
+	private function prepareAssets() : Void
+    {
+        //load images if we haven't
+        if (BaseComponent.loadingAnimationImages == null)
+        {
+            BaseComponent.loadingAnimationImages = new Vector<Texture>();
+            for (i in 1...9)
+            {
+				BaseComponent.loadingAnimationImages.push(AssetInterface.getTexture("img/LoadingAnimation", "Loading"+i+".png"));
+            }
+            
+            BaseComponent.waitAnimationImages = new Vector<Texture>();
+            for (ii in 1...9)
+            {
+				BaseComponent.waitAnimationImages.push(AssetInterface.getTexture("img/LoadingAnimation", "FlowJamWait" + ii + ".png"));
+            }
+        }
+		
+    }
 	
 	private function onStateChange(e : NavigationEvent) 
 	{
@@ -106,11 +136,6 @@ class GameEngine extends Sprite implements IGameEngine
 		return m_componentManager;
 	}
 	
-	public function getAssetInterface() : AssetInterface 
-	{
-		return m_assetInterface;
-	}
-	
 	public function getSaveData() : Dynamic 
 	{
 		return m_savedData;
@@ -125,7 +150,6 @@ class GameEngine extends Sprite implements IGameEngine
 	{
 		m_time.update();
 		m_stateMachine.getCurrentState().update();
-		trace(Type.getClassName(Type.getClass(m_stateMachine.getCurrentState())));
 	}
 	
 	public function addUIComponent(entityId : String, display : DisplayObject) : Void

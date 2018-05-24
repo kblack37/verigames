@@ -15,6 +15,7 @@ import starling.display.Image;
 import starling.events.Event;
 import starling.events.Touch;
 import starling.events.TouchEvent;
+import state.TitleScreenState;
 
 class LoadingScreenScene extends Scene
 {
@@ -143,7 +144,7 @@ class LoadingScreenScene extends Scene
         
         if (tutorialController.completedTutorialDictionary != null || PlayerValidation.playerLoggedIn == false)
         {
-            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "SplashScreen"));
+            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, TitleScreenState));
         }
     }
     

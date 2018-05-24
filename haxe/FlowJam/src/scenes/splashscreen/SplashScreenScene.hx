@@ -50,7 +50,7 @@ class SplashScreenScene extends Scene
     
     public function addMenuBox() : Void
     {
-        startMenuBox = new SplashScreenMenuBox(this);
+        //startMenuBox = new SplashScreenMenuBox(this);
         addChild(startMenuBox);
     }
     

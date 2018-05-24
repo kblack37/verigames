@@ -1,6 +1,7 @@
 package state;
 
 import constraints.ConstraintGraph;
+import engine.IGameEngine;
 import flash.utils.Dictionary;
 import starling.events.Event;
 import tasks.ParseConstraintGraphTask;
@@ -9,12 +10,15 @@ class ParseConstraintGraphState extends LoadingState
 {
     public static var WORLD_PARSED : String = "World Parsed";
     
+	private var m_gameEngine : IGameEngine;
+	
     private var worldObj : Dynamic;
     private var worldGraphsDict : Dynamic;
     
-    public function new(_worldObj : Dynamic)
+    public function new(gameEngine : IGameEngine, _worldObj : Dynamic)
     {
         super();
+		m_gameEngine = gameEngine;
         worldObj = _worldObj;
     }
     
@@ -48,7 +52,7 @@ class ParseConstraintGraphState extends LoadingState
     override public function onTasksComplete() : Void
     {
         var event : starling.events.Event = new Event(WORLD_PARSED, true, worldGraphsDict);
-        dispatchEvent(event);
+        m_gameEngine.dispatchEvent(event);
         stateUnload();
     }
 }

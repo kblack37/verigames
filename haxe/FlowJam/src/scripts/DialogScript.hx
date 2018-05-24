@@ -3,7 +3,9 @@ package scripts;
 import engine.scripting.ScriptNode;
 import engine.IGameEngine;
 import events.DialogEvent;
+import events.NavigationEvent;
 import starling.display.Sprite;
+import state.LevelSelectState;
 
 import dialogs.SimpleAlertDialog;
 import dialogs.SaveDialog;
@@ -18,7 +20,10 @@ import networking.Achievements;
 class DialogScript extends ScriptNode 
 {
 	private var childToAdd :Sprite;
-	private var gameEngine : IGameEngine
+	private var gameEngine : IGameEngine;
+	
+	private var m_shareDialog : SaveDialog;
+	
 	//Dialog events from the old menu events class
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
@@ -36,12 +41,12 @@ class DialogScript extends ScriptNode
 	
 	private function postSaveDialog(event : DialogEvent) : Void
     {
-        if (shareDialog == null)
+        if (m_shareDialog == null)
         {
-            shareDialog = new SaveDialog(150, 100);
+            m_shareDialog = new SaveDialog(150, 100);
         }
         
-        childToAdd.addChild(shareDialog);
+        childToAdd.addChild(m_shareDialog);
     }
 	
 	private function onLevelUploadSuccess(event : DialogEvent) : Void
@@ -100,7 +105,7 @@ class DialogScript extends ScriptNode
 	
 	private function switchToLevelSelect() : Void
     {
-        gameEngine.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+        gameEngine.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
     }
 	
 	public function achievementAdded(event : MenuEvent) : Void

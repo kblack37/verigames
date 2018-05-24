@@ -109,7 +109,7 @@ class Game extends BaseComponent
             }
             if (event.scene!=null)
             {
-                showScene(event.scene);
+                //showScene(event.scene);
             }
         };
         fadeOut(callback);

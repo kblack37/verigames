@@ -1,5 +1,6 @@
 package scenes.splashscreen;
 
+import engine.IGameEngine;
 import flash.events.Event;
 import flash.events.TimerEvent;
 import flash.net.URLLoader;
@@ -18,6 +19,8 @@ import scenes.game.display.Level;
 import starling.core.Starling;
 import starling.display.Sprite;
 import starling.events.Event;
+import state.FlowJamGameState;
+import state.LevelSelectState;
 
 class SplashScreenMenuBox extends BaseComponent
 {
@@ -34,133 +37,134 @@ class SplashScreenMenuBox extends BaseComponent
     
     private var loader : URLLoader;
     
-    private var m_parent : SplashScreenScene;
-    
-    
     public var inputInfo : flash.text.TextField;
+	
+	private var m_gameEngine : IGameEngine;
     
-    public function new(parent : SplashScreenScene)
+    public function new(gameEngine : IGameEngine)
     {
         super();
+		
+		m_gameEngine = gameEngine;
         
-        parent = m_parent;
         buildMainMenu();
-        
-        addEventListener(starling.events.Event.ADDED_TO_STAGE, addedToStage);
-        addEventListener(starling.events.Event.REMOVED_FROM_STAGE, removedFromStage);
-    }
-    
-    private function addedToStage(event : starling.events.Event) : Void
-    {
-        addChild(m_mainMenu);
-    }
-    
-    private function removedFromStage(event : starling.events.Event) : Void
-    {
+		
+		addChild(m_mainMenu);
     }
     
     private static var DEMO_ONLY : Bool = false;  // True to only show demo button  
     private function buildMainMenu() : Void
     {
         m_mainMenu = new Sprite();
+		
+		// For now, just set up a basic menu; this will need to be reworked for a release version
+		// with different buttons depending on different saved data
+		var buttonPadding : Float = 5;
+		
+		play_button = ButtonFactory.getInstance().createDefaultButton("Play", 88, 32);
+		m_mainMenu.addChild(play_button);
+		
+		tutorial_button = ButtonFactory.getInstance().createDefaultButton("Tutorial", 88, 32);
+		tutorial_button.y = play_button.height + buttonPadding;
+		m_mainMenu.addChild(tutorial_button);
         
-        var BUTTON_CENTER_X : Float = 252;  // center point to put Play and Log In buttons  
-        var TOP_BUTTON_Y : Int = 205;
-        
-        if (PipeJam3.m_savedCurrentLevel != null && 
-			Reflect.hasField(PipeJam3.m_savedCurrentLevel.data, "levelInfoID") &&
-			PipeJam3.m_savedCurrentLevel.data.levelInfoID != null)
-        {
-            return_to_last_level_button = ButtonFactory.getInstance().createDefaultButton("Continue", 88, 32);
-            return_to_last_level_button.addEventListener(starling.events.Event.TRIGGERED, onReturnToLastTriggered);
-            return_to_last_level_button.x = BUTTON_CENTER_X - return_to_last_level_button.width / 2;
-            return_to_last_level_button.y = TOP_BUTTON_Y;
-            
-            play_button = ButtonFactory.getInstance().createDefaultButton("New", 88, 32);
-        }
-        else
-        {
-            play_button = ButtonFactory.getInstance().createDefaultButton("Play", 88, 32);
-        }
-        play_button.x = BUTTON_CENTER_X - play_button.width / 2;
-        if (return_to_last_level_button != null)
-        {
-            play_button.y = return_to_last_level_button.y + return_to_last_level_button.height + 5;
-        }
-        else
-        {
-            play_button.y = TOP_BUTTON_Y + 15;
-        }  //if only two buttons center them  
-        
-        if (!isTutorialDone())
-        {
-            continue_tutorial_button = ButtonFactory.getInstance().createDefaultButton("Tutorial", 88, 32);
-            continue_tutorial_button.addEventListener(starling.events.Event.TRIGGERED, onContinueTutorialTriggered);
-            continue_tutorial_button.x = BUTTON_CENTER_X - continue_tutorial_button.width / 2;
-            continue_tutorial_button.y = play_button.y + play_button.height + 5;
-        }
-        
-        if (PipeJam3.RELEASE_BUILD)
-        {
-            if (return_to_last_level_button != null)
-            {
-                m_mainMenu.addChild(return_to_last_level_button);
-            }
-            m_mainMenu.addChild(play_button);
-            play_button.addEventListener(starling.events.Event.TRIGGERED, onPlayButtonTriggered);
-            if (continue_tutorial_button != null)
-            {
-                m_mainMenu.addChild(continue_tutorial_button);
-            }
-        }
-        else if (PipeJam3.TUTORIAL_DEMO)
-        {
-            if (!DEMO_ONLY)
-            {
-                m_mainMenu.addChild(play_button);
-            }
-            play_button.addEventListener(starling.events.Event.TRIGGERED, getNextPlayerLevelDebug);
-        }
-        else if (!PipeJam3.TUTORIAL_DEMO)
-        {
-        //not release, not tutorial demo
-            
-            {
-                if (!DEMO_ONLY)
-                {
-                    m_mainMenu.addChild(play_button);
-                }
-                play_button.addEventListener(starling.events.Event.TRIGGERED, onPlayButtonTriggered);
-            }
-        }
-        
-        if (!PipeJam3.RELEASE_BUILD && !PipeJam3.TUTORIAL_DEMO)
-        {
-            tutorial_button = ButtonFactory.getInstance().createDefaultButton("Tutorial", 56, 22);
-            tutorial_button.addEventListener(starling.events.Event.TRIGGERED, onTutorialButtonTriggered);
-            tutorial_button.x = Constants.GameWidth - tutorial_button.width - 4;
-            tutorial_button.y = 110;
-            if (!DEMO_ONLY)
-            {
-                m_mainMenu.addChild(tutorial_button);
-            }
-            
-            if (DEMO_ONLY)
-            {
-                demo_button = ButtonFactory.getInstance().createDefaultButton("Demo", play_button.width, play_button.height);
-                demo_button.addEventListener(starling.events.Event.TRIGGERED, onDemoButtonTriggered);
-                demo_button.x = play_button.x;
-                demo_button.y = play_button.y;
-            }
-            else
-            {
-                demo_button = ButtonFactory.getInstance().createDefaultButton("Demo", 56, 22);
-                demo_button.addEventListener(starling.events.Event.TRIGGERED, onDemoButtonTriggered);
-                demo_button.x = Constants.GameWidth - demo_button.width - 4;
-                demo_button.y = tutorial_button.y + 30;
-            }
-            m_mainMenu.addChild(demo_button);
-        }
+        //var BUTTON_CENTER_X : Float = 252;  // center point to put Play and Log In buttons  
+        //var TOP_BUTTON_Y : Int = 205;
+        //
+		//var saveData : Dynamic = m_gameEngine.getSaveData();
+		//
+        //if (saveData != null && Reflect.hasField(saveData.data, "levelInfoID"))
+        //{
+            //return_to_last_level_button = ButtonFactory.getInstance().createDefaultButton("Continue", 88, 32);
+            //return_to_last_level_button.addEventListener(starling.events.Event.TRIGGERED, onReturnToLastTriggered);
+            //return_to_last_level_button.x = BUTTON_CENTER_X - return_to_last_level_button.width / 2;
+            //return_to_last_level_button.y = TOP_BUTTON_Y;
+            //
+            //play_button = ButtonFactory.getInstance().createDefaultButton("New", 88, 32);
+        //}
+        //else
+        //{
+            //play_button = ButtonFactory.getInstance().createDefaultButton("Play", 88, 32);
+        //}
+        //play_button.x = BUTTON_CENTER_X - play_button.width / 2;
+        //if (return_to_last_level_button != null)
+        //{
+            //play_button.y = return_to_last_level_button.y + return_to_last_level_button.height + 5;
+        //}
+        //else
+        //{
+            //play_button.y = TOP_BUTTON_Y + 15;
+        //}  //if only two buttons center them  
+        //
+        //if (!isTutorialDone())
+        //{
+            //continue_tutorial_button = ButtonFactory.getInstance().createDefaultButton("Tutorial", 88, 32);
+            //continue_tutorial_button.addEventListener(starling.events.Event.TRIGGERED, onContinueTutorialTriggered);
+            //continue_tutorial_button.x = BUTTON_CENTER_X - continue_tutorial_button.width / 2;
+            //continue_tutorial_button.y = play_button.y + play_button.height + 5;
+        //}
+        //
+        //if (PipeJam3.RELEASE_BUILD)
+        //{
+            //if (return_to_last_level_button != null)
+            //{
+                //m_mainMenu.addChild(return_to_last_level_button);
+            //}
+            //m_mainMenu.addChild(play_button);
+            //play_button.addEventListener(starling.events.Event.TRIGGERED, onPlayButtonTriggered);
+            //if (continue_tutorial_button != null)
+            //{
+                //m_mainMenu.addChild(continue_tutorial_button);
+            //}
+        //}
+        //else if (PipeJam3.TUTORIAL_DEMO)
+        //{
+            //if (!DEMO_ONLY)
+            //{
+                //m_mainMenu.addChild(play_button);
+            //}
+            //play_button.addEventListener(starling.events.Event.TRIGGERED, getNextPlayerLevelDebug);
+        //}
+        //else if (!PipeJam3.TUTORIAL_DEMO)
+        //{
+        ////not release, not tutorial demo
+            //
+            //{
+                //if (!DEMO_ONLY)
+                //{
+                    //m_mainMenu.addChild(play_button);
+                //}
+                //play_button.addEventListener(starling.events.Event.TRIGGERED, onPlayButtonTriggered);
+            //}
+        //}
+        //
+        //if (!PipeJam3.RELEASE_BUILD && !PipeJam3.TUTORIAL_DEMO)
+        //{
+            //tutorial_button = ButtonFactory.getInstance().createDefaultButton("Tutorial", 56, 22);
+            //tutorial_button.addEventListener(starling.events.Event.TRIGGERED, onTutorialButtonTriggered);
+            //tutorial_button.x = Constants.GameWidth - tutorial_button.width - 4;
+            //tutorial_button.y = 110;
+            //if (!DEMO_ONLY)
+            //{
+                //m_mainMenu.addChild(tutorial_button);
+            //}
+            //
+            //if (DEMO_ONLY)
+            //{
+                //demo_button = ButtonFactory.getInstance().createDefaultButton("Demo", play_button.width, play_button.height);
+                //demo_button.addEventListener(starling.events.Event.TRIGGERED, onDemoButtonTriggered);
+                //demo_button.x = play_button.x;
+                //demo_button.y = play_button.y;
+            //}
+            //else
+            //{
+                //demo_button = ButtonFactory.getInstance().createDefaultButton("Demo", 56, 22);
+                //demo_button.addEventListener(starling.events.Event.TRIGGERED, onDemoButtonTriggered);
+                //demo_button.x = Constants.GameWidth - demo_button.width - 4;
+                //demo_button.y = tutorial_button.y + 30;
+            //}
+            //m_mainMenu.addChild(demo_button);
+        //}
     }
     
     
@@ -233,7 +237,7 @@ class SplashScreenMenuBox extends BaseComponent
     {
         if (isTutorialDone() || !PipeJam3.initialLevelDisplay)
         {
-            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
             PipeJamGameScene.inTutorial = false;
         }
         else
@@ -296,7 +300,7 @@ class SplashScreenMenuBox extends BaseComponent
         PipeJamGameScene.inDemo = false;
         PipeJam3.initialLevelDisplay = false;
         
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
     }
     
     private static var fileNumber : Int = 0;
@@ -311,7 +315,7 @@ class SplashScreenMenuBox extends BaseComponent
         PipeJamGame.levelInfo = {};
         PipeJamGame.levelInfo.baseFileName = PipeJamGameScene.demoArray[fileNumber];
         fileNumber++;
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
     }
     
     public function showMainMenu(show : Bool) : Void

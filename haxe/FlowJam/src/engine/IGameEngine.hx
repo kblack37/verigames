@@ -16,7 +16,6 @@ interface IGameEngine extends ISprite {
 	public function getStateMachine() : IStateMachine;
 	public function getTime() : Time;
 	public function getComponentManager() : IComponentManager;
-	public function getAssetInterface() : AssetInterface;
 	public function getFileHandler() : GameFileHandler;
 	
 	// the save data should really be a defined class that gets 

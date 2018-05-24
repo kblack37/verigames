@@ -124,7 +124,7 @@ class GameMapGetJoint extends GameNode
     {  //if (costume)  
         //costume.removeFromParent(true);
         //
-        //var assetName:String = isSelected ? AssetInterface.PipeJamSubTexture_GrayDarkBoxSelectPrefix : AssetInterface.PipeJamSubTexture_GrayDarkBoxPrefix;
+        //var assetName:String = isSelected ? AssetNames.PipeJamSubTexture_GrayDarkBoxSelectPrefix : AssetInterface.PipeJamSubTexture_GrayDarkBoxPrefix;
         //costume = new NineSliceBatch(boundingBox.width, boundingBox.height, boundingBox.height / 3.0, boundingBox.height / 3.0, "Game", "PipeJamSpriteSheetPNG", "PipeJamSpriteSheetXML", assetName);
         //addChild(costume);
         //

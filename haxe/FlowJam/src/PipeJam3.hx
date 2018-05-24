@@ -14,6 +14,7 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import server.LoggingServerInterface;
 import starling.core.Starling;
+import state.FlowJamGameState;
 import system.VerigameServerConstants;
 //import net.hires.debug.Stats;
 
@@ -214,7 +215,7 @@ class PipeJam3 extends Sprite
     private function loadLevel(result : Int, objVector : Array<Dynamic>) : Void
     {
         PipeJamGame.levelInfo = Type.createInstance(objVector[0], new Array<Dynamic>());
-        PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+        PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
     }
     
     private function onReplayQuestDataLoaded(questData : QuestData, err : String = null) : Void

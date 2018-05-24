@@ -9,6 +9,7 @@ import flash.net.URLRequest;
 import flash.net.URLRequestMethod;
 import flash.utils.Dictionary;
 import flash.utils.Timer;
+import state.FlowJamGameState;
 //import deng.fzip.FZip;
 //import deng.fzip.FZipFile;
 import events.MenuEvent;
@@ -85,7 +86,7 @@ class GameFileHandler
         if (levelInfoVector != null)
         {
             PipeJamGame.levelInfo = findLevelObjectByName(name);
-            PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+            PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
         }
         else
         {

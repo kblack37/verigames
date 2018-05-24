@@ -15,6 +15,7 @@ import dialogs.SimpleAlertDialog;
 import display.GameObjectBatch;
 import display.MusicButton;
 import display.NineSliceBatch;
+import state.FlowJamGameState;
 //import display.PipeJamTheme;
 import display.SoundButton;
 import events.MenuEvent;
@@ -191,7 +192,7 @@ class PipeJamGame extends Game
     private function loadLevel(result : Int, objVector : Array<Dynamic>) : Void
     {
         PipeJamGame.levelInfo = Type.createInstance(objVector[0], new Array<Dynamic>());
-        PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+        PipeJamGame.m_pipeJamGame.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
     }
     
     private function removedFromStage(event : starling.events.Event) : Void
@@ -212,7 +213,7 @@ class PipeJamGame extends Game
             
             PipeJamGameScene.levelContinued = true;
             PipeJamGame.levelInfo.assignmentsID = PipeJam3.m_savedCurrentLevel.data.assignmentsID;
-            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
             GameFileHandler.getHighScoresForLevel(handleHighScoreList, PipeJamGame.levelInfo.levelID);
         }
         //just alert user, and then get random level
@@ -249,7 +250,7 @@ class PipeJamGame extends Game
             PipeJam3.m_savedCurrentLevel.data.assignmentsID = PipeJamGame.levelInfo.assignmentsID;
             PipeJam3.m_savedCurrentLevel.data.layoutID = PipeJamGame.levelInfo.layoutID;
             PipeJam3.m_savedCurrentLevel.data.assignmentUpdates = {};
-            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+            dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
         }
     }
     

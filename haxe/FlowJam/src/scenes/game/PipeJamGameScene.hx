@@ -62,8 +62,6 @@ class PipeJamGameScene extends Scene
         active_world = null;
     }
 	
-	public function getWorld() : World;
-    
     private function onLayoutLoaded(_layoutObj : Dynamic) : Void
     {
         m_layoutObj = _layoutObj;

@@ -6,6 +6,7 @@ import flash.geom.Rectangle;
 import flash.media.Sound;
 import haxe.Json;
 import openfl.Assets;
+import openfl.utils.AssetType;
 import starling.text.BitmapFont;
 import starling.text.TextField;
 import starling.textures.Texture;

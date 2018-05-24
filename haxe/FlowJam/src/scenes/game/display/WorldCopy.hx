@@ -2,10 +2,8 @@ package scenes.game.display;
 
 import flash.errors.Error;
 import haxe.Constraints.Function;
-import flash.display.StageAlign;
 import flash.display.StageDisplayState;
-import flash.display.StageScaleMode;
-import flash.events.MouseEvent;
+
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.system.System;
@@ -27,22 +25,19 @@ import constraints.ConstraintGraph;
 import constraints.events.ErrorEvent;
 import dialogs.InGameMenuDialog;
 import dialogs.SaveDialog;
-import dialogs.SimpleAlertDialog;
-import dialogs.SubmitLevelDialog;
-import display.NineSliceBatch;
+
 import display.SoundButton;
 import display.TextBubble;
-import display.ToolTipText;
+
 import events.GameComponentEvent;
 import events.MenuEvent;
 import events.MiniMapEvent;
 import events.NavigationEvent;
 import events.UndoEvent;
 import events.WidgetChangeEvent;
-import graph.PropDictionary;
+
 import networking.Achievements;
-import networking.GameFileHandler;
-import networking.PlayerValidation;
+
 import networking.TutorialController;
 import scenes.BaseComponent;
 import scenes.game.components.GameControlPanel;
@@ -89,7 +84,7 @@ class WorldCopy extends BaseComponent
     
     public static var changingFullScreenState : Bool = false;
     
-    public static var m_world : World;
+    public static var m_world : WorldCopy;
     private var m_activeToolTip : TextBubble;
     
     private static var m_numWidgetsClicked : Int = 0;
@@ -345,13 +340,6 @@ class WorldCopy extends BaseComponent
     {
         trace("Initializing event listeners...");
         addEventListener(WidgetChangeEvent.LEVEL_WIDGET_CHANGED, onWidgetChange);
-        addEventListener(GameComponentEvent.CENTER_ON_COMPONENT, onCenterOnComponentEvent);
-        addEventListener(NavigationEvent.SHOW_GAME_MENU, onShowGameMenuEvent);
-        addEventListener(NavigationEvent.START_OVER, onLevelStartOver);
-        addEventListener(NavigationEvent.SWITCH_TO_NEXT_LEVEL, onNextLevel);
-		
-		stage.addEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
-		
         trace("Done initializing event listeners.");
     }
    
@@ -392,93 +380,11 @@ class WorldCopy extends BaseComponent
         gameControlPanel.adjustSize(newWidth, newHeight);
     }
     
-    private function onShowGameMenuEvent(evt : NavigationEvent) : Void
-    {
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
-        return;
-        
-        if (gameControlPanel == null)
-        {
-            return;
-        }
-        var bottomMenuY : Float = gameControlPanel.y + GameControlPanel.OVERLAP + 5;
-        var juggler : Juggler = Starling.current.juggler;
-        var animateUp : Bool = false;
-        if (inGameMenuBox == null)
-        {
-            inGameMenuBox = new InGameMenuDialog();
-            inGameMenuBox.x = 0;
-            inGameMenuBox.y = bottomMenuY;
-            var childIndex : Int = numChildren - 1;
-            if (gameControlPanel != null && gameControlPanel.parent == this)
-            {
-                childIndex = getChildIndex(gameControlPanel);
-                trace("childindex:" + childIndex);
-            }
-            else
-            {
-                trace("not");
-            }
-            addChildAt(inGameMenuBox, childIndex);
-            //add clip rect so box seems to slide up out of the gameControlPanel
-            inGameMenuBox.clipRect = new Rectangle(0, gameControlPanel.y + GameControlPanel.OVERLAP - inGameMenuBox.height, inGameMenuBox.width, inGameMenuBox.height);
-            animateUp = true;
-        }
-        else if (inGameMenuBox.visible && !inGameMenuBox.animatingDown)
-        {
-            inGameMenuBox.onBackToGameButtonTriggered();
-        }
-        // animate up
-        else
-        {
-            
-            {
-                animateUp = true;
-            }
-        }
-        if (animateUp)
-        {
-            if (!inGameMenuBox.visible)
-            {
-                inGameMenuBox.y = bottomMenuY;
-                inGameMenuBox.visible = true;
-            }
-            juggler.removeTweens(inGameMenuBox);
-            inGameMenuBox.animatingDown = false;
-            inGameMenuBox.animatingUp = true;
-            juggler.tween(inGameMenuBox, 1.0, {
-                        transition : Transitions.EASE_IN_OUT,
-                        y : bottomMenuY - inGameMenuBox.height,
-                        onComplete : function() : Void
-                        {
-                            if (inGameMenuBox != null)
-                            {
-                                inGameMenuBox.animatingUp = false;
-                            }
-                        }
-                    });
-        }
-        if (active_level != null)
-        {
-            inGameMenuBox.setActiveLevelName(active_level.original_level_name);
-        }
-    }
-    
-   
-    private function loadAssignmentsFile(assignmentsObject : Dynamic) : Void
-    {
-        if (active_level != null)
-        {
-            active_level.loadAssignmentsConfiguration(assignmentsObject);
-        }
-    }
-    
     private function switchToLevelSelect() : Void
     {
         dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
     }
     
-   
     public function updateAssignments(currentLevelOnly : Bool = false) : Dynamic
     // TODO: think about this more, when do we update WORLD assignments? Real-time or in this method?
     {
@@ -493,11 +399,7 @@ class WorldCopy extends BaseComponent
         }
         return m_assignmentsObj;
     }
-    
-  
-    
-  
-  
+
     public function onWidgetChange(evt : WidgetChangeEvent = null) : Void
     {
         var level_changed : Level = (evt != null) ? evt.level : active_level;
@@ -569,263 +471,12 @@ class WorldCopy extends BaseComponent
             }
         }
     }
-    
-    private function onCenterOnComponentEvent(evt : GameComponentEvent) : Void
-    {
-        var component : GameComponent = evt.component;
-        if (component != null)
-        {
-            edgeSetGraphViewPanel.centerOnComponent(component);
-        }
-    }
-    
-    private function onLevelStartOver(evt : NavigationEvent) : Void
-    {
-        var level : Level = active_level;
-        //forget that which we knew
-        PipeJamGameScene.levelContinued = false;
-        PipeJam3.m_savedCurrentLevel.data.assignmentUpdates = {};
-        var callback : Function = 
-        function() : Void
-        {
-            if (edgeSetGraphViewPanel != null)
-            {
-                edgeSetGraphViewPanel.removeFanfare();
-                edgeSetGraphViewPanel.hideContinueButton(true);
-            }
-            level.restart();
-        };
-        
-        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
-    }
-    
-    private function onNextLevel(evt : NavigationEvent) : Void
-    {
-        var prevLevelNumber : Float = PipeJamGame.levelInfo.RaLevelID;
-        if (PipeJamGameScene.inTutorial)
-        {
-            var tutorialController : TutorialController = TutorialController.getTutorialController();
-            if (evt.menuShowing && active_level != null)
-            {
-            // If using in-menu "Next Level" debug button, mark the current level as complete in order to move on. Don't mark as completed
-                
-                tutorialController.addCompletedTutorial(active_level.m_tutorialTag, false);
-            }
-            
-            //should check if we are from the level select screen...
-            var tutorialsDone : Bool = tutorialController.isTutorialDone();
-            //if there are no more unplayed levels, check next if we are in levelselect screen choice
-            if (tutorialsDone == true && tutorialController.fromLevelSelectList)
-            {
-            //and if so, set to false, unless at the end of the tutorials
-                
-                var currentLevelId : Int = tutorialController.getNextUnplayedTutorial();
-                if (currentLevelId != 0)
-                {
-                    tutorialsDone = false;
-                }
-            }
-            
-            //if this is the first time we've completed these, post the achievement, else just move on
-            if (tutorialsDone)
-            {
-                if (Achievements.isAchievementNew(Achievements.TUTORIAL_FINISHED_ID) && PlayerValidation.playerLoggedIn)
-                {
-                    Achievements.addAchievement(Achievements.TUTORIAL_FINISHED_ID, Achievements.TUTORIAL_FINISHED_STRING);
-                }
-                else
-                {
-                    switchToLevelSelect();
-                }
-                return;
-            }
-            //get the next level to show, set the levelID, and currentLevelNumber
-            else
-            {
-                
-                var obj : Dynamic = PipeJamGame.levelInfo;
-                obj.tutorialLevelID = Std.string(tutorialController.getNextUnplayedTutorial());
-                
-                m_currentLevelNumber = 0;
-                for (level in levels)
-                {
-                    if (level.m_levelQID == obj.tutorialLevelID)
-                    {
-                        break;
-                    }
-                    
-                    m_currentLevelNumber++;
-                }
-                m_currentLevelNumber = m_currentLevelNumber % levels.length;
-            }
-        }
-        else
-        {
-            m_currentLevelNumber = (m_currentLevelNumber + 1) % levels.length;
-            updateAssignments();
-        }
-        var callback : Function = 
-        function() : Void
-        {
-            selectLevel(levels[m_currentLevelNumber], m_currentLevelNumber == prevLevelNumber);
-        };
-        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
-    }
-    
-    public function onErrorAdded(event : ErrorEvent) : Void
-    {
-        if (active_level != null)
-        {
-            var edgeLayout : Dynamic = Reflect.field(active_level.edgeLayoutObjs, event.constraintError.id);
-            if (edgeLayout == null)
-            {
-                throw new Error("No layout found for constraint with error:" + event.constraintError.id);
-            }
-            if (miniMap != null)
-            {
-                miniMap.errorConstraintAdded(edgeLayout);
-            }
-        }
-    }
-    
-    public function onErrorRemoved(event : ErrorEvent) : Void
-    {
-        if (active_level != null)
-        {
-            var edgeLayout : Dynamic = Reflect.field(active_level.edgeLayoutObjs, event.constraintError.id);
-            if (edgeLayout == null)
-            {
-                throw new Error("No layout found for constraint with error:" + event.constraintError.id);
-            }
-            if (miniMap != null)
-            {
-                miniMap.errorRemoved(edgeLayout);
-            }
-        }
-    }
-    
-    public function handleKeyUp(event : starling.events.KeyboardEvent) : Void
-    {
-        if (event.ctrlKey)
-        {
-            var _sw1_ = (event.keyCode);            
-
-            switch (_sw1_)
-            {
-                case 90, 82, 89, 72:
-
-                    switch (_sw1_)
-                    {case 90:  //'z'  
-                        {
-                            if ((undoStack.length > 0) && !PipeJam3.RELEASE_BUILD)
-                            {
-                            //high risk item, don't allow undo/redo until well tested
-                                
-                                {
-                                    var undoDataEvent : UndoEvent = undoStack.pop();
-                                    handleUndoRedoEvent(undoDataEvent, true);
-                                }
-                            }
-                        }
-                    }
-
-                    switch (_sw1_)
-                    {case 89:  //'y'  
-                        {
-                            if ((redoStack.length > 0) && !PipeJam3.RELEASE_BUILD)
-                            {
-                            //high risk item, don't allow undo/redo until well tested
-                                
-                                {
-                                    var redoDataEvent : UndoEvent = redoStack.pop();
-                                    handleUndoRedoEvent(redoDataEvent, false);
-                                }
-                            }
-                        }
-                    }  //'h' for hide  
-                    if ((this.active_level != null) && !PipeJam3.RELEASE_BUILD)
-                    {
-                        active_level.toggleUneditableStrings();
-                    }
-                case 76:  //'l' for copy layout  
-                if (this.active_level != null)
-                {
-                // && !PipeJam3.RELEASE_BUILD)
-                    
-                    {
-                        active_level.updateLayoutObj(this);
-                        System.setClipboard(haxe.Json.stringify(active_level.m_levelLayoutObjWrapper));
-                    }
-                }
-                case 66:  //'b' for load Best scoring config  
-                if (this.active_level != null)
-                {
-                // && !PipeJam3.RELEASE_BUILD)
-                    
-                    {
-                        active_level.loadBestScoringConfiguration();
-                    }
-                }
-                case 67:  //'c' for copy constraints  
-                if (this.active_level != null && !PipeJam3.RELEASE_BUILD)
-                {
-                    active_level.updateAssignmentsObj();
-                    System.setClipboard(haxe.Json.stringify(active_level.m_levelAssignmentsObj));
-                }
-                case 65:  //'a' for copy of ALL (world)  
-                if (this.active_level != null && !PipeJam3.RELEASE_BUILD)
-                {
-                    var worldObj : Dynamic = updateAssignments();
-                    System.setClipboard(haxe.Json.stringify(worldObj));
-                }
-                case 88:  //'x' for copy of level  
-                if (this.active_level != null && !PipeJam3.RELEASE_BUILD)
-                {
-                    var levelObj : Dynamic = updateAssignments(true);
-                    System.setClipboard(haxe.Json.stringify(levelObj));
-                }
-            }
-        }
-    }
-    
+  
     public function getThumbnail(_maxwidth : Float, _maxheight : Float) : ByteArray
     {
         return edgeSetGraphViewPanel.getThumbnail(_maxwidth, _maxheight);
     }
-    
-    private function handleUndoRedoEvent(event : UndoEvent, isUndo : Bool) : Void
-    //added newest at the end, so start at the end
-    {
-        
-        var i : Int = event.eventsToUndo.length - 1;
-        while (i >= 0)
-        {
-            var eventObj : Event = event.eventsToUndo[i];
-            handleUndoRedoEventObject(eventObj, isUndo, event.levelEvent, event.component);
-            i--;
-        }
-        if (isUndo)
-        {
-            redoStack.push(event);
-        }
-        else
-        {
-            undoStack.push(event);
-        }
-    }
-    
-    private function handleUndoRedoEventObject(evt : Event, isUndo : Bool, levelEvent : Bool, component : BaseComponent) : Void
-    {
-        if (active_level != null && levelEvent)
-        {
-            active_level.handleUndoEvent(evt, isUndo);
-        }
-        else if (component != null)
-        {
-            component.handleUndoEvent(evt, isUndo);
-        }
-    }
-    
+
     private function selectLevel(newLevel : Level, restart : Bool = false) : Void
     {
         if (newLevel == null)

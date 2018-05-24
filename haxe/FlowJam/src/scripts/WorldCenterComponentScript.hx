@@ -3,6 +3,7 @@ package scripts;
 import engine.scripting.ScriptNode;
 import events.GameComponentEvent;
 import engine.IGameEngine;
+import scenes.game.display.GameComponent;
 /**
  * ...
  * @author ...

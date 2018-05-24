@@ -4,6 +4,7 @@ import cgs.server.logging.IGameServerData.SkeyHashVersion;
 import engine.IGameEngine;
 import engine.scripting.ScriptNode;
 import events.UndoEvent;
+
 /**
  * ...
  * @author ...
@@ -75,4 +76,6 @@ class WorldUndoScript extends ScriptNode
         //when we build on the undoStack, clear out the redoStack
         redoStack = new Array<UndoEvent>();
     }
+	
+	
 }

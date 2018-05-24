@@ -1,10 +1,16 @@
-# Team Report: Week 9#
+# Team Report: Week 9 #
 
 ## Last Week's Goal **
--
--
--
+- Finish skeleton code for refactoring World, Level, GridViewPanel
 
 ## Progress ##
+- Determined new structure World/Level/GridViewPanel interaction
+- Added new centralized systems for event handling and game states
+- Refactored World/Level/GridViewPanel to use new event handler system
 
 ## Goals ##
+- Finish separating out irregular elements in World/Level/GridViewPanel
+- Fix dependencies on old classes to use the new versions
+
+## Agenda ##
+- Discuss refactorings and leaving the codebase in a more organized state

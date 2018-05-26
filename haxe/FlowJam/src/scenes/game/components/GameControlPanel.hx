@@ -1,6 +1,7 @@
 package scenes.game.components;
 
 import assets.AssetInterface;
+import assets.AssetNames;
 import assets.AssetsFont;
 import display.BasicButton;
 import display.FullScreenButton;
@@ -111,7 +112,7 @@ class GameControlPanel extends BaseComponent
     public function addedToStage(event : Event) : Void
     {
         var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
-        var foregroundTexture : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_ScoreBarForeground);
+        var foregroundTexture : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_ScoreBarForeground);
         m_scorebarForeground = new Image(foregroundTexture);
         m_scorebarForeground.touchable = false;
         m_scorebarForeground.width = WIDTH;

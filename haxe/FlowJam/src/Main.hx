@@ -49,9 +49,6 @@ class Main extends Sprite
         
         stage.addEventListener(Event.RESIZE, updateSize);
         stage.dispatchEvent(new Event(Event.RESIZE));
-		
-		// Dispatch a navigation event to the splash screen
-		//m_starling.root.dispatchEvent(new Event(NavigationEvent.CHANGE_SCREEN, SplashScreenState));
 	}
 	
 	private function onContextCreated(event : flash.events.Event) : Void

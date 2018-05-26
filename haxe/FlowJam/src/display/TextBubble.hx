@@ -1,6 +1,7 @@
 package display;
 
 import assets.AssetInterface;
+import assets.AssetNames;
 import assets.AssetsFont;
 import display.NineSliceBatch;
 import flash.filters.GlowFilter;
@@ -86,7 +87,7 @@ class TextBubble extends Sprite
         // background box
         if (_showBox)
         {
-            var box : NineSliceBatch = new NineSliceBatch(size.x, size.y, 8, 8, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", AssetInterface.PipeJamSubTexture_TutorialBoxPrefix);
+            var box : NineSliceBatch = new NineSliceBatch(size.x, size.y, 8, 8, "atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml", AssetNames.PipeJamSubTexture_TutorialBoxPrefix);
             m_textContainer.addChild(box);
         }
         //squeeze text closer to arrow if no box
@@ -110,7 +111,7 @@ class TextBubble extends Sprite
         if (m_pointAt != null)
         {
             var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
-            var arrowTexture : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_TutorialArrow);
+            var arrowTexture : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_TutorialArrow);
             m_tutorialArrow = new Image(arrowTexture);
             m_tutorialArrow.color = _arrowColor;
             m_tutorialArrow.width = m_tutorialArrow.height = m_arrowSz;

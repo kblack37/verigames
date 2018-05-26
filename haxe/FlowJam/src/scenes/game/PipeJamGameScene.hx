@@ -101,7 +101,7 @@ class PipeJamGameScene extends Scene
         {
             nextParseState.removeFromParent();
         }
-        nextParseState = new ParseConstraintGraphState(m_worldObj);
+        nextParseState = new ParseConstraintGraphState(null, m_worldObj);
         addChild(nextParseState);  //to allow done parsing event to be caught  
         this.addEventListener(ParseConstraintGraphState.WORLD_PARSED, worldComplete);
         nextParseState.stateLoad();

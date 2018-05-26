@@ -53,6 +53,7 @@ import scenes.game.components.MiniMap;
 import scenes.game.PipeJamGameScene;
 import starling.display.BlendMode;
 import starling.display.Sprite;
+import state.LevelSelectState;
 import system.VerigameServerConstants;
 
 /**
@@ -454,7 +455,7 @@ class World extends BaseComponent
     
     private function onShowGameMenuEvent(evt : NavigationEvent) : Void
     {
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
         return;
         
         if (gameControlPanel == null)
@@ -692,7 +693,7 @@ class World extends BaseComponent
     
     private function switchToLevelSelect() : Void
     {
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
     }
     
     public function setNewLayout(event : MenuEvent) : Void
@@ -884,7 +885,7 @@ class World extends BaseComponent
             level.restart();
         };
         
-        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
+        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, null, false, callback));
     }
     
     private function onNextLevel(evt : NavigationEvent) : Void
@@ -957,7 +958,7 @@ class World extends BaseComponent
         {
             selectLevel(levels[m_currentLevelNumber], m_currentLevelNumber == prevLevelNumber);
         };
-        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
+        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, null, false, callback));
     }
     
     public function onErrorAdded(event : ErrorEvent) : Void

@@ -13,6 +13,7 @@ import starling.animation.Juggler;
 import starling.animation.Transitions;
 import starling.core.Starling;
 import starling.events.Event;
+import state.LevelSelectState;
 
 class InGameMenuDialog extends BaseComponent
 {
@@ -209,7 +210,7 @@ class InGameMenuDialog extends BaseComponent
     private function onExitButtonTriggered() : Void
     {
         hideAllDialogs();
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
     }
     
     public function hideAllDialogs() : Void
@@ -267,6 +268,6 @@ class InGameMenuDialog extends BaseComponent
     
     private function onNextLevelButtonTriggered() : Void
     {
-        dispatchEvent(new NavigationEvent(NavigationEvent.SWITCH_TO_NEXT_LEVEL, "", true));
+        dispatchEvent(new NavigationEvent(NavigationEvent.SWITCH_TO_NEXT_LEVEL, null, true));
     }
 }

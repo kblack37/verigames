@@ -49,8 +49,8 @@ class StateMachine extends Sprite implements IStateMachine {
 			exitParams = m_currentState.exit(state);
 		}
 		
-		state.enter(m_currentState, exitParams);
 		addChild(state.getSprite());
+		state.enter(m_currentState, exitParams);
 		m_currentState = state;
 	}
 	

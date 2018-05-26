@@ -1,6 +1,7 @@
 package scenes.game.display;
 
 import assets.AssetInterface;
+import assets.AssetNames;
 import events.ToolTipEvent;
 import flash.geom.Point;
 import scenes.game.display.GameComponent;
@@ -126,20 +127,20 @@ class InnerBoxSegment extends GameComponent
         {
             if (m_plugIsWide)
             {
-                assetName = AssetInterface.PipeJamSubTexture_BlueDarkPlug;
+                assetName = AssetNames.PipeJamSubTexture_BlueDarkPlug;
             }
             else
             {
-                assetName = AssetInterface.PipeJamSubTexture_BlueLightPlug;
+                assetName = AssetNames.PipeJamSubTexture_BlueLightPlug;
             }
         }
         else if (m_plugIsWide)
         {
-            assetName = AssetInterface.PipeJamSubTexture_GrayDarkPlug;
+            assetName = AssetNames.PipeJamSubTexture_GrayDarkPlug;
         }
         else
         {
-            assetName = AssetInterface.PipeJamSubTexture_GrayLightPlug;
+            assetName = AssetNames.PipeJamSubTexture_GrayLightPlug;
         }
         if (assetName == m_plugAssetName)
         {
@@ -180,20 +181,20 @@ class InnerBoxSegment extends GameComponent
         {
             if (m_borderIsWide)
             {
-                assetName = AssetInterface.PipeJamSubTexture_BlueDarkEnd;
+                assetName = AssetNames.PipeJamSubTexture_BlueDarkEnd;
             }
             else
             {
-                assetName = AssetInterface.PipeJamSubTexture_BlueLightEnd;
+                assetName = AssetNames.PipeJamSubTexture_BlueLightEnd;
             }
         }
         else if (m_borderIsWide)
         {
-            assetName = AssetInterface.PipeJamSubTexture_GrayDarkEnd;
+            assetName = AssetNames.PipeJamSubTexture_GrayDarkEnd;
         }
         else
         {
-            assetName = AssetInterface.PipeJamSubTexture_GrayLightEnd;
+            assetName = AssetNames.PipeJamSubTexture_GrayLightEnd;
         }
         if (assetName == m_socketAssetName)
         {
@@ -238,13 +239,13 @@ class InnerBoxSegment extends GameComponent
         {
         //return m_isWide ? GameComponent.WIDE_COLOR_BORDER : GameComponent.NARROW_COLOR_BORDER;
             
-            return (m_isWide) ? AssetInterface.PipeJamSubTexture_BorderBlueDark : AssetInterface.PipeJamSubTexture_BorderBlueLight;
+            return (m_isWide) ? AssetNames.PipeJamSubTexture_BorderBlueDark : AssetNames.PipeJamSubTexture_BorderBlueLight;
         }
         //return m_isWide ? GameComponent.UNADJUSTABLE_WIDE_COLOR_BORDER : GameComponent.UNADJUSTABLE_NARROW_COLOR_BORDER;
         else
         {
             
-            return (m_isWide) ? AssetInterface.PipeJamSubTexture_BorderGrayDark : AssetInterface.PipeJamSubTexture_BorderGrayLight;
+            return (m_isWide) ? AssetNames.PipeJamSubTexture_BorderGrayDark : AssetNames.PipeJamSubTexture_BorderGrayLight;
         }
     }
     

@@ -13,6 +13,8 @@ import events.MenuEvent;
 import events.MouseWheelEvent;
 import events.NavigationEvent;
 import openfl.Assets;
+import state.FlowJamGameState;
+import state.TitleScreenState;
 //import feathers.controls.List;
 import networking.GameFileHandler;
 import networking.NetworkConnection;
@@ -321,7 +323,7 @@ class LevelSelectScene extends Scene
     private function onCancelButtonTriggered(e : Event) : Void
     {
         dispatchEventWith(MenuEvent.TOGGLE_SOUND_CONTROL, true, true);
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "SplashScreen"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, TitleScreenState));
     }
     
     private function onSelectButtonTriggered(ev : Event) : Void
@@ -348,7 +350,7 @@ class LevelSelectScene extends Scene
                 PipeJamGame.levelInfo.name = dataObj.name;
                 PipeJamGame.levelInfo.id = dataObj.levelId;
                 PipeJamGame.levelInfo.tutorialLevelID = dataObj.levelId;
-                dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+                dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
             }
         }
     }
@@ -555,7 +557,7 @@ class LevelSelectScene extends Scene
     {
         //PipeJamGame.levelInfo = Type.createInstance([levelList.selectedIndex]);
         
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "PipeJamGame"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, FlowJamGameState));
     }
     
     public function setNewLevelInfo(_newLevelInfo : Array<Dynamic>) : Void

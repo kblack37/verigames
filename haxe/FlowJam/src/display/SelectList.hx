@@ -1,5 +1,6 @@
 package display;
 
+import assets.AssetNames;
 import haxe.Constraints.Function;
 import assets.AssetInterface;
 import assets.AssetsFont;
@@ -62,14 +63,14 @@ class SelectList extends BaseComponent
         mainAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         levelAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml");
         
-        upArrow = new Image(levelAtlas.getTexture(AssetInterface.PipeJamSubTexture_MenuArrowVertical));
+        upArrow = new Image(levelAtlas.getTexture(AssetNames.PipeJamSubTexture_MenuArrowVertical));
         addChild(upArrow);
         upArrow.scaleX = .5;
         upArrow.scaleY = .5;
         upArrow.x = _width - upArrow.width - 3.5;
         upArrow.addEventListener(TouchEvent.TOUCH, onTouchUpArrow);
         
-        downArrow = new Image(levelAtlas.getTexture(AssetInterface.PipeJamSubTexture_MenuArrowVertical));
+        downArrow = new Image(levelAtlas.getTexture(AssetNames.PipeJamSubTexture_MenuArrowVertical));
         addChild(downArrow);
         downArrow.scaleX = .5;
         downArrow.scaleY = -.5;
@@ -77,7 +78,7 @@ class SelectList extends BaseComponent
         downArrow.y = _height;
         downArrow.addEventListener(TouchEvent.TOUCH, onTouchDownArrow);
         
-        scrollbarBackground = new Image(levelAtlas.getTexture(AssetInterface.PipeJamSubTexture_ScrollBarTrack));
+        scrollbarBackground = new Image(levelAtlas.getTexture(AssetNames.PipeJamSubTexture_ScrollBarTrack));
         addChild(scrollbarBackground);
         scrollbarBackground.x = _width - scrollbarWidth - 4;
         scrollbarBackground.y = upArrow.height + 1;

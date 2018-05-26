@@ -1,5 +1,6 @@
 package scenes.game.display;
 
+import assets.AssetNames;
 import flash.errors.Error;
 import assets.AssetInterface;
 import events.EdgeContainerEvent;
@@ -260,11 +261,11 @@ class GameEdgeSegment extends GameComponent
         {
             if (_isWide == true)
             {
-                assetName = AssetInterface.PipeJamSubTexture_BlueDarkSegmentPrefix;
+                assetName = AssetNames.PipeJamSubTexture_BlueDarkSegmentPrefix;
             }
             else
             {
-                assetName = AssetInterface.PipeJamSubTexture_BlueLightSegmentPrefix;
+                assetName = AssetNames.PipeJamSubTexture_BlueLightSegmentPrefix;
             }
         }
         //not adjustable
@@ -274,11 +275,11 @@ class GameEdgeSegment extends GameComponent
             {
                 if (_isWide == true)
                 {
-                    assetName = AssetInterface.PipeJamSubTexture_GrayDarkSegmentPrefix;
+                    assetName = AssetNames.PipeJamSubTexture_GrayDarkSegmentPrefix;
                 }
                 else
                 {
-                    assetName = AssetInterface.PipeJamSubTexture_GrayLightSegmentPrefix;
+                    assetName = AssetNames.PipeJamSubTexture_GrayLightSegmentPrefix;
                 }
             }
         }

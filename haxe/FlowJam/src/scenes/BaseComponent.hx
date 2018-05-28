@@ -27,8 +27,8 @@ class BaseComponent extends ToolTippableSprite
     private var m_disposed : Bool;
     
     //initalized in Game
-    private static var loadingAnimationImages : Vector<Texture> = null;
-    private static var waitAnimationImages : Vector<Texture> = null;
+    public static var loadingAnimationImages : Vector<Texture> = null;
+    public static var waitAnimationImages : Vector<Texture> = null;
     
     private var busyAnimationMovieClip : MovieClip;
     public static inline var KEYFOR_COLOR : Int = 0xFF00FF;

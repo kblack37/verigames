@@ -1,6 +1,7 @@
 package display;
 
 import assets.AssetInterface;
+import assets.AssetNames;
 import starling.display.DisplayObject;
 import starling.display.Image;
 import starling.textures.Texture;
@@ -13,9 +14,9 @@ class MapHideButton extends ImageStateButton
         m_toolTipText = "Hide Map";
         var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamLevelSelectSpriteSheet.png", "PipeJamLevelSelectSpriteSheet.xml");
         super(
-                [new Image(atlas.getTexture(AssetInterface.LevelSelectSubTexture_MapMinimizeButton))], 
-                [new Image(atlas.getTexture(AssetInterface.LevelSelectSubTexture_MapMinimizeButtonMouseover))], 
-                [new Image(atlas.getTexture(AssetInterface.LevelSelectSubTexture_MapMinimizeButtonClick))]
+                [new Image(atlas.getTexture(AssetNames.LevelSelectSubTexture_MapMinimizeButton))], 
+                [new Image(atlas.getTexture(AssetNames.LevelSelectSubTexture_MapMinimizeButtonMouseover))], 
+                [new Image(atlas.getTexture(AssetNames.LevelSelectSubTexture_MapMinimizeButtonClick))]
         );
     }
 }

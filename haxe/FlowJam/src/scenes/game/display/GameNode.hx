@@ -1,5 +1,6 @@
 package scenes.game.display;
 
+import assets.AssetNames;
 import audio.AudioManager;
 import flash.geom.Point;
 import flash.geom.Rectangle;
@@ -123,11 +124,11 @@ class GameNode extends GameNodeBase
         {
             if (m_isWide == true)
             {
-                _assetName = AssetInterface.PipeJamSubTexture_BlueDarkBoxPrefix;
+                _assetName = AssetNames.PipeJamSubTexture_BlueDarkBoxPrefix;
             }
             else
             {
-                _assetName = AssetInterface.PipeJamSubTexture_BlueLightBoxPrefix;
+                _assetName = AssetNames.PipeJamSubTexture_BlueLightBoxPrefix;
             }
         }
         //not adjustable
@@ -137,11 +138,11 @@ class GameNode extends GameNodeBase
             {
                 if (m_isWide == true)
                 {
-                    _assetName = AssetInterface.PipeJamSubTexture_GrayDarkBoxPrefix;
+                    _assetName = AssetNames.PipeJamSubTexture_GrayDarkBoxPrefix;
                 }
                 else
                 {
-                    _assetName = AssetInterface.PipeJamSubTexture_GrayLightBoxPrefix;
+                    _assetName = AssetNames.PipeJamSubTexture_GrayLightBoxPrefix;
                 }
             }
         }
@@ -165,13 +166,13 @@ class GameNode extends GameNodeBase
         var BLK_RAD : Float = (shapeHeight / 3.0) * (BLK_SZ * 2 / boundingBox.height);
         if (wideScore > narrowScore)
         {
-            m_scoreBlock = new ScoreBlock(AssetInterface.PipeJamSubTexture_BlueDarkBoxPrefix, Std.string(wideScore - narrowScore), BLK_SZ - BLK_RAD, BLK_SZ - BLK_RAD, BLK_SZ, null, BLK_RAD);
+            m_scoreBlock = new ScoreBlock(AssetNames.PipeJamSubTexture_BlueDarkBoxPrefix, Std.string(wideScore - narrowScore), BLK_SZ - BLK_RAD, BLK_SZ - BLK_RAD, BLK_SZ, null, BLK_RAD);
             m_scoreBlock.width = m_scoreBlock.height = boundingBox.height / 2;
             addChild(m_scoreBlock);
         }
         else if (narrowScore > wideScore)
         {
-            m_scoreBlock = new ScoreBlock(AssetInterface.PipeJamSubTexture_BlueLightBoxPrefix, Std.string(narrowScore - wideScore), BLK_SZ - BLK_RAD, BLK_SZ - BLK_RAD, BLK_SZ, null, BLK_RAD);
+            m_scoreBlock = new ScoreBlock(AssetNames.PipeJamSubTexture_BlueLightBoxPrefix, Std.string(narrowScore - wideScore), BLK_SZ - BLK_RAD, BLK_SZ - BLK_RAD, BLK_SZ, null, BLK_RAD);
             m_scoreBlock.width = m_scoreBlock.height = boundingBox.height / 2;
             addChild(m_scoreBlock);
         }

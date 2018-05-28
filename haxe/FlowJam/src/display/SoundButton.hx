@@ -1,6 +1,7 @@
 package display;
 
 import assets.AssetInterface;
+import assets.AssetNames;
 import starling.display.DisplayObject;
 import starling.display.Image;
 import starling.textures.Texture;
@@ -13,9 +14,9 @@ class SoundButton extends ImageStateButton
     public function new()
     {
         var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
-        var soundUp : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_SoundButton);
-        var soundOver : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_SoundButtonOver);
-        var soundDown : Texture = atlas.getTexture(AssetInterface.PipeJamSubTexture_SoundButtonSelected);
+        var soundUp : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_SoundButton);
+        var soundOver : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_SoundButtonOver);
+        var soundDown : Texture = atlas.getTexture(AssetNames.PipeJamSubTexture_SoundButtonSelected);
         
         var soundOnUp : Image = new Image(soundUp);
         //soundOnUp.width = soundOnUp.height = 25;

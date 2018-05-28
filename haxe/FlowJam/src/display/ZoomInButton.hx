@@ -1,6 +1,7 @@
 package display;
 
 import assets.AssetInterface;
+import assets.AssetNames;
 import starling.display.DisplayObject;
 import starling.display.Image;
 import starling.textures.Texture;
@@ -13,9 +14,9 @@ class ZoomInButton extends ImageStateButton
         m_toolTipText = "Zoom In";
         var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         super(
-                [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_ZoomInButton))], 
-                [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_ZoomInButtonOver))], 
-                [new Image(atlas.getTexture(AssetInterface.PipeJamSubTexture_ZoomInButtonSelected))]
+                [new Image(atlas.getTexture(AssetNames.PipeJamSubTexture_ZoomInButton))], 
+                [new Image(atlas.getTexture(AssetNames.PipeJamSubTexture_ZoomInButtonOver))], 
+                [new Image(atlas.getTexture(AssetNames.PipeJamSubTexture_ZoomInButtonSelected))]
         );
     }
 }

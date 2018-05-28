@@ -35,7 +35,7 @@ class BaseComponent implements ISerializable {
 	 * sure to call super()
 	 */
 	public function initialize() {
-		
+		m_entityId = null;
 	}
 	
 	public function serialize() : Dynamic {

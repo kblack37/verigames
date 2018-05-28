@@ -80,15 +80,15 @@ class GameIfTestJoint extends GameNode
         var assetName : String;
         if (m_propertyMode == PropDictionary.PROP_NARROW)
         {
-            assetName = AssetInterface.PipeJamSubTexture_BallSizeTestSimple;
+            assetName = AssetNames.PipeJamSubTexture_BallSizeTestSimple;
         }
         else if (m_inputEdge != null && m_inputEdge.isWide())
         {
-            assetName = AssetInterface.PipeJamSubTexture_BallSizeTestMapWide;
+            assetName = AssetNames.PipeJamSubTexture_BallSizeTestMapWide;
         }
         else
         {
-            assetName = AssetInterface.PipeJamSubTexture_BallSizeTestMapNarrow;
+            assetName = AssetNames.PipeJamSubTexture_BallSizeTestMapNarrow;
         }
         var atlas : TextureAtlas = AssetInterface.getTextureAtlas("atlases", "PipeJamSpriteSheet.png", "PipeJamSpriteSheet.xml");
         var texture : Texture = atlas.getTexture(assetName);

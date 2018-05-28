@@ -6,6 +6,7 @@ import flash.geom.Rectangle;
 import flash.media.Sound;
 import haxe.Json;
 import openfl.Assets;
+import openfl.utils.AssetType;
 import starling.text.BitmapFont;
 import starling.text.TextField;
 import starling.textures.Texture;
@@ -14,23 +15,18 @@ import starling.textures.TextureAtlas;
 
 class AssetInterface
 {
-    public var contentScaleFactor(get, set) : Float;
+    public static var contentScaleFactor(get, set) : Float;
     
     // Texture cache
-    private var sContentScaleFactor : Int = 1;
-    private var sTextureAtlases : Map<String,TextureAtlas> = new Map<String, TextureAtlas>();
-    private var sTextures : Map<String,Texture> = new Map<String, Texture>();
-    private var sSounds : Map<String,Sound> = new Map<String, Sound>();
-	private var sObjects : Map<String, Dynamic> = new Map<String, Dynamic>();
-	private var sXmls : Map<String, Xml> = new Map<String, Xml>();
-    private var sTextureAtlas : TextureAtlas;
-    private var sBitmapFontsLoaded : Bool;
+    private static var sContentScaleFactor : Int = 1;
+    private static var sTextureAtlases : Map<String,TextureAtlas> = new Map<String, TextureAtlas>();
+    private static var sTextures : Map<String,Texture> = new Map<String, Texture>();
+    private static var sSounds : Map<String,Sound> = new Map<String, Sound>();
+	private static var sObjects : Map<String, Dynamic> = new Map<String, Dynamic>();
+	private static var sXmls : Map<String, Xml> = new Map<String, Xml>();
+    private static var sBitmapFontsLoaded : Bool;
 	
-	public function new() {
-		
-	}
-    
-    public function getTexture(filePath : String, name : String) : Texture
+    public static function getTexture(filePath : String, name : String) : Texture
     {
 		var texture : Texture = sTextures.get(name);
         if (texture == null)
@@ -51,7 +47,7 @@ class AssetInterface
 		 * @param	newColor Color to replace previous color with including leading alpha bits i.e. 0xff0000ff (blue)
 		 * @return Texture created or retrieved (if already created)
 		 */
-    public function getTextureReplaceColor(filePath : String, name : String, colorToReplace : Int, newColor : Int) : Texture
+    public static function getTextureReplaceColor(filePath : String, name : String, colorToReplace : Int, newColor : Int) : Texture
     {
         var newName : String = name + "_" + Std.string(colorToReplace) + "_" + Std.string(newColor);
 		var texture : Texture = sTextures.get(newName);
@@ -80,7 +76,7 @@ class AssetInterface
 		 * @param	color Color to fill the shape with i.e. 0xff0000ff (blue)
 		 * @return Texture created or retrieved (if already created)
 		 */
-    public function getTextureColorAll(filePath : String, name : String, color : Int) : Texture
+    public static function getTextureColorAll(filePath : String, name : String, color : Int) : Texture
     {
         var newName : String = name + "_" + Std.string(color);
 		var texture : Texture = sTextures.get(newName);
@@ -102,7 +98,7 @@ class AssetInterface
         return texture;
     }
     
-    public function getSound(newName : String) : Sound
+    public static function getSound(newName : String) : Sound
     {
         var sound : Sound = try cast(Reflect.field(sSounds, newName), Sound) catch(e:Dynamic) null;
         if (sound != null)
@@ -115,12 +111,12 @@ class AssetInterface
         }
     }
     
-    public function getTextureAtlas(filePath : String, texName : String, xmlName : String) : TextureAtlas
+    public static function getTextureAtlas(filePath : String, texName : String, xmlName : String) : TextureAtlas
     {
         return getTextureAtlasUsingDict(sTextureAtlases, filePath, texName, xmlName);
     }
     
-    private function getTextureAtlasUsingDict(dict : Map<String,TextureAtlas>, filePath : String, texName : String, xmlName : String) : TextureAtlas
+    private static function getTextureAtlasUsingDict(dict : Map<String,TextureAtlas>, filePath : String, texName : String, xmlName : String) : TextureAtlas
     {
         if (!dict.exists(texName))
         {
@@ -131,7 +127,7 @@ class AssetInterface
         return dict[texName];
     }
     
-    public function loadBitmapFont(filename : String, fontName : String, xmlFile : String) : Void
+    public static function loadBitmapFont(filename : String, fontName : String, xmlFile : String) : Void
     {
         var texture : Texture = getTexture(filename, fontName);
         var xml = Xml.parse(Assets.getText(filename));
@@ -139,7 +135,7 @@ class AssetInterface
         sBitmapFontsLoaded = true;
     }
     
-    public function getMovieClipAsTextureAtlas(filename : String, movieClipName : String) : TextureAtlas
+    public static function getMovieClipAsTextureAtlas(filename : String, movieClipName : String) : TextureAtlas
     {
        // var clip : Dynamic = create(filename, movieClipName);
         //var atlas : TextureAtlas = DynamicAtlas.fromMovieClipContainer(try cast(clip, MovieClip) catch(e:Dynamic) null);
@@ -147,7 +143,7 @@ class AssetInterface
 		return null;
     }
 	
-	public function getXml(filePath : String, name : String) : Xml
+	public static function getXml(filePath : String, name : String) : Xml
 	{
 		var xml : Xml = sXmls.get(name);
 		if (xml == null)
@@ -159,7 +155,7 @@ class AssetInterface
 		return xml;
 	}
 	
-	public function getObject(filePath : String, name : String) : Dynamic
+	public static function getObject(filePath : String, name : String) : Dynamic
 	{
 		var object : Dynamic = sObjects.get(name);
 		if (object == null) 
@@ -171,16 +167,16 @@ class AssetInterface
 		return object;
 	}
     
-    public function prepareSounds() : Void
+    public static function prepareSounds() : Void
     {
     }
     
-    private function get_contentScaleFactor() : Float
+    private static function get_contentScaleFactor() : Float
     {
         return sContentScaleFactor;
     }
 	
-    private function set_contentScaleFactor(value : Float) : Float
+    private static function set_contentScaleFactor(value : Float) : Float
     {
         sTextures = new Map<String, Texture>();
         sContentScaleFactor = (value < 1.5) ? 1 : 2;

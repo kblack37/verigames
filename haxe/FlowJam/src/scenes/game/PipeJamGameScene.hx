@@ -49,6 +49,11 @@ class PipeJamGameScene extends Scene
         super.addedToStage(event);
         m_layoutLoaded = m_worldLoaded = m_assignmentsLoaded = false;
         GameFileHandler.loadGameFiles(onWorldLoaded, onLayoutLoaded, onConstraintsLoaded);
+		
+		//var minimap;
+		//gameengine.adduicomponent("minimap", minimap)
+		//gridviewpanel;
+		//gameengine.aeduicomponent('gridviewpanel', gridviewpanel)
     }
     
     override private function removedFromStage(event : starling.events.Event) : Void
@@ -56,7 +61,7 @@ class PipeJamGameScene extends Scene
         removeChildren(0, -1, true);
         active_world = null;
     }
-    
+	
     private function onLayoutLoaded(_layoutObj : Dynamic) : Void
     {
         m_layoutObj = _layoutObj;
@@ -96,7 +101,7 @@ class PipeJamGameScene extends Scene
         {
             nextParseState.removeFromParent();
         }
-        nextParseState = new ParseConstraintGraphState(m_worldObj);
+        nextParseState = new ParseConstraintGraphState(null, m_worldObj);
         addChild(nextParseState);  //to allow done parsing event to be caught  
         this.addEventListener(ParseConstraintGraphState.WORLD_PARSED, worldComplete);
         nextParseState.stateLoad();

@@ -1,6 +1,7 @@
 package scenes.game.display;
 
 import assets.AssetInterface;
+import assets.AssetNames;
 import openfl.Vector;
 import starling.display.Sprite;
 import events.EdgePropChangeEvent;
@@ -225,11 +226,11 @@ class GameEdgeJoint extends GameComponent
             {
                 if (wide == true)
                 {
-                    jointAssetName = AssetInterface.PipeJamSubTexture_BlueDarkStart;
+                    jointAssetName = AssetNames.PipeJamSubTexture_BlueDarkStart;
                 }
                 else
                 {
-                    jointAssetName = AssetInterface.PipeJamSubTexture_BlueLightStart;
+                    jointAssetName = AssetNames.PipeJamSubTexture_BlueLightStart;
                 }
             }
             //not adjustable
@@ -239,11 +240,11 @@ class GameEdgeJoint extends GameComponent
                 {
                     if (wide == true)
                     {
-                        jointAssetName = AssetInterface.PipeJamSubTexture_GrayDarkStart;
+                        jointAssetName = AssetNames.PipeJamSubTexture_GrayDarkStart;
                     }
                     else
                     {
-                        jointAssetName = AssetInterface.PipeJamSubTexture_GrayLightStart;
+                        jointAssetName = AssetNames.PipeJamSubTexture_GrayLightStart;
                     }
                 }
             }
@@ -252,13 +253,13 @@ class GameEdgeJoint extends GameComponent
         {
             if (wide == true)
             {
-                jointAssetName = AssetInterface.PipeJamSubTexture_BlueDarkJoint;
-                connectorAssetName = AssetInterface.PipeJamSubTexture_BlueDarkSegmentPrefix;
+                jointAssetName = AssetNames.PipeJamSubTexture_BlueDarkJoint;
+                connectorAssetName = AssetNames.PipeJamSubTexture_BlueDarkSegmentPrefix;
             }
             else
             {
-                jointAssetName = AssetInterface.PipeJamSubTexture_BlueLightJoint;
-                connectorAssetName = AssetInterface.PipeJamSubTexture_BlueLightSegmentPrefix;
+                jointAssetName = AssetNames.PipeJamSubTexture_BlueLightJoint;
+                connectorAssetName = AssetNames.PipeJamSubTexture_BlueLightSegmentPrefix;
             }
         }
         //not adjustable
@@ -268,13 +269,13 @@ class GameEdgeJoint extends GameComponent
             {
                 if (wide == true)
                 {
-                    jointAssetName = AssetInterface.PipeJamSubTexture_GrayDarkJoint;
-                    connectorAssetName = AssetInterface.PipeJamSubTexture_GrayDarkSegmentPrefix;
+                    jointAssetName = AssetNames.PipeJamSubTexture_GrayDarkJoint;
+                    connectorAssetName = AssetNames.PipeJamSubTexture_GrayDarkSegmentPrefix;
                 }
                 else
                 {
-                    jointAssetName = AssetInterface.PipeJamSubTexture_GrayLightJoint;
-                    connectorAssetName = AssetInterface.PipeJamSubTexture_GrayLightSegmentPrefix;
+                    jointAssetName = AssetNames.PipeJamSubTexture_GrayLightJoint;
+                    connectorAssetName = AssetNames.PipeJamSubTexture_GrayLightSegmentPrefix;
                 }
             }
         }

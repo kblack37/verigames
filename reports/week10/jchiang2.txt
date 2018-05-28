@@ -1,0 +1,16 @@
+# Individual Report (Jake Chiang): Week 10 #
+
+
+## Previous Goals ##
+- Refactor GridViewPanel
+    - Incorporate events into new script manager
+
+
+## Progress ##
+- Finished comprehensive documentation for GridViewPanel
+- Added more GridViewPanel event listeners scripts for the engine to use
+
+
+## Goals ##
+- Ensure that FlowJam is in a compilable/runnable state with all implemented
+  changes merged in

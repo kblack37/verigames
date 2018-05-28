@@ -91,6 +91,11 @@ class GridViewPanel extends BaseComponent
     // At scales less than this value (zoomed out), error text is hidden - but arrows remain
     private static var MIN_ERROR_TEXT_DISPLAY_SCALE : Float = 15.0 / Constants.GAME_SCALE;
     
+	/** 
+	 * Create a new display for the given World.
+	 * 
+	 * @param world The world to display.
+	 */
     public function new(world : World)
     {
         super();
@@ -125,8 +130,14 @@ class GridViewPanel extends BaseComponent
         addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
     }
     
+	/**
+	 * Callback function executed when this GridViewPanel is added to the stage.
+	 * Initializes event listeners.
+	 */
     private function onAddedToStage() : Void
     {
+		initEventListeners();
+		
         addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
         //create a clip rect for the window
         clipRect = new Rectangle(x, y, WIDTH, HEIGHT);
@@ -141,7 +152,23 @@ class GridViewPanel extends BaseComponent
         }
         Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
     }
+	
+    private function onRemovedFromStage() : Void
+    {
+        removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
+    }
+	
+	private function initEventListeners() : Void
+	{
+		trace("Initializing GridViewPanel event listeners...");
+		//addEventListener();
+		trace("Done initializing GridViewPanel event listeners.");
+	}
     
+	/**
+	 * 
+	 * @param	evt
+	 */
     private function onEnterFrame(evt : EnterFrameEvent) : Void
     {
         if (m_currentLevel == null)
@@ -300,28 +327,7 @@ class GridViewPanel extends BaseComponent
         
         recenter();
     }
-    
-    private static function isOnScreen(bb : Rectangle, view : Rectangle) : Bool
-    {
-        if (bb.right < view.left - VISIBLE_BUFFER_PIXELS)
-        {
-            return false;
-        }
-        if (bb.left > view.right + VISIBLE_BUFFER_PIXELS)
-        {
-            return false;
-        }
-        if (bb.bottom < view.top - VISIBLE_BUFFER_PIXELS)
-        {
-            return false;
-        }
-        if (bb.top > view.bottom + VISIBLE_BUFFER_PIXELS)
-        {
-            return false;
-        }
-        return true;
-    }
-    
+	
     private function onPropertyModeChange(evt : PropertyModeChangeEvent) : Void
     {
         if (evt.prop == PropDictionary.PROP_NARROW)
@@ -334,6 +340,11 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+    private function beginMoveMode() : Void
+    {
+        startingPoint = new Point(content.x, content.y);
+    }
+    
     private function endSelectMode() : Void
     {
         if (m_currentLevel != null)
@@ -341,12 +352,7 @@ class GridViewPanel extends BaseComponent
             m_currentLevel.handleMarquee(null, null);
         }
     }
-    
-    private function beginMoveMode() : Void
-    {
-        startingPoint = new Point(content.x, content.y);
-    }
-    
+	
     private function endMoveMode() : Void
     //did we really move?
     {
@@ -362,317 +368,12 @@ class GridViewPanel extends BaseComponent
         }
     }
     
-    private var startingPoint : Point;
-    override private function onTouch(event : TouchEvent) : Void
-    //	trace("Mode:" + event.type);
-    {
-        
-        if (event.getTouches(this, TouchPhase.ENDED).length > 0)
-        {
-            if (currentMode == SELECTING_MODE)
-            {
-                endSelectMode();
-            }
-            else if (currentMode == MOVING_MODE)
-            {
-                endMoveMode();
-            }
-            if (currentMode != NORMAL_MODE)
-            {
-                currentMode = NORMAL_MODE;
-            }
-            else if (m_currentLevel != null && event.target == contentBarrier && World.changingFullScreenState == false)
-            {
-                m_currentLevel.unselectAll();
-                var evt : PropertyModeChangeEvent = new PropertyModeChangeEvent(PropertyModeChangeEvent.PROPERTY_MODE_CHANGE, PropDictionary.PROP_NARROW);
-                m_currentLevel.onPropertyModeChange(evt);
-            }
-            else
-            {
-                World.changingFullScreenState = false;
-            }
-        }
-        else if (event.getTouches(this, TouchPhase.MOVED).length > 0)
-        {
-            var touches : Vector<Touch> = event.getTouches(this, TouchPhase.MOVED);
-            if (event.shiftKey)
-            {
-                if (currentMode != SELECTING_MODE)
-                {
-                    if (currentMode == MOVING_MODE)
-                    {
-                        endMoveMode();
-                    }
-                    currentMode = SELECTING_MODE;
-                    startingPoint = touches[0].getPreviousLocation(this);
-                }
-                if (m_currentLevel != null)
-                {
-                    var currentPoint : Point = touches[0].getLocation(this);
-                    var globalStartingPt : Point = localToGlobal(startingPoint);
-                    var globalCurrentPt : Point = localToGlobal(currentPoint);
-                    m_currentLevel.handleMarquee(globalStartingPt, globalCurrentPt);
-                }
-            }
-            else
-            {
-                if (currentMode != MOVING_MODE)
-                {
-                    if (currentMode == SELECTING_MODE)
-                    {
-                        endSelectMode();
-                    }
-                    currentMode = MOVING_MODE;
-                    beginMoveMode();
-                }
-                if (touches.length == 1)
-                {
-                // one finger touching -> move
-                    
-                    if (touches[0].target == contentBarrier)
-                    {
-                        if (getPanZoomAllowed())
-                        {
-                            var delta : Point = touches[0].getMovement(parent);
-                            var viewRect : Rectangle = getViewInContentSpace();
-                            var newX : Float = viewRect.x + viewRect.width / 2 - delta.x / content.scaleX;
-                            var newY : Float = viewRect.y + viewRect.height / 2 - delta.y / content.scaleY;
-                            moveContent(newX, newY);
-                        }
-                    }
-                }
-                else if (touches.length == 2)
-                {  /*
-						// TODO: Need to take a look at this if we reactivate multitouch - hasn't been touched in a while 
-						// two fingers touching -> rotate and scale
-						var touchA:Touch = touches[0];
-						var touchB:Touch = touches[1];
-						
-						var currentPosA:Point  = touchA.getLocation(parent);
-						var previousPosA:Point = touchA.getPreviousLocation(parent);
-						var currentPosB:Point  = touchB.getLocation(parent);
-						var previousPosB:Point = touchB.getPreviousLocation(parent);
-						
-						var currentVector:Point  = currentPosA.subtract(currentPosB);
-						var previousVector:Point = previousPosA.subtract(previousPosB);
-						
-						var currentAngle:Number  = Math.atan2(currentVector.y, currentVector.x);
-						var previousAngle:Number = Math.atan2(previousVector.y, previousVector.x);
-						var deltaAngle:Number = currentAngle - previousAngle;
-						
-						// update pivot point based on previous center
-						var previousLocalA:Point  = touchA.getPreviousLocation(this);
-						var previousLocalB:Point  = touchB.getPreviousLocation(this);
-						pivotX = (previousLocalA.x + previousLocalB.x) * 0.5;
-						pivotY = (previousLocalA.y + previousLocalB.y) * 0.5;
-						
-						// update location based on the current center
-						x = (currentPosA.x + currentPosB.x) * 0.5;
-						y = (currentPosA.y + currentPosB.y) * 0.5;
-						
-						// rotate
-						//	rotation += deltaAngle;
-						
-						// scale
-						var sizeDiff:Number = currentVector.length / previousVector.length;
-						
-						scaleContent(sizeDiff);
-						m_currentLevel.updateVisibleList();
-	//					var currentCenterPt:Point = new Point((currentPosA.x+currentPosB.x)/2 +content.x, (currentPosA.y+currentPosB.y)/2+content.y);
-	//					content.x = currentCenterPt.x - previousCenterPt.x;
-	//					content.y = currentCenterPt.y - previousCenterPt.y;
-						*/  
-                    
-                }
-            }
-        }
-    }
-    
-    private function onMouseWheel(evt : MouseEvent) : Void
-    {
-        var delta : Float = evt.delta;
-        var localMouse : Point = this.globalToLocal(new Point(evt.stageX, evt.stageY));
-        handleMouseWheel(delta, localMouse);
-    }
-    
-    private function handleMouseWheel(delta : Float, localMouse : Point = null, createUndoEvent : Bool = true) : Void
-    {
-		var mousePoint : Point = null;
-        if (!getPanZoomAllowed())
-        {
-            return;
-        }
-        if (localMouse == null)
-        {
-            localMouse = new Point(WIDTH / 2, HEIGHT / 2);
-        }
-        else
-        {
-            mousePoint = localMouse.clone();
-            
-            var native2Starling : Point = new Point(Starling.current.stage.stageWidth / Starling.current.nativeStage.stageWidth, 
-            Starling.current.stage.stageHeight / Starling.current.nativeStage.stageHeight);
-            
-            localMouse.x *= native2Starling.x;
-            localMouse.y *= native2Starling.y;
-        }
-        
-        // Now localSpace is in local coordinates (relative to this instance of GridViewPanel).
-        // Next, we'll convert to content space
-        var prevMouse : Point = new Point(localMouse.x - content.x, localMouse.y - content.y);
-        prevMouse.x /= content.scaleX;
-        prevMouse.y /= content.scaleY;
-        
-        // Now we have the mouse location in current content space.
-        // We want this location to not move after scaling
-        
-        // Scale content
-        scaleContent(1.00 + 2 * delta / 100.0, 1.00 + 2 * delta / 100.0);
-        
-        // Calculate new location of previous mouse
-        var newMouse : Point = new Point(localMouse.x - content.x, localMouse.y - content.y);
-        newMouse.x /= content.scaleX;
-        newMouse.y /= content.scaleY;
-        
-        // Move by offset so that the point the mouse is centered on remains in same place
-        // (scaling is performed relative to this location)
-        var viewRect : Rectangle = getViewInContentSpace();
-        var newX : Float = viewRect.x + viewRect.width / 2 + (prevMouse.x - newMouse.x);  // / content.scaleX;  
-        var newY : Float = viewRect.y + viewRect.height / 2 + (prevMouse.y - newMouse.y);  // / content.scaleY;  
-        moveContent(newX, newY);
-        
-        //turn this off if in an undo event
-        if (createUndoEvent)
-        {
-            var eventToUndo : MouseWheelEvent = new MouseWheelEvent(mousePoint, delta, Date.now().getTime());
-            var eventToDispatch : UndoEvent = new UndoEvent(eventToUndo, this);
-            eventToDispatch.addToSimilar = true;
-            dispatchEvent(eventToDispatch);
-        }
-    }
-    
     private function moveContent(newX : Float, newY : Float) : Void
     {
         newX = XMath.clamp(newX, m_currentLevel.m_boundingBox.x, m_currentLevel.m_boundingBox.x + m_currentLevel.m_boundingBox.width);
         newY = XMath.clamp(newY, m_currentLevel.m_boundingBox.y, m_currentLevel.m_boundingBox.y + m_currentLevel.m_boundingBox.height);
         
         panTo(newX, newY);
-    }
-    
-    public function atMinZoom(scale : Point = null) : Bool
-    {
-        if (scale == null)
-        {
-            scale = new Point(content.scaleX, content.scaleY);
-        }
-        return ((scale.x <= MIN_SCALE) || (scale.y <= MIN_SCALE));
-    }
-    
-    public function atMaxZoom(scale : Point = null) : Bool
-    {
-        if (scale == null)
-        {
-            scale = new Point(content.scaleX, content.scaleY);
-        }
-        return ((scale.x >= MAX_SCALE) || (scale.y >= MAX_SCALE));
-    }
-    
-    /**
-		 * Scale the content by the given scale factor (sizeDiff of 1.5 = 150% the original size)
-		 * @param	sizeDiff Size difference factor, 1.5 = 150% of original size
-		 */
-    private function scaleContent(sizeDiffX : Float, sizeDiffY : Float) : Void
-    {
-        var oldScaleX : Float = content.scaleX;
-        var oldScaleY : Float = content.scaleY;
-        var newScaleX : Float = XMath.clamp(content.scaleX * sizeDiffX, MIN_SCALE, MAX_SCALE);
-        var newScaleY : Float = XMath.clamp(content.scaleY * sizeDiffY, MIN_SCALE, MAX_SCALE);
-        
-        //if one of these got capped, scale the other proportionally
-        if (newScaleX == MAX_SCALE || newScaleY == MAX_SCALE)
-        {
-            if (newScaleX > newScaleY)
-            {
-                sizeDiffX = newScaleX / content.scaleX;
-                newScaleY = content.scaleY * sizeDiffX;
-            }
-            else
-            {
-                sizeDiffX = newScaleX / content.scaleX;
-                newScaleY = content.scaleY * sizeDiffX;
-            }
-        }
-        
-        var origViewCoords : Rectangle = getViewInContentSpace();
-        // Perform scaling
-        var oldScale : Point = new Point(content.scaleX, content.scaleY);
-        content.scaleX = newScaleX;
-        content.scaleY = newScaleY;
-        inactiveContent.scaleX = content.scaleX;
-        inactiveContent.scaleY = content.scaleY;
-        onContentScaleChanged(oldScale);
-        
-        var newViewCoords : Rectangle = getViewInContentSpace();
-        
-        // Adjust so that original centered point is still in the middle
-        var dX : Float = origViewCoords.x + origViewCoords.width / 2 - (newViewCoords.x + newViewCoords.width / 2);
-        var dY : Float = origViewCoords.y + origViewCoords.height / 2 - (newViewCoords.y + newViewCoords.height / 2);
-        
-        content.x -= dX * content.scaleX;
-        content.y -= dY * content.scaleY;
-        inactiveContent.x = content.x;
-        inactiveContent.y = content.y;
-    }
-    
-    private function onContentScaleChanged(prevScale : Point) : Void
-    {
-        if (atMaxZoom())
-        {
-            if (!atMaxZoom(prevScale))
-            {
-                dispatchEvent(new MenuEvent(MenuEvent.MAX_ZOOM_REACHED));
-            }
-        }
-        else if (atMinZoom())
-        {
-            if (!atMinZoom(prevScale))
-            {
-                dispatchEvent(new MenuEvent(MenuEvent.MIN_ZOOM_REACHED));
-            }
-        }
-        else if (atMaxZoom(prevScale) || atMinZoom(prevScale))
-        {
-            dispatchEvent(new MenuEvent(MenuEvent.RESET_ZOOM));
-        }
-        
-        if (m_currentLevel == null)
-        {
-            return;
-        }
-        if ((content.scaleX < MIN_ERROR_TEXT_DISPLAY_SCALE) || (content.scaleY < MIN_ERROR_TEXT_DISPLAY_SCALE))
-        {
-            m_currentLevel.hideErrorText();
-        }
-        else
-        {
-            m_currentLevel.showErrorText();
-        }
-    }
-    
-    //returns a point containing the content scale factors
-    public function getContentScale() : Point
-    {
-        return new Point(content.scaleX, content.scaleY);
-    }
-    
-    private function getViewInContentSpace() : Rectangle
-    {
-        return new Rectangle(-content.x / content.scaleX, -content.y / content.scaleY, clipRect.width / content.scaleX, clipRect.height / content.scaleY);
-    }
-    
-    private function onRemovedFromStage() : Void
-    {
-        removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
     }
     
     override public function dispose() : Void
@@ -704,235 +405,7 @@ class GridViewPanel extends BaseComponent
         }
         super.dispose();
     }
-    
-    public function zoomInDiscrete() : Void
-    {
-        handleMouseWheel(5);
-    }
-    
-    public function zoomOutDiscrete() : Void
-    {
-        handleMouseWheel(-5);
-    }
-    
-    private function onKeyDown(event : KeyboardEvent) : Void
-    {
-        var viewRect : Rectangle;
-        var newX : Float;
-        var newY : Float;
-        var MOVE_PX : Float = 5.0;  // pixels to move when arrow keys pressed  
-        var _sw0_ = (event.keyCode);        
-
-        switch (_sw0_)
-        {
-            case Keyboard.TAB:
-                if (getPanZoomAllowed() && m_currentLevel != null)
-                {
-                    var conflict : DisplayObject = m_currentLevel.getNextConflict(!event.shiftKey);
-                    if (conflict != null)
-                    {
-                        centerOnComponent(conflict);
-                    }
-                }
-            case Keyboard.UP, Keyboard.W, Keyboard.NUMPAD_8:
-                if (getPanZoomAllowed())
-                {
-                    viewRect = getViewInContentSpace();
-                    newX = viewRect.x + viewRect.width / 2;
-                    newY = viewRect.y + viewRect.height / 2 - MOVE_PX / content.scaleY;
-                    moveContent(newX, newY);
-                }
-            case Keyboard.DOWN, Keyboard.S, Keyboard.NUMPAD_2:
-                if (getPanZoomAllowed())
-                {
-                    viewRect = getViewInContentSpace();
-                    newX = viewRect.x + viewRect.width / 2;
-                    newY = viewRect.y + viewRect.height / 2 + MOVE_PX / content.scaleY;
-                    moveContent(newX, newY);
-                }
-            case Keyboard.LEFT, Keyboard.A, Keyboard.NUMPAD_4:
-                if (getPanZoomAllowed())
-                {
-                    viewRect = getViewInContentSpace();
-                    newX = viewRect.x + viewRect.width / 2 - MOVE_PX / content.scaleX;
-                    newY = viewRect.y + viewRect.height / 2;
-                    moveContent(newX, newY);
-                }
-            case Keyboard.RIGHT, Keyboard.D, Keyboard.NUMPAD_6:
-                if (getPanZoomAllowed())
-                {
-                    viewRect = getViewInContentSpace();
-                    newX = viewRect.x + viewRect.width / 2 + MOVE_PX / content.scaleX;
-                    newY = viewRect.y + viewRect.height / 2;
-                    moveContent(newX, newY);
-                }
-            case Keyboard.C:
-                if (event.ctrlKey)
-                {
-                    World.m_world.solverDoneCallback("");
-                }
-            case Keyboard.EQUAL, Keyboard.NUMPAD_ADD:
-                zoomInDiscrete();
-            case Keyboard.MINUS, Keyboard.NUMPAD_SUBTRACT:
-                zoomOutDiscrete();
-            case Keyboard.SPACE:
-                recenter();
-            case Keyboard.DELETE:
-                if (m_currentLevel != null)
-                {
-                    m_currentLevel.onDeletePressed();
-                }
-            case Keyboard.QUOTE:
-                if (m_currentLevel != null)
-                {
-                    if (event.shiftKey)
-                    {
-                        m_currentLevel.onUseSelectionPressed(MenuEvent.MAKE_SELECTION_WIDE);
-                    }
-                    else
-                    {
-                        m_currentLevel.onUseSelectionPressed(MenuEvent.MAKE_SELECTION_NARROW);
-                    }
-                }
-        }
-    }
-    
-    private function onKeyUp(event : KeyboardEvent) : Void
-    // Release shift, temporarily enter this mode until next touch
-    {
-        
-        // (this prevents the user from un-selecting when they perform
-        // a shift + click + drag + unshift + unclick sequence
-        if (currentMode == SELECTING_MODE && !event.shiftKey)
-        {
-            endSelectMode();
-            currentMode = RELEASE_SHIFT_MODE;
-        }
-    }
-    
-    private var m_boundingBoxDebug : Quad;
-    private static var DEBUG_BOUNDING_BOX : Bool = false;
-    public function setupLevel(level : Level) : Void
-    {
-        m_continueButtonForced = false;
-        removeFanfare();
-        hideContinueButton();
-        removeSpotlight();
-        if (m_currentLevel != level)
-        {
-            if (m_currentLevel != null)
-            {
-                m_currentLevel.removeEventListener(TouchEvent.TOUCH, onTouch);
-                m_currentLevel.removeEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onLevelViewChanged);
-                content.removeChild(m_currentLevel);
-                if (m_currentLevel.tutorialManager != null)
-                {
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.NEW_TUTORIAL_TEXT, onTutorialTextChange);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
-                }
-            }
-            m_currentLevel = level;
-        }
-        
-        inactiveContent.removeChildren();
-        inactiveContent.addChild(m_currentLevel.inactiveLayer);
-        
-        // Remove old error text containers and place new ones
-        for (errorEdgeId in Reflect.fields(m_errorTextBubbles))
-        {
-            var errorSprite : Sprite = Reflect.field(m_errorTextBubbles, errorEdgeId);
-            errorSprite.removeFromParent();
-        }
-        m_errorTextBubbles = {};
-        
-        if (m_tutorialText != null)
-        {
-            m_tutorialText.removeFromParent(true);
-            m_tutorialText = null;
-        }
-        for (i in 0...m_persistentToolTips.length)
-        {
-            m_persistentToolTips[i].removeFromParent(true);
-        }
-        m_persistentToolTips = new Array<ToolTipText>();
-        
-        content.addChild(m_currentLevel);
-    }
-    
-    public function loadLevel() : Void
-    {
-        m_currentLevel.addEventListener(TouchEvent.TOUCH, onTouch);
-        m_currentLevel.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onLevelViewChanged);
-        if (m_currentLevel.tutorialManager != null)
-        {
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.NEW_TUTORIAL_TEXT, onTutorialTextChange);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
-        }
-        
-        // Queue all nodes/edges to add (later we can refine to only on-screen
-        for (nodeId in Reflect.fields(m_currentLevel.nodeLayoutObjs))
-        {
-            var nodeLayoutObj : Dynamic = Reflect.field(m_currentLevel.nodeLayoutObjs, nodeId);
-            m_nodeLayoutQueue.push(nodeLayoutObj);
-        }
-        for (edgeId in Reflect.fields(m_currentLevel.edgeLayoutObjs))
-        {
-            var edgeLayoutObj : Dynamic = Reflect.field(m_currentLevel.edgeLayoutObjs, edgeId);
-            m_edgeLayoutQueue.push(edgeLayoutObj);
-        }
-    }
-    
-    public function onTutorialTextChange(evt : TutorialEvent) : Void
-    {
-        if (m_tutorialText != null)
-        {
-            m_tutorialText.removeFromParent(true);
-            m_tutorialText = null;
-        }
-        
-        var levelTextInfo : TutorialManagerTextInfo = ((evt.newTextInfo.length == 1)) ? evt.newTextInfo[0] : null;
-        if (levelTextInfo != null)
-        {
-            m_tutorialText = new TutorialText(m_currentLevel, levelTextInfo);
-            addChild(m_tutorialText);
-        }
-    }
-    
-    public function onPersistentToolTipTextChange(evt : TutorialEvent) : Void
-    {
-        var i : Int;
-        for (i in 0...m_persistentToolTips.length)
-        {
-            m_persistentToolTips[i].removeFromParent(true);
-        }
-        m_persistentToolTips = new Array<ToolTipText>();
-        
-        var toolTips : Array<TutorialManagerTextInfo> = m_currentLevel.getLevelToolTipsInfo();
-        for (i in 0...toolTips.length)
-        {
-            var tip : ToolTipText = new ToolTipText(toolTips[i].text, m_currentLevel, true, toolTips[i].pointAtFn, toolTips[i].pointFrom, toolTips[i].pointTo);
-            addChild(tip);
-            m_persistentToolTips.push(tip);
-        }
-    }
-    
-    private function onLevelViewChanged(evt : MiniMapEvent) : Void
-    {
-        dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
-    }
-    
+   
     public function recenter() : Void
     {
         content.x = 0;
@@ -1120,6 +593,18 @@ class GridViewPanel extends BaseComponent
             TutorialController.getTutorialController().addCompletedTutorial(m_currentLevel.m_tutorialTag, true);
         }
     }
+    	
+    public function hideContinueButton(forceOff : Bool = false) : Void
+    {
+        if (forceOff)
+        {
+            m_continueButtonForced = false;
+        }
+        if (continueButton != null && !m_continueButtonForced)
+        {
+            continueButton.removeFromParent();
+        }
+    }
     
     private function startFanfare() : Void
     {
@@ -1156,107 +641,6 @@ class GridViewPanel extends BaseComponent
         {
             Starling.current.juggler.removeTweens(m_fanfareTextContainer);
             m_fanfareTextContainer.removeFromParent();
-        }
-    }
-    
-    public function hideContinueButton(forceOff : Bool = false) : Void
-    {
-        if (forceOff)
-        {
-            m_continueButtonForced = false;
-        }
-        if (continueButton != null && !m_continueButtonForced)
-        {
-            continueButton.removeFromParent();
-        }
-    }
-    
-    private function onNextLevelButtonTriggered(evt : Event) : Void
-    {
-        dispatchEvent(new NavigationEvent(NavigationEvent.SWITCH_TO_NEXT_LEVEL));
-    }
-    
-    public function moveToPoint(percentPoint : Point) : Void
-    {
-        var contentX : Float = m_currentLevel.m_boundingBox.x / scaleX + percentPoint.x * m_currentLevel.m_boundingBox.width / scaleX;
-        var contentY : Float = m_currentLevel.m_boundingBox.y / scaleY + percentPoint.y * m_currentLevel.m_boundingBox.height / scaleY;
-        moveContent(contentX, contentY);
-    }
-    
-    /**
-		 * Pans the current view to the given point (point is in content-space)
-		 * @param	panX
-		 * @param	panY
-		 */
-    public function panTo(panX : Float, panY : Float, createUndoEvent : Bool = true) : Void
-    {
-        content.x = (-panX * content.scaleX + clipRect.width / 2);
-        inactiveContent.x = content.x;
-        content.y = (-panY * content.scaleY + clipRect.height / 2);
-        inactiveContent.y = content.y;
-        dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
-    }
-    
-    /**
-		 * Centers the current view on the input component
-		 * @param	component
-		 */
-    public function centerOnComponent(component : DisplayObject) : Void
-    {
-        startingPoint = new Point(content.x, content.y);
-        
-        var centerPt : Point = new Point(component.width / 2, component.height / 2);
-        var globPt : Point = component.localToGlobal(centerPt);
-        var localPt : Point = content.globalToLocal(globPt);
-        moveContent(localPt.x, localPt.y);
-        
-        var startPoint : Point = startingPoint.clone();
-        var endPoint : Point = new Point(content.x, content.y);
-        var eventToUndo : MoveEvent = new MoveEvent(MoveEvent.MOUSE_DRAG, null, startPoint, endPoint);
-        var eventToDispatch : UndoEvent = new UndoEvent(eventToUndo, this);
-        dispatchEvent(eventToDispatch);
-    }
-    
-    public function onHighlightTutorialEvent(evt : TutorialEvent) : Void
-    {
-        if (!evt.highlightOn)
-        {
-            removeSpotlight();
-            return;
-        }
-        if (m_currentLevel == null)
-        {
-            return;
-        }
-        var edge : GameEdgeContainer;
-        var _sw1_ = (evt.type);        
-
-        switch (_sw1_)
-        {
-            case TutorialEvent.HIGHLIGHT_BOX:
-                var node : GameNode = m_currentLevel.getNode(evt.componentId);
-                if (node != null)
-                {
-                    spotlightComponent(node);
-                }
-            case TutorialEvent.HIGHLIGHT_EDGE:
-                edge = m_currentLevel.getEdgeContainer(evt.componentId);
-                if (edge != null)
-                {
-                    spotlightComponent(edge, 3.0, 1.75, 1.2);
-                }
-            case TutorialEvent.HIGHLIGHT_PASSAGE:
-                edge = m_currentLevel.getEdgeContainer(evt.componentId);
-                if (edge != null && edge.innerFromBoxSegment != null)
-                {
-                    spotlightComponent(edge.innerFromBoxSegment, 3.0, 3, 2);
-                }
-            case TutorialEvent.HIGHLIGHT_CLASH:
-                edge = m_currentLevel.getEdgeContainer(evt.componentId);
-                if (edge != null && edge.errorContainer != null)
-                {
-                    spotlightComponent(edge.errorContainer, 3.0, 1.3, 1.3);
-                }
         }
     }
     
@@ -1341,15 +725,6 @@ class GridViewPanel extends BaseComponent
             inactiveContent.x = content.x;
             inactiveContent.y = content.y;
         }
-    }
-    
-    public function getPanZoomAllowed() : Bool
-    {
-        if (m_currentLevel != null)
-        {
-            return m_currentLevel.getPanZoomAllowed();
-        }
-        return true;
     }
     
     //returns ByteArray that contains bitmap that is the same aspect ratio as view, with maxwidth or maxheight (or both, if same as aspect ratio) respected
@@ -1456,6 +831,671 @@ class GridViewPanel extends BaseComponent
         contentBarrier.alpha = 0.01;
         contentBarrier.visible = true;
         addChildAt(contentBarrier, 0);
+    }
+	
+	///////////////////////////////////////////////////////////////
+	// INPUT
+	///////////////////////////////////////////////////////////////
+	
+    private function onKeyUp(event : KeyboardEvent) : Void
+    // Release shift, temporarily enter this mode until next touch
+    {
+        
+        // (this prevents the user from un-selecting when they perform
+        // a shift + click + drag + unshift + unclick sequence
+        if (currentMode == SELECTING_MODE && !event.shiftKey)
+        {
+            endSelectMode();
+            currentMode = RELEASE_SHIFT_MODE;
+        }
+    }
+    	
+    private function onKeyDown(event : KeyboardEvent) : Void
+    {
+        var viewRect : Rectangle;
+        var newX : Float;
+        var newY : Float;
+        var MOVE_PX : Float = 5.0;  // pixels to move when arrow keys pressed  
+        var _sw0_ = (event.keyCode);        
+
+        switch (_sw0_)
+        {
+            case Keyboard.TAB:
+                if (getPanZoomAllowed() && m_currentLevel != null)
+                {
+                    var conflict : DisplayObject = m_currentLevel.getNextConflict(!event.shiftKey);
+                    if (conflict != null)
+                    {
+                        centerOnComponent(conflict);
+                    }
+                }
+            case Keyboard.UP, Keyboard.W, Keyboard.NUMPAD_8:
+                if (getPanZoomAllowed())
+                {
+                    viewRect = getViewInContentSpace();
+                    newX = viewRect.x + viewRect.width / 2;
+                    newY = viewRect.y + viewRect.height / 2 - MOVE_PX / content.scaleY;
+                    moveContent(newX, newY);
+                }
+            case Keyboard.DOWN, Keyboard.S, Keyboard.NUMPAD_2:
+                if (getPanZoomAllowed())
+                {
+                    viewRect = getViewInContentSpace();
+                    newX = viewRect.x + viewRect.width / 2;
+                    newY = viewRect.y + viewRect.height / 2 + MOVE_PX / content.scaleY;
+                    moveContent(newX, newY);
+                }
+            case Keyboard.LEFT, Keyboard.A, Keyboard.NUMPAD_4:
+                if (getPanZoomAllowed())
+                {
+                    viewRect = getViewInContentSpace();
+                    newX = viewRect.x + viewRect.width / 2 - MOVE_PX / content.scaleX;
+                    newY = viewRect.y + viewRect.height / 2;
+                    moveContent(newX, newY);
+                }
+            case Keyboard.RIGHT, Keyboard.D, Keyboard.NUMPAD_6:
+                if (getPanZoomAllowed())
+                {
+                    viewRect = getViewInContentSpace();
+                    newX = viewRect.x + viewRect.width / 2 + MOVE_PX / content.scaleX;
+                    newY = viewRect.y + viewRect.height / 2;
+                    moveContent(newX, newY);
+                }
+            case Keyboard.C:
+                if (event.ctrlKey)
+                {
+                    World.m_world.solverDoneCallback("");
+                }
+            case Keyboard.EQUAL, Keyboard.NUMPAD_ADD:
+                zoomInDiscrete();
+            case Keyboard.MINUS, Keyboard.NUMPAD_SUBTRACT:
+                zoomOutDiscrete();
+            case Keyboard.SPACE:
+                recenter();
+            case Keyboard.DELETE:
+                if (m_currentLevel != null)
+                {
+                    m_currentLevel.onDeletePressed();
+                }
+            case Keyboard.QUOTE:
+                if (m_currentLevel != null)
+                {
+                    if (event.shiftKey)
+                    {
+                        m_currentLevel.onUseSelectionPressed(MenuEvent.MAKE_SELECTION_WIDE);
+                    }
+                    else
+                    {
+                        m_currentLevel.onUseSelectionPressed(MenuEvent.MAKE_SELECTION_NARROW);
+                    }
+                }
+        }
+    }
+    
+	 private var startingPoint : Point;
+    override private function onTouch(event : TouchEvent) : Void
+    //	trace("Mode:" + event.type);
+    {
+        
+        if (event.getTouches(this, TouchPhase.ENDED).length > 0)
+        {
+            if (currentMode == SELECTING_MODE)
+            {
+                endSelectMode();
+            }
+            else if (currentMode == MOVING_MODE)
+            {
+                endMoveMode();
+            }
+            if (currentMode != NORMAL_MODE)
+            {
+                currentMode = NORMAL_MODE;
+            }
+            else if (m_currentLevel != null && event.target == contentBarrier && World.changingFullScreenState == false)
+            {
+                m_currentLevel.unselectAll();
+                var evt : PropertyModeChangeEvent = new PropertyModeChangeEvent(PropertyModeChangeEvent.PROPERTY_MODE_CHANGE, PropDictionary.PROP_NARROW);
+                m_currentLevel.onPropertyModeChange(evt);
+            }
+            else
+            {
+                World.changingFullScreenState = false;
+            }
+        }
+        else if (event.getTouches(this, TouchPhase.MOVED).length > 0)
+        {
+            var touches : Vector<Touch> = event.getTouches(this, TouchPhase.MOVED);
+            if (event.shiftKey)
+            {
+                if (currentMode != SELECTING_MODE)
+                {
+                    if (currentMode == MOVING_MODE)
+                    {
+                        endMoveMode();
+                    }
+                    currentMode = SELECTING_MODE;
+                    startingPoint = touches[0].getPreviousLocation(this);
+                }
+                if (m_currentLevel != null)
+                {
+                    var currentPoint : Point = touches[0].getLocation(this);
+                    var globalStartingPt : Point = localToGlobal(startingPoint);
+                    var globalCurrentPt : Point = localToGlobal(currentPoint);
+                    m_currentLevel.handleMarquee(globalStartingPt, globalCurrentPt);
+                }
+            }
+            else
+            {
+                if (currentMode != MOVING_MODE)
+                {
+                    if (currentMode == SELECTING_MODE)
+                    {
+                        endSelectMode();
+                    }
+                    currentMode = MOVING_MODE;
+                    beginMoveMode();
+                }
+                if (touches.length == 1)
+                {
+                // one finger touching -> move
+                    
+                    if (touches[0].target == contentBarrier)
+                    {
+                        if (getPanZoomAllowed())
+                        {
+                            var delta : Point = touches[0].getMovement(parent);
+                            var viewRect : Rectangle = getViewInContentSpace();
+                            var newX : Float = viewRect.x + viewRect.width / 2 - delta.x / content.scaleX;
+                            var newY : Float = viewRect.y + viewRect.height / 2 - delta.y / content.scaleY;
+                            moveContent(newX, newY);
+                        }
+                    }
+                }
+                else if (touches.length == 2)
+                {  /*
+						// TODO: Need to take a look at this if we reactivate multitouch - hasn't been touched in a while 
+						// two fingers touching -> rotate and scale
+						var touchA:Touch = touches[0];
+						var touchB:Touch = touches[1];
+						
+						var currentPosA:Point  = touchA.getLocation(parent);
+						var previousPosA:Point = touchA.getPreviousLocation(parent);
+						var currentPosB:Point  = touchB.getLocation(parent);
+						var previousPosB:Point = touchB.getPreviousLocation(parent);
+						
+						var currentVector:Point  = currentPosA.subtract(currentPosB);
+						var previousVector:Point = previousPosA.subtract(previousPosB);
+						
+						var currentAngle:Number  = Math.atan2(currentVector.y, currentVector.x);
+						var previousAngle:Number = Math.atan2(previousVector.y, previousVector.x);
+						var deltaAngle:Number = currentAngle - previousAngle;
+						
+						// update pivot point based on previous center
+						var previousLocalA:Point  = touchA.getPreviousLocation(this);
+						var previousLocalB:Point  = touchB.getPreviousLocation(this);
+						pivotX = (previousLocalA.x + previousLocalB.x) * 0.5;
+						pivotY = (previousLocalA.y + previousLocalB.y) * 0.5;
+						
+						// update location based on the current center
+						x = (currentPosA.x + currentPosB.x) * 0.5;
+						y = (currentPosA.y + currentPosB.y) * 0.5;
+						
+						// rotate
+						//	rotation += deltaAngle;
+						
+						// scale
+						var sizeDiff:Number = currentVector.length / previousVector.length;
+						
+						scaleContent(sizeDiff);
+						m_currentLevel.updateVisibleList();
+	//					var currentCenterPt:Point = new Point((currentPosA.x+currentPosB.x)/2 +content.x, (currentPosA.y+currentPosB.y)/2+content.y);
+	//					content.x = currentCenterPt.x - previousCenterPt.x;
+	//					content.y = currentCenterPt.y - previousCenterPt.y;
+						*/  
+                    
+                }
+            }
+        }
+    }
+	
+    private function onMouseWheel(evt : MouseEvent) : Void
+    {
+        var delta : Float = evt.delta;
+        var localMouse : Point = this.globalToLocal(new Point(evt.stageX, evt.stageY));
+        handleMouseWheel(delta, localMouse);
+    }
+    
+    private function handleMouseWheel(delta : Float, localMouse : Point = null, createUndoEvent : Bool = true) : Void
+    {
+		var mousePoint : Point = null;
+        if (!getPanZoomAllowed())
+        {
+            return;
+        }
+        if (localMouse == null)
+        {
+            localMouse = new Point(WIDTH / 2, HEIGHT / 2);
+        }
+        else
+        {
+            mousePoint = localMouse.clone();
+            
+            var native2Starling : Point = new Point(Starling.current.stage.stageWidth / Starling.current.nativeStage.stageWidth, 
+            Starling.current.stage.stageHeight / Starling.current.nativeStage.stageHeight);
+            
+            localMouse.x *= native2Starling.x;
+            localMouse.y *= native2Starling.y;
+        }
+        
+        // Now localSpace is in local coordinates (relative to this instance of GridViewPanel).
+        // Next, we'll convert to content space
+        var prevMouse : Point = new Point(localMouse.x - content.x, localMouse.y - content.y);
+        prevMouse.x /= content.scaleX;
+        prevMouse.y /= content.scaleY;
+        
+        // Now we have the mouse location in current content space.
+        // We want this location to not move after scaling
+        
+        // Scale content
+        scaleContent(1.00 + 2 * delta / 100.0, 1.00 + 2 * delta / 100.0);
+        
+        // Calculate new location of previous mouse
+        var newMouse : Point = new Point(localMouse.x - content.x, localMouse.y - content.y);
+        newMouse.x /= content.scaleX;
+        newMouse.y /= content.scaleY;
+        
+        // Move by offset so that the point the mouse is centered on remains in same place
+        // (scaling is performed relative to this location)
+        var viewRect : Rectangle = getViewInContentSpace();
+        var newX : Float = viewRect.x + viewRect.width / 2 + (prevMouse.x - newMouse.x);  // / content.scaleX;  
+        var newY : Float = viewRect.y + viewRect.height / 2 + (prevMouse.y - newMouse.y);  // / content.scaleY;  
+        moveContent(newX, newY);
+        
+        //turn this off if in an undo event
+        if (createUndoEvent)
+        {
+            var eventToUndo : MouseWheelEvent = new MouseWheelEvent(mousePoint, delta, Date.now().getTime());
+            var eventToDispatch : UndoEvent = new UndoEvent(eventToUndo, this);
+            eventToDispatch.addToSimilar = true;
+            dispatchEvent(eventToDispatch);
+        }
+    }
+	
+	///////////////////////////////////////////////////////////////
+	// LEVEL
+	///////////////////////////////////////////////////////////////
+	
+	private var m_boundingBoxDebug : Quad;
+    private static var DEBUG_BOUNDING_BOX : Bool = false;
+    public function setupLevel(level : Level) : Void
+    {
+        m_continueButtonForced = false;
+        removeFanfare();
+        hideContinueButton();
+        removeSpotlight();
+        if (m_currentLevel != level)
+        {
+            if (m_currentLevel != null)
+            {
+                m_currentLevel.removeEventListener(TouchEvent.TOUCH, onTouch);
+                m_currentLevel.removeEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onLevelViewChanged);
+                content.removeChild(m_currentLevel);
+                if (m_currentLevel.tutorialManager != null)
+                {
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.NEW_TUTORIAL_TEXT, onTutorialTextChange);
+                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
+                }
+            }
+            m_currentLevel = level;
+        }
+        
+        inactiveContent.removeChildren();
+        inactiveContent.addChild(m_currentLevel.inactiveLayer);
+        
+        // Remove old error text containers and place new ones
+        for (errorEdgeId in Reflect.fields(m_errorTextBubbles))
+        {
+            var errorSprite : Sprite = Reflect.field(m_errorTextBubbles, errorEdgeId);
+            errorSprite.removeFromParent();
+        }
+        m_errorTextBubbles = {};
+        
+        if (m_tutorialText != null)
+        {
+            m_tutorialText.removeFromParent(true);
+            m_tutorialText = null;
+        }
+        for (i in 0...m_persistentToolTips.length)
+        {
+            m_persistentToolTips[i].removeFromParent(true);
+        }
+        m_persistentToolTips = new Array<ToolTipText>();
+        
+        content.addChild(m_currentLevel);
+    }
+    
+    public function loadLevel() : Void
+    {
+        m_currentLevel.addEventListener(TouchEvent.TOUCH, onTouch);
+        m_currentLevel.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onLevelViewChanged);
+        if (m_currentLevel.tutorialManager != null)
+        {
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.NEW_TUTORIAL_TEXT, onTutorialTextChange);
+            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
+        }
+        
+        // Queue all nodes/edges to add (later we can refine to only on-screen
+        for (nodeId in Reflect.fields(m_currentLevel.nodeLayoutObjs))
+        {
+            var nodeLayoutObj : Dynamic = Reflect.field(m_currentLevel.nodeLayoutObjs, nodeId);
+            m_nodeLayoutQueue.push(nodeLayoutObj);
+        }
+        for (edgeId in Reflect.fields(m_currentLevel.edgeLayoutObjs))
+        {
+            var edgeLayoutObj : Dynamic = Reflect.field(m_currentLevel.edgeLayoutObjs, edgeId);
+            m_edgeLayoutQueue.push(edgeLayoutObj);
+        }
+    }
+    
+    private function onNextLevelButtonTriggered(evt : Event) : Void
+    {
+        dispatchEvent(new NavigationEvent(NavigationEvent.SWITCH_TO_NEXT_LEVEL));
+    }
+   
+    private function onLevelViewChanged(evt : MiniMapEvent) : Void
+    {
+        dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
+    }
+    
+	
+	///////////////////////////////////////////////////////////////
+	// CAMERA
+	///////////////////////////////////////////////////////////////
+	
+	 
+    public function zoomInDiscrete() : Void
+    {
+        handleMouseWheel(5);
+    }
+    
+    public function zoomOutDiscrete() : Void
+    {
+        handleMouseWheel(-5);
+    }
+    
+    private static function isOnScreen(bb : Rectangle, view : Rectangle) : Bool
+    {
+        if (bb.right < view.left - VISIBLE_BUFFER_PIXELS)
+        {
+            return false;
+        }
+        if (bb.left > view.right + VISIBLE_BUFFER_PIXELS)
+        {
+            return false;
+        }
+        if (bb.bottom < view.top - VISIBLE_BUFFER_PIXELS)
+        {
+            return false;
+        }
+        if (bb.top > view.bottom + VISIBLE_BUFFER_PIXELS)
+        {
+            return false;
+        }
+        return true;
+    }
+	
+    public function atMinZoom(scale : Point = null) : Bool
+    {
+        if (scale == null)
+        {
+            scale = new Point(content.scaleX, content.scaleY);
+        }
+        return ((scale.x <= MIN_SCALE) || (scale.y <= MIN_SCALE));
+    }
+    
+    public function atMaxZoom(scale : Point = null) : Bool
+    {
+        if (scale == null)
+        {
+            scale = new Point(content.scaleX, content.scaleY);
+        }
+        return ((scale.x >= MAX_SCALE) || (scale.y >= MAX_SCALE));
+    }
+    
+    /**
+		 * Scale the content by the given scale factor (sizeDiff of 1.5 = 150% the original size)
+		 * @param	sizeDiff Size difference factor, 1.5 = 150% of original size
+		 */
+    private function scaleContent(sizeDiffX : Float, sizeDiffY : Float) : Void
+    {
+        var oldScaleX : Float = content.scaleX;
+        var oldScaleY : Float = content.scaleY;
+        var newScaleX : Float = XMath.clamp(content.scaleX * sizeDiffX, MIN_SCALE, MAX_SCALE);
+        var newScaleY : Float = XMath.clamp(content.scaleY * sizeDiffY, MIN_SCALE, MAX_SCALE);
+        
+        //if one of these got capped, scale the other proportionally
+        if (newScaleX == MAX_SCALE || newScaleY == MAX_SCALE)
+        {
+            if (newScaleX > newScaleY)
+            {
+                sizeDiffX = newScaleX / content.scaleX;
+                newScaleY = content.scaleY * sizeDiffX;
+            }
+            else
+            {
+                sizeDiffX = newScaleX / content.scaleX;
+                newScaleY = content.scaleY * sizeDiffX;
+            }
+        }
+        
+        var origViewCoords : Rectangle = getViewInContentSpace();
+        // Perform scaling
+        var oldScale : Point = new Point(content.scaleX, content.scaleY);
+        content.scaleX = newScaleX;
+        content.scaleY = newScaleY;
+        inactiveContent.scaleX = content.scaleX;
+        inactiveContent.scaleY = content.scaleY;
+        onContentScaleChanged(oldScale);
+        
+        var newViewCoords : Rectangle = getViewInContentSpace();
+        
+        // Adjust so that original centered point is still in the middle
+        var dX : Float = origViewCoords.x + origViewCoords.width / 2 - (newViewCoords.x + newViewCoords.width / 2);
+        var dY : Float = origViewCoords.y + origViewCoords.height / 2 - (newViewCoords.y + newViewCoords.height / 2);
+        
+        content.x -= dX * content.scaleX;
+        content.y -= dY * content.scaleY;
+        inactiveContent.x = content.x;
+        inactiveContent.y = content.y;
+    }
+    
+    private function onContentScaleChanged(prevScale : Point) : Void
+    {
+        if (atMaxZoom())
+        {
+            if (!atMaxZoom(prevScale))
+            {
+                dispatchEvent(new MenuEvent(MenuEvent.MAX_ZOOM_REACHED));
+            }
+        }
+        else if (atMinZoom())
+        {
+            if (!atMinZoom(prevScale))
+            {
+                dispatchEvent(new MenuEvent(MenuEvent.MIN_ZOOM_REACHED));
+            }
+        }
+        else if (atMaxZoom(prevScale) || atMinZoom(prevScale))
+        {
+            dispatchEvent(new MenuEvent(MenuEvent.RESET_ZOOM));
+        }
+        
+        if (m_currentLevel == null)
+        {
+            return;
+        }
+        if ((content.scaleX < MIN_ERROR_TEXT_DISPLAY_SCALE) || (content.scaleY < MIN_ERROR_TEXT_DISPLAY_SCALE))
+        {
+            m_currentLevel.hideErrorText();
+        }
+        else
+        {
+            m_currentLevel.showErrorText();
+        }
+    }
+    
+    //returns a point containing the content scale factors
+    public function getContentScale() : Point
+    {
+        return new Point(content.scaleX, content.scaleY);
+    }
+    
+    private function getViewInContentSpace() : Rectangle
+    {
+        return new Rectangle(-content.x / content.scaleX, -content.y / content.scaleY, clipRect.width / content.scaleX, clipRect.height / content.scaleY);
+    }
+    
+	public function moveToPoint(percentPoint : Point) : Void
+    {
+        var contentX : Float = m_currentLevel.m_boundingBox.x / scaleX + percentPoint.x * m_currentLevel.m_boundingBox.width / scaleX;
+        var contentY : Float = m_currentLevel.m_boundingBox.y / scaleY + percentPoint.y * m_currentLevel.m_boundingBox.height / scaleY;
+        moveContent(contentX, contentY);
+    }
+    
+    /**
+		 * Pans the current view to the given point (point is in content-space)
+		 * @param	panX
+		 * @param	panY
+		 */
+    public function panTo(panX : Float, panY : Float, createUndoEvent : Bool = true) : Void
+    {
+        content.x = (-panX * content.scaleX + clipRect.width / 2);
+        inactiveContent.x = content.x;
+        content.y = (-panY * content.scaleY + clipRect.height / 2);
+        inactiveContent.y = content.y;
+        dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
+    }
+	
+    public function getPanZoomAllowed() : Bool
+    {
+        if (m_currentLevel != null)
+        {
+            return m_currentLevel.getPanZoomAllowed();
+        }
+        return true;
+    }
+    	
+    /**
+		 * Centers the current view on the input component
+		 * @param	component
+		 */
+    public function centerOnComponent(component : DisplayObject) : Void
+    {
+        startingPoint = new Point(content.x, content.y);
+        
+        var centerPt : Point = new Point(component.width / 2, component.height / 2);
+        var globPt : Point = component.localToGlobal(centerPt);
+        var localPt : Point = content.globalToLocal(globPt);
+        moveContent(localPt.x, localPt.y);
+        
+        var startPoint : Point = startingPoint.clone();
+        var endPoint : Point = new Point(content.x, content.y);
+        var eventToUndo : MoveEvent = new MoveEvent(MoveEvent.MOUSE_DRAG, null, startPoint, endPoint);
+        var eventToDispatch : UndoEvent = new UndoEvent(eventToUndo, this);
+        dispatchEvent(eventToDispatch);
+    }
+    
+	///////////////////////////////////////////////////////////////
+	// TUTORIAL / HELP
+	///////////////////////////////////////////////////////////////
+	
+    public function onTutorialTextChange(evt : TutorialEvent) : Void
+    {
+        if (m_tutorialText != null)
+        {
+            m_tutorialText.removeFromParent(true);
+            m_tutorialText = null;
+        }
+        
+        var levelTextInfo : TutorialManagerTextInfo = ((evt.newTextInfo.length == 1)) ? evt.newTextInfo[0] : null;
+        if (levelTextInfo != null)
+        {
+            m_tutorialText = new TutorialText(m_currentLevel, levelTextInfo);
+            addChild(m_tutorialText);
+        }
+    }
+	
+    public function onHighlightTutorialEvent(evt : TutorialEvent) : Void
+    {
+        if (!evt.highlightOn)
+        {
+            removeSpotlight();
+            return;
+        }
+        if (m_currentLevel == null)
+        {
+            return;
+        }
+        var edge : GameEdgeContainer;
+        var _sw1_ = (evt.type);        
+
+        switch (_sw1_)
+        {
+            case TutorialEvent.HIGHLIGHT_BOX:
+                var node : GameNode = m_currentLevel.getNode(evt.componentId);
+                if (node != null)
+                {
+                    spotlightComponent(node);
+                }
+            case TutorialEvent.HIGHLIGHT_EDGE:
+                edge = m_currentLevel.getEdgeContainer(evt.componentId);
+                if (edge != null)
+                {
+                    spotlightComponent(edge, 3.0, 1.75, 1.2);
+                }
+            case TutorialEvent.HIGHLIGHT_PASSAGE:
+                edge = m_currentLevel.getEdgeContainer(evt.componentId);
+                if (edge != null && edge.innerFromBoxSegment != null)
+                {
+                    spotlightComponent(edge.innerFromBoxSegment, 3.0, 3, 2);
+                }
+            case TutorialEvent.HIGHLIGHT_CLASH:
+                edge = m_currentLevel.getEdgeContainer(evt.componentId);
+                if (edge != null && edge.errorContainer != null)
+                {
+                    spotlightComponent(edge.errorContainer, 3.0, 1.3, 1.3);
+                }
+        }
+    }
+    
+    public function onPersistentToolTipTextChange(evt : TutorialEvent) : Void
+    {
+        var i : Int;
+        for (i in 0...m_persistentToolTips.length)
+        {
+            m_persistentToolTips[i].removeFromParent(true);
+        }
+        m_persistentToolTips = new Array<ToolTipText>();
+        
+        var toolTips : Array<TutorialManagerTextInfo> = m_currentLevel.getLevelToolTipsInfo();
+        for (i in 0...toolTips.length)
+        {
+            var tip : ToolTipText = new ToolTipText(toolTips[i].text, m_currentLevel, true, toolTips[i].pointAtFn, toolTips[i].pointFrom, toolTips[i].pointTo);
+            addChild(tip);
+            m_persistentToolTips.push(tip);
+        }
     }
 }
 

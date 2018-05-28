@@ -153,11 +153,17 @@ class GridViewPanel extends BaseComponent
         Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
     }
 	
+	/**
+	 * Callback function executed when this GridViewPanel is removed from the stage.
+	 */
     private function onRemovedFromStage() : Void
     {
         removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
     }
 	
+	/**
+	 * Initializes event listeners with the engine event system.
+	 */
 	private function initEventListeners() : Void
 	{
 		trace("Initializing GridViewPanel event listeners...");
@@ -166,8 +172,10 @@ class GridViewPanel extends BaseComponent
 	}
     
 	/**
+	 * Callback function executed when this GridViewPanel is added to the stage.
+	 * Refreshes display offsets and game node/edges, then redraws the level.
 	 * 
-	 * @param	evt
+	 * @param	evt The event for entering the frame.
 	 */
     private function onEnterFrame(evt : EnterFrameEvent) : Void
     {
@@ -297,6 +305,9 @@ class GridViewPanel extends BaseComponent
         m_lastVisibleRefreshViewRect = currentViewRect;
     }
     
+	/**
+	 * Called when this GridViewPanel enters the stage. Initializes tooltip info for game elements.
+	 */
     private function onGameComponentsCreated() : Void
     {
         var gameEdges : Dynamic = m_currentLevel.getEdges();
@@ -328,6 +339,11 @@ class GridViewPanel extends BaseComponent
         recenter();
     }
 	
+	/**
+	 * Callback function executed when the property mode changes.
+	 * 
+	 * @param	evt The event for changing property events.
+	 */
     private function onPropertyModeChange(evt : PropertyModeChangeEvent) : Void
     {
         if (evt.prop == PropDictionary.PROP_NARROW)
@@ -340,19 +356,17 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Begin object move mode, saving the current position.
+	 */
     private function beginMoveMode() : Void
     {
         startingPoint = new Point(content.x, content.y);
     }
     
-    private function endSelectMode() : Void
-    {
-        if (m_currentLevel != null)
-        {
-            m_currentLevel.handleMarquee(null, null);
-        }
-    }
-	
+	/**
+	 * Ends object move mode. If objects have been moved, saves the undo information. 
+	 */
     private function endMoveMode() : Void
     //did we really move?
     {
@@ -368,14 +382,20 @@ class GridViewPanel extends BaseComponent
         }
     }
     
-    private function moveContent(newX : Float, newY : Float) : Void
+	/**
+	 * Ends object select mode.
+	 */
+    private function endSelectMode() : Void
     {
-        newX = XMath.clamp(newX, m_currentLevel.m_boundingBox.x, m_currentLevel.m_boundingBox.x + m_currentLevel.m_boundingBox.width);
-        newY = XMath.clamp(newY, m_currentLevel.m_boundingBox.y, m_currentLevel.m_boundingBox.y + m_currentLevel.m_boundingBox.height);
-        
-        panTo(newX, newY);
+        if (m_currentLevel != null)
+        {
+            m_currentLevel.handleMarquee(null, null);
+        }
     }
     
+	/**
+	 * Cleans up and disposes all child elements and event listeners, then disposes of self.
+	 */
     override public function dispose() : Void
     {
         if (m_disposed)
@@ -406,97 +426,15 @@ class GridViewPanel extends BaseComponent
         super.dispose();
     }
    
-    public function recenter() : Void
-    {
-        content.x = 0;
-        content.y = 0;
-        inactiveContent.x = inactiveContent.y = 0;
-        var oldScale : Point = new Point(content.scaleX, content.scaleY);
-        content.scaleX = content.scaleY = STARTING_SCALE;
-        inactiveContent.scaleX = inactiveContent.scaleY = STARTING_SCALE;
-        onContentScaleChanged(oldScale);
-        content.addChild(m_currentLevel);
-        
-        if (DEBUG_BOUNDING_BOX)
-        {
-            if (m_boundingBoxDebug == null)
-            {
-                m_boundingBoxDebug = new Quad(m_currentLevel.m_boundingBox.width, m_currentLevel.m_boundingBox.height, 0xFFFF00);
-                m_boundingBoxDebug.alpha = 0.2;
-                m_boundingBoxDebug.touchable = false;
-                content.addChild(m_boundingBoxDebug);
-            }
-            else
-            {
-                m_boundingBoxDebug.width = m_currentLevel.m_boundingBox.width;
-                m_boundingBoxDebug.height = m_currentLevel.m_boundingBox.height;
-            }
-            m_boundingBoxDebug.x = m_currentLevel.m_boundingBox.x;
-            m_boundingBoxDebug.y = m_currentLevel.m_boundingBox.y;
-        }
-        else if (m_boundingBoxDebug != null)
-        {
-            m_boundingBoxDebug.removeFromParent(true);
-        }
-        
-        var i : Int;
-        var centerPt : Point;
-        var globPt : Point;
-        var localPt : Point;
-        var VIEW_HEIGHT : Float = HEIGHT - GameControlPanel.OVERLAP;
-        if ((m_currentLevel.m_boundingBox.width * content.scaleX < MAX_SCALE * WIDTH) && (m_currentLevel.m_boundingBox.height * content.scaleX < MAX_SCALE * VIEW_HEIGHT))
-        {
-        // If about the size of the window, just center the level
-            
-            centerPt = new Point(m_currentLevel.m_boundingBox.left + m_currentLevel.m_boundingBox.width / 2, m_currentLevel.m_boundingBox.top + m_currentLevel.m_boundingBox.height / 2);
-            globPt = m_currentLevel.localToGlobal(centerPt);
-            localPt = content.globalToLocal(globPt);
-            moveContent(localPt.x, localPt.y);
-        }
-        // Otherwise center on the first visible box
-        else
-        {
-            
-            var nodes : Dynamic = m_currentLevel.getNodes();
-            var foundNode : GameNode = null;
-            for (nodeId in Reflect.fields(nodes))
-            {
-                var gameNode : GameNode = try cast(Reflect.field(nodes, nodeId), GameNode) catch(e:Dynamic) null;
-                if (gameNode.visible && (gameNode.alpha > 0) && gameNode.parent != null)
-                {
-                    foundNode = gameNode;
-                    break;
-                }
-            }
-            if (foundNode != null)
-            {
-                centerOnComponent(foundNode);
-            }
-        }
-        var BUFFER : Float = 1.5;
-        var newScale : Float = Math.min(WIDTH / (BUFFER * m_currentLevel.m_boundingBox.width * content.scaleX), 
-                VIEW_HEIGHT / (BUFFER * m_currentLevel.m_boundingBox.height * content.scaleY)
-        );
-        scaleContent(newScale, newScale);
-        
-        if (m_currentLevel != null && m_currentLevel.tutorialManager != null)
-        {
-            var startPtOffset : Point = m_currentLevel.tutorialManager.getStartPanOffset();
-            content.x += startPtOffset.x * content.scaleX;
-            content.y += startPtOffset.y * content.scaleY;
-            inactiveContent.x = content.x;
-            inactiveContent.y = content.y;
-            newScale = m_currentLevel.tutorialManager.getStartScaleFactor();
-            scaleContent(newScale, newScale);
-        }
-        
-        dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
-    }
-    
     private var m_fanfareContainer : Sprite = new Sprite();
     private var m_fanfare : Array<FanfareParticleSystem> = new Array<FanfareParticleSystem>();
     private var m_fanfareTextContainer : Sprite = new Sprite();
     private var m_stopFanfareDelayedCallId : Int;
+	/**
+	 * Display the next level continue button. 
+	 * 
+	 * @param	permanently Whether to force the display for the continue button (and ignore score).
+	 */
     public function displayContinueButton(permanently : Bool = false) : Void
     {
         if (permanently)
@@ -594,6 +532,11 @@ class GridViewPanel extends BaseComponent
         }
     }
     	
+	/**
+	 * Hides the next level continue button.
+	 * 
+	 * @param	forceOff Whether to force the continue button to display. If true, it isn't forced, and score isn't ignored.
+	 */
     public function hideContinueButton(forceOff : Bool = false) : Void
     {
         if (forceOff)
@@ -606,6 +549,9 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Begins the particle fanfare system.
+	 */
     private function startFanfare() : Void
     {
         for (i in 0...m_fanfare.length)
@@ -614,6 +560,9 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Ends the particle fanfare system.
+	 */
     private function stopFanfare() : Void
     {
         for (i in 0...m_fanfare.length)
@@ -622,6 +571,9 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Clears particles from the fanfare system.
+	 */
     public function removeFanfare() : Void
     {
         if (m_stopFanfareDelayedCallId != null)
@@ -644,6 +596,9 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Removes spotlight, if it exists.
+	 */
     private function removeSpotlight() : Void
     {
         if (m_spotlight != null)
@@ -652,6 +607,14 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Adds a visual spotlight over some component.
+	 * 
+	 * @param	component Component to add a spotlight over.
+	 * @param	timeSec Time length to tween in the spotlight effect.
+	 * @param	widthScale Amount the spotlight's width will be scaled from the given component's base width.
+	 * @param	heightScale Amount the spotlight's height will be scaled from the given component's base height.
+	 */
     public function spotlightComponent(component : DisplayObject, timeSec : Float = 3.0, widthScale : Float = 1.75, heightScale : Float = 1.75) : Void
     {
         if (m_currentLevel == null)
@@ -691,6 +654,12 @@ class GridViewPanel extends BaseComponent
                 });
     }
     
+	/**
+	 * Undoes a given movement/zoom event.
+	 * 
+	 * @param	undoEvent The event to undo.
+	 * @param	isUndo Whether the given event is an undo event.
+	 */
     override public function handleUndoEvent(undoEvent : Event, isUndo : Bool = true) : Void
     {
         if (Std.is(undoEvent, MouseWheelEvent))
@@ -794,6 +763,13 @@ class GridViewPanel extends BaseComponent
         return bytes;
     }
     
+	/**
+	 * Draws the given bitmap data to some destination.
+	 * 
+	 * @param	_backgroundColor The background color of the display to draw.
+	 * @param	destination The bitmap to draw to.
+	 * @return The given draw destination.
+	 */
     public function customDrawToBitmapData(_backgroundColor : Int = 0x00000000, destination : BitmapData = null) : BitmapData
     {
         var star : Starling = Starling.current;
@@ -817,7 +793,12 @@ class GridViewPanel extends BaseComponent
         return destination;
     }
     
-    
+    /**
+     * Sets the size of the content barrier.
+	 * 
+     * @param	newWidth New width of the content barrier.
+     * @param	newHeight New height of the content barrier.
+     */
     public function adjustSize(newWidth : Float, newHeight : Float) : Void
     {
         clipRect = new Rectangle(x, y, width, height);
@@ -837,6 +818,11 @@ class GridViewPanel extends BaseComponent
 	// INPUT
 	///////////////////////////////////////////////////////////////
 	
+	/**
+	 * Callback funtion executed when a key is released. Ends selecting mode, if currently in it.
+	 * 
+	 * @param	event The keyboard event for the key release.
+	 */
     private function onKeyUp(event : KeyboardEvent) : Void
     // Release shift, temporarily enter this mode until next touch
     {
@@ -849,7 +835,13 @@ class GridViewPanel extends BaseComponent
             currentMode = RELEASE_SHIFT_MODE;
         }
     }
-    	
+    
+	/**
+	 * Callback function executed when a key is pressed. Handles events for
+	 * panning, zooming, checking level solution, and changing selection mode.
+	 * 
+	 * @param	event The keyboard event for the key press.
+	 */
     private function onKeyDown(event : KeyboardEvent) : Void
     {
         var viewRect : Rectangle;
@@ -932,7 +924,12 @@ class GridViewPanel extends BaseComponent
         }
     }
     
-	 private var startingPoint : Point;
+	private var startingPoint : Point;
+	/**
+	 * Callback function executed the touchscreen is touched. Handles events for moving and selecting.
+	 * 
+	 * @param	event The touch event with the screen touch information.
+	 */
     override private function onTouch(event : TouchEvent) : Void
     //	trace("Mode:" + event.type);
     {
@@ -1058,6 +1055,12 @@ class GridViewPanel extends BaseComponent
         }
     }
 	
+	/**
+	 * Callback function executed when the mouse wheel is scrolled. Handles in local space.
+	 * 
+	 * @param	evt The mouse event for the mouse wheel scroll.
+	 * @see handleMouseWheel(Floag, Point, Bool)
+	 */
     private function onMouseWheel(evt : MouseEvent) : Void
     {
         var delta : Float = evt.delta;
@@ -1065,6 +1068,13 @@ class GridViewPanel extends BaseComponent
         handleMouseWheel(delta, localMouse);
     }
     
+	/**
+	 * Zooms the display according to the mouse input.
+	 * 
+	 * @param	delta Amount the wheel has been scrolled.
+	 * @param	localMouse The mouse's coordinates in local space.
+	 * @param	createUndoEvent Whether to create an undo event for this mouse scroll action.
+	 */
     private function handleMouseWheel(delta : Float, localMouse : Point = null, createUndoEvent : Bool = true) : Void
     {
 		var mousePoint : Point = null;
@@ -1127,6 +1137,11 @@ class GridViewPanel extends BaseComponent
 	
 	private var m_boundingBoxDebug : Quad;
     private static var DEBUG_BOUNDING_BOX : Bool = false;
+	/**
+	 * Stores a given level and prepares it for loading.
+	 * 
+	 * @param	level The level to store.
+	 */
     public function setupLevel(level : Level) : Void
     {
         m_continueButtonForced = false;
@@ -1180,6 +1195,9 @@ class GridViewPanel extends BaseComponent
         content.addChild(m_currentLevel);
     }
     
+	/**
+	 * Loads the set level, initializing tutorial events if the tutorial is enabled.
+	 */
     public function loadLevel() : Void
     {
         m_currentLevel.addEventListener(TouchEvent.TOUCH, onTouch);
@@ -1209,32 +1227,53 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Callback function executed when the next level button is pressed.
+	 * 
+	 * @param	evt Event for switching to the next level.
+	 */
     private function onNextLevelButtonTriggered(evt : Event) : Void
     {
         dispatchEvent(new NavigationEvent(NavigationEvent.SWITCH_TO_NEXT_LEVEL));
     }
    
+	/**
+	 * Callback function executed when the level view is changed.
+	 * 
+	 * @param	evt The minimap event with the view information.
+	 */
     private function onLevelViewChanged(evt : MiniMapEvent) : Void
     {
         dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
     }
     
-	
 	///////////////////////////////////////////////////////////////
 	// CAMERA
 	///////////////////////////////////////////////////////////////
 	
-	 
+	/**
+	 * Zooms in by a discrete step (simulating a mouse scroll in).
+	 */
     public function zoomInDiscrete() : Void
     {
         handleMouseWheel(5);
     }
     
+	/**
+	 * Zooms out by a discrete step (simulating a mouse scroll out).
+	 */
     public function zoomOutDiscrete() : Void
     {
         handleMouseWheel(-5);
     }
     
+	/**
+	 * Returns whether the given bounding box in on screen.
+	 * 
+	 * @param	bb The bounding box to check for being on screen.
+	 * @param	view The view representing the screen that the bounding box will be checked against.
+	 * @return  True if the bounding box is entirely outside of the view, expanding by the VISIBLE_BUFFER_PIXELS amount in all directions. 
+	 */
     private static function isOnScreen(bb : Rectangle, view : Rectangle) : Bool
     {
         if (bb.right < view.left - VISIBLE_BUFFER_PIXELS)
@@ -1256,6 +1295,12 @@ class GridViewPanel extends BaseComponent
         return true;
     }
 	
+	/**
+	 * Returns whether the min zoom level has been reached.
+	 * 
+	 * @param	scale The new zoom scale.
+	 * @return  True if the given zoom scale exceeds the minimum zoom scale, false otherwise.
+	 */
     public function atMinZoom(scale : Point = null) : Bool
     {
         if (scale == null)
@@ -1265,6 +1310,12 @@ class GridViewPanel extends BaseComponent
         return ((scale.x <= MIN_SCALE) || (scale.y <= MIN_SCALE));
     }
     
+	/**
+	 * Returns whether the max zoom level has been reached.
+	 * 
+	 * @param	scale The new zoom scale.
+	 * @return  True if the given zoom scale exceeds the maximum zoom scale, false otherwise.
+	 */
     public function atMaxZoom(scale : Point = null) : Bool
     {
         if (scale == null)
@@ -1275,9 +1326,10 @@ class GridViewPanel extends BaseComponent
     }
     
     /**
-		 * Scale the content by the given scale factor (sizeDiff of 1.5 = 150% the original size)
-		 * @param	sizeDiff Size difference factor, 1.5 = 150% of original size
-		 */
+	 * Scale the content by the given scale factor (sizeDiff of 1.5 = 150% the original size)
+	 * 
+	 * @param	sizeDiff Size difference factor, 1.5 = 150% of original size
+	 */
     private function scaleContent(sizeDiffX : Float, sizeDiffY : Float) : Void
     {
         var oldScaleX : Float = content.scaleX;
@@ -1321,6 +1373,12 @@ class GridViewPanel extends BaseComponent
         inactiveContent.y = content.y;
     }
     
+	/**
+	 * Callback function executed when the content scale changes. Shows error messages
+	 * if content becomes too small.
+	 * 
+	 * @param	prevScale The previous XY content scale.
+	 */
     private function onContentScaleChanged(prevScale : Point) : Void
     {
         if (atMaxZoom())
@@ -1356,17 +1414,31 @@ class GridViewPanel extends BaseComponent
         }
     }
     
-    //returns a point containing the content scale factors
+	/**
+	 * Returns a point containing the content scale factors.
+	 * 
+	 * @return The point containing the content scale factors in the X and Y directions.
+	 */
     public function getContentScale() : Point
     {
         return new Point(content.scaleX, content.scaleY);
     }
     
+	/**
+	 * Returns the content space view rectangle.
+	 * 
+	 * @return A rectangle representing the content space relative view. 
+	 */
     private function getViewInContentSpace() : Rectangle
     {
         return new Rectangle(-content.x / content.scaleX, -content.y / content.scaleY, clipRect.width / content.scaleX, clipRect.height / content.scaleY);
     }
     
+	/**
+	 * Pans to a new point. 
+	 * 
+	 * @param	percentPoint The XY percentage to pan in the horizontal and vertical directions.
+	 */
 	public function moveToPoint(percentPoint : Point) : Void
     {
         var contentX : Float = m_currentLevel.m_boundingBox.x / scaleX + percentPoint.x * m_currentLevel.m_boundingBox.width / scaleX;
@@ -1374,11 +1446,25 @@ class GridViewPanel extends BaseComponent
         moveContent(contentX, contentY);
     }
     
+	/**
+	 * Pans to new point, so long as it's still in the current level's bounds.
+	 * 
+	 * @param	newX The x-coordinate of the position to pan to.
+	 * @param	newY The y-coordinate of the position to pan to.
+	 */
+    private function moveContent(newX : Float, newY : Float) : Void
+    {
+        newX = XMath.clamp(newX, m_currentLevel.m_boundingBox.x, m_currentLevel.m_boundingBox.x + m_currentLevel.m_boundingBox.width);
+        newY = XMath.clamp(newY, m_currentLevel.m_boundingBox.y, m_currentLevel.m_boundingBox.y + m_currentLevel.m_boundingBox.height);
+        
+        panTo(newX, newY);
+    }
+	
     /**
-		 * Pans the current view to the given point (point is in content-space)
-		 * @param	panX
-		 * @param	panY
-		 */
+	 * Pans the current view to the given point (point is in content-space)
+	 * @param	panX The x-coordinate of the position to pan to.
+	 * @param	panY The y-coordinate of the position to pan to.
+	 */
     public function panTo(panX : Float, panY : Float, createUndoEvent : Bool = true) : Void
     {
         content.x = (-panX * content.scaleX + clipRect.width / 2);
@@ -1388,6 +1474,11 @@ class GridViewPanel extends BaseComponent
         dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
     }
 	
+	/**
+	 * Returns whether the current level allows pan zooming.
+	 * 
+	 * @return Whether the current level allows pan zooming. True if there is no current level.
+	 */
     public function getPanZoomAllowed() : Bool
     {
         if (m_currentLevel != null)
@@ -1398,9 +1489,10 @@ class GridViewPanel extends BaseComponent
     }
     	
     /**
-		 * Centers the current view on the input component
-		 * @param	component
-		 */
+	 * Centers the current view on the input component.
+	 * 
+	 * @param	component The component to center on.
+	 */
     public function centerOnComponent(component : DisplayObject) : Void
     {
         startingPoint = new Point(content.x, content.y);
@@ -1417,10 +1509,105 @@ class GridViewPanel extends BaseComponent
         dispatchEvent(eventToDispatch);
     }
     
+	/**
+	 * Reinitializes view, recentering and rescaling it on the level.
+	 */
+	public function recenter() : Void
+    {
+        content.x = 0;
+        content.y = 0;
+        inactiveContent.x = inactiveContent.y = 0;
+        var oldScale : Point = new Point(content.scaleX, content.scaleY);
+        content.scaleX = content.scaleY = STARTING_SCALE;
+        inactiveContent.scaleX = inactiveContent.scaleY = STARTING_SCALE;
+        onContentScaleChanged(oldScale);
+        content.addChild(m_currentLevel);
+        
+        if (DEBUG_BOUNDING_BOX)
+        {
+            if (m_boundingBoxDebug == null)
+            {
+                m_boundingBoxDebug = new Quad(m_currentLevel.m_boundingBox.width, m_currentLevel.m_boundingBox.height, 0xFFFF00);
+                m_boundingBoxDebug.alpha = 0.2;
+                m_boundingBoxDebug.touchable = false;
+                content.addChild(m_boundingBoxDebug);
+            }
+            else
+            {
+                m_boundingBoxDebug.width = m_currentLevel.m_boundingBox.width;
+                m_boundingBoxDebug.height = m_currentLevel.m_boundingBox.height;
+            }
+            m_boundingBoxDebug.x = m_currentLevel.m_boundingBox.x;
+            m_boundingBoxDebug.y = m_currentLevel.m_boundingBox.y;
+        }
+        else if (m_boundingBoxDebug != null)
+        {
+            m_boundingBoxDebug.removeFromParent(true);
+        }
+        
+        var i : Int;
+        var centerPt : Point;
+        var globPt : Point;
+        var localPt : Point;
+        var VIEW_HEIGHT : Float = HEIGHT - GameControlPanel.OVERLAP;
+        if ((m_currentLevel.m_boundingBox.width * content.scaleX < MAX_SCALE * WIDTH) && (m_currentLevel.m_boundingBox.height * content.scaleX < MAX_SCALE * VIEW_HEIGHT))
+        {
+        // If about the size of the window, just center the level
+            
+            centerPt = new Point(m_currentLevel.m_boundingBox.left + m_currentLevel.m_boundingBox.width / 2, m_currentLevel.m_boundingBox.top + m_currentLevel.m_boundingBox.height / 2);
+            globPt = m_currentLevel.localToGlobal(centerPt);
+            localPt = content.globalToLocal(globPt);
+            moveContent(localPt.x, localPt.y);
+        }
+        // Otherwise center on the first visible box
+        else
+        {
+            
+            var nodes : Dynamic = m_currentLevel.getNodes();
+            var foundNode : GameNode = null;
+            for (nodeId in Reflect.fields(nodes))
+            {
+                var gameNode : GameNode = try cast(Reflect.field(nodes, nodeId), GameNode) catch(e:Dynamic) null;
+                if (gameNode.visible && (gameNode.alpha > 0) && gameNode.parent != null)
+                {
+                    foundNode = gameNode;
+                    break;
+                }
+            }
+            if (foundNode != null)
+            {
+                centerOnComponent(foundNode);
+            }
+        }
+        var BUFFER : Float = 1.5;
+        var newScale : Float = Math.min(WIDTH / (BUFFER * m_currentLevel.m_boundingBox.width * content.scaleX), 
+                VIEW_HEIGHT / (BUFFER * m_currentLevel.m_boundingBox.height * content.scaleY)
+        );
+        scaleContent(newScale, newScale);
+        
+        if (m_currentLevel != null && m_currentLevel.tutorialManager != null)
+        {
+            var startPtOffset : Point = m_currentLevel.tutorialManager.getStartPanOffset();
+            content.x += startPtOffset.x * content.scaleX;
+            content.y += startPtOffset.y * content.scaleY;
+            inactiveContent.x = content.x;
+            inactiveContent.y = content.y;
+            newScale = m_currentLevel.tutorialManager.getStartScaleFactor();
+            scaleContent(newScale, newScale);
+        }
+        
+        dispatchEvent(new MiniMapEvent(MiniMapEvent.VIEWSPACE_CHANGED, content.x, content.y, content.scaleX, m_currentLevel));
+    }
+    
 	///////////////////////////////////////////////////////////////
 	// TUTORIAL / HELP
 	///////////////////////////////////////////////////////////////
 	
+	/**
+	 * Callback function executed when a tutorial message changes. Changes tutorial text.
+	 * 
+	 * @param	evt The event with the information on the new tutorial message.
+	 */
     public function onTutorialTextChange(evt : TutorialEvent) : Void
     {
         if (m_tutorialText != null)
@@ -1437,6 +1624,11 @@ class GridViewPanel extends BaseComponent
         }
     }
 	
+	/**
+	 * Callback function executed when a piece of the tutorial is highlighted. Highlights a tutorial element.
+	 * 
+	 * @param	evt The event with the information on the new tutorial to highlight.
+	 */
     public function onHighlightTutorialEvent(evt : TutorialEvent) : Void
     {
         if (!evt.highlightOn)
@@ -1480,6 +1672,11 @@ class GridViewPanel extends BaseComponent
         }
     }
     
+	/**
+	 * Callback function executed when a new tooltip is shown. Shows a new persistent tooltip.
+	 * 
+	 * @param	evt The event with the new tooltip information. 
+	 */
     public function onPersistentToolTipTextChange(evt : TutorialEvent) : Void
     {
         var i : Int;

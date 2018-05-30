@@ -33,4 +33,10 @@ class ErrorScript extends ScriptNode {
     {
 		Reflect.deleteField(errorConstraintDict, evt.constraintError.id);
     }
+	public function override dispose(){
+		super.dispose();
+		
+		gameEngine.removeEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
+		gameEngine.removeEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
+	}
 }

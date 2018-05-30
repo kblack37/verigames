@@ -2,21 +2,35 @@ package scripts;
 
 import engine.IGameEngine;
 import engine.scripting.ScriptNode;
+import scenes.game.display.World;
 import starling.events.KeyboardEvent;
 import events.UndoEvent;
 import starling.events.Event;
+import scenes.game.display.Level;
+import state.FlowJamGameState;
+import openfl.system.System;
+import scenes.BaseComponent;
  /* ...
  * @author ...
  */
 class WorldKeyUpScript extends ScriptNode 
 {
-
+	private var active_level : Level:
+	private var redoStack : Array<UndoEvent>;
+	private var undoStack : Array<UndoEvent>;
+	private var world : World
+	
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
+		world = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld();
+		active_level = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getActiveLevel();
+		redoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getRedoStack();
+		undoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getRedoStack();
 		gameEngine.getSprite().stage.addEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
 		
 	}
+	
 	private function handleKeyUp(event : starling.events.KeyboardEvent) : Void
     {
         if (event.ctrlKey)
@@ -88,18 +102,19 @@ class WorldKeyUpScript extends ScriptNode
                 case 65:  //'a' for copy of ALL (world)  
                 if (this.active_level != null && !PipeJam3.RELEASE_BUILD)
                 {
-                    var worldObj : Dynamic = updateAssignments();//from world
+                    var worldObj : Dynamic = world.updateAssignments();//from world
                     System.setClipboard(haxe.Json.stringify(worldObj));
                 }
                 case 88:  //'x' for copy of level  
                 if (this.active_level != null && !PipeJam3.RELEASE_BUILD)
                 {
-                    var levelObj : Dynamic = updateAssignments(true);
+                    var levelObj : Dynamic = world.updateAssignments(true);
                     System.setClipboard(haxe.Json.stringify(levelObj));
                 }
             }
         }
     }
+	
 	private function handleUndoRedoEvent(event : UndoEvent, isUndo : Bool) : Void
     //added newest at the end, so start at the end
     {
@@ -120,6 +135,7 @@ class WorldKeyUpScript extends ScriptNode
             undoStack.push(event);
         }
     }
+	
 	private function handleUndoRedoEventObject(evt : Event, isUndo : Bool, levelEvent : Bool, component : BaseComponent) : Void
     {
         if (active_level != null && levelEvent)
@@ -132,4 +148,8 @@ class WorldKeyUpScript extends ScriptNode
         }
     }
 	
+	public function override dispose(){
+		super.dispose();
+		gameEngine.getSprite().stage.removeEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
+	}
 }

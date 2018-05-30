@@ -7,6 +7,7 @@ import events.ToolTipEvent;
 import starling.display.DisplayObject;
 import display.NineSliceBatch;
 import display.ToolTipText;
+import scenes.game.display.Level;
 /**
  * ...
  * @author ...
@@ -62,4 +63,9 @@ class WorldToolTipScript extends ScriptNode
             childToAdd.addChild(m_activeToolTip);
         }
     }
+	public function override dispose(){
+		super.dispose();
+		gameEngine.removeEventListener(ToolTipEvent.ADD_TOOL_TIP, onToolTipAdded);
+        gameEngine.removeEventListener(ToolTipEvent.CLEAR_TOOL_TIP, onToolTipCleared);
+	}
 }

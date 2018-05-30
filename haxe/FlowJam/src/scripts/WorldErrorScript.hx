@@ -4,7 +4,10 @@ import engine.IGameEngine;
 import engine.scripting.ScriptNode;
 import scenes.game.components.MiniMap;
 import constraints.events.ErrorEvent;
-
+import scenes.game.display.Level;
+import state.FlowJamGameState;
+import openfl.errors.Error;
+import scenes.game.components.GridViewPanel;
 /**
  * ...
  * @author ...
@@ -12,15 +15,18 @@ import constraints.events.ErrorEvent;
 class WorldErrorScript extends ScriptNode 
 {
 	private var errorDict : Dynamic;
-	
-	private var m_minimap : MiniMap;
+	private var active_level : Level;
+	private var minimap : MiniMap;
 	private var gameEngine : IGameEngine;
+
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
 		this.gameEngine = gameEngine;
 		errorDict = {};
 		
+		active_level = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getActiveLevel();
+		miniMap = try cast(gameEngine.getUIComponent("miniMap"), GridViewPanel) catch (e : Dynamic) null;
 		gameEngine.addEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
 		gameEngine.addEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
 		
@@ -56,4 +62,10 @@ class WorldErrorScript extends ScriptNode
             }
         }
     }
+	public function override dispose(){
+		super.dispose();
+		
+		gameEngine.removeEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
+		gameEngine.removeEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
+	}
 }

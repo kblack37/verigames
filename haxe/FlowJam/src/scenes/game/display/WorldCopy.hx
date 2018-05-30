@@ -142,7 +142,18 @@ class WorldCopy extends BaseComponent
         addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
     }
-    
+	public function getInGameMenuBox(Void) : InGameMenuDialog {
+		return inGameMenuBox;
+	}
+    public function getActiveLevel( Void) : Level {
+		return active_level
+	}
+	public function getRedoStack(Void): Array<UndoEvent>{
+		return redoStack;
+	}
+	public function getUndoStack(Void): Array<UndoEvent>{
+		return undoStack;
+	}
     private var m_initQueue : Array<Function> = new Array<Function>();
     private function onAddedToStage(event : Event) : Void
     {
@@ -343,16 +354,6 @@ class WorldCopy extends BaseComponent
         trace("Done initializing event listeners.");
     }
    
-    public function solverDoneCallback(errMsg : String) : Void
-    {
-        if (active_level != null)
-        {
-            active_level.solverDone(errMsg);
-        }
-        
-        gameControlPanel.stopSolveAnimation();
-    }
-    
     private function initMusic() : Void
     {
         AudioManager.getInstance().reset();
@@ -476,7 +477,38 @@ class WorldCopy extends BaseComponent
     {
         return edgeSetGraphViewPanel.getThumbnail(_maxwidth, _maxheight);
     }
-
+	
+	public function onErrorAdded(event : ErrorEvent) : Void
+    {
+        if (active_level != null)
+        {
+            var edgeLayout : Dynamic = Reflect.field(active_level.edgeLayoutObjs, event.constraintError.id);
+            if (edgeLayout == null)
+            {
+                throw new Error("No layout found for constraint with error:" + event.constraintError.id);
+            }
+            if (miniMap != null)
+            {
+                miniMap.errorConstraintAdded(edgeLayout);
+            }
+        }
+    }
+    
+    public function onErrorRemoved(event : ErrorEvent) : Void
+    {
+        if (active_level != null)
+        {
+            var edgeLayout : Dynamic = Reflect.field(active_level.edgeLayoutObjs, event.constraintError.id);
+            if (edgeLayout == null)
+            {
+                throw new Error("No layout found for constraint with error:" + event.constraintError.id);
+            }
+            if (miniMap != null)
+            {
+                miniMap.errorRemoved(edgeLayout);
+            }
+        }
+    }
     private function selectLevel(newLevel : Level, restart : Bool = false) : Void
     {
         if (newLevel == null)
@@ -605,44 +637,7 @@ class WorldCopy extends BaseComponent
             m_activeToolTip.removeFromParent(true);
             m_activeToolTip = null;
         }
-        
-        removeEventListener(Achievements.CLASH_CLEARED_ID, checkClashClearedEvent);
-        
-        removeEventListener(GameComponentEvent.CENTER_ON_COMPONENT, onCenterOnComponentEvent);
-        removeEventListener(WidgetChangeEvent.LEVEL_WIDGET_CHANGED, onWidgetChange);
-        removeEventListener(NavigationEvent.SHOW_GAME_MENU, onShowGameMenuEvent);
-        removeEventListener(NavigationEvent.SWITCH_TO_NEXT_LEVEL, onNextLevel);
-        
-        removeEventListener(MenuEvent.SAVE_LAYOUT, onSaveLayoutFile);
-        removeEventListener(MenuEvent.LAYOUT_SAVED, onLevelUploadSuccess);
-        
-        removeEventListener(MenuEvent.SUBMIT_LEVEL, onPutLevelInDatabase);
-        removeEventListener(MenuEvent.POST_SAVE_DIALOG, postSaveDialog);
-        removeEventListener(MenuEvent.POST_SUBMIT_DIALOG, postSubmitDialog);
-        removeEventListener(MenuEvent.SAVE_LEVEL, onPutLevelInDatabase);
-        removeEventListener(MenuEvent.LEVEL_SUBMITTED, onLevelUploadSuccess);
-        removeEventListener(MenuEvent.LEVEL_SAVED, onLevelUploadSuccess);
-        removeEventListener(MenuEvent.ACHIEVEMENT_ADDED, achievementAdded);
-        removeEventListener(MenuEvent.LOAD_BEST_SCORE, loadBestScore);
-        removeEventListener(MenuEvent.LOAD_HIGH_SCORE, loadHighScore);
-        removeEventListener(MenuEvent.SOLVE_SELECTION, onSolveSelection);
-        
-        removeEventListener(MenuEvent.SET_NEW_LAYOUT, setNewLayout);
-        removeEventListener(UndoEvent.UNDO_EVENT, saveEvent);
-        removeEventListener(MenuEvent.ZOOM_IN, onZoomIn);
-        removeEventListener(MenuEvent.ZOOM_OUT, onZoomOut);
-        removeEventListener(MenuEvent.RECENTER, onRecenter);
-        removeEventListener(MenuEvent.MAX_ZOOM_REACHED, onMaxZoomReached);
-        removeEventListener(MenuEvent.MIN_ZOOM_REACHED, onMinZoomReached);
-        removeEventListener(MenuEvent.RESET_ZOOM, onZoomReset);
-        removeEventListener(MiniMapEvent.ERRORS_MOVED, onErrorsMoved);
-        removeEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onViewspaceChanged);
-        removeEventListener(MiniMapEvent.LEVEL_RESIZED, onLevelResized);
-        removeEventListener(ToolTipEvent.ADD_TOOL_TIP, onToolTipAdded);
-        removeEventListener(ToolTipEvent.CLEAR_TOOL_TIP, onToolTipCleared);
-        
-        stage.removeEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
-        
+       
         if (active_level != null)
         {
             removeChild(active_level, true);

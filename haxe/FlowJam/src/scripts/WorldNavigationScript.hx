@@ -1,32 +1,57 @@
 package scripts;
 
 import cgs.server.logging.IGameServerData;
+import dialogs.InGameMenuDialog;
 import engine.scripting.ScriptNode;
 import engine.IGameEngine;
 import events.NavigationEvent;
+import flash.display.Sprite;
 import scenes.game.PipeJamGameScene;
 import networking.TutorialController;
+import scenes.game.components.GridViewPanel;
+import scenes.game.display.Level;
+import scenes.game.display.World;
 import starling.geom.Rectangle;
+import starling.animation.Juggler;
+import scenes.game.components.GameControlPanel;
+import state.FlowJamGameState;
+import starling.core.Starling;
 /**
  * ...
  * @author ...
  */
 class WorldNavigationScript extends ScriptNode 
 {
-
+	private var edgeSetViewPanel : GridViewPanel;
+	private var gameEngine : IGameEngine;
+	private var active_level : Level;
+	private var inGameMenuBox : InGameMenuDialog;
+	private var world : World
+	private var childToAdd : Sprite;
+	
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
+		this.gameEngine = gameEngine;
+		childToAdd = new Sprite();
+		gameEngine.getSprite().addChild(childToAdd);
+		world = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld();
 		
+		inGameMenuBox = world.getInGameMenuBox();
+		
+		active_level = world..getActiveLevel();
+		
+		edgeSetGraphViewPanel =  try cast(gameEngine.getUIComponent("gridViewPanel"), GridViewPanel) catch (e : Dynamic) null;
 		gameEngine.addEventListener(NavigationEvent.SHOW_GAME_MENU, onShowGameMenuEvent);
         gameEngine.addEventListener(NavigationEvent.START_OVER, onLevelStartOver);
         gameEngine.addEventListener(NavigationEvent.SWITCH_TO_NEXT_LEVEL, onNextLevel);
 	}
 	private function onShowGameMenuEvent(evt : NavigationEvent) : Void
     {
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+        gameEngine.getSprite().dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
         return;
-        
+		
+        var gameControlPanel = try cast(gameEngine.getUIComponent("gameControlPanel"), GameControlPanel) catch (e : Dynamic) null;
         if (gameControlPanel == null)
         {
             return;
@@ -49,7 +74,7 @@ class WorldNavigationScript extends ScriptNode
             {
                 trace("not");
             }
-            addChildAt(inGameMenuBox, childIndex);
+            childToAdd.addChildAt(inGameMenuBox, childIndex);
             //add clip rect so box seems to slide up out of the gameControlPanel
             inGameMenuBox.clipRect = new Rectangle(0, gameControlPanel.y + GameControlPanel.OVERLAP - inGameMenuBox.height, inGameMenuBox.width, inGameMenuBox.height);
             animateUp = true;
@@ -103,6 +128,7 @@ class WorldNavigationScript extends ScriptNode
         var callback : Function = 
         function() : Void
         {
+			var edgeSetGraphViewPanel = try cast(gameEngine.getUIComponent("gridViewPanel"), GridViewPanel) catch (e : Dynamic) null;
             if (edgeSetGraphViewPanel != null)
             {
                 edgeSetGraphViewPanel.removeFanfare();
@@ -111,7 +137,7 @@ class WorldNavigationScript extends ScriptNode
             level.restart();
         };
         
-        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
+        gameEngine.getSprite().dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
     }
 	
 	private function onNextLevel(evt : NavigationEvent) : Void
@@ -186,5 +212,11 @@ class WorldNavigationScript extends ScriptNode
         };
         dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
     }
+	public function override dispose(){
+		super.dispose();
+		gameEngine.removeEventListener(NavigationEvent.SHOW_GAME_MENU, onShowGameMenuEvent);
+        gameEngine.removeEventListener(NavigationEvent.START_OVER, onLevelStartOver);
+        gameEngine.removeEventListener(NavigationEvent.SWITCH_TO_NEXT_LEVEL, onNextLevel);
+	}
 	
 }

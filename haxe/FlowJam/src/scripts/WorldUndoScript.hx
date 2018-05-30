@@ -4,6 +4,7 @@ import cgs.server.logging.IGameServerData.SkeyHashVersion;
 import engine.IGameEngine;
 import engine.scripting.ScriptNode;
 import events.UndoEvent;
+import state.FlowJamGameState;
 
 /**
  * ...
@@ -11,11 +12,13 @@ import events.UndoEvent;
  */
 class WorldUndoScript extends ScriptNode 
 {
-
+	private var undoStack : Array<UndoEvent>;
+	private var redoStack : Array<UndoEvent>;
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
-		
+		undoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getundoStack();
+		redoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getredoStack();
 		gameEngine.addEventListener(UndoEvent.UNDO_EVENT, saveEvent);
 	}
 	
@@ -76,6 +79,9 @@ class WorldUndoScript extends ScriptNode
         //when we build on the undoStack, clear out the redoStack
         redoStack = new Array<UndoEvent>();
     }
-	
+	public function override dispose(){
+		super.dispose();
+		gameEngine.removeEventListener(UndoEvent.UNDO_EVENT, saveEvent);
+	}
 	
 }

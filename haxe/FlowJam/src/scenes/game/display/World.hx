@@ -74,7 +74,7 @@ class World extends BaseComponent
     public var levels : Array<Level> = new Array<Level>();
     
     /** Current level being played by the user */
-    public var active_level : Level = null;
+    private var active_level : Level = null;
     
     //shim to make it start with a level until we get servers up
     private var firstLevel : Level = null;
@@ -92,7 +92,7 @@ class World extends BaseComponent
     
     public static var changingFullScreenState : Bool = false;
     
-    public static var m_world : World;
+    private static var m_world : World;
     private var m_activeToolTip : TextBubble;
     
     private static var m_numWidgetsClicked : Int = 0;
@@ -152,6 +152,8 @@ class World extends BaseComponent
     }
     
     private var m_initQueue : Array<Function> = new Array<Function>();
+	
+	
     private function onAddedToStage(event : Event) : Void
     {
         m_initQueue = new Array<Function>();
@@ -176,7 +178,15 @@ class World extends BaseComponent
             func();
         }
     }
-    
+	public function getActiveLevel( Void) : Level {
+		return active_level
+	}
+	public function getRedoStack(Void): Array<UndoEvent>{
+		return redoStack;
+	}
+	public function getUndoStack(Void): Array<UndoEvent>{
+		return undoStack;
+	}
     private function initGridViewPanel() : Void
     {
         trace("Initializing GridViewPanel...");

@@ -128,4 +128,13 @@ class DialogScript extends ScriptNode
         }
         childToAdd.addChild(alert);
     }
+	public function override dispose(){
+		super.dispose();
+		gameEngine.removeEventListener(DialogEvent.LEVEL_SAVED, onLevelUploadSuccess);
+		gameEngine.removeEventListener(DialogEvent.POST_SAVE_DIALOG, postSaveDialog );
+		gameEngine.removeEventListener(DialogEvent.LEVEL_SUBMITTED, onLevelUploadSuccess);
+		gameEngine.removeEventListener(DialogEvent.LAYOUT_SAVED, onLevelUploadSuccess);
+		gameEngine.removeEventListener(DialogEvent.POST_SUBMIT_DIALOG, postSubmitDialog);
+		gameEngine.removeEventListener(DialogEvent.ACHIEVEMENT_ADDED, achievementAdded);
+	}
 }

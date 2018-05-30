@@ -1,10 +1,16 @@
 # Team Report: Week 11 #
 
 ## Last Week's Goal **
--
+- N/A
 -
 -
 
 ## Progress ##
+ - World, Level, and GridViewPanel have been refactored
+ - Work on integrating them and producing a working game has begun.
 
 ## Goals ##
+ - Get the Flow Jam game to load a level in a playable state
+
+## Agenda ##
+- Discuss plan of working together to get refactored classes integrated

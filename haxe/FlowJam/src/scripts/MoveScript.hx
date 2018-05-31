@@ -12,7 +12,7 @@ import scenes.game.display.GameNodeBase;
 
 /**
  * ...
- * @author ...
+ * @author Zan Balcom
  */
 class MoveScript extends ScriptNode 
 {

@@ -672,12 +672,12 @@ class Level extends BaseComponent
             }
             m_levelStartTime = Date.now().getTime();
         }
-        //var propChangeEvt:PropertyModeChangeEvent = new PropertyModeChangeEvent(PropertyModeChangeEvent.PROPERTY_MODE_CHANGE, PropDictionary.PROP_NARROW);
-        //onPropertyModeChange(propChangeEvt);
+        var propChangeEvt:PropertyModeChangeEvent = new PropertyModeChangeEvent(PropertyModeChangeEvent.PROPERTY_MODE_CHANGE, PropDictionary.PROP_NARROW);
+        onPropertyModeChange(propChangeEvt);
         //dispatchEvent(propChangeEvt);
         setNewLayout(null, m_levelOriginalLayoutObj);
-        //m_levelAssignmentsObj = XObject.clone(m_levelOriginalAssignmentsObj);
-        //loadAssignments(m_levelAssignmentsObj);
+        m_levelAssignmentsObj = XObject.clone(m_levelOriginalAssignmentsObj);
+        loadAssignments(m_levelAssignmentsObj);
         loadInitialConfiguration();
         targetScoreReached = false;
         trace("Restarted: " + Reflect.field(m_levelLayoutObj, "id"));

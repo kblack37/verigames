@@ -974,7 +974,7 @@ class GridViewPanel extends BaseComponent
         if ((m_currentLevel.m_boundingBox.width * content.scaleX < MAX_SCALE * WIDTH) && (m_currentLevel.m_boundingBox.height * content.scaleX < MAX_SCALE * VIEW_HEIGHT))
         {
         // If about the size of the window, just center the level
-            
+            trace("here1");
             centerPt = new Point(m_currentLevel.m_boundingBox.left + m_currentLevel.m_boundingBox.width / 2, m_currentLevel.m_boundingBox.top + m_currentLevel.m_boundingBox.height / 2);
             globPt = m_currentLevel.localToGlobal(centerPt);
             localPt = content.globalToLocal(globPt);
@@ -983,7 +983,7 @@ class GridViewPanel extends BaseComponent
         // Otherwise center on the first visible box
         else
         {
-            
+            trace("here2");
             var nodes : Dynamic = m_currentLevel.getNodes();
             var foundNode : GameNode = null;
             for (nodeId in Reflect.fields(nodes))
@@ -1023,7 +1023,6 @@ class GridViewPanel extends BaseComponent
     private var m_fanfareContainer : Sprite = new Sprite();
     private var m_fanfare : Array<FanfareParticleSystem> = new Array<FanfareParticleSystem>();
     private var m_fanfareTextContainer : Sprite = new Sprite();
-    private var m_stopFanfareDelayedCallId : Int;
     public function displayContinueButton(permanently : Bool = false) : Void
     {
         if (permanently)
@@ -1112,7 +1111,7 @@ class GridViewPanel extends BaseComponent
                             transition : Transitions.EASE_IN
                         });
             }
-            m_stopFanfareDelayedCallId = Starling.current.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
+            Starling.current.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
         }
         
         if (PipeJamGameScene.inTutorial)
@@ -1139,10 +1138,7 @@ class GridViewPanel extends BaseComponent
     
     public function removeFanfare() : Void
     {
-        if (m_stopFanfareDelayedCallId != null)
-        {
-            Starling.current.juggler.removeByID(m_stopFanfareDelayedCallId);
-        }
+		Starling.current.juggler.removeDelayedCalls(stopFanfare);
         for (i in 0...m_fanfare.length)
         {
             m_fanfare[i].removeFromParent(true);

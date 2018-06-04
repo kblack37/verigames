@@ -1282,6 +1282,7 @@ class World extends BaseComponent
         trace("edgeSetGraphViewPanel.loadLevel()");
         edgeSetGraphViewPanel.setupLevel(active_level);
         edgeSetGraphViewPanel.loadLevel();
+		edgeSetGraphViewPanel.recenter();
         if (edgeSetGraphViewPanel.atMaxZoom())
         {
             gameControlPanel.onMaxZoomReached();

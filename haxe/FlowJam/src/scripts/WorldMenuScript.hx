@@ -28,7 +28,7 @@ class WorldMenuScript extends ScriptNode
 	private var shareDialog : SaveDialog;
 	private var active_level : Level;
 	private var gameControlPanel : GameControlPanel;
-	private var edgeSetGraphViewPanel : GridViewPanel
+	private var edgeSetGraphViewPanel : GridViewPanel;
 	//world menu events taht are not dialogs
 	public function new(gameEngine: IGameEngine,id:String=null) 
 	{
@@ -55,16 +55,6 @@ class WorldMenuScript extends ScriptNode
         gameEngine.addEventListener(MenuEvent.RESET_ZOOM, onZoomReset);
         gameEngine.addEventListener(MenuEvent.SOLVE_SELECTION, onSolveSelection);
 	}
-	
-	private function postSaveDialog(event : MenuEvent) : Void
-    {
-        if (shareDialog == null)
-        {
-            shareDialog = new SaveDialog(150, 100);
-        }
-        
-        addChild(shareDialog);
-    }
 	
 	private function onPutLevelInDatabase(event : MenuEvent) : Void
     //type:String, currentScore:int = event.type, currentScore
@@ -225,7 +215,7 @@ class WorldMenuScript extends ScriptNode
         }
     }
 	
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
 		gameEngine.removeEventListener(MenuEvent.SAVE_LEVEL, onPutLevelInDatabase);
         gameEngine.removeEventListener(MenuEvent.SUBMIT_LEVEL, onPutLevelInDatabase);

@@ -5,17 +5,22 @@ import dialogs.InGameMenuDialog;
 import engine.scripting.ScriptNode;
 import engine.IGameEngine;
 import events.NavigationEvent;
-import flash.display.Sprite;
+import flash.geom.Rectangle;
+import haxe.Constraints.Function;
+import networking.Achievements;
+import networking.PlayerValidation;
 import scenes.game.PipeJamGameScene;
 import networking.TutorialController;
 import scenes.game.components.GridViewPanel;
 import scenes.game.display.Level;
-import scenes.game.display.World;
-import starling.geom.Rectangle;
+import scenes.game.display.WorldCopy;
+import starling.animation.Transitions;
+import starling.display.Sprite;
 import starling.animation.Juggler;
 import scenes.game.components.GameControlPanel;
 import state.FlowJamGameState;
 import starling.core.Starling;
+import state.LevelSelectState;
 /**
  * ...
  * @author ...
@@ -26,8 +31,10 @@ class WorldNavigationScript extends ScriptNode
 	private var gameEngine : IGameEngine;
 	private var active_level : Level;
 	private var inGameMenuBox : InGameMenuDialog;
-	private var world : World
+	private var world : WorldCopy;
 	private var childToAdd : Sprite;
+	
+	private var m_currentLevelNumber : Int;
 	
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
@@ -39,16 +46,16 @@ class WorldNavigationScript extends ScriptNode
 		
 		inGameMenuBox = world.getInGameMenuBox();
 		
-		active_level = world..getActiveLevel();
+		active_level = world.getActiveLevel();
 		
-		edgeSetGraphViewPanel =  try cast(gameEngine.getUIComponent("gridViewPanel"), GridViewPanel) catch (e : Dynamic) null;
+		edgeSetViewPanel =  try cast(gameEngine.getUIComponent("gridViewPanel"), GridViewPanel) catch (e : Dynamic) null;
 		gameEngine.addEventListener(NavigationEvent.SHOW_GAME_MENU, onShowGameMenuEvent);
         gameEngine.addEventListener(NavigationEvent.START_OVER, onLevelStartOver);
         gameEngine.addEventListener(NavigationEvent.SWITCH_TO_NEXT_LEVEL, onNextLevel);
 	}
 	private function onShowGameMenuEvent(evt : NavigationEvent) : Void
     {
-        gameEngine.getSprite().dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+        gameEngine.getSprite().dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
         return;
 		
         var gameControlPanel = try cast(gameEngine.getUIComponent("gameControlPanel"), GameControlPanel) catch (e : Dynamic) null;
@@ -64,10 +71,10 @@ class WorldNavigationScript extends ScriptNode
             inGameMenuBox = new InGameMenuDialog();
             inGameMenuBox.x = 0;
             inGameMenuBox.y = bottomMenuY;
-            var childIndex : Int = numChildren - 1;
-            if (gameControlPanel != null && gameControlPanel.parent == this)
+            var childIndex : Int = world.numChildren - 1;
+            if (gameControlPanel != null && gameControlPanel.parent == world)
             {
-                childIndex = getChildIndex(gameControlPanel);
+                childIndex = world.getChildIndex(gameControlPanel);
                 trace("childindex:" + childIndex);
             }
             else
@@ -137,7 +144,7 @@ class WorldNavigationScript extends ScriptNode
             level.restart();
         };
         
-        gameEngine.getSprite().dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
+        gameEngine.getSprite().dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, null, false, callback));
     }
 	
 	private function onNextLevel(evt : NavigationEvent) : Void
@@ -176,7 +183,7 @@ class WorldNavigationScript extends ScriptNode
                 }
                 else
                 {
-                    switchToLevelSelect();
+                    gameEngine.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
                 }
                 return;
             }
@@ -188,7 +195,7 @@ class WorldNavigationScript extends ScriptNode
                 obj.tutorialLevelID = Std.string(tutorialController.getNextUnplayedTutorial());
                 
                 m_currentLevelNumber = 0;
-                for (level in levels)
+                for (level in world.levels)
                 {
                     if (level.m_levelQID == obj.tutorialLevelID)
                     {
@@ -197,22 +204,22 @@ class WorldNavigationScript extends ScriptNode
                     
                     m_currentLevelNumber++;
                 }
-                m_currentLevelNumber = m_currentLevelNumber % levels.length;
+                m_currentLevelNumber = m_currentLevelNumber % world.levels.length;
             }
         }
         else
         {
-            m_currentLevelNumber = (m_currentLevelNumber + 1) % levels.length;
-            updateAssignments();
+            m_currentLevelNumber = (m_currentLevelNumber + 1) % world.levels.length;
+            world.updateAssignments();
         }
         var callback : Function = 
         function() : Void
         {
-            selectLevel(levels[m_currentLevelNumber], m_currentLevelNumber == prevLevelNumber);
+            world.selectLevel(world.levels[m_currentLevelNumber], m_currentLevelNumber == prevLevelNumber);
         };
-        dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, "", false, callback));
+        gameEngine.dispatchEvent(new NavigationEvent(NavigationEvent.FADE_SCREEN, null, false, callback));
     }
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
 		gameEngine.removeEventListener(NavigationEvent.SHOW_GAME_MENU, onShowGameMenuEvent);
         gameEngine.removeEventListener(NavigationEvent.START_OVER, onLevelStartOver);

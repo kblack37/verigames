@@ -68,31 +68,31 @@ class BaseComponent extends ToolTippableSprite
         }
     }
     
-    override public function render(painter : Painter) : Void
-    {
-        if (mClipRect == null)
-        {
-            super.render(painter);
-        }
-        else
-        {
-            var context : Context3D = Starling.current.context;
-            if (context == null)
-            {
-                throw new MissingContextError();
-            }
-            //finish quadbatch is from starling.rendersupport which is depreicated need to find what its doing and what painter should do
-            //painter.finishQuadBatch();
-			//same with scissoreRect
-            //painter.scissorRectangle = mClipRect;TODO does this work?
-            painter.configureBackBuffer(mClipRect, 1.0, 0, false);
-            super.render(painter);
-            
-            //painter.finishQuadBatch(); Deprecated code
-			//might need to set the backbuffer rect to null, but not sure
-            //painter.scissorRectangle = null;
-        }
-    }
+    //override public function render(painter : Painter) : Void
+    //{
+        //if (mClipRect == null)
+        //{
+            //super.render(painter);
+        //}
+        //else
+        //{
+            //var context : Context3D = Starling.current.context;
+            //if (context == null)
+            //{
+                //throw new MissingContextError();
+            //}
+            ////finish quadbatch is from starling.rendersupport which is depreicated need to find what its doing and what painter should do
+            ////painter.finishQuadBatch();
+			////same with scissoreRect
+            ////painter.scissorRectangle = mClipRect;TODO does this work?
+            //painter.configureBackBuffer(mClipRect, 1.0, 0, false);
+            //super.render(painter);
+            //
+            ////painter.finishQuadBatch(); Deprecated code
+			////might need to set the backbuffer rect to null, but not sure
+            ////painter.scissorRectangle = null;
+        //}
+    //}
     
     override public function hitTest(localPoint : Point) : DisplayObject
     // without a clip rect, the sprite should behave just like before

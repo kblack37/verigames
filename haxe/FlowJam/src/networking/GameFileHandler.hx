@@ -571,11 +571,12 @@ class GameFileHandler
                     return;
                 }
                 //update number of conflicts in level
-                World.m_world.active_level.getNextConflict(true);
+				// TODO: update gamefilehandler to use the game engine to get these entities
+                //World.m_world.active_level.getNextConflict(true);
                 
                 var solutionInfo : Dynamic = PipeJamGame.levelInfo;
-                solutionInfo.current_score = Std.string(World.m_world.active_level.currentScore);
-                solutionInfo.prev_score = Std.string(World.m_world.active_level.oldScore);
+                //solutionInfo.current_score = Std.string(World.m_world.active_level.currentScore);
+                //solutionInfo.prev_score = Std.string(World.m_world.active_level.oldScore);
                 solutionInfo.revision = Std.string(PipeJamGame.levelInfo.revision + 1);
                 solutionInfo.playerID = PlayerValidation.playerID;
                 solutionInfo.username = PlayerValidation.playerUserName;
@@ -598,12 +599,12 @@ class GameFileHandler
                     return;
                 }
                 var leaderboardScore : Int = 1;
-                var levelScore : Int = World.m_world.active_level.currentScore;
+                //var levelScore : Int = World.m_world.active_level.currentScore;
                 var targetScore : Int = PipeJamGame.levelInfo.targetScore;
-                if (levelScore > targetScore)
-                {
-                    leaderboardScore = 2;
-                }
+                //if (levelScore > targetScore)
+                //{
+                    //leaderboardScore = 2;
+                //}
                 request = "/api/score&method=URL";
                 url = NetworkConnection.productionInterop + "?function=passURLPOST2&data_id='/api/score'";
                 var dataObj : Dynamic = {};
@@ -614,7 +615,7 @@ class GameFileHandler
                 var parameters : Array<Dynamic> = new Array<Dynamic>();
                 var paramScoreObj : Dynamic = {};
                 paramScoreObj.name = "score";
-                paramScoreObj.value = levelScore;
+                //paramScoreObj.value = levelScore;
                 var paramLeaderScoreObj : Dynamic = {};
                 paramLeaderScoreObj.name = "leaderboardScore";
                 paramLeaderScoreObj.value = leaderboardScore;

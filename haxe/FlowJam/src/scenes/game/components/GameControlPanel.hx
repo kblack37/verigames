@@ -641,27 +641,27 @@ class GameControlPanel extends BaseComponent
     
     public function setHighScores(highScoreArray : Array<Dynamic>) : Void
     {
-        var level : Level = World.m_world.active_level;
-        if (level != null && highScoreArray != null)
-        {
-            var currentScore : Int = level.currentScore;
-            var bestScore : Int = level.bestScore;
-            var targetScore : Int = level.getTargetScore();
-            var maxScoreShown : Float = Math.max(currentScore, targetScore);
-            var score : String = highScoreArray[0].current_score;
-            
-            if (m_bestScoreLine == null)
-            {
-                m_bestScoreLine = new TargetScoreDisplay(score, 0.05 * GameControlPanel.SCORE_PANEL_AREA.height, TextBubble.RED, TextBubble.RED, "High Score");
-                m_bestScoreLine.addEventListener(TouchEvent.TOUCH, onTouchHighScore);
-            }
-            else
-            {
-                m_bestScoreLine.update(score);
-            }
-            m_bestScoreLine.x = (SCORE_PANEL_AREA.width * 2.0 / 3.0) * Std.parseFloat(score) / maxScoreShown;
-            m_scoreBarContainer.addChild(m_bestScoreLine);
-        }
+        //var level : Level = World.m_world.active_level;
+        //if (level != null && highScoreArray != null)
+        //{
+            //var currentScore : Int = level.currentScore;
+            //var bestScore : Int = level.bestScore;
+            //var targetScore : Int = level.getTargetScore();
+            //var maxScoreShown : Float = Math.max(currentScore, targetScore);
+            //var score : String = highScoreArray[0].current_score;
+            //
+            //if (m_bestScoreLine == null)
+            //{
+                //m_bestScoreLine = new TargetScoreDisplay(score, 0.05 * GameControlPanel.SCORE_PANEL_AREA.height, TextBubble.RED, TextBubble.RED, "High Score");
+                //m_bestScoreLine.addEventListener(TouchEvent.TOUCH, onTouchHighScore);
+            //}
+            //else
+            //{
+                //m_bestScoreLine.update(score);
+            //}
+            //m_bestScoreLine.x = (SCORE_PANEL_AREA.width * 2.0 / 3.0) * Std.parseFloat(score) / maxScoreShown;
+            //m_scoreBarContainer.addChild(m_bestScoreLine);
+        //}
     }
     
     public function adjustSize(newWidth : Float, newHeight : Float) : Void

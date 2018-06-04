@@ -17,10 +17,10 @@ class ComponentSelectScript extends ScriptNode
 	{
 		super(id);
 		
-		addEventListener(GameComponentEvent.COMPONENT_SELECTED, onComponentSelection);
-        addEventListener(GameComponentEvent.COMPONENT_UNSELECTED, onComponentUnselection);
-        addEventListener(GroupSelectionEvent.GROUP_SELECTED, onGroupSelection);
-        addEventListener(GroupSelectionEvent.GROUP_UNSELECTED, onGroupUnselection);
+		gameEngine.addEventListener(GameComponentEvent.COMPONENT_SELECTED, onComponentSelection);
+        gameEngine.addEventListener(GameComponentEvent.COMPONENT_UNSELECTED, onComponentUnselection);
+        gameEngine.addEventListener(GroupSelectionEvent.GROUP_SELECTED, onGroupSelection);
+        gameEngine.addEventListener(GroupSelectionEvent.GROUP_UNSELECTED, onGroupUnselection);
 	}
 	
 	private function onComponentSelection(evt : GameComponentEvent) : Void

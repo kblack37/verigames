@@ -14,12 +14,17 @@ class WorldUndoScript extends ScriptNode
 {
 	private var undoStack : Array<UndoEvent>;
 	private var redoStack : Array<UndoEvent>;
+	
+	private var m_gameEngine : IGameEngine;
+	
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
-		undoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getundoStack();
-		redoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getredoStack();
+		undoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getUndoStack();
+		redoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getRedoStack();
 		gameEngine.addEventListener(UndoEvent.UNDO_EVENT, saveEvent);
+		
+		m_gameEngine = gameEngine;
 	}
 	
 	 private function saveEvent(evt : UndoEvent) : Void
@@ -79,9 +84,9 @@ class WorldUndoScript extends ScriptNode
         //when we build on the undoStack, clear out the redoStack
         redoStack = new Array<UndoEvent>();
     }
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
-		gameEngine.removeEventListener(UndoEvent.UNDO_EVENT, saveEvent);
+		m_gameEngine.removeEventListener(UndoEvent.UNDO_EVENT, saveEvent);
 	}
 	
 }

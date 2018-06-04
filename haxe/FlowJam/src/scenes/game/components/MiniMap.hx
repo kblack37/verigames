@@ -232,7 +232,7 @@ class MiniMap extends BaseComponent
             // clamp to 0->1
             levPct.x = XMath.clamp(levPct.x, 0.0, 1.0);
             levPct.y = XMath.clamp(levPct.y, 0.0, 1.0);
-            dispatchEvent(new MoveEvent(MoveEvent.MOVE_TO_POINT, null, levPct, null));
+            //dispatchEvent(new MoveEvent(MoveEvent.MOVE_TO_POINT, null, levPct, null));
         }
     }
     

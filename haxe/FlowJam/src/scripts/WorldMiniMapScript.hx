@@ -18,7 +18,7 @@ class WorldMiniMapScript extends ScriptNode
 	{
 		super(id);
 		this.gameEngine = gameEngine;
-		miniMap = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getMiniMap()
+		miniMap = try cast (gameEngine.getUIComponent("minimap"), MiniMap) catch (e : Dynamic) null;
 		gameEngine.addEventListener(MiniMapEvent.ERRORS_MOVED, onErrorsMoved);
         gameEngine.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onViewspaceChanged);
         gameEngine.addEventListener(MiniMapEvent.LEVEL_RESIZED, onLevelResized);
@@ -45,7 +45,7 @@ class WorldMiniMapScript extends ScriptNode
         }
     }
 	
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
 		gameEngine.removeEventListener(MiniMapEvent.ERRORS_MOVED, onErrorsMoved);
         gameEngine.removeEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onViewspaceChanged);

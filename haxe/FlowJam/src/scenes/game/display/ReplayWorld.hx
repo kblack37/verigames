@@ -18,7 +18,7 @@ class ReplayWorld extends World
     
     public function new(_worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
     {
-        super(_worldGraphDict, _worldObj, _layout, _assignments);
+        super(null, _worldGraphDict, _worldObj, _layout, _assignments);
     }
     
     override private function onAddedToStage(event : Event) : Void

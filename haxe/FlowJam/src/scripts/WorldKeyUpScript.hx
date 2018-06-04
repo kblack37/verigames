@@ -2,7 +2,7 @@ package scripts;
 
 import engine.IGameEngine;
 import engine.scripting.ScriptNode;
-import scenes.game.display.World;
+import scenes.game.display.WorldCopy;
 import starling.events.KeyboardEvent;
 import events.UndoEvent;
 import starling.events.Event;
@@ -15,20 +15,23 @@ import scenes.BaseComponent;
  */
 class WorldKeyUpScript extends ScriptNode 
 {
-	private var active_level : Level:
+	private var active_level : Level;
 	private var redoStack : Array<UndoEvent>;
 	private var undoStack : Array<UndoEvent>;
-	private var world : World
+	private var world : WorldCopy;
+	
+	private var m_gameEngine : IGameEngine;
 	
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
 		world = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld();
-		active_level = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getActiveLevel();
-		redoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getRedoStack();
-		undoStack = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getRedoStack();
+		active_level = world.getActiveLevel();
+		redoStack = world.getRedoStack();
+		undoStack = world.getRedoStack();
 		gameEngine.getSprite().stage.addEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
 		
+		m_gameEngine = gameEngine;
 	}
 	
 	private function handleKeyUp(event : starling.events.KeyboardEvent) : Void
@@ -80,7 +83,7 @@ class WorldKeyUpScript extends ScriptNode
                 // && !PipeJam3.RELEASE_BUILD)
                     
                     {
-                        active_level.updateLayoutObj(this);
+                        active_level.updateLayoutObj(world);
                         System.setClipboard(haxe.Json.stringify(active_level.m_levelLayoutObjWrapper));
                     }
                 }
@@ -148,8 +151,8 @@ class WorldKeyUpScript extends ScriptNode
         }
     }
 	
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
-		gameEngine.getSprite().stage.removeEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
+		m_gameEngine.getSprite().stage.removeEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
 	}
 }

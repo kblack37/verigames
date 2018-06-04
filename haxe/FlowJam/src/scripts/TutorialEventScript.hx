@@ -3,7 +3,13 @@ package scripts;
 import engine.IGameEngine;
 import engine.scripting.ScriptNode;
 import events.MiniMapEvent;
+import events.TutorialEvent;
+import particle.FanfareParticleSystem;
+import scenes.game.display.GameEdgeContainer;
+import scenes.game.display.GameNode;
+import scenes.game.display.Level;
 import starling.display.Sprite;
+import state.FlowJamGameState;
 
 /**
  * Event scripts for GridViewPanel.
@@ -12,24 +18,23 @@ import starling.display.Sprite;
  */
 class TutorialEventScript extends ScriptNode 
 {
+	private var m_currentLevel : Level;
 	private var gameEngine : IGameEngine;
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
 		this.gameEngine = gameEngine;
 		
-		gameEngine.addEventListener(MiniMapEvent.ERRORS_MOVED, onErrorsMoved);
-        gameEngine.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onViewspaceChanged);
-        gameEngine.addEventListener(MiniMapEvent.LEVEL_RESIZED, onLevelResized);
+		gameEngine.addEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
+		gameEngine.addEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
+		gameEngine.addEventListener(TutorialEvent.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
+		gameEngine.addEventListener(TutorialEvent.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
+		gameEngine.addEventListener(TutorialEvent.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
+		gameEngine.addEventListener(TutorialEvent.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
+		gameEngine.addEventListener(TutorialEvent.NEW_TUTORIAL_TEXT, onTutorialTextChange);
+		gameEngine.addEventListener(TutorialEvent.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
 		
-		gameEngine.addEventListener(TutorialEventScript.SHOW_CONTINUE, displayContinueButton);
-		gameEngine.addEventListener(TutorialEventScript.HIGHLIGHT_BOX, onHighlightTutorialEvent);
-		gameEngine.addEventListener(TutorialEventScript.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
-		gameEngine.addEventListener(TutorialEventScript.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
-		gameEngine.addEventListener(TutorialEventScript.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
-		gameEngine.addEventListener(TutorialEventScript.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
-		gameEngine.addEventListener(TutorialEventScript.NEW_TUTORIAL_TEXT, onTutorialTextChange);
-		gameEngine.addEventListener(TutorialEventScript.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
+		m_currentLevel = cast(gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getActiveLevel();
 	}
 	
 	private var m_fanfareContainer : Sprite = new Sprite();
@@ -43,99 +48,96 @@ class TutorialEventScript extends ScriptNode
 	 */
     public function displayContinueButton(permanently : Bool = false) : Void
     {
-        if (permanently)
-        {
-            m_continueButtonForced = true;
-        }
-        if (continueButton == null)
-        {
-            continueButton = ButtonFactory.getInstance().createDefaultButton("Next Level", 128, 32);
-            continueButton.addEventListener(Event.TRIGGERED, onNextLevelButtonTriggered);
-            continueButton.x = WIDTH - continueButton.width - 5;
-            continueButton.y = HEIGHT - continueButton.height - 20 - GameControlPanel.OVERLAP;
-        }
-        
-        if (!m_currentLevel.targetScoreReached)
-        {
-            m_currentLevel.targetScoreReached = true;
-            if (PipeJamGameScene.inTutorial)
-            {
-                addChild(continueButton);
-            }
-            
-            // Fanfare
-            removeFanfare();
-            addChild(m_fanfareContainer);
-            m_fanfareContainer.x = m_fanfareTextContainer.x = WIDTH / 2 - continueButton.width / 2;
-            m_fanfareContainer.y = m_fanfareTextContainer.y = continueButton.y - continueButton.height;
-            
-            var levelCompleteText : String = (PipeJamGameScene.inTutorial) ? "Level Complete!" : "Great work!\nBut keep playing to further improve your score.";
-            var textWidth : Float = (PipeJamGameScene.inTutorial) ? continueButton.width : 208;
-            
-            var i : Int = 5;
-            while (i <= textWidth - 5)
-            {
-                var fanfare : FanfareParticleSystem = new FanfareParticleSystem();
-                fanfare.x = i;
-                fanfare.y = continueButton.height / 2;
-                fanfare.scaleX = fanfare.scaleY = 0.4;
-                m_fanfare.push(fanfare);
-                m_fanfareContainer.addChild(fanfare);
-                i += 10;
-            }
-            
-            startFanfare();
-            var LEVEL_COMPLETE_TEXT_MOVE_SEC : Float = (PipeJamGameScene.inTutorial) ? 2.0 : 0.0;
-            var LEVEL_COMPLETE_TEXT_FADE_SEC : Float = (PipeJamGameScene.inTutorial) ? 0.0 : 1.0;
-            var LEVEL_COMPLETE_TEXT_PAUSE_SEC : Float = (PipeJamGameScene.inTutorial) ? 1.0 : 5.0;
-            var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(levelCompleteText, "_sans", textWidth, continueButton.height, 16, 0xFFEC00);
-            if (!PipeJam3.DISABLE_FILTERS)
-            {
-                TextFactory.getInstance().updateFilter(textField, OutlineFilter.getOutlineFilter());
-            }
-            m_fanfareTextContainer.addChild(textField);
-            m_fanfareTextContainer.alpha = 1;
-            addChild(m_fanfareTextContainer);
-            
-            if (PipeJamGameScene.inTutorial)
-            {
-            // For tutorial, move text and button off to the side
-                
-                var origX : Float = m_fanfareTextContainer.x;
-                var origY : Float = m_fanfareTextContainer.y;
-                for (i in 0...m_fanfare.length)
-                {
-                    Starling.current.juggler.tween(m_fanfare[i], LEVEL_COMPLETE_TEXT_MOVE_SEC, {
-                                delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
-                                particleX : (continueButton.x - origX),
-                                particleY : (continueButton.y - continueButton.height - origY),
-                                transition : Transitions.EASE_OUT
-                            });
-                }
-                Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_MOVE_SEC, {
-                            delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
-                            x : continueButton.x,
-                            y : continueButton.y - continueButton.height,
-                            transition : Transitions.EASE_OUT
-                        });
-            }
-            // For real levels, gradually fade out text
-            else
-            {
-                
-                Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_FADE_SEC, {
-                            delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
-                            alpha : 0,
-                            transition : Transitions.EASE_IN
-                        });
-            }
-            m_stopFanfareDelayedCallId = Starling.current.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
-        }
-        
-        if (PipeJamGameScene.inTutorial)
-        {
-            TutorialController.getTutorialController().addCompletedTutorial(m_currentLevel.m_tutorialTag, true);
-        }
+        //if (permanently)
+        //{
+            //m_continueButtonForced = true;
+        //}
+        //if (continueButton == null)
+        //{
+            //continueButton = ButtonFactory.getInstance().createDefaultButton("Next Level", 128, 32);
+            //continueButton.addEventListener(Event.TRIGGERED, onNextLevelButtonTriggered);
+            //continueButton.x = WIDTH - continueButton.width - 5;
+            //continueButton.y = HEIGHT - continueButton.height - 20 - GameControlPanel.OVERLAP;
+        //}
+        //
+        //if (!m_currentLevel.targetScoreReached)
+        //{
+            //m_currentLevel.targetScoreReached = true;
+            //if (PipeJamGameScene.inTutorial)
+            //{
+                //addChild(continueButton);
+            //}
+            //
+            //// Fanfare
+            //removeFanfare();
+            //addChild(m_fanfareContainer);
+            //m_fanfareContainer.x = m_fanfareTextContainer.x = WIDTH / 2 - continueButton.width / 2;
+            //m_fanfareContainer.y = m_fanfareTextContainer.y = continueButton.y - continueButton.height;
+            //
+            //var levelCompleteText : String = (PipeJamGameScene.inTutorial) ? "Level Complete!" : "Great work!\nBut keep playing to further improve your score.";
+            //var textWidth : Float = (PipeJamGameScene.inTutorial) ? continueButton.width : 208;
+            //
+            //var i : Int = 5;
+            //while (i <= textWidth - 5)
+            //{
+                //var fanfare : FanfareParticleSystem = new FanfareParticleSystem();
+                //fanfare.x = i;
+                //fanfare.y = continueButton.height / 2;
+                //fanfare.scaleX = fanfare.scaleY = 0.4;
+                //m_fanfare.push(fanfare);
+                //m_fanfareContainer.addChild(fanfare);
+                //i += 10;
+            //}
+            //
+            //startFanfare();
+            //var LEVEL_COMPLETE_TEXT_MOVE_SEC : Float = (PipeJamGameScene.inTutorial) ? 2.0 : 0.0;
+            //var LEVEL_COMPLETE_TEXT_FADE_SEC : Float = (PipeJamGameScene.inTutorial) ? 0.0 : 1.0;
+            //var LEVEL_COMPLETE_TEXT_PAUSE_SEC : Float = (PipeJamGameScene.inTutorial) ? 1.0 : 5.0;
+            //var textField : TextFieldWrapper = TextFactory.getInstance().createTextField(levelCompleteText, "_sans", textWidth, continueButton.height, 16, 0xFFEC00);
+            //if (!PipeJam3.DISABLE_FILTERS)
+            //{
+                //TextFactory.getInstance().updateFilter(textField, OutlineFilter.getOutlineFilter());
+            //}
+            //m_fanfareTextContainer.addChild(textField);
+            //m_fanfareTextContainer.alpha = 1;
+            //addChild(m_fanfareTextContainer);
+            //
+            //if (PipeJamGameScene.inTutorial)
+            //{
+            //// For tutorial, move text and button off to the side
+                //
+                //var origX : Float = m_fanfareTextContainer.x;
+                //var origY : Float = m_fanfareTextContainer.y;
+                //for (i in 0...m_fanfare.length)
+                //{
+                    //Starling.current.juggler.tween(m_fanfare[i], LEVEL_COMPLETE_TEXT_MOVE_SEC, {
+                                //delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
+                                //particleX : (continueButton.x - origX),
+                                //particleY : (continueButton.y - continueButton.height - origY),
+                                //transition : Transitions.EASE_OUT
+                            //});
+                //}
+                //Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_MOVE_SEC, {
+                            //delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
+                            //x : continueButton.x,
+                            //y : continueButton.y - continueButton.height,
+                            //transition : Transitions.EASE_OUT
+                        //});
+            //}
+            //// For real levels, gradually fade out text
+            //else
+            //{
+                //
+                //Starling.current.juggler.tween(m_fanfareTextContainer, LEVEL_COMPLETE_TEXT_FADE_SEC, {
+                            //delay : LEVEL_COMPLETE_TEXT_PAUSE_SEC,
+                            //alpha : 0,
+                            //transition : Transitions.EASE_IN
+                        //});
+            //}
+            //m_stopFanfareDelayedCallId = Starling.current.juggler.delayCall(stopFanfare, LEVEL_COMPLETE_TEXT_PAUSE_SEC + LEVEL_COMPLETE_TEXT_MOVE_SEC + LEVEL_COMPLETE_TEXT_FADE_SEC - 0.5);
+        //}
+        //
+        //TutorialController.getTutorialController().addCompletedTutorial(m_currentLevel.m_tutorialTag, true);
     }
 
 	/**
@@ -208,4 +210,26 @@ class TutorialEventScript extends ScriptNode
         }
     }
 	
+	/**
+	 * Callback function executed when a new tooltip is shown. Shows a new persistent tooltip.
+	 * 
+	 * @param	evt The event with the new tooltip information. 
+	 */
+    public function onPersistentToolTipTextChange(evt : TutorialEvent) : Void
+    {
+        var i : Int;
+        for (i in 0...m_persistentToolTips.length)
+        {
+            m_persistentToolTips[i].removeFromParent(true);
+        }
+        m_persistentToolTips = new Array<ToolTipText>();
+        
+        var toolTips : Array<TutorialManagerTextInfo> = m_currentLevel.getLevelToolTipsInfo();
+        for (i in 0...toolTips.length)
+        {
+            var tip : ToolTipText = new ToolTipText(toolTips[i].text, m_currentLevel, true, toolTips[i].pointAtFn, toolTips[i].pointFrom, toolTips[i].pointTo);
+            addChild(tip);
+            m_persistentToolTips.push(tip);
+        }
+    }
 }

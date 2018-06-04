@@ -14,6 +14,8 @@ class ErrorScript extends ScriptNode {
 	private var errorConstraintDict : Dynamic;
 	
 	private var m_minimap : MiniMap;
+	
+	private var m_gameEngine : IGameEngine;
 
 	public function new(gameEngine : IGameEngine, id:String=null) {
 		super(id);
@@ -22,6 +24,8 @@ class ErrorScript extends ScriptNode {
 		
 		gameEngine.addEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
 		gameEngine.addEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
+		
+		m_gameEngine = gameEngine;
 	}
 	
 	private function onErrorAdded(evt : ErrorEvent) : Void
@@ -33,10 +37,10 @@ class ErrorScript extends ScriptNode {
     {
 		Reflect.deleteField(errorConstraintDict, evt.constraintError.id);
     }
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
 		
-		gameEngine.removeEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
-		gameEngine.removeEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
+		m_gameEngine.removeEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
+		m_gameEngine.removeEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
 	}
 }

@@ -1,8 +1,10 @@
 package scenes.game.display;
 
+import engine.IGameEngine;
 import flash.errors.Error;
 import haxe.Constraints.Function;
 import flash.display.StageDisplayState;
+import state.LevelSelectState;
 
 import flash.geom.Point;
 import flash.geom.Rectangle;
@@ -88,10 +90,13 @@ class WorldCopy extends BaseComponent
     private var m_activeToolTip : TextBubble;
     
     private static var m_numWidgetsClicked : Int = 0;
+	
+	private var m_gameEngine : IGameEngine;
     
-    public function new(_worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
+    public function new(gameEngine : IGameEngine, _worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
     {
         super();
+		m_gameEngine = gameEngine;
         m_worldGraphDict = _worldGraphDict;
         m_worldObj = _worldObj;
         m_layoutObj = _layout;
@@ -130,7 +135,7 @@ class WorldCopy extends BaseComponent
                 throw new Error("World level found without constraint graph:" + levelName);
             }
             var levelGraph : ConstraintGraph = try cast(Reflect.field(m_worldGraphDict, levelName), ConstraintGraph) catch(e:Dynamic) null;
-            var my_level : Level = new Level(levelName, levelGraph, levelObj, levelLayoutObj, levelAssignmentsObj, levelNameFound);
+            var my_level : Level = new Level(gameEngine, levelName, levelGraph, levelObj, levelLayoutObj, levelAssignmentsObj, levelNameFound);
             levels.push(my_level);
             
             if (firstLevel == null)
@@ -142,16 +147,16 @@ class WorldCopy extends BaseComponent
         addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
         addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
     }
-	public function getInGameMenuBox(Void) : InGameMenuDialog {
+	public function getInGameMenuBox() : InGameMenuDialog {
 		return inGameMenuBox;
 	}
-    public function getActiveLevel( Void) : Level {
-		return active_level
+    public function getActiveLevel() : Level {
+		return active_level;
 	}
-	public function getRedoStack(Void): Array<UndoEvent>{
+	public function getRedoStack(): Array<UndoEvent>{
 		return redoStack;
 	}
-	public function getUndoStack(Void): Array<UndoEvent>{
+	public function getUndoStack(): Array<UndoEvent>{
 		return undoStack;
 	}
     private var m_initQueue : Array<Function> = new Array<Function>();
@@ -183,15 +188,14 @@ class WorldCopy extends BaseComponent
     private function initGridViewPanel() : Void
     {
         trace("Initializing GridViewPanel...");
-        edgeSetGraphViewPanel = new GridViewPanel(this);
-        addChild(edgeSetGraphViewPanel);
+        edgeSetGraphViewPanel = try cast(m_gameEngine.getUIComponent("gridViewPanel"), GridViewPanel) catch (e : Dynamic) null;
         trace("Done initializing GridViewPanel.");
     }
     
     private function initGameControlPanel() : Void
     {
         trace("Initializing GameControlPanel...");
-        gameControlPanel = new GameControlPanel();
+        gameControlPanel = try cast(m_gameEngine.getUIComponent("gameControlPanel"), GameControlPanel) catch (e : Dynamic) null;
         gameControlPanel.y = GridViewPanel.HEIGHT - GameControlPanel.HEIGHT;
         if (edgeSetGraphViewPanel.atMaxZoom())
         {
@@ -205,7 +209,6 @@ class WorldCopy extends BaseComponent
         {
             gameControlPanel.onZoomReset();
         }
-        addChild(gameControlPanel);
         setHighScores();
         gameControlPanel.adjustSize(Starling.current.nativeStage.stageWidth, Starling.current.nativeStage.stageHeight);
         
@@ -217,12 +220,11 @@ class WorldCopy extends BaseComponent
     private function initMiniMap() : Void
     {
         trace("Initializing Minimap....");
-        miniMap = new MiniMap();
+        miniMap = try cast(m_gameEngine.getUIComponent("minimap"), MiniMap) catch (e : Dynamic) null;
         miniMap.x = Constants.GameWidth - MiniMap.WIDTH;
         miniMap.y = MiniMap.HIDDEN_Y;
         edgeSetGraphViewPanel.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, miniMap.onViewspaceChanged);
         miniMap.visible = false;
-        addChild(miniMap);
         trace("Done initializing Minimap.");
     }
     
@@ -315,6 +317,7 @@ class WorldCopy extends BaseComponent
         var m_backgroundImage : Image = null;
         //if (Starling.current.nativeStage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE)
         //{
+		trace(backMod);
             background = AssetInterface.getTexture("img/Backgrounds", "FlowJamBackground" + backMod + ".jpg");
             m_backgroundImage = new Image(background);
             m_backgroundImage.width = 480;
@@ -383,7 +386,7 @@ class WorldCopy extends BaseComponent
     
     private function switchToLevelSelect() : Void
     {
-        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, "LevelSelectScene"));
+        dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, LevelSelectState));
     }
     
     public function updateAssignments(currentLevelOnly : Bool = false) : Dynamic
@@ -509,7 +512,10 @@ class WorldCopy extends BaseComponent
             }
         }
     }
-    private function selectLevel(newLevel : Level, restart : Bool = false) : Void
+	
+	// TODO: made public temporarily, but this should be handled by an event instead of
+	// a function call (picking the current level, that is)
+    public function selectLevel(newLevel : Level, restart : Bool = false) : Void
     {
         if (newLevel == null)
         {
@@ -571,7 +577,7 @@ class WorldCopy extends BaseComponent
         active_level = newLevel;
         active_level.levelGraph.addEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
         active_level.levelGraph.addEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
-        
+		
         if (active_level.tutorialManager != null)
         {
             miniMap.visible = active_level.tutorialManager.getMiniMapShown();

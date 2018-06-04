@@ -7,6 +7,7 @@ import constraints.ConstraintValue;
 import constraints.ConstraintVar;
 import constraints.events.ErrorEvent;
 import constraints.events.VarChangeEvent;
+import engine.IGameEngine;
 import events.EdgeContainerEvent;
 import events.GameComponentEvent;
 import events.GroupSelectionEvent;
@@ -63,7 +64,8 @@ class Level extends BaseComponent
     /** Node collection used to create this level, including name obfuscater */
     public var levelGraph : ConstraintGraph;
     
-    private var selectedComponents : Array<GameComponent>;
+	// TODO: made public for now for ease of use but selection should be moved out to the domain of scripts
+    public var selectedComponents : Array<GameComponent>;
     /** used by solver to keep track of which nodes map to which constraint values, and visa versa */
     private var nodeIDToConstraintsTwoWayMap : Dynamic;
     
@@ -133,6 +135,8 @@ class Level extends BaseComponent
     private static inline var BG_WIDTH : Float = 256;
     private static inline var MIN_BORDER : Float = 1000;
     private static var USE_TILED_BACKGROUND : Bool = false;  // true to include a background that scrolls with the view  
+	
+	private var m_gameEngine : IGameEngine;
     
     /**
 		 * Level contains widgets, links for entire input level constraint graph
@@ -144,9 +148,10 @@ class Level extends BaseComponent
 		 * @param	_targetScore Score needed to complete level
 		 * @param	_originalLevelName Level name from PL group
 		 */
-    public function new(_name : String, _levelGraph : ConstraintGraph, _levelObj : Dynamic, _levelLayoutObj : Dynamic, _levelAssignmentsObj : Dynamic, _originalLevelName : String)
+    public function new(gameEngine : IGameEngine, _name : String, _levelGraph : ConstraintGraph, _levelObj : Dynamic, _levelLayoutObj : Dynamic, _levelAssignmentsObj : Dynamic, _originalLevelName : String)
     {
         super();
+		m_gameEngine = gameEngine;
         UNLOCK_ALL_LEVELS_FOR_DEBUG = PipeJamGame.DEBUG_MODE;
         level_name = _name;
         original_level_name = _originalLevelName;
@@ -195,7 +200,8 @@ class Level extends BaseComponent
     
     private function loadAssignments(assignmentsObj : Dynamic, updateTutorialManager : Bool = false) : Void
     {
-        PipeJam3.m_savedCurrentLevel.data.assignmentUpdates = null;
+		var saveData : Dynamic = m_gameEngine.getSaveData();
+        Reflect.setField(saveData, "assignmentUpdates", null);
         var graphVar : ConstraintVar = null;
         for (varId in Reflect.fields(levelGraph.variableDict))
         {
@@ -214,7 +220,7 @@ class Level extends BaseComponent
     //save object and restore at after initial assignments since I don't want these assignments saved
     {
         
-        var savedAssignmentObj : Dynamic = PipeJam3.m_savedCurrentLevel.data.assignmentUpdates;
+        var savedAssignmentObj : Dynamic = Reflect.field(m_gameEngine.getSaveData(), "assignmentUpdates");
         // By default, reset gameNode to default value, then if contained in "assignments" obj, use that value instead
         var assignmentIsWide : Bool = (graphVar.defaultVal.verboseStrVal == ConstraintValue.VERBOSE_TYPE_1);
         if (Reflect.hasField(Reflect.field(assignmentsObj, "assignments"), graphVar.formattedId)
@@ -728,12 +734,12 @@ class Level extends BaseComponent
     public function updateLevelObj() : Void
     {
         var worldParent : DisplayObject = parent;
-        while (worldParent != null && !(Std.is(worldParent, World)))
+        while (worldParent != null && !(Std.is(worldParent, WorldCopy)))
         {
             worldParent = worldParent.parent;
         }
         
-        updateLayoutObj(try cast(worldParent, World) catch(e:Dynamic) null, true);
+        updateLayoutObj(try cast(worldParent, WorldCopy) catch(e:Dynamic) null, true);
         updateAssignmentsObj();
     }
     
@@ -757,9 +763,9 @@ class Level extends BaseComponent
     }
     
     //update current layout info based on node/edge position
-    // TODO: We don't want Level to depend on World, let's avoid circular
-    // class dependency and have World -> Level, not World <-> Level
-    public function updateLayoutObj(world : World, includeThumbnail : Bool = false) : Void
+    // TODO: We don't want Level to depend on WorldCopy, let's avoid circular
+    // class dependency and have WorldCopy -> Level, not WorldCopy <-> Level
+    public function updateLayoutObj(world : WorldCopy, includeThumbnail : Bool = false) : Void
     {
         m_levelLayoutObjWrapper = {};
         Reflect.setField(m_levelLayoutObjWrapper, "layout", {});
@@ -841,8 +847,6 @@ class Level extends BaseComponent
             hashSize++;
         }
         
-        PipeJamGame.levelInfo.hash = new Array<Dynamic>();
-        
         var assignmentsObj : Dynamic = {
             id : original_level_name,
             hash : [],
@@ -888,7 +892,6 @@ class Level extends BaseComponent
                 count = 0;
                 //store both in the file and externally
                 Reflect.field(assignmentsObj, "hash").push(numWide);
-                PipeJamGame.levelInfo.hash.push(numWide);
                 numWide = 0;
             }
         }
@@ -1064,15 +1067,16 @@ class Level extends BaseComponent
             {
                 tutorialManager.onWidgetChange(evt.graphVar.id, evt.prop, evt.newValue);
             }
-            dispatchEvent(new WidgetChangeEvent(WidgetChangeEvent.LEVEL_WIDGET_CHANGED, evt.graphVar, evt.prop, evt.newValue, this, evt.pt));
+            m_gameEngine.dispatchEvent(new WidgetChangeEvent(WidgetChangeEvent.LEVEL_WIDGET_CHANGED, evt.graphVar, evt.prop, evt.newValue, this, evt.pt));
             //save incremental changes so we can update if user quits and restarts
-            if (PipeJam3.m_savedCurrentLevel.data.assignmentUpdates)
+			var saveData : Dynamic = m_gameEngine.getSaveData();
+            if (Reflect.hasField(saveData, "assignmentUpdates"))
             {
             //should only be null when doing assignments from assignments file
                 
                 {
                     var constraintType : String = (evt.newValue) ? ConstraintValue.VERBOSE_TYPE_0 : ConstraintValue.VERBOSE_TYPE_1;
-                    Reflect.setField(PipeJam3.m_savedCurrentLevel.data.assignmentUpdates, evt.graphVar.id, constraintType);
+                    Reflect.setField(Reflect.field(saveData, "assignmentUpdates"), evt.graphVar.id, constraintType);
                 }
             }
         }

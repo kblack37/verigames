@@ -11,13 +11,17 @@ import state.FlowJamGameState;
  */
 class WorldClashClearScript extends ScriptNode 
 {
-	var active_level : Level
+	private var active_level : Level;
+	
+	private var m_gameEngine : IGameEngine;
 	
 	public function new(gameEngine: IGameEngine, id:String=null) 
 	{
 		super(id);
-		active_level = cast (gameEngine.getStateMachine().getCurrentState(),FlowJamGameState).getWorld().getActiveLevel();
+		active_level = cast(gameEngine.getStateMachine().getCurrentState(),FlowJamGameState).getWorld().getActiveLevel();
 		gameEngine.addEventListener(Achievements.CLASH_CLEARED_ID, checkClashClearedEvent);
+		
+		m_gameEngine = gameEngine;
 	}
 	
 	private function checkClashClearedEvent() : Void
@@ -28,8 +32,8 @@ class WorldClashClearScript extends ScriptNode
         }
     }
 	
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
-		gameEngine.removeEventListener(Achievements.CLASH_CLEARED_ID, checkClashClearedEvent);
+		m_gameEngine.removeEventListener(Achievements.CLASH_CLEARED_ID, checkClashClearedEvent);
 	}
 }

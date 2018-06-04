@@ -283,10 +283,10 @@ class PipeJamGame extends Game
         
         PipeJamGame.levelInfo.highScores = highScoreArray;
         
-        if (World.m_world != null)
-        {
-            World.m_world.setHighScores();
-        }
+        //if (World.m_world != null)
+        //{
+            //World.m_world.setHighScores();
+        //}
     }
     
     private function toggleSoundControl(event : starling.events.Event) : Void
@@ -358,17 +358,17 @@ class PipeJamGame extends Game
     
     public static function resetSoundButtonParent() : Void
     {
-        if (World.m_world != null)
-        {
-            World.m_world.addSoundButton(m_sfxButton);
-        }
+        //if (World.m_world != null)
+        //{
+            //World.m_world.addSoundButton(m_sfxButton);
+        //}
     }
     
     public function changeFullScreen(newWidth : Int, newHeight : Int) : Void
     {
-        if (World.m_world != null)
-        {
-            World.m_world.changeFullScreen(newWidth, newHeight);
-        }
+        //if (World.m_world != null)
+        //{
+            //World.m_world.changeFullScreen(newWidth, newHeight);
+        //}
     }
 }

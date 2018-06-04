@@ -64,6 +64,8 @@ class GameEngine extends Sprite implements IGameEngine
 		// this should search the local machine, probably using openfl's sharedobject
 		// or if there's a starling equivalent
 		// or a server with save data if we're feeling fancy
+		// For now, it's just an empty anonymous structure
+		m_savedData = {};
 		
 		// Set up the enter frame listener
 		this.addEventListener(Event.ENTER_FRAME, update);

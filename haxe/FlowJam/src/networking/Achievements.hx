@@ -98,7 +98,7 @@ class Achievements
     
     private function postMessage(result : Int, e : Event) : Void
     {
-        World.m_world.dispatchEvent(new MenuEvent(MenuEvent.ACHIEVEMENT_ADDED, this));
+        //World.m_world.dispatchEvent(new MenuEvent(MenuEvent.ACHIEVEMENT_ADDED, this));
     }
     
     public function sendMessage(type : Int, callback : Function) : Void

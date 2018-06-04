@@ -16,7 +16,7 @@ class WorldErrorScript extends ScriptNode
 {
 	private var errorDict : Dynamic;
 	private var active_level : Level;
-	private var minimap : MiniMap;
+	private var miniMap : MiniMap;
 	private var gameEngine : IGameEngine;
 
 	public function new(gameEngine: IGameEngine, id:String=null) 
@@ -26,7 +26,7 @@ class WorldErrorScript extends ScriptNode
 		errorDict = {};
 		
 		active_level = cast (gameEngine.getStateMachine().getCurrentState(), FlowJamGameState).getWorld().getActiveLevel();
-		miniMap = try cast(gameEngine.getUIComponent("miniMap"), GridViewPanel) catch (e : Dynamic) null;
+		miniMap = try cast(gameEngine.getUIComponent("minimap"), MiniMap) catch (e : Dynamic) null;
 		gameEngine.addEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);
 		gameEngine.addEventListener(ErrorEvent.ERROR_REMOVED, onErrorRemoved);
 		
@@ -62,7 +62,7 @@ class WorldErrorScript extends ScriptNode
             }
         }
     }
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
 		
 		gameEngine.removeEventListener(ErrorEvent.ERROR_ADDED, onErrorAdded);

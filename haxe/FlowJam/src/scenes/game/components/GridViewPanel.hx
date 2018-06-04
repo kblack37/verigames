@@ -35,7 +35,7 @@ import scenes.game.display.GameNode;
 import scenes.game.display.Level;
 import scenes.game.display.OutlineFilter;
 import scenes.game.display.TutorialManagerTextInfo;
-import scenes.game.display.World;
+import scenes.game.display.WorldCopy;
 import starling.animation.DelayedCall;
 import starling.animation.Transitions;
 //import starling.core.RenderSupport;
@@ -92,11 +92,11 @@ class GridViewPanel extends BaseComponent
     private static var MIN_ERROR_TEXT_DISPLAY_SCALE : Float = 15.0 / Constants.GAME_SCALE;
     
 	/** 
-	 * Create a new display for the given World.
+	 * Create a new display for the given WorldCopy.
 	 * 
 	 * @param world The world to display.
 	 */
-    public function new(world : World)
+    public function new(world : WorldCopy)
     {
         super();
         this.alpha = .999;
@@ -896,7 +896,7 @@ class GridViewPanel extends BaseComponent
             case Keyboard.C:
                 if (event.ctrlKey)
                 {
-                    World.m_world.solverDoneCallback("");
+                    //WorldCopy.m_world.solverDoneCallback("");
                 }
             case Keyboard.EQUAL, Keyboard.NUMPAD_ADD:
                 zoomInDiscrete();
@@ -948,7 +948,7 @@ class GridViewPanel extends BaseComponent
             {
                 currentMode = NORMAL_MODE;
             }
-            else if (m_currentLevel != null && event.target == contentBarrier && World.changingFullScreenState == false)
+            else if (m_currentLevel != null && event.target == contentBarrier && WorldCopy.changingFullScreenState == false)
             {
                 m_currentLevel.unselectAll();
                 var evt : PropertyModeChangeEvent = new PropertyModeChangeEvent(PropertyModeChangeEvent.PROPERTY_MODE_CHANGE, PropDictionary.PROP_NARROW);
@@ -956,7 +956,7 @@ class GridViewPanel extends BaseComponent
             }
             else
             {
-                World.changingFullScreenState = false;
+                WorldCopy.changingFullScreenState = false;
             }
         }
         else if (event.getTouches(this, TouchPhase.MOVED).length > 0)
@@ -1157,14 +1157,6 @@ class GridViewPanel extends BaseComponent
                 content.removeChild(m_currentLevel);
                 if (m_currentLevel.tutorialManager != null)
                 {
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.NEW_TUTORIAL_TEXT, onTutorialTextChange);
-                    m_currentLevel.tutorialManager.removeEventListener(TutorialEvent.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
                 }
             }
             m_currentLevel = level;
@@ -1204,14 +1196,6 @@ class GridViewPanel extends BaseComponent
         m_currentLevel.addEventListener(MiniMapEvent.VIEWSPACE_CHANGED, onLevelViewChanged);
         if (m_currentLevel.tutorialManager != null)
         {
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.SHOW_CONTINUE, displayContinueButton);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_BOX, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_EDGE, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_PASSAGE, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_CLASH, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.HIGHLIGHT_SCOREBLOCK, onHighlightTutorialEvent);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.NEW_TUTORIAL_TEXT, onTutorialTextChange);
-            m_currentLevel.tutorialManager.addEventListener(TutorialEvent.NEW_TOOLTIP_TEXT, onPersistentToolTipTextChange);
         }
         
         // Queue all nodes/edges to add (later we can refine to only on-screen
@@ -1669,29 +1653,6 @@ class GridViewPanel extends BaseComponent
                 {
                     spotlightComponent(edge.errorContainer, 3.0, 1.3, 1.3);
                 }
-        }
-    }
-    
-	/**
-	 * Callback function executed when a new tooltip is shown. Shows a new persistent tooltip.
-	 * 
-	 * @param	evt The event with the new tooltip information. 
-	 */
-    public function onPersistentToolTipTextChange(evt : TutorialEvent) : Void
-    {
-        var i : Int;
-        for (i in 0...m_persistentToolTips.length)
-        {
-            m_persistentToolTips[i].removeFromParent(true);
-        }
-        m_persistentToolTips = new Array<ToolTipText>();
-        
-        var toolTips : Array<TutorialManagerTextInfo> = m_currentLevel.getLevelToolTipsInfo();
-        for (i in 0...toolTips.length)
-        {
-            var tip : ToolTipText = new ToolTipText(toolTips[i].text, m_currentLevel, true, toolTips[i].pointAtFn, toolTips[i].pointFrom, toolTips[i].pointTo);
-            addChild(tip);
-            m_persistentToolTips.push(tip);
         }
     }
 }

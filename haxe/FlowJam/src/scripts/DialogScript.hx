@@ -128,7 +128,7 @@ class DialogScript extends ScriptNode
         }
         childToAdd.addChild(alert);
     }
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
 		gameEngine.removeEventListener(DialogEvent.LEVEL_SAVED, onLevelUploadSuccess);
 		gameEngine.removeEventListener(DialogEvent.POST_SAVE_DIALOG, postSaveDialog );

@@ -28,9 +28,9 @@ class WorldMoveScript extends ScriptNode
         edgeSetGraphViewPanel.moveToPoint(evt.startLoc);
     }
 	
-	public function override dispose(){
+	override public function dispose(){
 		super.dispose();
-		gameEngine.removeEventListener(MoveEvent.MOVE_TO_POINT, onMoveToPointEvent);
+		m_gameEngine.removeEventListener(MoveEvent.MOVE_TO_POINT, onMoveToPointEvent);
 	}
 	
 }

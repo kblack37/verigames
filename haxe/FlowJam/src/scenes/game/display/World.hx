@@ -1,5 +1,6 @@
 package scenes.game.display;
 
+import engine.IGameEngine;
 import flash.errors.Error;
 import haxe.Constraints.Function;
 import flash.display.StageAlign;
@@ -97,7 +98,7 @@ class World extends BaseComponent
     
     private static var m_numWidgetsClicked : Int = 0;
     
-    public function new(_worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
+    public function new(gameEngine : IGameEngine, _worldGraphDict : Dynamic, _worldObj : Dynamic, _layout : Dynamic, _assignments : Dynamic)
     {
         super();
         m_worldGraphDict = _worldGraphDict;
@@ -138,7 +139,7 @@ class World extends BaseComponent
                 throw new Error("World level found without constraint graph:" + levelName);
             }
             var levelGraph : ConstraintGraph = try cast(Reflect.field(m_worldGraphDict, levelName), ConstraintGraph) catch(e:Dynamic) null;
-            var my_level : Level = new Level(levelName, levelGraph, levelObj, levelLayoutObj, levelAssignmentsObj, levelNameFound);
+            var my_level : Level = new Level(gameEngine, levelName, levelGraph, levelObj, levelLayoutObj, levelAssignmentsObj, levelNameFound);
             levels.push(my_level);
             
             if (firstLevel == null)
@@ -179,7 +180,7 @@ class World extends BaseComponent
         }
     }
 	public function getActiveLevel( Void) : Level {
-		return active_level
+		return active_level;
 	}
 	public function getRedoStack(Void): Array<UndoEvent>{
 		return redoStack;
@@ -190,8 +191,8 @@ class World extends BaseComponent
     private function initGridViewPanel() : Void
     {
         trace("Initializing GridViewPanel...");
-        edgeSetGraphViewPanel = new GridViewPanel(this);
-        addChild(edgeSetGraphViewPanel);
+        //edgeSetGraphViewPanel = new GridViewPanel(this);
+        //addChild(edgeSetGraphViewPanel);
         trace("Done initializing GridViewPanel.");
     }
     
@@ -1115,8 +1116,8 @@ class World extends BaseComponent
                 // && !PipeJam3.RELEASE_BUILD)
                     
                     {
-                        active_level.updateLayoutObj(this);
-                        System.setClipboard(haxe.Json.stringify(active_level.m_levelLayoutObjWrapper));
+                        //active_level.updateLayoutObj(this);
+                        //System.setClipboard(haxe.Json.stringify(active_level.m_levelLayoutObjWrapper));
                     }
                 }
                 case 66:  //'b' for load Best scoring config  

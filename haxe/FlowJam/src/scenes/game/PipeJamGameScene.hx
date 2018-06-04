@@ -139,7 +139,7 @@ class PipeJamGameScene extends Scene
             }
             else
             {
-                active_world = new World(m_worldGraphDict, m_worldObj, m_layoutObj, m_assignmentsObj);
+                active_world = new World(null, m_worldGraphDict, m_worldObj, m_layoutObj, m_assignmentsObj);
             }
         }
         catch (error : Error)

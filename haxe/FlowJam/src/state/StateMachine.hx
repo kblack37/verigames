@@ -50,8 +50,8 @@ class StateMachine extends Sprite implements IStateMachine {
 		}
 		
 		addChild(state.getSprite());
-		state.enter(m_currentState, exitParams);
 		m_currentState = state;
+		state.enter(m_currentState, exitParams);
 	}
 	
 }

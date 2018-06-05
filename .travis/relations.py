@@ -65,8 +65,10 @@ for root, dirs, files in os.walk(SRC_ROOT):
             for line in infile:
                 num_lines += 1
                 for module in modules:
-                    if(module != module_name and module in line):
+                    if(module != module_name and module in line
+                            and line.startswith("import")):
                         relations[module_name].add(module)
+                        break
             line_count[module_name] = num_lines
 
 # Print to data file

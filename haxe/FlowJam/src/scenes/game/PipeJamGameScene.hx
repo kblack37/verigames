@@ -61,8 +61,7 @@ class PipeJamGameScene extends Scene
         removeChildren(0, -1, true);
         active_world = null;
     }
-	
-	public function getWorld() : World;
+
     
     private function onLayoutLoaded(_layoutObj : Dynamic) : Void
     {

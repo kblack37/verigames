@@ -2,6 +2,7 @@ package events;
 
 import haxe.Constraints.Function;
 import starling.events.Event;
+import state.IState;
 
 class NavigationEvent extends Event
 {
@@ -13,11 +14,11 @@ class NavigationEvent extends Event
     public static inline var GET_RANDOM_LEVEL : String = "get_random_level";
     public static inline var GET_SAVED_LEVEL : String = "get_saved_level";
     
-    public var scene : String;
+    public var scene : Class<IState>;
     public var menuShowing : Bool;
     public var fadeCallback : Function;
     
-    public function new(type : String, _scene : String = "", _menuShowing : Bool = false, _fadeCallback : Function = null)
+    public function new(type : String, _scene : Class<IState> = null, _menuShowing : Bool = false, _fadeCallback : Function = null)
     {
         super(type, true);
         scene = _scene;

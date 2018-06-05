@@ -18,21 +18,11 @@ import haxe.rtti.Meta;
 import haxe.Resource;
 class TutorialController extends Sprite
 {
-	//public static var tutorialObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorial.json"));
-    
-   // @:meta(Embed(source = "../../lib/levels/tutorial/tutorialLayout.json", mimeType = "application/octet-stream"))
-	
-   
-    //public static var tutorialLayoutJson : String = Type.createInstance(tutorialLayoutFileClass, []);
-    //public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(tutorialLayoutJson);
-	//public static var tutorialLayoutObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialLayout.json"));
 
     public var tutorialObj : Dynamic;
     
     public var tutorialLayoutObj : Dynamic;
 
-
-    //public static var tutorialAssignmentsObj : Dynamic = haxe.Json.parse(Resource.getString("Tutorial/tutorialAssignments.json"));
     public var tutorialAssignmentsObj : Dynamic;
     
     public static var tutorial_level_complete : Int = 0;

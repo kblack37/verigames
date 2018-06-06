@@ -13,22 +13,23 @@ import os
 
 SRC_ROOT = "./haxe/FlowJam/src"
 EXTENSION = "hx"
-IGNORE = ["/cgs/"]
+IGNORE = ["/cgs/", "WorldOld"]
+
+def should_ignore(x):
+    for ig in IGNORE:
+        if (ig in x):
+            return True
+    return False
 
 # Get all modules
 modules = set()
 for root, dirs, files in os.walk(SRC_ROOT):
-    ignore = False
-    for ig in IGNORE:
-        if (ig in root):
-            ignore = True
-            break
-    if (ignore):
+    if (should_ignore(root)):
         continue
     
     for f in files:
         parts = f.split(".")
-        if (len(parts) == 1):
+        if (len(parts) == 1 or should_ignore(f)):
             continue
         module_name = parts[0]
         extension = parts[1]
@@ -41,18 +42,14 @@ for root, dirs, files in os.walk(SRC_ROOT):
 relations = {}
 line_count = {}
 for root, dirs, files in os.walk(SRC_ROOT):
-    ignore = False
-    for ig in IGNORE:
-        if (ig in root):
-            ignore = True
-            break
-    if (ignore):
-        continue
+    if (should_ignore(root)):
+        continue;
 
     for f in files:
         parts = f.split(".")
-        if (len(parts) == 1):
+        if (len(parts) == 1 or should_ignore(f)):
             continue
+        
         module_name = parts[0]
         extension = parts[1]
         if (extension != EXTENSION):
